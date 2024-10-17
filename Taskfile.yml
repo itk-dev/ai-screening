@@ -3,27 +3,41 @@ version: '3'
 dotenv: [".task.env", ".env"]
 
 vars:
-  DOCKER_COMPOSE: '{{ .TASK_DOCKER_COMPOSE | default "itkdev-docker-compose-server" }}'
+  DOCKER_COMPOSE: '{{ .TASK_DOCKER_COMPOSE | default "docker compose" }}'
 
 tasks:
-  template-prune:
+  compose:
     cmds:
-      - echo -e 'COMPOSE_PROJECT_NAME={{.PROJECTNAME}}\nCOMPOSE_DOMAIN={{.PROJECTNAME}}.local.itkdev.dk' > .env
-      - echo -e 'TASK_DOCKER_COMPOSE="docker compose"' > .task.env
-      - rm -R web/themes/custom/TEMPLATE_THEME
-      - echo -e '$settings[\"trusted_host_patterns\"] = [\n  \"^{{.PROJECTNAME}}\.local\.itkdev\.dk$\"\n];' >> deploy-templates/settings.local.php
-      - mkdir -p web/sites/default
-      - cp deploy-templates/settings.local.php web/sites/default/
-      - cp deploy-templates/services.local.yml web/sites/default/
-      - cp deploy-templates/Taskfile.yml Taskfile.yml
-      - cp deploy-templates/CHANGELOG.md CHANGELOG.md
-      - sed -i '' -e 's/{PROJECT-NAME}/{{.PROJECTNAME}}/g' README.md CHANGELOG.md
-      - rm -R deploy-templates
+      - '{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}'
+    silent: true
 
-    requires:
-      vars:
-        - PROJECTNAME
+  composer:
+    cmds:
+      - task compose -- exec phpfpm composer {{ .CLI_ARGS }}
+    silent: true
 
-    preconditions:
-      - sh: "[[ {{.PROJECTNAME}} =~ ^[a-z0-9\\-]+$ ]]"
-        msg: "PROJECTNAME should only contain lowercase a-z, digits and hyphens"
+  drush:
+    cmds:
+      - task compose -- exec --no-TTY phpfpm vendor/bin/drush {{ .CLI_ARGS }}
+    silent: true
+
+  build-site:new:
+    cmds:
+       - task drush -- site:install minimal -y
+
+  build-site:existing-conf:
+    cmds:
+      - task compose -- up --detach
+      - task composer -- install
+      - task drush -- site-install --existing-config --yes
+
+  simulate-github-actions:
+    cmds:
+      - task composer -- normalize
+      - task check-code
+
+  check-code:
+    cmds:
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
+      - task composer -- code-analysis
+      - task composer -- coding-standards-check/twig-cs-fixer

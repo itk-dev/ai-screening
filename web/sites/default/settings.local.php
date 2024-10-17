@@ -52,5 +52,5 @@ $settings['hash_salt'] = '1234';
  * Set trusted host pattern.
  */
 $settings["trusted_host_patterns"] = [
-  "^my-project\.local\.itkdev\.dk$"
+  "^ai-screening\.local\.itkdev\.dk$"
 ];
