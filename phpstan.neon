@@ -1,0 +1,9 @@
+parameters:
+  paths:
+    - web/modules/custom
+  level: 0
+  customRulesetUsed: true
+  reportUnmatchedIgnoredErrors: false
+  ignoreErrors:
+        -
+            message: '#\Drupal calls should be avoided in classes, use dependency injection instead#'

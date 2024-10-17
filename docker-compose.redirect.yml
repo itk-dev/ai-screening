@@ -1,0 +1,15 @@
+# itk-version: 3.2.1
+services:
+  nginx:
+    labels:
+      # Add www before domain and set redirect to non-www
+      - "traefik.http.routers.www_${COMPOSE_PROJECT_NAME}-http.rule=Host(`www.${COMPOSE_SERVER_DOMAIN}`)"
+      - "traefik.http.routers.www_${COMPOSE_PROJECT_NAME}-http.entrypoints=web"
+      - "traefik.http.routers.www_${COMPOSE_PROJECT_NAME}-http.middlewares=redirect-to-https,non_www"
+      - "traefik.http.routers.www_${COMPOSE_PROJECT_NAME}.rule=Host(`www.${COMPOSE_SERVER_DOMAIN}`)"
+      - "traefik.http.routers.www_${COMPOSE_PROJECT_NAME}.entrypoints=websecure"
+      - "traefik.http.routers.www_${COMPOSE_PROJECT_NAME}.middlewares=non_www"
+
+      - traefik.http.middlewares.non_www.redirectregex.regex=^(http|https)?://(?:www\.)?(.+)
+      - traefik.http.middlewares.non_www.redirectregex.replacement=https://$${2}
+      - traefik.http.middlewares.non_www.redirectregex.permanent=true

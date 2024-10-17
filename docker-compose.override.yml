@@ -1,0 +1,14 @@
+services:
+
+  phpfpm:
+    image: itkdev/php8.3-fpm:latest
+    environment:
+      - PHP_MAX_EXECUTION_TIME=60
+      - PHP_MEMORY_LIMIT=512M
+      - PHP_POST_MAX_SIZE=10M
+      - PHP_UPLOAD_MAX_FILESIZE=8M
+
+  nginx:
+    environment:
+      # Match PHP_UPLOAD_MAX_FILESIZE (plus a little more)
+      NGINX_MAX_BODY_SIZE: 10M

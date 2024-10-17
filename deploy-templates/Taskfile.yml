@@ -1,0 +1,43 @@
+version: '3'
+
+dotenv: [".task.env", ".env"]
+
+vars:
+  DOCKER_COMPOSE: '{{ .TASK_DOCKER_COMPOSE | default "docker compose" }}'
+
+tasks:
+  compose:
+    cmds:
+      - '{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}'
+    silent: true
+
+  composer:
+    cmds:
+      - task compose -- exec phpfpm composer {{ .CLI_ARGS }}
+    silent: true
+
+  drush:
+    cmds:
+      - task compose -- exec --no-TTY phpfpm vendor/bin/drush {{ .CLI_ARGS }}
+    silent: true
+
+  build-site:new:
+    cmds:
+       - task drush -- site:install minimal -y
+
+  build-site:existing-conf:
+    cmds:
+      - task compose -- up --detach
+      - task composer -- install
+      - task drush -- site-install --existing-config --yes
+
+  simulate-github-actions:
+    cmds:
+      - task composer -- normalize
+      - task check-code
+
+  check-code:
+    cmds:
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
+      - task composer -- code-analysis
+      - task composer -- coding-standards-check/twig-cs-fixer

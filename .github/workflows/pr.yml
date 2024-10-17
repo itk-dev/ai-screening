@@ -1,0 +1,167 @@
+on: pull_request
+name: Review
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    name: Changelog should be updated
+    strategy:
+      matrix:
+        php-versions: [ '8.3' ]
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Git fetch
+        run: git fetch
+
+      - name: Check that changelog has been updated.
+        run: git diff --exit-code origin/${{ github.base_ref }} -- CHANGELOG.md && exit 1 || exit 0
+
+
+  markdown-coding-standards:
+    name: Markdown coding standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Coding standards
+        run: |
+          docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
+
+  composer-normalize:
+    name: composer-normalize
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: [ '8.3' ]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          docker network create frontend
+          docker compose run --user root --rm phpfpm composer install
+          docker compose run --user root --rm phpfpm composer normalize
+
+  coding-standards-phpcs:
+    name: coding-standards-check/phpcs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: [ '8.3' ]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          docker network create frontend
+          docker compose run --user root --rm phpfpm composer install
+          docker compose run --user root --rm phpfpm composer coding-standards-check/phpcs
+
+  coding-standards-twig-cs-fixer:
+    name: coding-standards-check/twig-cs-fixer
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: [ '8.3' ]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          docker network create frontend
+          docker compose run --user root --rm phpfpm composer install
+          docker compose run --user root --rm phpfpm composer coding-standards-check/twig-cs-fixer
+
+  install-site:
+    name: Check that site can be installed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup-docker-and-composer
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+          
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec --user root phpfpm composer install --no-interaction
+
+      - name: Install site
+        if: ${{ (hashFiles('config/sync/core.extension.yml') == '') && (hashFiles('web/sites/default/settings.local.php') != '') }}
+        run: |
+          # Install the site
+          docker compose exec --user root phpfpm vendor/bin/drush site:install minimal
+
+      - name: Install site from config
+        if: ${{ hashFiles('config/sync/core.extension.yml') != '' }}
+        run: |
+          # Install the site from config
+          docker compose exec --user root phpfpm vendor/bin/drush site:install --existing-config --yes
+
+      - name: Open site
+        run: |
+          echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) user:login)
+
+  config-check:
+    name: Check that config is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install site
+        if: ${{ (hashFiles('config/sync/core.extension.yml') != '') && (hashFiles('web/sites/default/settings.local.php') != '') }}
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec --user root phpfpm composer install --no-interaction
+
+          # Install the site
+          docker compose exec --user root phpfpm vendor/bin/drush site:install --existing-config --yes
+
+      - name: Export config
+        if: ${{ (hashFiles('config/sync/core.extension.yml') != '') && (hashFiles('web/sites/default/settings.local.php') != '') }}
+        run: docker compose exec --user root phpfpm vendor/bin/drush config:export --yes
+      - name: Check for changes in config
+        if: ${{ (hashFiles('config/sync/core.extension.yml') != '') && (hashFiles('web/sites/default/settings.local.php') != '') }}
+        run: git diff --diff-filter=ACMRT --exit-code config/
+
+  code-analysis:
+    name: PHP - Code analysis
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: [ '8.3' ]
+        dependency-version: [ prefer-lowest, prefer-stable ]
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup PHP, with composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: ctype, dom, iconv, json, zip, gd, soap
+          coverage: none
+          tools: composer:v2
+      # https://github.com/shivammathur/setup-php#cache-composer-dependencies
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Install Dependencies
+        run: |
+          # Using `--no-scripts` breaks something with mglaman/drupal-check.
+          composer install --no-interaction --no-progress
+      - name: code-analysis
+        run: |
+          composer code-analysis

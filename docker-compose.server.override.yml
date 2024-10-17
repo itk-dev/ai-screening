@@ -1,0 +1,28 @@
+version: "3"
+
+networks:
+  frontend:
+    external: true
+  app:
+    driver: bridge
+    internal: false
+
+services:
+  phpfpm:
+    image: itkdev/php8.3-fpm:latest
+    environment:
+      - PHP_MEMORY_LIMIT=512M
+      - PHP_POST_MAX_SIZE=8M
+      - PHP_UPLOAD_MAX_FILESIZE=10M
+      - PHP_OPCACHE_VALIDATE_TIMESTAMPS=0
+      - PHP_PM_TYPE=static
+      - PHP_PM_MAX_CHILDREN=14
+
+  memcached:
+    environment:
+      - MEMCACHED_CACHE_SIZE=128
+
+  nginx:
+    environment:
+      # Match PHP_UPLOAD_MAX_FILESIZE (plus a little more)
+      NGINX_MAX_BODY_SIZE: 10M

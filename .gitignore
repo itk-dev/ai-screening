@@ -1,0 +1,80 @@
+# This file contains default .gitignore rules. To use it, copy it to .gitignore,
+# and it will cause files like your settings.php and user-uploaded files to be
+# excluded from Git version control. This is a common strategy to avoid
+# accidentally including private information in public repositories and patch
+# files.
+#
+# Because .gitignore can be specific to your site, this file has a different
+# name; updating Drupal core will not override your custom .gitignore file.
+
+# Ignore core when managing all of a project's dependencies with Composer
+# including Drupal core.
+# core
+web/core/
+
+# Ignore dependencies that are managed with Composer.
+# Generally you should only ignore the root vendor directory. It's important
+# that core/assets/vendor and any other vendor directories within contrib or
+# custom module, theme, etc., are not ignored unless you purposely do so.
+/vendor/
+
+# Ignore configuration files that may contain sensitive information.
+sites/*/settings.local.php
+sites/*/services.local.yml
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private
+
+# Ignore multi-site test environment.
+sites/simpletest
+
+# Ignore scaffold files
+#
+# Note that the scaffold plugin may be used to automatically manage
+# a site's .gitignore files. If the `vendor` directory is ignored,
+# then one or more .gitignore files will be written to also ignore
+# any file placed by scaffolding. To avoid the creation of
+# additional .gitignore files, add all of the scaffold file
+# locations to the top-level .gitignore file, as shown below.
+# ------------------------------------------------------------------
+/web/.csslintrc
+/web/.editorconfig
+/web/.eslintignore
+/web/.eslintrc.json
+/web/.gitattributes
+/web/.ht.router.php
+/web/.htaccess
+/web/INSTALL.txt
+/web/README.txt
+/web/autoload.php
+/web/example.gitignore
+/web/index.php
+/web/robots.txt
+/web/update.php
+/web/web.config
+/web/modules/README.txt
+/web/profiles/README.txt
+/web/sites/README.txt
+/web/sites/default/default.services.yml
+/web/sites/default/default.settings.php
+/web/sites/development.services.yml
+/web/sites/example.settings.local.php
+/web/sites/example.sites.php
+/web/themes/README.txt
+
+
+# Ignore PhpStorm
+.idea
+
+# Ignore VS-code
+.vscode
+
+# Ignore private files
+private-files/
+
+# Ignore .task.env
+.task.env
+
+# Ignore cache files
+.*.cache

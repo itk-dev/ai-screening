@@ -1,0 +1,29 @@
+version: '3'
+
+dotenv: [".task.env", ".env"]
+
+vars:
+  DOCKER_COMPOSE: '{{ .TASK_DOCKER_COMPOSE | default "itkdev-docker-compose-server" }}'
+
+tasks:
+  template-prune:
+    cmds:
+      - echo -e 'COMPOSE_PROJECT_NAME={{.PROJECTNAME}}\nCOMPOSE_DOMAIN={{.PROJECTNAME}}.local.itkdev.dk' > .env
+      - echo -e 'TASK_DOCKER_COMPOSE="docker compose"' > .task.env
+      - rm -R web/themes/custom/TEMPLATE_THEME
+      - echo -e '$settings[\"trusted_host_patterns\"] = [\n  \"^{{.PROJECTNAME}}\.local\.itkdev\.dk$\"\n];' >> deploy-templates/settings.local.php
+      - mkdir -p web/sites/default
+      - cp deploy-templates/settings.local.php web/sites/default/
+      - cp deploy-templates/services.local.yml web/sites/default/
+      - cp deploy-templates/Taskfile.yml Taskfile.yml
+      - cp deploy-templates/CHANGELOG.md CHANGELOG.md
+      - sed -i '' -e 's/{PROJECT-NAME}/{{.PROJECTNAME}}/g' README.md CHANGELOG.md
+      - rm -R deploy-templates
+
+    requires:
+      vars:
+        - PROJECTNAME
+
+    preconditions:
+      - sh: "[[ {{.PROJECTNAME}} =~ ^[a-z0-9\\-]+$ ]]"
+        msg: "PROJECTNAME should only contain lowercase a-z, digits and hyphens"

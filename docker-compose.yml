@@ -1,0 +1,93 @@
+# itk-version: 3.2.1
+networks:
+  frontend:
+    external: true
+  app:
+    driver: bridge
+    internal: false
+
+services:
+  mariadb:
+    image: itkdev/mariadb:latest
+    networks:
+      - app
+    ports:
+      - '3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=db
+      - MYSQL_PASSWORD=db
+      - MYSQL_DATABASE=db
+      #- ENCRYPT=1 # Uncomment to enable database encryption.
+    # https://symfony.com/doc/current/setup/symfony_server.html#docker-integration
+    labels:
+      com.symfony.server.service-prefix: 'DATABASE'
+
+  phpfpm:
+    image: itkdev/php8.2-fpm:latest
+    networks:
+      - app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - PHP_XDEBUG_MODE=${PHP_XDEBUG_MODE:-off}
+      - PHP_MAX_EXECUTION_TIME=30
+      - PHP_MEMORY_LIMIT=256M
+      # Depending on the setup, you may have to remove --read-envelope-from from msmtp (cf. https://marlam.de/msmtp/msmtp.html) or use SMTP to send mail
+      - PHP_SENDMAIL_PATH=/usr/bin/msmtp --host=mail --port=1025 --read-recipients --read-envelope-from
+      - DOCKER_HOST_DOMAIN=${COMPOSE_DOMAIN}
+      - COMPOSER_VERSION=2
+      - PHP_IDE_CONFIG=serverName=localhost
+    depends_on:
+      - mariadb
+      - memcached
+    volumes:
+      - .:/app
+
+  nginx:
+    image: nginxinc/nginx-unprivileged:alpine
+    networks:
+      - app
+      - frontend
+    depends_on:
+      - phpfpm
+    ports:
+      - '8080'
+    volumes:
+      - ./.docker/templates:/etc/nginx/templates:ro
+      - .:/app
+    environment:
+      NGINX_FPM_SERVICE: ${COMPOSE_PROJECT_NAME}-phpfpm-1:9000
+      NGINX_WEB_ROOT: /app/web
+      NGINX_PORT: 8080
+      NGINX_MAX_BODY_SIZE: 5M
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=frontend"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${COMPOSE_DOMAIN}`)"
+#      HTTPS config - uncomment to enable redirect from :80 to :443
+#      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.middlewares=redirect-to-https"
+#      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+
+  memcached:
+    image: 'memcached:latest'
+    networks:
+      - app
+    ports:
+      - '11211'
+    environment:
+      - MEMCACHED_CACHE_SIZE=64
+
+  mail:
+    image: axllent/mailpit
+    networks:
+      - app
+      - frontend
+    ports:
+      - "1025"
+      - "8025"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=frontend"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}mail.rule=Host(`mail-${COMPOSE_DOMAIN}`)"
+      - "traefik.http.services.${COMPOSE_PROJECT_NAME}mail.loadbalancer.server.port=8025"
