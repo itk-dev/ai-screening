@@ -1,0 +1,30 @@
+label: 'Hvem er online'
+description: 'Viser navnene på de brugere, der senste har været aktive, og det totale antal af aktive brugere.'
+display:
+  default:
+    display_title: Standard
+    display_options:
+      title: 'Hvem er online'
+      exposed_form:
+        options:
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      empty:
+        area_text_custom:
+          content: 'Der er i øjeblikket 0 brugere online.'
+      filters:
+        access:
+          expose:
+            label: 'Seneste tilgang'
+            description: 'En bruger bliver opfattet som online i dette tidsrum efter hun sidst har set en side.'
+      header:
+        result:
+          content: 'Der er i øjeblikket @total brugere online.'
+  who_s_online_block:
+    display_title: 'Hvem er online'
+    display_options:
+      display_description: 'En liste af indloggede brugere.'
+      block_description: 'Hvem er online'

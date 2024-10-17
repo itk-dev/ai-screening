@@ -1,0 +1,34 @@
+label: Arkiv
+description: 'Alt indhold, efter måned.'
+display:
+  default:
+    display_title: Standard
+    display_options:
+      title: Månedsarkiv
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+          expose:
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
+      exposed_form:
+        options:
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      arguments:
+        created_year_month:
+          title: '{{ arguments.created_year_month }}'
+  block_1:
+    display_title: Blok
+    display_options:
+      arguments:
+        created_year_month:
+          title: '{{ arguments.created_year_month }}'
+  page_1:
+    display_title: Side

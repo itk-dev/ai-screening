@@ -1,0 +1,95 @@
+label: Filer
+description: 'Find og håndtér filer.'
+display:
+  default:
+    display_title: Standard
+    display_options:
+      title: Filer
+      fields:
+        fid:
+          label: Fid
+        filename:
+          label: Navn
+          separator: ', '
+        filemime:
+          label: 'MIME type'
+        filesize:
+          label: Størrelse
+        status:
+          label: Status
+          settings:
+            format_custom_false: Midlertidig
+            format_custom_true: Permanent
+        created:
+          label: Upload-dato
+        changed:
+          label: Ændringsdato
+        count:
+          label: 'Brugt i'
+          alter:
+            path: 'admin/content/files/usage/{{ fid }}'
+          format_plural_string: !!binary MSBzdGVkA0Bjb3VudCBzdGVkZXI=
+        operations:
+          label: Handlinger
+      pager:
+        options:
+          tags:
+            next: 'Næste ›'
+            previous: '‹ Forrige'
+          expose:
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
+      exposed_form:
+        options:
+          submit_button: Filter
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      empty:
+        area_text_custom:
+          content: 'Ingen tilgængelige filer.'
+      filters:
+        filename:
+          expose:
+            label: Filnavn
+        filemime:
+          expose:
+            label: 'MIME type'
+        status:
+          expose:
+            label: Status
+  page_1:
+    display_title: Filoversigt
+    display_options:
+      menu:
+        title: Filer
+  page_2:
+    display_title: 'File usage'
+    display_options:
+      title: 'File usage'
+      fields:
+        entity_label:
+          label: Entity
+        type:
+          label: Entity-type
+        module:
+          label: 'Registrerer modul'
+        count:
+          label: 'Brug antal'
+          format_plural_string: !!binary MQNAY291bnQ=
+      pager:
+        options:
+          tags:
+            next: 'Næste ›'
+            previous: '‹ Forrige'
+          expose:
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
+      arguments:
+        fid:
+          exception:
+            title: Alle
+          title: 'Information om brug af filen {{ arguments.fid }}'

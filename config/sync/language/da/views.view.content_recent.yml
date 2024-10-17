@@ -1,0 +1,23 @@
+label: 'Seneste indhold'
+description: 'Seneste indhold.'
+display:
+  default:
+    display_title: Standard
+    display_options:
+      title: 'Seneste indhold'
+      fields:
+        changed:
+          separator: ', '
+      exposed_form:
+        options:
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      empty:
+        area_text_custom:
+          content: 'Der er intet indhold at vise.'
+      use_more_text: Mere
+  block_1:
+    display_title: Blok
