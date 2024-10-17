@@ -1,0 +1,20 @@
+uuid: b48de8d2-35ac-4e97-baac-f30c57335478
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.project
+  module:
+    - user
+id: node.project.default
+targetEntityType: node
+bundle: project
+mode: default
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
