@@ -1,0 +1,21 @@
+<header role="banner" class="bg-primary text-primary px-3 md:px-5 py-3 flex flex-row items-center gap-5 border-b border-secondary">
+
+  <div class="flex items-center place-items-start gap-5">
+
+    {{ include(directory ~ '/templates/components/nav-button.html.twig') }}
+
+    <div class="brand dark:text-white">
+      {{ page.header.frontend_theme_sitebranding }}
+    </div>
+
+    <div class="breadcrumb">
+      {{ page.header.frontend_theme_breadcrumbs }}
+    </div>
+
+  </div>
+
+  <div class="ml-auto gap-4 md:flex">
+    {{ page.header|without('frontend_theme_sitebranding', 'frontend_theme_breadcrumbs') }}
+  </div>
+
+</header>
