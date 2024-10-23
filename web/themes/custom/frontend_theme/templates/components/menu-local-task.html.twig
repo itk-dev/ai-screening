@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme implementation for a local task link.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper element.
+ * - is_active: Whether the task item is an active tab.
+ * - link: A rendered link element.
+ *
+ * Note: This template renders the content for each task item in
+ * menu-local-tasks.html.twig.
+ *
+ * @see template_preprocess_menu_local_task()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{%
+  set classes = [
+    'm-0 px-2 py-1 inline-block transition-all rounded-t text-secondary',
+    is_active ? 'text-primary border-b border-primary bg-secondary border-b-2 pointer-events-none' : 'hover:border-b hover:border-b-2 hover:border-brand hover:text-brand',
+  ]
+%}
+
+<li class="p-0 m-0">
+    <a {{ attributes.addClass(classes) }} href="{{ link['#url'] }}">{{ link['#title'] }}</a>
+</li>

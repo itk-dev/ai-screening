@@ -1,0 +1,13 @@
+name: Frontend theme
+type: theme
+description: "Default frontend theme"
+package: frontend_theme
+base theme: false
+core_version_requirement: ^10
+libraries:
+  - frontend_theme/styles
+regions:
+  header: Header
+  navigation: Navigation
+  content: Content
+  footer: Footer
