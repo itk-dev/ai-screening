@@ -1,0 +1,66 @@
+display:
+  default:
+    display_options:
+      title: Indhold
+      fields:
+        title:
+          label: Titel
+          separator: ', '
+        type:
+          label: Indholdstype
+          separator: ', '
+        status:
+          label: Status
+          settings:
+            format_custom_false: 'Ikke udgivet'
+            format_custom_true: Udgivet
+          separator: ', '
+        changed:
+          label: Opdateret
+          separator: ', '
+        dropbutton:
+          label: Handlinger
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« Første'
+            last: 'Sidste »'
+          expose:
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
+      exposed_form:
+        options:
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      empty:
+        area_text_custom:
+          content: 'Der er intet indhold at vise.'
+      arguments:
+        gid:
+          exception:
+            title: Alle
+      filters:
+        status:
+          expose:
+            label: Publiceringsstatus
+          group_info:
+            label: Publiceringsstatus
+            group_items:
+              1:
+                title: Udgivet
+              2:
+                title: 'Ikke udgivet'
+        type:
+          expose:
+            label: Type
+  page_1:
+    display_title: Side
+    display_options:
+      menu:
+        title: Indhold
