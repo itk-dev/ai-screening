@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.project.field_department
+    - field.field.node.project.field_description
     - node.type.project
   module:
     - user
@@ -18,4 +20,6 @@ content:
     weight: 100
     region: content
 hidden:
+  field_department: true
+  field_description: true
   langcode: true
