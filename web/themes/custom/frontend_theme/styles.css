@@ -52,31 +52,8 @@
     @apply w-5;
   }
 
-  /* Chat messages */
-  .chat-message-container-you {
-    @apply flex gap-1 flex-col items-end;
-  }
-  .chat-message-container-bot {
-    @apply flex gap-1 flex-col items-start;
-  }
-  .chat-message-container-info {
-    @apply flex gap-1 items-start;
-  }
-  .chat-message-variant-you {
-    @apply min-h-9 content-center flex-auto rounded px-3 py-2 text-white bg-sky-700 text-right max-w-xl;
-  }
-  .chat-message-variant-bot {
-    @apply min-h-9 content-center flex-auto rounded px-3 py-2 text-black bg-purple-200 max-w-xl;
-  }
-  .chat-message-variant-info {
-    @apply min-h-9 content-center text-secondary;
-  }
-  .chat-message-info-type {
-    @apply font-semibold capitalize;
-  }
-
   /* Common typography */
-  
+
   h2 {
     @apply text-2xl font-semibold my-5;
   }
@@ -92,12 +69,12 @@
   h6 {
     @apply text-base font-normal my-1;
   }
-  
+
   /* Body content image */
   p img {
     @apply my-2;
   }
-  
+
   /* Specific page typography */
   .page--user p {
     @apply mb-2;
@@ -111,7 +88,7 @@
   .content-wrapper ul {
     @apply list-disc my-3 pl-6;
   }
-  
+
   .content-wrapper ol {
     @apply list-decimal my-3 pl-6;
   }
@@ -138,41 +115,4 @@
   .alert-danger {
     @apply bg-red-100 text-red-700  border-red-300;
   }
-
-  /* File link */
-  .file a {
-    @apply underline hover:text-brand-gradient hover:no-underline;
-  }
-
-  /* Text with color gradient */
-  .text-brand-gradient {
-    color: #6B21A8;
-    background-image:
-    -webkit-linear-gradient(0deg, #6B21A8 27%, #1D4ED8 58%, #0F766E 85%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    text-fill-color: transparent;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Button with color gradient */
-  .bg-brand-gradient {
-    border-radius: 4px;
-    background: conic-gradient(from 155deg at 40.34% 96.67%, rgba(0, 0, 0, 0.00) 230.58232069015503deg, rgba(0, 0, 0, 0.55) 230.62508583068848deg), linear-gradient(91deg, #6B21A8 26.88%, #1D4ED8 57.74%, #0F766E 84.12%);
-  }
 }
-
-/* Fixed position for chat window*/
-.fixed {
-  position: fixed;
-}
-
-/*
-** To have chat aligned to bottom we do this since ´justify-content: flex-end;` breaks scrolling
-** https://stackoverflow.com/questions/36130760/use-justify-content-flex-end-and-to-have-vertical-scrollbar
-*/
-.chat-window main > :first-child {
-  margin-top: auto !important;
-  /* use !important to prevent breakage from child margin settings */
-}
-
