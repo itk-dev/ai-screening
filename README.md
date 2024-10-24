@@ -11,17 +11,8 @@ TASK_DOCKER_COMPOSE="docker compose --env-file .env.docker.local --file=docker-c
 
 ## Site installation
 
-Run the following commands to set up the site a new. This will start containers
-and run composer install, add a settings.php file and run site-install.
-
-```shell name="site-up"
-task build-site:new
-```
-
-If the site has existing config and a settings.php file build the site from that.
-
-```shell name="site-up"
-task build-site:existing-conf
+``` shell name=site-install
+task site-install
 ```
 
 When the installation is completed, that admin user is created and the password for logging in the outputted. If you

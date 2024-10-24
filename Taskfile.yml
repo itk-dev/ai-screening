@@ -43,7 +43,8 @@ tasks:
 
   compose-up:
     cmds:
-      - task compose -- up --detach --build
+      - task compose -- pull
+      - task compose -- up --detach --build --remove-orphans --wait
     silent: true
 
   composer:
