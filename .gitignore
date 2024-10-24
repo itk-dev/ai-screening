@@ -78,3 +78,6 @@ private-files/
 
 # Ignore cache files
 .*.cache
+
+# Ignore contrib modules
+/web/modules/contrib
