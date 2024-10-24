@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Display a single page.
+ * Display a single error page.
  *
  * The doctype, html, head and body tags are not in this template. Instead they
  * can be found in the html.html.twig template in this directory.
@@ -53,11 +53,15 @@
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
      <div class="fixed top-20 z-10 left-0 right-0 px-1">
-      {{ page.content.frontend_theme_messages }}
+      {{ page.content.itkdev_frontend_theme_messages }}
     </div>
 
     <div class="content-wrapper">
-      {{ page.content|without('frontend_theme_messages') }}
+        {{ page.content|without('itkdev_frontend_theme_messages', 'itkdev_frontend_theme_content') }}
+
+        <section class="max-w-3xl mx-auto mb-12 md:mb-24 lg:mb-32 border rounded p-12 shadow mt-8 md:mt-16 lg:mt-24">
+            {{ page.content.itkdev_frontend_theme_content }}
+        </section>
     </div>
 
   </main>

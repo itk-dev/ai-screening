@@ -5,17 +5,17 @@
     {{ include(directory ~ '/templates/components/nav-button.html.twig') }}
 
     <div class="brand dark:text-white">
-      {{ page.header.frontend_theme_sitebranding }}
+      {{ page.header.itkdev_frontend_theme_sitebranding }}
     </div>
 
     <div class="breadcrumb">
-      {{ page.header.frontend_theme_breadcrumbs }}
+      {{ page.header.itkdev_frontend_theme_breadcrumbs }}
     </div>
 
   </div>
 
   <div class="ml-auto gap-4 md:flex">
-    {{ page.header|without('frontend_theme_sitebranding', 'frontend_theme_breadcrumbs') }}
+    {{ page.header|without('itkdev_frontend_theme_sitebranding', 'itkdev_frontend_theme_breadcrumbs') }}
   </div>
 
 </header>

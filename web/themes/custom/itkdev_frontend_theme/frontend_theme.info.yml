@@ -1,11 +1,11 @@
 name: Frontend theme
 type: theme
 description: "Default frontend theme"
-package: frontend_theme
+package: itkdev_frontend_theme
 base theme: false
 core_version_requirement: ^10
 libraries:
-  - frontend_theme/styles
+  - itkdev_frontend_theme/styles
 regions:
   header: Header
   navigation: Navigation
