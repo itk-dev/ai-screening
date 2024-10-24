@@ -8,7 +8,7 @@ networks:
 
 services:
   phpfpm:
-    image: itkdev/php8.2-fpm:alpine
+    image: itkdev/php8.3-fpm:alpine
     restart: unless-stopped
     networks:
       - app
