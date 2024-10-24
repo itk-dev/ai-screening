@@ -1,0 +1,9 @@
+services:
+  logger.channel.ai_screening_project:
+    parent: logger.channel_base
+    arguments: ['ai_screening_project']
+
+  Drupal\ai_screening_project\Helper\Helper:
+    arguments:
+      - '@entity_type.manager'
+      - '@logger.channel.ai_screening_project'
