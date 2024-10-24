@@ -57,5 +57,5 @@ tasks:
 
   drush:
     cmds:
-      - task compose -- exec --no-TTY phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}}
+      - task compose -- exec phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}}
     # silent: true
