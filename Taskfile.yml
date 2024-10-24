@@ -7,10 +7,12 @@ vars:
   # https://taskfile.dev/reference/templating/
   BASE_URL: '{{.TASK_BASE_URL | default .COMPOSE_SERVER_DOMAIN | default .COMPOSE_DOMAIN | default "https://hoeringsportal.local.itkdev.dk"}}'
   DOCKER_COMPOSE: '{{.TASK_DOCKER_COMPOSE | default "docker compose"}}'
+  DOCKER_COMPOSE_UP_ARGS: '{{.TASK_DOCKER_COMPOSE_UP_ARGS | default ""}}'
   COMPOSER_INSTALL_ARGUMENTS: '{{.TASK_COMPOSER_INSTALL_ARGUMENTS | default ""}}'
 
 tasks:
   site-install:
+    desc: "Install site from scratch"
     prompt: "This will reset your setup. Continue?"
     cmds:
       - task compose -- down
@@ -18,9 +20,9 @@ tasks:
       - task composer-install
       - task drush -- --yes site:install --existing-config
       - task site-open
-      - task site-open-admin
 
   site-update:
+    desc: "Update site"
     cmds:
       - task compose-up
       - task composer-install
@@ -32,31 +34,37 @@ tasks:
     silent: true
 
   site-open:
+    desc: "Open site in browser if possible"
     cmds:
       - if command -v open 2>&1 >/dev/null; then open "$(task site-url)"; else echo "$(task site-url)"; fi
     silent: true
 
   compose:
+    desc: "Run `docker compose` (`{{.DOCKER_COMPOSE}}`) command. Example: task compose -- ps"
     cmds:
       - '{{.DOCKER_COMPOSE}} {{.CLI_ARGS}}'
     silent: true
 
   compose-up:
+    desc: "Run `docker compose up` command with any additional arguments{{if .DOCKER_COMPOSE_UP_ARGS}} ({{.DOCKER_COMPOSE_UP_ARGS}}){{end}} defined in configuration"
     cmds:
       - task compose -- pull
-      - task compose -- up --detach --build --remove-orphans --wait
+      - task compose -- up --detach --build --remove-orphans --wait {{.DOCKER_COMPOSE_UP_ARGS}}
     silent: true
 
   composer:
+    desc: "Run `composer` command. Example: task composer -- install"
     cmds:
       - task compose -- exec phpfpm composer {{.CLI_ARGS}}
 
   composer-install:
+    desc: "Run `composer` command with any additional arguments{{if .COMPOSER_INSTALL_ARGUMENTS}} ({{.COMPOSER_INSTALL_ARGUMENTS}}){{end}} defined in configuration"
     cmds:
       - task composer -- install {{.COMPOSER_INSTALL_ARGUMENTS}} {{.CLI_ARGS}}
     silent: true
 
   drush:
+    desc: "Run `drush` command. Example: task drush -- user:login"
     cmds:
       - task compose -- exec phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}}
     # silent: true
