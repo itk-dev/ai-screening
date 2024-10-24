@@ -1,5 +1,4 @@
 services:
-
   phpfpm:
     environment:
       - PHP_MAX_EXECUTION_TIME=60
