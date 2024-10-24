@@ -69,7 +69,7 @@ final class ModuleHooks implements ContainerInjectionInterface {
       }
     }
     catch (\Exception $exception) {
-      $this->logger->error('Error saving node: @message', [
+      $this->logger->error('Error creating groups: @message', [
         '@message' => $exception->getMessage(),
         'entity' => $entity,
       ]);
