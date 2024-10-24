@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Hooks related to installing/updating/uninstalling this module.
+ */
+
+/**
  * Implements hook_install().
  */
 function ai_screening_project_install(): void {

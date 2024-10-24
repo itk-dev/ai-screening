@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Hooks related to this module.
+ */
+
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 
