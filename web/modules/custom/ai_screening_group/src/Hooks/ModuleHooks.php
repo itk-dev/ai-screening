@@ -54,12 +54,10 @@ final class ModuleHooks implements ContainerInjectionInterface {
    */
   #[Hook('entity_insert')]
   public function entityInsert(EntityInterface $entity): void {
-    /** @var \Drupal\group\Entity\Group $group */
-    /** @var \Drupal\node\Entity\Node $entity */
-
     try {
       // Create group when a project is created.
-      if ('project' === $entity->bundle()) {
+      if ($entity instanceof NodeInterface && 'project' === $entity->bundle()) {
+        /** @var \Drupal\group\Entity\Group $group */
         $group = $this->entityTypeManager->getStorage('group')->create(['type' => 'project_group']);
         $group->set('label', 'Group: ' . $entity->label());
         $group->setOwner(User::load($this->accountProxy->id()));
@@ -69,7 +67,7 @@ final class ModuleHooks implements ContainerInjectionInterface {
       }
     }
     catch (\Exception $exception) {
-      $this->logger->error('Error saving node: @message', [
+      $this->logger->error('Error creating groups: @message', [
         '@message' => $exception->getMessage(),
         'entity' => $entity,
       ]);

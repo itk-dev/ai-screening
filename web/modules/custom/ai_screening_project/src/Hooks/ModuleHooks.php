@@ -100,7 +100,7 @@ final class ModuleHooks implements ContainerInjectionInterface {
    */
   #[Hook('node_delete')]
   public function nodeDelete(EntityInterface $entity): void {
-    if ('project' === $entity->bundle()) {
+    if ($entity instanceof NodeInterface && 'project' === $entity->bundle()) {
       $this->helper->deleteRelated((int) $entity->id());
     }
   }
