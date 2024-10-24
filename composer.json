@@ -2,12 +2,21 @@
     "name": "itk-dev/ai-screening",
     "description": "AI Screening project",
     "license": "GPL-2.0-or-later",
+<<<<<<< Updated upstream
     "type": "project",
     "homepage": "https://www.drupal.org/project/drupal",
     "support": {
         "chat": "https://www.drupal.org/node/314178",
         "docs": "https://www.drupal.org/docs/user_guide/en/index.html"
     },
+=======
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+>>>>>>> Stashed changes
     "require": {
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
