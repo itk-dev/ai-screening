@@ -1,13 +1,11 @@
 # Readme for AI Screening
 
-## Build assets
-
 ## Site installation
 
 Run the following commands to set up the site a new. This will start containers
 and run composer install, add a settings.php file and run site-install.
 
-```shell name="site-up"
+```shell name="site-up-new"
 task build-site:new
 ```
 
@@ -38,6 +36,12 @@ by using this command:
 
 ```shell
 open "http://$(docker compose port nginx 8080)"
+```
+
+### Acces the admin
+
+```shell name="site-open-admin"
+itkdev-docker-compose drush --uri="https://ai-screening.local.itkdev.dk/" user:login
 ```
 
 ### Drupal config
@@ -82,3 +86,7 @@ docker compose exec phpfpm composer code-analysis
 docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md) --fix
 docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
 ```
+
+## Site theme
+
+There is a custom frontend theme installed with common components based on tailwind

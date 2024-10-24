@@ -2,6 +2,11 @@ include:
   - docker-compose.oidc.yml
 
 services:
+  node:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - .:/app:delegated
 
   phpfpm:
     image: itkdev/php8.3-fpm:latest

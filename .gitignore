@@ -79,5 +79,8 @@ private-files/
 # Ignore cache files
 .*.cache
 
+# node_modules files
+node_modules
+
 # Ignore contrib modules
 /web/modules/contrib

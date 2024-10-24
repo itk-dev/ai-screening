@@ -1,0 +1,22 @@
+{{ include('@itkdev_base_theme/components/header.html.twig') }}
+
+<div class="page--user">
+
+  <main role="main" class="">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    <section class="mt-8 md:mt-16 lg:mt-24">
+      {{ page.content.ai_launchpad_tabs }}
+    </section>
+
+    <section class="max-w-3xl mx-auto mb-12 md:mb-24 lg:mb-32 border rounded p-12 shadow">
+      {{ page.content|without('ai_launchpad_tabs') }}
+    </section>
+
+  </main>
+
+  {{ include('@itkdev_base_theme/components/footer.html.twig') }}
+
+</div>{# /.layout-container #}
+
+{{ include('@itkdev_base_theme/components/navigation.html.twig') }}
