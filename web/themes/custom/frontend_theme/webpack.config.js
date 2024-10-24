@@ -3,7 +3,7 @@
 
 const Encore = require("@symfony/webpack-encore");
 
-Encore.setOutputPath("web/themes/custom/frontend_theme/build/")
+Encore.setOutputPath("build/")
   .setPublicPath("/build")
   .addEntry("app", "./app.js")
   .cleanupOutputBeforeBuild()

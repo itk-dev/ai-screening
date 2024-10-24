@@ -1,25 +1,5 @@
 # Readme for AI Screening
 
-## Build assets
-
-Run the command below to install assest and tools from package.json
-
-```shell name"assets-install"
-docker compose run --rm node yarn install
-```
-
-Run the command below to continuesly build assets uppon file changes.
-
-```shell name"assets-watch"
-docker compose run --rm node yarn watch
-```
-
-Run the command below to continuesly build assets once.
-
-```shell name"assets-watch"
-docker compose run --rm node yarn build
-```
-
 ## Site installation
 
 Run the following commands to set up the site a new. This will start containers
@@ -101,8 +81,6 @@ docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdo
 docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
 ```
 
-```shell name="coding-standards-assets"
-docker compose run --rm node yarn install
-docker compose run --rm node yarn coding-standards-apply
-docker compose run --rm node yarn coding-standards-check
-```
+## Site theme
+
+There is a custom frontend theme installed with common components based on tailwind

@@ -12,7 +12,6 @@
     "@symfony/webpack-encore": "^4.6.1",
     "@tailwindcss/forms": "^0.5.7",
     "babel-loader": "^9.1.3",
-    "babel-plugin-prismjs": "^2.1.0",
     "eslint": "^9.3.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -25,13 +24,13 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
-    "coding-standards-check/eslint": "yarn eslint './web/*/custom/*/**/*.js'",
-    "coding-standards-check/prettier": "yarn prettier ./web/*/custom/*/**/ --check",
+    "coding-standards-check/eslint": "yarn eslint './js/**/*.js'",
+    "coding-standards-check/prettier": "yarn prettier ./js/**/ --check",
     "coding-standards-check": "yarn coding-standards-check/prettier && yarn coding-standards-check/eslint",
-    "coding-standards-apply/eslint": "eslint './web/*/custom/*/**/*.js' --fix",
-    "coding-standards-apply/prettier": "yarn prettier ./web/*/custom/*/**/ --write",
+    "coding-standards-apply/eslint": "yarn eslint './js/**/*.js' --fix",
+    "coding-standards-apply/prettier": "yarn prettier ./js/**/ --write",
     "coding-standards-apply": "yarn coding-standards-apply/prettier && yarn coding-standards-apply/eslint",
-    "build": "yarn encore production --progress && yarn tailwindcss -i ./web/themes/custom/frontend_theme/styles.css -o ./web/themes/custom/frontend_theme/build/styles.css --minify",
-    "watch": "yarn encore dev --watch & yarn tailwindcss -i ./web/themes/custom/frontend_theme/styles.css -o ./web/themes/custom/frontend_theme/build/styles.css --watch"
+    "build": "yarn encore production --progress && yarn tailwindcss -i styles.css -o build/styles.css --minify",
+    "watch": "yarn encore dev --watch & yarn tailwindcss -i styles.css -o build/styles.css --watch"
   }
 }
