@@ -1,0 +1,5 @@
+name: AI Screening project
+description: Functionality related to creating and maintaining the project content type and related entities.
+package: 'Custom'
+type: module
+core_version_requirement: "^11"
