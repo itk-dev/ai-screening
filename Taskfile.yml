@@ -38,7 +38,7 @@ tasks:
 
   compose:
     cmds:
-      - '{{.DOCKER_COMPOSE}} --profile pretix {{.CLI_ARGS}}'
+      - '{{.DOCKER_COMPOSE}} {{.CLI_ARGS}}'
     silent: true
 
   compose-up:
