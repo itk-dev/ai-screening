@@ -38,6 +38,12 @@ by using this command:
 open "http://$(docker compose port nginx 8080)"
 ```
 
+### Acces the admin
+
+```shell name="site-open-admin"
+itkdev-docker-compose drush --uri="https://ai-screening.local.itkdev.dk/" user:login
+```
+
 ### Drupal config
 
 Export config created from drupal:
