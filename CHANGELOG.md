@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-7](https://github.com/itk-dev/ai-screening/pull/7)
+  Events
 - [PR-9](https://github.com/itk-dev/ai-screening/pull/9)
   Fixes to theme setup
 - [PR-6](https://github.com/itk-dev/ai-screening/pull/6)
+- [PR-3](https://github.com/itk-dev/ai-screening/pull/6)
   Added ai_screening_project_track module
 - [PR-5](https://github.com/itk-dev/ai-screening/pull/5)
   Enable theme
