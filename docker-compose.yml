@@ -19,12 +19,9 @@ services:
       - MYSQL_PASSWORD=db
       - MYSQL_DATABASE=db
       #- ENCRYPT=1 # Uncomment to enable database encryption.
-    # https://symfony.com/doc/current/setup/symfony_server.html#docker-integration
-    labels:
-      com.symfony.server.service-prefix: 'DATABASE'
 
   phpfpm:
-    image: itkdev/php8.2-fpm:latest
+    image: itkdev/php8.3-fpm:latest
     networks:
       - app
     extra_hosts:
