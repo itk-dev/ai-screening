@@ -9,6 +9,7 @@
         "docs": "https://www.drupal.org/docs/user_guide/en/index.html"
     },
     "require": {
+        "chx/drupal-issue-fork": "dev-main",
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/core-composer-scaffold": "^11.0",
@@ -18,6 +19,7 @@
         "drupal/hook_event_dispatcher": "^4.2",
         "drupal/hux": "^1.7",
         "drupal/webform": "^6.0@dev",
+        "drupal/openid_connect": "dev-3433705-3.x",
         "drush/drush": "^13.2"
     },
     "require-dev": {
@@ -34,13 +36,21 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://packages.drupal.org/8"
+            "url": "https://packages.drupal.org/8",
+            "exclude": [
+                "drupal/openid_connect"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://git.drupalcode.org/issue/openid_connect-3433705.git"
         }
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
+            "chx/drupal-issue-fork": true,
             "composer/installers": true,
             "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
