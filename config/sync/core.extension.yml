@@ -17,7 +17,6 @@ module:
   gnode: 0
   group: 0
   hook_event_dispatcher: 0
-  hux: 0
   language: 0
   layout_builder: 0
   layout_discovery: 0
