@@ -3,3 +3,5 @@ description: Functionality related to creating and maintaining the project conte
 package: 'Custom'
 type: module
 core_version_requirement: "^11"
+dependencies:
+  - 'drupal:node'
