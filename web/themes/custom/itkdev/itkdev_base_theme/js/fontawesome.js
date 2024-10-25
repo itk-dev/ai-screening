@@ -1,42 +1,48 @@
-/* // Add fontawesome icons */
-
-// Import icons from the project theme
-
+// Import icon names from the project theme
 import {
   projectFaBrandIcons,
   projectFaSolidIcons,
   projectFaRegularIcons,
 } from "../../itkdev_project_theme/js/project-icons.js";
 
-// Create lists with the different icon types
-const projectFaBrandIconsList = projectFaBrandIcons
-  .map((icon) => icon)
-  .join(", ");
-const projectFaSolidIconsList = projectFaSolidIcons
-  .map((icon) => icon)
-  .join(", ");
-const projectFaRegularIconsList = projectFaRegularIcons
-  .map((icon) => icon)
-  .join(", ");
+// Create arrays with the icon names and add additional icons
+const projectFaBrandCustomIconsList = [...projectFaBrandIcons, "faXTwitter"];
+const projectFaSolidCustomIconsList = [
+  ...projectFaSolidIcons,
+  "faBars",
+  "faXmark",
+];
+const projectFaRegularCustomIconsList = [
+  ...projectFaRegularIcons,
+  "faWindowClose",
+];
 
 // Import the svg core
-const { library, dom } = require("@fortawesome/fontawesome-svg-core");
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
 
-// Push base theme icons
-projectFaBrandIconsList.push("faXTwitter");
-projectFaSolidIconsList.push("faBars");
-projectFaRegularIconsList.push("faWindowClose");
+// Import all icons
+import * as brandIcons from "@fortawesome/free-brands-svg-icons";
+import * as solidIcons from "@fortawesome/free-solid-svg-icons";
+import * as regularIcons from "@fortawesome/free-regular-svg-icons";
 
-// Require packages from FA
-projectFaBrandIconsList = require("@fortawesome/free-brands-svg-icons");
-projectFaSolidIconsList = require("@fortawesome/free-solid-svg-icons");
-projectFaRegularIconsList = require("@fortawesome/free-regular-svg-icons");
+// Get specific icons based on the lists
+const selectedBrandIcons = projectFaBrandCustomIconsList
+  .map((iconName) => brandIcons[iconName])
+  .filter((icon) => icon !== undefined);
 
-// Add the icons to the library for replacing <i class="fa-solid fa-sort"></i> with the intended svg.
+const selectedSolidIcons = projectFaSolidCustomIconsList
+  .map((iconName) => solidIcons[iconName])
+  .filter((icon) => icon !== undefined);
+
+const selectedRegularIcons = projectFaRegularCustomIconsList
+  .map((iconName) => regularIcons[iconName])
+  .filter((icon) => icon !== undefined);
+
+// Add the icons to the library
 library.add(
-  projectFaBrandIconsList,
-  projectFaSolidIconsList,
-  projectFaRegularIconsList,
+  ...selectedBrandIcons,
+  ...selectedSolidIcons,
+  ...selectedRegularIcons,
 );
 
 // Run <i> to <svg> replace
