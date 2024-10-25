@@ -1,0 +1,4 @@
+services:
+  logger.channel.ai_screening_group:
+    parent: logger.channel_base
+    arguments: ['ai_screening_group']
