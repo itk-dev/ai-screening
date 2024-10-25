@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-3](https://github.com/itk-dev/ai-screening/pull/6)
+  Added ai_screening_project_track module
 - [PR-2](https://github.com/itk-dev/ai-screening/pull/5)
   Enable theme
   Update linter path to templates folder in `composer.json`
