@@ -81,3 +81,5 @@ private-files/
 
 # Ignore contrib modules
 /web/modules/contrib
+
+.env.local
