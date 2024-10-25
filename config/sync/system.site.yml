@@ -11,5 +11,5 @@ page:
   front: /user/login
 admin_compact_mode: false
 weight_select_max: 100
-default_langcode: da
+default_langcode: en
 mail_notification: null
