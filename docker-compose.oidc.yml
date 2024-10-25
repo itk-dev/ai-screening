@@ -1,9 +1,9 @@
 services:
   # https://github.com/Soluto/oidc-server-mock
-  idp-citizen:
+  idp:
     image: ghcr.io/soluto/oidc-server-mock:0.8.6
     # Let this container be accessible both internally and externally on the same domain.
-    container_name: idp-citizen.${COMPOSE_DOMAIN}
+    container_name: idp.${COMPOSE_DOMAIN}
     networks:
       - app
       - frontend
@@ -14,8 +14,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=frontend"
-      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_idp-citizen.rule=Host(`idp-citizen.${COMPOSE_DOMAIN}`)"
-      - "traefik.http.services.${COMPOSE_PROJECT_NAME}_idp-citizen.loadbalancer.server.port=80"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_idp.rule=Host(`idp.${COMPOSE_DOMAIN}`)"
+      - "traefik.http.services.${COMPOSE_PROJECT_NAME}_idp.loadbalancer.server.port=80"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       SERVER_OPTIONS_INLINE: |
@@ -97,7 +97,7 @@ services:
           - Type: zip
             Value: '1111'
             ValueType: string
-        
+
         - SubjectId: 2
           Username: citizen2
           Password: citizen2
@@ -111,7 +111,7 @@ services:
           - Type: zip
             Value: '2222'
             ValueType: string
-        
+
         - SubjectId: 3
           Username: citizen3
           Password: citizen3
@@ -125,7 +125,7 @@ services:
           - Type: zip
             Value: '3333'
             ValueType: string
-        
+
         - SubjectId: 4
           Username: citizen4
           Password: citizen4
@@ -139,7 +139,7 @@ services:
           - Type: zip
             Value: '4444'
             ValueType: string
-        
+
         - SubjectId: 'ikke-aarhusianer'
           Username: 'ikke-aarhusianer'
           Password: 'ikke-aarhusianer'
@@ -150,7 +150,7 @@ services:
           - Type: name
             Value: Troels Bondetest
             ValueType: string
-        
+
         - SubjectId: 'aarhusianer'
           Username: 'aarhusianer'
           Password: 'aarhusianer'
