@@ -9,10 +9,13 @@ and this project adheres to [Semantic Versioning].
 
 - [PR-3](https://github.com/itk-dev/ai-screening/pull/6)
   Added ai_screening_project_track module
-
+- [PR-2](https://github.com/itk-dev/ai-screening/pull/5)
+  Enable theme
+  Update linter path to templates folder in `composer.json`
+- [PR-3](https://github.com/itk-dev/ai-screening/pull/3)
+  Deployment
 - [PR-2](https://github.com/itk-dev/ai-screening/pull/2)
   Add ai_screening_project module
-
 - [PR-1](https://github.com/itk-dev/ai-screening/pull/1)
   Setup custom drupal theme
 

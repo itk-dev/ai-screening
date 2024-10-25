@@ -9,7 +9,6 @@ services:
       - .:/app:delegated
 
   phpfpm:
-    image: itkdev/php8.3-fpm:latest
     environment:
       - PHP_MAX_EXECUTION_TIME=60
       - PHP_MEMORY_LIMIT=512M

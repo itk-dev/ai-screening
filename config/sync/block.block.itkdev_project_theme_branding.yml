@@ -1,0 +1,25 @@
+uuid: 595fea46-ec60-408f-9371-7c141510e3cd
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - itkdev_project_theme
+_core:
+  default_config_hash: sG8t_FghbUscJ-GrnQ8zs_vx5YM4bJCfntrK-J5HcAY
+id: itkdev_project_theme_branding
+theme: itkdev_project_theme
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

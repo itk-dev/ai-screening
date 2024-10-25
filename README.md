@@ -5,13 +5,9 @@
 Run the following commands to set up the site a new. This will start containers
 and run composer install, add a settings.php file and run site-install.
 
-```shell name="site-up-new"
-task build-site:new
-```
-
-If the site has existing config and a settings.php file build the site from that.
-
 ```shell name="site-up"
+task compose -- pull
+task compose -- up --detach
 task build-site:existing-conf
 ```
 
