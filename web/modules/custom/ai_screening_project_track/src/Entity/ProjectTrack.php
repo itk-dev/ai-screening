@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening_project_track\Entity;
 
-use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\ai_screening_project_track\ProjectTrackInterface;
 
 /**
  * Defines the project track entity class.
