@@ -8,12 +8,6 @@
         "chat": "https://www.drupal.org/node/314178",
         "docs": "https://www.drupal.org/docs/user_guide/en/index.html"
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        }
-    ],
     "require": {
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
@@ -35,6 +29,12 @@
     "conflict": {
         "drupal/drupal": "*"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
     "minimum-stability": "stable",
     "prefer-stable": true,
     "config": {

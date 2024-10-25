@@ -45,7 +45,7 @@ jobs:
       - run: |
           docker network create frontend
           docker compose run --user root --rm phpfpm composer install
-          docker compose run --user root --rm phpfpm composer normalize
+          docker compose run --user root --rm phpfpm composer normalize --dry-run
 
   coding-standards-phpcs:
     name: coding-standards-check/phpcs
@@ -86,7 +86,7 @@ jobs:
           docker network create frontend
           docker compose pull
           docker compose up --detach
-          
+
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
           docker compose exec --user root phpfpm composer install --no-interaction
 
