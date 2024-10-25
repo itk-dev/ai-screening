@@ -1,0 +1,17 @@
+administer project_track:
+  title: 'Administer project tracks'
+  restrict access: true
+view project_track:
+  title: 'View project track'
+edit project_track:
+  title: 'Edit project track'
+delete project_track:
+  title: 'Delete project track'
+create project_track:
+  title: 'Create project track'
+view project_track revision:
+  title: 'View project track revision'
+revert project_track revision:
+  title: 'Revert project track revision'
+delete project_track revision:
+  title: 'Delete project track revision'
