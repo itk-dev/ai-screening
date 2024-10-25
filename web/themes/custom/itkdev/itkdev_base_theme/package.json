@@ -1,0 +1,41 @@
+{
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "@eslint/js": "^9.3.0",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@symfony/webpack-encore": "^4.6.1",
+    "@tailwindcss/forms": "^0.5.7",
+    "babel-loader": "^9.1.3",
+    "concurrently": "^9.0.1",
+    "eslint": "^9.3.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^17.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "tailwindcss": "^3.4.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "coding-standards-check/eslint": "yarn eslint './js/**/*.js'",
+    "coding-standards-check/prettier": "yarn prettier ./js/**/ --check",
+    "coding-standards-check": "yarn coding-standards-check/prettier && yarn coding-standards-check/eslint",
+    "coding-standards-apply/eslint": "yarn eslint './js/**/*.js' --fix",
+    "coding-standards-apply/prettier": "yarn prettier ./js/**/ --write",
+    "coding-standards-apply": "yarn coding-standards-apply/prettier && yarn coding-standards-apply/eslint",
+    "build:encore": "yarn encore production --progress",
+    "build:tailwind": "yarn tailwindcss -i css/styles.css -o css/styles.dist.css --minify",
+    "build": "yarn build:encore && yarn build:tailwind",
+    "watch:encore": "yarn encore dev --watch",
+    "watch:tailwind": "yarn tailwindcss -i css/styles.css -o css/styles.dist.css --watch",
+    "watch": "concurrently \"yarn watch:tailwind\" \"yarn watch:encore\" "
+  }
+}

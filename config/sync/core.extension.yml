@@ -1,8 +1,6 @@
 _core:
   default_config_hash: 4GIX5Esnc_umpXUBj4IIocRX7Mt5fPhm4AgXfE3E56E
 module:
-  ai_screening_group: 0
-  ai_screening_project: 0
   block: 0
   breakpoint: 0
   contextual: 0

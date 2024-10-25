@@ -1,0 +1,20 @@
+<div id="globalNavigation" class="hidden">
+  <div role="nav" class="bg-primary text-primary absolute top-0 left-0 w-96 drop-shadow-md p-5 h-screen z-20 rounded-r-md border-r border-t border-primary">
+    <header class="flex">
+      <div class="brand dark:text-white">
+        {{ page.header.ai_launchpad_sitebranding }}
+      </div>
+      <button class="ms-auto" id="btnCloseGlobalNavigation">
+        <i class="fa-solid fa-xmark"></i><span class="sr-only">{{ 'Close navigation menu'|t }}</span>
+      </button>
+    </header>
+    <main class="text-primary">
+      {{ page.global_navigation_menu }}
+    </main>
+    <div class="mt-8">
+      {{ page.global_navigation_menu_secondary_brand }}
+    </div>
+  </div>
+  <div id="backdrop" class="bg-primary opacity-50 w-100 h-100 absolute top-0 bottom-0 left-0 right-0 z-10">
+  </div>
+</div>

@@ -1,0 +1,9 @@
+styles:
+  version: VERSION
+  css:
+    theme:
+      build/styles.css: { minified: true }
+      build/app.css: { minified: true }
+  js:
+    build/app.js: { minified: true }
+    build/runtime.js: { minified: true }

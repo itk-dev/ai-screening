@@ -1,0 +1,11 @@
+name: ITK-dev Project Theme
+type: theme
+description: "Project theme"
+package: itkdev
+base theme: itkdev_base_theme
+core_version_requirement: ^11
+regions:
+  header: Header
+  navigation: Navigation
+  content: Content
+  footer: Footer
