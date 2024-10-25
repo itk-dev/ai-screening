@@ -34,14 +34,14 @@ class Helper implements LoggerAwareInterface {
   public function deleteRelated(int $nid): void {
     // Delete group.
     try {
-      $relationshipStoreage = $this->entityTypeManager->getStorage('group_relationship');
-      $relationshipIds = $relationshipStoreage->getQuery()
+      $relationshipStorage = $this->entityTypeManager->getStorage('group_relationship');
+      $relationshipIds = $relationshipStorage->getQuery()
         ->accessCheck(FALSE)
         ->condition('entity_id', $nid, '=')
         ->condition('type', 'project_group-group_node-project', '=')
         ->execute();
-      $relationships = $relationshipStoreage->loadMultiple($relationshipIds);
-      
+      $relationships = $relationshipStorage->loadMultiple($relationshipIds);
+
       $groupStorage = $this->entityTypeManager->getStorage('group');
       foreach ($relationships as $relationship) {
         $groupId = $relationship->getGroupId();

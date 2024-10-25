@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\hux\Attribute\Hook;
+use Drupal\node\NodeInterface;
 use Drupal\user\Entity\User;
 use Psr\Container\ContainerInterface;
 

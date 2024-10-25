@@ -5,3 +5,5 @@ services:
 
   Drupal\ai_screening_project\Helper\Helper:
     autowire: true
+    arguments:
+      $logger:  '@logger.channel.ai_screening_project'

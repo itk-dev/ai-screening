@@ -78,14 +78,15 @@ final class ModuleHooks implements ContainerInjectionInterface {
   #[Hook('cron')]
   public function cron(): void {
     try {
-      $corruptedNodes = $this->entityTypeManager->getStorage('node')->getQuery()
+      $corruptedNids = $this->entityTypeManager->getStorage('node')->getQuery()
         ->accessCheck(FALSE)
         ->condition('corrupted', TRUE)
         ->execute();
 
-      foreach ($corruptedNodes as $nid) {
-        // Delete node.
-        $this->entityTypeManager->getStorage('node')->load($nid)->delete();
+      // Delete corrupted nodes.
+      $corruptedNodes = $this->entityTypeManager->getStorage('node')->loadMultiple($corruptedNids);
+      foreach ($corruptedNodes as $node) {
+        $node->delete();
       }
     }
     catch (\Exception $exception) {
