@@ -129,7 +129,7 @@
             "phpcbf --standard=phpcs.xml.dist"
         ],
         "coding-standards-apply/twig-cs-fixer": [
-            "twig-cs-fixer lint web/themes/custom/*/templates --fix"
+            "twig-cs-fixer lint web/themes/custom/itkdev/*/templates --fix"
         ],
         "coding-standards-check": [
             "@coding-standards-check/phpcs",
@@ -139,7 +139,7 @@
             "phpcs --standard=phpcs.xml.dist"
         ],
         "coding-standards-check/twig-cs-fixer": [
-            "twig-cs-fixer lint web/themes/custom/*/templates"
+            "twig-cs-fixer lint web/themes/custom/itkdev/*/templates"
         ]
     }
 }
