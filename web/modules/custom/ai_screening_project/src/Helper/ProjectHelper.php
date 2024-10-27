@@ -131,7 +131,7 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
       }
     }
     catch (\Exception $exception) {
-      $this->error('Error saving node: @message', [
+      $this->error('Error deleting corrupted nodes: @message', [
         '@message' => $exception->getMessage(),
       ]);
     }
