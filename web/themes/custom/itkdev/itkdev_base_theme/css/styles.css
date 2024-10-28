@@ -116,3 +116,8 @@
     @apply bg-red-100 text-red-700  border-red-300;
   }
 }
+
+/* Set relative container to avoid site hiding behind admin sidebar */
+.dialog-off-canvas-main-canvas {
+  position: relative;
+}

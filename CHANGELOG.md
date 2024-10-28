@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-9](https://github.com/itk-dev/ai-screening/pull/9)
+  Fixes to theme setup
 - [PR-8](https://github.com/itk-dev/ai-screening/pull/8)
   Added webform module and config
 - [PR-6](https://github.com/itk-dev/ai-screening/pull/6)
