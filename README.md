@@ -97,3 +97,11 @@ Build and watch for changes:
 
 ``` shell name="theme-watch"
 task theme-watch
+
+```
+
+See [Development](docs/Development.md) for details on development.
+
+## Production deployment
+
+See [Production](docs/Production.md) for details on production deployment.
