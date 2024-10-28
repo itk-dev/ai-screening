@@ -40,6 +40,4 @@ module:
 theme:
   stark: 0
   claro: 0
-  itkdev_base_theme: 0
-  itkdev_project_theme: 0
 profile: minimal
