@@ -238,7 +238,10 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
       EntityHookEvents::ENTITY_ACCESS => 'entityAccess',
       EntityHookEvents::ENTITY_INSERT => 'entityInsert',
       EntityHookEvents::ENTITY_DELETE => 'entityDelete',
-      EntityHookEvents::ENTITY_BASE_FIELD_INFO => 'entityBaseFieldInfo',
+      // @fixme I, Mikkel, cannot make this work using an event handler, so we
+      // do it the old fashioned way with a hook implementation in
+      // ai_screening_project.module (which see).
+      // EntityHookEvents::ENTITY_BASE_FIELD_INFO => 'entityBaseFieldInfo',
     ];
   }
 
