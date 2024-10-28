@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
+
 - [PR-8](https://github.com/itk-dev/ai-screening/pull/8)
   Added webform module and config
 - [PR-6](https://github.com/itk-dev/ai-screening/pull/6)
