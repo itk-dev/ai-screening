@@ -136,6 +136,31 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
       foreach ($groups as $group) {
         $group->delete();
       }
+
+      // Get all project tracks for the project.
+      $projectTrackIds = $this->projectTrackStorage->getQuery()
+        ->accessCheck(FALSE)
+        ->condition('project_id', $project->id(), '=')
+        ->execute();
+
+      // Get all webforms that reference these project tracks.
+      $submissionIds = $this->webformSubmissionStorage->getQuery()
+        ->accessCheck(FALSE)
+        ->condition('entity_type', 'project_track', '=')
+        ->condition('entity_id', $projectTrackIds, 'IN')
+        ->execute();
+
+      // Delete project tracks and webform submissions for the project.
+      $projectTracks = $this->projectTrackStorage->loadMultiple($projectTrackIds);
+      foreach ($projectTracks as $projectTrack) {
+        $projectTrack->delete();
+      }
+
+      $webformSubmissions = $this->webformSubmissionStorage->loadMultiple($submissionIds);
+      foreach ($webformSubmissions as $webformSubmission) {
+        $webformSubmission->delete();
+      }
+
     }
     catch (\Exception $exception) {
       $this->error('Error deleting project: @message', [
