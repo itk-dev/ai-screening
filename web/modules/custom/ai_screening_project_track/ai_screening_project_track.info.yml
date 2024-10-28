@@ -1,0 +1,5 @@
+name: AI Screening project track
+description: Adds project track entity and functionality
+package: 'Custom'
+type: module
+core_version_requirement: "^11"

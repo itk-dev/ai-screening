@@ -1,0 +1,22 @@
+uuid: e3f96249-7ab8-487b-b710-5f140fc9832c
+langcode: en
+status: true
+dependencies:
+  theme:
+    - itkdev_project_theme
+_core:
+  default_config_hash: T0wbI6qVdThbbIqXDZFg_1VZ3_ittXBdEoUH7d7ux_E
+id: itkdev_project_theme_local_tasks
+theme: itkdev_project_theme
+region: content
+weight: -20
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }
