@@ -79,8 +79,24 @@ services:
           ClaimTypes:
             # Add your custom claims here
             - name
+            - groups
 
       USERS_CONFIGURATION_INLINE: |
+        - SubjectId: administrator
+          Username: administrator
+          Password: administrator
+          Claims:
+            # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
+          - Type: name
+            Value: Administrator
+            ValueType: string
+          - Type: email
+            Value: administrator@example.com
+            ValueType: string
+          - Type: groups
+            Value: '["AD-administrator"]'
+            ValueType: json
+
         - SubjectId: editor
           Username: editor
           Password: editor
