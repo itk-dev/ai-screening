@@ -81,17 +81,32 @@ services:
             - name
 
       USERS_CONFIGURATION_INLINE: |
-        - SubjectId: administrator
-          Username: administrator
-          Password: administrator
+        - SubjectId: editor
+          Username: editor
+          Password: editor
           Claims:
             # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
           - Type: name
-            Value: Admin Jensen
+            Value: Editor
             ValueType: string
           - Type: email
-            Value: administrator@example.com
+            Value: editor@example.com
             ValueType: string
           - Type: groups
-            Value: '["AD-administrator"]'
+            Value: '["AD-editor"]'
+            ValueType: json
+
+        - SubjectId: user
+          Username: user
+          Password: user
+          Claims:
+            # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
+          - Type: name
+            Value: User
+            ValueType: string
+          - Type: email
+            Value: user@example.com
+            ValueType: string
+          - Type: groups
+            Value: '[]'
             ValueType: json

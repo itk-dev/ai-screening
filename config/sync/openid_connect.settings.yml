@@ -9,4 +9,6 @@ redirect_login: user
 redirect_logout: ''
 userinfo_mappings:
   timezone: zoneinfo
-role_mappings: {  }
+role_mappings:
+  editor:
+    - AD-editor
