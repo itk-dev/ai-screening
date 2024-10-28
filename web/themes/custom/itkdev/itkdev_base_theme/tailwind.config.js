@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./templates/**/*.{twig,html}", "./js/**/*.js"],
+  content: [
+    "./templates/**/*.{twig,html}",
+    "../itkdev_project_theme/templates/**/*.{twig,html}",
+    "./js/**/*.js",
+  ],
   // safelist: [
   //   "col-span-1",
   // ],
