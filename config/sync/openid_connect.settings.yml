@@ -5,8 +5,8 @@ connect_existing_users: true
 override_registration_settings: false
 end_session_enabled: true
 user_login_display: above
-redirect_login: user
-redirect_logout: ''
+redirect_login: /user
+redirect_logout: /user
 userinfo_mappings:
   timezone: zoneinfo
 role_mappings:
