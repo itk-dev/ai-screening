@@ -4,12 +4,14 @@ namespace Drupal\ai_screening_project\Helper;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
 use Drupal\core_event_dispatcher\CoreHookEvents;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Core\CronEvent;
@@ -22,7 +24,9 @@ use Drupal\group\Entity\Storage\GroupRelationshipStorageInterface;
 use Drupal\group\Entity\Storage\GroupStorage;
 use Drupal\node\NodeInterface;
 use Drupal\node\NodeStorageInterface;
+use Drupal\taxonomy\TermStorageInterface;
 use Drupal\user\UserStorageInterface;
+use Drupal\webform\WebformSubmissionStorageInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerTrait;
@@ -39,33 +43,56 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
   public final const BUNDLE_PROJECT = 'project';
   public final const FIELD_CORRUPTED = 'corrupted';
 
+  public final const BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
+
   /**
    * The group storage.
    *
    * @var \Drupal\group\Entity\Storage\GroupStorage|\Drupal\Core\Entity\EntityStorageInterface
    */
-  private readonly GroupStorage $groupStorage;
+  private readonly GroupStorage|EntityStorageInterface $groupStorage;
 
   /**
    * The group relationship storage.
    *
    * @var \Drupal\group\Entity\Storage\GroupRelationshipStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
    */
-  private readonly GroupRelationshipStorageInterface $groupRelationshipStorage;
+  private readonly GroupRelationshipStorageInterface|EntityStorageInterface $groupRelationshipStorage;
 
   /**
    * The user storage.
    *
    * @var \Drupal\user\UserStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
    */
-  private readonly UserStorageInterface $userStorage;
+  private readonly UserStorageInterface|EntityStorageInterface $userStorage;
 
   /**
    * The node storage.
    *
    * @var \Drupal\node\NodeStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
    */
-  private readonly NodeStorageInterface $nodeStorage;
+  private readonly NodeStorageInterface|EntityStorageInterface $nodeStorage;
+
+  /**
+   * The taxonomy term storage.
+   *
+   * @var \Drupal\taxonomy\TermStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
+   */
+  private readonly TermStorageInterface|EntityStorageInterface $termStorage;
+
+  /**
+   * The webform submission storage.
+   *
+   * @var \Drupal\webform\WebformSubmissionStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
+   */
+  private readonly WebformSubmissionStorageInterface|EntityStorageInterface $webformSubmissionStorage;
+
+  /**
+   * The project track storage.
+   *
+   * @var \Drupal\ai_screening_project_track\ProjectTrackStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
+   */
+  private readonly ProjectTrackStorageInterface|EntityStorageInterface $projectTrackStorage;
 
   /**
    * Constructor.
@@ -80,6 +107,9 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
     $this->groupRelationshipStorage = $entityTypeManager->getStorage('group_relationship');
     $this->userStorage = $entityTypeManager->getStorage('user');
     $this->nodeStorage = $entityTypeManager->getStorage('node');
+    $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
+    $this->webformSubmissionStorage = $entityTypeManager->getStorage('webform_submission');
+    $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
   }
 
   /**
@@ -153,32 +183,10 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
    * Entity insert event handler.
    */
   public function entityInsert(EntityInsertEvent $event): void {
-    try {
-      $entity = $event->getEntity();
-      // Create group when a project is created.
-      if ($this->isProject($entity)) {
-        /** @var \Drupal\group\Entity\Group $group */
-        $group = $this->groupStorage->create(['type' => 'project_group']);
-        $group->set('label', 'Group: ' . $entity->label());
-        $group->setOwner($this->userStorage->load($this->accountProxy->id()));
-        $group->save();
-        $group->addRelationship($entity, 'group_node:project');
-        $group->save();
-      }
-    }
-    catch (\Exception $exception) {
-      $this->error('Error creating groups: @message', [
-        '@message' => $exception->getMessage(),
-        'entity' => $entity,
-      ]);
-
-      try {
-        $entity->set(self::FIELD_CORRUPTED, TRUE);
-        $entity->save();
-      }
-      catch (\Throwable) {
-        // Ignore any errors when marking entity as corrupted.
-      }
+    $entity = $event->getEntity();
+    if ($this->isProject($entity)) {
+      $this->addProjectGroup($entity);
+      $this->addProjectTracks($entity);
     }
   }
 
@@ -250,6 +258,105 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
    */
   public function log($level, string|\Stringable $message, array $context = []): void {
     $this->logger->log($level, $message, $context);
+  }
+
+  /**
+   * Add project group.
+   *
+   * @param \Drupal\node\NodeInterface $entity
+   *   The project getting the project tracks added.
+   */
+  private function addProjectGroup(NodeInterface $entity): void {
+    try {
+      // Create group when a project is created.
+      /** @var \Drupal\group\Entity\Group $group */
+      $group = $this->groupStorage->create(['type' => 'project_group']);
+      $group->set('label', 'Group: ' . $entity->label());
+      $group->setOwner($this->userStorage->load($this->accountProxy->id()));
+      $group->save();
+      $group->addRelationship($entity, 'group_node:project');
+      $group->save();
+    }
+    catch (\Exception $exception) {
+      $this->error('Error creating groups: @message', [
+        '@message' => $exception->getMessage(),
+        'entity' => $entity,
+      ]);
+
+      try {
+        /** @var \Drupal\node\Entity\Node $entity */
+        $entity->set(self::FIELD_CORRUPTED, TRUE);
+        $entity->save();
+      }
+      catch (\Throwable) {
+        // Ignore any errors when marking entity as corrupted.
+      }
+    }
+  }
+
+  /**
+   * Add project tracks.
+   *
+   * @param \Drupal\node\NodeInterface $entity
+   *   The project getting the project tracks added.
+   */
+  private function addProjectTracks(NodeInterface $entity): void {
+    try {
+      $projectTrackTermIds = $this->termStorage->getQuery()
+        ->accessCheck(FALSE)
+        ->condition('vid', self::BUNDLE_TERM_PROJECT_TRACK, '=')
+        ->exists('field_webform')
+        ->execute();
+
+      // Add project tracks to project.
+      $projectTrackTerms = $this->termStorage->loadMultiple($projectTrackTermIds);
+
+      foreach ($projectTrackTerms as $projectTrackTerm) {
+        /** @var \Drupal\taxonomy\TermInterface $projectTrackTerm */
+        $webformId = $projectTrackTerm->field_webform->target_id;
+        $webformSubmission = $this->webformSubmissionStorage->create([
+          'webform_id' => $webformId,
+          'entity_type' => 'project_track',
+        ]);
+
+        $webformSubmission->save();
+        $submissionId = $webformSubmission->id();
+
+        $projectTrack = $this->projectTrackStorage->create([
+          'type' => 'project_group',
+          'project_track_evaluation' => '0',
+          'project_track_status' => 'new',
+          'project_id' => $entity->id(),
+          'tool_id' => $submissionId,
+          'tool_entity_type' => 'webform',
+        ]);
+
+        $projectTrack->save();
+
+        /** @var \Drupal\webform\WebformSubmissionInterface $submission */
+        $submission = $this->webformSubmissionStorage->load($submissionId);
+        $submission->setData([
+          'entity_id' => $projectTrack->id(),
+        ]);
+
+        $submission->save();
+      }
+    }
+    catch (\Exception $exception) {
+      $this->error('Error creating project tracks: @message', [
+        '@message' => $exception->getMessage(),
+        'entity' => $entity,
+      ]);
+
+      try {
+        /** @var \Drupal\node\Entity\Node $entity */
+        $entity->set(self::FIELD_CORRUPTED, TRUE);
+        $entity->save();
+      }
+      catch (\Throwable) {
+        // Ignore any errors when marking entity as corrupted.
+      }
+    }
   }
 
 }
