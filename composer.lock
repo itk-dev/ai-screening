@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06d81a15f9d7230b3bc4cefbcb420a75",
+    "content-hash": "688bdabf77e718f159e1d94354524cac",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -122,6 +122,54 @@
                 "source": "https://github.com/Chi-teck/drupal-code-generator/tree/4.0.0"
             },
             "time": "2024-07-05T17:47:55+00:00"
+        },
+        {
+            "name": "chx/drupal-issue-fork",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chx/drupal-issue-fork.git",
+                "reference": "f2df06fc216a0b29c144ada9c29c7d107fb05fa4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chx/drupal-issue-fork/zipball/f2df06fc216a0b29c144ada9c29c7d107fb05fa4",
+                "reference": "f2df06fc216a0b29c144ada9c29c7d107fb05fa4",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.0",
+                "php": ">=8.1.0"
+            },
+            "require-dev": {
+                "composer/composer": "^2.6"
+            },
+            "default-branch": true,
+            "type": "composer-plugin",
+            "extra": {
+                "class": "chx\\Composer\\Plugin\\DrupalIssueFork"
+            },
+            "autoload": {
+                "psr-4": {
+                    "chx\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Karoly Negyesi",
+                    "email": "chx1975@gmail.com"
+                }
+            ],
+            "description": "Sets up a project to use an issue fork",
+            "support": {
+                "issues": "https://github.com/chx/drupal-issue-fork/issues",
+                "source": "https://github.com/chx/drupal-issue-fork/tree/main"
+            },
+            "time": "2023-11-03T07:45:34+00:00"
         },
         {
             "name": "composer/installers",
@@ -1545,6 +1593,60 @@
             }
         },
         {
+            "name": "drupal/externalauth",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/externalauth.git",
+                "reference": "2.0.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/externalauth-2.0.6.zip",
+                "reference": "2.0.6",
+                "shasum": "0dbc9fbab0901e940d52b239e08f031797f6bd2a"
+            },
+            "require": {
+                "drupal/core": "^9.5 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.6",
+                    "datestamp": "1720689758",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Sven Decabooter",
+                    "homepage": "https://www.drupal.org/u/svendecabooter",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "snufkin",
+                    "homepage": "https://www.drupal.org/user/58645"
+                },
+                {
+                    "name": "svendecabooter",
+                    "homepage": "https://www.drupal.org/user/35369"
+                }
+            ],
+            "description": "Helper module to authenticate users using an external site / service and storing identification details",
+            "homepage": "https://drupal.org/project/externalauth",
+            "support": {
+                "source": "https://git.drupalcode.org/project/externalauth",
+                "issues": "https://www.drupal.org/project/issues/externalauth"
+            }
+        },
+        {
             "name": "drupal/flexible_permissions",
             "version": "2.0.1",
             "source": {
@@ -1783,6 +1885,34 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/hux"
             }
+        },
+        {
+            "name": "drupal/openid_connect",
+            "version": "dev-3452009-drupal-11-compatibility",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/issue/openid_connect-3452009.git",
+                "reference": "7980637166173daa5d4b1f556b9f96b70bff0111"
+            },
+            "require": {
+                "drupal/externalauth": "^2.0",
+                "ext-json": "*",
+                "php": ">=7.1.0"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "A pluggable client implementation for the OpenID Connect protocol.",
+            "homepage": "https://www.drupal.org/project/openid_connect",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "issues": "https://www.drupal.org/project/issues/openid_connect",
+                "source": "https://git.drupalcode.org/project/openid_connect"
+            },
+            "time": "2024-06-02T17:59:04+00:00"
         },
         {
             "name": "drupal/webform",
@@ -12809,11 +12939,13 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "chx/drupal-issue-fork": 20,
+        "drupal/openid_connect": 20,
         "drupal/webform": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
+    "platform": {},
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
