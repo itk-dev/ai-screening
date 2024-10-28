@@ -30,3 +30,14 @@ The following users are available for local testing:
 
 [^1]: The "AD-user" group is not actually used in Drupal (but the AD requires a group on a user). A user that is neither
     an "administrator" or "editor" will be just an "authenticated" user.
+
+## WebProfiler
+
+The [WebProfiler module](https://www.drupal.org/project/webprofiler) can be installed to help during development:
+
+``` shell
+task drush -- pm:install webprofiler
+```
+
+The module and other development modules are excluded from configuration syncronization (cf.
+[`settings.php`](../web/sites/default/settings.php) and <https://www.drupal.org/node/3079028>).
