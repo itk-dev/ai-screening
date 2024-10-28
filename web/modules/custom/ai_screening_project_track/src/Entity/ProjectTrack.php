@@ -80,6 +80,26 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
 
     $fields = parent::baseFieldDefinitions($entity_type);
 
+    $fields['type'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Type'))
+      ->setDescription(t('The type of the project track.'));
+
+    $fields['project_track_description'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Project track description'))
+      ->setDescription(t('A description of the project track.'));
+
+    $fields['project_track_evaluation'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Project track evaluation'))
+      ->setDescription(t('The type of the project track.'));
+
+    $fields['project_track_note'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Project track note'))
+      ->setDescription(t('A note related to project track evaluation.'));
+
+    $fields['project_track_status'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Project track status'))
+      ->setDescription(t('The type of the project track.'));
+
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
       ->setDescription(t('The time that the project track was created.'));
@@ -87,10 +107,6 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the project track was last edited.'));
-
-    $fields['type'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Type'))
-      ->setDescription(t('The type of the project track.'));
 
     $fields['project_id'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Project'))
@@ -103,11 +119,6 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
     $fields['tool_entity_type'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Tool entity type'))
       ->setDescription(t('The entity type of the tool referenced.'));
-
-    $fields['tool_config'] = BaseFieldDefinition::create('string_long')
-      ->setLabel(t('Tool config'))
-      ->setRevisionable(TRUE)
-      ->setDescription(t('The configuration of the tool.'));
 
     $fields['tool_data'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Tool data'))

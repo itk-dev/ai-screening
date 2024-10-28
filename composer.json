@@ -15,6 +15,7 @@
         "drupal/core-project-message": "^11.0",
         "drupal/core-recommended": "^11.0",
         "drupal/group": "^3.3",
+        "drupal/hook_event_dispatcher": "^4.2",
         "drupal/hux": "^1.7",
         "drupal/webform": "^6.0@dev",
         "drush/drush": "^13.2"
