@@ -1,9 +1,11 @@
 _core:
   default_config_hash: 4GIX5Esnc_umpXUBj4IIocRX7Mt5fPhm4AgXfE3E56E
 module:
+  ai_screening_project: 0
   block: 0
   breakpoint: 0
   contextual: 0
+  core_event_dispatcher: 0
   dblog: 0
   dynamic_page_cache: 0
   entity: 0
@@ -14,7 +16,7 @@ module:
   flexible_permissions: 0
   gnode: 0
   group: 0
-  hux: 0
+  hook_event_dispatcher: 0
   language: 0
   layout_builder: 0
   layout_discovery: 0

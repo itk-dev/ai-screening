@@ -5,3 +5,4 @@ type: module
 core_version_requirement: "^11"
 dependencies:
   - 'drupal:node'
+  - 'core_event_dispatcher:core_event_dispatcher'

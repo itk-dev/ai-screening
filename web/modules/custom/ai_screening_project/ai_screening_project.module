@@ -6,21 +6,19 @@
  */
 
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\ai_screening_project\Helper\ProjectHelper;
+use Drupal\core_event_dispatcher\Event\Entity\EntityBaseFieldInfoEvent;
 
 /**
  * Implements hook_entity_base_field_info().
  */
 function ai_screening_project_entity_base_field_info(EntityTypeInterface $entityType): array {
-  $fields = [];
+  // @fixme I, Mikkel, cannot make this work using an event handler, but we can
+  // get the fields data from the event handler.
+  /** @var \Drupal\ai_screening_project\Helper\ProjectHelper $helper */
+  $helper = \Drupal::service(ProjectHelper::class);
+  $event = new EntityBaseFieldInfoEvent($entityType);
+  $helper->entityBaseFieldInfo($event);
 
-  if ($entityType->id() === 'node') {
-    $fields['corrupted'] = BaseFieldDefinition::create('boolean')
-      ->setLabel(t('Corrupted'))
-      ->setDescription(t('If the project or related entities are corrupted.'))
-      ->setTargetEntityTypeId($entityType->id())
-      ->setReadOnly(TRUE);
-  }
-
-  return $fields;
+  return $event->getFields();
 }
