@@ -1,0 +1,11 @@
+uuid: fb911fbc-7b63-436f-8333-8dd931470b6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.project_track_type
+id: taxonomy_term.project_track_type
+target_entity_type_id: taxonomy_term
+target_bundle: project_track_type
+default_langcode: site_default
+language_alterable: false
