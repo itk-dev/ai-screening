@@ -1,0 +1,44 @@
+display:
+  default:
+    display_title: Master
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
+          tags:
+            previous: ‹‹
+            next: ››
+      fields:
+        uid:
+          format_plural_string: !!binary MQNAY291bnQ=
+        name:
+          separator: ', '
+        delete_link:
+          label: delete
+          text: delete
+      filters:
+        authname:
+          expose:
+            label: 'Authentication name'
+        uid:
+          expose:
+            label: 'Drupal user'
+      arguments:
+        provider_field:
+          exception:
+            title: Alle
+  page:
+    display_title: Side
+    display_options:
+      menu:
+        title: External

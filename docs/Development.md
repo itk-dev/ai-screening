@@ -12,3 +12,17 @@ docker compose exec phpfpm require chx/drupal-issue-fork
 docker compose exec phpfpm require composer drupal-issue-fork https://git.drupalcode.org/issue/openid_connect-3452009/-/tree/3452009-drupal-11-compatibility
 docker compose exec phpfpm require composer require drupal/openid_connect:dev-3452009-drupal-11-compatibility
 ```
+
+### Local OIDC test
+
+During (local) development we use [OpenId Connect Server Mock](https://github.com/Soluto/oidc-server-mock) (cf.
+[`docker-compose.oidc.yml`](docker-compose.oidc.yml) which is
+[included](https://docs.docker.com/compose/how-tos/multiple-compose-files/include/) in
+[`docker-compose.override.yml`](docker-compose.override.yml)).
+
+The following users are available for local testing:
+
+| Username | Password | Groups    |
+|----------|----------|-----------|
+| editor   | editor   | AD-editor |
+| user     | user     |           |

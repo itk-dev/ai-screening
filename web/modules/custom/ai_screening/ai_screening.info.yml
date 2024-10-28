@@ -1,0 +1,9 @@
+name: 'ai_screening'
+type: module
+description: 'ai_screening'
+package: Custom
+core_version_requirement: ^11
+dependencies:
+  - drupal:user
+  - hux:hux
+  - openid_connect:openid_connect
