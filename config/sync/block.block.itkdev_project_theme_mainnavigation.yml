@@ -1,0 +1,25 @@
+uuid: 049fbd9d-4d39-411f-93db-12a85e322ae9
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - itkdev_project_theme
+id: itkdev_project_theme_mainnavigation
+theme: itkdev_project_theme
+region: navigation
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

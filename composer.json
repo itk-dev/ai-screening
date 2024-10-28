@@ -17,6 +17,7 @@
         "drupal/group": "^3.3",
         "drupal/hook_event_dispatcher": "^4.2",
         "drupal/hux": "^1.7",
+        "drupal/webform": "^6.0@dev",
         "drush/drush": "^13.2"
     },
     "require-dev": {
@@ -36,7 +37,7 @@
             "url": "https://packages.drupal.org/8"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {

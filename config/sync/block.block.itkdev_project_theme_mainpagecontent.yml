@@ -1,4 +1,4 @@
-uuid: 85e2ae88-3662-4d8b-9a36-b73c30e8c929
+uuid: 6fa22c5f-7e50-45dd-8c89-c75050628964
 langcode: en
 status: true
 dependencies:
@@ -6,15 +6,15 @@ dependencies:
     - system
   theme:
     - itkdev_project_theme
-id: itkdev_project_theme_messages
+id: itkdev_project_theme_mainpagecontent
 theme: itkdev_project_theme
-region: header
+region: content
 weight: 0
 provider: null
-plugin: system_messages_block
+plugin: system_main_block
 settings:
-  id: system_messages_block
-  label: Messages
+  id: system_main_block
+  label: 'Main page content'
   label_display: '0'
   provider: system
 visibility: {  }

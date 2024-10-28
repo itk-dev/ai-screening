@@ -1,0 +1,55 @@
+uuid: 97719521-df93-46bc-b324-fbe87be8c35b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.project_track_type.field_webform
+    - taxonomy.vocabulary.project_track_type
+  module:
+    - text
+id: taxonomy_term.project_track_type.default
+targetEntityType: taxonomy_term
+bundle: project_track_type
+mode: default
+content:
+  description:
+    type: text_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_webform:
+    type: entity_reference_autocomplete
+    weight: 101
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden: {  }
