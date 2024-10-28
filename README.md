@@ -100,6 +100,8 @@ task theme-watch
 
 ```
 
+## Development
+
 See [Development](docs/Development.md) for details on development.
 
 ## Production deployment
