@@ -866,6 +866,10 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # $settings['migrate_file_public_path'] = '';
 # $settings['migrate_file_private_path'] = '';
 
+// Exclude development modules from configuration synchronization
+// https://www.drupal.org/node/3079028
+$settings['config_exclude_modules'] = ['webprofiler', 'devel', 'tracer'];
+
 /**
  * Load local development override configuration, if available.
  *
