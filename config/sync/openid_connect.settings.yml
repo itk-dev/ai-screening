@@ -12,3 +12,5 @@ userinfo_mappings:
 role_mappings:
   editor:
     - AD-editor
+  administrator:
+    - AD-administrator
