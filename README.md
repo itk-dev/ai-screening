@@ -85,4 +85,15 @@ docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdo
 
 ## Site theme
 
-There is a custom frontend theme installed with common components based on tailwind
+There is a custom frontend theme installed with common components based on tailwind. See
+[web/themes/custom/itkdev/itkdev_base_theme/README.md](web/themes/custom/itkdev/itkdev_base_theme/README.md) for details
+on how to build and do development on the theme. TL;DR:
+
+``` shell name="theme-build"
+task theme-build
+```
+
+Build and watch for changes:
+
+``` shell name="theme-watch"
+task theme-watch
