@@ -353,16 +353,15 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
           'project_track_status' => 'new',
           'project_id' => $entity->id(),
           'tool_id' => $submissionId,
-          'tool_entity_type' => 'webform',
+          'tool_entity_type' => 'webform_submission',
         ]);
 
         $projectTrack->save();
+        $projectTrackId = $projectTrack->id();
 
         /** @var \Drupal\webform\WebformSubmissionInterface $submission */
         $submission = $this->webformSubmissionStorage->load($submissionId);
-        $submission->setData([
-          'entity_id' => $projectTrack->id(),
-        ]);
+        $submission->set('entity_id', $projectTrackId);
 
         $submission->save();
       }
