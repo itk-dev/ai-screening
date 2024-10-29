@@ -42,7 +42,6 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
 
   public final const BUNDLE_PROJECT = 'project';
   public final const FIELD_CORRUPTED = 'corrupted';
-
   public final const BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
 
   /**
