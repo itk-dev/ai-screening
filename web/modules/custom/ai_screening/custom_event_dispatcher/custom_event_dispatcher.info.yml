@@ -1,6 +1,6 @@
-name: 'openid_connect_event_dispatcher'
+name: 'custom_event_dispatcher'
 type: module
-description: 'openid_connect_event_dispatcher'
+description: 'custom_event_dispatcher'
 package: Hook events
 core_version_requirement: ^11
 dependencies:

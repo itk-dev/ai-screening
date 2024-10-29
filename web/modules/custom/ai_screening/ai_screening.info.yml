@@ -5,6 +5,5 @@ package: Custom
 core_version_requirement: ^11
 dependencies:
   - drupal:user
-  - hux:hux
   - openid_connect:openid_connect
-  - openid_connect_event_dispatcher:openid_connect_event_dispatcher
+  - custom_event_dispatcher:custom_event_dispatcher

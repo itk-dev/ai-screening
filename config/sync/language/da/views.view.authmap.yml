@@ -24,15 +24,15 @@ display:
         name:
           separator: ', '
         delete_link:
-          label: delete
-          text: delete
+          label: slet
+          text: slet
       filters:
         authname:
           expose:
-            label: 'Authentication name'
+            label: Autentificeringsnavn
         uid:
           expose:
-            label: 'Drupal user'
+            label: 'Drupal bruger'
       arguments:
         provider_field:
           exception:
@@ -41,4 +41,4 @@ display:
     display_title: Side
     display_options:
       menu:
-        title: External
+        title: Eksterne
