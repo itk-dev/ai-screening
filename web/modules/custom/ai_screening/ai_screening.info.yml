@@ -7,3 +7,4 @@ dependencies:
   - drupal:user
   - hux:hux
   - openid_connect:openid_connect
+  - openid_connect_event_dispatcher:openid_connect_event_dispatcher
