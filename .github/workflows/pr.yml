@@ -165,3 +165,15 @@ jobs:
       - name: code-analysis
         run: |
           composer code-analysis
+
+  theme-build:
+    name: Check that theme can be built
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build theme
+        run: |
+          docker network create frontend
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme install
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme build
