@@ -1,0 +1,11 @@
+services:
+  logger.channel.ai_screening:
+    parent: logger.channel_base
+    arguments: ['ai_screening']
+
+  Drupal\ai_screening\Helper\OpenIdConnectHelper:
+    autowire: true
+    arguments:
+      $logger: '@logger.channel.ai_screening'
+    tags:
+      - { name: event_subscriber }
