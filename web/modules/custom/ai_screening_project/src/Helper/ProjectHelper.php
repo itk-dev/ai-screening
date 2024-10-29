@@ -160,7 +160,8 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
         /** @var \Drupal\group\Entity\Group $group */
         $group = $this->groupStorage->create(['type' => 'project_group']);
         $group->set('label', 'Group: ' . $entity->label());
-        $group->setOwner($this->userStorage->load($this->accountProxy->id()));
+        // Never allow anonymous owner.
+        $group->setOwner($this->userStorage->load($this->accountProxy->id() > 0 ? $this->accountProxy->id() : 1));
         $group->save();
         $group->addRelationship($entity, 'group_node:project');
         $group->save();

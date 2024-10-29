@@ -5,6 +5,9 @@ services:
       - '@file.repository'
       - '@file_system'
       - '@entity_type.manager'
+  Drupal\ai_screening_fixtures_base\Fixture\ProjectTrackTermFixture:
+    tags:
+      - { name: content_fixture }
   Drupal\ai_screening_fixtures_base\Fixture\UserFixture:
     tags:
       - { name: content_fixture }
