@@ -7,7 +7,6 @@ use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
-use Drupal\user\Entity\User;
 
 /**
  * Page fixture.
@@ -17,6 +16,7 @@ use Drupal\user\Entity\User;
 class ProjectFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
 
   public final const EXTRA_PROJECTS = 20;
+
   /**
    * {@inheritdoc}
    */
@@ -30,7 +30,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
         'value' => 'Et nyt projekt',
         'format' => 'plain_text',
       ],
-      'corrupted' => 0
+      'corrupted' => 0,
     ]);
     $node->setOwnerId(1);
     $this->addReference('project:Ordinary project', $node);
@@ -45,7 +45,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
         'value' => 'Et ødelagt projekt bør slettes med cron.',
         'format' => 'plain_text',
       ],
-      'corrupted' => 1
+      'corrupted' => 1,
     ]);
     $node->setOwnerId(1);
     $this->addReference('project:Corrupted project', $node);
@@ -62,13 +62,12 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
           'value' => 'Projektnummer ' . $projectCount,
           'format' => 'plain_text',
         ],
-        'corrupted' => 0
+        'corrupted' => 0,
       ]);
       $node->setOwnerId(1);
       $this->addReference('project:' . $label, $node);
       $node->save();
     }
-
 
   }
 
@@ -78,7 +77,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
   public function getDependencies() {
     return [
       TermDepartmentFixture::class,
-      ProjectTrackTermFixture::class
+      ProjectTrackTermFixture::class,
     ];
   }
 

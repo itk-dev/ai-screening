@@ -52,6 +52,7 @@ abstract class TaxonomyTermFixture extends AbstractFixture implements FixtureGro
 
   /**
    * {@inheritdoc}
+   *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function load(): void {
@@ -68,7 +69,7 @@ abstract class TaxonomyTermFixture extends AbstractFixture implements FixtureGro
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  private function createTerms(array $items, Term $parent = NULL): void {
+  private function createTerms(array $items, ?Term $parent = NULL): void {
     $weight = 0;
     foreach ($items as $name => $value) {
       if (is_array($value)) {
@@ -97,7 +98,7 @@ abstract class TaxonomyTermFixture extends AbstractFixture implements FixtureGro
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createTerm(string $name, int $weight, Term $parent = NULL): Term {
+  protected function createTerm(string $name, int $weight, ?Term $parent = NULL): Term {
     $term = Term::create([
       'vid' => static::$vocabularyId,
       'weight' => $weight,
@@ -121,11 +122,6 @@ abstract class TaxonomyTermFixture extends AbstractFixture implements FixtureGro
    */
   public function getGroups() {
     return ['taxonomy'];
-  }
-
-  public function getRandomTerm() {
-    $voc = Vocabulary::load(static::$vocabularyId);
-    $a = 1;
   }
 
 }

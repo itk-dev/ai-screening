@@ -15,6 +15,7 @@ class UserFixture extends AbstractFixture implements FixtureGroupInterface {
 
   /**
    * {@inheritdoc}
+   *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function load(): void {

@@ -2,10 +2,10 @@
 
 namespace Drupal\ai_screening_fixtures_base\Fixture;
 
+use Drupal\ai_screening_fixtures_base\Helper\Helper;
 use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\file\Entity\File;
-use Drupal\ai_screening_fixtures_base\Helper\Helper;
 
 /**
  * File fixture.
