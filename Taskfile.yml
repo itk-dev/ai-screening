@@ -9,14 +9,22 @@ vars:
 
 tasks:
   compose:
-    desc: "Run docker compose command. Example: task compose -- up --detach"
+    desc: "Run `docker compose` command. Example: task compose -- up --detach"
     cmds:
       - '{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}'
+
+  compose-exec:
+    desc: "Run `docker compose exec` command handling content on stdin. Example: task compose-exec -- phpfpm php -v"
+    cmds:
+      # Check if we have content on stdin (cf.
+      # https://unix.stackexchange.com/questions/762992/bash-check-if-the-standard-input-contains-anything)
+      - if [[ ! -t 0 ]]; then task compose -- exec --no-TTY {{ .CLI_ARGS }}; else task compose -- exec {{ .CLI_ARGS }}; fi
+    silent: true
 
   composer:
     desc: "Run composer command. Example: task composer -- install"
     cmds:
-      - task compose -- exec phpfpm composer {{ .CLI_ARGS }}
+      - task compose-exec -- phpfpm composer {{ .CLI_ARGS }}
     silent: true
 
   start:
@@ -30,7 +38,7 @@ tasks:
   drush:
     desc: "Run Drush command. Example: task drush -- user:login"
     cmds:
-      - task compose -- exec phpfpm vendor/bin/drush --uri={{.URI}} {{ .CLI_ARGS }}
+      - task compose-exec -- phpfpm vendor/bin/drush --uri={{.URI}} {{ .CLI_ARGS }}
     vars:
       URI:
         sh: task site-url
@@ -48,7 +56,7 @@ tasks:
 
   site-update:
     desc: "Update site"
-    prompt: "This will reset your setup. Continue?"
+    prompt: "This will reset your configurarion. Continue?"
     cmds:
       - task start
       - task drush -- deploy
