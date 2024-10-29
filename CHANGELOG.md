@@ -6,7 +6,8 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
-
+- [PR-17](https://github.com/itk-dev/ai-screening/pull/17)
+  Added fixtures
 - [PR-14](https://github.com/itk-dev/ai-screening/pull/14)
   Added custom event and event handling
 - [PR-4](https://github.com/itk-dev/ai-screening/pull/4)
