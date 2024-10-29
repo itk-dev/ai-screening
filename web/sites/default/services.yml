@@ -1,4 +1,0 @@
-# https://www.drupal.org/docs/contributed-modules/hux/hux-optimized-mode
-parameters:
-  hux:
-    optimize: true

@@ -40,11 +40,6 @@ parameters:
     # @default true
     cache: false
     http.response.debug_cacheability_headers: true
-
-    # https://www.drupal.org/docs/contributed-modules/hux/hux-optimized-mode
-    hux:
-      optimize: false
-
 services:
   cache.backend.null:
     class: Drupal\Core\Cache\NullBackendFactory
