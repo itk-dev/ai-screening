@@ -33,7 +33,7 @@
     "coding-standards-apply": "yarn coding-standards-apply/prettier && yarn coding-standards-apply/eslint",
     "build:encore": "yarn encore production --progress",
     "build:tailwind": "yarn tailwindcss -i css/styles.css -o css/styles.dist.css --minify",
-    "build": "yarn build:encore && yarn build:tailwind",
+    "build": "yarn build:tailwind && yarn build:encore",
     "watch:encore": "yarn encore dev --watch",
     "watch:tailwind": "yarn tailwindcss -i css/styles.css -o css/styles.dist.css --watch",
     "watch": "concurrently \"yarn watch:tailwind\" \"yarn watch:encore\" "

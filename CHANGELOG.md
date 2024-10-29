@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-12](https://github.com/itk-dev/ai-screening/pull/12)
+  Updated theme build
 - [PR-7](https://github.com/itk-dev/ai-screening/pull/7)
   Events
 - [PR-9](https://github.com/itk-dev/ai-screening/pull/9)
