@@ -24,6 +24,7 @@ use Drupal\ai_screening_project_track\ProjectTrackInterface;
  *     plural = "@count project tracks",
  *   ),
  *   handlers = {
+ *     "storage" = "Drupal\ai_screening_project_track\ProjectTrackStorage",
  *     "list_builder" = "Drupal\ai_screening_project_track\ProjectTrackListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "access" = "Drupal\ai_screening_project_track\ProjectTrackAccessControlHandler",
@@ -84,10 +85,6 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setLabel(t('Type'))
       ->setDescription(t('The type of the project track.'));
 
-    $fields['project_track_description'] = BaseFieldDefinition::create('string_long')
-      ->setLabel(t('Project track description'))
-      ->setDescription(t('A description of the project track.'));
-
     $fields['project_track_evaluation'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Project track evaluation'))
       ->setDescription(t('The type of the project track.'));
@@ -116,7 +113,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setLabel(t('Tool'))
       ->setDescription(t('The ID of the tool referenced.'));
 
-    $fields['tool_entity_type'] = BaseFieldDefinition::create('integer')
+    $fields['tool_entity_type'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Tool entity type'))
       ->setDescription(t('The entity type of the tool referenced.'));
 

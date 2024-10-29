@@ -1,7 +1,0 @@
-name: AI Screening group
-description: Helper module for the group module to match ai screening project use cases.
-package: 'Custom'
-type: module
-core_version_requirement: "^11"
-dependencies:
-  - 'ai_screening_project:ai_screening_project'
