@@ -19,6 +19,8 @@ you are using Traefik and [ITK-dev docker setup](https://github.com/itk-dev/devo
 itkdev-docker-compose drush user:login
 ```
 
+See [ai_screening/README.md](web/modules/custom/ai_screening/README.md) for more settings.
+
 ### Access the site
 
 If you are using out `itkdev-docker-compose` simple use the command below to åbne the site in you default browser.
@@ -85,4 +87,25 @@ docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdo
 
 ## Site theme
 
-There is a custom frontend theme installed with common components based on tailwind
+There is a custom frontend theme installed with common components based on tailwind. See
+[web/themes/custom/itkdev/itkdev_base_theme/README.md](web/themes/custom/itkdev/itkdev_base_theme/README.md) for details
+on how to build and do development on the theme. TL;DR:
+
+``` shell name="theme-build"
+task theme-build
+```
+
+Build and watch for changes:
+
+``` shell name="theme-watch"
+task theme-watch
+
+```
+
+## Development
+
+See [Development](docs/Development.md) for details on development.
+
+## Production deployment
+
+See [Production](docs/Production.md) for details on production deployment.

@@ -1,9 +1,9 @@
 services:
   # https://github.com/Soluto/oidc-server-mock
-  idp-citizen:
+  idp:
     image: ghcr.io/soluto/oidc-server-mock:0.8.6
     # Let this container be accessible both internally and externally on the same domain.
-    container_name: idp-citizen.${COMPOSE_DOMAIN}
+    container_name: idp.${COMPOSE_DOMAIN}
     networks:
       - app
       - frontend
@@ -14,8 +14,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=frontend"
-      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_idp-citizen.rule=Host(`idp-citizen.${COMPOSE_DOMAIN}`)"
-      - "traefik.http.services.${COMPOSE_PROJECT_NAME}_idp-citizen.loadbalancer.server.port=80"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_idp.rule=Host(`idp.${COMPOSE_DOMAIN}`)"
+      - "traefik.http.services.${COMPOSE_PROJECT_NAME}_idp.loadbalancer.server.port=80"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       SERVER_OPTIONS_INLINE: |
@@ -78,86 +78,51 @@ services:
         - Name: profile
           ClaimTypes:
             # Add your custom claims here
-            - dk_ssn
             - name
-            - zip
+            - groups
 
       USERS_CONFIGURATION_INLINE: |
-        - SubjectId: 1
-          Username: citizen1
-          Password: citizen1
+        - SubjectId: administrator
+          Username: administrator
+          Password: administrator
           Claims:
             # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
-          - Type: dk_ssn
-            Value: '1111111111'
-            ValueType: string
           - Type: name
-            Value: 'Anders And'
+            Value: Administrator
             ValueType: string
-          - Type: zip
-            Value: '1111'
+          - Type: email
+            Value: administrator@example.com
             ValueType: string
-        
-        - SubjectId: 2
-          Username: citizen2
-          Password: citizen2
+          - Type: groups
+            Value: '["AD-administrator"]'
+            ValueType: json
+
+        - SubjectId: editor
+          Username: editor
+          Password: editor
           Claims:
-          - Type: dk_ssn
-            Value: '2222222222'
-            ValueType: string
+            # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
           - Type: name
-            Value: 'Bent Betjentsen'
+            Value: Editor
             ValueType: string
-          - Type: zip
-            Value: '2222'
+          - Type: email
+            Value: editor@example.com
             ValueType: string
-        
-        - SubjectId: 3
-          Username: citizen3
-          Password: citizen3
+          - Type: groups
+            Value: '["AD-editor"]'
+            ValueType: json
+
+        - SubjectId: user
+          Username: user
+          Password: user
           Claims:
-          - Type: dk_ssn
-            Value: '3333333333'
-            ValueType: string
+            # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
           - Type: name
-            Value: 'Carsten Carlsen'
+            Value: User
             ValueType: string
-          - Type: zip
-            Value: '3333'
+          - Type: email
+            Value: user@example.com
             ValueType: string
-        
-        - SubjectId: 4
-          Username: citizen4
-          Password: citizen4
-          Claims:
-          - Type: dk_ssn
-            Value: '4444444444'
-            ValueType: string
-          - Type: name
-            Value: 'Dorte Dyhr'
-            ValueType: string
-          - Type: zip
-            Value: '4444'
-            ValueType: string
-        
-        - SubjectId: 'ikke-aarhusianer'
-          Username: 'ikke-aarhusianer'
-          Password: 'ikke-aarhusianer'
-          Claims:
-          - Type: dk_ssn
-            Value: '1705880000'
-            ValueType: string
-          - Type: name
-            Value: Troels Bondetest
-            ValueType: string
-        
-        - SubjectId: 'aarhusianer'
-          Username: 'aarhusianer'
-          Password: 'aarhusianer'
-          Claims:
-          - Type: dk_ssn
-            Value: '2611740000'
-            ValueType: string
-          - Type: name
-            Value: Betina Henningsentest
-            ValueType: string
+          - Type: groups
+            Value: '[]'
+            ValueType: json

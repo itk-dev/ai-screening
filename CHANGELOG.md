@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-14](https://github.com/itk-dev/ai-screening/pull/14)
+  Added custom event and event handling
+- [PR-4](https://github.com/itk-dev/ai-screening/pull/4)
+  OpenID Connect and user settings
+- [PR-13](https://github.com/itk-dev/ai-screening/pull/13)
+  Projects view added
+- [PR-12](https://github.com/itk-dev/ai-screening/pull/12)
+  Updated theme build
 - [PR-7](https://github.com/itk-dev/ai-screening/pull/7)
   Events
 - [PR-9](https://github.com/itk-dev/ai-screening/pull/9)
