@@ -113,7 +113,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setLabel(t('Tool'))
       ->setDescription(t('The ID of the tool referenced.'));
 
-    $fields['tool_entity_type'] = BaseFieldDefinition::create('integer')
+    $fields['tool_entity_type'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Tool entity type'))
       ->setDescription(t('The entity type of the tool referenced.'));
 
