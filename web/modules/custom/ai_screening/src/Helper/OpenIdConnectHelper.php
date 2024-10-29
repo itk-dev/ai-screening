@@ -2,37 +2,31 @@
 
 namespace Drupal\ai_screening\Helper;
 
-use Drupal\Core\Logger\LoggerChannel;
-use Drupal\openid_connect_event_dispatcher\Event\UserinfoSaveEvent;
-use Drupal\openid_connect_event_dispatcher\OpenIdConnectHookEvents;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerTrait;
+use Drupal\custom_event_dispatcher\Event\UserinfoSaveEvent;
+use Drupal\custom_event_dispatcher\OpenIdConnectHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- *
+ * OpenID Connect helper.
  */
-class OpenIdConnectHelper implements LoggerAwareInterface, EventSubscriberInterface {
-  use LoggerAwareTrait;
-  use LoggerTrait;
+class OpenIdConnectHelper extends AbstractHelper implements EventSubscriberInterface {
 
   /**
-   * Constructor.
-   */
-  public function __construct(
-    LoggerChannel $logger,
-  ) {
-    $this->setLogger($logger);
-  }
-
-  /**
-   *
+   * Event handler.
    */
   public function userinfoSave(UserinfoSaveEvent $event) {
-    [$account, $context] = [$event->getAccount(), $event->getContext()];
-    if (($context['is_new'] ?? FALSE) && $account->isBlocked()) {
-      $account->activate();
+    try {
+      [$account, $context] = [$event->getAccount(), $event->getContext()];
+      if (($context['is_new'] ?? FALSE) && $account->isBlocked()) {
+        $this->info('Unblocking OIDC user @user (@id)', [
+          '@user' => $account->label(),
+          '@id' => $account->id(),
+        ]);
+        $account->activate();
+      }
+    }
+    catch (\Exception $exception) {
+      $this->logException($exception, __METHOD__);
     }
   }
 
@@ -43,13 +37,6 @@ class OpenIdConnectHelper implements LoggerAwareInterface, EventSubscriberInterf
     return [
       OpenIdConnectHookEvents::USERINFO_SAVE => 'userinfoSave',
     ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function log($level, string|\Stringable $message, array $context = []): void {
-    $this->logger->log($level, $message, $context);
   }
 
 }

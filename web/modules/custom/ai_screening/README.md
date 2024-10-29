@@ -1,0 +1,11 @@
+# AI Screening
+
+## Settings
+
+Default user language (set when user is created):
+
+``` php
+# settings.local.php
+// Default user language code (default: 'da')
+$settings['ai_screening']['user']['default_langcode'] = 'da';
+```

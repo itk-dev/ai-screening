@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\openid_connect_event_dispatcher;
+namespace Drupal\custom_event_dispatcher;
 
 use Drupal\hook_event_dispatcher\HookEventDispatcherInterface;
 

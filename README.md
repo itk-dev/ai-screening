@@ -19,6 +19,8 @@ you are using Traefik and [ITK-dev docker setup](https://github.com/itk-dev/devo
 itkdev-docker-compose drush user:login
 ```
 
+See [ai_screening/README.md](web/modules/custom/ai_screening/README.md) for more settings.
+
 ### Access the site
 
 If you are using out `itkdev-docker-compose` simple use the command below to åbne the site in you default browser.
