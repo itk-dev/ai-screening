@@ -1,0 +1,23 @@
+services:
+  Drupal\ai_screening_fixtures_base\Helper\Helper:
+    arguments:
+      - '@extension.path.resolver'
+      - '@file.repository'
+      - '@file_system'
+      - '@entity_type.manager'
+  Drupal\ai_screening_fixtures_base\Fixture\UserFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\ai_screening_fixtures_base\Fixture\TermDepartmentFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\ai_screening_fixtures_base\Fixture\FilesFixture:
+    tags:
+      - { name: content_fixture }
+    arguments:
+      - '@Drupal\ai_screening_fixtures_base\Helper\Helper'
+  Drupal\ai_screening_fixtures_base\Fixture\ProjectFixture:
+    tags:
+      - { name: content_fixture }
+    arguments:
+      - '@Drupal\ai_screening_fixtures_base\Helper\Helper'
