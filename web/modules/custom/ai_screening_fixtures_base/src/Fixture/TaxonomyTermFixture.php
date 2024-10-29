@@ -5,7 +5,6 @@ namespace Drupal\ai_screening_fixtures_base\Fixture;
 use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\taxonomy\Entity\Term;
-use Drupal\taxonomy\Entity\Vocabulary;
 
 /**
  * Taxonomy terms fixture.
