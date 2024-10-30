@@ -80,6 +80,5 @@ class Helper {
   public function userLogin(UserInterface $user): void {
     user_login_finalize($user);
   }
-  }
 
 }

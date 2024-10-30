@@ -30,7 +30,7 @@ group holds only a minimum of content fixtures for the base functionality of the
 site to work out of the box. Other fixtures add example content.
 
 ```shell name="fixtures-groups"
-task apply-fixtures-groups FIXTURE_GROUPS=base,user
+task apply-fixtures -- --groups=base,user
 ```
 
 ```shell name="site-login"

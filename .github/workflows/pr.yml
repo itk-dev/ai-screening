@@ -21,7 +21,6 @@ jobs:
       - name: Check that changelog has been updated.
         run: git diff --exit-code origin/${{ github.base_ref }} -- CHANGELOG.md && exit 1 || exit 0
 
-
   markdown-coding-standards:
     name: Markdown coding standards
     runs-on: ubuntu-latest
@@ -102,6 +101,11 @@ jobs:
           # Install the site from config
           docker compose exec --user root phpfpm vendor/bin/drush site:install --existing-config --yes
 
+      - name: Apply fixtures
+        run: |
+          echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) pm:install ai_screening_fixtures_base)
+          echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) content-fixtures:load --yes)
+          echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) pm:uninstall ai_screening_fixtures_base content_fixtures)
       - name: Open site
         run: |
           echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) user:login)

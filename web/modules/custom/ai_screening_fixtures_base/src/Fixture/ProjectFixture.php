@@ -41,7 +41,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       return;
     }
 
-    $this->helper->userLogin($owner->id());
+    $this->helper->userLogin($owner);
 
     $node = Node::create([
       'type' => 'project',
