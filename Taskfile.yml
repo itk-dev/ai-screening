@@ -44,6 +44,18 @@ tasks:
         sh: task site-url
     silent: true
 
+  build-site:new:
+    desc: "Build a new site"
+    cmds:
+      - task drush -- site:install minimal -y
+
+  build-site:existing-conf:
+    desc: "Build the site using existing configuration from the config/sync folder"
+    cmds:
+      - task compose -- up --detach
+      - task composer -- install
+      - task drush -- site-install --existing-config --yes
+
   site-url:
     desc: "Show site URL"
     cmds:
@@ -93,12 +105,21 @@ tasks:
       - task compose -- run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme watch
 
   simulate-github-actions:
+    desc: "Simulate most github actions to prepare the code and catch errors before github does"
     cmds:
       - task composer -- normalize
       - task check-code
 
   check-code:
+    desc: "Check coding standards"
     cmds:
       - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
       - task composer -- code-analysis
       - task composer -- coding-standards-check/twig-cs-fixer
+
+  apply-fixtures:
+    desc: "Apply fixtures"
+    cmds:
+      - task drush -- pm:install ai_screening_fixtures_base
+      - task drush -- content-fixtures:load --yes {{.CLI_ARGS}}
+      - task drush -- pm:uninstall ai_screening_fixtures_base content_fixtures

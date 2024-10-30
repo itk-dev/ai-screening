@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-17](https://github.com/itk-dev/ai-screening/pull/17)
+  Added fixtures
 - [PR-16](https://github.com/itk-dev/ai-screening/pull/16)
   2846: Radio button cousin
 - [PR-15](https://github.com/itk-dev/ai-screening/pull/15)
