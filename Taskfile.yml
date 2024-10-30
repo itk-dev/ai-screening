@@ -4,31 +4,80 @@ dotenv: [".task.env", ".env"]
 
 vars:
   DOCKER_COMPOSE: '{{ .TASK_DOCKER_COMPOSE | default "docker compose" }}'
+  # https://taskfile.dev/reference/templating/
+  BASE_URL: '{{.TASK_BASE_URL | default .COMPOSE_SERVER_DOMAIN | default .COMPOSE_DOMAIN | default ""}}'
 
 tasks:
   compose:
+    desc: "Run `docker compose` command. Example: task compose -- up --detach"
     cmds:
       - '{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}'
+
+  compose-exec:
+    desc: "Run `docker compose exec` command handling content on stdin. Example: task compose-exec -- phpfpm php -v"
+    cmds:
+      # Check if we have content on stdin (cf.
+      # https://unix.stackexchange.com/questions/762992/bash-check-if-the-standard-input-contains-anything)
+      - if [[ ! -t 0 ]]; then task compose -- exec --no-TTY {{ .CLI_ARGS }}; else task compose -- exec {{ .CLI_ARGS }}; fi
     silent: true
 
   composer:
+    desc: "Run composer command. Example: task composer -- install"
     cmds:
-      - task compose -- exec phpfpm composer {{ .CLI_ARGS }}
+      - task compose-exec -- phpfpm composer {{ .CLI_ARGS }}
+    silent: true
+
+  start:
+    desc: "Start docker compose stuff and install composer stuff"
+    cmds:
+      - task compose -- pull
+      - task compose -- up --detach --remove-orphans --wait
+      - task composer -- install
     silent: true
 
   drush:
+    desc: "Run Drush command. Example: task drush -- user:login"
     cmds:
-      - task compose -- exec --no-TTY phpfpm vendor/bin/drush {{ .CLI_ARGS }}
+      - task compose-exec -- phpfpm vendor/bin/drush --uri={{.URI}} {{ .CLI_ARGS }}
+    vars:
+      URI:
+        sh: task site-url
     silent: true
 
-  build-site:new:
+  site-url:
+    desc: "Show site URL"
     cmds:
-       - task drush -- site:install minimal -y
+      - echo {{.URL}}
+    vars:
+      URL:
+        # Compute base URL if not set.
+        sh: if [ ! -z "{{.BASE_URL}}" ]; then echo "https://{{.BASE_URL}}"; else echo "http://$(task compose -- port nginx 8080)"; fi
+    silent: true
 
-  build-site:existing-conf:
+  site-update:
+    desc: "Update site"
+    prompt: "This will reset your configurarion. Continue?"
     cmds:
-      - task compose -- up --detach
-      - task composer -- install
+      - task start
+      - task drush -- deploy
+      - task theme-build
+      - task drush -- cache:rebuild
+      - task drush -- browse --no-browser
+      - task drush -- user:login
+    silent: true
+
+  site-install-new:
+    desc: "Install minimal Drupal site from scratch"
+    prompt: "This will reset your setup. Continue?"
+    cmds:
+      - task start
+      - task drush -- --yes site:install minimal
+
+  site-install:
+    desc: "Install Drupal site with exiting config"
+    prompt: "This will reset your setup. Continue?"
+    cmds:
+      - task start
       - task drush -- site-install --existing-config --yes
 
   theme-build:

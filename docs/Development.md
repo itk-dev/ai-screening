@@ -42,6 +42,16 @@ task drush -- pm:install webprofiler
 The module and other development modules are excluded from configuration syncronization (cf.
 [`settings.php`](../web/sites/default/settings.php) and <https://www.drupal.org/node/3079028>).
 
+## Webforms
+
+Webforms: Forms configuration (`/admin/structure/webform/config`)
+
+### Custom elements
+
+* `ai_screening_weighted_radios`
+* `ai_screening_weighted_textarea`
+* `ai_screening_weighted_textfield`
+
 ## Development settings
 
 The Development settings on `/admin/config/development/settings` (cf.
