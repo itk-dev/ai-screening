@@ -1,6 +1,6 @@
 services:
   Drupal\ai_screening_fixtures_base\Helper\Helper:
-    arguments:
+    autowire: true
       - '@extension.path.resolver'
       - '@file.repository'
       - '@file_system'
