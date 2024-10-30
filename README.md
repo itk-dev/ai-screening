@@ -15,6 +15,22 @@ When the installation is completed, that admin user is created and the password 
 forget the password, use `drush user:login` command to get a one-time-login URL (note: the URI here only works if
 you are using Traefik and [ITK-dev docker setup](https://github.com/itk-dev/devops_itkdev-docker)).
 
+### Fixtures
+
+To add fixtures to the site two tasks are provided.
+
+> ### ! IMPORTANT
+>
+> Applying fixtures will delete all existing content on the site
+
+```shell name="fixtures"
+task apply-fixtures
+```
+
+```shell name="fixtures-groups"
+task apply-fixtures-groups FIXTURE_GROUPS=base,user
+```
+
 ```shell name="site-login"
 itkdev-docker-compose drush user:login
 ```
