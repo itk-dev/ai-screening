@@ -37,7 +37,7 @@ class Helper {
    */
   public function createImagesFromAssets(): array {
     $images = [];
-    $imageSourcePath = $this->pathResolver->getPath('module', 'ai_screening_fixtures_base') . '/assets/images';
+    $imageSourcePath = __DIR__ . '/../assets/images';
     $imageTargetPath = 'public://fixtures/assets/images';
     $this->fileSystem->prepareDirectory($imageTargetPath, FileSystemInterface:: CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
