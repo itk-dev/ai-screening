@@ -15,17 +15,11 @@ use Drupal\file\Entity\File;
 class FilesFixture extends AbstractFixture implements FixtureGroupInterface {
 
   /**
-   * The fixtures helper service.
-   *
-   * @var \Drupal\ai_screening_fixtures_base\Helper\Helper
-   */
-  protected Helper $helper;
-
-  /**
    * Constructor.
    */
-  public function __construct(Helper $helper) {
-    $this->helper = $helper;
+  public function __construct(
+    private readonly Helper $helper,
+  ) {
   }
 
   /**
