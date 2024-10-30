@@ -37,7 +37,7 @@ class FilesFixture extends AbstractFixture implements FixtureGroupInterface {
         'uid' => 1,
       ]);
       $file->save();
-      $this->addReference('file:' . basename($publicFilePath), $file);
+      $this->addReference('file:' . $file->getFilename(), $file);
     }
   }
 
