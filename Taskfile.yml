@@ -62,15 +62,5 @@ tasks:
     desc: "Apply fixtures"
     cmds:
       - task drush -- pm:install ai_screening_fixtures_base
-      - task drush -- content-fixtures:load -y
+      - task drush -- content-fixtures:load --yes {{.CLI_ARGS}}
       - task drush -- pm:uninstall ai_screening_fixtures_base content_fixtures
-
-  apply-fixtures-groups:
-    desc: "Apply one or more groups of fixtures"
-    cmds:
-      - task drush -- pm:install ai_screening_fixtures_base
-      - task drush -- content-fixtures:load --groups={{.FIXTURE_GROUPS}} -y
-      - task drush -- pm:uninstall ai_screening_fixtures_base content_fixtures
-    requires:
-      vars:
-        - FIXTURE_GROUPS
