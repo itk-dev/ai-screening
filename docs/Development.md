@@ -41,3 +41,43 @@ task drush -- pm:install webprofiler
 
 The module and other development modules are excluded from configuration syncronization (cf.
 [`settings.php`](../web/sites/default/settings.php) and <https://www.drupal.org/node/3079028>).
+
+## Webforms
+
+Webforms: Forms configuration (`/admin/structure/webform/config`)
+
+### Custom elements
+
+* `ai_screening_weighted_radios`
+* `ai_screening_weighted_textarea`
+* `ai_screening_weighted_textfield`
+
+## Development settings
+
+The Development settings on `/admin/config/development/settings` (cf.
+<https://www.drupal.org/docs/develop/development-tools/disabling-and-debugging-caching>) can be set using some command
+line incantations:
+
+``` shell name=development-settings-cache-disable
+# Disable cache
+task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['disable_rendered_output_cache_bins' => TRUE]);"
+task drush -- cache:rebuild
+```
+
+``` shell name=development-settings-cache-enable
+# Enable cache (for production)
+task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['disable_rendered_output_cache_bins' => FALSE]);"
+task drush -- cache:rebuild
+```
+
+``` shell name=development-settings-twig-enable
+# Enable Twig development mode
+task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['twig_debug' => TRUE, 'twig_cache_disable' => TRUE]);"
+task drush -- cache:rebuild
+```
+
+``` shell name=development-settings-twig-disable
+# Disable Twig development mode (for production)
+task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['twig_debug' => FALSE, 'twig_cache_disable' => FALSE]);"
+task drush -- cache:rebuild
+```
