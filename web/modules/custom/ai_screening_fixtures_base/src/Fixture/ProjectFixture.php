@@ -30,7 +30,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
         'value' => 'Et nyt projekt',
         'format' => 'plain_text',
       ],
-      'corrupted' => 0,
+      ProjectHelper::FIELD_CORRUPTED => 0,
     ]);
     $node->setOwnerId(1);
     $this->addReference('project:Ordinary project', $node);
