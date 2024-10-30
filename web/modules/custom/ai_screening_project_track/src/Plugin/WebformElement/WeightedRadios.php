@@ -23,7 +23,8 @@ class WeightedRadios extends Radios {
    */
   public function validateConfigurationForm(array &$form, FormStateInterface $form_state) {
     $options = $form_state->getValue('options');
-    // If the options values are not unique, say, we have an `options` value with the actual options.
+    // If the options values are not unique, say, we have an `options` value
+    // with the actual options.
     if (isset($options['options'])) {
       $options = array_filter($options['options'], static fn (array $item) => array_key_exists('text', $item));
     }
