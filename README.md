@@ -27,6 +27,10 @@ To add fixtures to the site two tasks are provided.
 task apply-fixtures
 ```
 
+Fixtures are grouped to allow only for certain fixtures to be loaded. The "base"
+group holds only a minimum of content fixtures for the base functionality of the
+site to work out of the box. Other fixtures add example content.
+
 ```shell name="fixtures-groups"
 task apply-fixtures-groups FIXTURE_GROUPS=base,user
 ```
