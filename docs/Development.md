@@ -49,6 +49,8 @@ Webforms: Forms configuration (`/admin/structure/webform/config`)
 ### Custom elements
 
 * `ai_screening_weighted_radios`
+* `ai_screening_weighted_textarea`
+* `ai_screening_weighted_textfield`
 
 ## Development settings
 
