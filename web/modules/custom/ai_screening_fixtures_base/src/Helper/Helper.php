@@ -77,11 +77,9 @@ class Helper {
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  public function userLogin(int $uid): void {
-    $user = $this->entityTypeManager->getStorage('user')->load($uid);
-    if ($user instanceof UserInterface) {
-      user_login_finalize($user);
-    }
+  public function userLogin(UserInterface $user): void {
+    user_login_finalize($user);
+  }
   }
 
 }
