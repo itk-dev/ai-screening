@@ -20,15 +20,12 @@ class WeightedRadios extends Radios {
   public const QUESTION_WEIGHT_X = 'ai_screening_weight_x';
   public const QUESTION_WEIGHT_Y = 'ai_screening_weight_y';
 
-  public const ELEMENT_NAME_REQUIRED = 'required';
-
   /**
    * {@inheritdoc}
    */
   #[\Override]
   protected function defineDefaultProperties() {
     return [
-      self::ELEMENT_NAME_REQUIRED => TRUE,
       self::QUESTION_WEIGHT_X => 0,
       self::QUESTION_WEIGHT_Y => 0,
     ] + parent::defineDefaultProperties();
@@ -60,27 +57,17 @@ class WeightedRadios extends Radios {
 
     $form = parent::form($form, $form_state);
 
-    // Insert element before "Options" if possible; otherwise insert at end.
     $elementKey = 'ai_screening_project_track_radios';
-    $optionsKey = 'options';
-    if (isset($form[$optionsKey])) {
-      WebformArrayHelper::insertBefore($form, $optionsKey, $elementKey, $element);
+    // Insert element before "Options" if possible; otherwise insert at end.
+    $targetKey = 'options';
+    if (isset($form[$targetKey])) {
+      WebformArrayHelper::insertBefore($form, $targetKey, $elementKey, $element);
     }
     else {
       $form[$elementKey] = $element;
     }
 
     return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
-    parent::submitConfigurationForm($form, $form_state);
-    if (TRUE !== $form_state->getValue(self::ELEMENT_NAME_REQUIRED)) {
-      // @todo Report error if required is not set?
-    }
   }
 
 }
