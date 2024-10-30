@@ -31,6 +31,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * A helper class for the Project node entity.
@@ -142,22 +143,26 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
         ->condition('project_id', $project->id(), '=')
         ->execute();
 
-      // Get all webforms that reference these project tracks.
-      $submissionIds = $this->webformSubmissionStorage->getQuery()
-        ->accessCheck(FALSE)
-        ->condition('entity_type', 'project_track', '=')
-        ->condition('entity_id', $projectTrackIds, 'IN')
-        ->execute();
-
-      // Delete project tracks and webform submissions for the project.
-      $projectTracks = $this->projectTrackStorage->loadMultiple($projectTrackIds);
-      foreach ($projectTracks as $projectTrack) {
-        $projectTrack->delete();
+      $submissionIds = [];
+      foreach ($projectTrackIds as $projectTrackId) {
+        // Get all webforms that reference these project tracks.
+        $submissionIds = $this->webformSubmissionStorage->getQuery()
+          ->accessCheck(FALSE)
+          ->condition('entity_type', 'project_track', '=')
+          ->condition('entity_id', $projectTrackId, '=')
+          ->execute();
       }
 
+      $projectTracks = $this->projectTrackStorage->loadMultiple($projectTrackIds);
       $webformSubmissions = $this->webformSubmissionStorage->loadMultiple($submissionIds);
+
+      // Delete project tracks and webform submissions for the project.
       foreach ($webformSubmissions as $webformSubmission) {
         $webformSubmission->delete();
+      }
+
+      foreach ($projectTracks as $projectTrack) {
+        $projectTrack->delete();
       }
 
     }
@@ -292,6 +297,10 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
    */
   private function addProjectGroup(NodeInterface $entity): void {
     try {
+      if ($this->accountProxy->isAnonymous()) {
+        throw new AccessDeniedHttpException('Cannot create project as anonymous user.');
+      }
+
       // Create group when a project is created.
       /** @var \Drupal\group\Entity\Group $group */
       $group = $this->groupStorage->create(['type' => 'project_group']);

@@ -6,40 +6,61 @@ Run the following commands to set up the site a new. This will start containers
 and run composer install, add a settings.php file and run site-install.
 
 ```shell name="site-up"
-task compose -- pull
-task compose -- up --detach
-task build-site:existing-conf
+task site-install
 ```
 
 When the installation is completed, that admin user is created and the password for logging in the outputted. If you
 forget the password, use `drush user:login` command to get a one-time-login URL (note: the URI here only works if
 you are using Traefik and [ITK-dev docker setup](https://github.com/itk-dev/devops_itkdev-docker)).
 
+### Fixtures
+
+To add fixtures to the site two tasks are provided.
+
+> ### ! IMPORTANT
+>
+> Applying fixtures will delete all existing content on the site
+
+```shell name="fixtures"
+task apply-fixtures
+```
+
+Fixtures are grouped to allow only for certain fixtures to be loaded. The "base"
+group holds only a minimum of content fixtures for the base functionality of the
+site to work out of the box. Other fixtures add example content.
+
+```shell name="fixtures-groups"
+task apply-fixtures -- --groups=base,user
+```
+
 ```shell name="site-login"
-itkdev-docker-compose drush user:login
+task drush -- user:login
 ```
 
 See [ai_screening/README.md](web/modules/custom/ai_screening/README.md) for more settings.
+
+## Updating the site
+
+Run
+
+``` shell name="site-update"
+task site-update
+```
+
+to update the site.
 
 ### Access the site
 
 If you are using out `itkdev-docker-compose` simple use the command below to åbne the site in you default browser.
 
 ```shell name="site-open"
-itkdev-docker-compose open
-```
-
-Alternatively you can find the port number that is mapped nginx container that server the site at `http://0.0.0.0:PORT`
-by using this command:
-
-```shell
-open "http://$(docker compose port nginx 8080)"
+open $(task site-url)
 ```
 
 ### Acces the admin
 
 ```shell name="site-open-admin"
-itkdev-docker-compose drush --uri="https://ai-screening.local.itkdev.dk/" user:login
+task drush -- user:login
 ```
 
 ### Drupal config
@@ -47,13 +68,13 @@ itkdev-docker-compose drush --uri="https://ai-screening.local.itkdev.dk/" user:l
 Export config created from drupal:
 
 ```shell
-itkdev-docker-compose drush config:export
+task drush -- config:export
 ```
 
 Import config from config files:
 
 ```shell
-itkdev-docker-compose drush config:import
+task drush -- config:import
 ```
 
 ### Coding standards
@@ -99,7 +120,6 @@ Build and watch for changes:
 
 ``` shell name="theme-watch"
 task theme-watch
-
 ```
 
 ## Development

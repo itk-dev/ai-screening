@@ -12,7 +12,37 @@ id: complexity_uncertainty_default
 title: 'Kan vi'
 description: ''
 categories: {  }
-elements: null
+elements: |-
+  name:
+    '#type': ai_screening_weighted_textfield
+    '#title': Name
+    '#description': 'Description of the name'
+    '#help_title': 'Help for the name'
+    '#ai_screening_weight_x': 1
+    '#ai_screening_weight_y': 2
+  description:
+    '#type': ai_screening_weighted_textarea
+    '#title': Description
+    '#description': "Describe what you're doing."
+  radio_ga_ga:
+    '#type': ai_screening_weighted_radios
+    '#title': 'Radio Ga Ga'
+    '#description': 'In this question you have to decide on …'
+    '#ai_screening_weight_x': 42
+    '#ai_screening_weight_y': 87
+    '#options':
+      1: 'I -- The first option'
+      2: 'II -- Another option'
+      3: 'III -- The final option'
+  radio_goo_goo:
+    '#type': ai_screening_weighted_radios
+    '#title': 'Radio Goo Goo'
+    '#ai_screening_weight_x': 3
+    '#ai_screening_weight_y': 14
+    '#options':
+      1: 'a -- The first option'
+      2: 'b -- Another option'
+      3: 'c -- The final option'
 css: ''
 javascript: ''
 settings:
