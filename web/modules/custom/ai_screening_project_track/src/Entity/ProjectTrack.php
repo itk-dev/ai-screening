@@ -9,6 +9,8 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
+use function Safe\json_decode;
+use function Safe\json_encode;
 
 /**
  * Defines the project track entity class.
@@ -123,6 +125,29 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setDescription(t('The data matching the tool configuration'));
 
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getData(): array {
+    $value = $this->get('tool_data')->getString();
+
+    try {
+      return json_decode($value, TRUE);
+    }
+    catch (\Exception $exception) {
+      return [];
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setData(array $data): self {
+    $this->set('tool_data', json_encode($data));
+
+    return $this;
   }
 
 }

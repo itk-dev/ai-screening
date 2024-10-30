@@ -20,7 +20,8 @@
         "drupal/hook_event_dispatcher": "^4.2",
         "drupal/openid_connect": "dev-3452009-drupal-11-compatibility",
         "drupal/webform": "^6.0@dev",
-        "drush/drush": "^13.2"
+        "drush/drush": "^13.2",
+        "thecodingmachine/safe": "^2.5"
     },
     "require-dev": {
         "drupal/core-dev": "^11.0",

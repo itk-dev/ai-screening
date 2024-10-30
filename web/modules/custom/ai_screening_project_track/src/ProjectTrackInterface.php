@@ -12,4 +12,14 @@ use Drupal\Core\Entity\EntityChangedInterface;
  */
 interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInterface {
 
+  /**
+   * Get data.
+   */
+  public function getData(): array;
+
+  /**
+   * Get data.
+   */
+  public function setData(array $data): self;
+
 }
