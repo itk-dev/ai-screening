@@ -1,0 +1,22 @@
+uuid: fff27f0e-1f72-4f99-8988-d41fabea1ffb
+langcode: da
+status: true
+dependencies:
+  config:
+    - group.type.project_group
+id: project_group-member
+label: Member
+weight: -10
+admin: false
+scope: individual
+global_role: null
+group_type: project_group
+permissions:
+  - 'administer members'
+  - 'edit group'
+  - 'leave group'
+  - 'update any group_node:project entity'
+  - 'update own group_membership relationship'
+  - 'view group'
+  - 'view group_membership relationship'
+  - 'view group_node:project entity'

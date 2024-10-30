@@ -1,0 +1,29 @@
+uuid: 3af466e3-1c5a-4fc2-8dcc-b495b6d2c85e
+langcode: da
+status: true
+dependencies: {  }
+name: 'Simple editor'
+format: simple_editor
+weight: 0
+filters:
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<br> <p> <h2> <h3> <h4> <strong> <em> <blockquote> <a href> <ul> <ol reversed start> <li>'
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 10
+    settings: {  }

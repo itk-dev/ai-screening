@@ -6,7 +6,7 @@ dependencies:
     - group.type.project_group
 id: project_group-admin
 label: Admin
-weight: 100
+weight: -9
 admin: true
 scope: individual
 global_role: null
