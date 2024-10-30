@@ -71,8 +71,8 @@ class Helper {
   /**
    * Log in a user.
    *
-   * @param int $uid
-   *   THe user id.
+   * @param UserInterface $user
+   *   THe user.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
