@@ -80,7 +80,7 @@ class Helper {
    *   The contents of the file.
    */
   public function getText(string $filename): ?string {
-    $texts_source_path = $this->pathResolver->getPath('module', 'ai_screening_fixtures_base') . '/assets/texts';
+    $texts_source_path = __DIR__.'/../assets/texts';
     return file_get_contents($texts_source_path . '/' . $filename) ?? NULL;
   }
 
