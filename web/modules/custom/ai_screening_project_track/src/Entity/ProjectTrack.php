@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening_project_track\Entity;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
@@ -130,6 +131,13 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
+  public function getProjectId(): string {
+    return $this->get('project_id')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getData(): array {
     $value = $this->get('tool_data')->getString();
 
@@ -148,6 +156,24 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
     $this->set('tool_data', json_encode($data));
 
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCreated(): DrupalDateTime {
+    $value = (int) $this->get('created')->getString();
+
+    return DrupalDateTime::createFromTimestamp($value);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getChanged(): DrupalDateTime {
+    $value = (int) $this->get('changed')->getString();
+
+    return DrupalDateTime::createFromTimestamp($value);
   }
 
 }

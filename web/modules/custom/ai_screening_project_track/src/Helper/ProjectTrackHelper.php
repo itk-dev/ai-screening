@@ -3,13 +3,17 @@
 namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\ai_screening\Helper\AbstractHelper;
+use Drupal\ai_screening_project\Helper\ProjectHelper;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
+use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityUpdateEvent;
 use Drupal\webform\WebformSubmissionInterface;
+use Drupal\webform\WebformSubmissionStorageInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -17,11 +21,29 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 final class ProjectTrackHelper extends AbstractHelper implements EventSubscriberInterface {
 
+  /**
+   * The project track storage.
+   *
+   * @var \Drupal\ai_screening_project_track\ProjectTrackStorageInterface
+   */
+  private readonly ProjectTrackStorageInterface $projectTrackStorage;
+
+  /**
+   * The webform submission storage.
+   *
+   * @var \Drupal\webform\WebformSubmissionStorageInterface
+   */
+  private WebformSubmissionStorageInterface $webformSubmissionsStorage;
+
   public function __construct(
     private readonly TimeInterface $time,
+    private readonly ProjectHelper $projectHelper,
+    EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
     parent::__construct($logger);
+    $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
+    $this->webformSubmissionsStorage = $entityTypeManager->getStorage('webform_submission');
   }
 
   /**
@@ -40,11 +62,11 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    *
    * @see self::hasTrackData()
    */
-  public function getTrackData(ProjectTrackInterface $track, string $key): mixed {
+  public function getTrackData(ProjectTrackInterface $track, ?string $key = NULL): mixed {
     try {
       $data = $track->getData();
 
-      return $data[$key] ?? NULL;
+      return NULL === $key ? $data : ($data[$key] ?? NULL);
     }
     catch (\Exception $exception) {
       $this->logException($exception, __METHOD__, [
@@ -122,10 +144,12 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
         'submission' => $submission->getData(),
       ];
 
-      $historyKey = $key . ':history';
-      $history = $this->getTrackData($track, $historyKey);
-      $history[] = $value;
-      $this->setTrackData($track, $historyKey, $history);
+      if (!empty($submission->getData())) {
+        $historyKey = $key . ':history';
+        $history = $this->getTrackData($track, $historyKey);
+        $history[] = $value;
+        $this->setTrackData($track, $historyKey, $history);
+      }
 
       $this->setTrackData($track, $key, $value);
     }
@@ -171,6 +195,45 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
       EntityHookEvents::ENTITY_INSERT => 'insert',
       EntityHookEvents::ENTITY_UPDATE => 'update',
     ];
+  }
+
+  /**
+   * Get project from track.
+   */
+  public function getProject(ProjectTrackInterface $track) {
+    $id = $track->getProjectId();
+
+    return $this->projectHelper->loadProject($id);
+  }
+
+  /**
+   * Load track.
+   */
+  public function loadTrack(string $id): ?ProjectTrackInterface {
+    return $this->projectTrackStorage->load($id);
+  }
+
+  /**
+   * Get webform submissions for a track.
+   *
+   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $track
+   *   The track.
+   *
+   * @return \Drupal\webform\WebformSubmissionInterface[]
+   *   The webform submissions.
+   */
+  public function getWebformSubmissions(ProjectTrackInterface $track): array {
+    $submissions = [];
+
+    $data = $this->getTrackData($track);
+    $ids = [];
+    foreach ($data as $key => $value) {
+      if (\Safe\preg_match('/^webform_submission:(?<id>\d+)$/', $key, $matches)) {
+        $ids[] = $matches['id'];
+      }
+    }
+
+    return $this->webformSubmissionsStorage->loadMultiple($ids);
   }
 
 }

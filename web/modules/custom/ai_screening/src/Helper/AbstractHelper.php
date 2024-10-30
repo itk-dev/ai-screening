@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening\Helper;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -31,6 +32,15 @@ abstract class AbstractHelper implements LoggerAwareInterface {
   #[\Override]
   public function log($level, string|\Stringable $message, array $context = []): void {
     $this->logger->log($level, $message, $context);
+  }
+
+  /**
+   * Get URL to entity.
+   */
+  public function getUrl(EntityInterface $entity, ?string $rel = NULL, array $options = []): ?string {
+    $url = $entity->toUrl($rel, $options);
+
+    return $url->setAbsolute()->toString(TRUE)->getGeneratedUrl();
   }
 
   /**

@@ -41,9 +41,9 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
   use LoggerTrait;
   use StringTranslationTrait;
 
-  public final const BUNDLE_PROJECT = 'project';
-  public final const FIELD_CORRUPTED = 'corrupted';
-  public final const BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
+  public final const string BUNDLE_PROJECT = 'project';
+  public final const string FIELD_CORRUPTED = 'corrupted';
+  public final const string BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
 
   /**
    * The group storage.
@@ -389,6 +389,15 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
         // Ignore any errors when marking entity as corrupted.
       }
     }
+  }
+
+  /**
+   * Load project.
+   */
+  public function loadProject(string $id): ?NodeInterface {
+    $node = $this->nodeStorage->load($id);
+
+    return $this->isProject($node) ? $node : NULL;
   }
 
 }
