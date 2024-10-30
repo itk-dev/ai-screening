@@ -31,8 +31,8 @@ class FilesFixture extends AbstractFixture implements FixtureGroupInterface {
     $imageFiles = $this->helper->createImagesFromAssets();
     foreach ($imageFiles as $imageFile) {
       $file = File::create([
-        'filename' => basename($publicFilePath),
-        'uri' => $publicFilePath,
+        'filename' => basename($imageFile),
+        'uri' => $imageFile,
         'status' => 1,
         'uid' => 1,
       ]);

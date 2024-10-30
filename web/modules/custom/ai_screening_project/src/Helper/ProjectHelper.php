@@ -31,6 +31,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * A helper class for the Project node entity.
@@ -296,12 +297,15 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
    */
   private function addProjectGroup(NodeInterface $entity): void {
     try {
+      if ($this->accountProxy->isAnonymous()) {
+        throw new AccessDeniedHttpException('Cannot create project as anonymous user.');
+      }
+
       // Create group when a project is created.
       /** @var \Drupal\group\Entity\Group $group */
       $group = $this->groupStorage->create(['type' => 'project_group']);
       $group->set('label', 'Group: ' . $entity->label());
-      // Never allow anonymous owner.
-      $group->setOwner($this->userStorage->load($this->accountProxy->id() > 0 ? $this->accountProxy->id() : 1));
+      $group->setOwner($this->userStorage->load($this->accountProxy->id()));
       $group->save();
       $group->addRelationship($entity, 'group_node:project');
       $group->save();

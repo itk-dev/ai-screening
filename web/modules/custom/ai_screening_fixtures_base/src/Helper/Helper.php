@@ -5,9 +5,9 @@ namespace Drupal\ai_screening_fixtures_base\Helper;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ExtensionPathResolver;
 use Drupal\Core\File\FileExists;
-use Drupal\Core\File\FileSystem;
 use Drupal\Core\File\FileSystemInterface;
-use Drupal\file\FileRepository;
+use Drupal\user\UserInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 /**
  * A helper class for the module.
@@ -15,41 +15,21 @@ use Drupal\file\FileRepository;
 class Helper {
 
   /**
-   * The ExtensionPathResolver service.
-   *
-   * @var \Drupal\Core\Extension\ExtensionPathResolver
-   */
-  protected ExtensionPathResolver $pathResolver;
-
-  /**
-   * The FileRepository service.
-   *
-   * @var \Drupal\file\FileRepository
-   */
-  protected FileRepository $fileRepo;
-
-  /**
-   * The FileSystem service.
-   *
-   * @var \Drupal\Core\File\FileSystem
-   */
-  protected FileSystem $fileSystem;
-
-  /**
-   * The fixtures helper service.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  protected EntityTypeManagerInterface $entityTypeManager;
-
-  /**
    * Constructor.
+   *
+   * @param \Drupal\Core\Extension\ExtensionPathResolver $pathResolver
+   *   The path resolver.
+   * @param \Drupal\Core\File\FileSystemInterface $fileSystem
+   *   The file system.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager.
    */
-  public function __construct(ExtensionPathResolver $pathResolver, FileRepository $fileRepo, FileSystem $fileSystem, EntityTypeManagerInterface $entityTypeManager) {
-    $this->pathResolver = $pathResolver;
-    $this->fileRepo = $fileRepo;
-    $this->fileSystem = $fileSystem;
-    $this->entityTypeManager = $entityTypeManager;
+  public function __construct(
+    protected ExtensionPathResolver $pathResolver,
+    protected FileSystemInterface $fileSystem,
+    protected EntityTypeManagerInterface $entityTypeManager,
+  ) {
+
   }
 
   /**
@@ -57,13 +37,13 @@ class Helper {
    */
   public function createImagesFromAssets(): array {
     $images = [];
-    $image_source_path = $this->pathResolver->getPath('module', 'ai_screening_fixtures_base') . '/assets/images';
-    $image_target_path = 'public://fixtures/assets/images';
-    $this->fileSystem->prepareDirectory($image_target_path, FileSystemInterface:: CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+    $imageSourcePath = $this->pathResolver->getPath('module', 'ai_screening_fixtures_base') . '/assets/images';
+    $imageTargetPath = 'public://fixtures/assets/images';
+    $this->fileSystem->prepareDirectory($imageTargetPath, FileSystemInterface:: CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
     // Loop over .jpg images to add them properly to the file system.
-    foreach (glob($image_source_path . '/*.jpg') as $image) {
-      $destination = $this->fileSystem->copy($image, $image_target_path . '/' . basename($image), FileExists::Replace);
+    foreach (glob($imageSourcePath . '/*.jpg') as $image) {
+      $destination = $this->fileSystem->copy($image, $imageTargetPath . '/' . basename($image), FileExists::Replace);
       $images[] = $destination;
     }
 
@@ -80,8 +60,28 @@ class Helper {
    *   The contents of the file.
    */
   public function getText(string $filename): ?string {
-    $texts_source_path = __DIR__.'/../assets/texts';
-    return file_get_contents($texts_source_path . '/' . $filename) ?? NULL;
+    $textsSourceFilePath = __DIR__ . '/../assets/texts/' . $filename;
+    if (!file_exists($textsSourceFilePath)) {
+      throw new FileNotFoundException($textsSourceFilePath);
+    }
+
+    return file_get_contents($textsSourceFilePath) ?? NULL;
+  }
+
+  /**
+   * Log in a user.
+   *
+   * @param int $uid
+   *   THe user id.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  public function userLogin(int $uid): void {
+    $user = $this->entityTypeManager->getStorage('user')->load($uid);
+    if ($user instanceof UserInterface) {
+      user_login_finalize($user);
+    }
   }
 
 }

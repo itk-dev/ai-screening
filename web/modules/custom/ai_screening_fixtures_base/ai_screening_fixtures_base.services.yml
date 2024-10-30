@@ -1,14 +1,11 @@
 services:
   Drupal\ai_screening_fixtures_base\Helper\Helper:
     autowire: true
-      - '@extension.path.resolver'
-      - '@file.repository'
-      - '@file_system'
-      - '@entity_type.manager'
 
   Drupal\ai_screening_fixtures_base\Fixture\ProjectTrackTermFixture:
     tags:
       - { name: content_fixture }
+    autowire: true
       
   Drupal\ai_screening_fixtures_base\Fixture\UserFixture:
     tags:
@@ -21,11 +18,9 @@ services:
   Drupal\ai_screening_fixtures_base\Fixture\FilesFixture:
     tags:
       - { name: content_fixture }
-    arguments:
-      - '@Drupal\ai_screening_fixtures_base\Helper\Helper'
+    autowire: true
       
   Drupal\ai_screening_fixtures_base\Fixture\ProjectFixture:
     tags:
       - { name: content_fixture }
-    arguments:
-      - '@Drupal\ai_screening_fixtures_base\Helper\Helper'
+    autowire: true

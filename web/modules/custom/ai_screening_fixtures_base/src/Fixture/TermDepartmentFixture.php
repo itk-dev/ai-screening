@@ -17,12 +17,12 @@ class TermDepartmentFixture extends TaxonomyTermFixture {
    * {@inheritdoc}
    */
   protected static array $terms = [
-    'Kultur og Borgerservice',
-    'Borgmesterens Afdeling',
-    'Teknik og Miljø',
-    'Sundhed og Omsorg',
-    'Sociale Forhold og Beskæftigelse',
-    'Børn og Unge',
+    'Department A',
+    'Department B',
+    'Department C',
+    'Department D',
+    'Department E',
+    'Department F',
   ];
 
 }

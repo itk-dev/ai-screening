@@ -53,3 +53,18 @@ tasks:
       - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
       - task composer -- code-analysis
       - task composer -- coding-standards-check/twig-cs-fixer
+
+  apply-fixtures:
+    cmds:
+      - task drush -- pm:install ai_screening_fixtures_base
+      - task drush -- content-fixtures:load -y
+      - task drush -- pm:uninstall ai_screening_fixtures_base content_fixtures
+
+  apply-fixtures-groups:
+    cmds:
+      - task drush -- pm:install ai_screening_fixtures_base
+      - task drush -- content-fixtures:load --groups={{.FIXTURE_GROUPS}} -y
+      - task drush -- pm:uninstall ai_screening_fixtures_base content_fixtures
+    requires:
+      vars:
+        - FIXTURE_GROUPS
