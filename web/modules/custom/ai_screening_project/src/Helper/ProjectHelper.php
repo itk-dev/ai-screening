@@ -11,6 +11,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\ai_screening_project_track\ProjectTrackStatus;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
 use Drupal\core_event_dispatcher\CoreHookEvents;
 use Drupal\core_event_dispatcher\EntityHookEvents;
@@ -355,14 +356,15 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
         $webformSubmission->save();
         $submissionId = $webformSubmission->id();
 
-        $projectTrack = $this->projectTrackStorage->create([
-          'type' => 'project_group',
-          'project_track_evaluation' => '0',
-          'project_track_status' => 'new',
-          'project_id' => $entity->id(),
-          'tool_id' => $submissionId,
-          'tool_entity_type' => 'webform_submission',
-        ]);
+        $projectTrack = $this->projectTrackStorage
+          ->create([
+            'type' => 'project_group',
+            'project_track_evaluation' => '0',
+            'project_id' => $entity->id(),
+            'tool_id' => $submissionId,
+            'tool_entity_type' => 'webform_submission',
+          ])
+          ->setProjectTrackStatus(ProjectTrackStatus::NEW);
 
         $projectTrack->save();
         $projectTrackId = $projectTrack->id();

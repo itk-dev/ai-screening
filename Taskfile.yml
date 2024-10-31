@@ -125,3 +125,9 @@ tasks:
       - task drush -- pm:install ai_screening_fixtures_base
       - task drush -- content-fixtures:load --yes {{.CLI_ARGS}}
       - task drush -- pm:uninstall ai_screening_fixtures_base content_fixtures
+
+  test-module-test:
+    desc: "Run custom module unit tests. Any additional arguments are passed to `phpunit`, e.g. `task test-module-test -- --debug`"
+    cmds:
+      - task compose -- exec phpfpm bash -c 'cd web && ../vendor/bin/phpunit --configuration ../phpunit.xml modules/custom {{.CLI_ARGS}}'
+    silent: true

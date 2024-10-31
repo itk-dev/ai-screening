@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
+use Drupal\ai_screening_project_track\ProjectTrackStatus;
 use Drupal\node\NodeInterface;
 use function Safe\json_decode;
 use function Safe\json_encode;
@@ -154,8 +155,17 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
-  public function getProjectTrackStatus(): string {
-    return $this->get('project_track_status')->getString();
+  public function getProjectTrackStatus(): ProjectTrackStatus {
+    return ProjectTrackStatus::from($this->get('project_track_status')->getString());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setProjectTrackStatus(ProjectTrackStatus $status): self {
+    $this->set('project_track_status', $status->value);
+
+    return $this;
   }
 
   /**

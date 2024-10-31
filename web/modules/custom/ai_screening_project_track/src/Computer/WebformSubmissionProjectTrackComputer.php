@@ -5,6 +5,7 @@ namespace Drupal\ai_screening_project_track\Computer;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\ai_screening_project_track\ProjectTrackComputerInterface;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
+use Drupal\ai_screening_project_track\ProjectTrackStatus;
 use Drupal\webform\WebformSubmissionInterface;
 
 /**
@@ -23,7 +24,8 @@ final class WebformSubmissionProjectTrackComputer implements ProjectTrackCompute
    * {@inheritdoc}
    */
   public function compute(ProjectTrackInterface $track, EntityInterface $tool): void {
-    // @todo Implement compute() method.
+    assert($tool instanceof WebformSubmissionInterface);
+    $track->setProjectTrackStatus(ProjectTrackStatus::IN_PROGRESS);
   }
 
 }
