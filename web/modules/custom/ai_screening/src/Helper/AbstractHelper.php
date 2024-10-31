@@ -35,12 +35,24 @@ abstract class AbstractHelper implements LoggerAwareInterface {
   }
 
   /**
-   * Get URL to entity.
+   * Get absolute URL to entity.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   The entity.
+   * @param string|null $rel
+   *   See \Drupal\Core\Entity\EntityInterface::toUrl().
+   * @param array $options
+   *   See \Drupal\Core\Entity\EntityInterface::toUrl() for
+   *   the available options.
+   *
+   *   Unless set, 'absolute' will default to true.
+   *
+   * @see EntityInterface::toUrl()
    */
   public function getUrl(EntityInterface $entity, ?string $rel = NULL, array $options = []): ?string {
-    $url = $entity->toUrl($rel, $options);
+    $url = $entity->toUrl($rel, $options + ['absolute' => TRUE]);
 
-    return $url->setAbsolute()->toString(TRUE)->getGeneratedUrl();
+    return $url->toString(TRUE)->getGeneratedUrl();
   }
 
   /**

@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
+use Drupal\node\NodeInterface;
 use function Safe\json_decode;
 use function Safe\json_encode;
 
@@ -108,11 +109,12 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the project track was last edited.'));
 
-    $fields['project_id'] = BaseFieldDefinition::create('integer')
+    $fields['project_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Project'))
-      ->setDescription(t('The ID of the project entity.'));
+      ->setSetting('target_type', 'node')
+      ->setSetting('handler_settings', ['target_bundles' => ['project' => 'project']]);
 
-    $fields['tool_id'] = BaseFieldDefinition::create('integer')
+    $fields['tool_id'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Tool'))
       ->setDescription(t('The ID of the tool referenced.'));
 
@@ -131,14 +133,76 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
-  public function getProjectId(): string {
-    return $this->get('project_id')->getString();
+  public function getType(): string {
+    return $this->get('type')->getString();
   }
 
   /**
    * {@inheritdoc}
    */
-  public function getData(): array {
+  public function getProjectTrackEvaluation(): string {
+    return $this->get('project_track_evaluation')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProjectTrackNote(): string {
+    return $this->get('project_track_note')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProjectTrackStatus(): string {
+    return $this->get('project_track_status')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCreated(): DrupalDateTime {
+    return $this->getDateTime('created');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getChanged(): DrupalDateTime {
+    return $this->getDateTime('changed');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProject(): NodeInterface {
+    $entities = $this->get('project_id')->referencedEntities();
+
+    return reset($entities);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToolId(): int|string {
+    return $this->get('tool_id')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToolEntityType(): string {
+    return $this->get('tool_entity_type')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToolData(): array {
     $value = $this->get('tool_data')->getString();
 
     try {
@@ -152,26 +216,17 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
-  public function setData(array $data): self {
+  public function setToolData(array $data): self {
     $this->set('tool_data', json_encode($data));
 
     return $this;
   }
 
   /**
-   * {@inheritdoc}
+   * Get datatime from field value.
    */
-  public function getCreated(): DrupalDateTime {
-    $value = (int) $this->get('created')->getString();
-
-    return DrupalDateTime::createFromTimestamp($value);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getChanged(): DrupalDateTime {
-    $value = (int) $this->get('changed')->getString();
+  private function getDateTime(string $field): DrupalDateTime {
+    $value = (int) $this->get($field)->getString();
 
     return DrupalDateTime::createFromTimestamp($value);
   }

@@ -49,7 +49,7 @@ final class UserHelper extends AbstractHelper implements EventSubscriberInterfac
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     return [
       EntityHookEvents::ENTITY_PRE_SAVE => 'preSave',
     ];

@@ -3,17 +3,19 @@
 namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
+use Drupal\ai_screening\Exception\RuntimeException;
 use Drupal\ai_screening\Helper\AbstractHelper;
-use Drupal\ai_screening_project\Helper\ProjectHelper;
+use Drupal\ai_screening_project_track\Computer\WebformSubmissionProjectTrackComputer;
+use Drupal\ai_screening_project_track\ProjectTrackComputerInterface;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityUpdateEvent;
 use Drupal\webform\WebformSubmissionInterface;
-use Drupal\webform\WebformSubmissionStorageInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -28,22 +30,13 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    */
   private readonly ProjectTrackStorageInterface $projectTrackStorage;
 
-  /**
-   * The webform submission storage.
-   *
-   * @var \Drupal\webform\WebformSubmissionStorageInterface
-   */
-  private WebformSubmissionStorageInterface $webformSubmissionsStorage;
-
   public function __construct(
     private readonly TimeInterface $time,
-    private readonly ProjectHelper $projectHelper,
-    EntityTypeManagerInterface $entityTypeManager,
+    private readonly EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
     parent::__construct($logger);
-    $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
-    $this->webformSubmissionsStorage = $entityTypeManager->getStorage('webform_submission');
+    $this->projectTrackStorage = $this->entityTypeManager->getStorage('project_track');
   }
 
   /**
@@ -62,9 +55,9 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    *
    * @see self::hasTrackData()
    */
-  public function getTrackData(ProjectTrackInterface $track, ?string $key = NULL): mixed {
+  public function getToolData(ProjectTrackInterface $track, ?string $key = NULL): mixed {
     try {
-      $data = $track->getData();
+      $data = $track->getToolData();
 
       return NULL === $key ? $data : ($data[$key] ?? NULL);
     }
@@ -91,7 +84,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    */
   public function hasTrackData(ProjectTrackInterface $track, string $key): bool {
     try {
-      $data = $track->getData();
+      $data = $track->getToolData();
 
       return array_key_exists($key, $data);
     }
@@ -117,8 +110,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    */
   public function setTrackData(ProjectTrackInterface $track, string $key, mixed $value): void {
     try {
-      $track->setData([$key => $value] + $track->getData());
-      $track->save();
+      $track->setToolData([$key => $value] + $track->getToolData());
     }
     catch (\Exception $exception) {
       $this->logException($exception, __METHOD__, [
@@ -144,14 +136,20 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
         'submission' => $submission->getData(),
       ];
 
+      // @todo Store the historic data in a database table to allow for easy access and querying.
       if (!empty($submission->getData())) {
         $historyKey = $key . ':history';
-        $history = $this->getTrackData($track, $historyKey);
+        $history = $this->getToolData($track, $historyKey);
         $history[] = $value;
         $this->setTrackData($track, $historyKey, $history);
       }
 
       $this->setTrackData($track, $key, $value);
+
+      $computer = $this->getTrackComputer($track, $submission);
+      $computer->compute($track, $submission);
+
+      $track->save();
     }
     catch (\Exception $exception) {
       $this->logException($exception, __METHOD__, [
@@ -190,20 +188,11 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     return [
       EntityHookEvents::ENTITY_INSERT => 'insert',
       EntityHookEvents::ENTITY_UPDATE => 'update',
     ];
-  }
-
-  /**
-   * Get project from track.
-   */
-  public function getProject(ProjectTrackInterface $track) {
-    $id = $track->getProjectId();
-
-    return $this->projectHelper->loadProject($id);
   }
 
   /**
@@ -214,26 +203,25 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
-   * Get webform submissions for a track.
-   *
-   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $track
-   *   The track.
-   *
-   * @return \Drupal\webform\WebformSubmissionInterface[]
-   *   The webform submissions.
+   * Load tool.
    */
-  public function getWebformSubmissions(ProjectTrackInterface $track): array {
-    $submissions = [];
+  public function loadTool(ProjectTrackInterface $track): EntityInterface {
+    $tool = $this->entityTypeManager->getStorage($track->getToolEntityType())
+      ->load($track->getToolId());
 
-    $data = $this->getTrackData($track);
-    $ids = [];
-    foreach ($data as $key => $value) {
-      if (\Safe\preg_match('/^webform_submission:(?<id>\d+)$/', $key, $matches)) {
-        $ids[] = $matches['id'];
-      }
+    if (!($tool instanceof EntityInterface)) {
+      throw new RuntimeException(sprintf('Cannot load tool for track "%s" (%s)', $track->label(), $track->id()));
     }
 
-    return $this->webformSubmissionsStorage->loadMultiple($ids);
+    return $tool;
+  }
+
+  /**
+   * Get track computer for a track and a tool.
+   */
+  private function getTrackComputer(ProjectTrackInterface $track, EntityInterface $tool): ProjectTrackComputerInterface {
+    // @todo Get the right computer based on track and tool.
+    return new WebformSubmissionProjectTrackComputer();
   }
 
 }

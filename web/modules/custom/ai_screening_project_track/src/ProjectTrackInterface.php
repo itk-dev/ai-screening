@@ -7,6 +7,7 @@ namespace Drupal\ai_screening_project_track;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Provides an interface defining a project track entity type.
@@ -14,19 +15,24 @@ use Drupal\Core\Entity\EntityChangedInterface;
 interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInterface {
 
   /**
-   * Get project ID.
+   * Get type.
    */
-  public function getProjectId(): string;
+  public function getType(): String;
 
   /**
-   * Get data.
+   * Get project track evaluation.
    */
-  public function getData(): array;
+  public function getProjectTrackEvaluation(): string;
 
   /**
-   * Get data.
+   * Get project track note.
    */
-  public function setData(array $data): self;
+  public function getProjectTrackNote(): string;
+
+  /**
+   * Get project track status.
+   */
+  public function getProjectTrackStatus(): string;
 
   /**
    * Get created.
@@ -37,5 +43,30 @@ interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInt
    * Get changed.
    */
   public function getChanged(): DrupalDateTime;
+
+  /**
+   * Get project id.
+   */
+  public function getProject(): NodeInterface;
+
+  /**
+   * Get tool id.
+   */
+  public function getToolId(): int|string;
+
+  /**
+   * Get tool entity type.
+   */
+  public function getToolEntityType(): string;
+
+  /**
+   * Get tool data.
+   */
+  public function getToolData(): array;
+
+  /**
+   * Set tool data.
+   */
+  public function setToolData(array $data): self;
 
 }

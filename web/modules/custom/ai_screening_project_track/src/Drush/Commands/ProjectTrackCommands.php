@@ -20,8 +20,8 @@ use Drush\Utils\StringUtils;
 class ProjectTrackCommands extends DrushCommands {
   use AutowireTrait;
 
-  private const LIST = 'ai-hearing-track:list';
-  private const SHOW = 'ai-hearing-track:show';
+  private const LIST = 'ai-screening-track:list';
+  private const SHOW = 'ai-screening-track:show';
 
   /**
    * The project track storage.
@@ -64,11 +64,11 @@ class ProjectTrackCommands extends DrushCommands {
 
     $rows = [];
     foreach ($tracks as $track) {
-      $project = $this->helper->getProject($track);
+      $project = $track->getProject();
       $rows[] = [
         'id' => $track->id(),
         'url' => $this->helper->getUrl($track),
-        'data' => count($this->helper->getTrackData($track)),
+        'data' => count($this->helper->getToolData($track)),
         'created' => $track->getCreated()->format(DrupalDateTime::FORMAT),
         'changed' => $track->getChanged()->format(DrupalDateTime::FORMAT),
         'project' => $project?->label(),
@@ -86,11 +86,11 @@ class ProjectTrackCommands extends DrushCommands {
   #[CLI\Argument(name: 'id', description: 'The track ID')]
   #[CLI\Option(name: 'show-data', description: 'Show track data')]
   #[CLI\Usage(name: self::SHOW . ' 42', description: 'Show track 42')]
-  #[CLI\Usage(name: self::SHOW . ' 87 --show-data', description: 'Show track 87 including data')]
+  #[CLI\Usage(name: self::SHOW . ' 87 --show-tool-data', description: 'Show track 87 including tool data')]
   public function show(
     string $id,
     array $options = [
-      'show-data' => FALSE,
+      'show-tool-data' => FALSE,
     ],
   ): void {
     $track = $this->helper->loadTrack($id);
@@ -100,20 +100,35 @@ class ProjectTrackCommands extends DrushCommands {
 
     $io = $this->io();
 
-    $project = $this->helper->getProject($track);
     $io->section('Project track');
 
-    $details[] = ['id' => $track->id()];
+    $details = [
+      ['id' => $track->id()],
+      ['label' => $track->label()],
+    ];
 
-    $submissions = $this->helper->getWebformSubmissions($track);
-    foreach ($submissions as $submission) {
-      $details[] = ['Submission ' . $submission->id() => $this->helper->getUrl($submission)];
-    }
+    $project = $track->getProject();
+    $details[] = [
+      'Project' => Yaml::encode([
+        'id' => $project->id(),
+        'label' => $project->label(),
+        'url' => $this->helper->getUrl($project),
+      ]),
+    ];
+
+    $tool = $this->helper->loadTool($track);
+    $details[] = [
+      'Tool' => Yaml::encode([
+        'id' => sprintf('%s:%s', $tool->getEntityTypeId(), $tool->id()),
+        'label' => $tool->label(),
+        'url' => $this->helper->getUrl($tool),
+      ]),
+    ];
 
     $io->definitionList(...$details);
 
-    if ($options['show-data']) {
-      $io->writeln(['data:', Yaml::encode($this->helper->getTrackData($track))]);
+    if ($options['show-tool-data']) {
+      $io->writeln(['Tool data:', Yaml::encode($this->helper->getToolData($track))]);
     }
   }
 
