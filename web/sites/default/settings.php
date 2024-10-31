@@ -868,7 +868,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 
 // Exclude development modules from configuration synchronization
 // https://www.drupal.org/node/3079028
-$settings['config_exclude_modules'] = ['webprofiler', 'devel', 'tracer', 'menu_ui'];
+$settings['config_exclude_modules'] = ['webprofiler', 'devel', 'tracer', 'menu_ui', 'field_ui'];
 
 /**
  * Load local development override configuration, if available.
