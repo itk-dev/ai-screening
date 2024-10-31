@@ -181,3 +181,19 @@ jobs:
           docker network create frontend
           docker compose run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme install
           docker compose run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme build
+
+  run-module-tests:
+    name: Run module tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up
+        run: |
+          docker network create frontend
+          docker compose up --detach
+          docker compose exec --user root phpfpm composer install
+
+      - name: Run module tests
+        run: |
+          docker compose exec --user root phpfpm bash -c 'cd web && ../vendor/bin/phpunit --configuration ../phpunit.xml modules/custom'
