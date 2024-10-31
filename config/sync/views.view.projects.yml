@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_description
     - node.type.project
-    - system.menu.main
   module:
     - node
     - text
@@ -329,7 +328,7 @@ display:
       display_extenders: {  }
       path: projects
       menu:
-        type: normal
+        type: none
         title: Projekter
         description: ''
         weight: 0
