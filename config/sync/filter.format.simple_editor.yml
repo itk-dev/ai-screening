@@ -1,5 +1,5 @@
 uuid: 3af466e3-1c5a-4fc2-8dcc-b495b6d2c85e
-langcode: da
+langcode: en
 status: true
 dependencies: {  }
 name: 'Simple editor'
