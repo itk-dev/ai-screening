@@ -1,0 +1,47 @@
+uuid: 7661db54-04e1-474f-a199-30b11e1ef2fe
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_department
+    - field.field.user.user.field_image
+    - field.field.user.user.field_name
+    - image.style.large
+  module:
+    - image
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_department:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: large
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  member_for: true
