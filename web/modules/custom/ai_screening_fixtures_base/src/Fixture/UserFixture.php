@@ -27,15 +27,15 @@ class UserFixture extends AbstractFixture implements DependentFixtureInterface, 
       'status' => 1,
       'roles' => [
         'authenticated',
-        'administrator'
+        'administrator',
       ],
       'field_image'  => [
         ['target_id' => $this->getReference('file:person1.jpg')->id()],
       ],
       'field_department'  => [
-        'target_id' => $this->getReference('department:Department A')->id()
+        'target_id' => $this->getReference('department:Department A')->id(),
       ],
-      'field_name' => 'Mrs. Administrator'
+      'field_name' => 'Mrs. Administrator',
     ]);
 
     $user->save();
@@ -48,20 +48,19 @@ class UserFixture extends AbstractFixture implements DependentFixtureInterface, 
       'status' => 1,
       'roles' => [
         'authenticated',
-        'editor'
+        'editor',
       ],
       'field_image'  => [
         ['target_id' => $this->getReference('file:person2.jpg')->id()],
       ],
       'field_department'  => [
-        'target_id' => $this->getReference('department:Department B')->id()
+        'target_id' => $this->getReference('department:Department B')->id(),
       ],
-      'field_name' => 'Ms. Editor'
+      'field_name' => 'Ms. Editor',
     ]);
 
     $user->save();
     $this->setReference('user:editor', $user);
-
 
     $user = User::create([
       'name' => 'authenticated',
@@ -69,15 +68,15 @@ class UserFixture extends AbstractFixture implements DependentFixtureInterface, 
       'pass' => 'authenticated',
       'status' => 1,
       'roles' => [
-        'authenticated'
+        'authenticated',
       ],
       'field_image'  => [
         ['target_id' => $this->getReference('file:person3.jpg')->id()],
       ],
       'field_department'  => [
-        'target_id' => $this->getReference('department:Department E')->id()
+        'target_id' => $this->getReference('department:Department E')->id(),
       ],
-      'field_name' => 'Mr. Authenticated'
+      'field_name' => 'Mr. Authenticated',
     ]);
 
     $user->save();
