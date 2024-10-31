@@ -36,12 +36,11 @@
     {% for item in items %}
 {%
   set link_classes = [
-    item.in_active_trail ? 'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-zinc-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 bg-graydark' : 'group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-zinc-300 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4',
+    item.in_active_trail ? 'group relative flex items-center gap-2 rounded-sm px-4 py-2 font-medium text-zinc-300 duration-300 ease-in-out bg-zinc-700' : 'group relative flex items-center gap-2 rounded-sm px-4 py-2 font-medium text-zinc-300 duration-300 ease-in-out hover:bg-zinc-700',
   ]
 %}
-{# todo make this work #}
       <li>
-      {{ link(item.title, item.url, {class: link_classes}) }}
+        {{ link(item.title, item.url, {class: link_classes}) }}
       </li>
     {% endfor %}
     </ul>
