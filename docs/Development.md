@@ -59,6 +59,14 @@ A couple of Drush commands are added – currently most for debugging purposes:
 * `drush ai-hearing-track:list`: List project tracks
 * `drush ai-hearing-track:show`: Show details for a project track
 
+## Tests
+
+We have a modules test. Run it with
+
+``` shell name="test-module-test"
+task test-module-test
+```
+
 ## Development settings
 
 The Development settings on `/admin/config/development/settings` (cf.
