@@ -8,7 +8,10 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
+use function Safe\json_decode;
+use function Safe\json_encode;
 
 /**
  * Defines the project track tool entity class.
@@ -73,6 +76,7 @@ use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
 final class ProjectTrackTool extends RevisionableContentEntityBase implements ProjectTrackToolInterface {
 
   use EntityChangedTrait;
+  use TimestampableEntityTrait;
 
   /**
    * {@inheritdoc}
@@ -81,103 +85,96 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
 
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['label'] = BaseFieldDefinition::create('string')
-      ->setRevisionable(TRUE)
-      ->setLabel(t('Label'))
-      ->setRequired(TRUE)
-      ->setSetting('max_length', 255)
-      ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
-        'weight' => -5,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'string',
-        'weight' => -5,
-      ])
-      ->setDisplayConfigurable('view', TRUE);
+    $fields['project_track_id'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Project track'))
+      ->setSetting('target_type', 'project_track');
 
-    $fields['status'] = BaseFieldDefinition::create('boolean')
-      ->setRevisionable(TRUE)
-      ->setLabel(t('Status'))
-      ->setDefaultValue(TRUE)
-      ->setSetting('on_label', 'Enabled')
-      ->setDisplayOptions('form', [
-        'type' => 'boolean_checkbox',
-        'settings' => [
-          'display_label' => FALSE,
-        ],
-        'weight' => 0,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('view', [
-        'type' => 'boolean',
-        'label' => 'above',
-        'weight' => 0,
-        'settings' => [
-          'format' => 'enabled-disabled',
-        ],
-      ])
-      ->setDisplayConfigurable('view', TRUE);
+    $fields['type'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Type'))
+      ->setDescription(t('The type of the project track tool.'));
 
-    $fields['description'] = BaseFieldDefinition::create('text_long')
-      ->setRevisionable(TRUE)
-      ->setLabel(t('Description'))
-      ->setDisplayOptions('form', [
-        'type' => 'text_textarea',
-        'weight' => 10,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('view', [
-        'type' => 'text_default',
-        'label' => 'above',
-        'weight' => 10,
-      ])
-      ->setDisplayConfigurable('view', TRUE);
+    $fields['tool_entity_type'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Tool entity type'))
+      ->setDescription(t('The entity type of the tool referenced.'));
 
-    $fields['uid'] = BaseFieldDefinition::create('entity_reference')
+    $fields['tool_id'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Tool'))
+      ->setDescription(t('The ID of the tool referenced.'));
+
+    $fields['tool_data'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Tool data'))
       ->setRevisionable(TRUE)
-      ->setLabel(t('Author'))
-      ->setSetting('target_type', 'user')
-      ->setDefaultValueCallback(self::class . '::getDefaultEntityOwner')
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => 60,
-          'placeholder' => '',
-        ],
-        'weight' => 15,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'author',
-        'weight' => 15,
-      ])
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDescription(t('The data matching the tool configuration'));
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
-      ->setDescription(t('The time that the tool was created.'))
-      ->setDisplayOptions('view', [
-        'label' => 'above',
-        'type' => 'timestamp',
-        'weight' => 20,
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayOptions('form', [
-        'type' => 'datetime_timestamp',
-        'weight' => 20,
-      ])
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDescription(t('The time that the project track tool was created.'));
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the tool was last edited.'));
+      ->setDescription(t('The time that the project track tool was last edited.'));
 
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getType(): string {
+    return $this->get('type')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProjectTrack(): ProjectTrackInterface {
+    $entities = $this->get('project_track_id')->referencedEntities();
+
+    return reset($entities);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDescription(): string {
+    return $this->get('description')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToolId(): int|string {
+    return $this->get('tool_id')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToolEntityType(): string {
+    return $this->get('tool_entity_type')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToolData(): array {
+    $value = $this->get('tool_data')->getString();
+
+    try {
+      return json_decode($value, TRUE);
+    }
+    catch (\Exception $exception) {
+      return [];
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setToolData(array $data): self {
+    $this->set('tool_data', json_encode($data));
+
+    return $this;
   }
 
 }

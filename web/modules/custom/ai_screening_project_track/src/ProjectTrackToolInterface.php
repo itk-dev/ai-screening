@@ -10,6 +10,41 @@ use Drupal\Core\Entity\EntityChangedInterface;
 /**
  * Provides an interface defining a project track tool entity type.
  */
-interface ProjectTrackToolInterface extends ContentEntityInterface, EntityChangedInterface {
+interface ProjectTrackToolInterface extends ContentEntityInterface, EntityChangedInterface, TimestampableEntityInterface {
+
+  /**
+   * Get type.
+   */
+  public function getType(): String;
+
+  /**
+   * Get project track tool description.
+   */
+  public function getDescription(): string;
+
+  /**
+   * Get project track.
+   */
+  public function getProjectTrack(): ProjectTrackInterface;
+
+  /**
+   * Get tool entity type.
+   */
+  public function getToolEntityType(): string;
+
+  /**
+   * Get tool id.
+   */
+  public function getToolId(): int|string;
+
+  /**
+   * Get tool data.
+   */
+  public function getToolData(): array;
+
+  /**
+   * Set tool data.
+   */
+  public function setToolData(array $data): self;
 
 }

@@ -12,7 +12,7 @@ use Drupal\node\NodeInterface;
 /**
  * Provides an interface defining a project track entity type.
  */
-interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInterface {
+interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInterface, TimestampableEntityInterface {
 
   /**
    * Get type.
@@ -50,28 +50,8 @@ interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInt
   public function getChanged(): DrupalDateTime;
 
   /**
-   * Get project id.
+   * Get project.
    */
   public function getProject(): NodeInterface;
-
-  /**
-   * Get tool id.
-   */
-  public function getToolId(): int|string;
-
-  /**
-   * Get tool entity type.
-   */
-  public function getToolEntityType(): string;
-
-  /**
-   * Get tool data.
-   */
-  public function getToolData(): array;
-
-  /**
-   * Set tool data.
-   */
-  public function setToolData(array $data): self;
 
 }
