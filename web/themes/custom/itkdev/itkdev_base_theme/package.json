@@ -2,6 +2,8 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
+    "alpinejs": "^3.14.3",
+    "@alpinejs/persist": "^3.14.3",
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
     "@eslint/js": "^9.3.0",
