@@ -11,6 +11,12 @@
   .theme-bg-secondary {
     background-color: var(--theme-secondary);
   }
+  .theme-bg-brand {
+    background-color: var(--theme-brand);
+  }
+  .theme-bg-brand-hover {
+    background-color: var(--theme-brand-hover);
+  }
   .bg-primary {
     @apply theme-bg-primary dark:bg-zinc-900;
   }
@@ -18,15 +24,18 @@
     @apply theme-bg-secondary dark:bg-zinc-800;
   }
   .bg-brand {
-    background-color: var(--theme-brand);
+    @apply theme-bg-brand;
   }
 
   /* Define common text colors */
   .theme-text-primary {
     color: var(--theme-primary);
   }
-  .theme-test-secondary {
+  .theme-text-secondary {
     color: var(--theme-secondary);
+  }
+  .theme-text-brand {
+    color: var(--theme-brand);
   }
   .text-primary {
     @apply text-stone-950 dark:text-stone-50;
@@ -35,7 +44,7 @@
     @apply text-stone-600 dark:text-stone-300;
   }
   .text-brand {
-    color: var(--theme-brand);
+    @apply theme-text-brand;
   }
 
   /* Define common border colors */
@@ -48,10 +57,10 @@
 
   /* Define common buttons */
   .btn-primary {
-    @apply border border-brand bg-brand text-white rounded px-3 py-2 min-h-9 hover:bg-teal-700 hover:dark:bg-teal-600;
+    @apply border border-brand bg-brand text-white rounded px-3 py-2 min-h-9 hover:theme-bg-brand-hover transition-colors duration-200;
   }
   .btn-default {
-    @apply border border-primary bg-secondary text-secondary rounded px-3 py-2 min-h-9 hover:bg-stone-200 hover:dark:bg-stone-800;
+    @apply border border-primary bg-secondary text-secondary rounded px-3 py-2 min-h-9 hover:bg-zinc-200 hover:dark:bg-zinc-800;
   }
   .btn-icon {
     @apply btn-default px-2 py-1;
