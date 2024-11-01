@@ -30,7 +30,10 @@ class WebformSubmissionProjectTrackComputerTest extends KernelTestBase {
   ];
 
   /**
-   * Test.
+   * Test track computer.
+   *
+   * Test that track computer computes correctly given a track and a webform
+   * submission.
    */
   public function testWebformSubmissionProjectTrackComputer(): void {
     $computer = new WebformSubmissionProjectTrackComputer();

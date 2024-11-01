@@ -122,6 +122,18 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
 
   /**
    * Add a webform submission to a track.
+   *
+   * Adding a submission will store the submitted submission data along with
+   * the webform structure to make it possible to retrieve it later even if
+   * the underlying webform has been changed.
+   *
+   * Furthermore, if an applicable track computer can be found, it will be
+   * invoked to update the track status and other computed values.
+   *
+   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $track
+   *   The track.
+   * @param \Drupal\webform\WebformSubmissionInterface $submission
+   *   The submission.
    */
   public function addSubmission(
     ProjectTrackInterface $track,
@@ -160,21 +172,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
-   * Event handler.
-   */
-  public function insert(EntityInsertEvent $event): void {
-    $this->processSubmission($event);
-  }
-
-  /**
-   * Event handler.
-   */
-  public function update(EntityUpdateEvent $event): void {
-    $this->processSubmission($event);
-  }
-
-  /**
-   * Event handler.
+   * Event handler for processing a webform submission to a track.
    */
   public function processSubmission(EntityInsertEvent|EntityUpdateEvent $event): void {
     $entity = $event->getEntity();
@@ -190,8 +188,8 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    */
   public static function getSubscribedEvents(): array {
     return [
-      EntityHookEvents::ENTITY_INSERT => 'insert',
-      EntityHookEvents::ENTITY_UPDATE => 'update',
+      EntityHookEvents::ENTITY_INSERT => 'processSubmission',
+      EntityHookEvents::ENTITY_UPDATE => 'processSubmission',
     ];
   }
 
