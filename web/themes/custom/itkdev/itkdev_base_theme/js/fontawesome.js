@@ -13,6 +13,10 @@ const projectFaSolidCustomIconsList = [
   "faXmark",
   "faSun",
   "faMoon",
+  "faMagnifyingGlass",
+  "faAngleDown",
+  "faUser",
+  "faSignOut",
 ];
 const projectFaRegularCustomIconsList = [
   ...projectFaRegularIcons,
