@@ -34,9 +34,9 @@
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
   </head>
-  <body{{ attributes.addClass('bg-secondary text-primary') }} x-data="{ 'darkMode': false, 'sidebarToggle': false }" x-init="
+  <body{{ attributes }} x-data="{ 'darkMode': false, 'sidebarToggle': false }" x-init="
           darkMode = JSON.parse(localStorage.getItem('darkMode'));
-          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{'dark': darkMode === true}" class="bg-seconday text-primary">
+          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{'dark': darkMode === true}">
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
@@ -44,7 +44,7 @@
     <a href="#main-content" class="visually-hidden focusable">
       {{ 'Skip to main content'|t }}
     </a>
-    <div class="relative">
+    <div class="relative bg-secondary text-primary">
       {{ page_top }}
       {{ page }}
       {{ page_bottom }}
