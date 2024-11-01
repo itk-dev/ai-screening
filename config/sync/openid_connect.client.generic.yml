@@ -1,9 +1,9 @@
 uuid: 4bd3f443-3007-4cef-ac0e-9fb2f0cc3d84
-langcode: da
+langcode: en
 status: true
 dependencies: {  }
 id: generic
-label: Medarbejderlogin
+label: 'Employee login'
 plugin: generic
 settings:
   client_id: client-id

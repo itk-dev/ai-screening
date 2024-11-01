@@ -36,7 +36,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function load(): void {
-    $owner = $this->getReference('user:user');
+    $owner = $this->getReference('user:administrator');
     if (!($owner instanceof UserInterface)) {
       return;
     }

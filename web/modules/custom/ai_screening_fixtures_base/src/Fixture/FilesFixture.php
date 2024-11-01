@@ -29,6 +29,7 @@ class FilesFixture extends AbstractFixture implements FixtureGroupInterface {
    */
   public function load() {
     $imageFiles = $this->helper->createImagesFromAssets();
+
     foreach ($imageFiles as $imageFile) {
       $file = File::create([
         'filename' => basename($imageFile),
@@ -37,6 +38,7 @@ class FilesFixture extends AbstractFixture implements FixtureGroupInterface {
         'uid' => 1,
       ]);
       $file->save();
+
       $this->addReference('file:' . $file->getFilename(), $file);
     }
   }
@@ -44,8 +46,8 @@ class FilesFixture extends AbstractFixture implements FixtureGroupInterface {
   /**
    * {@inheritdoc}
    */
-  public function getGroups() {
-    return ['images'];
+  public function getGroups(): array {
+    return ['files'];
   }
 
 }

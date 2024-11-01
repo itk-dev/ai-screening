@@ -9,4 +9,4 @@ new_revision: false
 creator_membership: true
 creator_wizard: false
 creator_roles:
-  - project_group-admin
+  - project_group-member

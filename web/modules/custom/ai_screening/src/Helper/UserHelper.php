@@ -40,8 +40,10 @@ final class UserHelper extends AbstractHelper implements EventSubscriberInterfac
       '@langcode' => $langcode,
     ]);
 
-    $user->set('preferred_langcode', $langcode);
-    $user->set('preferred_admin_langcode', $langcode);
+    if ($user->id() !== 1) {
+      $user->set('preferred_langcode', $langcode);
+      $user->set('preferred_admin_langcode', $langcode);
+    }
 
     return $user;
   }

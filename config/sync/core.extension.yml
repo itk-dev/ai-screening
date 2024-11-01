@@ -6,11 +6,13 @@ module:
   ai_screening_project_track: 0
   block: 0
   breakpoint: 0
+  ckeditor5: 0
   contextual: 0
   core_event_dispatcher: 0
   custom_event_dispatcher: 0
   dblog: 0
   dynamic_page_cache: 0
+  editor: 0
   entity: 0
   field: 0
   file: 0
@@ -19,6 +21,7 @@ module:
   gnode: 0
   group: 0
   hook_event_dispatcher: 0
+  image: 0
   language: 0
   layout_builder: 0
   layout_discovery: 0
