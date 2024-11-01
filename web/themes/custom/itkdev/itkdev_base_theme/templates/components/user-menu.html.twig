@@ -1,0 +1,32 @@
+<div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false">
+    <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
+        <span class="hidden text-right lg:block">
+            {# TODO: Get user name from drupal #}
+            <span class="block text-sm font-medium text-black dark:text-white">Bruger Navnesen</span>
+            {# TODO: Get role name from drupal #}
+            <span class="block text-xs font-medium">Superuser</span>
+        </span>
+
+        <span class="h-12 w-12 rounded-full bg-secondary">
+            {# TODO: Get avatar name from drupal #}
+            <img src="" alt="">
+        </span>
+
+        <i class="fa-solid fa-angle-down" :class="dropdownOpen && 'rotate-180'"></i>
+    </a>
+
+    <!-- Dropdown Start -->
+    <div x-show="dropdownOpen" class="absolute right-0 mt-3 flex w-56 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+        <ul class="flex flex-col gap-5 border-b border-stroke px-3 py-3 dark:border-strokedark">
+            <li>
+                <a href="profile.html" class="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+                <i class="fa-solid fa-user me-1"></i>{{ 'My profile'|t }}
+                </a>
+            </li>
+        </ul>
+        <button class="flex items-center gap-3 px-3 py-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+            <i class="fa-solid fa-sign-out me-1"></i>{{ 'Log Out'|t }}
+        </button>
+    </div>
+    <!-- Dropdown End -->
+</div>

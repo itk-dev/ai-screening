@@ -1,1 +1,9 @@
-/* Use this for plain vanilla css for styling of element that you are not able to style with Tailwind classes */
+/* Project specific styles */
+
+:root {
+    --theme-primary: #fff;
+    --theme-secondary: #F4F4F5;
+    --theme-brand: #047857;
+    --theme-brand-hover: #064E3B; 
+    --theme-border: #E4E4E7;
+}

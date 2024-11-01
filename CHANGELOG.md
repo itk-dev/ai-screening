@@ -7,14 +7,16 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
-- [PR-18](https://github.com/itk-dev/ai-screening/pull/18)
-  Added submission data to track
+- [PR-22](https://github.com/itk-dev/ai-screening/pull/22)
+  Base elements styling
 - [PR-20](https://github.com/itk-dev/ai-screening/pull/20)
   Add site branding block to navigation
   Remove field_ui from `core.extension.yml` and remove a field_ui related config file
   Add `menu_ui`, `field_ui` and `views_ui` to ignored the list of modules excluded from import/export in `settings.php`
   Style the side-menu with tailwind
   Add `description` and `authored_by` to the projects view, and remove the labels
+- [PR-18](https://github.com/itk-dev/ai-screening/pull/18)
+  Added submission data to track
 - [PR-17](https://github.com/itk-dev/ai-screening/pull/17)
   Added fixtures
 - [PR-16](https://github.com/itk-dev/ai-screening/pull/16)

@@ -34,7 +34,9 @@
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
   </head>
-  <body{{ attributes.addClass('bg-primary text-primary') }}>
+  <body{{ attributes.addClass('bg-secondary text-primary') }} x-data="{ 'darkMode': false, 'sidebarToggle': false }" x-init="
+          darkMode = JSON.parse(localStorage.getItem('darkMode'));
+          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{'dark': darkMode === true}" class="bg-seconday text-primary">
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
