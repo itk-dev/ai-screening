@@ -1,0 +1,15 @@
+<div>
+  <!-- Dark Mode Toggler -->
+  <label :class="darkMode ? 'bg-zinc-900' : 'bg-zinc-100'" class="relative m-0 block h-7 w-14 rounded-full bg-zinc-100">
+    <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode" class="absolute top-0 z-50 m-0 h-full w-full cursor-pointer opacity-0">
+    <span :class="darkMode && '!right-1 !translate-x-full'" class="absolute left-1 top-1/2 flex h-6 w-6 -translate-y-1/2 translate-x-0 items-center justify-center rounded-full bg-secondary shadow-switcher duration-75 ease-linear bg-zinc-600 dark:bg-zinc-800">
+      <span class="dark:hidden">
+        <i class="fa-solid fa-sun text-zinc-100"></i>
+      </span>
+      <span class="hidden dark:inline-block">
+        <i class="fa-solid fa-moon text-zinc-300"></i>
+      </span>
+    </span>
+  </label>
+  <!-- Dark Mode Toggler -->
+</div>
