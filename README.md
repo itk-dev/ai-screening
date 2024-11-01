@@ -1,5 +1,20 @@
 # Readme for AI Screening
 
+A _Project_ has one or more _Tracks_ each of which in turn has one or more _Tools_:
+
+``` mermaid
+---
+title: AI Screening classes
+---
+classDiagram
+    Tool --> Track
+    Track --> Project
+    class Project {
+        %% string title
+    }
+    Tool --> WebformSubmission
+```
+
 ## Site installation
 
 Run the following commands to set up the site a new. This will start containers

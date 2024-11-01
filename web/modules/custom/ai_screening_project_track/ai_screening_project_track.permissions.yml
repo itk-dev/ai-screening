@@ -15,3 +15,21 @@ revert project_track revision:
   title: 'Revert project track revision'
 delete project_track revision:
   title: 'Delete project track revision'
+
+administer project_track_tool:
+  title: 'Administer project track tools'
+  restrict access: true
+view project_track_tool:
+  title: 'View project track tool'
+edit project_track_tool:
+  title: 'Edit project track tool'
+delete project_track_tool:
+  title: 'Delete project track tool'
+create project_track_tool:
+  title: 'Create project track tool'
+view project_track_tool revision:
+  title: 'View project track tool revision'
+revert project_track_tool revision:
+  title: 'Revert project track tool revision'
+delete project_track_tool revision:
+  title: 'Delete project track tool revision'
