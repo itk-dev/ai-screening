@@ -37,7 +37,7 @@ class Helper {
    */
   public function createImagesFromAssets(): array {
     $images = [];
-    $imageSourcePath = __DIR__ . '/../assets/images';
+    $imageSourcePath = __DIR__ . '/../../assets/images';
     $imageTargetPath = 'public://fixtures/assets/images';
     $this->fileSystem->prepareDirectory($imageTargetPath, FileSystemInterface:: CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 

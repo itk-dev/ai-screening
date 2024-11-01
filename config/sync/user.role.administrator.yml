@@ -1,9 +1,27 @@
 uuid: 77a8af8d-26fc-4164-9026-485562c09905
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - taxonomy.vocabulary.department
+    - taxonomy.vocabulary.project_track_type
+  module:
+    - system
+    - taxonomy
+    - webform
 id: administrator
 label: Administrator
 weight: 3
 is_admin: null
-permissions: {  }
+permissions:
+  - 'access administration pages'
+  - 'access site in maintenance mode'
+  - 'access site reports'
+  - 'administer site configuration'
+  - 'create terms in department'
+  - 'create terms in project_track_type'
+  - 'create webform'
+  - 'delete terms in department'
+  - 'delete terms in project_track_type'
+  - 'edit any webform'
+  - 'view the administration theme'

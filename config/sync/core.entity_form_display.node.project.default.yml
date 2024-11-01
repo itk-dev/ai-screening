@@ -13,21 +13,11 @@ targetEntityType: node
 bundle: project
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 5
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_department:
-    type: entity_reference_autocomplete
+    type: options_buttons
     weight: 2
     region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_description:
     type: text_textarea
@@ -52,17 +42,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 4
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
 hidden:
+  created: true
   langcode: true
   promote: true
   sticky: true
+  uid: true

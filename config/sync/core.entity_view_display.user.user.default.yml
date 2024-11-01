@@ -1,4 +1,4 @@
-uuid: 348701fb-4239-4ea6-977a-4dac0390abff
+uuid: 7661db54-04e1-474f-a199-30b11e1ef2fe
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     - field.field.user.user.field_department
     - field.field.user.user.field_image
     - field.field.user.user.field_name
-    - image.style.thumbnail
+    - image.style.large
   module:
     - image
     - user
@@ -16,29 +16,32 @@ bundle: user
 mode: default
 content:
   field_department:
-    type: options_buttons
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
     weight: 1
     region: content
-    settings: {  }
-    third_party_settings: {  }
   field_image:
-    type: image_image
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: large
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
     weight: 2
     region: content
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
   field_name:
-    type: string_textfield
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
     weight: 0
     region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
 hidden:
-  account: true
   langcode: true
-  language: true
-  timezone: true
+  member_for: true

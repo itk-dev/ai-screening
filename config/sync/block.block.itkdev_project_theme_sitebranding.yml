@@ -1,0 +1,23 @@
+uuid: db9e9a4a-407f-40c6-bea4-d540a2e20561
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - itkdev_project_theme
+id: itkdev_project_theme_sitebranding
+theme: itkdev_project_theme
+region: navigation
+weight: -1
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }
