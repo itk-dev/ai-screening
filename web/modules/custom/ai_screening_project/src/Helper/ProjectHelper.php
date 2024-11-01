@@ -11,6 +11,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\ai_screening_project_track\ProjectTrackStatus;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
 use Drupal\core_event_dispatcher\CoreHookEvents;
 use Drupal\core_event_dispatcher\EntityHookEvents;
@@ -41,9 +42,9 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
   use LoggerTrait;
   use StringTranslationTrait;
 
-  public final const BUNDLE_PROJECT = 'project';
-  public final const FIELD_CORRUPTED = 'corrupted';
-  public final const BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
+  public final const string BUNDLE_PROJECT = 'project';
+  public final const string FIELD_CORRUPTED = 'corrupted';
+  public final const string BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
 
   /**
    * The group storage.
@@ -269,7 +270,7 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     return [
       CoreHookEvents::CRON => 'cron',
       EntityHookEvents::ENTITY_ACCESS => 'entityAccess',
@@ -355,14 +356,15 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
         $webformSubmission->save();
         $submissionId = $webformSubmission->id();
 
-        $projectTrack = $this->projectTrackStorage->create([
-          'type' => 'project_group',
-          'project_track_evaluation' => '0',
-          'project_track_status' => 'new',
-          'project_id' => $entity->id(),
-          'tool_id' => $submissionId,
-          'tool_entity_type' => 'webform_submission',
-        ]);
+        $projectTrack = $this->projectTrackStorage
+          ->create([
+            'type' => 'project_group',
+            'project_track_evaluation' => '0',
+            'project_id' => $entity->id(),
+            'tool_id' => $submissionId,
+            'tool_entity_type' => 'webform_submission',
+          ])
+          ->setProjectTrackStatus(ProjectTrackStatus::NEW);
 
         $projectTrack->save();
         $projectTrackId = $projectTrack->id();
@@ -389,6 +391,15 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
         // Ignore any errors when marking entity as corrupted.
       }
     }
+  }
+
+  /**
+   * Load project.
+   */
+  public function loadProject(string $id): ?NodeInterface {
+    $node = $this->nodeStorage->load($id);
+
+    return $this->isProject($node) ? $node : NULL;
   }
 
 }

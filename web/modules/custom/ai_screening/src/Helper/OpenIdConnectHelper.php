@@ -33,7 +33,7 @@ class OpenIdConnectHelper extends AbstractHelper implements EventSubscriberInter
   /**
    * {@inheritdoc}
    */
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     return [
       OpenIdConnectHookEvents::USERINFO_SAVE => 'userinfoSave',
     ];

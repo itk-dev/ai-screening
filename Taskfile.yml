@@ -38,7 +38,9 @@ tasks:
   drush:
     desc: "Run Drush command. Example: task drush -- user:login"
     cmds:
-      - task compose-exec -- phpfpm vendor/bin/drush --uri={{.URI}} {{ .CLI_ARGS }}
+      # Notice: To make debugging (with Xdebug) work, we have to call
+      # vendor/bin/drush.php directly (and not vendor/bin/drush)
+      - task compose-exec -- phpfpm vendor/bin/drush.php --uri={{.URI}} {{ .CLI_ARGS }}
     vars:
       URI:
         sh: task site-url
@@ -123,3 +125,9 @@ tasks:
       - task drush -- pm:install ai_screening_fixtures_base
       - task drush -- content-fixtures:load --yes {{.CLI_ARGS}}
       - task drush -- pm:uninstall ai_screening_fixtures_base content_fixtures
+
+  test-module-test:
+    desc: "Run custom module unit tests. Any additional arguments are passed to `phpunit`, e.g. `task test-module-test -- --debug`"
+    cmds:
+      - task compose -- exec phpfpm bash -c 'cd web && ../vendor/bin/phpunit --configuration ../phpunit.xml modules/custom {{.CLI_ARGS}}'
+    silent: true

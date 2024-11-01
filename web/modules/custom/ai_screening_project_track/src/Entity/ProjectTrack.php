@@ -4,11 +4,16 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening_project_track\Entity;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
+use Drupal\ai_screening_project_track\ProjectTrackStatus;
+use Drupal\node\NodeInterface;
+use function Safe\json_decode;
+use function Safe\json_encode;
 
 /**
  * Defines the project track entity class.
@@ -105,11 +110,12 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the project track was last edited.'));
 
-    $fields['project_id'] = BaseFieldDefinition::create('integer')
+    $fields['project_id'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Project'))
-      ->setDescription(t('The ID of the project entity.'));
+      ->setSetting('target_type', 'node')
+      ->setSetting('handler_settings', ['target_bundles' => ['project' => 'project']]);
 
-    $fields['tool_id'] = BaseFieldDefinition::create('integer')
+    $fields['tool_id'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Tool'))
       ->setDescription(t('The ID of the tool referenced.'));
 
@@ -123,6 +129,116 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setDescription(t('The data matching the tool configuration'));
 
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getType(): string {
+    return $this->get('type')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProjectTrackEvaluation(): string {
+    return $this->get('project_track_evaluation')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProjectTrackNote(): string {
+    return $this->get('project_track_note')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProjectTrackStatus(): ProjectTrackStatus {
+    return ProjectTrackStatus::from($this->get('project_track_status')->getString());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setProjectTrackStatus(ProjectTrackStatus $status): self {
+    $this->set('project_track_status', $status->value);
+
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCreated(): DrupalDateTime {
+    return $this->getDateTime('created');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getChanged(): DrupalDateTime {
+    return $this->getDateTime('changed');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProject(): NodeInterface {
+    $entities = $this->get('project_id')->referencedEntities();
+
+    return reset($entities);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToolId(): int|string {
+    return $this->get('tool_id')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToolEntityType(): string {
+    return $this->get('tool_entity_type')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToolData(): array {
+    $value = $this->get('tool_data')->getString();
+
+    try {
+      return json_decode($value, TRUE);
+    }
+    catch (\Exception $exception) {
+      return [];
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setToolData(array $data): self {
+    $this->set('tool_data', json_encode($data));
+
+    return $this;
+  }
+
+  /**
+   * Get datatime from field value.
+   */
+  private function getDateTime(string $field): DrupalDateTime {
+    $value = (int) $this->get($field)->getString();
+
+    return DrupalDateTime::createFromTimestamp($value);
   }
 
 }
