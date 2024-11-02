@@ -16,15 +16,15 @@ final class WebformSubmissionProjectTrackToolComputer implements ProjectTrackToo
   /**
    * {@inheritdoc}
    */
-  public function supports(ProjectTrackToolInterface $tool, EntityInterface $webform): bool {
-    return $tool instanceof WebformSubmissionInterface;
+  public function supports(ProjectTrackToolInterface $tool, EntityInterface $entity): bool {
+    return $entity instanceof WebformSubmissionInterface;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function compute(ProjectTrackToolInterface $tool, EntityInterface $webform): void {
-    assert($webform instanceof WebformSubmissionInterface);
+  public function compute(ProjectTrackToolInterface $tool, EntityInterface $entity): void {
+    assert($entity instanceof WebformSubmissionInterface);
     $tool->setProjectTrackToolStatus(ProjectTrackToolStatus::IN_PROGRESS);
   }
 

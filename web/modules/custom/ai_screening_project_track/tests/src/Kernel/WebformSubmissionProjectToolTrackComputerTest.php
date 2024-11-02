@@ -6,17 +6,18 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
 use Drupal\ai_screening_project_track\Computer\WebformSubmissionProjectTrackToolComputer;
 use Drupal\ai_screening_project_track\Entity\ProjectTrack;
-use Drupal\ai_screening_project_track\ProjectTrackInterface;
-use Drupal\ai_screening_project_track\ProjectTrackStatus;
+use Drupal\ai_screening_project_track\Entity\ProjectTrackTool;
+use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
+use Drupal\ai_screening_project_track\ProjectTrackToolStatus;
 use Drupal\node\Entity\Node;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\WebformSubmissionInterface;
 
 /**
- * Tests for WebformSubmissionProjectTrackComputer.
+ * Tests for WebformSubmissionProjectToolTrackComputer.
  */
-class WebformSubmissionProjectTrackComputerTest extends KernelTestBase {
+class WebformSubmissionProjectToolTrackComputerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
@@ -30,34 +31,38 @@ class WebformSubmissionProjectTrackComputerTest extends KernelTestBase {
   ];
 
   /**
-   * Test track computer.
+   * Test track tool computer.
    *
-   * Test that track computer computes correctly given a track and a webform
-   * submission.
+   * Test that track tool computer computes correctly given a tool and a
+   * webform submission.
    */
-  public function testWebformSubmissionProjectTrackComputer(): void {
+  public function testWebformSubmissionProjectTrackToolComputer(): void {
     $computer = new WebformSubmissionProjectTrackToolComputer();
 
-    $track = $this->createTrack([])
-      ->setProjectTrackStatus(ProjectTrackStatus::NEW);
+    $tool = $this->createTool([])
+      ->setProjectTrackToolStatus(ProjectTrackToolStatus::NEW);
     $submission = $this->createWebformSubmission([]);
-    $this->assertTrue($computer->supports($track, $submission));
+    $this->assertTrue($computer->supports($tool, $submission));
 
-    $this->assertSame(ProjectTrackStatus::NEW, $track->getProjectTrackStatus());
-    $computer->compute($track, $submission);
-    $this->assertSame(ProjectTrackStatus::IN_PROGRESS, $track->getProjectTrackStatus());
+    $this->assertSame(ProjectTrackToolStatus::NEW, $tool->getProjectTrackToolStatus());
+    $computer->compute($tool, $submission);
+    $this->assertSame(ProjectTrackToolStatus::IN_PROGRESS, $tool->getProjectTrackToolStatus());
   }
 
   /**
-   * Create project track.
+   * Create project track tool.
    */
-  private function createTrack(array $values): ProjectTrackInterface {
+  private function createTool(array $values): ProjectTrackToolInterface {
     $project = Node::create([
       'type' => ProjectHelper::BUNDLE_PROJECT,
     ]);
 
-    return ProjectTrack::create([
+    $track = ProjectTrack::create([
       'project_id' => $project,
+    ]);
+
+    return ProjectTrackTool::create([
+      'project_id' => $track,
     ] + $values);
   }
 
