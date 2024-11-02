@@ -4,7 +4,7 @@ namespace Drupal\Tests\ai_screening_project_track\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
-use Drupal\ai_screening_project_track\Computer\WebformSubmissionProjectTrackComputer;
+use Drupal\ai_screening_project_track\Computer\WebformSubmissionProjectTrackToolComputer;
 use Drupal\ai_screening_project_track\Entity\ProjectTrack;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackStatus;
@@ -36,7 +36,7 @@ class WebformSubmissionProjectTrackComputerTest extends KernelTestBase {
    * submission.
    */
   public function testWebformSubmissionProjectTrackComputer(): void {
-    $computer = new WebformSubmissionProjectTrackComputer();
+    $computer = new WebformSubmissionProjectTrackToolComputer();
 
     $track = $this->createTrack([])
       ->setProjectTrackStatus(ProjectTrackStatus::NEW);

@@ -54,10 +54,10 @@ Webforms: Forms configuration (`/admin/structure/webform/config`)
 
 ## Drush commands
 
-A couple of Drush commands are added – currently most for debugging purposes:
+Some helper Drush commands are added – currently most for debugging purposes:
 
-* `drush ai-hearing-track:list`: List project tracks
-* `drush ai-hearing-track:show`: Show details for a project track
+* `task drush -- ai-screening:project-track:list`: List project tracks
+* `task drush -- ai-screening:project-track:show`: Show details for a project track
 
 ## Tests
 
@@ -95,4 +95,27 @@ task drush -- cache:rebuild
 # Disable Twig development mode (for production)
 task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['twig_debug' => FALSE, 'twig_cache_disable' => FALSE]);"
 task drush -- cache:rebuild
+```
+
+## Delvelopment command line incantations
+
+This section contains some useful command line incantations that can come in handy during development and manual
+testing.
+
+``` shell name=test-cron-cleanup
+task apply-fixtures -- --yes
+task drush -- sql:cli --extra=--table <<'EOF'
+SELECT
+  (SELECT COUNT(*) FROM project_track) AS '#project_track',
+  (SELECT COUNT(*) FROM project_track_tool) AS '#project_track_tool',
+  (SELECT COUNT(*) FROM webform_submission) AS '#webform_submission'
+EOF
+
+task drush -- --yes cron
+task drush -- sql:cli --extra=--table <<'EOF'
+SELECT
+  (SELECT COUNT(*) FROM project_track) AS '#project_track',
+  (SELECT COUNT(*) FROM project_track_tool) AS '#project_track_tool',
+  (SELECT COUNT(*) FROM webform_submission) AS '#webform_submission'
+EOF
 ```

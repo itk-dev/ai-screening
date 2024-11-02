@@ -11,8 +11,11 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\ai_screening\Helper\AbstractHelper;
+use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
 use Drupal\ai_screening_project_track\ProjectTrackStatus;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
+use Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface;
 use Drupal\core_event_dispatcher\CoreHookEvents;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Core\CronEvent;
@@ -28,7 +31,6 @@ use Drupal\node\NodeStorageInterface;
 use Drupal\taxonomy\TermStorageInterface;
 use Drupal\user\UserStorageInterface;
 use Drupal\webform\WebformSubmissionStorageInterface;
-use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -37,7 +39,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 /**
  * A helper class for the Project node entity.
  */
-class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
+class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   use LoggerAwareTrait;
   use LoggerTrait;
   use StringTranslationTrait;
@@ -96,14 +98,22 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
   private readonly ProjectTrackStorageInterface|EntityStorageInterface $projectTrackStorage;
 
   /**
+   * The project track tool storage.
+   *
+   * @var \Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
+   */
+  private readonly ProjectTrackToolStorageInterface|EntityStorageInterface $projectTrackToolStorage;
+
+  /**
    * Constructor.
    */
   public function __construct(
     private readonly AccountProxyInterface $accountProxy,
+    private readonly ProjectTrackHelper $projectTrackHelper,
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
-    $this->setLogger($logger);
+    parent::__construct($logger);
     $this->groupStorage = $entityTypeManager->getStorage('group');
     $this->groupRelationshipStorage = $entityTypeManager->getStorage('group_relationship');
     $this->userStorage = $entityTypeManager->getStorage('user');
@@ -111,6 +121,7 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
     $this->webformSubmissionStorage = $entityTypeManager->getStorage('webform_submission');
     $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
+    $this->projectTrackToolStorage = $entityTypeManager->getStorage('project_track_tool');
   }
 
   /**
@@ -131,41 +142,15 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
       $relationships = $this->groupRelationshipStorage->loadMultiple($relationshipIds);
 
       $groups = $this->groupStorage->loadMultiple(array_map(
-          static fn (GroupRelationshipInterface $relationship) => $relationship->getGroupId(),
-          $relationships)
-      );
+        static fn (GroupRelationshipInterface $relationship) => $relationship->getGroupId(),
+        $relationships
+      ));
       foreach ($groups as $group) {
         $group->delete();
       }
 
-      // Get all project tracks for the project.
-      $projectTrackIds = $this->projectTrackStorage->getQuery()
-        ->accessCheck(FALSE)
-        ->condition('project_id', $project->id(), '=')
-        ->execute();
-
-      $submissionIds = [];
-      foreach ($projectTrackIds as $projectTrackId) {
-        // Get all webforms that reference these project tracks.
-        $submissionIds = $this->webformSubmissionStorage->getQuery()
-          ->accessCheck(FALSE)
-          ->condition('entity_type', 'project_track', '=')
-          ->condition('entity_id', $projectTrackId, '=')
-          ->execute();
-      }
-
-      $projectTracks = $this->projectTrackStorage->loadMultiple($projectTrackIds);
-      $webformSubmissions = $this->webformSubmissionStorage->loadMultiple($submissionIds);
-
-      // Delete project tracks and webform submissions for the project.
-      foreach ($webformSubmissions as $webformSubmission) {
-        $webformSubmission->delete();
-      }
-
-      foreach ($projectTracks as $projectTrack) {
-        $projectTrack->delete();
-      }
-
+      $projectTracks = $this->loadProjectTracks($project);
+      $this->projectTrackHelper->deleteProjectTracks($projectTracks);
     }
     catch (\Exception $exception) {
       $this->error('Error deleting project: @message', [
@@ -215,6 +200,7 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
   public function entityInsert(EntityInsertEvent $event): void {
     $entity = $event->getEntity();
     if ($this->isProject($entity)) {
+      assert($entity instanceof NodeInterface);
       $this->addProjectGroup($entity);
       $this->addProjectTracks($entity);
     }
@@ -345,35 +331,44 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
       // Add project tracks to project.
       $projectTrackTerms = $this->termStorage->loadMultiple($projectTrackTermIds);
 
+      $projectTrackCounter = 0;
       foreach ($projectTrackTerms as $projectTrackTerm) {
-        /** @var \Drupal\taxonomy\TermInterface $projectTrackTerm */
-        $webformId = $projectTrackTerm->field_webform->target_id;
-        $webformSubmission = $this->webformSubmissionStorage->create([
-          'webform_id' => $webformId,
-          'entity_type' => 'project_track',
-        ]);
-
-        $webformSubmission->save();
-        $submissionId = $webformSubmission->id();
-
         $projectTrack = $this->projectTrackStorage
           ->create([
             'type' => 'project_group',
             'project_track_evaluation' => '0',
-            'project_id' => $entity->id(),
-            'tool_id' => $submissionId,
-            'tool_entity_type' => 'webform_submission',
+            'project_id' => $entity,
           ])
-          ->setProjectTrackStatus(ProjectTrackStatus::NEW);
-
+          ->setProjectTrackStatus(ProjectTrackStatus::NEW)
+          ->setDelta($projectTrackCounter++);
         $projectTrack->save();
-        $projectTrackId = $projectTrack->id();
 
-        /** @var \Drupal\webform\WebformSubmissionInterface $submission */
-        $submission = $this->webformSubmissionStorage->load($submissionId);
-        $submission->set('entity_id', $projectTrackId);
+        /** @var \Drupal\webform\WebformInterface[] $webforms */
+        $webforms = $projectTrackTerm->get('field_webform')->referencedEntities();
 
-        $submission->save();
+        $toolCounter = 0;
+        foreach ($webforms as $webform) {
+          $tool = $this->projectTrackToolStorage->create([
+            'project_track_id' => $projectTrack->id(),
+            'tool_entity_type' => 'webform_submission',
+          ]);
+          $tool->setDelta($toolCounter++);
+          $tool->save();
+
+          $webformSubmission = $this->webformSubmissionStorage->create([
+            'webform' => $webform,
+            'entity_type' => 'project_track_tool',
+          ]);
+          $webformSubmission->save();
+
+          // Reload the webform submission.
+          $webformSubmission = $this->webformSubmissionStorage->load($webformSubmission->id());
+          $webformSubmission->set('entity_id', $tool->id());
+          $webformSubmission->save();
+
+          $tool->set('tool_id', $webformSubmission->id());
+          $tool->save();
+        }
       }
     }
     catch (\Exception $exception) {
@@ -400,6 +395,25 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
     $node = $this->nodeStorage->load($id);
 
     return $this->isProject($node) ? $node : NULL;
+  }
+
+  /**
+   * Load project tracks.
+   *
+   * @param \Drupal\node\NodeInterface $project
+   *   The project.
+   *
+   * @return \Drupal\ai_screening_project_track\ProjectTrackInterface[]
+   *   The tracks.
+   */
+  public function loadProjectTracks(NodeInterface $project): array {
+    $ids = $this->projectTrackStorage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('project_id', $project->id(), '=')
+      ->sort('delta')
+      ->execute();
+
+    return $this->projectTrackStorage->loadMultiple($ids);
   }
 
 }

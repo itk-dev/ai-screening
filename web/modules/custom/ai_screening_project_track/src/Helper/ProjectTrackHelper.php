@@ -2,26 +2,16 @@
 
 namespace Drupal\ai_screening_project_track\Helper;
 
-use Drupal\Component\Datetime\TimeInterface;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
-use Drupal\ai_screening\Exception\RuntimeException;
 use Drupal\ai_screening\Helper\AbstractHelper;
-use Drupal\ai_screening_project_track\Computer\WebformSubmissionProjectTrackComputer;
-use Drupal\ai_screening_project_track\ProjectTrackComputerInterface;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
-use Drupal\core_event_dispatcher\EntityHookEvents;
-use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
-use Drupal\core_event_dispatcher\Event\Entity\EntityUpdateEvent;
-use Drupal\webform\WebformSubmissionInterface;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Project track helper.
  */
-final class ProjectTrackHelper extends AbstractHelper implements EventSubscriberInterface {
+final class ProjectTrackHelper extends AbstractHelper {
 
   /**
    * The project track storage.
@@ -31,12 +21,12 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   private readonly ProjectTrackStorageInterface $projectTrackStorage;
 
   public function __construct(
-    private readonly TimeInterface $time,
-    private readonly EntityTypeManagerInterface $entityTypeManager,
+    private readonly ProjectTrackToolHelper $projectTrackToolHelper,
+    EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
     parent::__construct($logger);
-    $this->projectTrackStorage = $this->entityTypeManager->getStorage('project_track');
+    $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
   }
 
   /**
@@ -121,79 +111,6 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
-   * Add a webform submission to a track.
-   *
-   * Adding a submission will store the submitted submission data along with
-   * the webform structure to make it possible to retrieve it later even if
-   * the underlying webform has been changed.
-   *
-   * Furthermore, if an applicable track computer can be found, it will be
-   * invoked to update the track status and other computed values.
-   *
-   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $track
-   *   The track.
-   * @param \Drupal\webform\WebformSubmissionInterface $submission
-   *   The submission.
-   */
-  public function addSubmission(
-    ProjectTrackInterface $track,
-    WebformSubmissionInterface $submission,
-  ): void {
-    try {
-      $key = $submission->getEntityTypeId() . ':' . $submission->id();
-
-      $value = [
-        'created' => $this->time->getRequestTime(),
-        'webform' => $submission->getWebform()->getElementsDecoded(),
-        'submission' => $submission->getData(),
-      ];
-
-      // @todo Store the historic data in a database table to allow for easy access and querying.
-      if (!empty($submission->getData())) {
-        $historyKey = $key . ':history';
-        $history = $this->getToolData($track, $historyKey);
-        $history[] = $value;
-        $this->setTrackData($track, $historyKey, $history);
-      }
-
-      $this->setTrackData($track, $key, $value);
-
-      $computer = $this->getTrackComputer($track, $submission);
-      $computer->compute($track, $submission);
-
-      $track->save();
-    }
-    catch (\Exception $exception) {
-      $this->logException($exception, __METHOD__, [
-        'track' => $track,
-        'submission' => $submission,
-      ]);
-    }
-  }
-
-  /**
-   * Event handler for processing a webform submission to a track.
-   */
-  public function processSubmission(EntityInsertEvent|EntityUpdateEvent $event): void {
-    $entity = $event->getEntity();
-    if ($entity instanceof WebformSubmissionInterface) {
-      if (($track = $entity->getSourceEntity()) && $track instanceof ProjectTrackInterface) {
-        $this->addSubmission($track, $entity);
-      }
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function getSubscribedEvents(): array {
-    return [
-      EntityHookEvents::ENTITY_INSERT => 'processSubmission',
-      EntityHookEvents::ENTITY_UPDATE => 'processSubmission',
-    ];
-  }
-
-  /**
    * Load track.
    */
   public function loadTrack(string $id): ?ProjectTrackInterface {
@@ -201,25 +118,17 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
-   * Load tool.
+   * Delete project tracks.
+   *
+   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface[] $projectTracks
+   *   The project tracks.
    */
-  public function loadTool(ProjectTrackInterface $track): EntityInterface {
-    $tool = $this->entityTypeManager->getStorage($track->getToolEntityType())
-      ->load($track->getToolId());
+  public function deleteProjectTracks(array $projectTracks) {
+    foreach ($projectTracks as $projectTrack) {
+      $this->projectTrackToolHelper->deleteTools($projectTrack);
 
-    if (!($tool instanceof EntityInterface)) {
-      throw new RuntimeException(sprintf('Cannot load tool for track "%s" (%s)', $track->label(), $track->id()));
+      $projectTrack->delete();
     }
-
-    return $tool;
-  }
-
-  /**
-   * Get track computer for a track and a tool.
-   */
-  private function getTrackComputer(ProjectTrackInterface $track, EntityInterface $tool): ProjectTrackComputerInterface {
-    // @todo Get the right computer based on track and tool.
-    return new WebformSubmissionProjectTrackComputer();
   }
 
 }

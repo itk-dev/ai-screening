@@ -75,6 +75,7 @@ use Drupal\node\NodeInterface;
 final class ProjectTrack extends RevisionableContentEntityBase implements ProjectTrackInterface {
 
   use EntityChangedTrait;
+  use OrderableEntityTrait;
   use TimestampableEntityTrait;
 
   /**
@@ -98,7 +99,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
 
     $fields['project_track_status'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Project track status'))
-      ->setDescription(t('The type of the project track.'));
+      ->setDescription(t('The status of the project track.'));
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
@@ -112,6 +113,9 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setLabel(t('Project'))
       ->setSetting('target_type', 'node')
       ->setSetting('handler_settings', ['target_bundles' => ['project' => 'project']]);
+
+    $fields['delta'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Dalte'));
 
     return $fields;
   }

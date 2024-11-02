@@ -120,11 +120,12 @@ tasks:
       - task composer -- coding-standards-check/twig-cs-fixer
 
   apply-fixtures:
-    desc: "Apply fixtures"
+    desc: "Apply fixtures. Any cli arguments will be passed to `drush content-fixtures:load`"
+    prompt: "This will reset your content. Continue?"
     cmds:
-      - task drush -- pm:install ai_screening_fixtures_base
-      - task drush -- content-fixtures:load --yes {{.CLI_ARGS}}
-      - task drush -- pm:uninstall ai_screening_fixtures_base content_fixtures
+      - task drush -- --yes pm:install ai_screening_fixtures_base
+      - task drush -- --yes content-fixtures:load {{.CLI_ARGS}}
+      - task drush -- --yes pm:uninstall ai_screening_fixtures_base content_fixtures
 
   test-module-test:
     desc: "Run custom module unit tests. Any additional arguments are passed to `phpunit`, e.g. `task test-module-test -- --debug`"

@@ -10,6 +10,7 @@ use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
+use Drupal\ai_screening_project_track\ProjectTrackToolStatus;
 use function Safe\json_decode;
 use function Safe\json_encode;
 
@@ -51,7 +52,7 @@ use function Safe\json_encode;
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "revision_id",
- *     "label" = "label",
+ *     "label" = "id",
  *     "uuid" = "uuid",
  *   },
  *   revision_metadata_keys = {
@@ -76,6 +77,7 @@ use function Safe\json_encode;
 final class ProjectTrackTool extends RevisionableContentEntityBase implements ProjectTrackToolInterface {
 
   use EntityChangedTrait;
+  use OrderableEntityTrait;
   use TimestampableEntityTrait;
 
   /**
@@ -89,9 +91,9 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
       ->setLabel(t('Project track'))
       ->setSetting('target_type', 'project_track');
 
-    $fields['type'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Type'))
-      ->setDescription(t('The type of the project track tool.'));
+    $fields['project_track_tool_status'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Project track tool status'))
+      ->setDescription(t('The status of the project track tool.'));
 
     $fields['tool_entity_type'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Tool entity type'))
@@ -114,14 +116,10 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the project track tool was last edited.'));
 
-    return $fields;
-  }
+    $fields['delta'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Dalte'));
 
-  /**
-   * {@inheritdoc}
-   */
-  public function getType(): string {
-    return $this->get('type')->getString();
+    return $fields;
   }
 
   /**
@@ -173,6 +171,22 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
    */
   public function setToolData(array $data): self {
     $this->set('tool_data', json_encode($data));
+
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProjectTrackToolStatus(): ProjectTrackToolStatus {
+    return ProjectTrackToolStatus::from($this->get('project_track_tool_status')->getString());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setProjectTrackToolStatus(ProjectTrackToolStatus $status): self {
+    $this->set('project_track_tool_status', $status->value);
 
     return $this;
   }
