@@ -11,7 +11,7 @@ use Drupal\hook_event_dispatcher\Event\EventInterface;
  * OpenID Connect userinfo alter event.
  */
 #[HookEvent(id: 'openid_connect_userinfo_alter', alter: 'openid_connect_userinfo')]
-class UserinfoAlterEvent extends Event implements EventInterface {
+class OpenIdConnectUserinfoAlterEvent extends Event implements EventInterface {
 
   public function __construct(
     private array &$userinfo,
