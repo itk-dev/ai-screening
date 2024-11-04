@@ -49,7 +49,7 @@ abstract class AbstractHelper implements LoggerAwareInterface {
    *
    * @see EntityInterface::toUrl()
    */
-  public function getUrl(EntityInterface $entity, ?string $rel = NULL, array $options = []): ?string {
+  public function getUrl(EntityInterface $entity, ?string $rel = NULL, array $options = []): string {
     $url = $entity->toUrl($rel, $options + ['absolute' => TRUE]);
 
     return $url->toString(TRUE)->getGeneratedUrl();

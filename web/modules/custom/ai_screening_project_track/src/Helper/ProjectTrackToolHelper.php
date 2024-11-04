@@ -16,12 +16,15 @@ use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityUpdateEvent;
 use Drupal\webform\WebformSubmissionInterface;
 use Drupal\webform\WebformSubmissionStorageInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Project track tool helper.
  */
 final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscriberInterface {
+
+  private const string HISTORY_KEY = 'history';
 
   /**
    * The project track tool storage.
@@ -77,9 +80,9 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
    *   Use self::hasTrackData() to check if data is actually set (and possibly
    *   null).
    *
-   * @see self::hasTrackData()
+   * @see self::hasTrackToolData()
    */
-  public function getToolData(ProjectTrackToolInterface $tool, ?string $key = NULL): mixed {
+  public function getTrackToolData(ProjectTrackToolInterface $tool, ?string $key = NULL): mixed {
     try {
       $data = $tool->getToolData();
 
@@ -106,7 +109,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
    * @return bool
    *   True if data for key exists.
    */
-  public function hasTrackData(ProjectTrackToolInterface $tool, string $key): bool {
+  public function hasTrackToolData(ProjectTrackToolInterface $tool, string $key): bool {
     try {
       $data = $tool->getToolData();
 
@@ -132,7 +135,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
    * @param mixed $value
    *   The value.
    */
-  public function setTrackData(ProjectTrackToolInterface $tool, string $key, mixed $value): void {
+  public function setTrackToolData(ProjectTrackToolInterface $tool, string $key, mixed $value): void {
     try {
       $tool->setToolData([$key => $value] + $tool->getToolData());
     }
@@ -167,25 +170,24 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
       $key = $submission->getEntityTypeId() . ':' . $submission->id();
 
       $value = [
-        // @todo Do we really need this to set created on webform submission?
         'created' => $this->time->getRequestTime(),
         'webform' => $submission->getWebform()->getElementsDecoded(),
         'submission' => $submission->getData(),
       ];
 
       // @todo Store the historic data in a database table to allow for easy access and querying.
-      if (!empty($submission->getData())) {
-        $historyKey = $key . ':history';
-        $history = $this->getToolData($tool, $historyKey);
-        $history[] = $value;
-        $this->setTrackData($tool, $historyKey, $history);
+      if (!empty($value['submission'])) {
+        $history = $this->getTrackToolData($tool, self::HISTORY_KEY);
+        $history[$key][] = $value;
+        $this->setTrackToolData($tool, self::HISTORY_KEY, $history);
       }
 
-      $this->setTrackData($tool, $key, $value);
+      $this->setTrackToolData($tool, $key, $value);
 
       $computer = $this->getTrackToolComputer($tool);
       $computer->compute($tool, $submission);
 
+      // @todo Dispatch an event telling that tool status has been updated.
       $tool->save();
     }
     catch (\Exception $exception) {
@@ -248,6 +250,21 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
 
       $tool->delete();
     }
+  }
+
+  /**
+   * Get URL to actual project tract tool form.
+   *
+   * @param \Drupal\ai_screening_project_track\ProjectTrackToolInterface $tool
+   *   The tool.
+   *
+   * @return string
+   *   The form URL.
+   */
+  public function getTrackToolFormUrl(ProjectTrackToolInterface $tool): string {
+    $submission = $this->webformSubmissionStorage->load($tool->getToolId());
+
+    return $this->getUrl($submission, rel: 'edit-form');
   }
 
 }

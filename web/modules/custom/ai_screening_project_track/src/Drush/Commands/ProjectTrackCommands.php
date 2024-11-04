@@ -18,7 +18,7 @@ use Drush\Utils\StringUtils;
 /**
  * Project track commands.
  */
-class ProjectTrackCommands extends DrushCommands {
+final class ProjectTrackCommands extends DrushCommands {
   use AutowireTrait;
 
   private const string LIST = 'ai-screening:project-track:list';
@@ -89,7 +89,7 @@ class ProjectTrackCommands extends DrushCommands {
   #[CLI\Option(name: 'show-data', description: 'Show track data')]
   #[CLI\Usage(name: self::SHOW . ' 42', description: 'Show track 42')]
   #[CLI\Usage(name: self::SHOW . ' 87 --show-tools', description: 'Show track 87 including tools')]
-  #[CLI\Usage(name: self::SHOW . ' 87 --show-tools-data', description: 'Show track 87 including tools data')]
+  #[CLI\Usage(name: self::SHOW . ' 87 --show-tools-data', description: 'Show track 87 including tools data. Implies `--show-tools`')]
   public function show(
     string $id,
     array $options = [
@@ -97,6 +97,10 @@ class ProjectTrackCommands extends DrushCommands {
       'show-tools-data' => FALSE,
     ],
   ): void {
+    if ($options['show-tools-data']) {
+      $options['show-tools'] = TRUE;
+    }
+
     $track = $this->projectTrackHelper->loadTrack($id);
     if (!$track) {
       throw new InvalidArgumentException(sprintf('Track %s not found. Use `drush ai-hearing-track:list` to list all tracks.', $id));
@@ -127,17 +131,19 @@ class ProjectTrackCommands extends DrushCommands {
           'Tool' => Yaml::encode([
             'id' => sprintf('%s:%s', $tool->getEntityTypeId(), $tool->id()),
             'label' => $tool->label(),
-            'url' => $this->projectTrackHelper->getUrl($tool),
+            'url' => $this->projectTrackToolHelper->getUrl($tool),
+            'webform submission' => $this->projectTrackToolHelper->getTrackToolFormUrl($tool),
           ]),
         ];
+
+        if ($options['show-tools-data']) {
+          $io->writeln(['Tool data:', Yaml::encode($this->projectTrackToolHelper->getTrackToolData($tool))]);
+        }
       }
     }
 
     $io->definitionList(...$details);
 
-    if ($options['show-tools-data']) {
-      $io->writeln(['Tool data:', Yaml::encode($this->projectTrackHelper->getToolData($track))]);
-    }
   }
 
 }
