@@ -25,6 +25,7 @@ use Drupal\group\Entity\Storage\GroupRelationshipStorageInterface;
 use Drupal\group\Entity\Storage\GroupStorage;
 use Drupal\node\NodeInterface;
 use Drupal\node\NodeStorageInterface;
+use Drupal\preprocess_event_dispatcher\Event\NodePreprocessEvent;
 use Drupal\taxonomy\TermStorageInterface;
 use Drupal\user\UserStorageInterface;
 use Drupal\webform\WebformSubmissionStorageInterface;
@@ -276,6 +277,7 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
       EntityHookEvents::ENTITY_ACCESS => 'entityAccess',
       EntityHookEvents::ENTITY_INSERT => 'entityInsert',
       EntityHookEvents::ENTITY_DELETE => 'entityDelete',
+      NodePreprocessEvent::name('project') => 'preprocessProject',
       // @fixme I, Mikkel, cannot make this work using an event handler, so we
       // do it the old fashioned way with a hook implementation in
       // ai_screening_project.module (which see).
@@ -358,7 +360,9 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
 
         $projectTrack = $this->projectTrackStorage
           ->create([
-            'type' => 'project_group',
+            'type' => $projectTrackTerm->id(),
+            'title' => $projectTrackTerm->getName(),
+            'description' => $projectTrackTerm->getDescription(),
             'project_track_evaluation' => '0',
             'project_id' => $entity->id(),
             'tool_id' => $submissionId,
@@ -400,6 +404,34 @@ class ProjectHelper implements LoggerAwareInterface, EventSubscriberInterface {
     $node = $this->nodeStorage->load($id);
 
     return $this->isProject($node) ? $node : NULL;
+  }
+
+  /**
+   * Preprocess node project event.
+   *
+   * @param \Drupal\preprocess_event_dispatcher\Event\NodePreprocessEvent $event
+   *   The event being performed.
+   */
+  public function preprocessProject(NodePreprocessEvent $event): void {
+    $variables = $event->getVariables();
+    $projectTrackIds = $this->projectTrackStorage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('project_id', $variables->getEntity()->id(), '=')
+      ->execute();
+
+    $variables->set('projectTracks', $this->projectTrackStorage->loadMultiple($projectTrackIds));
+
+    $relationshipIds = $this->groupRelationshipStorage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('entity_id', $variables->getEntity()->id(), '=')
+      ->condition('type', 'project_group-group_node-project', '=')
+      ->execute();
+
+    $relationships = $this->groupRelationshipStorage->loadMultiple($relationshipIds);
+    $group = $this->groupStorage->load(reset($relationships)->getGroupId());
+
+    $variables->set('projectGroup', $group);
+    $variables->set('projectMembers', $group->getMembers());
   }
 
 }
