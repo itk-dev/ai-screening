@@ -14,13 +14,13 @@ use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Defines the access control handler for the project track entity type.
+ * Defines the access control handler for the project track tool entity type.
  *
  * phpcs:disable Drupal.Arrays.Array.LongLineDeclaration
  *
  * @see https://www.drupal.org/project/coder/issues/3185082
  */
-final class ProjectTrackAccessControlHandler extends EntityAccessControlHandler implements EntityHandlerInterface {
+final class ProjectTrackToolAccessControlHandler extends EntityAccessControlHandler implements EntityHandlerInterface {
 
   public function __construct(
     private readonly EntityTypeManagerInterface $entityTypeManager,
@@ -43,12 +43,12 @@ final class ProjectTrackAccessControlHandler extends EntityAccessControlHandler 
    * {@inheritdoc}
    */
   protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account): AccessResult {
-    if (!($entity instanceof ProjectTrackInterface)) {
+    if (!($entity instanceof ProjectTrackToolInterface)) {
       return AccessResult::neutral();
     }
 
-    $parentAccessControlHandler = $this->entityTypeManager->getAccessControlHandler('node');
-    $parent = $entity->getProject();
+    $parentAccessControlHandler = $this->entityTypeManager->getAccessControlHandler('project_track');
+    $parent = $entity->getProjectTrack();
 
     return $parentAccessControlHandler->checkAccess($parent, $operation, $account);
   }

@@ -8,6 +8,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\ai_screening\Exception\InvalidArgumentException;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
+use Drupal\ai_screening_project_track\Helper\ProjectTrackToolHelper;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
 use Drush\Attributes as CLI;
 use Drush\Commands\AutowireTrait;
@@ -17,11 +18,11 @@ use Drush\Utils\StringUtils;
 /**
  * Project track commands.
  */
-class ProjectTrackCommands extends DrushCommands {
+final class ProjectTrackCommands extends DrushCommands {
   use AutowireTrait;
 
-  private const LIST = 'ai-screening-track:list';
-  private const SHOW = 'ai-screening-track:show';
+  private const string LIST = 'ai-screening:project-track:list';
+  private const string SHOW = 'ai-screening:project-track:show';
 
   /**
    * The project track storage.
@@ -35,7 +36,8 @@ class ProjectTrackCommands extends DrushCommands {
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    private readonly ProjectTrackHelper $helper,
+    private readonly ProjectTrackHelper $projectTrackHelper,
+    private readonly ProjectTrackToolHelper $projectTrackToolHelper,
   ) {
     $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
   }
@@ -45,7 +47,7 @@ class ProjectTrackCommands extends DrushCommands {
    */
   #[CLI\Command(name: self::LIST)]
   #[CLI\Argument(name: 'ids', description: 'A comma-separated list of ids.')]
-  #[CLI\DefaultTableFields(fields: ['id', 'url', 'project', 'project_url', 'data', 'created', 'changed'])]
+  #[CLI\DefaultTableFields(fields: ['id', 'url', 'project', 'project_url', 'tools', 'created', 'changed'])]
   #[CLI\FieldLabels(labels: [
     'id' => 'ID',
     'url' => 'URL',
@@ -53,7 +55,7 @@ class ProjectTrackCommands extends DrushCommands {
     'project_url' => 'Project URL',
     'created' => 'Created',
     'changed' => 'Changed',
-    'data' => 'Data items',
+    'tools' => 'Tools',
   ])]
   public function list(?string $ids = NULL, array $options = ['format' => 'table']): RowsOfFields {
     if ($ids) {
@@ -67,12 +69,12 @@ class ProjectTrackCommands extends DrushCommands {
       $project = $track->getProject();
       $rows[] = [
         'id' => $track->id(),
-        'url' => $this->helper->getUrl($track),
-        'data' => count($this->helper->getToolData($track)),
+        'url' => $this->projectTrackHelper->getUrl($track),
+        'tools' => count($this->projectTrackToolHelper->loadTools($track)),
         'created' => $track->getCreated()->format(DrupalDateTime::FORMAT),
         'changed' => $track->getChanged()->format(DrupalDateTime::FORMAT),
         'project' => $project?->label(),
-        'project_url' => $project ? $this->helper->getUrl($project) : NULL,
+        'project_url' => $project ? $this->projectTrackHelper->getUrl($project) : NULL,
       ];
     }
 
@@ -86,14 +88,20 @@ class ProjectTrackCommands extends DrushCommands {
   #[CLI\Argument(name: 'id', description: 'The track ID')]
   #[CLI\Option(name: 'show-data', description: 'Show track data')]
   #[CLI\Usage(name: self::SHOW . ' 42', description: 'Show track 42')]
-  #[CLI\Usage(name: self::SHOW . ' 87 --show-tool-data', description: 'Show track 87 including tool data')]
+  #[CLI\Usage(name: self::SHOW . ' 87 --show-tools', description: 'Show track 87 including tools')]
+  #[CLI\Usage(name: self::SHOW . ' 87 --show-tools-data', description: 'Show track 87 including tools data. Implies `--show-tools`')]
   public function show(
     string $id,
     array $options = [
-      'show-tool-data' => FALSE,
+      'show-tools' => FALSE,
+      'show-tools-data' => FALSE,
     ],
   ): void {
-    $track = $this->helper->loadTrack($id);
+    if ($options['show-tools-data']) {
+      $options['show-tools'] = TRUE;
+    }
+
+    $track = $this->projectTrackHelper->loadTrack($id);
     if (!$track) {
       throw new InvalidArgumentException(sprintf('Track %s not found. Use `drush ai-hearing-track:list` to list all tracks.', $id));
     }
@@ -105,6 +113,7 @@ class ProjectTrackCommands extends DrushCommands {
     $details = [
       ['id' => $track->id()],
       ['label' => $track->label()],
+      ['url' => $this->projectTrackHelper->getUrl($track)],
     ];
 
     $project = $track->getProject();
@@ -112,24 +121,30 @@ class ProjectTrackCommands extends DrushCommands {
       'Project' => Yaml::encode([
         'id' => $project->id(),
         'label' => $project->label(),
-        'url' => $this->helper->getUrl($project),
+        'url' => $this->projectTrackHelper->getUrl($project),
       ]),
     ];
 
-    $tool = $this->helper->loadTool($track);
-    $details[] = [
-      'Tool' => Yaml::encode([
-        'id' => sprintf('%s:%s', $tool->getEntityTypeId(), $tool->id()),
-        'label' => $tool->label(),
-        'url' => $this->helper->getUrl($tool),
-      ]),
-    ];
+    if ($options['show-tools']) {
+      $tools = $this->projectTrackToolHelper->loadTools($track);
+      foreach ($tools as $tool) {
+        $details[] = [
+          'Tool' => Yaml::encode([
+            'id' => sprintf('%s:%s', $tool->getEntityTypeId(), $tool->id()),
+            'label' => $tool->label(),
+            'url' => $this->projectTrackToolHelper->getUrl($tool),
+            'webform submission' => $this->projectTrackToolHelper->getTrackToolFormUrl($tool),
+          ]),
+        ];
+
+        if ($options['show-tools-data']) {
+          $io->writeln(['Tool data:', Yaml::encode($this->projectTrackToolHelper->getTrackToolData($tool))]);
+        }
+      }
+    }
 
     $io->definitionList(...$details);
 
-    if ($options['show-tool-data']) {
-      $io->writeln(['Tool data:', Yaml::encode($this->helper->getToolData($track))]);
-    }
   }
 
 }
