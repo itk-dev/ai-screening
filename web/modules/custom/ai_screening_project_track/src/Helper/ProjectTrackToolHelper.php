@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\ai_screening\Helper\AbstractHelper;
 use Drupal\ai_screening_project_track\Computer\WebformSubmissionProjectTrackToolComputer;
+use Drupal\ai_screening_project_track\Event\ProjectTrackToolComputedEvent;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolComputerInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
@@ -16,8 +17,8 @@ use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityUpdateEvent;
 use Drupal\webform\WebformSubmissionInterface;
 use Drupal\webform\WebformSubmissionStorageInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Project track tool helper.
@@ -42,6 +43,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
 
   public function __construct(
     private readonly TimeInterface $time,
+    private readonly EventDispatcherInterface $eventDispatcher,
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
@@ -187,7 +189,11 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
       $computer = $this->getTrackToolComputer($tool);
       $computer->compute($tool, $submission);
 
-      // @todo Dispatch an event telling that tool status has been updated.
+      // Tell others that the tool has been computed.
+      $this->eventDispatcher->dispatch(
+        new ProjectTrackToolComputedEvent($tool)
+      );
+
       $tool->save();
     }
     catch (\Exception $exception) {

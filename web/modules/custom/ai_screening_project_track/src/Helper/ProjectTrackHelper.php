@@ -5,13 +5,15 @@ namespace Drupal\ai_screening_project_track\Helper;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\ai_screening\Helper\AbstractHelper;
+use Drupal\ai_screening_project_track\Event\ProjectTrackToolComputedEvent;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Project track helper.
  */
-final class ProjectTrackHelper extends AbstractHelper {
+final class ProjectTrackHelper extends AbstractHelper implements EventSubscriberInterface {
 
   /**
    * The project track storage.
@@ -129,6 +131,27 @@ final class ProjectTrackHelper extends AbstractHelper {
 
       $projectTrack->delete();
     }
+  }
+
+  /**
+   * Event handler.
+   */
+  public function projectTrackToolComputed(ProjectTrackToolComputedEvent $event): void {
+    // @todo Do something with the tool's track?
+    /*
+    $tool = $event->getTool();
+    $track = $tool->getProjectTrack();
+     */
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  #[\Override]
+  public static function getSubscribedEvents() {
+    return [
+      ProjectTrackToolComputedEvent::class => 'projectTrackToolComputed',
+    ];
   }
 
 }
