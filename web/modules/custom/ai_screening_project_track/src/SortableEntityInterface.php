@@ -3,9 +3,12 @@
 namespace Drupal\ai_screening_project_track;
 
 /**
- * Ordered entity interface.
+ * Sortable entity interface.
+ *
+ * Used for entities that can be sorted by a "delta" within a container
+ * (parent).
  */
-interface OrderedEntityInterface {
+interface SortableEntityInterface {
 
   /**
    * Get delta.

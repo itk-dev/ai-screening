@@ -77,7 +77,7 @@ use function Safe\json_encode;
 final class ProjectTrackTool extends RevisionableContentEntityBase implements ProjectTrackToolInterface {
 
   use EntityChangedTrait;
-  use OrderableEntityTrait;
+  use SortableEntityTrait;
   use TimestampableEntityTrait;
 
   /**

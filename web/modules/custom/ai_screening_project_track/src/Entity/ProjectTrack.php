@@ -75,7 +75,7 @@ use Drupal\node\NodeInterface;
 final class ProjectTrack extends RevisionableContentEntityBase implements ProjectTrackInterface {
 
   use EntityChangedTrait;
-  use OrderableEntityTrait;
+  use SortableEntityTrait;
   use TimestampableEntityTrait;
 
   /**

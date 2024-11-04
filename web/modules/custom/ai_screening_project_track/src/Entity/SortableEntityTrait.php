@@ -3,9 +3,14 @@
 namespace Drupal\ai_screening_project_track\Entity;
 
 /**
- * Orderable entity trait.
+ * Sortable entity trait.
+ *
+ * Implements SortableEntityInterface (which see) using a "delta" field on the
+ * entity.
+ *
+ * @see SortableEntityInterface
  */
-trait OrderableEntityTrait {
+trait SortableEntityTrait {
 
   /**
    * {@inheritdoc}

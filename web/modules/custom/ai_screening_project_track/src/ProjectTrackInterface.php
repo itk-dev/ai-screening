@@ -11,7 +11,7 @@ use Drupal\node\NodeInterface;
 /**
  * Provides an interface defining a project track entity type.
  */
-interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInterface, OrderedEntityInterface, TimestampableEntityInterface {
+interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInterface, SortableEntityInterface, TimestampableEntityInterface {
 
   /**
    * Get type.
