@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-24](https://github.com/itk-dev/ai-screening/pull/24)
+  Access control
 - [PR-21](https://github.com/itk-dev/ai-screening/pull/21)
   Added project track tool entity
 - [PR-23](https://github.com/itk-dev/ai-screening/pull/23)

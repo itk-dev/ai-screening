@@ -46,7 +46,6 @@ use Drupal\node\NodeInterface;
  *   base_table = "project_track",
  *   revision_table = "project_track_revision",
  *   show_revision_ui = TRUE,
- *   admin_permission = "administer project_track",
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "revision_id",
@@ -62,7 +61,7 @@ use Drupal\node\NodeInterface;
  *     "collection" = "/admin/content/project-track",
  *     "add-form" = "/project-track/add",
  *     "canonical" = "/project-track/{project_track}",
- *     "edit-form" = "/project-track/{project_track}",
+ *     "edit-form" = "/project-track/{project_track}/edit",
  *     "delete-form" = "/project-track/{project_track}/delete",
  *     "delete-multiple-form" = "/admin/content/project-track/delete-multiple",
  *     "revision" = "/project-track/{project_track}/revision/{project_track_revision}/view",

@@ -188,9 +188,12 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   public function entityAccess(EntityAccessEvent $event): void {
     $entity = $event->getEntity();
 
-    // Deny access if content is corrupted.
-    if ($this->isCorrupted($entity)) {
-      $event->setAccessResult(AccessResult::forbidden(sprintf('Entity %s (%s) is corrupted', $entity->label(), $entity->id())));
+    if ($entity instanceof NodeInterface) {
+      // Deny access if content is corrupted.
+      if ($this->isCorrupted($entity)) {
+        $event->setAccessResult(AccessResult::forbidden(sprintf('Entity %s (%s) is corrupted', $entity->label(),
+          $entity->id())));
+      }
     }
   }
 
