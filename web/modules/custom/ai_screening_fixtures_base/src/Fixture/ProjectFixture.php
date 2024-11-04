@@ -18,7 +18,7 @@ use Drupal\user\UserInterface;
  */
 class ProjectFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
 
-  public final const EXTRA_PROJECTS = 20;
+  public final const int EXTRA_PROJECTS = 20;
 
   /**
    * Constructor.
