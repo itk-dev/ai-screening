@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * AI screening implementation to display a node.
+ *
+ * @see web/core/modules/node/templates/node.html.twig
+ *
+ * Additional variables:
+ * - projectTracks: The project tracks related to the node.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="container my-6">
+  <h1>{{ label }}</h1>
+  <p>{{ content.field_description }}</p>
+  <p>{{ content.field_department }}</p>
+  {{ dump() }}
+</div>
+<div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+  <header class="flex justify-between px-4 py-4 border-b">
+    <h2 class="m-0 text-lg dark:text-white">{{ 'Will we?'|t }}</h2>
+    <div>status display here</div>
+  </header>
+  <div class="flex justify-between px-4 py-4">
+    <div>{{ 'Project eveluation of whether it should be used'|t }}</div>
+    <div><a href="/">{{ 'See project report'|t }}</a></div>
+  </div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+  {% for key, value in projectTracks %}
+  <div class="track-wrapper">
+    <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+      <header class="flex justify-between px-4 py-4 border-b">
+        <h2 class="m-0 text-lg dark:text-white">{{ value.getTitle() }}</h2>
+        <div>status display here</div>
+      </header>
+      <div class="px-4 py-4">
+        <div>{{ value.getDescription() }}</div>
+        <div class="flex justify-end">track link here</div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
