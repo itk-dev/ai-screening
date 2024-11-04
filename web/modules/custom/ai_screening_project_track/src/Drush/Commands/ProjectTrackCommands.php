@@ -113,6 +113,7 @@ final class ProjectTrackCommands extends DrushCommands {
     $details = [
       ['id' => $track->id()],
       ['label' => $track->label()],
+      ['url' => $this->projectTrackHelper->getUrl($track)],
     ];
 
     $project = $track->getProject();

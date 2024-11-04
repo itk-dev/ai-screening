@@ -48,7 +48,6 @@ use function Safe\json_encode;
  *   base_table = "project_track_tool",
  *   revision_table = "project_track_tool_revision",
  *   show_revision_ui = TRUE,
- *   admin_permission = "administer project_track_tool",
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "revision_id",

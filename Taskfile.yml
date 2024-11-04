@@ -70,7 +70,7 @@ tasks:
 
   site-update:
     desc: "Update site"
-    prompt: "This will reset your configurarion. Continue?"
+    prompt: "This will reset your configuration. Continue?"
     cmds:
       - task start
       - task drush -- deploy

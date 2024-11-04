@@ -3,6 +3,7 @@
 namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Core\Entity\EntityAccessControlHandlerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\ai_screening\Helper\AbstractHelper;
@@ -13,6 +14,7 @@ use Drupal\ai_screening_project_track\ProjectTrackToolComputerInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface;
 use Drupal\core_event_dispatcher\EntityHookEvents;
+use Drupal\core_event_dispatcher\Event\Entity\EntityAccessEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityUpdateEvent;
 use Drupal\webform\WebformSubmissionInterface;
@@ -41,6 +43,13 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
    */
   private WebformSubmissionStorageInterface $webformSubmissionStorage;
 
+  /**
+   * The project track tool access control handler.
+   *
+   * @var \Drupal\Core\Entity\EntityAccessControlHandlerInterface
+   */
+  private EntityAccessControlHandlerInterface $projectTrackToolAccessControlHandler;
+
   public function __construct(
     private readonly TimeInterface $time,
     private readonly EventDispatcherInterface $eventDispatcher,
@@ -50,6 +59,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     parent::__construct($logger);
     $this->projectTrackToolStorage = $entityTypeManager->getStorage('project_track_tool');
     $this->webformSubmissionStorage = $entityTypeManager->getStorage('webform_submission');
+    $this->projectTrackToolAccessControlHandler = $entityTypeManager->getAccessControlHandler('project_track_tool');
   }
 
   /**
@@ -217,12 +227,29 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   }
 
   /**
+   * Entity access event handler.
+   */
+  public function entityAccess(EntityAccessEvent $event): void {
+    $entity = $event->getEntity();
+
+    // Check access to webform submission by checking access to the owning tool.
+    if ($entity instanceof WebformSubmissionInterface) {
+      $tool = $this->loadToolByWebformSubmission($entity);
+      $access = $this->projectTrackToolAccessControlHandler->access($tool, $event->getOperation(), $event->getAccount(), TRUE);
+      if (!$access->isNeutral()) {
+        $event->setAccessResult($access);
+      }
+    }
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function getSubscribedEvents(): array {
     return [
       EntityHookEvents::ENTITY_INSERT => 'processSubmission',
       EntityHookEvents::ENTITY_UPDATE => 'processSubmission',
+      EntityHookEvents::ENTITY_ACCESS => 'entityAccess',
     ];
   }
 
@@ -271,6 +298,25 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     $submission = $this->webformSubmissionStorage->load($tool->getToolId());
 
     return $this->getUrl($submission, rel: 'edit-form');
+  }
+
+  /**
+   * Load project track tool for a webform submission.
+   *
+   * @param \Drupal\webform\WebformSubmissionInterface $submission
+   *   The webform submission.
+   *
+   * @return \Drupal\ai_screening_project_track\ProjectTrackToolInterface|null
+   *   The tool if any.
+   */
+  private function loadToolByWebformSubmission(WebformSubmissionInterface $submission): ?ProjectTrackToolInterface {
+    $ids = $this->projectTrackToolStorage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('tool_entity_type', $submission->getEntityTypeId(), '=')
+      ->condition('tool_id', $submission->id(), '=')
+      ->execute();
+
+    return $this->projectTrackToolStorage->load(reset($ids)) ?: NULL;
   }
 
 }
