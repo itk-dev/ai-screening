@@ -11,6 +11,6 @@ userinfo_mappings:
   timezone: zoneinfo
 role_mappings:
   editor:
-    - AD-editor
+    - Redaktoer
   administrator:
-    - AD-administrator
+    - Administrator
