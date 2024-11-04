@@ -83,3 +83,4 @@ private-files/
 /web/modules/contrib
 
 .env.local
+.env.docker.local
