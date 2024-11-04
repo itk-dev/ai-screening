@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-25](https://github.com/itk-dev/ai-screening/pull/25)
+  Status component
 - [PR-23](https://github.com/itk-dev/ai-screening/pull/23)
   Theme header
 - [PR-22](https://github.com/itk-dev/ai-screening/pull/22)
