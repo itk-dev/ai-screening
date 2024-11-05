@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_screening\Helper;
 
+use Drupal\Core\Site\Settings;
 use Drupal\custom_event_dispatcher\Event\OpenIdConnectUserinfoAlterEvent;
 use Drupal\custom_event_dispatcher\Event\OpenIdConnectUserinfoSaveEvent;
 use Drupal\custom_event_dispatcher\OpenIdConnectHookEvents;
@@ -18,8 +19,10 @@ class OpenIdConnectHelper extends AbstractHelper implements EventSubscriberInter
   public function userinfoAlter(OpenIdConnectUserinfoAlterEvent $event): void {
     $userinfo = &$event->getUserinfo();
 
-    if (isset($userinfo['role']) && !is_array($userinfo['groups'])) {
-      $userinfo['groups'] = $userinfo['role'];
+    $groupsClaim = Settings::get('ai_screening')['openid_connect']['groups_claim'] ?? 'role';
+
+    if ('groups' !== $groupsClaim && isset($userinfo[$groupsClaim]) && !isset($userinfo['groups'])) {
+      $userinfo['groups'] = $userinfo[$groupsClaim];
     }
   }
 
