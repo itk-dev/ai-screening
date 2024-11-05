@@ -417,7 +417,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     if ($node instanceof NodeInterface) {
       $variables->set('projectTracks', $this->loadProjectTracks($node));
       $variables->set('projectGroup', $this->loadProjectGroup($node));
-      $variables->set('projectMembers', $this->loadProjectGroup($node)->getMembers());
+      $variables->set('projectMembers', $this->loadProjectGroup($node)->getRelatedEntities('group_membership'));
     }
   }
 

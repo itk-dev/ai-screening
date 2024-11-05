@@ -7,15 +7,33 @@
  *
  * Additional variables:
  * - projectTracks: The project tracks related to the node.
+ * - projectGroup: The group of users that belongs to this project
+ * - projectMembers: THe members of the group.
  *
  * @ingroup themeable
  */
 #}
+{% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'].field_name.value %}
+
 <div class="container my-6">
   <h1>{{ label }}</h1>
   <p>{{ content.field_description }}</p>
-  <p>{{ content.field_department }}</p>
-  {{ dump() }}
+  <div class="grid grid-cols-4">
+    <div>
+      <h3>{{ 'Department'|t }}</h3>
+      <div>{{ content.field_department }}</div>
+    </div>
+    <div>
+      <h3>{{ 'Owner'|t }}</h3>
+      <div>{{ owner }}</div>
+    </div>
+    <div>
+      <h3>{{ 'Contributers'|t }}</h3>
+      {% for member in projectMembers %}
+        <span class="project-members"><span>{{ member.field_name.value }}</span><span class="spacing">{{ ', ' }}</span></span>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
   <header class="flex justify-between px-4 py-4 border-b">
