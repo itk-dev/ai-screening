@@ -36,7 +36,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-          label: ''
+          label: Navn
           exclude: false
           alter:
             alter_text: false
@@ -99,7 +99,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: ''
+          label: Note
           exclude: false
           alter:
             alter_text: false
@@ -163,7 +163,7 @@ display:
           entity_type: node
           entity_field: uid
           plugin_id: field
-          label: ''
+          label: Opretter
           exclude: false
           alter:
             alter_text: false
