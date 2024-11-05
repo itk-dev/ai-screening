@@ -97,7 +97,7 @@ task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['
 task drush -- cache:rebuild
 ```
 
-## Delvelopment command line incantations
+## Development command line incantations
 
 This section contains some useful command line incantations that can come in handy during development and manual
 testing.
