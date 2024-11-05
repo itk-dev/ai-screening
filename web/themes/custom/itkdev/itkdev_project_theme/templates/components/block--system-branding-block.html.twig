@@ -21,6 +21,8 @@
     <a href="{{ path('<front>') }}" rel="home">
       <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" fetchpriority="high" />
     </a>
+    <div>
+       {{ include('@itkdev_project_theme/components/nav-button.html.twig') }}
     </div>
   {% endif %}
 {% endblock %}

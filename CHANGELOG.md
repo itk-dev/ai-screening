@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-24](https://github.com/itk-dev/ai-screening/pull/24)
+  Access control
+- [PR-21](https://github.com/itk-dev/ai-screening/pull/21)
+  Added project track tool entity
+- [PR-23](https://github.com/itk-dev/ai-screening/pull/23)
+  Theme header
 - [PR-22](https://github.com/itk-dev/ai-screening/pull/22)
   Base elements styling
+- [PR-18](https://github.com/itk-dev/ai-screening/pull/18)
+  Added submission data to track
 - [PR-20](https://github.com/itk-dev/ai-screening/pull/20)
   Add site branding block to navigation
   Remove field_ui from `core.extension.yml` and remove a field_ui related config file
