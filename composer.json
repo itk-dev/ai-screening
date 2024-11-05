@@ -124,7 +124,8 @@
         },
         "patches": {
             "drupal/core": {
-                "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540)": "https://www.drupal.org/files/issues/2024-08-06/3150540-43-MR9103-11.x.diff"
+                "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540)": "https://www.drupal.org/files/issues/2024-08-06/3150540-43-MR9103-11.x.diff",
+                "Missing menu active trail on views (https://www.drupal.org/project/drupal/issues/3359511)": "https://www.drupal.org/files/issues/2024-09-23/3359511-100.patch"
             }
         }
     },
