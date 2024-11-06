@@ -88,7 +88,7 @@
  * ];
  * @endcode
  */
-$databases['default']['default'] = array (
+$databases['default']['default'] = [
   'database' => 'db',
   'username' => 'db',
   'password' => 'db',
@@ -99,7 +99,7 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
   'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
-);
+];
 
 /**
  * Customizing database settings.

@@ -79,7 +79,7 @@ services:
           ClaimTypes:
             # Add your custom claims here
             - name
-            - groups
+            - role
 
       USERS_CONFIGURATION_INLINE: |
         - SubjectId: administrator
@@ -93,8 +93,8 @@ services:
           - Type: email
             Value: administrator@example.com
             ValueType: string
-          - Type: groups
-            Value: '["AD-administrator"]'
+          - Type: role
+            Value: '["Administrator"]'
             ValueType: json
 
         - SubjectId: editor
@@ -108,8 +108,8 @@ services:
           - Type: email
             Value: editor@example.com
             ValueType: string
-          - Type: groups
-            Value: '["AD-editor"]'
+          - Type: role
+            Value: '["Redaktoer"]'
             ValueType: json
 
         - SubjectId: user
@@ -123,6 +123,6 @@ services:
           - Type: email
             Value: user@example.com
             ValueType: string
-          - Type: groups
-            Value: '[]'
+          - Type: role
+            Value: '["Bruger"]'
             ValueType: json

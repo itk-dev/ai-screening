@@ -9,10 +9,10 @@ use Drupal\hook_event_dispatcher\Event\EventInterface;
 use Drupal\user\UserInterface;
 
 /**
- * Userinfo save event.
+ * OpenID Connect userinfo save event.
  */
 #[HookEvent(id: 'openid_connect_userinfo_save', hook: 'openid_connect_userinfo_save')]
-class UserinfoSaveEvent extends Event implements EventInterface {
+class OpenIdConnectUserinfoSaveEvent extends Event implements EventInterface {
 
   public function __construct(
     private readonly UserInterface $account,
