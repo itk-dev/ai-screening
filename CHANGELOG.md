@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
+
 - [PR-28](https://github.com/itk-dev/ai-screening/pull/28)
   Add patch for missing menu active trail on views
   Add menu item for projects in view instead of as content
