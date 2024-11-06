@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning].
 
 - [PR-26](https://github.com/itk-dev/ai-screening/pull/26)
   OpenID Connect changes
+- [PR-25](https://github.com/itk-dev/ai-screening/pull/25)
+  Status component
 - [PR-24](https://github.com/itk-dev/ai-screening/pull/24)
   Access control
 - [PR-21](https://github.com/itk-dev/ai-screening/pull/21)
