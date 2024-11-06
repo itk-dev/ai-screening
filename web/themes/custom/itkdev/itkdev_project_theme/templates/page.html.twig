@@ -50,7 +50,7 @@
   <main role="main" class="">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
     <div class="flex h-screen overflow-hidden">
-      <aside :class="sidebarToggle ? 'translate-x-0' : '-translate-x-full'" class="absolute w-72 h-screen left-0 top-0 z-20 flex flex-col overflow-y-hidden bg-zinc-800 duration-300 ease-linear lg:static lg:translate-x-0 -translate-x-full" @click.outside="sidebarToggle = false">
+      <aside class="absolute w-72 h-screen left-0 top-0 z-20 flex flex-col overflow-y-hidden bg-zinc-800 duration-300 ease-linear lg:static lg:translate-x-0 -translate-x-full border-r border-slate-100">
         {{ page.navigation }}
       </aside>
       <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
