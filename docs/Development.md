@@ -22,14 +22,14 @@ During (local) development we use [OpenId Connect Server Mock](https://github.co
 
 The following users are available for local testing:
 
-| Username      | Password      | Groups           |
-|---------------|---------------|------------------|
-| administrator | administrator | AD-administrator |
-| editor        | editor        | AD-editor        |
-| user          | user          | AD-user[^1]      |
+| Username      | Password      | Groups        |
+|---------------|---------------|---------------|
+| administrator | administrator | Administrator |
+| editor        | editor        | Redaktoer     |
+| user          | user          | Bruger[^1]    |
 
-[^1]: The "AD-user" group is not actually used in Drupal (but the AD requires a group on a user). A user that is neither
-    an "administrator" or "editor" will be just an "authenticated" user.
+[^1]: The "Bruger" group is not actually used in Drupal (but the AD requires a group on a user). A user that is neither
+    an "ADministrator" or "Redaktoer" will be just an "authenticated" user.
 
 ## WebProfiler
 

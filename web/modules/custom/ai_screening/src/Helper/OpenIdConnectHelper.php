@@ -2,7 +2,9 @@
 
 namespace Drupal\ai_screening\Helper;
 
-use Drupal\custom_event_dispatcher\Event\UserinfoSaveEvent;
+use Drupal\Core\Site\Settings;
+use Drupal\custom_event_dispatcher\Event\OpenIdConnectUserinfoAlterEvent;
+use Drupal\custom_event_dispatcher\Event\OpenIdConnectUserinfoSaveEvent;
 use Drupal\custom_event_dispatcher\OpenIdConnectHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -14,7 +16,20 @@ class OpenIdConnectHelper extends AbstractHelper implements EventSubscriberInter
   /**
    * Event handler.
    */
-  public function userinfoSave(UserinfoSaveEvent $event) {
+  public function userinfoAlter(OpenIdConnectUserinfoAlterEvent $event): void {
+    $userinfo = &$event->getUserinfo();
+
+    $groupsClaim = Settings::get('ai_screening')['openid_connect']['groups_claim'] ?? 'role';
+
+    if ('groups' !== $groupsClaim && isset($userinfo[$groupsClaim]) && !isset($userinfo['groups'])) {
+      $userinfo['groups'] = $userinfo[$groupsClaim];
+    }
+  }
+
+  /**
+   * Event handler.
+   */
+  public function userinfoSave(OpenIdConnectUserinfoSaveEvent $event) {
     try {
       [$account, $context] = [$event->getAccount(), $event->getContext()];
       if (($context['is_new'] ?? FALSE) && $account->isBlocked()) {
@@ -35,6 +50,7 @@ class OpenIdConnectHelper extends AbstractHelper implements EventSubscriberInter
    */
   public static function getSubscribedEvents(): array {
     return [
+      OpenIdConnectHookEvents::USERINFO_ALTER => 'userinfoAlter',
       OpenIdConnectHookEvents::USERINFO_SAVE => 'userinfoSave',
     ];
   }
