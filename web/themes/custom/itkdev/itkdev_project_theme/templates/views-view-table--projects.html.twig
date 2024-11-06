@@ -40,12 +40,7 @@
     sticky ? 'sticky-header',
   ]
 %}
-<div class="flex justify-between my-7">
-<h1 class="text-4xl dark:text-white">{{ view.title }}</h1>
 
-    {{ include('@itkdev_project_theme/components/new-project-button.html.twig') }}
-
-</div>
 <div class="rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
 <table{{ attributes.addClass(classes) }}>
   {% if caption_needed %}
