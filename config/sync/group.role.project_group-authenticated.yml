@@ -1,0 +1,17 @@
+uuid: 345a2043-b1a8-43d0-8c8d-01b9c75c41bd
+langcode: da
+status: true
+dependencies:
+  config:
+    - group.type.project_group
+    - user.role.authenticated
+id: project_group-authenticated
+label: Authenticated
+weight: -7
+admin: false
+scope: outsider
+global_role: authenticated
+group_type: project_group
+permissions:
+  - 'view group'
+  - 'view group_node:project entity'
