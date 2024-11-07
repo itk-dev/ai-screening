@@ -25,8 +25,10 @@
  *
  * Replaces standard throbber from stable9 with Olivero's.
  *
+ * See https://www.drupal.org/docs/develop/theming-drupal/update-the-throbber
+ *
  * Copied and edited from:
- * core/themes/stable9/css/system/components/autocomplete-loading.module.css
+ * web/core/themes/olivero/css/components/autocomplete-loading.module.css
  *
  */
 
