@@ -26,7 +26,7 @@
   {% if prefix is not empty %}
     <span class="field-prefix">{{ prefix }}</span>
   {% endif %}
-  {% if description_display == 'before' and description.content or type == 'radio' and description.content %}
+  {% if description.content and (description_display == 'before' or type == 'radio') %}
     <div{{ description.attributes }}>
       {{ description.content }}
     </div>
