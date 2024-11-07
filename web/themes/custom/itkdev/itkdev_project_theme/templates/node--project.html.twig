@@ -20,7 +20,7 @@
 {% endset %}
 
 <div class="container my-6">
-  <h1 class="inline-block">{{ label }}</h1><a href="{{ url('entity.node.edit_form', {'node': 10}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+  <h1 class="inline-block">{{ label }}</h1><a href="{{ url('entity.node.edit_form', {node: 10}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
   <p>{{ content.field_description }}</p>
   <div class="grid grid-cols-4">
     <div>
@@ -42,7 +42,7 @@
 <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
   <header class="flex justify-between px-4 py-4 border-b">
     <h2 class="m-0 text-lg dark:text-white">{{ 'Will we?'|t }}</h2>
-    <div>{% include '@itkdev_project_theme/components/project-status.html.twig' with project_status %}</div>
+    <div>{{ include('@itkdev_project_theme/components/project-status.html.twig', {project_status: 'project_status'}) }}</div>
   </header>
   <div class="flex justify-between px-4 py-4">
     <div>{{ 'Project eveluation of whether it should be used'|t }}</div>
