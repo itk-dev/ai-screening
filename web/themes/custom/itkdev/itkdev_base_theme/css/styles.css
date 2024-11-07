@@ -72,7 +72,9 @@
   }
 
   /* Common typography */
-
+  h1 {
+    @apply text-3xl font-semibold my-5;
+  }
   h2 {
     @apply text-2xl font-semibold my-5;
   }

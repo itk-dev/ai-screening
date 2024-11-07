@@ -11,3 +11,9 @@
 .project-members:last-child .spacing {
     display: none;
 }
+
+
+
+a {
+    text-decoration: underline;
+}
