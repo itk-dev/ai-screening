@@ -43,12 +43,11 @@
   background-position: 98% center;
 }
 
-
 /* Style dropdown from autocomplete input */
 .ui-autocomplete .ui-menu-item {
   height: 50px;
   border-bottom: 1px solid rgb(203 213 225); /* bg-slate-300 */
-  color: rgb(71 85 105)
+  color: rgb(71 85 105);
 }
 
 .ui-menu-item:last-child {
@@ -72,13 +71,13 @@
   margin: 0;
   border: 0;
   background-color: rgb(241 245 249); /* bg-slate-100 */
-  color: rgb(71 85 105)
+  color: rgb(71 85 105);
 }
 
 /* This css class is added on the projects view (admin/structure/views/view/projects) */
 .projects-view {
-form {
-  display: flex;
+  form {
+    display: flex;
 
     .form-item {
       flex-grow: 1;
