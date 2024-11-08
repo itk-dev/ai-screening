@@ -74,3 +74,14 @@
   background-color: rgb(241 245 249); /* bg-slate-100 */
   color: rgb(71 85 105)
 }
+
+/* This css class is added on the projects view (admin/structure/views/view/projects) */
+.projects-view {
+form {
+  display: flex;
+
+    .form-item {
+      flex-grow: 1;
+    }
+  }
+}

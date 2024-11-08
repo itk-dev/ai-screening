@@ -451,6 +451,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
+      css_class: projects-view
       header: {  }
       footer: {  }
       display_extenders: {  }
