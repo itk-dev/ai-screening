@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-29](https://github.com/itk-dev/ai-screening/pull/29)
+  2937: Entity access check updates
 - [PR-30](https://github.com/itk-dev/ai-screening/pull/30)
   Tailwind classes to make the menu appear on large screens and be toggleable on small screens
 - [PR-28](https://github.com/itk-dev/ai-screening/pull/28)
