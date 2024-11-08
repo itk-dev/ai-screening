@@ -11,6 +11,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackStatus;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Defines the project track entity class.
@@ -132,8 +133,10 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
-  public function getType(): string {
-    return $this->get('type')->getString();
+  public function getType(): TermInterface {
+    $entities = $this->get('type')->referencedEntities();
+
+    return reset($entities);
   }
 
   /**
