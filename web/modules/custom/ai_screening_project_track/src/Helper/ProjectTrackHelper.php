@@ -148,7 +148,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    * {@inheritdoc}
    */
   #[\Override]
-  public static function getSubscribedEvents() {
+  public static function getSubscribedEvents(): array {
     return [
       ProjectTrackToolComputedEvent::class => 'projectTrackToolComputed',
     ];

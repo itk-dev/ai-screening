@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning].
   Add menu item for projects in view instead of as content
   Add better exposed filters
   Style projects view
+- [PR-27](https://github.com/itk-dev/ai-screening/pull/27)
+  Added project node template
 - [PR-26](https://github.com/itk-dev/ai-screening/pull/26)
   OpenID Connect changes
 - [PR-25](https://github.com/itk-dev/ai-screening/pull/25)

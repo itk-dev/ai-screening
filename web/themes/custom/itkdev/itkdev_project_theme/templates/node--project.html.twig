@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * AI screening implementation to display a node.
+ *
+ * @see web/core/modules/node/templates/node.html.twig
+ *
+ * Additional variables:
+ * - projectTracks: The project tracks related to the node.
+ * - projectGroup: The group of users that belongs to this project
+ * - projectMembers: THe members of the group.
+ *
+ * @ingroup themeable
+ */
+#}
+{% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'].field_name.value %}
+{% set project_status = [0, 1, 3, 2] %}
+{% set edit_link_text %}
+  <i class="fa-solid fa-pencil"></i>
+{% endset %}
+
+<div class="container my-6">
+  <h1 class="inline-block">{{ label }}</h1><a href="{{ url('entity.node.edit_form', {node: 10}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+  <p>{{ content.field_description }}</p>
+  <div class="grid grid-cols-4">
+    <div>
+      <h3>{{ 'Department'|t }}</h3>
+      <div>{{ content.field_department }}</div>
+    </div>
+    <div>
+      <h3>{{ 'Owner'|t }}</h3>
+      <div>{{ owner }}</div>
+    </div>
+    <div>
+      <h3>{{ 'Contributers'|t }}</h3>
+      {% for member in projectMembers %}
+        <span class="project-members"><span>{{ member.field_name.value }}</span><span class="spacing">{{ ', ' }}</span></span>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+  <header class="flex justify-between px-4 py-4 border-b">
+    <h2 class="m-0 text-lg dark:text-white">{{ 'Will we?'|t }}</h2>
+    <div>{{ include('@itkdev_project_theme/components/project-status.html.twig') }}</div>
+  </header>
+  <div class="flex justify-between px-4 py-4">
+    <div>{{ 'Project eveluation of whether it should be used'|t }}</div>
+    <div><a href="/">{{ 'See project report'|t }}</a></div>
+  </div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+  {% for key, value in projectTracks %}
+  <div class="track-wrapper">
+    <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+      <header class="flex justify-between px-4 py-4 border-b">
+        <h2 class="m-0 text-lg dark:text-white">{{ value.getTitle() }}</h2>
+        <div>status display here</div>
+      </header>
+      <div class="px-4 py-4">
+        <div>{{ value.getDescription() }}</div>
+        <div class="flex justify-end">track link here</div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
