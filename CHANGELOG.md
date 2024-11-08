@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+
+- [PR-30](https://github.com/itk-dev/ai-screening/pull/31)
+  Create a base filefor the title (with title and "controls")
+  Changed `views-view.html.twig` to `views-view--projects.html.twig`
 - [PR-30](https://github.com/itk-dev/ai-screening/pull/30)
   Tailwind classes to make the menu appear on large screens and be toggleable on small screens
 - [PR-28](https://github.com/itk-dev/ai-screening/pull/28)
