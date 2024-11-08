@@ -102,7 +102,7 @@ class UserFixture extends AbstractFixture implements DependentFixtureInterface, 
       ]);
 
       $user->save();
-      $this->setReference('user:'.$i, $user);
+      $this->setReference('user:' . $i, $user);
     }
   }
 
