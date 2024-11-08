@@ -7,7 +7,6 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
-
 - [PR-30](https://github.com/itk-dev/ai-screening/pull/31)
   Create a base filefor the title (with title and "controls")
   Changed `views-view.html.twig` to `views-view--projects.html.twig`
