@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-30](https://github.com/itk-dev/ai-screening/pull/30)
+  Tailwind classes to make the menu appear on large screens and be toggleable on small screens
 - [PR-28](https://github.com/itk-dev/ai-screening/pull/28)
   Add patch for missing menu active trail on views
   Add menu item for projects in view instead of as content
