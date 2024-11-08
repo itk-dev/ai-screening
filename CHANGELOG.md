@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-28](https://github.com/itk-dev/ai-screening/pull/28)
+  Add patch for missing menu active trail on views
+  Add menu item for projects in view instead of as content
+  Add better exposed filters
+  Style projects view
 - [PR-27](https://github.com/itk-dev/ai-screening/pull/27)
   Added project node template
 - [PR-26](https://github.com/itk-dev/ai-screening/pull/26)
