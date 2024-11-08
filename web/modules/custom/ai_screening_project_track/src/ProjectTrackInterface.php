@@ -7,6 +7,7 @@ namespace Drupal\ai_screening_project_track;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Provides an interface defining a project track entity type.
@@ -16,7 +17,17 @@ interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInt
   /**
    * Get type.
    */
-  public function getType(): String;
+  public function getType(): TermInterface;
+
+  /**
+   * Get title.
+   */
+  public function getTitle(): string;
+
+  /**
+   * Get description.
+   */
+  public function getDescription(): string;
 
   /**
    * Get project track evaluation.

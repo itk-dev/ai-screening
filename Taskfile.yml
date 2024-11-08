@@ -50,6 +50,7 @@ tasks:
     desc: "Build a new site"
     cmds:
       - task drush -- site:install minimal -y
+      - task drush -- user:role:add 'administrator' admin
 
   build-site:existing-conf:
     desc: "Build the site using existing configuration from the config/sync folder"
@@ -57,6 +58,7 @@ tasks:
       - task compose -- up --detach
       - task composer -- install
       - task drush -- site-install --existing-config --yes
+      - task drush -- user:role:add 'administrator' admin
 
   site-url:
     desc: "Show site URL"

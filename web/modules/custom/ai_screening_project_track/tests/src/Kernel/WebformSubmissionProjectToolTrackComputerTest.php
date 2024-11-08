@@ -25,6 +25,7 @@ class WebformSubmissionProjectToolTrackComputerTest extends KernelTestBase {
     'ai_screening_project_track',
     'user',
     'node',
+    'taxonomy',
     'webform',
     // Needed to define constants used by webform (like `DRUPAL_DISABLED`)
     'system',

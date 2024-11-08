@@ -11,6 +11,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackStatus;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\TermInterface;
 
 /**
  * Defines the project track entity class.
@@ -84,9 +85,19 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
 
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['type'] = BaseFieldDefinition::create('string')
+    $fields['type'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Type'))
+      ->setDescription(t('The type of the project track, as defined by taxonommy term'))
+      ->setSetting('target_type', 'taxonomy_term')
+      ->setSetting('handler_settings', ['target_bundles' => ['project_track_type' => 'project_track_type']]);
+
+    $fields['title'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Project track evaluation'))
       ->setDescription(t('The type of the project track.'));
+
+    $fields['description'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Project track note'))
+      ->setDescription(t('A note related to project track evaluation.'));
 
     $fields['project_track_evaluation'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Project track evaluation'))
@@ -122,8 +133,24 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
-  public function getType(): string {
-    return $this->get('type')->getString();
+  public function getType(): TermInterface {
+    $entities = $this->get('type')->referencedEntities();
+
+    return reset($entities);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getTitle(): string {
+    return $this->get('title')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDescription(): string {
+    return $this->get('description')->getString();
   }
 
   /**
