@@ -1,0 +1,9 @@
+<div class="flex justify-between my-7">
+{% block title %}title{% endblock %}
+{% block controls %}controls{% endblock %}
+</div>
+{% block content %}
+  <div{{ attributes }}>
+    {{ content }}
+  </div>
+  {% endblock %}
