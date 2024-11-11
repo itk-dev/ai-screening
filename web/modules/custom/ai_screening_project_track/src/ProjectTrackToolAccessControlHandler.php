@@ -9,7 +9,6 @@ use Drupal\Core\Entity\EntityAccessControlHandler;
 use Drupal\Core\Entity\EntityHandlerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -22,19 +21,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 final class ProjectTrackToolAccessControlHandler extends EntityAccessControlHandler implements EntityHandlerInterface {
 
-  public function __construct(
-    private readonly EntityTypeManagerInterface $entityTypeManager,
-    EntityTypeInterface $entity_type,
-  ) {
-    parent::__construct($entity_type);
-  }
-
   /**
    * {@inheritdoc}
    */
   public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
     return new static(
-      $container->get('entity_type.manager'),
       $entity_type,
     );
   }
@@ -47,10 +38,9 @@ final class ProjectTrackToolAccessControlHandler extends EntityAccessControlHand
       return AccessResult::neutral();
     }
 
-    $parentAccessControlHandler = $this->entityTypeManager->getAccessControlHandler('project_track');
     $parent = $entity->getProjectTrack();
 
-    return $parentAccessControlHandler->checkAccess($parent, $operation, $account);
+    return $parent->access($operation, $account, TRUE);
   }
 
   /**

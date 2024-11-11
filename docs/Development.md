@@ -58,6 +58,7 @@ Some helper Drush commands are added – currently most for debugging purposes:
 
 * `task drush -- ai-screening:project-track:list`: List project tracks
 * `task drush -- ai-screening:project-track:show`: Show details for a project track
+* `task drush -- ai-screening:access-check`: Show access details
 
 ## Tests
 

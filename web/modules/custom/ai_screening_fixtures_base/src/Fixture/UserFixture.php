@@ -14,6 +14,8 @@ use Drupal\user\Entity\User;
  */
 class UserFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
 
+  public final const int EXTRA_USERS = 10;
+
   /**
    * {@inheritdoc}
    *
@@ -81,6 +83,27 @@ class UserFixture extends AbstractFixture implements DependentFixtureInterface, 
 
     $user->save();
     $this->setReference('user:authenticated', $user);
+
+    for ($i = 0; $i < self::EXTRA_USERS; $i++) {
+      $name = sprintf('user%d', $i);
+      $departmentReferenceName = sprintf('department:Department %s', chr(ord('A') + $i % 6));
+      $user = User::create([
+        'name' => $name,
+        'mail' => $name . '@example.com',
+        'pass' => $name,
+        'status' => 1,
+        'roles' => [
+          'authenticated',
+        ],
+        'field_department' => [
+          'target_id' => $this->getReference($departmentReferenceName)->id(),
+        ],
+        'field_name' => sprintf('The %s user', $this->ordinal($i)),
+      ]);
+
+      $user->save();
+      $this->setReference('user:' . $i, $user);
+    }
   }
 
   /**
@@ -89,6 +112,7 @@ class UserFixture extends AbstractFixture implements DependentFixtureInterface, 
   public function getDependencies(): array {
     return [
       FilesFixture::class,
+      TermDepartmentFixture::class,
     ];
   }
 
@@ -97,6 +121,21 @@ class UserFixture extends AbstractFixture implements DependentFixtureInterface, 
    */
   public function getGroups(): array {
     return ['user'];
+  }
+
+  /**
+   * Get ordinal number.
+   *
+   * @see https://stackoverflow.com/a/3110033/2502647
+   */
+  private function ordinal($number) {
+    $ends = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
+    if ((($number % 100) >= 11) && (($number % 100) <= 13)) {
+      return $number . 'th';
+    }
+    else {
+      return $number . $ends[$number % 10];
+    }
   }
 
 }
