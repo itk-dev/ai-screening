@@ -49,6 +49,10 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   public final const string BUNDLE_PROJECT = 'project';
   public final const string FIELD_CORRUPTED = 'corrupted';
   public final const string BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
+  public final const string PROJECT_STATUS_NEW = '0';
+  public final const string PROJECT_STATUS_APPROVED = '1';
+  public final const string PROJECT_STATUS_IN_PROGRESS = '2';
+  public final const string PROJECT_STATUS_REFUSED = '3';
 
   /**
    * The group storage.

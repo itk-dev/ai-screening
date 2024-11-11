@@ -126,6 +126,9 @@
         "patches": {
             "drupal/core": {
                 "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540)": "https://www.drupal.org/files/issues/2024-08-06/3150540-43-MR9103-11.x.diff"
+            },
+            "drupal/core": {
+                "Add an Autowire trait for plugins (https://www.drupal.org/project/drupal/issues/3294266)": "https://www.drupal.org/files/issues/2023-08-18/3294266-24.patch"
             }
         }
     },

@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.project.field_department
     - field.field.node.project.field_description
+    - field.field.node.project.field_status
     - node.type.project
   module:
     - text
@@ -15,13 +16,13 @@ mode: default
 content:
   field_department:
     type: options_buttons
-    weight: 2
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   field_description:
     type: text_textarea
-    weight: 1
+    weight: 2
     region: content
     settings:
       rows: 5
@@ -44,6 +45,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_status: true
   langcode: true
   promote: true
   sticky: true
