@@ -9,6 +9,7 @@ redirect_login: /user
 redirect_logout: /user
 userinfo_mappings:
   timezone: zoneinfo
+  field_name: name
 role_mappings:
   editor:
     - Redaktoer
