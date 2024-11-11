@@ -126,3 +126,60 @@ services:
           - Type: role
             Value: '["Bruger"]'
             ValueType: json
+
+        # A selection of fixture users (cf. web/modules/custom/ai_screening_fixtures_base/src/Fixture/UserFixture.php)
+        - SubjectId: user1
+          Username: user1
+          Password: user1
+          Claims:
+          - Type: name
+            Value: User
+            ValueType: string
+          - Type: email
+            Value: user1@example.com
+            ValueType: string
+          - Type: role
+            Value: '["Bruger"]'
+            ValueType: json
+
+        - SubjectId: user2
+          Username: user2
+          Password: user2
+          Claims:
+          - Type: name
+            Value: User
+            ValueType: string
+          - Type: email
+            Value: user2@example.com
+            ValueType: string
+          - Type: role
+            Value: '["Bruger"]'
+            ValueType: json
+
+        - SubjectId: user3
+          Username: user3
+          Password: user3
+          Claims:
+          - Type: name
+            Value: User
+            ValueType: string
+          - Type: email
+            Value: user3@example.com
+            ValueType: string
+          - Type: role
+            Value: '["Bruger"]'
+            ValueType: json
+
+        - SubjectId: user4
+          Username: user4
+          Password: user4
+          Claims:
+          - Type: name
+            Value: User
+            ValueType: string
+          - Type: email
+            Value: user4@example.com
+            ValueType: string
+          - Type: role
+            Value: '["Bruger"]'
+            ValueType: json

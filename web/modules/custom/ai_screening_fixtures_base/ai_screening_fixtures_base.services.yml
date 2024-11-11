@@ -6,21 +6,26 @@ services:
     tags:
       - { name: content_fixture }
     autowire: true
-      
+
   Drupal\ai_screening_fixtures_base\Fixture\UserFixture:
     tags:
       - { name: content_fixture }
-      
+
   Drupal\ai_screening_fixtures_base\Fixture\TermDepartmentFixture:
     tags:
       - { name: content_fixture }
-      
+
   Drupal\ai_screening_fixtures_base\Fixture\FilesFixture:
     tags:
       - { name: content_fixture }
     autowire: true
-      
+
   Drupal\ai_screening_fixtures_base\Fixture\ProjectFixture:
+    tags:
+      - { name: content_fixture }
+    autowire: true
+
+  Drupal\ai_screening_fixtures_base\Fixture\GroupRelationsFixture:
     tags:
       - { name: content_fixture }
     autowire: true

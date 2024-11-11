@@ -58,6 +58,7 @@ Some helper Drush commands are added – currently most for debugging purposes:
 
 * `task drush -- ai-screening:project-track:list`: List project tracks
 * `task drush -- ai-screening:project-track:show`: Show details for a project track
+* `task drush -- ai-screening:access-check`: Show access details
 
 ## Tests
 
@@ -97,7 +98,7 @@ task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['
 task drush -- cache:rebuild
 ```
 
-## Delvelopment command line incantations
+## Development command line incantations
 
 This section contains some useful command line incantations that can come in handy during development and manual
 testing.
