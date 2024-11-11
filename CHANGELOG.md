@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-32](https://github.com/itk-dev/ai-screening/pull/32)
+  2938: Use x icon for navbutton when navigation is opened
 - [PR-29](https://github.com/itk-dev/ai-screening/pull/29)
   2937: Entity access check updates
 - [PR-30](https://github.com/itk-dev/ai-screening/pull/30)
