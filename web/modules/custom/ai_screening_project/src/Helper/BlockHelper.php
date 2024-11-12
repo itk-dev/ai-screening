@@ -36,7 +36,7 @@ final readonly class BlockHelper implements EventSubscriberInterface {
   }
 
   /**
-   * Event handler.
+   * Event handler for hook_theme().
    */
   public function theme(ThemeEvent $event): void {
     $event->addNewTheme(
