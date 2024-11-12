@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * AI screening FrontpageStatsTopBlock.php
+ *
+ * @see web/modules/custom/ai_screening/templates/stats-top-block.html.twig
+ *
+ * Available variables:
+ * - data: Data about project status across the site.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="grid grid-cols-3 gap-4 xl:grid-cols-4 my-6">
+  <div class="bg-white p-4 drop-shadow-md">
+    <div class="text-3xl mb-4 font-extrabold text-green-700">{{ data.stats.approvedCount }}</div>
+    <div>{{ 'Projects that comply to all demands for use'|t }}</div>
+  </div>
+  <div class="bg-white p-4 drop-shadow-md">
+    <div class="text-3xl mb-4 font-extrabold text-yellow-700">{{ data.stats.inProgressCount }}</div>
+    <div>{{ 'Projects that partly comply to some demands for use'|t }}</div>
+  </div>
+  <div class="bg-white p-4 drop-shadow-md">
+    <div class="text-3xl mb-4 font-extrabold text-red-700">{{ data.stats.refusedCount }}</div>
+    <div>{{ "Projects that don't comply to the demands for use"|t }}</div>
+  </div>
+</div>

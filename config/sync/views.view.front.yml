@@ -1,4 +1,4 @@
-uuid: a6d7b262-1650-41b9-81bc-85a6bdc11723
+uuid: 02ec07b1-0652-4bd9-b7fc-2fabc0ee46d8
 langcode: en
 status: true
 dependencies:
@@ -6,18 +6,13 @@ dependencies:
     - field.storage.node.field_department
     - field.storage.node.field_description
     - field.storage.user.field_name
-    - node.type.project
-    - system.menu.main
-    - taxonomy.vocabulary.department
   module:
-    - better_exposed_filters
     - group
     - node
-    - taxonomy
     - text
     - user
-id: projects
-label: Projekter
+id: front
+label: Frontpage
 module: views
 description: ''
 tag: ''
@@ -30,7 +25,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Projekter
+      title: Frontpage
       fields:
         nid:
           id: nid
@@ -84,10 +79,8 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: number_integer
-          settings:
-            thousand_separator: ''
-            prefix_suffix: true
+          type: number_unformatted
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -106,7 +99,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: Note
+          label: ''
           exclude: true
           alter:
             alter_text: false
@@ -170,7 +163,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-          label: Name
+          label: ''
           exclude: false
           alter:
             alter_text: true
@@ -231,9 +224,9 @@ display:
           field: nothing
           relationship: none
           group_type: group
-          admin_label: Status
+          admin_label: ''
           plugin_id: custom
-          label: Status
+          label: ''
           exclude: false
           alter:
             alter_text: true
@@ -266,7 +259,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -282,7 +275,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: Department
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -315,7 +308,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -345,7 +338,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: 'Project owner'
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -378,7 +371,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -401,60 +394,20 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: mini
+        type: some
         options:
           offset: 0
-          pagination_heading_level: h4
-          items_per_page: 10
-          total_pages: null
-          id: 0
-          tags:
-            next: ››
-            previous: ‹‹
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
+          items_per_page: 5
       exposed_form:
-        type: bef
+        type: basic
         options:
-          submit_button: Apply
+          submit_button: Udfør
           reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
           expose_sort_order: true
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-          text_input_required: 'Vælg et filter og klik på Anvend for at se resultater'
-          text_input_required_format: simple_editor
-          bef:
-            general:
-              autosubmit: true
-              autosubmit_exclude_textfield: false
-              autosubmit_textfield_delay: 500
-              autosubmit_textfield_minimum_length: 3
-              autosubmit_hide: true
-              input_required: false
-              allow_secondary: false
-              secondary_label: 'Avancerede indstillinger'
-              secondary_open: false
-              reset_button_always_show: false
-            filter:
-              uid:
-                plugin_id: default
-                advanced:
-                  placeholder_text: ''
-                  rewrite:
-                    filter_rewrite_values: ''
-                    filter_rewrite_values_key: false
-                  collapsible: false
-                  collapsible_disable_automatic_open: false
-                  is_secondary: false
-                  hide_label: false
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       access:
         type: perm
         options:
@@ -493,170 +446,8 @@ display:
           group: 1
           expose:
             operator: ''
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          value:
-            project: project
-        combine:
-          id: combine
-          table: views
-          field: combine
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: combine
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: combine_op
-            label: 'Project owner'
-            description: 'Filter on project title, description or project owner'
-            use_operator: false
-            operator: combine_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: combine
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              editor: '0'
-              administrator: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          fields:
-            field_description: field_description
-            title: title
-            field_name: field_name
-        field_department_target_id:
-          id: field_department_target_id
-          table: node__field_department
-          field: field_department_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_department_target_id_op
-            label: Department
-            description: ''
-            use_operator: false
-            operator: field_department_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_department_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: department
-          type: select
-          hierarchy: false
-          limit: true
-          error_message: true
       style:
         type: table
-        options:
-          grouping: {  }
-          row_class: ''
-          default_row_class: true
-          columns:
-            nid: nid
-            field_description: field_description
-            title: title
-            nothing: nothing
-            field_department: field_department
-            field_name: field_name
-          default: '-1'
-          info:
-            nid:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_description:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            title:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            nothing:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_department:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_name:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          override: true
-          sticky: false
-          summary: ''
-          empty_table: false
-          caption: ''
-          description: ''
       row:
         type: fields
       query:
@@ -702,7 +493,6 @@ display:
           entity_field: uid
           plugin_id: standard
           required: false
-      css_class: projects-view
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -711,8 +501,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
-        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -726,23 +514,12 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: projects
-      menu:
-        type: normal
-        title: Projekter
-        description: ''
-        weight: 0
-        expanded: false
-        menu_name: main
-        parent: ''
-        context: '0'
+      path: front
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
-        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags:

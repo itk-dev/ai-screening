@@ -1,7 +1,9 @@
 uuid: a239d240-0cc4-45cc-b6c0-9a29b21fe45b
 langcode: en
-status: true
+status: false
 dependencies:
+  config:
+    - field.storage.group_relationship.group_roles
   module:
     - group
     - user
