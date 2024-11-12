@@ -6,10 +6,10 @@ namespace Drupal\ai_screening\Plugin\Block;
 
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Plugin\ContainerFactoryAutowireTrait;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\ai_screening\Helper\BlockHelper;
-use Drupal\Core\Plugin\ContainerFactoryAutowireTrait;
 
 /**
  * Provides a frontpage stats top block.
@@ -39,14 +39,10 @@ final class FrontpageStatsTopBlock extends BlockBase implements ContainerFactory
    * {@inheritdoc}
    */
   public function build(): array {
-    $a = $this->blockHelper->getFrontpageStats();
-    $b = 1;
     return [
       '#theme' => 'stats_top_block',
       '#data' => [
-        'accepted' => 0,
-        'in_progress' => 0,
-        'refused' => 0,
+        'stats' => $this->blockHelper->getFrontpageStats(),
       ],
     ];
   }

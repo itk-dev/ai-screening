@@ -49,10 +49,6 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   public final const string BUNDLE_PROJECT = 'project';
   public final const string FIELD_CORRUPTED = 'corrupted';
   public final const string BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
-  public final const string PROJECT_STATUS_NEW = '0';
-  public final const string PROJECT_STATUS_APPROVED = '1';
-  public final const string PROJECT_STATUS_IN_PROGRESS = '2';
-  public final const string PROJECT_STATUS_REFUSED = '3';
 
   /**
    * The group storage.
@@ -463,6 +459,30 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     $relationships = $this->groupRelationshipStorage->loadMultiple($relationshipIds);
 
     return $this->groupStorage->load(reset($relationships)->getGroupId());
+  }
+
+  /**
+   * Get a list of project track statuses and project status.
+   *
+   * @param string $projectId
+   *   The project id.
+   *
+   * @return array
+   *   A list of project status and track evaluation.
+   */
+  public function getProjectTrackEvaluation(string $projectId) : array {
+    $statuses = [];
+    $project = $this->nodeStorage->load($projectId);
+
+    if ($project instanceof NodeInterface) {
+      $projectTracks = $this->loadProjectTracks($project);
+      foreach ($projectTracks as $projectTrack) {
+        $statuses['track_evaluation'][$projectTrack->getType()->id()] = $projectTrack->getProjectTrackEvaluation();
+      }
+
+    }
+
+    return $statuses;
   }
 
 }

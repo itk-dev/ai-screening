@@ -5,11 +5,10 @@ dependencies:
   config:
     - field.storage.node.field_department
     - field.storage.node.field_description
-    - field.storage.node.field_status
+    - field.storage.user.field_name
   module:
     - group
     - node
-    - options
     - text
     - user
 id: front
@@ -28,6 +27,70 @@ display:
     display_options:
       title: Frontpage
       fields:
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: nid
+          plugin_id: field
+          label: ID
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_unformatted
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
         field_description:
           id: field_description
           table: node__field_description
@@ -155,19 +218,19 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_status:
-          id: field_status
-          table: node__field_status
-          field: field_status
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
           relationship: none
           group_type: group
           admin_label: ''
-          plugin_id: field
+          plugin_id: custom
           label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: "{% set project_status = project_status_evaluation(nid.__toString()) %}\r\n{{ include('@itkdev_project_theme/components/project-status.html.twig') }}"
             make_link: false
             path: ''
             absolute: false
@@ -203,20 +266,7 @@ display:
           empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
+          hide_alter_empty: false
         field_department:
           id: field_department
           table: node__field_department
@@ -280,15 +330,13 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        uid:
-          id: uid
-          table: users_field_data
-          field: uid
+        field_name:
+          id: field_name
+          table: user__field_name
+          field: field_name
           relationship: uid
           group_type: group
           admin_label: ''
-          entity_type: user
-          entity_field: uid
           plugin_id: field
           label: ''
           exclude: false
@@ -332,10 +380,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: number_integer
+          type: string
           settings:
-            thousand_separator: ''
-            prefix_suffix: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -459,7 +506,7 @@ display:
       tags:
         - 'config:field.storage.node.field_department'
         - 'config:field.storage.node.field_description'
-        - 'config:field.storage.node.field_status'
+        - 'config:field.storage.user.field_name'
   page_1:
     id: page_1
     display_title: Page
@@ -478,4 +525,4 @@ display:
       tags:
         - 'config:field.storage.node.field_department'
         - 'config:field.storage.node.field_description'
-        - 'config:field.storage.node.field_status'
+        - 'config:field.storage.user.field_name'

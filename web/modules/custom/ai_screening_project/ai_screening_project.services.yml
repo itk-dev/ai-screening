@@ -9,3 +9,8 @@ services:
       $logger:  '@logger.channel.ai_screening_project'
     tags:
       - { name: event_subscriber }
+
+  Drupal\ai_screening_project\Template\ProjectStatusEvaluationTwigExtension:
+    autowire: true
+    tags:
+      - { name: twig.extension }

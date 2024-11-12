@@ -7,6 +7,7 @@ namespace Drupal\ai_screening\Helper;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
+use Drupal\ai_screening_project\Helper\ProjectHelper;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
 use Drupal\core_event_dispatcher\ThemeHookEvents;
 use Drupal\node\NodeStorageInterface;
@@ -34,6 +35,7 @@ final class BlockHelper extends AbstractHelper implements EventSubscriberInterfa
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
+    private readonly ProjectHelper $projectHelper,
   ) {
     parent::__construct($logger);
     $this->nodeStorage = $entityTypeManager->getStorage('node');
@@ -69,25 +71,36 @@ final class BlockHelper extends AbstractHelper implements EventSubscriberInterfa
    *   A list of statistics values for the front page.
    */
   public function getFrontpageStats(): array {
-    $stats = [];
+    $stats = [
+      'approvedCount' => 0,
+      'inProgressCount' => 0,
+      'refusedCount' => 0,
+    ];
 
-    $stats['approvedCount'] = $this->nodeStorage->getQuery()
+    $activeProjectsIds = $this->nodeStorage->getQuery()
       ->accessCheck(TRUE)
-      ->condition('field_status', self::PROJECT_STATUS_APPROVED, '=')
-      ->count()
       ->execute();
 
-    $stats['inProgressCount'] = $this->nodeStorage->getQuery()
-      ->accessCheck(TRUE)
-      ->condition('field_status', self::PROJECT_STATUS_IN_PROGRESS, '=')
-      ->count()
-      ->execute();
+    $activeProjects = $this->nodeStorage->loadMultiple($activeProjectsIds);
 
-    $stats['refusedCount'] = $this->nodeStorage->getQuery()
-      ->accessCheck(TRUE)
-      ->condition('field_status', self::PROJECT_STATUS_REFUSED, '=')
-      ->count()
-      ->execute();
+    foreach ($activeProjects as $project) {
+      $evaluation = $this->projectHelper->getProjectTrackEvaluation($project->id());
+      // Calculate the best possible status for the project based on each track.
+      $max = max($evaluation['track_evaluation']);
+      switch ($max) {
+        case '1':
+          $stats['approvedCount']++;
+          break;
+
+        case '2':
+          $stats['inProgressCount']++;
+          break;
+
+        case '3':
+          $stats['refusedCount']++;
+          break;
+      }
+    }
 
     return $stats;
   }

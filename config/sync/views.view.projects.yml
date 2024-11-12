@@ -3,12 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_department
     - field.storage.node.field_description
+    - field.storage.user.field_name
     - node.type.project
     - system.menu.main
+    - taxonomy.vocabulary.department
   module:
     - better_exposed_filters
+    - group
     - node
+    - taxonomy
     - text
     - user
 id: projects
@@ -27,18 +32,18 @@ display:
     display_options:
       title: Projekter
       fields:
-        title:
-          id: title
+        nid:
+          id: nid
           table: node_field_data
-          field: title
+          field: nid
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: node
-          entity_field: title
+          entity_field: nid
           plugin_id: field
-          label: Navn
-          exclude: false
+          label: ID
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -57,8 +62,8 @@ display:
             target: ''
             nl2br: false
             max_length: 0
-            word_boundary: false
-            ellipsis: false
+            word_boundary: true
+            ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
@@ -70,7 +75,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -79,9 +84,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: number_integer
           settings:
-            link_to_entity: true
+            thousand_separator: ''
+            prefix_suffix: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -101,7 +107,7 @@ display:
           admin_label: ''
           plugin_id: field
           label: Note
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -154,17 +160,129 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        uid:
-          id: uid
+        title:
+          id: title
           table: node_field_data
-          field: uid
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: node
-          entity_field: uid
+          entity_field: title
           plugin_id: field
-          label: Opretter
+          label: Name
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<h4>{{ title }}</h4>\r\n{{ field_description }}"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: Status
+          plugin_id: custom
+          label: Status
+          exclude: false
+          alter:
+            alter_text: true
+            text: "{% set project_status = project_status_evaluation(nid.__toString()) %}\r\n{{ include('@itkdev_project_theme/components/project-status.html.twig') }}"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+        field_department:
+          id: field_department
+          table: node__field_department
+          field: field_department
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: Department
           exclude: false
           alter:
             alter_text: false
@@ -197,7 +315,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -208,8 +326,71 @@ display:
           click_sort_column: target_id
           type: entity_reference_label
           settings:
-            link: true
+            link: false
           group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_name:
+          id: field_name
+          table: user__field_name
+          field: field_name
+          relationship: uid
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: 'Project owner'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -299,43 +480,7 @@ display:
             field_identifier: ''
           exposed: false
           granularity: second
-      arguments:
-        uid:
-          id: uid
-          table: node_field_data
-          field: uid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: uid
-          plugin_id: entity_target_id
-          default_action: ignore
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: ''
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          not: false
+      arguments: {  }
       filters:
         status:
           id: status
@@ -357,29 +502,73 @@ display:
           plugin_id: bundle
           value:
             project: project
-        uid:
-          id: uid
-          table: node_field_data
-          field: uid
+        combine:
+          id: combine
+          table: views
+          field: combine
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: uid
-          plugin_id: user_name
-          operator: in
+          plugin_id: combine
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: combine_op
+            label: 'Project owner'
+            description: 'Filter on project title, description or project owner'
+            use_operator: false
+            operator: combine_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: combine
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              editor: '0'
+              administrator: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          fields:
+            field_description: field_description
+            title: title
+            field_name: field_name
+        field_department_target_id:
+          id: field_department_target_id
+          table: node__field_department
+          field: field_department_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
           value: {  }
           group: 1
           exposed: true
           expose:
-            operator_id: uid_op
-            label: Opretter
+            operator_id: field_department_target_id_op
+            label: Department
             description: ''
             use_operator: false
-            operator: uid_op
+            operator: field_department_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: uid
+            identifier: field_department_target_id
             required: false
             remember: false
             multiple: false
@@ -401,6 +590,12 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+          reduce_duplicates: false
+          vid: department
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
       style:
         type: table
         options:
@@ -408,13 +603,16 @@ display:
           row_class: ''
           default_row_class: true
           columns:
-            title: title
+            nid: nid
             field_description: field_description
-            uid: uid
+            title: title
+            nothing: nothing
+            field_department: field_department
+            field_name: field_name
           default: '-1'
           info:
-            title:
-              sortable: true
+            nid:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
@@ -427,7 +625,26 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            uid:
+            title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            nothing:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_department:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_name:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -450,7 +667,41 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        group_relationship:
+          id: group_relationship
+          table: node_field_data
+          field: group_relationship
+          relationship: none
+          group_type: group
+          admin_label: 'Indhold group relationship'
+          entity_type: node
+          plugin_id: group_relationship_to_entity_reverse
+          required: false
+          group_relation_plugins:
+            'group_node:project': 'group_node:project'
+        gid:
+          id: gid
+          table: group_relationship_field_data
+          field: gid
+          relationship: group_relationship
+          group_type: group
+          admin_label: Gruppe
+          entity_type: group_relationship
+          entity_field: gid
+          plugin_id: standard
+          required: false
+        uid:
+          id: uid
+          table: groups_field_data
+          field: uid
+          relationship: gid
+          group_type: group
+          admin_label: 'Group creator'
+          entity_type: group
+          entity_field: uid
+          plugin_id: standard
+          required: false
       css_class: projects-view
       header: {  }
       footer: {  }
@@ -465,7 +716,9 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.field_department'
         - 'config:field.storage.node.field_description'
+        - 'config:field.storage.user.field_name'
   page_1:
     id: page_1
     display_title: Page
@@ -493,4 +746,6 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:field.storage.node.field_department'
         - 'config:field.storage.node.field_description'
+        - 'config:field.storage.user.field_name'

@@ -48,7 +48,6 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       'title' => 'Ordinary project',
       'status' => NodeInterface::PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department A')->id()],
-      'field_status' => ProjectHelper::PROJECT_STATUS_IN_PROGRESS,
       'field_description' => [
         'value' => 'Et nyt projekt',
         'format' => 'plain_text',
@@ -65,7 +64,6 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       'title' => 'Corrupted project',
       'status' => NodeInterface::PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department C')->id()],
-      'field_status' => ProjectHelper::PROJECT_STATUS_NEW,
       'field_description' => [
         'value' => 'Et ødelagt projekt bør slettes med cron.',
         'format' => 'plain_text',
@@ -77,64 +75,12 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
     $this->addReference('project:Corrupted project', $node);
     $node->save();
 
-    $node = Node::create([
-      'type' => 'project',
-      'title' => 'Godkendt projekt',
-      'status' => NodeInterface::PUBLISHED,
-      'field_department' => ['target_id' => $this->getReference('department:Department A')->id()],
-      'field_status' => ProjectHelper::PROJECT_STATUS_APPROVED,
-      'field_description' => [
-        'value' => 'Et godkendt project.',
-        'format' => 'plain_text',
-      ],
-      'corrupted' => 1,
-    ]);
-    $node->setOwner($owner);
-
-    $this->addReference('project:approved_project', $node);
-    $node->save();
-
-    $node = Node::create([
-      'type' => 'project',
-      'title' => 'Afvist projekt',
-      'status' => NodeInterface::PUBLISHED,
-      'field_department' => ['target_id' => $this->getReference('department:Department A')->id()],
-      'field_status' => ProjectHelper::PROJECT_STATUS_REFUSED,
-      'field_description' => [
-        'value' => 'Et afvist project.',
-        'format' => 'plain_text',
-      ],
-      'corrupted' => 1,
-    ]);
-    $node->setOwner($owner);
-
-    $this->addReference('project:refused_project', $node);
-    $node->save();
-
-    $node = Node::create([
-      'type' => 'project',
-      'title' => 'Nyt projekt',
-      'status' => NodeInterface::PUBLISHED,
-      'field_department' => ['target_id' => $this->getReference('department:Department A')->id()],
-      'field_status' => ProjectHelper::PROJECT_STATUS_NEW,
-      'field_description' => [
-        'value' => 'Et nyt project.',
-        'format' => 'plain_text',
-      ],
-      'corrupted' => 1,
-    ]);
-    $node->setOwner($owner);
-
-    $this->addReference('project:new_project', $node);
-    $node->save();
-
     for ($projectCount = 1; $projectCount <= self::EXTRA_PROJECTS; $projectCount++) {
       $label = 'Project - ' . $projectCount;
       $node = Node::create([
         'type' => 'project',
         'title' => $label,
         'status' => NodeInterface::PUBLISHED,
-        'field_status' => ProjectHelper::PROJECT_STATUS_IN_PROGRESS,
         'field_department' => ['target_id' => $this->getReference('department:Department B')->id()],
         'field_description' => [
           'value' => 'Projektnummer ' . $projectCount,
