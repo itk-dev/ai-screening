@@ -7,4 +7,3 @@ dependencies:
   - drupal:user
   - openid_connect:openid_connect
   - custom_event_dispatcher:custom_event_dispatcher
-  - ai_screening_project:ai_screening_project

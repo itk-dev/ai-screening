@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Drupal\ai_screening\Plugin\Block;
+namespace Drupal\ai_screening_project\Plugin\Block;
 
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryAutowireTrait;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\ai_screening\Helper\BlockHelper;
+use Drupal\ai_screening_project\Helper\BlockHelper;
 
 /**
  * Provides a frontpage stats top block.

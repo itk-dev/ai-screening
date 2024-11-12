@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Drupal\ai_screening\Helper;
+namespace Drupal\ai_screening_project\Helper;
 
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
-use Drupal\ai_screening_project\Helper\ProjectHelper;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
 use Drupal\core_event_dispatcher\ThemeHookEvents;
 use Drupal\node\NodeStorageInterface;
@@ -16,28 +15,23 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * Block helper.
  */
-final class BlockHelper extends AbstractHelper implements EventSubscriberInterface {
-
-  public final const string PROJECT_STATUS_APPROVED = '1';
-  public final const string PROJECT_STATUS_IN_PROGRESS = '2';
-  public final const string PROJECT_STATUS_REFUSED = '3';
+final readonly class BlockHelper implements EventSubscriberInterface {
 
   /**
    * The node storage.
    *
    * @var \Drupal\node\NodeStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
    */
-  private readonly NodeStorageInterface|EntityStorageInterface $nodeStorage;
+  private NodeStorageInterface|EntityStorageInterface $nodeStorage;
 
   /**
    * Constructor.
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    LoggerChannel $logger,
-    private readonly ProjectHelper $projectHelper,
+    LoggerChannel              $logger,
+    private ProjectHelper      $projectHelper,
   ) {
-    parent::__construct($logger);
     $this->nodeStorage = $entityTypeManager->getStorage('node');
   }
 
