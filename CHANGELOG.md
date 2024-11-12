@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning].
 
 - [PR-35](https://github.com/itk-dev/ai-screening/pull/35)
   Added frontpage
-  Changed project view 
+  Changed project view
   Added twig function for project status display
 - [PR-33](https://github.com/itk-dev/ai-screening/pull/33)
   OIDC tweaks
