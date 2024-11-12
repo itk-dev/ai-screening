@@ -16,4 +16,3 @@ services:
       $logger: '@logger.channel.ai_screening'
     tags:
       - { name: event_subscriber }
-

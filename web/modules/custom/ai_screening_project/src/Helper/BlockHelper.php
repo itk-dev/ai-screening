@@ -29,8 +29,8 @@ final readonly class BlockHelper implements EventSubscriberInterface {
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    LoggerChannel              $logger,
-    private ProjectHelper      $projectHelper,
+    LoggerChannel $logger,
+    private ProjectHelper $projectHelper,
   ) {
     $this->nodeStorage = $entityTypeManager->getStorage('node');
   }
