@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-35](https://github.com/itk-dev/ai-screening/pull/35)
+  Added frontpage
+  Changed project view 
+  Added twig function for project status display
 - [PR-29](https://github.com/itk-dev/ai-screening/pull/29)
   2937: Entity access check updates
 - [PR-30](https://github.com/itk-dev/ai-screening/pull/30)
