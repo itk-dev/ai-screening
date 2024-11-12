@@ -13,53 +13,61 @@
  * @ingroup themeable
  */
 #}
-{% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'].field_name.value %}
+{% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
 
-{% set project_status = project_status_evaluation(node.id) %}
+{% block title %}
+  <div class="inline-flex items-center"><h1 class="dark:text-white inline-block">{{ label }}</h1><a href="{{ url('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a></div>
+{% endblock %}
 
-<div class="container my-6">
-  <h1 class="inline-block">{{ label }}</h1><a href="{{ url('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
-  <p>{{ content.field_description }}</p>
-  <div class="grid grid-cols-4">
-    <div>
-      <h3>{{ 'Department'|t }}</h3>
-      <div>{{ content.field_department }}</div>
-    </div>
-    <div>
-      <h3>{{ 'Owner'|t }}</h3>
-      <div>{{ owner }}</div>
-    </div>
-    <div>
-      <h3>{{ 'Contributers'|t }}</h3>
-      {% for member in projectMembers %}
-        <span class="project-members"><span>{{ member.field_name.value }}</span><span class="spacing">{{ ', ' }}</span></span>
-      {% endfor %}
-    </div>
-  </div>
-</div>
-<div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
-  <header class="flex justify-between px-4 py-4 border-b">
-    <h2 class="m-0 text-lg dark:text-white">{{ 'Will we?'|t }}</h2>
-    <div>{{ include('@itkdev_project_theme/components/project-status.html.twig') }}</div>
-  </header>
-  <div class="flex justify-between px-4 py-4">
-    <div>{{ 'Project eveluation of whether it should be used'|t }}</div>
-    <div><a class="underline" href="/">{{ 'See project report'|t }}</a></div>
-  </div>
-</div>
-<div class="grid grid-cols-2 gap-4">
-  {% for key, value in projectTracks %}
-  <div class="track-wrapper">
-    <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
-      <header class="flex justify-between px-4 py-4 border-b">
-        <h2 class="m-0 text-lg dark:text-white">{{ value.getTitle() }}</h2>
-        <div>status display here</div>
-      </header>
-      <div class="px-4 py-4">
-        <div>{{ value.getDescription() }}</div>
-        <div class="flex justify-end">track link here</div>
+{% block content %}
+  {% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'].field_name.value %}
+  {% set project_status = project_status_evaluation(node.id) %}
+
+  <div class="container my-6">
+    <p>{{ content.field_description }}</p>
+    <div class="grid grid-cols-4">
+      <div>
+        <h3>{{ 'Department'|t }}</h3>
+        <div>{{ content.field_department }}</div>
+      </div>
+      <div>
+        <h3>{{ 'Owner'|t }}</h3>
+        <div>{{ owner }}</div>
+      </div>
+      <div>
+        <h3>{{ 'Contributers'|t }}</h3>
+        {% for member in projectMembers %}
+          <span class="project-members"><span>{{ member.field_name.value }}</span><span class="spacing">{{ ', ' }}</span></span>
+        {% endfor %}
       </div>
     </div>
   </div>
-  {% endfor %}
-</div>
+  <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+    <header class="flex justify-between px-4 py-4 border-b">
+      <h2 class="m-0 text-lg dark:text-white">{{ 'Will we?'|t }}</h2>
+      <div>{{ include('@itkdev_project_theme/components/project-status.html.twig') }}</div>
+    </header>
+    <div class="flex justify-between px-4 py-4">
+      <div>{{ 'Project eveluation of whether it should be used'|t }}</div>
+      <div><a class="underline" href="/">{{ 'See project report'|t }}</a></div>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    {% for key, value in projectTracks %}
+      <div class="track-wrapper">
+        <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+          <header class="flex justify-between px-4 py-4 border-b">
+            <h2 class="m-0 text-lg dark:text-white">{{ value.getTitle() }}</h2>
+            <div>status display here</div>
+          </header>
+          <div class="px-4 py-4">
+            <div>{{ value.getDescription() }}</div>
+            <div class="flex justify-end">track link here</div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+

@@ -1,9 +1,26 @@
 <div class="flex justify-between my-7">
-{% block title %}title{% endblock %}
-{% block controls %}controls{% endblock %}
+  {% block title %}
+    {% if view is defined %}
+      <div class="block"><h1 class="dark:text-white inline-block">{{ view.title }}</h1></div>
+    {% elseif theme_hook_original is same as 'node' %}
+      <h1 class="text-4xl dark:text-white m-0">{{ node.label }}</h1>
+    {% elseif theme_hook_original is same as 'user' %}
+      <h1 class="text-4xl dark:text-white m-0">{{ content.field_name }}</h1>
+    {% elseif theme_hook_original is same as 'node_edit_form' %}
+      <h1 class="text-4xl dark:text-white m-0">{{ form['#title'] }}</h1>
+    {% endif %}
+  {% endblock %}
+
+  {% block controls %}
+    <div class="inline-flex items-center">
+      {{ drupal_block('system_breadcrumb_block') }}
+    </div>
+  {% endblock %}
+
 </div>
 {% block content %}
   <div{{ attributes }}>
     {{ content }}
   </div>
-  {% endblock %}
+{% endblock %}
+{{ dump() }}

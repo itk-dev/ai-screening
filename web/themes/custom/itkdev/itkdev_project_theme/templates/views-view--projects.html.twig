@@ -34,11 +34,10 @@
 #}
 {% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
 
-{% block title %}
-  <h1 class="text-4xl dark:text-white m-0">{{ view.title }}</h1>
-{% endblock %}
 {% block controls %}
-  {{ include('@itkdev_project_theme/components/new-project-button.html.twig') }}
+  <div class="inline-flex items-center">
+    {{ include('@itkdev_project_theme/components/new-project-button.html.twig') }}
+  </div>
 {% endblock %}
 {% block content %}
 {%
