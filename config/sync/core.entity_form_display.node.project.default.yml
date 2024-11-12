@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.node.project.field_department
     - field.field.node.project.field_description
-    - field.field.node.project.field_status
     - node.type.project
   module:
     - text
@@ -45,7 +44,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
-  field_status: true
   langcode: true
   promote: true
   sticky: true

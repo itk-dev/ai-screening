@@ -5,10 +5,8 @@ dependencies:
   config:
     - field.field.node.project.field_department
     - field.field.node.project.field_description
-    - field.field.node.project.field_status
     - node.type.project
   module:
-    - options
     - text
     - user
 id: node.project.default
@@ -30,13 +28,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_status:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
     region: content
 hidden:
   langcode: true
