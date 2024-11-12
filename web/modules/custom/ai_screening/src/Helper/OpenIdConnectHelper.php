@@ -19,6 +19,12 @@ class OpenIdConnectHelper extends AbstractHelper implements EventSubscriberInter
   public function userinfoAlter(OpenIdConnectUserinfoAlterEvent $event): void {
     $userinfo = &$event->getUserinfo();
 
+    $preferredUsernameClaim = Settings::get('ai_screening')['openid_connect']['preferred_username_claim'] ?? 'email';
+
+    if ('preferred_username' !== $preferredUsernameClaim && isset($userinfo[$preferredUsernameClaim]) && !isset($userinfo['preferred_username'])) {
+      $userinfo['preferred_username'] = $userinfo[$preferredUsernameClaim];
+    }
+
     $groupsClaim = Settings::get('ai_screening')['openid_connect']['groups_claim'] ?? 'role';
 
     if ('groups' !== $groupsClaim && isset($userinfo[$groupsClaim]) && !isset($userinfo['groups'])) {
