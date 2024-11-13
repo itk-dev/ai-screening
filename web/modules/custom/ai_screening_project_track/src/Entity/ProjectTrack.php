@@ -33,7 +33,7 @@ use Drupal\taxonomy\TermInterface;
  *     "access" = "Drupal\ai_screening_project_track\ProjectTrackAccessControlHandler",
  *     "form" = {
  *       "add" = "Drupal\ai_screening_project_track\Form\ProjectTrackForm",
- *       "edit" = "Drupal\ai_screening_project_track\Form\ProjectTrackForm",
+ *       "edit" = "Drupal\ai_screening_project_track\Form\ProjectTrackFormProjectTrackForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *       "delete-multiple-confirm" = "Drupal\Core\Entity\Form\DeleteMultipleForm",
  *       "revision-delete" = \Drupal\Core\Entity\Form\RevisionDeleteForm::class,
@@ -125,7 +125,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setSetting('handler_settings', ['target_bundles' => ['project' => 'project']]);
 
     $fields['delta'] = BaseFieldDefinition::create('integer')
-      ->setLabel(t('Dalte'));
+      ->setLabel(t('Delta'));
 
     return $fields;
   }
