@@ -52,7 +52,7 @@
     <div class="flex h-screen overflow-hidden">
       <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
         <div class="content-wrapper container mx-auto my-16">
-          {% if (logged_in) %}
+          {% if logged_in %}
             {{ page.content }}
           {% else %}
             <div class="my-6">{{ page.content }}</div>
