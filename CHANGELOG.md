@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning].
   Added frontpage
   Changed project view
   Added twig function for project status display
+- [PR-34](https://github.com/itk-dev/ai-screening/pull/34)
+  Added Drupal update check
 - [PR-33](https://github.com/itk-dev/ai-screening/pull/33)
   OIDC tweaks
 - [PR-32](https://github.com/itk-dev/ai-screening/pull/32)
