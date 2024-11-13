@@ -30,7 +30,7 @@ class ProjectTwigExtension extends AbstractExtension {
    */
   public function getFunctions() {
     return [
-      new TwigFunction('project_status_evaluation', $this->getProjectTrackEvaluation(...)),
+      new TwigFunction('project_track_evaluation', $this->getProjectTrackEvaluation(...)),
     ];
   }
 

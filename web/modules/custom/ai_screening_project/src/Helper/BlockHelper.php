@@ -40,7 +40,7 @@ final readonly class BlockHelper implements EventSubscriberInterface {
     $event->addNewTheme(
       'stats_top_block',
       [
-        'path' => 'modules/custom/ai_screening/templates',
+        'path' => 'modules/custom/ai_screening_project/templates',
         'variables' => [
           'data' => [],
         ],

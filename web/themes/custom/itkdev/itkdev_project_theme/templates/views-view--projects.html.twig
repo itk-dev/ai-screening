@@ -32,17 +32,20 @@
  * @ingroup themeable
  */
 #}
+{% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
+
+{% block controls %}
+  <div class="inline-flex items-center">
+    {{ include('@itkdev_project_theme/components/new-project-button.html.twig') }}
+  </div>
+{% endblock %}
+{% block content %}
 {%
   set classes = [
     dom_id ? 'js-view-dom-id-' ~ dom_id,
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
-<div class="flex justify-between my-7">
-<h1 class="text-4xl dark:text-white m-0">{{ view.title }}</h1>
-    {{ include('@itkdev_project_theme/components/new-project-button.html.twig') }}
-</div>
-
   {% if header %}
     <header>
       {{ header }}
@@ -70,3 +73,4 @@
 
   {{ feed_icons }}
 </div>
+{% endblock %}
