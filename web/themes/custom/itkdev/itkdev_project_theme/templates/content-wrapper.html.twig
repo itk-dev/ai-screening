@@ -1,14 +1,18 @@
 <div class="flex justify-between my-7">
   {% block title %}
-    {% if view is defined %}
-      <div class="block"><h1 class="dark:text-white inline-block">{{ view.title }}</h1></div>
-    {% elseif theme_hook_original is same as 'node' %}
-      <h1 class="text-4xl dark:text-white m-0">{{ node.label }}</h1>
-    {% elseif theme_hook_original is same as 'user' %}
-      <h1 class="text-4xl dark:text-white m-0">{{ content.field_name }}</h1>
-    {% elseif theme_hook_original is same as 'node_edit_form' %}
-      <h1 class="text-4xl dark:text-white m-0">{{ form['#title'] }}</h1>
-    {% endif %}
+    <div class="block">
+      <h1 class="dark:text-white inline-block">
+        {% if view is defined %}
+          {{ view.title }}
+        {% elseif theme_hook_original is same as 'node' %}
+          {{ node.label }}
+        {% elseif theme_hook_original is same as 'user' %}
+          {{ content.field_name }}
+        {% elseif theme_hook_original is same as 'node_edit_form' %}
+          {{ form['#title'] }}
+        {% endif %}
+      </h1>
+    </div>
   {% endblock %}
 
   {% block controls %}
