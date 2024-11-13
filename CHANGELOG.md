@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-36](https://github.com/itk-dev/ai-screening/pull/36)
+  Handled empty arrays
+  Update default site settings
 - [PR-37](https://github.com/itk-dev/ai-screening/pull/37)
   Updated user menu
 - [PR-35](https://github.com/itk-dev/ai-screening/pull/35)
