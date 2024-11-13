@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('Create project', async ({ page }) => {
   await page.goto('/');
 
-  await page.getByRole('button', {name: 'Employee sign-in', exact: true}).click()
+  await page.getByRole('button', {name: 'Log in with Employee login', exact: true}).click()
 
   await page.getByLabel('Username').fill('user')
   await page.getByLabel('Password').fill('user')
