@@ -23,12 +23,7 @@
 {% endblock %}
 
 {% block content %}
-  <div class="grid grid-cols-2 gap-4">
-    <div>
-      {{ form|without('advanced') }}
-    </div>
-    <div>
-      Group stuff here
-    </div>
+  <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-slate-600 drop-shadow-md">
+    {{ form|without('advanced') }}
   </div>
 {% endblock %}
