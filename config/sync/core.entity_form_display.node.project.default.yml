@@ -51,7 +51,7 @@ content:
     third_party_settings:
       allowed_formats:
         hide_help: '1'
-        hide_guidelines: '0'
+        hide_guidelines: '1'
   status:
     type: boolean_checkbox
     weight: 4
