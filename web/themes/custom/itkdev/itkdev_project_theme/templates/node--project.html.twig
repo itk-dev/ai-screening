@@ -21,7 +21,7 @@
 
 {% block content %}
   {% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'].field_name.value %}
-  {% set project_status = project_status_evaluation(node.id) %}
+  {% set project_status = project_track_evaluation(node.id) %}
 
   <div class="container my-6">
     <p>{{ content.field_description }}</p>

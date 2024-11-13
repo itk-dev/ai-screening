@@ -237,7 +237,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% set project_status = project_status_evaluation(nid.__toString()) %}\r\n{{ include('@itkdev_project_theme/components/project-status.html.twig') }}"
+            text: "{% set project_status = project_track_evaluation(nid.__toString()) %}\r\n{{ include('@itkdev_project_theme/components/project-status.html.twig') }}"
             make_link: false
             path: ''
             absolute: false

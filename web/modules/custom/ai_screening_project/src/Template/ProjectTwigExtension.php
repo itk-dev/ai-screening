@@ -11,7 +11,7 @@ use Twig\TwigFunction;
  *
  * @package Drupal\ai_screening_project\Template
  */
-class ProjectStatusEvaluationTwigExtension extends AbstractExtension {
+class ProjectTwigExtension extends AbstractExtension {
 
   public function __construct(
     private readonly ProjectHelper $projectHelper,
@@ -30,7 +30,7 @@ class ProjectStatusEvaluationTwigExtension extends AbstractExtension {
    */
   public function getFunctions() {
     return [
-      new TwigFunction('project_status_evaluation', [$this, 'getProjectTrackEvaluation']),
+      new TwigFunction('project_status_evaluation', $this->getProjectTrackEvaluation(...)),
     ];
   }
 
