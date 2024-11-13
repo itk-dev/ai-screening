@@ -197,3 +197,46 @@ jobs:
       - name: Run module tests
         run: |
           docker compose exec --user root phpfpm bash -c 'cd web && ../vendor/bin/phpunit --configuration ../phpunit.xml modules/custom'
+
+  update-site:
+    name: Check that site can be updated
+    runs-on: ubuntu-latest
+    steps:
+      # Install site from our base ref
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+
+      - name: setup-docker-and-composer
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec --user root phpfpm composer install --no-interaction
+
+      - name: Install site
+        run: |
+          # Install the site from config
+          docker compose exec --user root phpfpm vendor/bin/drush site:install --existing-config --yes
+
+      - name: Clean up root stuff
+        run: |
+          sudo chown -Rv $USER:$USER vendor/ web/ || true
+          sudo chmod -Rv a+w web/sites/default || true
+
+      # Install site with our current ref
+      - uses: actions/checkout@v4
+
+      - name: setup-docker-and-composer
+        run: |
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec --user root phpfpm composer install --no-interaction
+
+      - name: Update site
+        run: |
+          docker compose exec --user root phpfpm vendor/bin/drush deploy --yes
