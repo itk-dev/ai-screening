@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning].
 - [PR-32](https://github.com/itk-dev/ai-screening/pull/32)
   2938: Use x icon for navbutton when navigation is opened
 - [PR-31](https://github.com/itk-dev/ai-screening/pull/31)
-  Create a base filefor the title (with title and "controls")
+  Create a base file for the title (with title and "controls")
   Changed `views-view.html.twig` to `views-view--projects.html.twig`
 - [PR-30](https://github.com/itk-dev/ai-screening/pull/30)
   Tailwind classes to make the menu appear on large screens and be toggleable on small screens
