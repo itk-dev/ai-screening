@@ -31,7 +31,7 @@ final class ThemeHelper extends AbstractHelper implements EventSubscriberInterfa
   public function formAlter(FormAlterEvent $event): void {
     $form = &$event->getForm();
     $formId = $event->getFormId();
-    if ('node_project_edit_form' == $formId) {
+    if ('node_project_edit_form' === $formId) {
       $form['#theme'] = 'node_edit_form';
     }
   }
