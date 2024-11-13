@@ -17,6 +17,7 @@
         "drupal/core-composer-scaffold": "^11.0",
         "drupal/core-project-message": "^11.0",
         "drupal/core-recommended": "^11.0",
+        "drupal/field_group": "^3.6",
         "drupal/group": "^3.3",
         "drupal/hook_event_dispatcher": "^4.2",
         "drupal/openid_connect": "dev-3452009-drupal-11-compatibility",
