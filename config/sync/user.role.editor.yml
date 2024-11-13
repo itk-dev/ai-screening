@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - taxonomy
     - webform
 id: editor
 label: Editor
@@ -11,3 +12,4 @@ is_admin: null
 permissions:
   - 'access webform help'
   - 'edit any webform'
+  - 'view vocabulary labels'

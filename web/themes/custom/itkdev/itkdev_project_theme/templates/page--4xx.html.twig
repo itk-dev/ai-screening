@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Display a single page.
+ * Display a single error page.
  *
  * The doctype, html, head and body tags are not in this template. Instead they
  * can be found in the html.html.twig template in this directory.
@@ -49,21 +49,17 @@
 <div>
   <main role="main" class="">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-    <div class="fixed top-20 z-10 left-0 right-0 px-1">
-      {{ page.content.itkdev_project_theme_messages }}
+    <div class="flex h-screen overflow-hidden">
+      <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <div class="content-wrapper container mx-auto my-16">
+          {% if logged_in %}
+            {{ page.content }}
+          {% else %}
+            <div class="my-6">{{ page.content }}</div>
+            <div class="my-6">{{ drupal_block('user_login_block') }}</div>
+          {% endif %}
+        </div>
+      </div>
     </div>
-
-<div class="flex h-screen overflow-hidden">
-    <aside class="absolute min-w-60 left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-zinc-800 duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 -translate-x-full translate-x-0">
-      {{ page.navigation }}
-    </aside>
-    <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-    <div class="content-wrapper">
-      {{ page.content|without('itkdev_project_theme_messages') }}
-    </div>
-</div>
-</div>
   </main>
-
 </div>{# /.layout-container #}

@@ -461,4 +461,28 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     return $this->groupStorage->load(reset($relationships)->getGroupId());
   }
 
+  /**
+   * Get a list of project track statuses and project status.
+   *
+   * @param string $projectId
+   *   The project id.
+   *
+   * @return array
+   *   A list of project status and track evaluation.
+   */
+  public function getProjectTrackEvaluation(string $projectId) : array {
+    $statuses = [];
+    $project = $this->nodeStorage->load($projectId);
+
+    if ($project instanceof NodeInterface) {
+      $projectTracks = $this->loadProjectTracks($project);
+      foreach ($projectTracks as $projectTrack) {
+        $statuses['track_evaluation'][$projectTrack->getType()->id()] = $projectTrack->getProjectTrackEvaluation();
+      }
+
+    }
+
+    return $statuses;
+  }
+
 }

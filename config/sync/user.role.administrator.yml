@@ -25,3 +25,4 @@ permissions:
   - 'delete terms in project_track_type'
   - 'edit any webform'
   - 'view the administration theme'
+  - 'view vocabulary labels'

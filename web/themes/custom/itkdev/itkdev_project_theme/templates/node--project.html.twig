@@ -14,13 +14,14 @@
  */
 #}
 {% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'].field_name.value %}
-{% set project_status = [0, 1, 3, 2] %}
-{% set edit_link_text %}
-  <i class="fa-solid fa-pencil"></i>
-{% endset %}
+
+{% set project_status = project_track_evaluation(node.id) %}
 
 <div class="container my-6">
-  <h1 class="inline-block">{{ label }}</h1><a href="{{ url('entity.node.edit_form', {node: 10}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+  <h1 class="inline-block">{{ label }}</h1>
+  {% if node.access('update') %}
+    <a href="{{ url('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+  {% endif %}
   <p>{{ content.field_description }}</p>
   <div class="grid grid-cols-4">
     <div>

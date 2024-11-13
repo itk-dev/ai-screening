@@ -1,6 +1,6 @@
 uuid: 8c47f413-fd98-49b9-9e8a-e6bcdebaa373
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - externalauth
@@ -546,6 +546,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
@@ -571,6 +572,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
