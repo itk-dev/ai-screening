@@ -32,6 +32,7 @@ use Drupal\taxonomy\TermInterface;
  *     "views_data" = "Drupal\views\EntityViewsData",
  *     "access" = "Drupal\ai_screening_project_track\ProjectTrackAccessControlHandler",
  *     "form" = {
+ *       "default" = "Drupal\ai_screening_project_track\Form\ProjectTrackForm",
  *       "add" = "Drupal\ai_screening_project_track\Form\ProjectTrackForm",
  *       "edit" = "Drupal\ai_screening_project_track\Form\ProjectTrackFormProjectTrackForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",

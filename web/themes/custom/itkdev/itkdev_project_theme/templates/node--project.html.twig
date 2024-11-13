@@ -19,9 +19,7 @@
 
 <div class="container my-6">
   <h1 class="inline-block">{{ label }}</h1>
-  {% if node.access('update') %}
-    <a href="{{ url('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
-  {% endif %}
+  <a href="{{ url('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
   <p>{{ content.field_description }}</p>
   <div class="grid grid-cols-4">
     <div>
