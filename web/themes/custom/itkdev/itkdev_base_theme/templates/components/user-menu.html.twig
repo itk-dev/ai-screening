@@ -22,19 +22,19 @@
     </a>
 
     <!-- Dropdown Start -->
-    <div x-show="dropdownOpen" class="absolute right-0 mt-3 flex w-56 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <ul class="flex flex-col gap-5 border-b border-stroke px-3 py-3 dark:border-strokedark">
+    <div x-show="dropdownOpen" class="absolute right-0 mt-3 flex w-56 flex-col rounded-sm border border-stroke bg-white dark:bg-secondary">
+        <ul class="flex flex-col border-b border-stroke divide-y">
             <li>
-                <a href="{{ path('user.edit') }}" class="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+              <a href="{{ path('user.edit') }}" class="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-secondary hover:bg-secondary dark:hover:bg-primary lg:text-base px-4 py-3">
                 <i class="fa-solid fa-user me-1"></i>{{ 'My profile'|t }}
-                </a>
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('user.logout') }}" class="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-secondary hover:bg-secondary dark:hover:bg-primary lg:text-base px-4 py-3">
+                <i class="fa-solid fa-sign-out me-1"></i>{{ 'Log out'|t }}
+              </a>
             </li>
         </ul>
-        <button class="flex items-center gap-3 px-3 py-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
-          <a href="{{ path('user.logout') }}" class="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
-            <i class="fa-solid fa-sign-out me-1"></i>{{ 'Log out'|t }}
-          </a>
-        </button>
     </div>
     <!-- Dropdown End -->
 </div>
