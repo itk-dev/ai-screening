@@ -136,6 +136,14 @@ tasks:
       - task compose -- exec phpfpm bash -c 'cd web && ../vendor/bin/phpunit --configuration ../phpunit.xml modules/custom {{.CLI_ARGS}}'
     silent: true
 
+  test-ui-test:
+    desc: "Run UI tests"
+    cmds:
+      # Trigger task to pass on `--yes` (and other task flags), cf.
+      # https://taskfile.dev/reference/schema#command and
+      # https://taskfile.dev/reference/cli#flags
+      - task: site-install
+
   set-user-roles:
     desc: "Set some user's roles"
     cmds:
