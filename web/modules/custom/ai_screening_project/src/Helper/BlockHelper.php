@@ -6,7 +6,6 @@ namespace Drupal\ai_screening_project\Helper;
 
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Logger\LoggerChannel;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
 use Drupal\core_event_dispatcher\ThemeHookEvents;
 use Drupal\node\NodeStorageInterface;
@@ -29,7 +28,6 @@ final readonly class BlockHelper implements EventSubscriberInterface {
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    LoggerChannel $logger,
     private ProjectHelper $projectHelper,
   ) {
     $this->nodeStorage = $entityTypeManager->getStorage('node');

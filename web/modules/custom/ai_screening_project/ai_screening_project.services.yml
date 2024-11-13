@@ -17,7 +17,5 @@ services:
 
   Drupal\ai_screening_project\Helper\BlockHelper:
     autowire: true
-    arguments:
-      $logger: '@logger.channel.ai_screening'
     tags:
       - { name: event_subscriber }
