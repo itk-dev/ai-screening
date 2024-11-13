@@ -1,10 +1,16 @@
+{# Get first user role and translate #}
+{% set role = {
+  administrator: 'Administrator'|trans,
+  editor: 'Editor'|trans,
+  user: 'User'|trans
+  }[user.getRoles(true)|first|default('user')]
+%}
+
 <div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false">
     <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
         <span class="hidden text-right lg:block">
-            {# TODO: Get user name from drupal #}
-            <span class="block text-sm font-medium text-black dark:text-white">Bruger Navnesen</span>
-            {# TODO: Get role name from drupal #}
-            <span class="block text-xs font-medium">Superuser</span>
+          <span class="block text-sm font-medium text-black dark:text-white">{{ user.displayname }}</span>
+          <span class="block text-xs font-medium">{{ role }}</span>
         </span>
 
         <span class="h-12 w-12 rounded-full bg-secondary">
@@ -19,13 +25,15 @@
     <div x-show="dropdownOpen" class="absolute right-0 mt-3 flex w-56 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <ul class="flex flex-col gap-5 border-b border-stroke px-3 py-3 dark:border-strokedark">
             <li>
-                <a href="profile.html" class="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+                <a href="{{ path('user.edit') }}" class="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
                 <i class="fa-solid fa-user me-1"></i>{{ 'My profile'|t }}
                 </a>
             </li>
         </ul>
         <button class="flex items-center gap-3 px-3 py-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
-            <i class="fa-solid fa-sign-out me-1"></i>{{ 'Log Out'|t }}
+          <a href="{{ path('user.logout') }}" class="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+            <i class="fa-solid fa-sign-out me-1"></i>{{ 'Log out'|t }}
+          </a>
         </button>
     </div>
     <!-- Dropdown End -->

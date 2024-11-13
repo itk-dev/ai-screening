@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-37](https://github.com/itk-dev/ai-screening/pull/37)
+  Updated user menu
 - [PR-35](https://github.com/itk-dev/ai-screening/pull/35)
   Added frontpage
   Changed project view
