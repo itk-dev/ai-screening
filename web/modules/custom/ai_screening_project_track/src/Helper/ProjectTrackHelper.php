@@ -7,13 +7,19 @@ use Drupal\Core\Logger\LoggerChannel;
 use Drupal\ai_screening\Helper\AbstractHelper;
 use Drupal\ai_screening_project_track\Event\ProjectTrackToolComputedEvent;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
+use Drupal\ai_screening_project_track\ProjectTrackStatus;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
+use Drupal\core_event_dispatcher\ThemeHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Project track helper.
  */
 final class ProjectTrackHelper extends AbstractHelper implements EventSubscriberInterface {
+
+  use StringTranslationTrait;
 
   /**
    * The project track storage.
@@ -61,6 +67,25 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     }
 
     return NULL;
+  }
+
+  /**
+   * @todo Proper labelling and determine status from tool some how.
+   */
+  public function getStatusOptions(): array {
+     return ProjectTrackStatus::asOptions();
+  }
+
+  /**
+   * @todo Make this changeable some how.
+   */
+  public function getEvaluationOptions(): array {
+    return [
+      '0' => $this->t('Not started'),
+      '1' => $this->t('Approved'),
+      '2' => $this->t('Undecided'),
+      '3' => $this->t('Refused')
+    ];
   }
 
   /**
@@ -145,12 +170,25 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
+   *
+   */
+  public function projectTrackTheme(ThemeEvent $event): void {
+    $event->addNewTheme(
+      'project_track_edit_form',
+      [
+        'path' => 'modules/custom/ai_screening_project_track/templates',
+        'render element' => 'form',
+      ]);
+  }
+
+  /**
    * {@inheritdoc}
    */
   #[\Override]
   public static function getSubscribedEvents(): array {
     return [
       ProjectTrackToolComputedEvent::class => 'projectTrackToolComputed',
+      ThemeHookEvents::THEME => 'projectTrackTheme',
     ];
   }
 
