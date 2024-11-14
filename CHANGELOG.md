@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning].
 
 - [PR-40](https://github.com/itk-dev/ai-screening/pull/40)
   Add [field group](https://www.drupal.org/project/field_group) module
-  Add [allowed_formats](https://www.drupal.org/project/allowed_formats) module
   Create fieldset template (and styling in `project-styles.css`)
   Hide html-editor help text
   Remove published from project view
