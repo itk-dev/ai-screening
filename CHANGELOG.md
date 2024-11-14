@@ -6,7 +6,12 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
-
+- [PR-40](https://github.com/itk-dev/ai-screening/pull/40)
+  Add [field group](https://www.drupal.org/project/field_group) module
+  Create fieldset template (and styling in `project-styles.css`)
+  Hide html-editor help text
+  Remove published from project view
+  Add breadcrumb twig
 - [PR-39](https://github.com/itk-dev/ai-screening/pull/39)
   Added Playwright tests
 - [PR-42](https://github.com/itk-dev/ai-screening/pull/42)
