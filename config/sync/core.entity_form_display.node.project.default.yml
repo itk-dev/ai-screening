@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.project.field_description
     - node.type.project
   module:
-    - allowed_formats
     - field_group
     - text
 third_party_settings:
@@ -49,10 +48,7 @@ content:
       placeholder: ''
       hide_help: true
       hide_guidelines: true
-    third_party_settings:
-      allowed_formats:
-        hide_help: '1'
-        hide_guidelines: '1'
+    third_party_settings: { }
   title:
     type: string_textfield
     weight: 1
