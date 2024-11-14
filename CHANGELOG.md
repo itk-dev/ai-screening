@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-41](https://github.com/itk-dev/ai-screening/pull/41)
+  Remove include of site-search
 - [PR-36](https://github.com/itk-dev/ai-screening/pull/36)
   Handled empty arrays
   Update default site settings
