@@ -11,7 +11,7 @@ field_name: field_department
 entity_type: node
 bundle: project
 label: Department
-description: ''
+description: 'Hvilken magistratsafdeling hører projektet under'
 required: false
 translatable: false
 default_value: {  }
