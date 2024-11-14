@@ -10,7 +10,7 @@ use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
-use Drupal\ai_screening_project_track\ProjectTrackToolStatus;
+use Drupal\ai_screening_project_track\Status;
 use function Safe\json_decode;
 use function Safe\json_encode;
 
@@ -177,14 +177,14 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
   /**
    * {@inheritdoc}
    */
-  public function getProjectTrackToolStatus(): ProjectTrackToolStatus {
-    return ProjectTrackToolStatus::from($this->get('project_track_tool_status')->getString());
+  public function getProjectTrackToolStatus(): Status {
+    return Status::from($this->get('project_track_tool_status')->getString());
   }
 
   /**
    * {@inheritdoc}
    */
-  public function setProjectTrackToolStatus(ProjectTrackToolStatus $status): self {
+  public function setProjectTrackToolStatus(Status $status): self {
     $this->set('project_track_tool_status', $status->value);
 
     return $this;

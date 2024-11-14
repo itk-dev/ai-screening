@@ -7,7 +7,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 /**
  * Project track status.
  */
-enum ProjectTrackStatus: string {
+enum Status: string {
   case NONE = '';
   case NEW = 'new';
   case IN_PROGRESS = 'in_progress';
@@ -15,9 +15,9 @@ enum ProjectTrackStatus: string {
   case COMPLETED = 'completed';
 
   /**
-   *
+   * Get status options as key/value pair.
    */
-  public static function asOptions() {
+  public static function asOptions(): array {
     return [
       self::NONE->value => new TranslatableMarkup('None'),
       self::NEW->value => new TranslatableMarkup('New'),
@@ -27,9 +27,9 @@ enum ProjectTrackStatus: string {
   }
 
   /**
-   *
+   * Translate a project status.
    */
-  public function getTranslatable() {
+  public function getTranslatable(): TranslatableMarkup {
     return static::asOptions()[$this->value];
   }
 

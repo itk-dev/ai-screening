@@ -4,12 +4,12 @@ namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\ai_screening\Helper\AbstractHelper;
 use Drupal\ai_screening_project_track\Event\ProjectTrackToolComputedEvent;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
-use Drupal\ai_screening_project_track\ProjectTrackStatus;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\ai_screening_project_track\Status;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
 use Drupal\core_event_dispatcher\ThemeHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -70,10 +70,10 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
-   * @todo Proper labelling and determine status from tool some how.
+   * Get status options.
    */
   public function getStatusOptions(): array {
-     return ProjectTrackStatus::asOptions();
+    return Status::asOptions();
   }
 
   /**
@@ -84,7 +84,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
       '0' => $this->t('Not started'),
       '1' => $this->t('Approved'),
       '2' => $this->t('Undecided'),
-      '3' => $this->t('Refused')
+      '3' => $this->t('Refused'),
     ];
   }
 

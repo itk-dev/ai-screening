@@ -13,7 +13,7 @@ use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\ai_screening\Helper\AbstractHelper;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
-use Drupal\ai_screening_project_track\ProjectTrackStatus;
+use Drupal\ai_screening_project_track\Status;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface;
 use Drupal\core_event_dispatcher\CoreHookEvents;
@@ -347,7 +347,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
             'project_track_evaluation' => '0',
             'project_id' => $entity,
           ])
-          ->setProjectTrackStatus(ProjectTrackStatus::NEW)
+          ->setProjectTrackStatus(Status::NEW)
           ->setDelta($projectTrackCounter++);
         $projectTrack->save();
 
