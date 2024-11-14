@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-39](https://github.com/itk-dev/ai-screening/pull/39)
+  Added Playwright tests
 - [PR-42](https://github.com/itk-dev/ai-screening/pull/42)
   - Added theming for project track.
   - Added Enum for Evaluation values.
