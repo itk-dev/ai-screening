@@ -176,3 +176,9 @@ tasks:
     cmds:
       - task drush -- user:role:add 'administrator' admin
     silent: true
+
+  prettier:
+    desc: "Run Prettier on tests source"
+    cmds:
+      - docker run --rm -v $(pwd):/work tmknom/prettier --write tests
+      - docker run --rm -v $(pwd):/work tmknom/prettier --check tests

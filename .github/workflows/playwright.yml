@@ -4,9 +4,18 @@ on:
   push:
     branches: [ develop ]
   pull_request:
-    branches: [ develop ]
 
 jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Prettier on tests source
+        run: |
+          # https://hub.docker.com/r/tmknom/prettier
+          docker run --rm -v $(pwd):/work tmknom/prettier --check tests
+
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
