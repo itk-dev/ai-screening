@@ -866,6 +866,8 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # $settings['migrate_file_public_path'] = '';
 # $settings['migrate_file_private_path'] = '';
 
+$settings['skip_permissions_hardening'] = TRUE;
+
 // Exclude development modules from configuration synchronization
 // https://www.drupal.org/node/3079028
 $settings['config_exclude_modules'] = ['webprofiler', 'devel', 'tracer', 'menu_ui', 'field_ui', 'views_ui'];
@@ -883,10 +885,6 @@ $settings['config_exclude_modules'] = ['webprofiler', 'devel', 'tracer', 'menu_u
  *
  * Keep this code block at the end of this file to take full effect.
  */
-#
-# if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-#   include $app_root . '/' . $site_path . '/settings.local.php';
-# }
 if (file_exists($app_root . "/" . $site_path . "/settings.local.php")) {
   include $app_root . "/" . $site_path . "/settings.local.php";
 }

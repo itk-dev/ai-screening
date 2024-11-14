@@ -77,6 +77,9 @@ final readonly class BlockHelper implements EventSubscriberInterface {
 
     foreach ($activeProjects as $project) {
       $evaluation = $this->projectHelper->getProjectTrackEvaluation($project->id());
+      if (empty($evaluation['track_evaluation'])) {
+        continue;
+      }
       // Calculate the best possible status for the project based on each track.
       $max = max($evaluation['track_evaluation']);
       switch ($max) {
