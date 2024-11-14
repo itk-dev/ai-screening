@@ -13,6 +13,7 @@
         "chx/drupal-issue-fork": "dev-main",
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
+        "drupal/allowed_formats": "^3.0",
         "drupal/better_exposed_filters": "^7.0",
         "drupal/core-composer-scaffold": "^11.0",
         "drupal/core-project-message": "^11.0",
