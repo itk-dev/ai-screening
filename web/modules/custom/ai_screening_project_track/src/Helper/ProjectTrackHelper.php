@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_screening_project_track\Helper;
 
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -77,15 +78,10 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
-   * @todo Make this changeable some how.
+   * Get evaluation options.
    */
   public function getEvaluationOptions(): array {
-    return [
-      '0' => $this->t('Not started'),
-      '1' => $this->t('Approved'),
-      '2' => $this->t('Undecided'),
-      '3' => $this->t('Refused'),
-    ];
+    return Evaluation::asOptions();
   }
 
   /**

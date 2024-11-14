@@ -5,13 +5,12 @@ namespace Drupal\ai_screening_project_track;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
 /**
- * Project track status.
+ * Project track/tool status.
  */
 enum Status: string {
   case NONE = '';
   case NEW = 'new';
   case IN_PROGRESS = 'in_progress';
-
   case COMPLETED = 'completed';
 
   /**
@@ -27,7 +26,7 @@ enum Status: string {
   }
 
   /**
-   * Translate a project status.
+   * Translate a project track/tool status.
    */
   public function getTranslatable(): TranslatableMarkup {
     return static::asOptions()[$this->value];
