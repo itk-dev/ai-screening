@@ -24,7 +24,7 @@
      {% if description_display in ['after', 'invisible'] and description.content %}
       <div{{ description.attributes.addClass('description pt-2') }}>{{ description.content }}</div>
     {% endif %}
-  <div class="p-5">
+  <div class="children-of-fieldset">
    {{ children }}
    </div>
 </fieldset>

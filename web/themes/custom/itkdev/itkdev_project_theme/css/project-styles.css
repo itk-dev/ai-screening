@@ -89,8 +89,16 @@
     display: none;
 }
 
+.children-of-fieldset {
+  padding: 1.25rem;
+}
+
 /* Make fields around radio buttons look like the other labels */
 #edit-field-department--wrapper {
+
+.children-of-fieldset {
+  padding: 1rem 0 0 0;
+}
   .padding-around-h2 {
     padding: 0;
 
@@ -113,7 +121,6 @@
 
 #edit-submit {
   margin: 1rem;
-  margin-right: 0;
 }
 
 #edit-delete {
@@ -129,4 +136,6 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin: 1rem;
+  margin-left: 0;
 }
+
