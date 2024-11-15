@@ -9,7 +9,7 @@
     {% elseif toolStatus.fields is same as toolStatus.populated %}
       {{ 'Completed'|t }}
     {% else %}
-      {{ '@populated of @fields'|t({'@populated':toolStatus.populated, '@fields':toolStatus.fields}) }}
+      {{ '@populated of @fields'|t({'@populated': toolStatus.populated, '@fields': toolStatus.fields}) }}
     {% endif %}
   </div>
 </header>
