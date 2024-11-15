@@ -12,7 +12,13 @@ and this project adheres to [Semantic Versioning].
   - Added Enum for Evaluation values.
   - Opdated status Enum
   - Updated form for project track
-
+- [PR-41](https://github.com/itk-dev/ai-screening/pull/41)
+  Remove include of site-search
+- [PR-36](https://github.com/itk-dev/ai-screening/pull/36)
+  Handled empty arrays
+  Update default site settings
+- [PR-37](https://github.com/itk-dev/ai-screening/pull/37)
+  Updated user menu
 - [PR-35](https://github.com/itk-dev/ai-screening/pull/35)
   Added frontpage
   Changed project view
