@@ -1,17 +1,11 @@
-<div class="flex justify-between my-7">
+<div class="flex justify-between my-7 px-5">
   {% block title %}
     <div class="block">
-      <h1 class="dark:text-white inline-block">
-        {% if view is defined %}
-          {{ view.title }}
-        {% elseif theme_hook_original is same as 'node' %}
-          {{ node.label }}
-        {% elseif theme_hook_original is same as 'user' %}
-          {{ content.field_name }}
-        {% elseif theme_hook_original is same as 'node_edit_form' %}
-          {{ form['#title'] }}
-        {% endif %}
-      </h1>
+      {% if pageTitle is not empty %}
+        <h1 class="dark:text-white inline-block">
+          {{ pageTitle }}
+        </h1>
+      {% endif %}
     </div>
   {% endblock %}
 
@@ -20,8 +14,8 @@
       {{ drupal_block('system_breadcrumb_block') }}
     </div>
   {% endblock %}
-
 </div>
+
 {% block content %}
   <div{{ attributes }}>
     {{ content }}

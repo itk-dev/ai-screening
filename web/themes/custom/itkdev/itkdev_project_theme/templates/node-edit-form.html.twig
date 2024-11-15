@@ -17,6 +17,11 @@
 #}
 {% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
 
+{% block title %}
+  {% set pageTitle = form['#title'] %}
+  {{ parent() }}
+{% endblock %}
+
 {% block content %}
   <div class="grid grid-cols-2 gap-4">
     <div>

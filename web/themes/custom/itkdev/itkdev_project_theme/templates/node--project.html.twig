@@ -16,14 +16,16 @@
 {% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
 
 {% block title %}
-  <div class="inline-flex items-center"><h1 class="dark:text-white inline-block">{{ label }}</h1><a href="{{ url('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a></div>
+  <div class="inline-flex items-center">
+    <h1 class="dark:text-white inline-block">{{ label }}</h1>
+    <a href="{{ url('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+  </div>
 {% endblock %}
 
 {% block content %}
   {% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'].field_name.value %}
   {% set project_status = project_track_evaluation(node.id) %}
-
-  <div class="container my-6">
+  <div class="container my-8 px-5">
     <p>{{ content.field_description }}</p>
     <div class="grid grid-cols-4">
       <div>
@@ -42,6 +44,7 @@
       </div>
     </div>
   </div>
+
   <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
     <header class="flex justify-between px-4 py-4 border-b">
       <h2 class="m-0 text-lg dark:text-white">{{ 'Will we?'|t }}</h2>

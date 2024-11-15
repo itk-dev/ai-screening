@@ -51,7 +51,7 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
     }
 
     if ($this->operation == 'edit') {
-      $form['#title'] = $this->t('Edit @title', [
+      $form['#title'] = $this->t('@title', [
         '@title' => $this->entity->getTitle(),
       ]);
     }

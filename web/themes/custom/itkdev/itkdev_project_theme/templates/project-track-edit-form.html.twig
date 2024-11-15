@@ -16,7 +16,16 @@
  */
 #}
 {% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
+
+{% block title %}
+  {% set pageTitle = form['#title'] %}
+  {{ parent() }}
+{% endblock %}
+
 {% block content %}
+  <div class="container my-8 px-5">
+    {{ form['#project_track'].getDescription }}
+  </div>
   <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
     <header class="flex justify-between px-4 py-4 border-b">
       <h2 class="m-0 text-lg dark:text-white">{{ 'Status'|t }}</h2>

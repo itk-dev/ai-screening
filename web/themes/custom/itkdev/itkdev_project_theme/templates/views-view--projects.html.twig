@@ -34,6 +34,11 @@
 #}
 {% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
 
+{% block title %}
+  {% set pageTitle = view.title %}
+  {{ parent() }}
+{% endblock %}
+
 {% block controls %}
   <div class="inline-flex items-center">
     {{ include('@itkdev_project_theme/components/new-project-button.html.twig') }}
