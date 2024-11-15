@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-42](https://github.com/itk-dev/ai-screening/pull/42)
+  - Added theming for project track.
+  - Added Enum for Evaluation values.
+  - Opdated status Enum
+  - Updated form for project track
+
 - [PR-35](https://github.com/itk-dev/ai-screening/pull/35)
   Added frontpage
   Changed project view

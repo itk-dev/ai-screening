@@ -76,7 +76,6 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
       '#title' => $this->t('Status'),
       '#options' => $this->projectTrackHelper->getStatusOptions(),
       '#default_value' => $this->entity->getProjectTrackStatus()->value,
-
     ];
 
     $form['project_track_note'] = [
