@@ -16,8 +16,9 @@ elements: |-
   name:
     '#type': ai_screening_weighted_textfield
     '#title': Name
-    '#description': 'Description of the name'
+    '#description': '<p>Description of the name</p>'
     '#help_title': 'Help for the name'
+    '#help': '<p>Lorem ipsum</p>'
     '#ai_screening_weight_x': 1
     '#ai_screening_weight_y': 2
   description:

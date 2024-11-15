@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a webform base element as html.
+ *
+ * Available variables:
+ * - element: The element.
+ * - title: The label for the element.
+ * - value: The content for the element.
+ * - item: The form item used to display the element.
+ * - options Associative array of options for element.
+ *   - multiline: Flag to determine if value spans multiple lines.
+ *   - email: Flag to determine if element is for an email.
+ */
+#}
+
+<div class="flex justify-between pb-4 mb-4 border-b">
+  <div class="font-thin">{{ title }}</div>
+  <div>{{ value }}</div>
+</div>

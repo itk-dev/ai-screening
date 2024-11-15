@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a node edit form.
+ *
+ * Two column template for the node add/edit form.
+ *
+ * This template will be used when a node edit form specifies 'node_edit_form'
+ * as its #theme callback.  Otherwise, by default, node add/edit forms will be
+ * themed by form.html.twig.
+ *
+ * Available variables:
+ * - form: The node add/edit form.
+ *
+ * @ingroup themeable
+ */
+#}
+{% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
+{% block content %}
+  <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+    <header class="flex justify-between px-4 py-4 border-b">
+      <h2 class="m-0 text-lg dark:text-white">{{ 'Status'|t }}</h2>
+    </header>
+    <div class="grid grid-cols-2 gap-16 px-4 py-4">
+      <div class="full-width">
+        {{ form.project_track_evaluation }}
+        {{ form.project_track_status }}
+      </div>
+      <div>
+        {{ form|without('advanced', 'project_track_evaluation', 'project_track_status') }}
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    {% for key, projectTrackTool in form['#project_tools'] %}
+      <div class="tool-wrapper">
+        <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+          {{ include('@itkdev_project_theme/components/project-track-tool-header.html.twig') }}
+          <div class="px-4 py-4">
+            {{ drupal_entity(projectTrackTool.getToolEntityType, projectTrackTool.getToolId) }}
+            <div class="flex justify-end">
+              <a href="{{ url('entity.webform_submission.edit_form', {webform: 'complexity_uncertainty_default', webform_submission: projectTrackTool.getToolId}) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
+                <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

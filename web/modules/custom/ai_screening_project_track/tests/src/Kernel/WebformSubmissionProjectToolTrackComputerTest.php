@@ -8,7 +8,7 @@ use Drupal\ai_screening_project_track\Computer\WebformSubmissionProjectTrackTool
 use Drupal\ai_screening_project_track\Entity\ProjectTrack;
 use Drupal\ai_screening_project_track\Entity\ProjectTrackTool;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
-use Drupal\ai_screening_project_track\ProjectTrackToolStatus;
+use Drupal\ai_screening_project_track\Status;
 use Drupal\node\Entity\Node;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
@@ -41,13 +41,13 @@ class WebformSubmissionProjectToolTrackComputerTest extends KernelTestBase {
     $computer = new WebformSubmissionProjectTrackToolComputer();
 
     $tool = $this->createTool([])
-      ->setProjectTrackToolStatus(ProjectTrackToolStatus::NEW);
+      ->setProjectTrackToolStatus(Status::NEW);
     $submission = $this->createWebformSubmission([]);
     $this->assertTrue($computer->supports($tool, $submission));
 
-    $this->assertSame(ProjectTrackToolStatus::NEW, $tool->getProjectTrackToolStatus());
+    $this->assertSame(Status::NEW, $tool->getProjectTrackToolStatus());
     $computer->compute($tool, $submission);
-    $this->assertSame(ProjectTrackToolStatus::IN_PROGRESS, $tool->getProjectTrackToolStatus());
+    $this->assertSame(Status::IN_PROGRESS, $tool->getProjectTrackToolStatus());
   }
 
   /**

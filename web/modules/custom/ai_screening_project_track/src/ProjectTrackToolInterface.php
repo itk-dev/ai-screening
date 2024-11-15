@@ -45,11 +45,11 @@ interface ProjectTrackToolInterface extends ContentEntityInterface, EntityChange
   /**
    * Get project track status.
    */
-  public function getProjectTrackToolStatus(): ProjectTrackToolStatus;
+  public function getProjectTrackToolStatus(): Status;
 
   /**
    * Set project track status.
    */
-  public function setProjectTrackToolStatus(ProjectTrackToolStatus $status): self;
+  public function setProjectTrackToolStatus(Status $status): self;
 
 }

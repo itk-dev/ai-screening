@@ -53,16 +53,20 @@
     </div>
   </div>
   <div class="grid grid-cols-2 gap-4">
-    {% for key, value in projectTracks %}
+    {% for key, projectTrack in projectTracks %}
       <div class="track-wrapper">
         <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
           <header class="flex justify-between px-4 py-4 border-b">
-            <h2 class="m-0 text-lg dark:text-white">{{ value.getTitle() }}</h2>
-            <div>status display here</div>
+            <h2 class="m-0 text-lg dark:text-white">{{ projectTrack.getTitle() }}</h2>
+            <div>{{ projectTrack.getProjectTrackStatus().getTranslatable }}</div>
           </header>
           <div class="px-4 py-4">
-            <div>{{ value.getDescription() }}</div>
-            <div class="flex justify-end">track link here</div>
+            <div>{{ projectTrack.getDescription() }}</div>
+            <div class="flex justify-end">
+              <a href="{{ url('entity.project_track.edit_form', {project_track: projectTrack.id.value}) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
+                <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

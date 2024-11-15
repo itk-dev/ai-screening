@@ -20,4 +20,15 @@ final class ProjectTrackHtmlRouteProvider extends AdminHtmlRouteProvider {
     return $this->getEditFormRoute($entity_type);
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  protected function getEditFormRoute(EntityTypeInterface $entity_type) {
+    if ($route = parent::getEditFormRoute($entity_type)) {
+      $route->setOption('_admin_route', FALSE);
+    }
+
+    return $route;
+  }
+
 }

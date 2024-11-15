@@ -4,16 +4,23 @@ namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\ai_screening\Helper\AbstractHelper;
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Event\ProjectTrackToolComputedEvent;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
+use Drupal\ai_screening_project_track\Status;
+use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
+use Drupal\core_event_dispatcher\ThemeHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Project track helper.
  */
 final class ProjectTrackHelper extends AbstractHelper implements EventSubscriberInterface {
+
+  use StringTranslationTrait;
 
   /**
    * The project track storage.
@@ -61,6 +68,20 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     }
 
     return NULL;
+  }
+
+  /**
+   * Get status options.
+   */
+  public function getStatusOptions(): array {
+    return Status::asOptions();
+  }
+
+  /**
+   * Get evaluation options.
+   */
+  public function getEvaluationOptions(): array {
+    return Evaluation::asOptions();
   }
 
   /**
@@ -145,12 +166,25 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
+   * Setup project track edit template.
+   */
+  public function projectTrackTheme(ThemeEvent $event): void {
+    $event->addNewTheme(
+      'project_track_edit_form',
+      [
+        'path' => 'modules/custom/ai_screening_project_track/templates',
+        'render element' => 'form',
+      ]);
+  }
+
+  /**
    * {@inheritdoc}
    */
   #[\Override]
   public static function getSubscribedEvents(): array {
     return [
       ProjectTrackToolComputedEvent::class => 'projectTrackToolComputed',
+      ThemeHookEvents::THEME => 'projectTrackTheme',
     ];
   }
 
