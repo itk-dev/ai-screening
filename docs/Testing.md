@@ -28,6 +28,11 @@ See
 [itk-dev/hoeringsportal/blob/develop/documentation/Testing.md](https://github.com/itk-dev/hoeringsportal/blob/develop/documentation/Testing.md)
 for details.
 
+A couple of tasks can be used to run the tests:
+
+* `task test-playwright-test`: Run playwright tests
+* `task test-playwright-test-ui`: Run playwright tests UI
+
 ## Setting up Playwright
 
 This section is used for future reference on how to set up Playwright in a project.
