@@ -307,7 +307,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   }
 
   /**
-   *
+   * Get the label for a tool.
    */
   public function getToolLabel(ProjectTrackToolInterface $tool): string {
     if ($tool->getToolEntityType() !== 'webform_submission') {
@@ -323,7 +323,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   }
 
   /**
-   *
+   * Get the status for a tool.
    */
   public function getToolStatus(ProjectTrackToolInterface $tool): array {
     if ($tool->getToolEntityType() !== 'webform_submission') {
