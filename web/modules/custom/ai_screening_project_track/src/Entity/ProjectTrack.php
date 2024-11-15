@@ -37,7 +37,7 @@ use Drupal\taxonomy\TermInterface;
  *       "default" = "Drupal\ai_screening_project_track\Form\ProjectTrackForm",
  *       "add" = "Drupal\ai_screening_project_track\Form\ProjectTrackForm",
  *       "edit" =
- *   "Drupal\ai_screening_project_track\Form\ProjectTrackFormProjectTrackForm",
+ *   "Drupal\ai_screening_project_track\Form\ProjectTrackForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
  *       "delete-multiple-confirm" =
  *   "Drupal\Core\Entity\Form\DeleteMultipleForm",

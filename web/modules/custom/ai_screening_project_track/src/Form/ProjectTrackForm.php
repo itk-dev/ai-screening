@@ -27,8 +27,6 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
     protected ProjectTrackToolHelper $projectTrackToolHelper,
   ) {
     parent::__construct($entity_repository, $entity_type_bundle_info, $time);
-    $this->projectTrackHelper = $projectTrackHelper;
-    $this->projectTrackToolHelper = $projectTrackToolHelper;
   }
 
   /**
@@ -75,7 +73,7 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
       '#type' => 'select',
       '#title' => $this->t('Status'),
       '#options' => $this->projectTrackHelper->getStatusOptions(),
-      '#default_value' => $this->entity->getProjectTrackStatus()->value,
+      '#default_value' => $this->entity->getProjectTrackStatus(),
     ];
 
     $form['project_track_note'] = [
