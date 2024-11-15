@@ -27,8 +27,6 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
     protected ProjectTrackToolHelper $projectTrackToolHelper,
   ) {
     parent::__construct($entity_repository, $entity_type_bundle_info, $time);
-    $this->projectTrackHelper = $projectTrackHelper;
-    $this->projectTrackToolHelper = $projectTrackToolHelper;
   }
 
   /**
