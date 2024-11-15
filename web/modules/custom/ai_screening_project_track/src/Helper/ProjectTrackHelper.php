@@ -12,6 +12,7 @@ use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
 use Drupal\ai_screening_project_track\Status;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
+use Drupal\core_event_dispatcher\Event\Theme\ThemeSuggestionsAlterEvent;
 use Drupal\core_event_dispatcher\ThemeHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -166,7 +167,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
-   *
+   * Setup project track edit template.
    */
   public function projectTrackTheme(ThemeEvent $event): void {
     $event->addNewTheme(

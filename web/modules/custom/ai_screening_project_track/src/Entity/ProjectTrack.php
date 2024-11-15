@@ -28,21 +28,29 @@ use Drupal\taxonomy\TermInterface;
  *   ),
  *   handlers = {
  *     "storage" = "Drupal\ai_screening_project_track\ProjectTrackStorage",
- *     "list_builder" = "Drupal\ai_screening_project_track\ProjectTrackListBuilder",
+ *     "list_builder" =
+ *   "Drupal\ai_screening_project_track\ProjectTrackListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
- *     "access" = "Drupal\ai_screening_project_track\ProjectTrackAccessControlHandler",
+ *     "access" =
+ *   "Drupal\ai_screening_project_track\ProjectTrackAccessControlHandler",
  *     "form" = {
  *       "default" = "Drupal\ai_screening_project_track\Form\ProjectTrackForm",
  *       "add" = "Drupal\ai_screening_project_track\Form\ProjectTrackForm",
- *       "edit" = "Drupal\ai_screening_project_track\Form\ProjectTrackFormProjectTrackForm",
+ *       "edit" =
+ *   "Drupal\ai_screening_project_track\Form\ProjectTrackFormProjectTrackForm",
  *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
- *       "delete-multiple-confirm" = "Drupal\Core\Entity\Form\DeleteMultipleForm",
- *       "revision-delete" = \Drupal\Core\Entity\Form\RevisionDeleteForm::class,
- *       "revision-revert" = \Drupal\Core\Entity\Form\RevisionRevertForm::class,
+ *       "delete-multiple-confirm" =
+ *   "Drupal\Core\Entity\Form\DeleteMultipleForm",
+ *       "revision-delete" =
+ *   \Drupal\Core\Entity\Form\RevisionDeleteForm::class,
+ *       "revision-revert" =
+ *   \Drupal\Core\Entity\Form\RevisionRevertForm::class,
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\ai_screening_project_track\Routing\ProjectTrackHtmlRouteProvider",
- *       "revision" = \Drupal\Core\Entity\Routing\RevisionHtmlRouteProvider::class,
+ *       "html" =
+ *   "Drupal\ai_screening_project_track\Routing\ProjectTrackHtmlRouteProvider",
+ *       "revision" =
+ *   \Drupal\Core\Entity\Routing\RevisionHtmlRouteProvider::class,
  *     },
  *   },
  *   base_table = "project_track",
@@ -66,9 +74,12 @@ use Drupal\taxonomy\TermInterface;
  *     "edit-form" = "/project-track/{project_track}/edit",
  *     "delete-form" = "/project-track/{project_track}/delete",
  *     "delete-multiple-form" = "/admin/content/project-track/delete-multiple",
- *     "revision" = "/project-track/{project_track}/revision/{project_track_revision}/view",
- *     "revision-delete-form" = "/project-track/{project_track}/revision/{project_track_revision}/delete",
- *     "revision-revert-form" = "/project-track/{project_track}/revision/{project_track_revision}/revert",
+ *     "revision" =
+ *   "/project-track/{project_track}/revision/{project_track_revision}/view",
+ *     "revision-delete-form" =
+ *   "/project-track/{project_track}/revision/{project_track_revision}/delete",
+ *     "revision-revert-form" =
+ *   "/project-track/{project_track}/revision/{project_track_revision}/revert",
  *     "version-history" = "/project-track/{project_track}/revisions",
  *   },
  * )
@@ -192,5 +203,4 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
 
     return reset($entities);
   }
-
 }

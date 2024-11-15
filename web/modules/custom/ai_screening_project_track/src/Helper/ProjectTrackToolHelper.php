@@ -266,6 +266,8 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
    *
    * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $projectTrack
    *   The project track.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function deleteTools(ProjectTrackInterface $projectTrack): void {
     $tools = $this->loadTools($projectTrack);
@@ -295,9 +297,61 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
    *   The form URL.
    */
   public function getTrackToolFormUrl(ProjectTrackToolInterface $tool): string {
+    if ($tool->getToolEntityType() !== 'webform_submission') {
+      return '';
+    }
+
     $submission = $this->webformSubmissionStorage->load($tool->getToolId());
 
     return $this->getUrl($submission, rel: 'edit-form');
+  }
+
+  /**
+   *
+   */
+  public function getToolLabel(ProjectTrackToolInterface $tool): string {
+    if ($tool->getToolEntityType() !== 'webform_submission') {
+      return '';
+    }
+
+    /** @var  \Drupal\webform\WebformSubmissionInterface $submission */
+    $submission = $this->webformSubmissionStorage->load($tool->getToolId());
+
+    $webform = $submission->getWebform();
+
+    return $webform->label();
+  }
+
+  /**
+   *
+   */
+  public function getToolStatus(ProjectTrackToolInterface $tool): array {
+    if ($tool->getToolEntityType() !== 'webform_submission') {
+      return [];
+    }
+
+    $status = [
+      'fields' => 0,
+      'populated' => 0,
+    ];
+    /** @var  \Drupal\webform\WebformSubmissionInterface $submission */
+    $submission = $this->webformSubmissionStorage->load($tool->getToolId());
+    $submissionData = $submission->getData();
+    if (empty($submissionData)) {
+      return $status;
+    }
+
+    foreach ($submissionData as $data) {
+      if (empty($data)) {
+        $status['fields']++;
+      }
+      else {
+        $status['fields']++;
+        $status['populated']++;
+      }
+    }
+
+    return $status;
   }
 
   /**

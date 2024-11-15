@@ -1,0 +1,15 @@
+{% set toolLabel = form['#tool_helper'].getToolLabel(projectTrackTool) %}
+{% set toolStatus = form['#tool_helper'].getToolStatus(projectTrackTool) %}
+
+<header class="flex justify-between px-4 py-4 border-b">
+  <h2 class="m-0 text-lg dark:text-white">{{ toolLabel }}</h2>
+  <div>
+    {% if toolStatus.fields is same as 0 %}
+      {{ 'New'|t }}
+    {% elseif toolStatus.fields is same as toolStatus.populated %}
+      {{ 'Completed'|t }}
+    {% else %}
+      {{ '@populated of @fields'|t({'@populated':toolStatus.populated, '@fields':toolStatus.fields}) }}
+    {% endif %}
+  </div>
+</header>

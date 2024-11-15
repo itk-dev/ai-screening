@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening_project_track\Form;
 
-use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackToolHelper;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -62,9 +62,11 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
     $form['#theme'] = 'project_track_edit_form';
     $form['#project_track'] = $this->entity;
     $form['#project_tools'] = $this->projectTrackToolHelper->loadTools($this->entity);
+    $form['#tool_helper'] = $this->projectTrackToolHelper;
+
     $form['project_track_evaluation'] = [
       '#type' => 'select',
-      '#title' => $this->t('Evaluation') . ': ' . $this->entity->getTitle(),
+      '#title' => $this->t('Evaluation: @track_title', ['@track_title' => $this->entity->getTitle()]),
       '#options' => $this->projectTrackHelper->getEvaluationOptions(),
       '#default_value' => $this->entity->getProjectTrackEvaluation(),
     ];
@@ -73,7 +75,7 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
       '#type' => 'select',
       '#title' => $this->t('Status'),
       '#options' => $this->projectTrackHelper->getStatusOptions(),
-      '#default_value' => $this->entity->getProjectTrackStatus()->value
+      '#default_value' => $this->entity->getProjectTrackStatus()->value,
 
     ];
 
@@ -87,9 +89,9 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
   }
 
   /**
-   *
+   * {@inheritdoc}
    */
-  protected function actions(array $form, FormStateInterface $form_state) {
+  protected function actions(array $form, FormStateInterface $form_state): array {
     $element = parent::actions($form, $form_state);
     $element['delete']['#access'] = FALSE;
     $element['cancel'] = [
@@ -97,8 +99,8 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
       '#url' => $this->entity->getProject()->toUrl(),
       '#title' => $this->t('Cancel'),
       '#attributes' => [
-        'class' => ['button', 'button--danger'],
-      ]
+        'class' => ['btn-default', 'btn-default', 'bg-white', 'border', 'p-3', 'rounded'],
+      ],
     ];
 
     return $element;
@@ -134,10 +136,6 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
       default:
         throw new \LogicException('Could not save the entity.');
     }
-
-    $projectTrack = $this->entity;
-    //$projectTrack->set('project_track_note', 'asdf');
-    //$projectTrack->save();
 
     $project = $this->entity->getProject();
     $form_state->setRedirectUrl($project->toUrl());
