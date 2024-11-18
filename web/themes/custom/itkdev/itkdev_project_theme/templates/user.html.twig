@@ -20,6 +20,11 @@
 #}
 {% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
 
+{% block title %}
+  {% set pageTitle = content.field_name %}
+  {{ parent() }}
+{% endblock %}
+
 {% block content %}
   <article{{ attributes }}>
     {% if content %}
