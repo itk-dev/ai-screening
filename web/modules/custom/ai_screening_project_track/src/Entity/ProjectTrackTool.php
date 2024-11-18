@@ -11,6 +11,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
 use Drupal\ai_screening_project_track\Status;
+use Drupal\webform\WebformSubmissionInterface;
 use function Safe\json_decode;
 use function Safe\json_encode;
 
@@ -149,6 +150,13 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
    */
   public function getToolEntityType(): string {
     return $this->get('tool_entity_type')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToolEntity(): WebformSubmissionInterface {
+    return $this->entityTypeManager()->getStorage($this->getToolEntityType())->load($this->getToolId());
   }
 
   /**

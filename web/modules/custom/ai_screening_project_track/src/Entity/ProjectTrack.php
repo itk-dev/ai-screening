@@ -59,7 +59,7 @@ use Drupal\taxonomy\TermInterface;
  *   entity_keys = {
  *     "id" = "id",
  *     "revision" = "revision_id",
- *     "label" = "id",
+ *     "label" = "title",
  *     "uuid" = "uuid",
  *   },
  *   revision_metadata_keys = {
