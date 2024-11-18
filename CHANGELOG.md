@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
+
 - [PR-40](https://github.com/itk-dev/ai-screening/pull/40)
   Add [field group](https://www.drupal.org/project/field_group) module
   Create fieldset template (and styling in `project-styles.css`)
