@@ -84,3 +84,8 @@ private-files/
 
 .env.local
 .env.docker.local
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

@@ -1,5 +1,6 @@
 include:
   - docker-compose.oidc.yml
+  - docker-compose.playwright.yml
 
 services:
   node:

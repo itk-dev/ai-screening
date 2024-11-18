@@ -121,6 +121,15 @@ docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdo
 docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
 ```
 
+```shell name=coding-standards-markdown
+docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md) --fix
+docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
+```
+
+``` shell name=coding-standards-js
+task prettier
+```
+
 ## Site theme
 
 There is a custom frontend theme installed with common components based on tailwind. See

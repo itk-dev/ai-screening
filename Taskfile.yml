@@ -136,8 +136,49 @@ tasks:
       - task compose -- exec phpfpm bash -c 'cd web && ../vendor/bin/phpunit --configuration ../phpunit.xml modules/custom {{.CLI_ARGS}}'
     silent: true
 
+  test-playwright-test:
+    desc: "Run playwright tests"
+    cmds:
+      # Trigger task to pass on `--yes` (and other task flags), cf.
+      # https://taskfile.dev/reference/schema#command and
+      # https://taskfile.dev/reference/cli#flags
+      - task: test-playwright-initialize
+      # See https://playwright.dev/docs/test-reporters#html-reporter
+      - task compose -- run --rm --env _CI=1 --env PLAYWRIGHT_HTML_OPEN=never playwright npx playwright test || true
+      - open playwright-report/index.html
+
+  test-playwright-test-ui:
+    desc: "Run playwright tests UI"
+    cmds:
+      # Trigger task to pass on `--yes` (and other task flags), cf.
+      # https://taskfile.dev/reference/schema#command and
+      # https://taskfile.dev/reference/cli#flags
+      - task: test-playwright-initialize
+      - xhost + 127.0.0.1
+      - task compose -- run --rm --env DISPLAY=host.docker.internal:0 playwright npx playwright test --ui
+
+  test-playwright-initialize:
+    internal: true
+    cmds:
+      # Trigger task to pass on `--yes` (and other task flags), cf.
+      # https://taskfile.dev/reference/schema#command and
+      # https://taskfile.dev/reference/cli#flags
+      - task: site-install
+      - task: site-update
+      # Delete all translations.
+      - task drush -- sql:query "DELETE FROM locales_target";
+      - task drush -- cache:rebuild
+      - task compose -- run --rm node npm install
+      - task compose -- run --rm playwright npx playwright install
+
   set-user-roles:
     desc: "Set some user's roles"
     cmds:
       - task drush -- user:role:add 'administrator' admin
     silent: true
+
+  prettier:
+    desc: "Run Prettier on tests source"
+    cmds:
+      - docker run --rm -v $(pwd):/work tmknom/prettier --write tests
+      - docker run --rm -v $(pwd):/work tmknom/prettier --check tests
