@@ -24,7 +24,7 @@
 
 {% block content %}
   <div class="container my-8 px-5">
-    {{ form['#project_track'].getDescription }}
+    {{ form['#project_track'].getDescription|raw }}
   </div>
   <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
     <header class="flex justify-between px-4 py-4 border-b">
@@ -48,7 +48,11 @@
           <div class="px-4 py-4">
             {{ drupal_entity(projectTrackTool.getToolEntityType, projectTrackTool.getToolId) }}
             <div class="flex justify-end">
-              <a href="{{ url('entity.webform_submission.edit_form', {webform: 'complexity_uncertainty_default', webform_submission: projectTrackTool.getToolId}) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
+              <a href="{{ url('entity.webform_submission.edit_form', {
+                webform: 'complexity_uncertainty_default',
+                webform_submission: projectTrackTool.getToolId,
+                'destination': form['#action']
+              }) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
                 <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>
               </a>
             </div>

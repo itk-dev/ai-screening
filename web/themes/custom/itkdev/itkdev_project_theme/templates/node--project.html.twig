@@ -64,7 +64,7 @@
             <div>{{ projectTrack.getProjectTrackStatus().getTranslatable }}</div>
           </header>
           <div class="px-4 py-4">
-            <div>{{ projectTrack.getDescription() }}</div>
+            <div>{{ projectTrack.getDescription()|raw }}</div>
             <div class="flex justify-end">
               <a href="{{ url('entity.project_track.edit_form', {project_track: projectTrack.id.value}) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
                 <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>

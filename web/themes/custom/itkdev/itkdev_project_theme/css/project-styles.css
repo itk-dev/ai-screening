@@ -88,3 +88,26 @@
 .project-members:last-child .spacing {
     display: none;
 }
+
+.webform-progress .progress-step {
+  color: rgba(0,0,0,.3);
+
+  &.is-complete {
+    color: #047857;
+  }
+
+  &.is-active {
+    color: rgb(0,0,0)
+  }
+}
+
+details summary::marker {
+  display: none;
+  content: "";
+}
+
+details[open] {
+  h3 svg {
+    transform: rotate(180deg);
+  }
+}
