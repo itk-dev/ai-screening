@@ -89,6 +89,29 @@
     display: none;
 }
 
+.webform-progress .progress-step {
+  color: rgba(0,0,0,.3);
+
+  &.is-complete {
+    color: #047857;
+  }
+
+  &.is-active {
+    color: rgb(0,0,0)
+  }
+}
+
+details summary::marker {
+  display: none;
+  content: "";
+}
+
+details[open] {
+  h3 svg {
+    transform: rotate(180deg);
+  }
+}
+
 .children-of-fieldset {
   padding: 1.25rem;
 }
@@ -120,7 +143,7 @@
 }
 
 #edit-submit {
-  margin: 1rem;
+  margin: 0 1rem;
 }
 
 #edit-delete {
@@ -135,7 +158,6 @@
   border-width: 1px;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  margin: 1rem;
+  margin: 0 1rem;
   margin-left: 0;
 }
-

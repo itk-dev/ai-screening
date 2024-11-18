@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a webform submission form.
+ *
+ * Available variables:
+ * - form: The webform submission form.
+ *
+ * @ingroup themeable
+ */
+#}
+{% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
+
+{% block title %}
+  {% set pageTitle = form.information['#webform_submission'].getWebform.label %}
+  {{ parent() }}
+{% endblock %}
+
+{% block content %}
+  {% if form.progress %}
+    <div class="bg-primary text-primary p-3 md:p-5 m-3 md:m-5 shadow-md max-w-xl">
+      {{ form.progress }}
+    </div>
+  {% endif %}
+  <div class="bg-primary text-primary p-3 md:p-5 m-3 md:m-5 shadow-md max-w-xl">
+    {{ form|without('information', 'progress') }}
+  </div>
+{% endblock %}
