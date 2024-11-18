@@ -1,0 +1,30 @@
+
+{%
+  set classes = [
+    'js-form-item',
+    'form-item',
+    'js-form-wrapper',
+    'form-wrapper',
+  ]
+%}
+<fieldset{{ attributes.addClass(classes) }}>
+  {%
+    set legend_span_classes = [
+      'fieldset-legend',
+      required ? 'js-form-required',
+      required ? 'form-required',
+    ]
+  %}
+  <legend>
+  <div class="p-5 padding-around-h2">
+    <h2 class="text-lg font-semibold dark:text-white my-0">{{ legend.title }}</h2>
+   </div>
+  </legend>
+  <div class="fieldset-border border-b border-primary w-full"></div>
+     {% if description_display in ['after', 'invisible'] and description.content %}
+      <div{{ description.attributes.addClass('description pt-2') }}>{{ description.content }}</div>
+    {% endif %}
+  <div class="children-of-fieldset">
+   {{ children }}
+   </div>
+</fieldset>

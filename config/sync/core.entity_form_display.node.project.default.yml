@@ -7,7 +7,27 @@ dependencies:
     - field.field.node.project.field_description
     - node.type.project
   module:
+    - field_group
     - text
+third_party_settings:
+  field_group:
+    group_project_information:
+      children:
+        - title
+        - field_description
+        - field_department
+      label: Projektinformation
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        description: ''
+        required_fields: true
 id: node.project.default
 targetEntityType: node
 bundle: project
@@ -15,7 +35,7 @@ mode: default
 content:
   field_department:
     type: options_buttons
-    weight: 1
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -26,17 +46,12 @@ content:
     settings:
       rows: 5
       placeholder: ''
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 3
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
+      hide_help: true
+      hide_guidelines: true
+    third_party_settings: { }
   title:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -46,5 +61,6 @@ hidden:
   created: true
   langcode: true
   promote: true
+  status: true
   sticky: true
   uid: true

@@ -39,7 +39,7 @@
     responsive ? 'responsive-enabled',
     sticky ? 'sticky-header',
     'table-auto',
-    'w-full border-separate border-slate-400'
+    'w-full border-separate border-slate-400',
   ]
 %}
 
@@ -71,7 +71,7 @@
                   'views-field',
                   'views-field-' ~ fields[key],
                   'font-light',
-                  'text-left'
+                  'text-left',
                 ]
               %}
             {% endif %}
@@ -103,7 +103,7 @@
             {% if column.default_classes %}
               {%
                 set column_classes = [
-                  'views-field'
+                  'views-field',
                 ]
               %}
               {% for field in column.fields %}

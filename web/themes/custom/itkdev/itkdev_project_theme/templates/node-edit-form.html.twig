@@ -3,7 +3,7 @@
  * @file
  * Default theme implementation for a node edit form.
  *
- * Two column template for the node add/edit form.
+ * The template for the node add/edit form.
  *
  * This template will be used when a node edit form specifies 'node_edit_form'
  * as its #theme callback.  Otherwise, by default, node add/edit forms will be
@@ -23,12 +23,7 @@
 {% endblock %}
 
 {% block content %}
-  <div class="grid grid-cols-2 gap-4">
-    <div>
-      {{ form|without('advanced') }}
-    </div>
-    <div>
-      Group stuff here
-    </div>
+  <div class="container my-8 px-5 py-8 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-slate-600 drop-shadow-md">
+    {{ form|without('advanced') }}
   </div>
 {% endblock %}
