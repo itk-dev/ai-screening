@@ -88,3 +88,54 @@
 .project-members:last-child .spacing {
     display: none;
 }
+
+.children-of-fieldset {
+  padding: 1.25rem;
+}
+
+/* Make fields around radio buttons look like the other labels */
+#edit-field-department--wrapper {
+
+.children-of-fieldset {
+  padding: 1rem 0 0 0;
+}
+  .padding-around-h2 {
+    padding: 0;
+
+    h2 {
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+  }
+
+  .fieldset-border {
+    display: none;
+  }
+}
+
+#edit-actions {
+  display: flex;
+  justify-content: end;
+}
+
+#edit-submit {
+  margin: 1rem;
+}
+
+#edit-delete {
+  padding-left: 1.25rem;
+  display: inline-block;
+  padding-right: 1.25rem;
+  background-color: white;
+  border-color: rgb(203 213 225); /* bg-slate-300 */
+  color: black;
+  min-height: 2.25rem;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin: 1rem;
+  margin-left: 0;
+}
+

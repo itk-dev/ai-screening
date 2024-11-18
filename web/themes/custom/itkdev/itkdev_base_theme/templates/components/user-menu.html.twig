@@ -2,7 +2,7 @@
 {% set role = {
   administrator: 'Administrator'|trans,
   editor: 'Editor'|trans,
-  user: 'User'|trans
+  user: 'User'|trans,
   }[user.getRoles(true)|first|default('user')]
 %}
 
