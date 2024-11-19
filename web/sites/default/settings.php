@@ -872,6 +872,20 @@ $settings['skip_permissions_hardening'] = TRUE;
 // https://www.drupal.org/node/3079028
 $settings['config_exclude_modules'] = ['webprofiler', 'devel', 'tracer', 'menu_ui', 'field_ui', 'views_ui'];
 
+// See https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Template%21TwigSandboxPolicy.php/11.x
+$settings['twig_sandbox_allowed_methods'] = [
+  // Defaults (cf. Drupal\Core\Template\TwigSandboxPolicy::__construct()).
+  'id',
+  'label',
+  'bundle',
+  'get',
+  '__toString',
+  'toString',
+  // Additions
+  // Allow calling `entity.access`
+  'access',
+];
+
 /**
  * Load local development override configuration, if available.
  *
