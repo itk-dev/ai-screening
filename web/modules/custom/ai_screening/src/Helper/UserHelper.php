@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening\Helper;
 
+use AllowDynamicProperties;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
@@ -19,7 +20,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * User helper.
  */
-#[AllowDynamicProperties] final class UserHelper extends AbstractHelper implements EventSubscriberInterface {
+final class UserHelper extends AbstractHelper implements EventSubscriberInterface {
 
 
   /**
