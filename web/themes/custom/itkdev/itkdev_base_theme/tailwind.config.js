@@ -3,7 +3,6 @@ module.exports = {
   content: [
     "./templates/**/*.{twig,html}",
     "../itkdev_project_theme/templates/**/*.{twig,html}",
-    "../itkdev_project_theme/css/custom-detection.txt",
     "./js/**/*.js",
   ],
   // safelist: [
