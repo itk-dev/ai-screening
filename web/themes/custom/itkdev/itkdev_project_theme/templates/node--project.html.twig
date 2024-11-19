@@ -18,7 +18,9 @@
 {% block title %}
   <div class="inline-flex items-center">
     <h1 class="dark:text-white inline-block">{{ label }}</h1>
-    <a href="{{ url('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+    {% if node.access('update') %}
+      <a href="{{ path('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+    {% endif %}
   </div>
 {% endblock %}
 
@@ -66,9 +68,11 @@
           <div class="px-4 py-4">
             <div>{{ projectTrack.getDescription()|raw }}</div>
             <div class="flex justify-end">
-              <a href="{{ url('entity.project_track.edit_form', {project_track: projectTrack.id.value}) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
-                <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>
-              </a>
+              {% if projectTrack.access('update') %}
+                <a href="{{ path('entity.project_track.edit_form', {project_track: projectTrack.id.value}) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
+                  <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>
+                </a>
+              {% endif %}
             </div>
           </div>
         </div>
