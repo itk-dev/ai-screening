@@ -118,9 +118,15 @@ tasks:
   check-code:
     desc: "Check coding standards"
     cmds:
-      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md'
       - task composer -- code-analysis
-      - task composer -- coding-standards-check/twig-cs-fixer
+      - task composer -- coding-standards-check
+
+  coding-standards-apply:
+    desc: "Apply coding standards"
+    cmds:
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md' --fix
+      - task composer -- coding-standards-apply
 
   apply-fixtures:
     desc: "Apply fixtures. Any cli arguments will be passed to `drush content-fixtures:load`"
