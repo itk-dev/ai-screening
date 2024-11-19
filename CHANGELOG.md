@@ -6,7 +6,8 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
-
+- [PR-45](https://github.com/itk-dev/ai-screening/pull/47)
+  User pages theming
 - [PR-45](https://github.com/itk-dev/ai-screening/pull/45)
   Added webform progress styling/theming
 - [PR-40](https://github.com/itk-dev/ai-screening/pull/40)

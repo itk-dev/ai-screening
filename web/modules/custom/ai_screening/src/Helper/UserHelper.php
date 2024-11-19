@@ -4,19 +4,35 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening\Helper;
 
+use AllowDynamicProperties;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Site\Settings;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Entity\EntityPresaveEvent;
 use Drupal\user\UserInterface;
+use Drupal\user_event_dispatcher\Event\User\UserFormatNameAlterEvent;
+use Drupal\user_event_dispatcher\UserHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * User helper.
  */
-final class UserHelper extends AbstractHelper implements EventSubscriberInterface {
+#[AllowDynamicProperties] final class UserHelper extends AbstractHelper implements EventSubscriberInterface {
 
   /**
-   * Event handler.
+   * Constructor.
+   */
+  public function __construct(
+    EntityTypeManagerInterface $entityTypeManager,
+    LoggerChannel $logger,
+  ) {
+    parent::__construct($logger);
+    $this->userStorage = $entityTypeManager->getStorage('user');
+  }
+
+  /**
+   * Event handler. for preSave method.
    */
   public function preSave(EntityPresaveEvent $event): void {
     $entity = $event->getEntity();
@@ -49,11 +65,22 @@ final class UserHelper extends AbstractHelper implements EventSubscriberInterfac
   }
 
   /**
+   * Event handler for altering the username on display.
+   */
+  public function alterUserName(UserFormatNameAlterEvent $event): void {
+    $name = &$event->getName();
+    $user = $this->userStorage->load($event->getAccount()->id());
+    $fieldName = $user?->field_name->value;
+    $name = empty($fieldName) ? $event->getAccount()->getEmail() : $fieldName;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function getSubscribedEvents(): array {
     return [
       EntityHookEvents::ENTITY_PRE_SAVE => 'preSave',
+      UserHookEvents::USER_FORMAT_NAME_ALTER => 'alterUserName',
     ];
   }
 
