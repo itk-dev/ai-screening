@@ -59,11 +59,22 @@
   </div>
   <div class="grid grid-cols-2 gap-4">
     {% for key, projectTrack in projectTracks %}
+      {% set projectTrackEvaluation = projectTrack.getProjectTrackEvaluation() %}
+      {% if projectTrackEvaluation is same as '0' %}
+        {% set borderColorClass = 'border-slate-300' %}
+      {% elseif projectTrackEvaluation is same as '1' %}
+        {% set borderColorClass = 'border-green-700' %}
+      {% elseif projectTrackEvaluation is same as '2' %}
+        {% set borderColorClass = 'border-yellow-700' %}
+      {% else %}
+        {% set borderColorClass = 'border-red-700' %}
+      {% endif %}
+
       <div class="track-wrapper">
         <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
-          <header class="flex justify-between px-4 py-4 border-b">
+          <header class="flex justify-between px-4 py-4 border-b-2 {{ borderColorClass }}">
             <h2 class="m-0 text-lg dark:text-white">{{ projectTrack.getTitle() }}</h2>
-            <div>{{ projectTrack.getProjectTrackStatus().getTranslatable }}</div>
+            <div>{{ projectTrackStatus }}</div>
           </header>
           <div class="px-4 py-4">
             <div>{{ projectTrack.getDescription()|raw }}</div>
