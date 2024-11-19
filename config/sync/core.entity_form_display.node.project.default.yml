@@ -48,7 +48,7 @@ content:
       placeholder: ''
       hide_help: true
       hide_guidelines: true
-    third_party_settings: { }
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 1

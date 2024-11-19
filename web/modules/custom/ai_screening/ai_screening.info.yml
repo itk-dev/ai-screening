@@ -7,3 +7,4 @@ dependencies:
   - drupal:user
   - openid_connect:openid_connect
   - custom_event_dispatcher:custom_event_dispatcher
+  - hook_event_dispatcher:user_event_dispatcher
