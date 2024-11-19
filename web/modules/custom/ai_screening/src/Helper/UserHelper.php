@@ -41,7 +41,7 @@ final class UserHelper extends AbstractHelper implements EventSubscriberInterfac
   }
 
   /**
-   * Event handler. for preSave method.
+   * Event handler for preSave method.
    */
   public function preSave(EntityPresaveEvent $event): void {
     $entity = $event->getEntity();
