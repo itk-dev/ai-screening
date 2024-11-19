@@ -198,4 +198,14 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
     return $this;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTagsToInvalidate(): array {
+    return array_merge(
+      parent::getCacheTagsToInvalidate(),
+      $this->getProjectTrack()->getCacheTagsToInvalidate()
+    );
+  }
+
 }
