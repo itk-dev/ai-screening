@@ -80,7 +80,7 @@ final class UserHelper extends AbstractHelper implements EventSubscriberInterfac
     $name = &$event->getName();
     $user = $this->userStorage->load($event->getAccount()->id());
     $fieldName = $user?->field_name->value;
-    $name = empty($fieldName) ? $event->getAccount()->getEmail() : $fieldName;
+    $name = $fieldName ?: $event->getAccount()->getEmail();
   }
 
   /**
