@@ -79,7 +79,7 @@ final class UserHelper extends AbstractHelper implements EventSubscriberInterfac
   public function alterUserName(UserFormatNameAlterEvent $event): void {
     $name = &$event->getName();
     $user = $this->userStorage->load($event->getAccount()->id());
-    $fieldName = $user?->field_name->value;
+    $personName = $user?->get('field_name')->getString();
     $name = $fieldName ?: $event->getAccount()->getEmail();
   }
 
