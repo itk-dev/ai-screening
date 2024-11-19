@@ -14,7 +14,7 @@
         </span>
 
         <span class="h-12 w-12 rounded-full bg-secondary overflow-hidden">
-          {% set imageUrl = drupal_field('field_image', 'user', user.id, {type: 'image_url', settings: {image_style: 'thumbnail'}})  %}
+          {% set imageUrl = drupal_field('field_image', 'user', user.id, {type: 'image_url', settings: {image_style: 'thumbnail'}}) %}
           {% set alt = drupal_field('field_image', 'user', user.id)[0]['#item'].alt %}
             <img src="{{ imageUrl[0] }}" alt="{{ alt }}">
         </span>

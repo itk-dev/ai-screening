@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Drupal\ai_screening\Helper;
 
 use AllowDynamicProperties;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Site\Settings;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Entity\EntityPresaveEvent;
 use Drupal\user\UserInterface;
+use Drupal\user\UserStorageInterface;
 use Drupal\user_event_dispatcher\Event\User\UserFormatNameAlterEvent;
 use Drupal\user_event_dispatcher\UserHookEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -19,6 +21,14 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  * User helper.
  */
 #[AllowDynamicProperties] final class UserHelper extends AbstractHelper implements EventSubscriberInterface {
+
+
+  /**
+   * The user storage.
+   *
+   * @var \Drupal\user\UserStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
+   */
+  private readonly UserStorageInterface|EntityStorageInterface $userStorage;
 
   /**
    * Constructor.
