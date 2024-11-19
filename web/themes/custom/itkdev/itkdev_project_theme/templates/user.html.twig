@@ -23,7 +23,9 @@
 {% block title %}
   <div class="inline-flex items-center">
     <h1 class="dark:text-white inline-block">{{ content.field_name }}</h1>
-    <a href="{{ url('entity.user.edit_form', {user: user.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+    {% if user.access('update') %}
+      <a href="{{ url('entity.user.edit_form', {user: user.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+    {% endif %}
   </div>
 {% endblock %}
 
