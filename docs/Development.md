@@ -31,6 +31,15 @@ The following users are available for local testing:
 [^1]: The "Bruger" group is not actually used in Drupal (but the AD requires a group on a user). A user that is neither
     an "ADministrator" or "Redaktoer" will be just an "authenticated" user.
 
+## Masquerading
+
+For easy user switching during testing (without access to `drush user:login`), the [Masquerade
+module](https://www.drupal.org/project/masquerade) can be installed (`composer install --dev` must be run to make the
+module available).
+
+[A patch](https://www.drupal.org/project/masquerade/issues/2962970#comment-15412846) has been applied to allow unmasking
+by visiting `/unmask`.
+
 ## WebProfiler
 
 The [WebProfiler module](https://www.drupal.org/project/webprofiler) can be installed to help during development:

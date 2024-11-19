@@ -30,7 +30,6 @@ docker compose run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_bas
 docker compose run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme coding-standards-check
 ```
 
-
 ## Common visuals
 
 Images you should consider adding in the theme

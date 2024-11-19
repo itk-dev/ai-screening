@@ -28,6 +28,7 @@
     },
     "require-dev": {
         "drupal/core-dev": "^11.0",
+        "drupal/masquerade": "^2.0",
         "drupal/webprofiler": "^11.0",
         "ergebnis/composer-normalize": "^2.43",
         "mglaman/phpstan-drupal": "^1.1",
@@ -131,6 +132,9 @@
                 "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540)": "https://www.drupal.org/files/issues/2024-08-06/3150540-43-MR9103-11.x.diff",
                 "Missing menu active trail on views (https://www.drupal.org/project/drupal/issues/3359511)": "https://www.drupal.org/files/issues/2024-09-23/3359511-100.patch",
                 "Add an option to 'hide filter tips' on text fields (https://www.drupal.org/project/drupal/issues/3323007)": "https://git.drupalcode.org/project/drupal/-/merge_requests/5453.diff"
+            },
+            "drupal/masquerade": {
+                "Provide a foolproof way to unmasquerade (https://www.drupal.org/project/masquerade/issues/2962970)": "https://www.drupal.org/files/issues/2024-01-25/2962970-17.patch"
             }
         }
     },
