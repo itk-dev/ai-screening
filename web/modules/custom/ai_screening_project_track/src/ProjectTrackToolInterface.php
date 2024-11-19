@@ -6,6 +6,7 @@ namespace Drupal\ai_screening_project_track;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Provides an interface defining a project track tool entity type.
@@ -31,6 +32,11 @@ interface ProjectTrackToolInterface extends ContentEntityInterface, EntityChange
    * Get tool id.
    */
   public function getToolId(): int|string;
+
+  /**
+   * Get tool entity.
+   */
+  public function getToolEntity(): EntityInterface;
 
   /**
    * Get tool data.

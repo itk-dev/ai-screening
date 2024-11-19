@@ -19,3 +19,8 @@ services:
     autowire: true
     tags:
       - { name: event_subscriber }
+
+  Drupal\ai_screening_project\BreadcrumbBuilder:
+    autowire: true
+    tags:
+      - { name: breadcrumb_builder, priority: 1010 }
