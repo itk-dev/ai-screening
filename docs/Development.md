@@ -31,7 +31,6 @@ The following users are available for local testing:
 [^1]: The "Bruger" group is not actually used in Drupal (but the AD requires a group on a user). A user that is neither
     an "ADministrator" or "Redaktoer" will be just an "authenticated" user.
 
-
 ## Masquerading
 
 For easy user switching during testing (without access to `drush user:login`), the [Masquerade

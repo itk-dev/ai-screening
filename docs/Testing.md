@@ -9,7 +9,6 @@ Update trusted host patterns:
 $settings['trusted_host_patterns'][] = '^nginx$';
 ```
 
-
 ``` shell name=playwright-run
 docker compose run --rm node npm install
 docker compose run --rm playwright npx playwright install
