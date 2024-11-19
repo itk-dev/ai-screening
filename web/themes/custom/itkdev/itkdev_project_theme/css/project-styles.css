@@ -1,5 +1,4 @@
 /* Project specific styles */
-
 :root {
     --theme-primary: #fff;
     --theme-secondary: #F4F4F5;
@@ -160,4 +159,8 @@ details[open] {
   padding-bottom: 0.5rem;
   margin: 0 1rem;
   margin-left: 0;
+}
+
+.font-bold {
+  font-weight: 700;
 }

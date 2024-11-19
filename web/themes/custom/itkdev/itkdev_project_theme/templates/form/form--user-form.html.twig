@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+{% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
+
+{% block title %}
+  {% set pageTitle = 'Update user profile'|t %}
+  {{ parent() }}
+{% endblock %}
+
+{% block content %}
+  <div class="p-5 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-slate-600 drop-shadow-md">
+    <form{{ attributes }}>
+      {{ children }}
+    </form>
+  </div>
+{% endblock %}
+
+
