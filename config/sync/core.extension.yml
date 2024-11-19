@@ -45,6 +45,7 @@ module:
   twig_tweak: 0
   update: 0
   user: 0
+  user_event_dispatcher: 0
   webform: 0
   webform_submission_log: 0
   webform_ui: 0

@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning].
 
 - [PR-48](https://github.com/itk-dev/ai-screening/pull/48)
   Access checks in Twig
+- [PR-47](https://github.com/itk-dev/ai-screening/pull/47)
+  User pages theming
 - [PR-46](https://github.com/itk-dev/ai-screening/pull/46)
   2991: Added breadcrumb trails
 - [PR-45](https://github.com/itk-dev/ai-screening/pull/45)
