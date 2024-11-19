@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening\Helper;
 
-use AllowDynamicProperties;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
