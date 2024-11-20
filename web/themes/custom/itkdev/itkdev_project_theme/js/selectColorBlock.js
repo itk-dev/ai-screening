@@ -8,11 +8,13 @@ let colorScheme = {
 let select = document.getElementById('edit-project-track-evaluation')
 let colorBlock = document.getElementById('selectColorBlock');
 
-// Set color on page load.
-colorBlock.classList.add(colorScheme[select.value])
+if (colorBlock) {
+  // Set color on page load.
+  colorBlock.classList.add(colorScheme[select.value])
 
 // Set color on change.
-select.addEventListener("change", function() {
-  colorBlock.classList.remove(...Object.values(colorScheme));
-  colorBlock.classList.add(colorScheme[select.value])
-});
+  select.addEventListener("change", function() {
+    colorBlock.classList.remove(...Object.values(colorScheme));
+    colorBlock.classList.add(colorScheme[select.value])
+  });
+}
