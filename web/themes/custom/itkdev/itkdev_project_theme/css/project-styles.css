@@ -160,20 +160,3 @@ details[open] {
   margin: 0 1rem;
   margin-left: 0;
 }
-
-/**
-Find some way of detecting these base styles in this project theme.
- */
-.font-bold {
-  font-weight: 700;
-}
-
-.bg-yellow-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(161 98 7 / var(--tw-text-opacity))
-}
-
-.bg-red-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(185 28 28 / var(--tw-text-opacity))
-}
