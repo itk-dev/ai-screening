@@ -204,4 +204,14 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
     return reset($entities);
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTagsToInvalidate(): array {
+    return array_merge(
+      parent::getCacheTagsToInvalidate(),
+      $this->getProject()->getCacheTagsToInvalidate()
+    );
+  }
+
 }

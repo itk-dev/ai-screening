@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-49](https://github.com/itk-dev/ai-screening/pull/49)
+  Proper cache invalidation
 - [PR-48](https://github.com/itk-dev/ai-screening/pull/48)
   Access checks in Twig
 - [PR-47](https://github.com/itk-dev/ai-screening/pull/47)

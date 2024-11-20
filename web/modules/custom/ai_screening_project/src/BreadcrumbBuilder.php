@@ -40,6 +40,7 @@ final class BreadcrumbBuilder implements BreadcrumbBuilderInterface {
    */
   public function build(RouteMatchInterface $route_match): Breadcrumb {
     $breadcrumb = new Breadcrumb();
+    $breadcrumb->addCacheContexts(['route']);
 
     $entity = $this->getEntity($route_match);
 
