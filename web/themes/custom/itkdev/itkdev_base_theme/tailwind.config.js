@@ -12,6 +12,7 @@ module.exports = {
   darkMode: 'class',
 };
 
+// Merge project specific config.
 module.exports = deepMerge(module.exports, projectThemeConfig);
 
 /**
