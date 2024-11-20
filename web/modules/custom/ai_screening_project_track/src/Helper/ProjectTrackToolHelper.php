@@ -3,6 +3,7 @@
 namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Entity\EntityAccessControlHandlerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
@@ -53,6 +54,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   public function __construct(
     private readonly TimeInterface $time,
     private readonly EventDispatcherInterface $eventDispatcher,
+    private readonly CacheTagsInvalidatorInterface $cacheTagsInvalidator,
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
@@ -203,6 +205,8 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
       $this->eventDispatcher->dispatch(
         new ProjectTrackToolComputedEvent($tool)
       );
+
+      $this->cacheTagsInvalidator->invalidateTags($tool->getCacheTagsToInvalidate());
 
       $tool->save();
     }
