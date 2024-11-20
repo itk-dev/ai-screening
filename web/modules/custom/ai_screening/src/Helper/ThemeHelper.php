@@ -49,6 +49,9 @@ final class ThemeHelper extends AbstractHelper implements EventSubscriberInterfa
     if ($hook === 'form' & !empty($variables['element']['#id'])) {
       $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
     }
+    if ($hook === 'select' & !empty($variables['element']['#id'])) {
+      $suggestions[] = 'select__' . str_replace('-', '_', $variables['element']['#id']);
+    }
   }
 
 }

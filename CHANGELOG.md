@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-50](https://github.com/itk-dev/ai-screening/pull/50)
+  Add status and evaluation colors
 - [PR-49](https://github.com/itk-dev/ai-screening/pull/49)
   Proper cache invalidation
 - [PR-48](https://github.com/itk-dev/ai-screening/pull/48)

@@ -13,7 +13,7 @@
  */
 #}
 {% apply spaceless %}
-  <select{{ attributes.addClass('w-full') }}>
+  <select{{ attributes.addClass('w-full p-3') }}>
     {% for option in options %}
       {% if option.type == 'optgroup' %}
         <optgroup label="{{ option.label }}">

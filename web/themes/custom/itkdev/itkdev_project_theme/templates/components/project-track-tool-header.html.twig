@@ -7,9 +7,9 @@
     {% if toolStatus.fields is same as 0 %}
       {{ 'New'|t }}
     {% elseif toolStatus.fields is same as toolStatus.populated %}
-      {{ 'Completed'|t }}
+      <span class="mr-3 align-middle">{{ 'Completed'|t }}</span><span class="rounded-full align-middle inline-flex shadow-[0_0_10px_rgba(21,128,61,.75)]"><i class="text-green-700 fa-solid fa-circle-check"></i></span>
     {% else %}
-      {{ '@populated of @fields'|t({'@populated': toolStatus.populated, '@fields': toolStatus.fields}) }}
+      {{ 'Started @populated of @fields steps'|t({'@populated': toolStatus.populated, '@fields': toolStatus.fields}) }}
     {% endif %}
   </div>
 </header>
