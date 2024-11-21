@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -23,6 +24,8 @@ use Drupal\core_event_dispatcher\Event\Entity\EntityAccessEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityBaseFieldInfoEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityDeleteEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
+use Drupal\core_event_dispatcher\Event\Form\FormAlterEvent;
+use Drupal\core_event_dispatcher\FormHookEvents;
 use Drupal\group\Entity\GroupInterface;
 use Drupal\group\Entity\GroupRelationshipInterface;
 use Drupal\group\Entity\Storage\GroupRelationshipStorageInterface;
@@ -268,11 +271,112 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       EntityHookEvents::ENTITY_INSERT => 'entityInsert',
       EntityHookEvents::ENTITY_DELETE => 'entityDelete',
       NodePreprocessEvent::name('project') => 'preprocessProject',
+      FormHookEvents::FORM_ALTER => 'formAlter',
       // @fixme I, Mikkel, cannot make this work using an event handler, so we
       // do it the old fashioned way with a hook implementation in
       // ai_screening_project.module (which see).
       // EntityHookEvents::ENTITY_BASE_FIELD_INFO => 'entityBaseFieldInfo',
     ];
+  }
+
+  /**
+   * Map users to select options
+   */
+  private function mapUsersToSelectOptions(array $users) {
+    $selectOptions = [];
+    foreach ($users as $user) {
+      $selectOptions[$user->id()] = $user->get('field_name')->value;
+    }
+    return $selectOptions;
+  }
+
+  /**
+   * Add group stuff to project edit
+   */
+  public function formAlter(FormAlterEvent $event): void {
+    $form = &$event->getForm();
+    $formId = $event->getFormId();
+    $formState = $event->getFormState();
+
+    if ($formId === 'node_project_edit_form') {
+      $query = $this->userStorage->getQuery();
+      $uids = $query
+        ->accessCheck(FALSE)
+        ->condition('status', '1')
+        ->execute();
+
+      // Selected and options for group selects.
+      $users = $this->userStorage->loadMultiple($uids);
+      $group = $this->loadProjectGroup($formState->getFormObject()->getEntity());
+      $groupOwnerId = $group->getOwner()->id();
+      $groupUsers = $group->getRelatedEntities('group_membership');
+      $optionsGroupOwner = $this->mapUsersToSelectOptions($groupUsers);
+      $optionsGroupContributors = $this->mapUsersToSelectOptions($users);
+
+      $form['date_fieldset'] = [
+        '#type' => 'fieldset',
+        '#title' => t('Project group'),
+      ];
+
+      $form['date_fieldset']['groupOwnerSelect'] = [
+        '#type' => 'select',
+        '#title' => t('Project owner'),
+        '#default_value' => $groupOwnerId,
+        '#options' => $optionsGroupOwner,
+        '#attributes' => ['class' => ['text-full form-text required bg-primary text-primary border border-primary rounded-md py-2 px-3 my-1 w-full']],
+        '#weight' => 1,
+      ];
+
+      $form['date_fieldset']['groupUsersSelect'] = [
+        '#type' => 'select',
+        '#title' => t('Contributors'),
+        '#description' => t('Which users are allowed to contribute to this project'),
+        '#options' => $optionsGroupContributors,
+        '#multiple' => TRUE,
+        '#default_value' => array_keys($optionsGroupOwner),
+        '#attributes' => ['class' => ['text-full form-text required bg-primary text-primary border border-primary rounded-md py-2 px-3 my-1 w-full']],
+        '#weight' => 2,
+      ];
+
+      $form['actions']['submit']['#submit'][] = [$this, 'submitGroupsForm'];
+    }
+  }
+
+  /**
+   * Submit groups stuff in project edit
+   */
+  public function submitGroupsForm(array $form, FormStateInterface $formState) {
+    $group = $this->loadProjectGroup($formState->getFormObject()->getEntity());
+
+    // Add/remove members of group.
+    $groupUserIds = array_keys($this->mapUsersToSelectOptions($group->getRelatedEntities('group_membership')));
+    $selectedGroupContributors = $formState->getValue('groupUsersSelect');
+    $memberToAdd = array_diff($selectedGroupContributors, $groupUserIds);
+    $memberToRemove = array_diff($groupUserIds, $selectedGroupContributors);
+
+    foreach ($memberToAdd as $userId) {
+      $user = $this->userStorage->load($userId);
+      $group->addMember($user);
+    }
+
+    foreach ($memberToRemove as $userId) {
+      $user = $this->userStorage->load($userId);
+      $group->removeMember($user);
+    }
+
+    // Change group owner.
+    $groupOwnerForm = $formState->getValue('groupOwnerSelect');
+    $currentGroupOwner = $group->getOwner()->id();
+
+    if ($groupOwnerForm !== $currentGroupOwner) {
+      $groupOwnerId = (int) $groupOwnerForm;
+      $group->setOwner($this->userStorage->load($groupOwnerId));
+      $group->save();
+      // And also change project creator, to reflect the group owner.
+      $project = $formState->getFormObject()->getEntity();
+      $project->setOwnerId($groupOwnerId);
+      $project->save();
+    }
   }
 
   /**
