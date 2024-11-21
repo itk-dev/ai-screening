@@ -9,8 +9,8 @@ jobs:
     steps:
       # Install site from our base ref
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.base_ref }}
+        # with:
+        #   ref: ${{ github.base_ref }}
 
       - name: setup-docker-and-composer
         run: |
@@ -19,31 +19,32 @@ jobs:
           docker compose up --detach
 
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
-          docker compose exec --user "$(id -u):$(id -g)" phpfpm composer install --no-interaction
+          # docker compose exec --user "$(id -u):$(id -g)" phpfpm composer install --no-interaction
+          docker compose exec --user "$(id -u):$(id -g)" phpfpm id
 
-      - name: Install site
-        run: |
-          # Install the site from config
-          docker compose exec --user "$(id -u):$(id -g)" phpfpm vendor/bin/drush site:install --existing-config --yes
-
-          ls -l vendor/ web/modules/*
-
-      # - name: Clean up root stuff
+      # - name: Install site
       #   run: |
-      #     sudo chown -Rv $USER:$USER vendor/ web/ || true
-      #     sudo chmod -Rv a+w web/sites/default || true
+      #     # Install the site from config
+      #     docker compose exec --user "$(id -u):$(id -g)" phpfpm vendor/bin/drush site:install --existing-config --yes
 
-      # Install site with our current ref
-      - uses: actions/checkout@v4
+      #     ls -l vendor/ web/modules/*
 
-      - name: setup-docker-and-composer
-        run: |
-          docker compose pull
-          docker compose up --detach
+      # # - name: Clean up root stuff
+      # #   run: |
+      # #     sudo chown -Rv $USER:$USER vendor/ web/ || true
+      # #     sudo chmod -Rv a+w web/sites/default || true
 
-          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
-          docker compose exec --user "$(id -u):$(id -g)" phpfpm composer install --no-interaction
+      # # Install site with our current ref
+      # - uses: actions/checkout@v4
 
-      - name: Update site
-        run: |
-          docker compose exec --user "$(id -u):$(id -g)" phpfpm vendor/bin/drush deploy --yes
+      # - name: setup-docker-and-composer
+      #   run: |
+      #     docker compose pull
+      #     docker compose up --detach
+
+      #     # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+      #     docker compose exec --user "$(id -u):$(id -g)" phpfpm composer install --no-interaction
+
+      # - name: Update site
+      #   run: |
+      #     docker compose exec --user "$(id -u):$(id -g)" phpfpm vendor/bin/drush deploy --yes
