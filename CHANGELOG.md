@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-55](https://github.com/itk-dev/ai-screening/pull/55)
+  Add formAlter and submitGroupsForm to handle group stuff in edit project
 - [PR-50](https://github.com/itk-dev/ai-screening/pull/50)
   Add status and evaluation colors
 - [PR-49](https://github.com/itk-dev/ai-screening/pull/49)
@@ -29,10 +31,10 @@ and this project adheres to [Semantic Versioning].
 - [PR-39](https://github.com/itk-dev/ai-screening/pull/39)
   Added Playwright tests
 - [PR-42](https://github.com/itk-dev/ai-screening/pull/42)
-  - Added theming for project track.
-  - Added Enum for Evaluation values.
-  - Opdated status Enum
-  - Updated form for project track
+  Added theming for project track.
+  Added Enum for Evaluation values.
+  Opdated status Enum
+  Updated form for project track
 - [PR-41](https://github.com/itk-dev/ai-screening/pull/41)
   Remove include of site-search
 - [PR-36](https://github.com/itk-dev/ai-screening/pull/36)
