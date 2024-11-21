@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
+
 - [PR-56](https://github.com/itk-dev/ai-screening/pull/56)
   Added theming for messages
 - [PR-50](https://github.com/itk-dev/ai-screening/pull/50)
