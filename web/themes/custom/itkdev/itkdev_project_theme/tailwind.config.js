@@ -10,6 +10,7 @@ module.exports = {
     "font-bold",
     "bg-slate-300",
     "bg-yellow-700",
-    "bg-red-700"
+    "bg-red-700",
+    "grid-cols-4"
   ],
 };

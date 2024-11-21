@@ -40,10 +40,11 @@
     sticky ? 'sticky-header',
     'table-auto',
     'w-full border-separate border-slate-400',
+    'min-w-[1000px]'
   ]
 %}
 
-<div class="rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-slate-600 sm:px-7.5 xl:col-span-8 drop-shadow-md">
+<div class="rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-slate-600 sm:px-7.5 xl:col-span-8 drop-shadow-md overflow-x-auto">
   <div class="my-4">
     {% if user.hasPermission('create project content') %}
       <a href="{{ path('node.add', {node_type: 'project'}) }}" class="inline-block btn-primary bg-green-700 text-white hover:bg-green-500"><i class="fa-solid fa-circle-plus"></i><span class="ml-3">{{ 'Create new project'|t }}</span></a>
