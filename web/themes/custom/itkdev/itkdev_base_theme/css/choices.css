@@ -9,3 +9,7 @@
   background-color: var(--theme-brand);
   border: 1px solid var(--theme-brand-hover);
 }
+
+.choices__input {
+  width: 15em!important;
+}
