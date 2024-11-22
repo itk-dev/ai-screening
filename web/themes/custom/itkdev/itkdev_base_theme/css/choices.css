@@ -1,0 +1,11 @@
+@import "../node_modules/choices.js/public/assets/styles/choices.min.css";
+
+.choices__list--multiple .choices__item {
+  background-color: var(--theme-brand);
+  border: 1px solid var(--theme-brand-hover);
+}
+
+.choices__list--multiple .choices__item.is-highlighted {
+  background-color: var(--theme-brand);
+  border: 1px solid var(--theme-brand-hover);
+}

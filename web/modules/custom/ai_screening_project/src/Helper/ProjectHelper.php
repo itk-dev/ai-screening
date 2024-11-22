@@ -280,18 +280,18 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   }
 
   /**
-   * Map users to select options
+   * Map users to select options.
    */
   private function mapUsersToSelectOptions(array $users) {
     $selectOptions = [];
     foreach ($users as $user) {
-      $selectOptions[$user->id()] = $user->get('field_name')->value;
+      $selectOptions[$user->id()] = $user->get('name')->value;
     }
     return $selectOptions;
   }
 
   /**
-   * Add group stuff to project edit
+   * Add group stuff to project edit.
    */
   public function formAlter(FormAlterEvent $event): void {
     $form = &$event->getForm();
@@ -313,12 +313,12 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       $optionsGroupOwner = $this->mapUsersToSelectOptions($groupUsers);
       $optionsGroupContributors = $this->mapUsersToSelectOptions($users);
 
-      $form['date_fieldset'] = [
+      $form['group_fieldset'] = [
         '#type' => 'fieldset',
         '#title' => t('Project group'),
       ];
 
-      $form['date_fieldset']['groupOwnerSelect'] = [
+      $form['group_fieldset']['groupOwnerSelect'] = [
         '#type' => 'select',
         '#title' => t('Project owner'),
         '#default_value' => $groupOwnerId,
@@ -327,14 +327,15 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         '#weight' => 1,
       ];
 
-      $form['date_fieldset']['groupUsersSelect'] = [
+      $form['group_fieldset']['groupUsersSelect'] = [
         '#type' => 'select',
         '#title' => t('Contributors'),
         '#description' => t('Which users are allowed to contribute to this project'),
+        '#description_display' => 'before',
         '#options' => $optionsGroupContributors,
         '#multiple' => TRUE,
         '#default_value' => array_keys($optionsGroupOwner),
-        '#attributes' => ['class' => ['text-full form-text required bg-primary text-primary border border-primary rounded-md py-2 px-3 my-1 w-full']],
+        '#attributes' => ['class' => ['use-choicesjs-plugin bg-primary text-primary border border-primary rounded-md py-2 px-3 my-1 w-full']],
         '#weight' => 2,
       ];
 
@@ -343,7 +344,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   }
 
   /**
-   * Submit groups stuff in project edit
+   * Submit groups stuff in project edit.
    */
   public function submitGroupsForm(array $form, FormStateInterface $formState) {
     $group = $this->loadProjectGroup($formState->getFormObject()->getEntity());
@@ -368,8 +369,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     $groupOwnerForm = $formState->getValue('groupOwnerSelect');
     $currentGroupOwner = $group->getOwner()->id();
 
-
-    // Todo validate that the group owner is in selectedGroupContributors
+    // @todo validate that the group owner is in selectedGroupContributors
     if ($groupOwnerForm !== $currentGroupOwner) {
       $groupOwnerId = (int) $groupOwnerForm;
       $group->setOwner($this->userStorage->load($groupOwnerId));
