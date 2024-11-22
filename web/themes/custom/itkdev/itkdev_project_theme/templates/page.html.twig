@@ -55,7 +55,8 @@
       </aside>
       <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
         {{ include('@itkdev_project_theme/components/header.html.twig') }}
-       <div class="max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+        <div class="my-3">{{ page.header }}</div>
+        <div class="max-w-screen-2xl p-4 md:p-6 2xl:p-10">
           {{ page.content|without('itkdev_project_theme_messages') }}
         </div>
       </div>
