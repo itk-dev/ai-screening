@@ -8,6 +8,7 @@ module:
   block: 0
   breakpoint: 0
   ckeditor5: 0
+  config_ignore: 0
   contextual: 0
   core_event_dispatcher: 0
   custom_event_dispatcher: 0
