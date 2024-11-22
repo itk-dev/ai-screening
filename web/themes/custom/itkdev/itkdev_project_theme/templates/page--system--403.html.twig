@@ -55,8 +55,8 @@
           {% if logged_in %}
             {{ page.content }}
           {% else %}
-            <div class="my-6">{{ page.content }}</div>
-            <div class="my-6">{{ drupal_block('user_login_block') }}</div>
+            <div class="my-6 max-w-screen-2xl px-4 md:px-6 2xl:px-10">{{ page.content }}</div>
+            <div class="my-6 max-w-screen-2xl px-4 md:px-6 2xl:px-10">{{ drupal_block('user_login_block') }}</div>
           {% endif %}
         </div>
       </div>
