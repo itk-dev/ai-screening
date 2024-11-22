@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
-- [PR-56](https://github.com/itk-dev/ai-screening/pull/56)
+- [PR-58](https://github.com/itk-dev/ai-screening/pull/58)
   Added theming for messages
 - [PR-53](https://github.com/itk-dev/ai-screening/pull/53)
   Changed views display and themed pager
