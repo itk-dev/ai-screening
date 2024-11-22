@@ -99,12 +99,28 @@
 
 /* This css class is added on the projects view (admin/structure/views/view/projects) */
 .projects-view {
-  form {
-    display: flex;
-
-    .form-item {
-      flex-grow: 1;
+  .exposed-filter {
+    #edit-actions {
+      grid-column: span 1 / span 1;
+      margin-bottom: 1.25rem;
+      justify-content: flex-start;
     }
+
+    .button {
+      min-height: 1em;
+      height: 3em;
+      margin-top: 1.5em;
+      margin-right: 1em;
+
+      @media (min-width: 1536px) {
+        margin-right: 0;
+      }
+
+    }
+  }
+
+  tbody .views-field-field-name {
+    text-decoration: underline;
   }
 }
 
