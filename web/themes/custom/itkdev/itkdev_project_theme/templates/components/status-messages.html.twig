@@ -42,7 +42,7 @@
   <div class="alert-wrapper max-w-screen-2xl px-4 md:px-6 2xl:px-10">
     <div role="alert" aria-label="{{ status_headings[type] }}"{{ attributes|without('role', 'aria-label').addClass(classes) }}>
       <div class="container flex flex-column flex-md-row">
-        <div class="order-1 order-md-0 w-full text-black">
+        <div class="order-1 order-md-0 w-full text-zinc-600">
           <div class="flex flex-nowrap justify-between">
             {% if status_headings[type] %}
               <h4 class="m-0 mb-3">{{ status_headings[type] }}</h4>
@@ -64,7 +64,7 @@
           </div>
         {% endif %}
       </div>
-      <div class="inline-block h-6 text-xl leading-6 align-top cursor-pointer text-slate-700" onclick="this.parentNode.parentNode.remove()">X</div>
+      <div class="inline-block h-6 text-xl leading-6 align-top cursor-pointer text-zinc-600" onclick="this.parentNode.parentNode.remove()"><i class="fa-solid fa-xmark"></i></div>
     </div>
   </div>
 {% endfor %}
