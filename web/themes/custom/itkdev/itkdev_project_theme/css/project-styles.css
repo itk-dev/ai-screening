@@ -7,6 +7,27 @@
     --theme-brand: #047857;
     --theme-brand-hover: #064E3B;
     --theme-border: #E4E4E7;
+    --theme-success: #F0FDF4;
+    --theme-success-border: #22C55E;
+    --theme-warning: #FEFCE8;
+    --theme-warning-border: #FCD34D;
+    --theme-error: #FEF2F2;
+    --theme-error-border: #DC2626;
+}
+
+.alert-success {
+  border-color: var(--theme-success-border);
+  background-color: var(--theme-success);
+}
+
+.alert-warning {
+  border-color: var(--theme-warning-border);
+  background-color: var(--theme-warning);
+}
+
+.alert-danger {
+  border-color: var(--theme-error-border);
+  background-color: var(--theme-error);
 }
 
 .tablesort {
@@ -77,12 +98,28 @@
 
 /* This css class is added on the projects view (admin/structure/views/view/projects) */
 .projects-view {
-  form {
-    display: flex;
-
-    .form-item {
-      flex-grow: 1;
+  .exposed-filter {
+    #edit-actions {
+      grid-column: span 1 / span 1;
+      margin-bottom: 1.25rem;
+      justify-content: flex-start;
     }
+
+    .button {
+      min-height: 1em;
+      height: 3em;
+      margin-top: 1.5em;
+      margin-right: 1em;
+
+      @media (min-width: 1536px) {
+        margin-right: 0;
+      }
+
+    }
+  }
+
+  tbody .views-field-field-name {
+    text-decoration: underline;
   }
 }
 

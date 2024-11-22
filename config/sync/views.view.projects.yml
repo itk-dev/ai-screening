@@ -401,7 +401,7 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: mini
+        type: full
         options:
           offset: 0
           pagination_heading_level: h4
@@ -411,6 +411,8 @@ display:
           tags:
             next: ››
             previous: ‹‹
+            first: '« Første'
+            last: 'Sidste »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -419,11 +421,12 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          quantity: 9
       exposed_form:
         type: bef
         options:
           submit_button: Apply
-          reset_button: false
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -453,6 +456,17 @@ display:
                   is_secondary: false
                   hide_label: false
               field_department_target_id:
+                plugin_id: default
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: false
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                  hide_label: false
+              uid_current:
                 plugin_id: default
                 advanced:
                   sort_options: false
@@ -510,6 +524,7 @@ display:
           plugin_id: bundle
           value:
             project: project
+          group: 1
         combine:
           id: combine
           table: views
@@ -524,7 +539,7 @@ display:
           exposed: true
           expose:
             operator_id: combine_op
-            label: 'Project owner'
+            label: Search
             description: 'Filter on project title, description or project owner'
             use_operator: false
             operator: combine_op
@@ -604,6 +619,56 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+        uid_current:
+          id: uid_current
+          table: users
+          field: uid_current
+          relationship: gc__user
+          group_type: group
+          admin_label: ''
+          entity_type: user
+          plugin_id: user_current
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: 'Er brugeren som er logget ind'
+            description: ''
+            use_operator: false
+            operator: uid_current_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: uid_current
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              editor: '0'
+              administrator: '0'
+          is_grouped: true
+          group_info:
+            label: 'Limit list to'
+            description: ''
+            identifier: uid_current
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: Mine
+                operator: '='
+                value: '1'
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: table
         options:
@@ -710,7 +775,33 @@ display:
           entity_field: uid
           plugin_id: standard
           required: false
+        group_relationship_id:
+          id: group_relationship_id
+          table: groups_field_data
+          field: group_relationship_id
+          relationship: gid
+          group_type: group
+          admin_label: 'Group relationship'
+          entity_type: group
+          plugin_id: group_to_group_relationship
+          required: false
+          group_relation_plugins:
+            group_membership: group_membership
+            'group_node:project': '0'
+        gc__user:
+          id: gc__user
+          table: group_relationship_field_data
+          field: gc__user
+          relationship: group_relationship_id
+          group_type: group
+          admin_label: Members
+          entity_type: group_relationship
+          plugin_id: group_relationship_to_entity
+          required: false
+          group_relation_plugins:
+            group_membership: group_membership
       css_class: projects-view
+      group_by: true
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -721,6 +812,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
@@ -751,6 +843,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

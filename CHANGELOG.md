@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-58](https://github.com/itk-dev/ai-screening/pull/58)
+  Added theming for messages
 - [PR-55](https://github.com/itk-dev/ai-screening/pull/55)
   Add formAlter and submitGroupsForm to handle group stuff in edit project
+- [PR-53](https://github.com/itk-dev/ai-screening/pull/53)
+  Changed views display and themed pager
 - [PR-50](https://github.com/itk-dev/ai-screening/pull/50)
   Add status and evaluation colors
 - [PR-49](https://github.com/itk-dev/ai-screening/pull/49)
