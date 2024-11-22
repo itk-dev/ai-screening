@@ -13,21 +13,21 @@
 .alert-success {
   --tw-border-opacity: 1;
   border-color: rgb(var(--theme-status) / var(--tw-border-opacity));
-  --tw-bg-opacity: 0.2;
+  --tw-bg-opacity: 0.1;
   background-color: rgb(var(--theme-status) / var(--tw-bg-opacity));
 }
 
 .alert-warning {
   --tw-border-opacity: 1;
   border-color: rgb(var(--theme-warning) / var(--tw-border-opacity));
-  --tw-bg-opacity: 0.2;
+  --tw-bg-opacity: 0.1;
   background-color: rgb(var(--theme-warning) / var(--tw-bg-opacity));
 }
 
 .alert-danger {
   --tw-border-opacity: 1;
   border-color: rgb(var(--theme-error) / var(--tw-border-opacity));
-  --tw-bg-opacity: 0.2;
+  --tw-bg-opacity: 0.1;
   background-color: rgb(var(--theme-error) / var(--tw-bg-opacity));
 }
 
