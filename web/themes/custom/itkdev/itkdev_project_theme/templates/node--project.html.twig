@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block content %}
-  {% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'].getDisplayName %}
+  {% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'] %}
   {% set project_status = project_track_evaluation(node.id) %}
   <div class="container my-8 px-5">
     <p>{{ content.field_description }}</p>
@@ -42,7 +42,7 @@
       {% endif %}
       <div>
         <h3>{{ 'Owner'|t }}</h3>
-        <div>{{ owner }}</div>
+        <div><a href="{{ path('entity.user.canonical', {user: owner.id}) }}">{{ owner.getDisplayName }}</a></div>
       </div>
       <div>
         <h3>{{ 'Contributers'|t }}</h3>

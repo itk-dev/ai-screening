@@ -73,7 +73,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
     ]);
     $node->setOwner($owner);
 
-    $this->addReference('project:Ordinary project', $node);
+    $this->addReference('project:Finished project', $node);
     $node->save();
 
     $node = Node::create([
