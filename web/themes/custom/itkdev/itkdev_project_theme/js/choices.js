@@ -16,7 +16,6 @@ import Choices from '../../itkdev_base_theme/node_modules/choices.js';
           // eslint-disable-next-line no-unused-vars,no-undef
           let choices;
           if (choices === undefined) {
-            console.log(element);
             // eslint-disable-next-line no-use-before-define
             const choices = new Choices(element, {
               placeholder: true,
@@ -29,8 +28,6 @@ import Choices from '../../itkdev_base_theme/node_modules/choices.js';
               // eslint-disable-next-line no-undef
               itemSelectText: Drupal.t('Press to select')
             });
-
-            console.log(choices);
           }
         }
       })

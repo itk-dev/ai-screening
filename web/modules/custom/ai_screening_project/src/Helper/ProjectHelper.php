@@ -343,7 +343,17 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         '#weight' => 2,
       ];
 
+      $form['#validate'][] = [$this, 'validateGroupsForm'];
       $form['actions']['submit']['#submit'][] = [$this, 'submitGroupsForm'];
+    }
+  }
+
+  /**
+   * Custom validation for group part of form.
+   */
+  public function validateGroupsForm(array &$form, FormStateInterface $form_state): void {
+    if (!in_array($form_state->getValue('groupOwnerSelect'), $form_state->getValue('groupUsersSelect'))) {
+      $form_state->setErrorByName('groupOwnerSelect', $this->t('Project owner must be a contributor.'));
     }
   }
 
