@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning].
 
 - [PR-62](https://github.com/itk-dev/ai-screening/pull/62)
   Force custom theme on webform submissions
+- [PR-59](https://github.com/itk-dev/ai-screening/pull/59)
+  Add tailwind classes to style user image
 - [PR-58](https://github.com/itk-dev/ai-screening/pull/58)
   Added theming for messages
 - [PR-53](https://github.com/itk-dev/ai-screening/pull/53)
