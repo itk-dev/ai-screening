@@ -285,9 +285,10 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   private function mapUsersToSelectOptions(array $users) {
     $selectOptions = [];
     foreach ($users as $user) {
-      $departmentReference = $user->get('field_department')->referencedEntities();
-
-      $departmentString = $departmentReference ? ' (' . $user->get('field_department')->referencedEntities()['0']->name->value . ')' : '';
+      $entities = $user->get('field_department')->referencedEntities();
+      // @todo add a type hint
+      $department = reset($entities) ?: NULL;
+      $departmentString = $department ? ' (' . $department->name->value . ')' : '';
 
       $selectOptions[$user->id()] = $user->getDisplayName() . $departmentString;
     }
