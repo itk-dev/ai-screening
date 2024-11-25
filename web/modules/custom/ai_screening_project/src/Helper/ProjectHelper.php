@@ -322,7 +322,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         '#title' => $this->t('Project group'),
       ];
 
-      $form['group_fieldset']['groupOwnerSelect'] = [
+      $form['group_fieldset']['project_owner'] = [
         '#type' => 'select',
         '#title' => t('Project owner'),
         '#default_value' => $groupOwnerId,
