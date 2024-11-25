@@ -16,7 +16,7 @@
         <span class="h-12 w-12 rounded-full bg-secondary overflow-hidden">
           {% set imageUrl = drupal_field('field_image', 'user', user.id, {type: 'image_url', settings: {image_style: 'thumbnail'}}) %}
           {% set alt = drupal_field('field_image', 'user', user.id)[0]['#item'].alt %}
-            <img src="{{ imageUrl[0] }}" alt="{{ alt }}">
+            <img class="object-cover h-12" src="{{ imageUrl[0] }}" alt="{{ alt }}">
         </span>
 
         <i class="fa-solid fa-angle-down" :class="dropdownOpen && 'rotate-180'"></i>
