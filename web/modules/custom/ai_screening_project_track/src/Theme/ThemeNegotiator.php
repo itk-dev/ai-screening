@@ -27,4 +27,5 @@ class ThemeNegotiator implements ThemeNegotiatorInterface {
   public function determineActiveTheme(RouteMatchInterface $route_match) {
     return 'itkdev_project_theme';
   }
+
 }
