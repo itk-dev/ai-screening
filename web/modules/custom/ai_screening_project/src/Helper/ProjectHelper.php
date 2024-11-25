@@ -344,8 +344,8 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         '#weight' => 2,
       ];
 
-      $form['#validate'][] = [$this, 'validateGroupsForm'];
-      $form['actions']['submit']['#submit'][] = [$this, 'submitGroupsForm'];
+      $form['#validate'][] = $this->validateGroupsForm(...);
+      $form['actions']['submit']['#submit'][] = $this->submitGroupsForm(...);
     }
   }
 
