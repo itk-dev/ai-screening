@@ -139,6 +139,11 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
     $fields['delta'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Delta'));
 
+    $fields['configuration'] = BaseFieldDefinition::create('string_long')
+      ->setLabel(t('Project track configuration'))
+      ->setDescription(t('Configuration for the track.'))
+      ->setReadOnly(TRUE);
+
     return $fields;
   }
 
@@ -212,6 +217,27 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       parent::getCacheTagsToInvalidate(),
       $this->getProject()->getCacheTagsToInvalidate()
     );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getConfiguration(): array {
+    try {
+      return json_decode($this->get('configuration')->getString(), TRUE);
+    }
+    catch (\Exception) {
+      return [];
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setConfiguration(array $configuration): self {
+    $this->set('configuration', json_encode($configuration));
+
+    return $this;
   }
 
 }

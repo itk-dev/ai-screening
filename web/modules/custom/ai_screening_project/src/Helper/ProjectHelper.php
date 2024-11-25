@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_screening_project\Helper;
 
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -462,6 +463,12 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
 
       $projectTrackCounter = 0;
       foreach ($projectTrackTerms as $projectTrackTerm) {
+        try {
+          $configuration = Yaml::decode($projectTrackTerm->get('field_configuration')->getString());
+        }
+        catch (\Throwable $exception) {
+          $configuration = [];
+        }
         $projectTrack = $this->projectTrackStorage
           ->create([
             'type' => $projectTrackTerm->id(),
@@ -471,6 +478,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
             'project_id' => $entity,
           ])
           ->setProjectTrackStatus(Status::NEW)
+          ->setConfiguration($configuration)
           ->setDelta($projectTrackCounter++);
         $projectTrack->save();
 
