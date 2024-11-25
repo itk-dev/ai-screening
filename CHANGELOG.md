@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning].
   Add tailwind classes to style user image
 - [PR-58](https://github.com/itk-dev/ai-screening/pull/58)
   Added theming for messages
+- [PR-55](https://github.com/itk-dev/ai-screening/pull/55)
+  Add formAlter and submitGroupsForm to handle group stuff in edit project
 - [PR-53](https://github.com/itk-dev/ai-screening/pull/53)
   Changed views display and themed pager
 - [PR-50](https://github.com/itk-dev/ai-screening/pull/50)
@@ -35,10 +37,10 @@ and this project adheres to [Semantic Versioning].
 - [PR-39](https://github.com/itk-dev/ai-screening/pull/39)
   Added Playwright tests
 - [PR-42](https://github.com/itk-dev/ai-screening/pull/42)
-  - Added theming for project track.
-  - Added Enum for Evaluation values.
-  - Opdated status Enum
-  - Updated form for project track
+  Added theming for project track.
+  Added Enum for Evaluation values.
+  Opdated status Enum
+  Updated form for project track
 - [PR-41](https://github.com/itk-dev/ai-screening/pull/41)
   Remove include of site-search
 - [PR-36](https://github.com/itk-dev/ai-screening/pull/36)

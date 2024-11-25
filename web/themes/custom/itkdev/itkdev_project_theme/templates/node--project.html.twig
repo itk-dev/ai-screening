@@ -41,7 +41,12 @@
       <div>
         <h3>{{ 'Contributers'|t }}</h3>
         {% for member in projectMembers %}
-          <span class="project-members"><span>{{ member.field_name.value }}</span><span class="spacing">{{ ', ' }}</span></span>
+          <span class="project-members">
+            <span>
+              <a href="{{ path('entity.user.canonical', {user: member.id}) }}">{{ member.getDisplayName }}</a>
+            </span>
+            <span class="spacing">{{ ', ' }}</span>
+          </span>
         {% endfor %}
       </div>
     </div>
