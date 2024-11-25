@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-62](https://github.com/itk-dev/ai-screening/pull/62)
+  Force custom theme on webform submissions
 - [PR-58](https://github.com/itk-dev/ai-screening/pull/58)
   Added theming for messages
 - [PR-53](https://github.com/itk-dev/ai-screening/pull/53)
