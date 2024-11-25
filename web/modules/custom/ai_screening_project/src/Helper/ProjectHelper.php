@@ -383,13 +383,11 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     }
 
     // Change group owner.
-    $groupOwnerForm = $formState->getValue('groupOwnerSelect');
-    $currentGroupOwner = $group->getOwner()->id();
+    $groupOwner = $formState->getValue('groupOwnerSelect');
 
     // @todo validate that the group owner is in selectedGroupContributors
-    if ($groupOwnerForm !== $currentGroupOwner) {
-      $groupOwnerId = (int) $groupOwnerForm;
-      $group->setOwner($this->userStorage->load($groupOwnerId));
+    if ($groupOwner !== $group->getOwner()->id()) {
+      $group->setOwner($this->userStorage->load($groupOwner));
       $group->save();
       // And also change project creator, to reflect the group owner.
       $project = $formState->getFormObject()->getEntity();
