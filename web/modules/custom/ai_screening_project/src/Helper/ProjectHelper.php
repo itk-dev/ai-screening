@@ -334,8 +334,8 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
 
       $form['group_fieldset']['project_contributors'] = [
         '#type' => 'select',
-        '#title' => t('Contributors'),
-        '#description' => t('Which users are allowed to contribute to this project'),
+        '#title' => $this->t('Contributors'),
+        '#description' => $this->t('Which users are allowed to contribute to this project'),
         '#description_display' => 'before',
         '#options' => $optionsGroupContributors,
         '#multiple' => TRUE,
