@@ -282,11 +282,11 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   /**
    * Map users to select options.
    */
-  private function mapUsersToSelectOptions(array $users) {
+  private function mapUsersToSelectOptions(array $users): array {
     $selectOptions = [];
     foreach ($users as $user) {
       $entities = $user->get('field_department')->referencedEntities();
-      // @todo add a type hint
+      /** @var \Drupal\taxonomy\Entity\Term $department */
       $department = reset($entities) ?: NULL;
       $departmentString = $department ? ' (' . $department->name->value . ')' : '';
 
@@ -353,28 +353,31 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    * Custom validation for group part of form.
    */
   public function validateGroupsForm(array &$form, FormStateInterface $form_state): void {
-    if (!in_array($form_state->getValue('groupOwnerSelect'), $form_state->getValue('groupUsersSelect'))) {
-      $form_state->setErrorByName('groupOwnerSelect', $this->t('Project owner must be a contributor.'));
+    if (!in_array($form_state->getValue('project_owner'), $form_state->getValue('project_contributors'))) {
+      $form_state->setErrorByName('project_owner', $this->t('Project owner must be a contributor.'));
     }
   }
 
   /**
    * Submit groups stuff in project edit.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function submitGroupsForm(array $form, FormStateInterface $formState) {
+  public function submitGroupsForm(array $form, FormStateInterface $formState): void {
     $group = $this->loadProjectGroup($formState->getFormObject()->getEntity());
 
     // Add/remove members of group.
     $groupUserIds = array_keys($this->mapUsersToSelectOptions($group->getRelatedEntities('group_membership')));
-    $selectedGroupContributorIds = $formState->getValue('groupUsersSelect');
+    $selectedGroupContributorIds = $formState->getValue('project_contributors');
     $membersToAdd = $this->userStorage->loadMultiple(
-      array_diff($selectedGroupContributors, $groupUserIds)
+      array_diff($selectedGroupContributorIds, $groupUserIds)
     );
     $membersToRemove = $this->userStorage->loadMultiple(
-      array_diff($groupUserIds, $selectedGroupContributors)
+      array_diff($groupUserIds, $selectedGroupContributorIds)
     );
 
     foreach ($membersToAdd as $user) {
+      /** @var \Drupal\user\Entity\User $user */
       $group->addMember($user);
     }
 
@@ -383,15 +386,14 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     }
 
     // Change group owner.
-    $groupOwner = $formState->getValue('groupOwnerSelect');
+    $groupOwner = $formState->getValue('project_owner');
 
-    // @todo validate that the group owner is in selectedGroupContributors
     if ($groupOwner !== $group->getOwner()->id()) {
       $group->setOwner($this->userStorage->load($groupOwner));
       $group->save();
       // And also change project creator, to reflect the group owner.
       $project = $formState->getFormObject()->getEntity();
-      $project->setOwnerId($groupOwnerId);
+      $project->setOwnerId($groupOwner);
       $project->save();
     }
   }
