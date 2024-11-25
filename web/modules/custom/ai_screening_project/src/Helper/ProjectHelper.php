@@ -366,7 +366,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
 
     // Add/remove members of group.
     $groupUserIds = array_keys($this->mapUsersToSelectOptions($group->getRelatedEntities('group_membership')));
-    $selectedGroupContributors = $formState->getValue('groupUsersSelect');
+    $selectedGroupContributorIds = $formState->getValue('groupUsersSelect');
     $membersToAdd = $this->userStorage->loadMultiple(
       array_diff($selectedGroupContributors, $groupUserIds)
     );
