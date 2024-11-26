@@ -65,7 +65,15 @@ trait WeightedElementTrait {
       $form[$elementKey] = $element;
     }
 
+    $this->alterEditForm($form, $form_state);
+
     return $form;
+  }
+
+  /**
+   * Allow children to alter the final form.
+   */
+  protected function alterEditForm(array &$form, FormStateInterface $form_state): void {
   }
 
   /**

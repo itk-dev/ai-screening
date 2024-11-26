@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\Status;
 use Drupal\node\NodeInterface;
@@ -238,6 +239,13 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
     $this->set('configuration', json_encode($configuration));
 
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDimensions(): array {
+    return $this->getConfiguration()[ProjectTrackTypeHelper::CONFIGURATION_KEY_DIMENSIONS] ?? [];
   }
 
 }

@@ -16,3 +16,11 @@ services:
       $logger: '@logger.channel.ai_screening_project_track'
     tags:
       - { name: event_subscriber }
+
+  Drupal\ai_screening_project_track\Helper\FormHelper:
+    autowire: true
+
+  Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper:
+    autowire: true
+    tags:
+      - { name: event_subscriber }
