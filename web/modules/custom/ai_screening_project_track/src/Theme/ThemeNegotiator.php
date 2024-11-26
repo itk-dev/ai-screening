@@ -14,11 +14,7 @@ class ThemeNegotiator implements ThemeNegotiatorInterface {
    * {@inheritdoc}
    */
   public function applies(RouteMatchInterface $route_match): bool {
-    $webformSubmission = $route_match->getParameter('webform_submission');
-    if ($webformSubmission) {
-      return TRUE;
-    }
-    return FALSE;
+    return NULL !== $route_match->getParameter('webform_submission');
   }
 
   /**
