@@ -1,0 +1,7 @@
+# Simple link.
+ai_screening_reports.reports:
+  title: Reports
+  description: Show reports
+  menu_name: main
+  route_name: ai_screening_reports.create_report
+  weight: 10
