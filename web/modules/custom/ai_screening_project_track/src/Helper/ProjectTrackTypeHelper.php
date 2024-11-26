@@ -127,7 +127,12 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
    * Parse configuration.
    */
   public function parseConfiguration(string $configuration): ?array {
-    $value = Yaml::decode($configuration);
+    try {
+      $value = Yaml::decode($configuration);
+    }
+    catch (\Exception $e) {
+      throw new InvalidConfigurationException($e->getMessage(), $e->getCode(), $e);
+    }
 
     if (!is_array($value) || array_is_list($value)) {
       throw new InvalidConfigurationException('Configuration must be an object');
@@ -147,7 +152,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
     }
     elseif (!array_is_list($configuration[self::CONFIGURATION_KEY_DIMENSIONS])) {
       throw new InvalidConfigurationException(
-        sprintf('Configuration value %s must be a list', self::CONFIGURATION_KEY_DIMENSIONS)
+        sprintf('Configuration value "%s" must be a list', self::CONFIGURATION_KEY_DIMENSIONS)
       );
     }
   }

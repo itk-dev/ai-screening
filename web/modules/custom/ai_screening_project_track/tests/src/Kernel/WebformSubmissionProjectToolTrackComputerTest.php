@@ -17,7 +17,7 @@ use Drupal\webform\WebformSubmissionInterface;
 /**
  * Tests for WebformSubmissionProjectToolTrackComputer.
  */
-class WebformSubmissionProjectToolTrackComputerTest extends KernelTestBase {
+final class WebformSubmissionProjectToolTrackComputerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
