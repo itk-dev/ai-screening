@@ -11,8 +11,7 @@ use Drupal\webform\Utility\WebformArrayHelper;
  * Weighted element trait.
  */
 trait WeightedElementTrait {
-  public const string QUESTION_WEIGHT_X = 'ai_screening_weight_x';
-  public const string QUESTION_WEIGHT_Y = 'ai_screening_weight_y';
+  public const string QUESTION_WEIGHT = 'ai_screening_weight';
 
   /**
    * {@inheritdoc}
@@ -22,8 +21,7 @@ trait WeightedElementTrait {
     $this->checkInstance();
 
     return [
-      self::QUESTION_WEIGHT_X => 0,
-      self::QUESTION_WEIGHT_Y => 0,
+      self::QUESTION_WEIGHT => 1,
     ] + parent::defineDefaultProperties();
   }
 
@@ -38,28 +36,21 @@ trait WeightedElementTrait {
       '#type' => 'fieldset',
       '#title' => $this->t('Question weight'),
 
-      self::QUESTION_WEIGHT_X => [
+      self::QUESTION_WEIGHT => [
         '#type' => 'number',
-        '#placeholder' => $this->t('The x weight'),
-        '#title' => $this->t('<i>x</i> weight'),
-        '#description' => $this->t('Please enter the <i>x</i> weight.'),
-      ],
-
-      self::QUESTION_WEIGHT_Y => [
-        '#type' => 'number',
-        '#placeholder' => $this->t('The y weight'),
-        '#title' => $this->t('<i>y</i> weight'),
-        '#description' => $this->t('Please enter the <i>y</i> weight.'),
+        '#placeholder' => $this->t('The question weight'),
+        '#title' => $this->t('Weight'),
+        '#description' => $this->t('Please enter the weight.'),
       ],
     ];
 
     $form = parent::form($form, $form_state);
 
     $elementKey = 'ai_screening_project_track_radios';
-    // Insert element before "Options" if possible; otherwise insert at end.
+    // Insert element after "Options" if possible; otherwise insert at end.
     $targetKey = 'options';
     if (isset($form[$targetKey])) {
-      WebformArrayHelper::insertBefore($form, $targetKey, $elementKey, $element);
+      WebformArrayHelper::insertAfter($form, $targetKey, $elementKey, $element);
     }
     else {
       $form[$elementKey] = $element;
