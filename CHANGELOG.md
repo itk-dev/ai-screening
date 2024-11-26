@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-61](https://github.com/itk-dev/ai-screening/pull/61)
+  Remove stats block caching
 - [PR-59](https://github.com/itk-dev/ai-screening/pull/59)
   Add tailwind classes to style user image
 - [PR-58](https://github.com/itk-dev/ai-screening/pull/58)
