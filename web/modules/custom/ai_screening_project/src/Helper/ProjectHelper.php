@@ -52,6 +52,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
 
   public final const string BUNDLE_PROJECT = 'project';
   public final const string FIELD_CORRUPTED = 'corrupted';
+  public final const string FIELD_STATE = 'field_project_state';
   public final const string BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
 
   /**
@@ -200,6 +201,12 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         $event->setAccessResult(AccessResult::forbidden(sprintf('Entity %s (%s) is corrupted', $entity->label(),
           $entity->id())));
       }
+      if ($this->isFinished($entity)) {
+        if ('view' !== $event->getOperation()) {
+          $event->setAccessResult(AccessResult::forbidden(sprintf('Project %s (%s) is marked as finished', $entity->label(),
+            $entity->id())));
+        }
+      }
     }
   }
 
@@ -263,6 +270,19 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   }
 
   /**
+   * Decide if project is finished.
+   */
+  public function isFinished(EntityInterface $entity): bool {
+    if ($this->isProject($entity) && $entity instanceof FieldableEntityInterface) {
+      if ($entity->hasField(self::FIELD_STATE)) {
+        return $entity->get(self::FIELD_STATE)->getString() === 'finished';
+      }
+    }
+
+    return FALSE;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function getSubscribedEvents(): array {
@@ -273,6 +293,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       EntityHookEvents::ENTITY_DELETE => 'entityDelete',
       NodePreprocessEvent::name('project') => 'preprocessProject',
       FormHookEvents::FORM_ALTER => 'formAlter',
+
       // @fixme I, Mikkel, cannot make this work using an event handler, so we
       // do it the old fashioned way with a hook implementation in
       // ai_screening_project.module (which see).
