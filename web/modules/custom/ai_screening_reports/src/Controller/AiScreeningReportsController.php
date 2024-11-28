@@ -38,6 +38,8 @@ final class AiScreeningReportsController extends ControllerBase {
     '#ec44d4',
   ];
 
+  private const int MAX_NUMBER_OF_TRACKS = 15;
+
   public function __construct(
     private readonly ProjectTrackHelper $projectTrackHelper,
     private readonly ProjectHelper $projectHelper,
@@ -105,8 +107,8 @@ final class AiScreeningReportsController extends ControllerBase {
             ];
             // Set a limit for the number of tracks to display.
             $loopCounter++;
-            if ($loopCounter >= 15) {
-              $this->messenger()->addWarning($this->t('A maximum of 15 tracks can be displayed.'));
+            if ($loopCounter >= self::MAX_NUMBER_OF_TRACKS) {
+              $this->messenger()->addWarning($this->t('A maximum of @max tracks can be displayed.', ['@max' => self::MAX_NUMBER_OF_TRACKS]));
               break;
             }
           }
