@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-65](https://github.com/itk-dev/ai-screening/pull/65)
+  Add reporting module with graph.js
 - [PR-59](https://github.com/itk-dev/ai-screening/pull/59)
   Add tailwind classes to style user image
 - [PR-58](https://github.com/itk-dev/ai-screening/pull/58)
