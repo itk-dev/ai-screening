@@ -2,7 +2,7 @@
  * @file
  * Attaches behaviors for the Choices module.
  */
-import Choices from '../../itkdev_base_theme/node_modules/choices.js';
+import Choices from '../node_modules/choices.js';
 
 (function () {
   // eslint-disable-next-line no-undef
