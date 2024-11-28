@@ -59,26 +59,6 @@ import Chart from '../node_modules/chart.js/auto'
                 },
               },
             },
-            plugins: [{
-              afterDatasetsDraw: function(chart, easing) {
-                // @see https://jsfiddle.net/dovvas/s4zwzp3w/
-                let ctx = chart.ctx;
-                ctx.fillStyle = 'rgb(0, 0, 0)';
-                ctx.font = 'bold 16px Helvetica, Arial, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-
-                chart.data.datasets.forEach(function(dataset, i) {
-                  const meta = chart.getDatasetMeta(i);
-                  if (meta.type === "bubble") {
-                    meta.data.forEach(function(element, index) {
-                      const position = element.tooltipPosition(false);
-                      ctx.fillText(dataset.title, position.x, position.y - 20);
-                    })
-                  }
-                })
-              }
-            }]
           }
         );
       }
