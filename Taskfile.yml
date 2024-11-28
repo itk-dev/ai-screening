@@ -118,7 +118,7 @@ tasks:
   check-code:
     desc: "Check coding standards"
     cmds:
-      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md'
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md --ignore node_modules'
       - task composer -- code-analysis
       - task composer -- coding-standards-check
 
