@@ -92,14 +92,14 @@ final class AiScreeningReportsController extends ControllerBase {
       ];
 
       // Create a dataset for each project track.
-      foreach ($projectTracks as $projectTrack) {
+      foreach ($projectTracks as $key => $projectTrack) {
         if ($projectTrack instanceof ProjectTrackInterface) {
           $projectTracks[] = $projectTrack;
-          $projectData['dataset'][$projectTrack->id()]['chart'] = [
+          $projectData['dataset'][$loopCounter]['chart'] = [
             'label' => $projectTrack->getProject()->label(),
             'color' => self::COLOR_CODES[$loopCounter % count(self::COLOR_CODES)],
           ];
-          $projectData['dataset'][$projectTrack->id()]['plots'] = [
+          $projectData['dataset'][$loopCounter]['plots'] = [
             // @todo get plots from the track.
             ['x' => 17, 'y' => 15, 'r' => 3],
           ];
