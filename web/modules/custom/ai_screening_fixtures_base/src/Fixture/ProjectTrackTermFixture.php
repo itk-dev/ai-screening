@@ -28,6 +28,11 @@ class ProjectTrackTermFixture extends AbstractFixture implements FixtureGroupInt
         'format' => 'plain_text',
       ],
       'field_webform' => ['target_id' => 'complexity_uncertainty_default'],
+      'field_configuration' => <<<'YAML'
+dimensions:
+  - The first dimension
+  - Another dimension
+YAML,
     ]);
 
     $term->save();

@@ -19,31 +19,27 @@ elements: |-
     '#description': '<p>Description of the name</p>'
     '#help_title': 'Help for the name'
     '#help': '<p>Lorem ipsum</p>'
-    '#ai_screening_weight_x': 1
-    '#ai_screening_weight_y': 2
   description:
     '#type': ai_screening_weighted_textarea
     '#title': Description
-    '#description': "Describe what you're doing."
+    '#description': "<p>Describe what you're doing.</p>"
   radio_ga_ga:
     '#type': ai_screening_weighted_radios
     '#title': 'Radio Ga Ga'
-    '#description': 'In this question you have to decide on …'
-    '#ai_screening_weight_x': 42
-    '#ai_screening_weight_y': 87
+    '#description': '<p>In this question you have to decide on …</p>'
     '#options':
-      1: 'I -- The first option'
-      2: 'II -- Another option'
-      3: 'III -- The final option'
+      '0, 1': 'I -- The first option'
+      '2, 1': 'II -- Another option'
+      '3, -1': 'III -- The final option'
+    '#ai_screening_weight': 2
   radio_goo_goo:
     '#type': ai_screening_weighted_radios
     '#title': 'Radio Goo Goo'
-    '#ai_screening_weight_x': 3
-    '#ai_screening_weight_y': 14
     '#options':
-      1: 'a -- The first option'
-      2: 'b -- Another option'
-      3: 'c -- The final option'
+      '1, 2': 'a -- The first option'
+      '2, 3': 'b -- Another option'
+      '3, 2': 'c -- The final option'
+    '#ai_screening_weight': 1
 css: ''
 javascript: ''
 settings:

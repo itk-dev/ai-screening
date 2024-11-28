@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.project_track_type.field_configuration
     - field.field.taxonomy_term.project_track_type.field_webform
     - taxonomy.vocabulary.project_track_type
   module:
@@ -18,6 +19,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_configuration:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
     region: content
   field_webform:
     type: entity_reference_label
