@@ -43,7 +43,7 @@ final class CreateReport extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state): array {
     $options = [];
     $projectIds = $this->nodeStorage->getQuery()
-      ->accessCheck('TRUE')
+      ->accessCheck(TRUE)
       ->condition('type', 'project')
       ->execute();
 
