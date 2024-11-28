@@ -61,8 +61,25 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
 
     $node = Node::create([
       'type' => 'project',
-      'title' => 'Corrupted project',
+      'title' => 'Finished project',
       'status' => NodeInterface::PUBLISHED,
+      'field_department' => ['target_id' => $this->getReference('department:Department C')->id()],
+      'field_description' => [
+        'value' => 'Et afsluttet projekt',
+        'format' => 'plain_text',
+      ],
+      'field_project_state' => 'finished',
+      ProjectHelper::FIELD_CORRUPTED => 0,
+    ]);
+    $node->setOwner($owner);
+
+    $this->addReference('project:Finished project', $node);
+    $node->save();
+
+    $node = Node::create([
+      'type' => 'project',
+      'title' => 'Corrupted project',
+      'status' => NodeInterface::NOT_PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department C')->id()],
       'field_description' => [
         'value' => 'Et ødelagt projekt bør slettes med cron.',

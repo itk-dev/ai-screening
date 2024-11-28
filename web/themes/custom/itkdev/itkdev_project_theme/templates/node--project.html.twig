@@ -25,18 +25,24 @@
 {% endblock %}
 
 {% block content %}
-  {% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'].field_name.value %}
+  {% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'] %}
   {% set project_status = project_track_evaluation(node.id) %}
   <div class="container my-8 px-5">
     <p>{{ content.field_description }}</p>
     <div class="grid grid-cols-4">
       <div>
-        <h3>{{ 'Department'|t }}</h3>
-        <div>{{ content.field_department }}</div>
+        <h3>{{ 'State'|t }}</h3>
+        <div>{{ content.field_project_state }}</div>
       </div>
+      {% if node.field_department.value %}
+        <div>
+          <h3>{{ 'Department'|t }}</h3>
+          <div>{{ content.field_department }}</div>
+        </div>
+      {% endif %}
       <div>
         <h3>{{ 'Owner'|t }}</h3>
-        <div>{{ owner }}</div>
+        <div><a href="{{ path('entity.user.canonical', {user: owner.id}) }}">{{ owner.getDisplayName }}</a></div>
       </div>
       <div>
         <h3>{{ 'Contributers'|t }}</h3>
