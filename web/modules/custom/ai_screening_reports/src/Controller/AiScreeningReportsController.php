@@ -97,7 +97,7 @@ final class AiScreeningReportsController extends ControllerBase {
             $projectTracks[] = $projectTrack;
             $projectData['dataset'][$id]['chart'] = [
               'label' => $projectTrack->getProject()->label(),
-              'color' => self::COLOR_CODES[$loopCounter],
+              'color' => self::COLOR_CODES[$loopCounter % count(self::COLOR_CODES)],
             ];
             $projectData['dataset'][$id]['plots'] = [
               // @todo get plots from the track.
