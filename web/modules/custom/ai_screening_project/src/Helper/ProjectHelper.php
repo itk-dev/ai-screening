@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -23,6 +24,8 @@ use Drupal\core_event_dispatcher\Event\Entity\EntityAccessEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityBaseFieldInfoEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityDeleteEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
+use Drupal\core_event_dispatcher\Event\Form\FormAlterEvent;
+use Drupal\core_event_dispatcher\FormHookEvents;
 use Drupal\group\Entity\GroupInterface;
 use Drupal\group\Entity\GroupRelationshipInterface;
 use Drupal\group\Entity\Storage\GroupRelationshipStorageInterface;
@@ -268,11 +271,131 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       EntityHookEvents::ENTITY_INSERT => 'entityInsert',
       EntityHookEvents::ENTITY_DELETE => 'entityDelete',
       NodePreprocessEvent::name('project') => 'preprocessProject',
+      FormHookEvents::FORM_ALTER => 'formAlter',
       // @fixme I, Mikkel, cannot make this work using an event handler, so we
       // do it the old fashioned way with a hook implementation in
       // ai_screening_project.module (which see).
       // EntityHookEvents::ENTITY_BASE_FIELD_INFO => 'entityBaseFieldInfo',
     ];
+  }
+
+  /**
+   * Map users to select options.
+   */
+  private function mapUsersToSelectOptions(array $users): array {
+    $selectOptions = [];
+    foreach ($users as $user) {
+      $entities = $user->get('field_department')->referencedEntities();
+      /** @var \Drupal\taxonomy\Entity\Term $department */
+      $department = reset($entities) ?: NULL;
+      $departmentString = $department ? ' (' . $department->name->value . ')' : '';
+
+      $selectOptions[$user->id()] = $user->getDisplayName() . $departmentString;
+    }
+    return $selectOptions;
+  }
+
+  /**
+   * Add group stuff to project edit.
+   */
+  public function formAlter(FormAlterEvent $event): void {
+    $form = &$event->getForm();
+    $formId = $event->getFormId();
+    $formState = $event->getFormState();
+
+    if ($formId === 'node_project_edit_form') {
+      $query = $this->userStorage->getQuery();
+      $uids = $query
+        ->accessCheck(FALSE)
+        ->condition('status', '1')
+        ->execute();
+
+      // Selected and options for group selects.
+      $users = $this->userStorage->loadMultiple($uids);
+      $group = $this->loadProjectGroup($formState->getFormObject()->getEntity());
+      $groupOwnerId = $group->getOwner()->id();
+      $groupUsers = $group->getRelatedEntities('group_membership');
+      $optionsGroupOwner = $this->mapUsersToSelectOptions($groupUsers);
+      $optionsGroupContributors = $this->mapUsersToSelectOptions($users);
+
+      $form['group_fieldset'] = [
+        '#type' => 'fieldset',
+        '#title' => $this->t('Project group'),
+      ];
+
+      $form['group_fieldset']['project_owner'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Project owner'),
+        '#default_value' => $groupOwnerId,
+        '#options' => $optionsGroupOwner,
+        '#attributes' => ['class' => ['text-full form-text required bg-primary text-primary border border-primary rounded-md py-2 px-3 my-1 w-full']],
+        '#weight' => 1,
+      ];
+
+      $form['group_fieldset']['project_contributors'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Contributors'),
+        '#description' => $this->t('Which users are allowed to contribute to this project'),
+        '#description_display' => 'before',
+        '#options' => $optionsGroupContributors,
+        '#multiple' => TRUE,
+        '#default_value' => array_keys($optionsGroupOwner),
+        '#attributes' => ['class' => ['use-choicesjs-plugin bg-primary text-primary border border-primary rounded-md py-2 px-3 my-1 w-full']],
+        '#weight' => 2,
+      ];
+
+      $form['#validate'][] = $this->validateGroupsForm(...);
+      $form['actions']['submit']['#submit'][] = $this->submitGroupsForm(...);
+    }
+  }
+
+  /**
+   * Custom validation for group part of form.
+   */
+  public function validateGroupsForm(array &$form, FormStateInterface $form_state): void {
+    if (!in_array($form_state->getValue('project_owner'), $form_state->getValue('project_contributors'))) {
+      $form_state->setErrorByName('project_owner', $this->t('Project owner must be a contributor.'));
+    }
+  }
+
+  /**
+   * Submit groups stuff in project edit.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  public function submitGroupsForm(array $form, FormStateInterface $formState): void {
+    $group = $this->loadProjectGroup($formState->getFormObject()->getEntity());
+
+    // Add/remove members of group.
+    $groupUserIds = array_keys($this->mapUsersToSelectOptions($group->getRelatedEntities('group_membership')));
+    $selectedGroupContributorIds = $formState->getValue('project_contributors');
+    $membersToAdd = $this->userStorage->loadMultiple(
+      array_diff($selectedGroupContributorIds, $groupUserIds)
+    );
+    $membersToRemove = $this->userStorage->loadMultiple(
+      array_diff($groupUserIds, $selectedGroupContributorIds)
+    );
+
+    foreach ($membersToAdd as $user) {
+      /** @var \Drupal\user\Entity\User $user */
+      $group->addMember($user);
+    }
+
+    foreach ($membersToRemove as $user) {
+      $group->removeMember($user);
+    }
+
+    // Change group owner.
+    $groupOwner = $formState->getValue('project_owner');
+
+    if ($groupOwner !== $group->getOwner()->id()) {
+      $group->setOwner($this->userStorage->load($groupOwner));
+      $group->save();
+      // And also change project creator, to reflect the group owner.
+      $project = $formState->getFormObject()->getEntity();
+      $project->setOwnerId($groupOwner);
+      $project->save();
+    }
   }
 
   /**
