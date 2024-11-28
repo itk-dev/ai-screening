@@ -156,7 +156,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         $group->delete();
       }
 
-      $projectTracks = $this->getProjectTracks($project);
+      $projectTracks = $this->loadProjectTracks($project);
       $this->projectTrackHelper->deleteProjectTracks($projectTracks);
     }
     catch (\Exception $exception) {
@@ -580,7 +580,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     $variables = $event->getVariables();
     $node = $variables->getEntity();
     if ($node instanceof NodeInterface) {
-      $variables->set('projectTracks', $this->getProjectTracks($node));
+      $variables->set('projectTracks', $this->loadProjectTracks($node));
       $variables->set('projectGroup', $this->loadProjectGroup($node));
       $variables->set('projectMembers', $this->loadProjectGroup($node)->getRelatedEntities('group_membership'));
     }
@@ -595,7 +595,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    * @return \Drupal\ai_screening_project_track\ProjectTrackInterface[]
    *   The tracks.
    */
-  public function getProjectTracks(NodeInterface $project): array {
+  public function loadProjectTracks(NodeInterface $project): array {
     $ids = $this->projectTrackStorage->getQuery()
       ->accessCheck(FALSE)
       ->condition('project_id', $project->id(), '=')
@@ -640,7 +640,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     $project = $this->nodeStorage->load($projectId);
 
     if ($project instanceof NodeInterface) {
-      $projectTracks = $this->getProjectTracks($project);
+      $projectTracks = $this->loadProjectTracks($project);
       foreach ($projectTracks as $projectTrack) {
         $statuses['track_evaluation'][$projectTrack->getType()->id()] = $projectTrack->getProjectTrackEvaluation();
       }

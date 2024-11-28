@@ -19,7 +19,7 @@
       <h2>{{ 'Project tracks'|t }}</h2>
       <div class="my-5">{{ include('@itkdev_project_theme/components/project-status.html.twig') }}</div>
     </div>
-    {% for key, projectTrack in data.projectHelper.getProjectTracks(data.node) %}
+    {% for key, projectTrack in data.projectHelper.loadProjectTracks(data.node) %}
       <div class="mb-8">
         <header class="flex justify-between px-4 py-4 border-b">
           <h3 class="m-0 text-lg dark:text-white">{{ projectTrack.label }}</h3>
