@@ -128,8 +128,6 @@ final class AiScreeningReportsController extends ControllerBase {
     }
 
     // If no project track ids could be identified from url params.
-    $this->messenger()->addError($this->t('Access denied. Incorrect url parameters.'));
-    return new RedirectResponse(Url::fromRoute('system.403')->toString());
-  }
+    throw new BadRequestHttpException();
 
 }
