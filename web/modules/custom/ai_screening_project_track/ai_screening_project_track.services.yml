@@ -28,4 +28,3 @@ services:
   Drupal\ai_screening_project_track\Theme\ThemeNegotiator:
     tags:
       - { name: theme_negotiator, priority: 1000 }
-
