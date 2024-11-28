@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Drupal\ai_screening_reports\Form;
 
 use Drupal\Core\DependencyInjection\AutowireTrait;
-use Drupal\Core\Entity\EntityStorageInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\node\NodeStorageInterface;
+use Drupal\ai_screening_project\Helper\ProjectHelper;
 
 /**
  * Provides an Ai screening reports form.
@@ -17,17 +15,9 @@ use Drupal\node\NodeStorageInterface;
 final class CreateReport extends FormBase {
   use AutowireTrait;
 
-  /**
-   * The node storage.
-   *
-   * @var \Drupal\node\NodeStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly NodeStorageInterface|EntityStorageInterface $nodeStorage;
-
   public function __construct(
-    private readonly EntityTypeManagerInterface $entityTypeManager,
+    private readonly ProjectHelper $projectHelper,
   ) {
-    $this->nodeStorage = $entityTypeManager->getStorage('node');
   }
 
   /**
@@ -42,17 +32,12 @@ final class CreateReport extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
     $options = [];
-    $projectIds = $this->nodeStorage->getQuery()
-      ->accessCheck(TRUE)
-      ->condition('type', 'project')
-      ->execute();
 
-    $projects = $this->nodeStorage->loadMultiple($projectIds);
-    foreach ($projects as $project) {
+    foreach ($this->projectHelper->loadProjects() as $project) {
       $options[$project->id()] = $project->label();
     }
 
-    $form['projects'] = [
+    $form['project'] = [
       '#type' => 'select',
       '#title' => $this->t('Select project'),
       '#options' => $options,
@@ -73,7 +58,7 @@ final class CreateReport extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $form_state->setRedirect('ai_screening_reports.project', ['node' => $form_state->getValue('projects')]);
+    $form_state->setRedirect('ai_screening_reports.project', ['node' => $form_state->getValue('project')]);
   }
 
 }
