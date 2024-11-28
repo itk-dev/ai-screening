@@ -22,7 +22,7 @@
           {{ 'Set up thresholds for each project. The thresholds are used to determine when a suggested project track evaluation changes from "Refused" to "Undecided" to "Approved"' }}
         </div>
         <div class="basis-full flex justify-end">
-          <a href="" class="font-thin bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded inline-flex items-center">
+          <a href="{{ path('ai_screening_project_track.thresholds_settings') }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
             <i class="fa-solid fa-pencil mr-3"></i>
             <span>{{ 'Setup thresholds'|t }}</span>
           </a>

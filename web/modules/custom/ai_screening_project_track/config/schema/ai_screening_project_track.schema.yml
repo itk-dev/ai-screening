@@ -1,0 +1,8 @@
+# Schema for the configuration files of the AI Screening project track module.
+ai_screening_project_track.settings:
+  type: config_object
+  label: 'AI Screening project track settings'
+  mapping:
+    example:
+      type: string
+      label: 'Example'

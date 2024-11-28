@@ -1,5 +1,5 @@
 ai_screening.site_setup:
-  path: '/ai-screening/site-setup'
+  path: '/site-setup'
   defaults:
     _controller: '\Drupal\ai_screening\Controller\SiteSetupController'
     _title: 'Site setup'
