@@ -54,4 +54,19 @@ interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInt
    */
   public function getProject(): NodeInterface;
 
+  /**
+   * Get configuration.
+   */
+  public function getConfiguration(): array;
+
+  /**
+   * Set configuration.
+   */
+  public function setConfiguration(array $configuration): self;
+
+  /**
+   * Get dimensions.
+   */
+  public function getDimensions(): array;
+
 }

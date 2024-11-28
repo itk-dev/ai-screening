@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Hooks related to installing/updating/uninstalling this module.
+ */
+
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Add configuration field to project track entity.
+ */
+function ai_screening_project_track_update_11001() {
+  $fields['configuration'] = BaseFieldDefinition::create('string_long')
+    ->setLabel(t('Project track configuration'))
+    ->setDescription(t('Configuration for the track.'))
+    ->setReadOnly(TRUE);
+
+  foreach ($fields as $fieldName => $fieldDefinition) {
+    \Drupal::entityDefinitionUpdateManager()
+      ->installFieldStorageDefinition($fieldName, 'project_track', 'ai_screening_project_track', $fieldDefinition);
+  }
+}

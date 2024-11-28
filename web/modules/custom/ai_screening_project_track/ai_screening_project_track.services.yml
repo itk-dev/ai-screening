@@ -17,6 +17,14 @@ services:
     tags:
       - { name: event_subscriber }
 
+  Drupal\ai_screening_project_track\Helper\FormHelper:
+    autowire: true
+
+  Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper:
+    autowire: true
+    tags:
+      - { name: event_subscriber }
+
   Drupal\ai_screening_project_track\Theme\ThemeNegotiator:
     tags:
       - { name: theme_negotiator, priority: 1000 }
