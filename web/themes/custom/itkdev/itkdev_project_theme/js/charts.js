@@ -10,10 +10,12 @@ import Chart from '../node_modules/chart.js/auto'
       const chartSettings = drupalSettings['reports_project_track'];
       if (chart) {
         const datasets = chartSettings['dataset'].map(drupalData => {
-          label: drupalData.chart.label,
-          title: drupalData.chart.label,
-          data: drupalData.plots,
-          backgroundColor: drupalData.chart.color
+          return {
+            label: drupalData.chart.label,
+            title: drupalData.chart.label,
+            data: drupalData.plots,
+            backgroundColor: drupalData.chart.color,
+          }
         });
 
         new Chart(

@@ -6,13 +6,13 @@ namespace Drupal\ai_screening_reports\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
-use Drupal\Core\Url;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
  * Returns responses for AI screening reports routes.
@@ -108,7 +108,8 @@ final class AiScreeningReportsController extends ControllerBase {
             // Set a limit for the number of tracks to display.
             $loopCounter++;
             if ($loopCounter >= self::MAX_NUMBER_OF_TRACKS) {
-              $this->messenger()->addWarning($this->t('A maximum of @max tracks can be displayed.', ['@max' => self::MAX_NUMBER_OF_TRACKS]));
+              $this->messenger()
+                ->addWarning($this->t('A maximum of @max tracks can be displayed.', ['@max' => self::MAX_NUMBER_OF_TRACKS]));
               break;
             }
           }
@@ -131,5 +132,6 @@ final class AiScreeningReportsController extends ControllerBase {
 
     // If no project track ids could be identified from url params.
     throw new BadRequestHttpException();
+  }
 
 }
