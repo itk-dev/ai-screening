@@ -1,0 +1,7 @@
+# Setup default page
+ai_screening_reports.reports:
+  title: Site setup
+  description: Show site setup
+  menu_name: main
+  route_name: ai_screening.site_setup
+  weight: 15
