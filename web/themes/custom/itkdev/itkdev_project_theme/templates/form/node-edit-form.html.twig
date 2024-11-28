@@ -26,11 +26,14 @@
   <div class="pb-5 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-slate-600 drop-shadow-md">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
       <div class="p-3">
-        {{ form|without('advanced', 'group_fieldset', 'actions') }}
+        {{ form|without('advanced', 'group_fieldset', 'actions', 'group_state') }}
       </div>
-      <div class="p-3">
-        {{ form.group_fieldset }}
-      </div>
+      {% if form['#form_id'] is same as 'node_project_edit_form' %}
+        <div class="p-3">
+          {{ form.group_fieldset }}
+          {{ form.group_state }}
+        </div>
+      {% endif %}
     </div>
     <div>
       {{ form.actions }}
