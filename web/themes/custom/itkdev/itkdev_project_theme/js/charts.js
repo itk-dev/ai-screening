@@ -8,16 +8,12 @@ import Chart from '../node_modules/chart.js/auto'
     attach: function (context, settings) {
       const chart = once('itkProjectThemeBehavior', document.getElementById('chart'));
       const chartSettings = drupalSettings['reports_project_track'];
-      let datasets = [];
-
       if (chart) {
-        chartSettings['dataset'].forEach(function(drupalData) {
-          datasets.push({
-              label: drupalData.chart.label,
-              title: drupalData.chart.label,
-              data: drupalData.plots,
-              backgroundColor: drupalData.chart.color
-            });
+        const datasets = chartSettings['dataset'].map(drupalData => {
+          label: drupalData.chart.label,
+          title: drupalData.chart.label,
+          data: drupalData.plots,
+          backgroundColor: drupalData.chart.color
         });
 
         new Chart(
