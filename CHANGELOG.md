@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-62](https://github.com/itk-dev/ai-screening/pull/62)
+  Force custom theme on webform submissions
 - [PR-61](https://github.com/itk-dev/ai-screening/pull/61)
   Add project state support active/finished
   Remove stats block caching

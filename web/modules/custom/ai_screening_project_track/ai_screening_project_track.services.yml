@@ -16,3 +16,7 @@ services:
       $logger: '@logger.channel.ai_screening_project_track'
     tags:
       - { name: event_subscriber }
+
+  Drupal\ai_screening_project_track\Theme\ThemeNegotiator:
+    tags:
+      - { name: theme_negotiator, priority: 1000 }
