@@ -66,10 +66,10 @@ final class AiScreeningReportsController extends ControllerBase {
    */
   public function projectTrack(Request $request): array|RedirectResponse {
     $projectTrackIds = $request->get('project_track_id');
-    $projectTracks = [];
     $loopCounter = 0;
+    $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get('project_track_id'));
     // Ensure proper url parameters: ?project_track_id[]=1&project_track_id[]=3.
-    if (is_array($projectTrackIds)) {
+    if (!empty($projectTracks)) {
       $projectData = [
         // @todo get thresholds.
         'thresholds' => [
@@ -131,6 +131,7 @@ final class AiScreeningReportsController extends ControllerBase {
     }
 
     // If no project track ids could be identified from url params.
+    $this->messenger()->addError($this->t('Incorrect url parameters.'));
     throw new BadRequestHttpException();
   }
 
