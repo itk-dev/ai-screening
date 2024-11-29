@@ -6,7 +6,6 @@ namespace Drupal\ai_screening\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
-use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -22,7 +21,7 @@ final class SiteSetupController extends ControllerBase {
   public function __invoke(Request $request): array {
     return [
       '#theme' => 'site_setup',
-      '#data' => []
+      '#data' => [],
     ];
   }
 

@@ -82,17 +82,16 @@ final class AiScreeningReportsController extends ControllerBase {
           'y' => $this->projectTrackTypeHelper->getThreshold($term->id(), 1, 'approved') ?? '',
           'z' => $this->projectTrackTypeHelper->getThreshold($term->id(), 2, 'approved') ?? '',
         ],
-        // @todo get possible max the track.
         'axisMax' => [
-          'x' => 40,
-          'y' => 40,
-          'z' => 40,
+          'x' => $this->projectTrackTypeHelper->getThreshold($term->id(), 0, 'approved') * 2 ?? '',
+          'y' => $this->projectTrackTypeHelper->getThreshold($term->id(), 1, 'approved') * 2 ?? '',
+          'z' => $this->projectTrackTypeHelper->getThreshold($term->id(), 2, 'approved') * 2 ?? '',
         ],
         // Use the first three identified dimensions as axis.
         'labels' => [
-          'x' => $dimensions[0] ?? '',
-          'y' => $dimensions[1] ?? '',
-          'z' => $dimensions[2] ?? '',
+          'x' => isset($dimensions[0]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[0]]) : '',
+          'y' => isset($dimensions[1]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[1]]) : '',
+          'z' => isset($dimensions[2]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[2]]) : '',
         ],
       ];
 
@@ -104,7 +103,7 @@ final class AiScreeningReportsController extends ControllerBase {
         ];
         $projectData['dataset'][$loopCounter]['plots'] = [
           // @todo get plots from the track.
-          ['x' => 17, 'y' => 15, 'r' => 3],
+          ['x' => 30, 'y' => 15, 'r' => 3],
         ];
         // Set a limit for the number of tracks to display.
         $loopCounter++;
