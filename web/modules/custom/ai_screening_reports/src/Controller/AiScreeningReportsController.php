@@ -92,24 +92,21 @@ final class AiScreeningReportsController extends ControllerBase {
       ];
 
       // Create a dataset for each project track.
-      foreach ($projectTracks as $key => $projectTrack) {
-        if ($projectTrack instanceof ProjectTrackInterface) {
-          $projectTracks[] = $projectTrack;
-          $projectData['dataset'][$loopCounter]['chart'] = [
-            'label' => $projectTrack->getProject()->label(),
-            'color' => self::COLOR_CODES[$loopCounter % count(self::COLOR_CODES)],
-          ];
-          $projectData['dataset'][$loopCounter]['plots'] = [
-            // @todo get plots from the track.
-            ['x' => 17, 'y' => 15, 'r' => 3],
-          ];
-          // Set a limit for the number of tracks to display.
-          $loopCounter++;
-          if ($loopCounter >= self::MAX_NUMBER_OF_TRACKS) {
-            $this->messenger()
-              ->addWarning($this->t('A maximum of @max tracks can be displayed.', ['@max' => self::MAX_NUMBER_OF_TRACKS]));
-            break;
-          }
+      foreach ($projectTracks as $projectTrack) {
+        $projectData['dataset'][$loopCounter]['chart'] = [
+          'label' => $projectTrack->getProject()->label(),
+          'color' => self::COLOR_CODES[$loopCounter % count(self::COLOR_CODES)],
+        ];
+        $projectData['dataset'][$loopCounter]['plots'] = [
+          // @todo get plots from the track.
+          ['x' => 17, 'y' => 15, 'r' => 3],
+        ];
+        // Set a limit for the number of tracks to display.
+        $loopCounter++;
+        if ($loopCounter >= self::MAX_NUMBER_OF_TRACKS) {
+          $this->messenger()
+            ->addWarning($this->t('A maximum of @max tracks can be displayed.', ['@max' => self::MAX_NUMBER_OF_TRACKS]));
+          break;
         }
       }
 
