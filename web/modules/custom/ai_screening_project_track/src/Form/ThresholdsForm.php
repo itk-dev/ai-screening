@@ -40,7 +40,6 @@ final class ThresholdsForm extends FormBase {
       $form['project_track'][$termId] = [
         '#type' => 'fieldset',
         '#title' => $projectTrackType->label(),
-        '#attributes' => ['class' => []],
       ];
 
       $form['project_track'][$termId]['term_wrapper'] = [
