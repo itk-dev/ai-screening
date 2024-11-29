@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default implementation of reports project page
+ */
+#}
+{% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
+
+{% block title %}
+  {{ attach_library('itkdev_project_theme/charts_js') }}
+  {% set pageTitle = 'Report: Project tracks'|t %}
+  {{ parent() }}
+{% endblock %}
+
+{% block content %}
+  <div class="p-5 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-slate-600 drop-shadow-md">
+    <div style="width: 100%;"><canvas id="chart"></canvas></div>
+  </div>
+{% endblock %}

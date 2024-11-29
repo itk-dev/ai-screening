@@ -7,13 +7,15 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
-- [PR-60](https://github.com/itk-dev/ai-screening/pull/60)
-  Project track configuration
+- [PR-65](https://github.com/itk-dev/ai-screening/pull/65)
+  Add reporting module with graph.js
 - [PR-62](https://github.com/itk-dev/ai-screening/pull/62)
   Force custom theme on webform submissions
 - [PR-61](https://github.com/itk-dev/ai-screening/pull/61)
   Add project state support active/finished
   Remove stats block caching
+- [PR-60](https://github.com/itk-dev/ai-screening/pull/60)
+  Project track configuration
 - [PR-59](https://github.com/itk-dev/ai-screening/pull/59)
   Add tailwind classes to style user image
 - [PR-58](https://github.com/itk-dev/ai-screening/pull/58)
