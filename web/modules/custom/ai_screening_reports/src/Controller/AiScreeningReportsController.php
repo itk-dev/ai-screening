@@ -8,7 +8,6 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
-use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,7 +64,6 @@ final class AiScreeningReportsController extends ControllerBase {
    * Builds the response for displaying project track chart.
    */
   public function projectTrack(Request $request): array|RedirectResponse {
-    $projectTrackIds = $request->get('project_track_id');
     $loopCounter = 0;
     $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get('project_track_id'));
     // Ensure proper url parameters: ?project_track_id[]=1&project_track_id[]=3.
