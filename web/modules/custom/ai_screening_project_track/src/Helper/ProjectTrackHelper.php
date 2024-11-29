@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_screening_project_track\Helper;
 
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -25,9 +26,9 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   /**
    * The project track storage.
    *
-   * @var \Drupal\ai_screening_project_track\ProjectTrackStorageInterface
+   * @var \Drupal\ai_screening_project_track\ProjectTrackStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
    */
-  private readonly ProjectTrackStorageInterface $projectTrackStorage;
+  private readonly ProjectTrackStorageInterface|EntityStorageInterface $projectTrackStorage;
 
   public function __construct(
     private readonly ProjectTrackToolHelper $projectTrackToolHelper,
@@ -145,6 +146,8 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    *
    * @param \Drupal\ai_screening_project_track\ProjectTrackInterface[] $projectTracks
    *   The project tracks.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function deleteProjectTracks(array $projectTracks) {
     foreach ($projectTracks as $projectTrack) {

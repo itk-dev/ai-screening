@@ -5,8 +5,8 @@ namespace Drupal\ai_screening_project_track\Helper;
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\ai_screening_project\Helper\ProjectHelper;
 use Drupal\ai_screening_project_track\Exception\InvalidConfigurationException;
 use Drupal\core_event_dispatcher\Event\Form\FormAlterEvent;
 use Drupal\core_event_dispatcher\FormHookEvents;
@@ -22,9 +22,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 final class ProjectTrackTypeHelper implements EventSubscriberInterface {
   use StringTranslationTrait;
 
-  const FIELD_CONFIGURATION = 'field_configuration';
-  const CONFIGURATION_KEY_DIMENSIONS = 'dimensions';
-
+  const string FIELD_CONFIGURATION = 'field_configuration';
+  const string CONFIGURATION_KEY_DIMENSIONS = 'dimensions';
+  public const string BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
   /**
    * The term storage.
    *
@@ -34,6 +34,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
 
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
+    private readonly StateInterface $state,
   ) {
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
   }
@@ -57,7 +58,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
   public function loadTerms(?WebformInterface $webform = NULL, bool $accessCheck = FALSE): array {
     $query = $this->termStorage->getQuery()
       ->accessCheck($accessCheck)
-      ->condition('vid', ProjectHelper::BUNDLE_TERM_PROJECT_TRACK)
+      ->condition('vid', self::BUNDLE_TERM_PROJECT_TRACK)
       ->exists('field_webform');
     if ($webform) {
       $query->condition('field_webform', $webform->id());
@@ -98,7 +99,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
     $formObject = $event->getFormState()->getFormObject();
     if ($formObject instanceof TermForm) {
       $term = $formObject->getEntity();
-      if (ProjectHelper::BUNDLE_TERM_PROJECT_TRACK === $term->bundle()) {
+      if (self::BUNDLE_TERM_PROJECT_TRACK === $term->bundle()) {
         $form = &$event->getForm();
         $form['#validate'][] = $this->formValidate(...);
       }
@@ -155,6 +156,30 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
         sprintf('Configuration value "%s" must be a list', self::CONFIGURATION_KEY_DIMENSIONS)
       );
     }
+  }
+
+  /**
+   * Get a specific threshold.
+   */
+  public function getThreshold($termId, $key, ?string $threshold = NULL) {
+    $storedThresholds = $this->state->get('ai_screening_project_track_thresholds', []);
+
+    return $storedThresholds["{$threshold}-{$termId}-{$key}"];
+  }
+
+  /**
+   * Get all thresholds as a keyed array.
+   */
+  public function getThresholds(): array {
+    $thresholds = [];
+    $storedThresholds = $this->state->get('ai_screening_project_track_thresholds', []);
+
+    foreach ($storedThresholds as $key => $threshold) {
+      $thresholdKeyArr = explode('-', $key);
+      $thresholds[$thresholdKeyArr[1]][$thresholdKeyArr[2]][$thresholdKeyArr[0]] = $threshold;
+    }
+
+    return $thresholds;
   }
 
   /**

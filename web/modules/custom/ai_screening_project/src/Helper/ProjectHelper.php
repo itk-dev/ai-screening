@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_screening_project\Helper;
 
+use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
@@ -34,7 +35,6 @@ use Drupal\group\Entity\Storage\GroupStorage;
 use Drupal\node\NodeInterface;
 use Drupal\node\NodeStorageInterface;
 use Drupal\preprocess_event_dispatcher\Event\NodePreprocessEvent;
-use Drupal\taxonomy\TermStorageInterface;
 use Drupal\user\UserStorageInterface;
 use Drupal\webform\WebformSubmissionStorageInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -53,7 +53,6 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   public final const string BUNDLE_PROJECT = 'project';
   public final const string FIELD_CORRUPTED = 'corrupted';
   public final const string FIELD_STATE = 'field_project_state';
-  public final const string BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
 
   /**
    * The group storage.
@@ -84,13 +83,6 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   private readonly NodeStorageInterface|EntityStorageInterface $nodeStorage;
 
   /**
-   * The taxonomy term storage.
-   *
-   * @var \Drupal\taxonomy\TermStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly TermStorageInterface|EntityStorageInterface $termStorage;
-
-  /**
    * The webform submission storage.
    *
    * @var \Drupal\webform\WebformSubmissionStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
@@ -117,6 +109,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   public function __construct(
     private readonly AccountProxyInterface $accountProxy,
     private readonly ProjectTrackHelper $projectTrackHelper,
+    private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
@@ -125,7 +118,6 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     $this->groupRelationshipStorage = $entityTypeManager->getStorage('group_relationship');
     $this->userStorage = $entityTypeManager->getStorage('user');
     $this->nodeStorage = $entityTypeManager->getStorage('node');
-    $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
     $this->webformSubmissionStorage = $entityTypeManager->getStorage('webform_submission');
     $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
     $this->projectTrackToolStorage = $entityTypeManager->getStorage('project_track_tool');
@@ -473,14 +465,8 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    */
   private function addProjectTracks(NodeInterface $entity): void {
     try {
-      $projectTrackTermIds = $this->termStorage->getQuery()
-        ->accessCheck(FALSE)
-        ->condition('vid', self::BUNDLE_TERM_PROJECT_TRACK, '=')
-        ->exists('field_webform')
-        ->execute();
-
       // Add project tracks to project.
-      $projectTrackTerms = $this->termStorage->loadMultiple($projectTrackTermIds);
+      $projectTrackTerms = $this->projectTrackTypeHelper->loadTerms();
 
       $projectTrackCounter = 0;
       foreach ($projectTrackTerms as $projectTrackTerm) {
