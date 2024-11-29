@@ -50,7 +50,7 @@ final class ThresholdsForm extends FormBase {
         '#markup' => '<div class="mb-3 font-bold">' . $projectTrackType->getDescription() . '</div>',
       ];
 
-      foreach ($projectTrackConfiguration['dimensions'] as $key => $dimension) {
+      foreach ($projectTrackConfiguration[ProjectTrackTypeHelper::CONFIGURATION_KEY_DIMENSIONS] as $key => $dimension) {
         $form['project_track'][$termId]['term_wrapper'][$key] = [
           '#type' => 'container',
           '#attributes' => ['class' => ['grid', 'gap-4', 'grid-cols-2']],
