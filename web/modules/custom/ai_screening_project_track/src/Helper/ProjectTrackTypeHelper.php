@@ -3,6 +3,7 @@
 namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Component\Serialization\Yaml;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\State\StateInterface;
@@ -67,6 +68,13 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
     $ids = $query->execute();
 
     return $this->termStorage->loadMultiple($ids);
+  }
+
+  /**
+   * Load a project track type from it's id.
+   */
+  public function loadProjectTrackType(int $id): EntityInterface {
+    return $this->termStorage->load($id);
   }
 
   /**
@@ -164,7 +172,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
   public function getThreshold($termId, $key, ?string $threshold = NULL) {
     $storedThresholds = $this->state->get('ai_screening_project_track_thresholds', []);
 
-    return $storedThresholds["{$threshold}-{$termId}-{$key}"];
+    return $storedThresholds["{$threshold}-{$termId}-{$key}"] ?? '';
   }
 
   /**

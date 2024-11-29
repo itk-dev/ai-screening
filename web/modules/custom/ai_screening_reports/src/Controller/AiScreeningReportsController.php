@@ -8,6 +8,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
+use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,6 +43,7 @@ final class AiScreeningReportsController extends ControllerBase {
   public function __construct(
     private readonly ProjectTrackHelper $projectTrackHelper,
     private readonly ProjectHelper $projectHelper,
+    private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
   ) {
   }
 
@@ -66,14 +68,19 @@ final class AiScreeningReportsController extends ControllerBase {
   public function projectTrack(Request $request): array|RedirectResponse {
     $loopCounter = 0;
     $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get('project_track_id'));
+
     // Ensure proper url parameters: ?project_track_id[]=1&project_track_id[]=3.
     if (!empty($projectTracks)) {
+      // Allow the first term to define the dimensions and the thresholds.
+      $term = reset($projectTracks)->getType();
+
+      /** @var \Drupal\taxonomy\TermInterface $term */
+      $dimensions = $this->projectTrackTypeHelper->getDimensions($term);
       $projectData = [
-        // @todo get thresholds.
         'thresholds' => [
-          'x' => 25,
-          'y' => 25,
-          'z' => 25,
+          'x' => $this->projectTrackTypeHelper->getThreshold($term->id(), 0, 'approved') ?? '',
+          'y' => $this->projectTrackTypeHelper->getThreshold($term->id(), 1, 'approved') ?? '',
+          'z' => $this->projectTrackTypeHelper->getThreshold($term->id(), 2, 'approved') ?? '',
         ],
         // @todo get possible max the track.
         'axisMax' => [
@@ -81,11 +88,11 @@ final class AiScreeningReportsController extends ControllerBase {
           'y' => 40,
           'z' => 40,
         ],
-        // @todo get labels for axis.
+        // Use the first three identified dimensions as axis.
         'labels' => [
-          'x' => 'XLabel approved threshold',
-          'y' => 'YLabel approved threshold',
-          'z' => 'ZLabel approved threshold',
+          'x' => $dimensions[0] ?? '',
+          'y' => $dimensions[1] ?? '',
+          'z' => $dimensions[2] ?? '',
         ],
       ];
 

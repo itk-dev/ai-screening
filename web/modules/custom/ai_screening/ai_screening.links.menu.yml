@@ -1,5 +1,5 @@
 # Setup default page
-ai_screening_reports.reports:
+ai_screening.site_setup:
   title: Site setup
   description: Show site setup
   menu_name: main
