@@ -142,6 +142,13 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
+   * Load multiple tracks.
+   */
+  public function loadTracks(array $trackIds): array {
+    return $this->projectTrackStorage->loadMultiple($trackIds);
+  }
+
+  /**
    * Delete project tracks.
    *
    * @param \Drupal\ai_screening_project_track\ProjectTrackInterface[] $projectTracks
