@@ -169,26 +169,17 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
   /**
    * Get a specific threshold.
    */
-  public function getThreshold($termId, $key, ?string $threshold = NULL): int {
+  public function getThreshold(int $termId, int $key, string $threshold): int {
     $storedThresholds = $this->state->get('ai_screening_project_track_thresholds', []);
-    $threshold = $storedThresholds["{$threshold}-{$termId}-{$key}"] ?? 0;
 
-    return $threshold ? (int) $threshold : 0;
+    return $storedThresholds[$termId][$key][$threshold] ?? 0;
   }
 
   /**
    * Get all thresholds as a keyed array.
    */
   public function getThresholds(): array {
-    $thresholds = [];
-    $storedThresholds = $this->state->get('ai_screening_project_track_thresholds', []);
-
-    foreach ($storedThresholds as $key => $threshold) {
-      $thresholdKeyArr = explode('-', $key);
-      $thresholds[$thresholdKeyArr[1]][$thresholdKeyArr[2]][$thresholdKeyArr[0]] = $threshold;
-    }
-
-    return $thresholds;
+    return $this->state->get('ai_screening_project_track_thresholds', []);
   }
 
   /**

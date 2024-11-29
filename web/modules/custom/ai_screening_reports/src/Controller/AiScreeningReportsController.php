@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening_reports\Controller;
 
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
@@ -76,16 +77,17 @@ final class AiScreeningReportsController extends ControllerBase {
 
       /** @var \Drupal\taxonomy\TermInterface $term */
       $dimensions = $this->projectTrackTypeHelper->getDimensions($term);
+
       $projectData = [
         'thresholds' => [
-          'x' => $this->projectTrackTypeHelper->getThreshold($term->id(), 0, 'approved') ?? '',
-          'y' => $this->projectTrackTypeHelper->getThreshold($term->id(), 1, 'approved') ?? '',
-          'z' => $this->projectTrackTypeHelper->getThreshold($term->id(), 2, 'approved') ?? '',
+          'x' => $this->projectTrackTypeHelper->getThreshold((int)$term->id(), 0, Evaluation::APPROVED->getAsLowerCase()) ?? '',
+          'y' => $this->projectTrackTypeHelper->getThreshold((int)$term->id(), 1, Evaluation::APPROVED->getAsLowerCase()) ?? '',
+          'z' => $this->projectTrackTypeHelper->getThreshold((int)$term->id(), 2, Evaluation::APPROVED->getAsLowerCase()) ?? '',
         ],
         'axisMax' => [
-          'x' => $this->projectTrackTypeHelper->getThreshold($term->id(), 0, 'approved') * 2 ?? '',
-          'y' => $this->projectTrackTypeHelper->getThreshold($term->id(), 1, 'approved') * 2 ?? '',
-          'z' => $this->projectTrackTypeHelper->getThreshold($term->id(), 2, 'approved') * 2 ?? '',
+          'x' => $this->projectTrackTypeHelper->getThreshold((int)$term->id(), 0, Evaluation::APPROVED->getAsLowerCase()) * 2 ?? '',
+          'y' => $this->projectTrackTypeHelper->getThreshold((int)$term->id(), 1, Evaluation::APPROVED->getAsLowerCase()) * 2 ?? '',
+          'z' => $this->projectTrackTypeHelper->getThreshold((int)$term->id(), 2, Evaluation::APPROVED->getAsLowerCase()) * 2 ?? '',
         ],
         // Use the first three identified dimensions as axis.
         'labels' => [

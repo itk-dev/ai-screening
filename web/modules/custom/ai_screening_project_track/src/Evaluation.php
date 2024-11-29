@@ -26,10 +26,29 @@ enum Evaluation: int {
   }
 
   /**
+   * Get evaluation options as lowercase.
+   */
+  public static function asLowerCase(): array {
+    return [
+      self::NONE->value => 'none',
+      self::APPROVED->value => 'approved',
+      self::UNDECIDED->value => 'undecided',
+      self::REFUSED->value => 'refused',
+    ];
+  }
+
+  /**
    * Translate a project track evaluation.
    */
   public function getTranslatable(): TranslatableMarkup {
     return static::asOptions()[$this->value];
+  }
+
+  /**
+   * Translate a project track evaluation.
+   */
+  public function getAsLowerCase(): string {
+    return static::asLowerCase()[$this->value];
   }
 
 }
