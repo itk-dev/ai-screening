@@ -175,9 +175,9 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
    * Get a specific threshold.
    */
   public function getThreshold(int $termId, int $dimension, Evaluation $evaluation): int {
-    $storedThresholds = $this->state->get('ai_screening_project_track_thresholds', []);
+    $thresholds = $this->getThresholds();
 
-    return $storedThresholds[$termId][$dimension][$evaluation->value] ?? 0;
+    return $thresholds[$termId][$dimension][$evaluation->value] ?? 0;
   }
 
   /**
