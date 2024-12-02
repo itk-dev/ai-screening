@@ -99,6 +99,7 @@ final class AiScreeningReportsController extends ControllerBase {
 
       // Create a dataset for each project track.
       foreach ($projectTracks as $projectTrack) {
+        $a = $this->projectTrackHelper->getProjectTrackMaxPossible($projectTrack);
         $projectData['dataset'][$loopCounter]['chart'] = [
           'label' => $projectTrack->getProject()->label(),
           'color' => self::COLOR_CODES[$loopCounter % count(self::COLOR_CODES)],

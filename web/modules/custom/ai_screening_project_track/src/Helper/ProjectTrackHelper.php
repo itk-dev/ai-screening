@@ -14,6 +14,8 @@ use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
 use Drupal\ai_screening_project_track\Status;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
 use Drupal\core_event_dispatcher\ThemeHookEvents;
+use Drupal\taxonomy\TermStorageInterface;
+use Drupal\webform\WebformSubmissionStorageInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -30,13 +32,31 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    */
   private readonly ProjectTrackStorageInterface|EntityStorageInterface $projectTrackStorage;
 
+  /**
+   * The term storage.
+   *
+   * @var \Drupal\taxonomy\TermStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
+   */
+  private readonly TermStorageInterface|EntityStorageInterface $termStorage;
+
+  /**
+   * The webform submission storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface|\Drupal\webform\WebformSubmissionStorageInterface
+   */
+  private readonly WebformSubmissionStorageInterface|EntityStorageInterface $submissionStorage;
+
   public function __construct(
     private readonly ProjectTrackToolHelper $projectTrackToolHelper,
+    private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
+    private readonly FormHelper $formHelper,
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
     parent::__construct($logger);
     $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
+    $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
+    $this->submissionStorage = $entityTypeManager->getStorage('webform_submission');
   }
 
   /**
@@ -44,7 +64,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    *
    * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $track
    *   *   The track.
-   * @param string $key
+   * @param string|null $key
    *   The key.
    *
    * @return mixed
@@ -162,6 +182,39 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
 
       $projectTrack->delete();
     }
+  }
+
+  /**
+   * Determine the max possible values that a project track can achieve.
+   *
+   * @throws \Drupal\ai_screening_project_track\Exception\InvalidValueException
+   */
+  public function getProjectTrackMaxPossible(ProjectTrackInterface $projectTrack): array {
+    $max = [];
+    $tools = $this->projectTrackToolHelper->loadTools($projectTrack);
+    // Loop over each tool in the projecttrack.
+    foreach ($tools as $tool) {
+      if ('webform_submission' === $tool->getToolEntityType()) {
+        /** @var \Drupal\webform\WebformSubmissionInterface $submission */
+        $submission = $this->submissionStorage->load($tool->getToolId());
+        $webform = $submission->getWebform();
+        $elements = $webform->getElementsDecodedAndFlattened();
+        // Look at each field in the webform.
+        foreach ($elements as $element) {
+          // Currently we only look at weighted radios.
+          if ('ai_screening_weighted_radios' === $element['#type'] && array_key_exists('#options', $element)) {
+            // Get all options for the field.
+            foreach ($element['#options'] as $optionValues => $option) {
+              $values = $this->formHelper->getIntegers($optionValues);
+              foreach ($values as $key => $value) {
+                $max[$key] += $value;
+              }
+            }
+          }
+        }
+      }
+    }
+    return $max;
   }
 
   /**
