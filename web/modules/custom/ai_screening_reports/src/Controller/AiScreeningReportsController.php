@@ -80,14 +80,14 @@ final class AiScreeningReportsController extends ControllerBase {
 
       $projectData = [
         'thresholds' => [
-          'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED->getAsLowerCase()) ?? '',
-          'y' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 1, Evaluation::APPROVED->getAsLowerCase()) ?? '',
-          'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED->getAsLowerCase()) ?? '',
+          'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED) ?? '',
+          'y' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 1, Evaluation::APPROVED) ?? '',
+          'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED) ?? '',
         ],
         'axisMax' => [
-          'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED->getAsLowerCase()) * 2 ?? '',
-          'y' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 1, Evaluation::APPROVED->getAsLowerCase()) * 2 ?? '',
-          'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED->getAsLowerCase()) * 2 ?? '',
+          'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED) * 2 ?? '',
+          'y' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 1, Evaluation::APPROVED) * 2 ?? '',
+          'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED) * 2 ?? '',
         ],
         // Use the first three identified dimensions as axis.
         'labels' => [
