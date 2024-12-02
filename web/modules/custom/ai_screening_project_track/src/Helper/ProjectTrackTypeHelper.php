@@ -4,10 +4,12 @@ namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Exception\InvalidConfigurationException;
 use Drupal\core_event_dispatcher\Event\Form\FormAlterEvent;
 use Drupal\core_event_dispatcher\FormHookEvents;
@@ -26,12 +28,13 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
   const string FIELD_CONFIGURATION = 'field_configuration';
   const string CONFIGURATION_KEY_DIMENSIONS = 'dimensions';
   public const string BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
+  private const string THRESHOLD_KEY_SEPARATOR = '-';
   /**
    * The term storage.
    *
-   * @var \Drupal\taxonomy\TermStorageInterface
+   * @var \Drupal\taxonomy\TermStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
    */
-  private TermStorageInterface $termStorage;
+  private TermStorageInterface|EntityStorageInterface $termStorage;
 
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
@@ -152,6 +155,8 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
 
   /**
    * Validate configuration.
+   *
+   * @throws \Drupal\ai_screening_project_track\Exception\InvalidConfigurationException
    */
   public function validateConfiguration(array $configuration): void {
     if (!isset($configuration[self::CONFIGURATION_KEY_DIMENSIONS])) {
@@ -169,10 +174,10 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
   /**
    * Get a specific threshold.
    */
-  public function getThreshold(int $termId, int $key, string $threshold): int {
+  public function getThreshold(int $termId, int $dimension, Evaluation $evaluation): int {
     $storedThresholds = $this->state->get('ai_screening_project_track_thresholds', []);
 
-    return $storedThresholds[$termId][$key][$threshold] ?? 0;
+    return $storedThresholds[$termId][$dimension][$evaluation->value] ?? 0;
   }
 
   /**
@@ -180,6 +185,26 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
    */
   public function getThresholds(): array {
     return $this->state->get('ai_screening_project_track_thresholds', []);
+  }
+
+  /**
+   * Build a threshold key.
+   */
+  public static function buildThresholdKey(Evaluation $evaluation, int $termId, int $dimension): string {
+    return implode(self::THRESHOLD_KEY_SEPARATOR, [$evaluation->value, (string) $termId, (string) $dimension]);
+  }
+
+  /**
+   * Get threshold keys.
+   */
+  public static function getThresholdKeys(string $key): array {
+    $values = explode(self::THRESHOLD_KEY_SEPARATOR, $key);
+    assert(count($values) !== 3);
+    return [
+      Evaluation::from($values[0]),
+      (int) $values[1],
+      (int) $values[2],
+    ];
   }
 
   /**

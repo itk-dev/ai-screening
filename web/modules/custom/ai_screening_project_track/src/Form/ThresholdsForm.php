@@ -68,18 +68,18 @@ final class ThresholdsForm extends FormBase {
           '#attributes' => ['class' => ['grid', 'gap-4', 'grid-cols-2', 'border-bottom']],
         ];
 
-        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'][Evaluation::APPROVED->getAsLowerCase() . '-' . $termId . '-' . $key] = [
+        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'][ProjectTrackTypeHelper::buildThresholdKey(Evaluation::APPROVED, $termId, $key)] = [
           '#type' => 'number',
           '#title' => $this->t('Approved'),
-          '#default_value' => $this->projectTrackTypeHelper->getThreshold($termId, $key, Evaluation::APPROVED->getAsLowerCase()),
+          '#default_value' => $this->projectTrackTypeHelper->getThreshold($termId, $key, Evaluation::APPROVED),
           '#min' => 0,
           '#description' => $this->t('Undecided -> Approved'),
         ];
 
-        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'][Evaluation::UNDECIDED->getAsLowerCase() . '-' . $termId . '-' . $key] = [
+        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'][ProjectTrackTypeHelper::buildThresholdKey(Evaluation::UNDECIDED, $termId, $key)] = [
           '#type' => 'number',
           '#title' => $this->t('Undecided'),
-          '#default_value' => $this->projectTrackTypeHelper->getThreshold($termId, $key, Evaluation::UNDECIDED->getAsLowerCase()),
+          '#default_value' => $this->projectTrackTypeHelper->getThreshold($termId, $key, Evaluation::UNDECIDED),
           '#description' => $this->t('Refused -> Undecided'),
           '#min' => 0,
         ];
@@ -106,18 +106,18 @@ final class ThresholdsForm extends FormBase {
     foreach ($userInput as $key => $value) {
       $thresholdKeyArr = explode('-', $key);
       $thresholds = [
-        Evaluation::UNDECIDED->getAsLowerCase() => $userInput[implode('-', [
-          Evaluation::UNDECIDED->getAsLowerCase(),
+        Evaluation::UNDECIDED->value => $userInput[implode('-', [
+          Evaluation::UNDECIDED->value,
           $thresholdKeyArr[1],
           $thresholdKeyArr[2],
         ])],
-        Evaluation::APPROVED->getAsLowerCase() => $userInput[implode('-', [
-          Evaluation::APPROVED->getAsLowerCase(),
+        Evaluation::APPROVED->value => $userInput[implode('-', [
+          Evaluation::APPROVED->value,
           $thresholdKeyArr[1],
           $thresholdKeyArr[2],
         ])],
       ];
-      if ($thresholds[Evaluation::UNDECIDED->getAsLowerCase()] > $thresholds[Evaluation::APPROVED->getAsLowerCase()]) {
+      if ($thresholds[Evaluation::UNDECIDED->value] > $thresholds[Evaluation::APPROVED->value]) {
         $form_state->setErrorByName($key, $this->t('"Undecided" threshold can not be greater than "Approved" threshold.'));
       }
     }
@@ -129,8 +129,8 @@ final class ThresholdsForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $thresholds = [];
     foreach ($this->getSubmitted($form_state) as $key => $threshold) {
-      $thresholdKeyArr = explode('-', $key);
-      $thresholds[$thresholdKeyArr[1]][$thresholdKeyArr[2]][$thresholdKeyArr[0]] = $threshold;
+      $thresholdKeys = ProjectTrackTypeHelper::getThresholdKeys($key);
+      $thresholds[$thresholdKeys[1]][$thresholdKeys[2]][$thresholdKeys[0]->value] = $threshold;
     }
 
     $this->state->set('ai_screening_project_track_thresholds', $thresholds);
