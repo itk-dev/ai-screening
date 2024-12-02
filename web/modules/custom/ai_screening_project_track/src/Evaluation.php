@@ -7,11 +7,11 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 /**
  * Project track evaluation.
  */
-enum Evaluation: int {
-  case NONE = 0;
-  case APPROVED = 1;
-  case UNDECIDED = 2;
-  case REFUSED = 3;
+enum Evaluation: string {
+  case NONE = 'none';
+  case APPROVED = 'approved';
+  case UNDECIDED = 'undecided';
+  case REFUSED = 'refused';
 
   /**
    * Get evaluation options as key/value pair.

@@ -1,0 +1,3 @@
+access site setup:
+  title: Access site setup pages.
+  restrict access: true

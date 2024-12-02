@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-66](https://github.com/itk-dev/ai-screening/pull/66)
+  Add threshold configuration page and apply it to graphs.
 - [PR-65](https://github.com/itk-dev/ai-screening/pull/65)
   Add reporting module with graph.js
 - [PR-62](https://github.com/itk-dev/ai-screening/pull/62)

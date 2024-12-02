@@ -7,7 +7,9 @@ namespace Drupal\ai_screening_reports\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
+use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,6 +44,7 @@ final class AiScreeningReportsController extends ControllerBase {
   public function __construct(
     private readonly ProjectTrackHelper $projectTrackHelper,
     private readonly ProjectHelper $projectHelper,
+    private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
   ) {
   }
 
@@ -66,26 +69,31 @@ final class AiScreeningReportsController extends ControllerBase {
   public function projectTrack(Request $request): array|RedirectResponse {
     $loopCounter = 0;
     $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get('project_track_id'));
+
     // Ensure proper url parameters: ?project_track_id[]=1&project_track_id[]=3.
     if (!empty($projectTracks)) {
+      // Allow the first term to define the dimensions and the thresholds.
+      $term = reset($projectTracks)->getType();
+
+      /** @var \Drupal\taxonomy\TermInterface $term */
+      $dimensions = $this->projectTrackTypeHelper->getDimensions($term);
+
       $projectData = [
-        // @todo get thresholds.
         'thresholds' => [
-          'x' => 25,
-          'y' => 25,
-          'z' => 25,
+          'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED) ?? '',
+          'y' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 1, Evaluation::APPROVED) ?? '',
+          'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED) ?? '',
         ],
-        // @todo get possible max the track.
         'axisMax' => [
-          'x' => 40,
-          'y' => 40,
-          'z' => 40,
+          'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED) * 2 ?? '',
+          'y' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 1, Evaluation::APPROVED) * 2 ?? '',
+          'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED) * 2 ?? '',
         ],
-        // @todo get labels for axis.
+        // Use the first three identified dimensions as axis.
         'labels' => [
-          'x' => 'XLabel approved threshold',
-          'y' => 'YLabel approved threshold',
-          'z' => 'ZLabel approved threshold',
+          'x' => isset($dimensions[0]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[0]]) : '',
+          'y' => isset($dimensions[1]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[1]]) : '',
+          'z' => isset($dimensions[2]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[2]]) : '',
         ],
       ];
 
@@ -97,7 +105,7 @@ final class AiScreeningReportsController extends ControllerBase {
         ];
         $projectData['dataset'][$loopCounter]['plots'] = [
           // @todo get plots from the track.
-          ['x' => 17, 'y' => 15, 'r' => 3],
+          ['x' => 30, 'y' => 15, 'r' => 3],
         ];
         // Set a limit for the number of tracks to display.
         $loopCounter++;

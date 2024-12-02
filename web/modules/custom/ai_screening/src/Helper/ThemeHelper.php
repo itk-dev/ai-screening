@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\ai_screening\Helper;
 
 use Drupal\core_event_dispatcher\Event\Form\FormAlterEvent;
+use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeSuggestionsAlterEvent;
 use Drupal\core_event_dispatcher\FormHookEvents;
 use Drupal\core_event_dispatcher\ThemeHookEvents;
@@ -22,6 +23,7 @@ final class ThemeHelper extends AbstractHelper implements EventSubscriberInterfa
     return [
       ThemeHookEvents::THEME_SUGGESTIONS_ALTER => 'themeSuggestionsAlter',
       FormHookEvents::FORM_ALTER => 'formAlter',
+      ThemeHookEvents::THEME => 'theme',
     ];
   }
 
@@ -52,6 +54,20 @@ final class ThemeHelper extends AbstractHelper implements EventSubscriberInterfa
     if ($hook === 'select' & !empty($variables['element']['#id'])) {
       $suggestions[] = 'select__' . str_replace('-', '_', $variables['element']['#id']);
     }
+  }
+
+  /**
+   * Event handler for hook_theme().
+   */
+  public function theme(ThemeEvent $event): void {
+    $event->addNewTheme(
+      'site_setup',
+      [
+        'path' => 'modules/custom/ai_screening/templates',
+        'variables' => [
+          'data' => [],
+        ],
+      ]);
   }
 
 }

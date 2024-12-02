@@ -200,6 +200,6 @@ details[open] {
   margin-left: 0;
 }
 
-.custom-choices-css {
-
+input.error {
+  border-color: var(--theme-error-border);
 }
