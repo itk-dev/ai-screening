@@ -5,6 +5,7 @@ namespace Drupal\ai_screening_project_track\Helper;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Entity\EntityAccessControlHandlerInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\ai_screening\Helper\AbstractHelper;
@@ -33,16 +34,16 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   /**
    * The project track tool storage.
    *
-   * @var \Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface
+   * @var \Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
    */
-  private readonly ProjectTrackToolStorageInterface $projectTrackToolStorage;
+  private readonly ProjectTrackToolStorageInterface|EntityStorageInterface $projectTrackToolStorage;
 
   /**
    * The webform submission storage.
    *
    * @var \Drupal\webform\WebformSubmissionStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
    */
-  private WebformSubmissionStorageInterface $webformSubmissionStorage;
+  private WebformSubmissionStorageInterface|EntityStorageInterface $webformSubmissionStorage;
 
   /**
    * The project track tool access control handler.
@@ -83,9 +84,9 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   /**
    * Get data from track.
    *
-   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $tool
+   * @param \Drupal\ai_screening_project_track\ProjectTrackToolInterface $tool
    *   *   The track.
-   * @param string $key
+   * @param string|null $key
    *   The key.
    *
    * @return mixed
@@ -115,7 +116,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   /**
    * Check if track has data.
    *
-   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $tool
+   * @param \Drupal\ai_screening_project_track\ProjectTrackToolInterface $tool
    *   The track.
    * @param string $key
    *   The key.
@@ -142,7 +143,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   /**
    * Add data to track.
    *
-   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $tool
+   * @param \Drupal\ai_screening_project_track\ProjectTrackToolInterface $tool
    *   The track.
    * @param string $key
    *   The key.

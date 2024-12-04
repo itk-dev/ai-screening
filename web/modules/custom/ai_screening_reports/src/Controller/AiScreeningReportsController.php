@@ -65,6 +65,8 @@ final class AiScreeningReportsController extends ControllerBase {
 
   /**
    * Builds the response for displaying project track chart.
+   *
+   * @throws \Drupal\ai_screening_project_track\Exception\InvalidValueException
    */
   public function projectTrack(Request $request): array|RedirectResponse {
     $loopCounter = 0;
@@ -74,7 +76,7 @@ final class AiScreeningReportsController extends ControllerBase {
     if (!empty($projectTracks)) {
       // Allow the first term to define the dimensions and the thresholds.
       $term = reset($projectTracks)->getType();
-
+      $max = $this->projectTrackTypeHelper->getProjectTrackTypeMaxPossible($term);
       /** @var \Drupal\taxonomy\TermInterface $term */
       $dimensions = $this->projectTrackTypeHelper->getDimensions($term);
 
@@ -85,9 +87,9 @@ final class AiScreeningReportsController extends ControllerBase {
           'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED) ?? '',
         ],
         'axisMax' => [
-          'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED) * 2 ?? '',
-          'y' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 1, Evaluation::APPROVED) * 2 ?? '',
-          'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED) * 2 ?? '',
+          'x' => $max[0] ?? '',
+          'y' => $max[1] ?? '',
+          'z' => $max[2] ?? '',
         ],
         // Use the first three identified dimensions as axis.
         'labels' => [
@@ -99,7 +101,7 @@ final class AiScreeningReportsController extends ControllerBase {
 
       // Create a dataset for each project track.
       foreach ($projectTracks as $projectTrack) {
-        $a = $this->projectTrackHelper->getProjectTrackMaxPossible($projectTrack);
+        $a = $this->projectTrackHelper->getToolData($projectTrack);
         $projectData['dataset'][$loopCounter]['chart'] = [
           'label' => $projectTrack->getProject()->label(),
           'color' => self::COLOR_CODES[$loopCounter % count(self::COLOR_CODES)],

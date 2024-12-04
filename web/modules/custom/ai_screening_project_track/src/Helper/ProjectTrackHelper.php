@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_screening_project_track\Helper;
 
+use Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
@@ -33,6 +34,14 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   private readonly ProjectTrackStorageInterface|EntityStorageInterface $projectTrackStorage;
 
   /**
+   * The project track storage.
+   *
+   * @var \Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
+   */
+  private readonly ProjectTrackToolStorageInterface|EntityStorageInterface $projectTrackToolStorage;
+
+
+  /**
    * The term storage.
    *
    * @var \Drupal\taxonomy\TermStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
@@ -49,12 +58,12 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   public function __construct(
     private readonly ProjectTrackToolHelper $projectTrackToolHelper,
     private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
-    private readonly FormHelper $formHelper,
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
     parent::__construct($logger);
     $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
+    $this->projectTrackToolStorage = $entityTypeManager->getStorage('project_track_tool');
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
     $this->submissionStorage = $entityTypeManager->getStorage('webform_submission');
   }
@@ -76,19 +85,21 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    * @see self::hasTrackData()
    */
   public function getToolData(ProjectTrackInterface $track, ?string $key = NULL): mixed {
-    try {
-      $data = $track->getToolData();
+    $data = [];
+    $projectTrackToolIds = $this->projectTrackToolStorage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('project_track_id', $track->id())
+      ->sort('delta')
+      ->execute();
 
-      return NULL === $key ? $data : ($data[$key] ?? NULL);
-    }
-    catch (\Exception $exception) {
-      $this->logException($exception, __METHOD__, [
-        'track' => $track,
-        'key' => $key,
-      ]);
+    $projectTrackTools = $this->projectTrackToolStorage->loadMultiple($projectTrackToolIds);
+
+    /** @var \Drupal\ai_screening_project_track\Entity\ProjectTrackTool $projectTrackTool */
+    foreach ($projectTrackTools as $projectTrackTool) {
+      $data[$projectTrackTool->id()] = $projectTrackTool->getToolData();
     }
 
-    return NULL;
+    return $data;
   }
 
   /**
@@ -103,55 +114,6 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    */
   public function getEvaluationOptions(): array {
     return Evaluation::asOptions();
-  }
-
-  /**
-   * Check if track has data.
-   *
-   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $track
-   *   The track.
-   * @param string $key
-   *   The key.
-   *
-   * @return bool
-   *   True if data for key exists.
-   */
-  public function hasTrackData(ProjectTrackInterface $track, string $key): bool {
-    try {
-      $data = $track->getToolData();
-
-      return array_key_exists($key, $data);
-    }
-    catch (\Exception $exception) {
-      $this->logException($exception, __METHOD__, [
-        'track' => $track,
-        'key' => $key,
-      ]);
-    }
-
-    return FALSE;
-  }
-
-  /**
-   * Add data to track.
-   *
-   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $track
-   *   The track.
-   * @param string $key
-   *   The key.
-   * @param mixed $value
-   *   The value.
-   */
-  public function setTrackData(ProjectTrackInterface $track, string $key, mixed $value): void {
-    try {
-      $track->setToolData([$key => $value] + $track->getToolData());
-    }
-    catch (\Exception $exception) {
-      $this->logException($exception, __METHOD__, [
-        'track' => $track,
-        'key' => $key,
-      ]);
-    }
   }
 
   /**
@@ -176,7 +138,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function deleteProjectTracks(array $projectTracks) {
+  public function deleteProjectTracks(array $projectTracks): void {
     foreach ($projectTracks as $projectTrack) {
       $this->projectTrackToolHelper->deleteTools($projectTrack);
 
@@ -185,47 +147,23 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   }
 
   /**
-   * Determine the max possible values that a project track can achieve.
-   *
-   * @throws \Drupal\ai_screening_project_track\Exception\InvalidValueException
-   */
-  public function getProjectTrackMaxPossible(ProjectTrackInterface $projectTrack): array {
-    $max = [];
-    $tools = $this->projectTrackToolHelper->loadTools($projectTrack);
-    // Loop over each tool in the projecttrack.
-    foreach ($tools as $tool) {
-      if ('webform_submission' === $tool->getToolEntityType()) {
-        /** @var \Drupal\webform\WebformSubmissionInterface $submission */
-        $submission = $this->submissionStorage->load($tool->getToolId());
-        $webform = $submission->getWebform();
-        $elements = $webform->getElementsDecodedAndFlattened();
-        // Look at each field in the webform.
-        foreach ($elements as $element) {
-          // Currently we only look at weighted radios.
-          if ('ai_screening_weighted_radios' === $element['#type'] && array_key_exists('#options', $element)) {
-            // Get all options for the field.
-            foreach ($element['#options'] as $optionValues => $option) {
-              $values = $this->formHelper->getIntegers($optionValues);
-              foreach ($values as $key => $value) {
-                $max[$key] += $value;
-              }
-            }
-          }
-        }
-      }
-    }
-    return $max;
-  }
-
-  /**
    * Event handler.
    */
   public function projectTrackToolComputed(ProjectTrackToolComputedEvent $event): void {
-    // @todo Do something with the tool's track?
-    /*
     $tool = $event->getTool();
     $track = $tool->getProjectTrack();
-     */
+    $tools = $this->getToolData($track);
+    $thresholds = \Drupal::state()->get('ai_screening_project_track_thresholds', []);
+    $summedDimensions = [];
+    /** @var \Drupal\ai_screening_project_track\Entity\ProjectTrackTool $tool */
+    foreach ($tools as $tool) {
+      $toolSummedDimensions = $tool['summed_dimensions'];
+      foreach (array_keys($calculated + $fieldValues) as $key) {
+        $calculated[$key] = ($calculated[$key] ?? 0) + ($fieldValues[$key] ?? 0);
+      }
+    }
+
+    $c = 1;
   }
 
   /**

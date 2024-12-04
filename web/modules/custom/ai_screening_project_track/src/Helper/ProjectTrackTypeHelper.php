@@ -13,9 +13,11 @@ use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Exception\InvalidConfigurationException;
 use Drupal\core_event_dispatcher\Event\Form\FormAlterEvent;
 use Drupal\core_event_dispatcher\FormHookEvents;
+use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermForm;
 use Drupal\taxonomy\TermInterface;
 use Drupal\taxonomy\TermStorageInterface;
+use Drupal\webform\WebformEntityStorageInterface;
 use Drupal\webform\WebformInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -29,6 +31,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
   const string CONFIGURATION_KEY_DIMENSIONS = 'dimensions';
   public const string BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
   private const string THRESHOLD_KEY_SEPARATOR = '-';
+
   /**
    * The term storage.
    *
@@ -36,11 +39,19 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
    */
   private TermStorageInterface|EntityStorageInterface $termStorage;
 
+  /**
+   * The term storage.
+   *
+   * @var \Drupal\webform\WebformEntityStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
+   */
+  private WebformEntityStorageInterface|EntityStorageInterface $webformStorage;
+
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    private readonly StateInterface $state,
+    private readonly StateInterface $state
   ) {
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
+    $this->webformStorage = $entityTypeManager->getStorage('webform');
   }
 
   /**
@@ -169,6 +180,36 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
         sprintf('Configuration value "%s" must be a list', self::CONFIGURATION_KEY_DIMENSIONS)
       );
     }
+  }
+
+  /**
+   * Determine the max possible values that a project track can achieve.
+   *
+   * @throws \Drupal\ai_screening_project_track\Exception\InvalidValueException
+   */
+  public function getProjectTrackTypeMaxPossible(Term $projectTrackType): array {
+    $currentMax = [];
+    $webforms = $projectTrackType->get('field_webform')->referencedEntities();
+    // Loop over each tool in the project track.
+    foreach ($webforms as $webform) {
+      $elements = $webform->getElementsDecodedAndFlattened();
+      // Look at each field in the webform.
+      foreach ($elements as $element) {
+        // Currently we only look at weighted radios.
+        if ('ai_screening_weighted_radios' === $element['#type'] && array_key_exists('#options', $element)) {
+          // Get all options for the field.
+          foreach ($element['#options'] as $optionValues => $option) {
+            $values = FormHelper::getIntegers($optionValues);
+            // Get possible max for each element.
+            foreach ($values as $key => $value) {
+              $currentMax[$key] = max($currentMax[$key] ?? 0, $value);
+            }
+          }
+        }
+      }
+    }
+
+    return $currentMax;
   }
 
   /**

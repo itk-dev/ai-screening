@@ -32,10 +32,13 @@ final class ThresholdsForm extends FormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @throws \Drupal\ai_screening_project_track\Exception\InvalidValueException
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
     $projectTrackTypes = $this->projectTrackTypeHelper->loadTerms();
     foreach ($projectTrackTypes as $termId => $projectTrackType) {
+      $max = $this->projectTrackTypeHelper->getProjectTrackTypeMaxPossible($projectTrackType);
       $projectTrackConfiguration = $this->projectTrackTypeHelper->getConfiguration($projectTrackType);
 
       $form['project_track'][$termId] = [
@@ -57,10 +60,20 @@ final class ThresholdsForm extends FormBase {
           '#attributes' => ['class' => ['grid', 'gap-4', 'grid-cols-2']],
         ];
 
-        $form['project_track'][$termId]['term_wrapper'][$key]['text'] = [
+        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_text_wrapper'] = [
+          '#type' => 'container',
+        ];
+
+        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_text_wrapper']['text_1'] = [
           '#prefix' => '<div>',
           '#suffix' => '</div>',
           '#markup' => $dimension,
+        ];
+
+        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_text_wrapper']['text_2'] = [
+          '#prefix' => '<div class="description">',
+          '#suffix' => '</div>',
+          '#markup' => isset($max[$key]) ? $this->t('Max possible value obtainable: @max', ['@max' => $max[$key]]) : '',
         ];
 
         $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'] = [
