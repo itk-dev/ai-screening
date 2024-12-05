@@ -48,7 +48,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
 
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    private readonly StateInterface $state
+    private readonly StateInterface $state,
   ) {
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
     $this->webformStorage = $entityTypeManager->getStorage('webform');

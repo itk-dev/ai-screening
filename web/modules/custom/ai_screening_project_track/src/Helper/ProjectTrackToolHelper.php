@@ -67,9 +67,6 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
 
   /**
    * Load tools for a track.
-   *
-   * @return \Drupal\ai_screening_project_track\ProjectTrackToolInterface[]
-   *   The tools.
    */
   public function loadTools(ProjectTrackInterface $track): array {
     $ids = $this->projectTrackToolStorage->getQuery()
