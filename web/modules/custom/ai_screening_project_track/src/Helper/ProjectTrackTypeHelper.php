@@ -17,7 +17,6 @@ use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermForm;
 use Drupal\taxonomy\TermInterface;
 use Drupal\taxonomy\TermStorageInterface;
-use Drupal\webform\WebformEntityStorageInterface;
 use Drupal\webform\WebformInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
