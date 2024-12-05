@@ -2,7 +2,6 @@
 
 namespace Drupal\ai_screening_project_track\Helper;
 
-use Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
@@ -12,6 +11,7 @@ use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Event\ProjectTrackToolComputedEvent;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
+use Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface;
 use Drupal\ai_screening_project_track\Status;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
 use Drupal\core_event_dispatcher\ThemeHookEvents;
@@ -148,22 +148,63 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
 
   /**
    * Event handler.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function projectTrackToolComputed(ProjectTrackToolComputedEvent $event): void {
     $tool = $event->getTool();
     $track = $tool->getProjectTrack();
     $tools = $this->getToolData($track);
-    $thresholds = \Drupal::state()->get('ai_screening_project_track_thresholds', []);
     $summedDimensions = [];
+
+    // Sum up all project track tools.
     /** @var \Drupal\ai_screening_project_track\Entity\ProjectTrackTool $tool */
     foreach ($tools as $tool) {
-      $toolSummedDimensions = $tool['summed_dimensions'];
-      foreach (array_keys($calculated + $fieldValues) as $key) {
-        $calculated[$key] = ($calculated[$key] ?? 0) + ($fieldValues[$key] ?? 0);
+      // Sum up each dimension.
+      foreach (array_keys($summedDimensions + $tool['summed_dimensions']) as $key) {
+        $summedDimensions[$key]['sum'] = ($summedDimensions[$key] ?? 0) + ($tool['summed_dimensions'][$key][1] ?? 0);
+        $summedDimensions[$key]['undecidedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::UNDECIDED);
+        $summedDimensions[$key]['approvedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::APPROVED);
       }
     }
 
-    $c = 1;
+    // Determine the Evaluation as a sum of all dimensions and track thresholds.
+    // There is probably some smarter way I just couldn't find one.
+    $result = [];
+
+    // Loop over all dimensions and determine which threshold the sum value
+    // matches.
+    foreach ($summedDimensions as $summedDimension) {
+      if ($summedDimension['sum'] < $summedDimension['undecidedThreshold']) {
+        $result['refuse'] = TRUE;
+      }
+      if (($summedDimension['undecidedThreshold'] > $summedDimension['sum']) &&
+          ($summedDimension['sum'] < $summedDimension['approvedThreshold'])) {
+        $result['undecided'] = TRUE;
+      }
+      if ($summedDimension['sum'] > $summedDimension['approvedThreshold']) {
+        $result['approved'] = TRUE;
+      }
+    }
+
+    // After loop we set the evaluation only ending on approved if other keys
+    // were not found.
+    if (array_key_exists('refuse', $result)) {
+      $evaluation = Evaluation::REFUSED;
+    }
+    elseif (array_key_exists('undecided', $result)) {
+      $evaluation = Evaluation::UNDECIDED;
+    }
+    elseif (array_key_exists('approved', $result)) {
+      $evaluation = Evaluation::APPROVED;
+    }
+
+    $trackConfig = $track->getConfiguration();
+    $trackConfig['sums'] = $summedDimensions;
+    $trackConfig['evaluation'] = $evaluation ?? [];
+
+    $track->setConfiguration($trackConfig);
+    $track->save();
   }
 
   /**
