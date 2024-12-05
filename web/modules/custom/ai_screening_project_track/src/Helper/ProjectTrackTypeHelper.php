@@ -39,19 +39,11 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
    */
   private TermStorageInterface|EntityStorageInterface $termStorage;
 
-  /**
-   * The term storage.
-   *
-   * @var \Drupal\webform\WebformEntityStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private WebformEntityStorageInterface|EntityStorageInterface $webformStorage;
-
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
     private readonly StateInterface $state,
   ) {
     $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
-    $this->webformStorage = $entityTypeManager->getStorage('webform');
   }
 
   /**
