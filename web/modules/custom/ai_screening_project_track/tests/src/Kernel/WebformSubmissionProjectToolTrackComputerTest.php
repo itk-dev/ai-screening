@@ -63,7 +63,7 @@ final class WebformSubmissionProjectToolTrackComputerTest extends KernelTestBase
     ]);
 
     return ProjectTrackTool::create([
-      'project_id' => $track,
+      'project_track_id' => $track,
     ] + $values);
   }
 
