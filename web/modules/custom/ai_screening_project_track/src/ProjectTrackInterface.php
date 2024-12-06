@@ -69,4 +69,9 @@ interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInt
    */
   public function getDimensions(): array;
 
+  /**
+   * Get summed values.
+   */
+  public function getSummedValues(): ?array;
+
 }

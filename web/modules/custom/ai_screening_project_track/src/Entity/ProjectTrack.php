@@ -248,4 +248,17 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
     return $this->getConfiguration()[ProjectTrackTypeHelper::CONFIGURATION_KEY_DIMENSIONS] ?? [];
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getSummedValues(): ?array {
+    $values = [];
+    $config = $this->getConfiguration();
+    foreach ($config['sums'] as $key => $sum) {
+      $values[$key] = $sum['sum'];
+    }
+
+    return $values;
+  }
+
 }
