@@ -105,16 +105,20 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setSetting('handler_settings', ['target_bundles' => ['project_track_type' => 'project_track_type']]);
 
     $fields['title'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Project track evaluation'))
-      ->setDescription(t('The type of the project track.'));
+      ->setLabel(t('Project track title'))
+      ->setDescription(t('The title of the project track.'));
 
     $fields['description'] = BaseFieldDefinition::create('string_long')
-      ->setLabel(t('Project track note'))
-      ->setDescription(t('A note related to project track evaluation.'));
+      ->setLabel(t('Project track description'))
+      ->setDescription(t('A description of the project track.'));
 
     $fields['project_track_evaluation'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Project track evaluation'))
-      ->setDescription(t('The type of the project track.'));
+      ->setDescription(t('The evaluation of the project track.'));
+
+    $fields['project_track_evaluation_overridden'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Project track evaluation overridden'))
+      ->setDescription(t('The overridden evaluation of the project track.'));
 
     $fields['project_track_note'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Project track note'))
