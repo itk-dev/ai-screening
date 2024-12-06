@@ -7,6 +7,7 @@ use Drupal\ai_screening_project\Helper\ProjectHelper;
 use Drupal\ai_screening_project_track\Computer\WebformSubmissionProjectTrackToolComputer;
 use Drupal\ai_screening_project_track\Entity\ProjectTrack;
 use Drupal\ai_screening_project_track\Entity\ProjectTrackTool;
+use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
 use Drupal\ai_screening_project_track\Status;
 use Drupal\node\Entity\Node;
@@ -61,9 +62,14 @@ final class WebformSubmissionProjectToolTrackComputerTest extends KernelTestBase
     $track = ProjectTrack::create([
       'project_id' => $project,
     ]);
+    $track->setConfiguration([
+      ProjectTrackTypeHelper::CONFIGURATION_KEY_DIMENSIONS => [
+        'x', 'y',
+      ],
+    ]);
 
     return ProjectTrackTool::create([
-      'project_id' => $track,
+      'project_track_id' => $track,
     ] + $values);
   }
 

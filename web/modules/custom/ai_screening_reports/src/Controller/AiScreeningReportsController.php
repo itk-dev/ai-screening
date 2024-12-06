@@ -65,6 +65,8 @@ final class AiScreeningReportsController extends ControllerBase {
 
   /**
    * Builds the response for displaying project track chart.
+   *
+   * @throws \Drupal\ai_screening_project_track\Exception\InvalidValueException
    */
   public function projectTrack(Request $request): array|RedirectResponse {
     $loopCounter = 0;
@@ -74,7 +76,7 @@ final class AiScreeningReportsController extends ControllerBase {
     if (!empty($projectTracks)) {
       // Allow the first term to define the dimensions and the thresholds.
       $term = reset($projectTracks)->getType();
-
+      $max = $this->projectTrackTypeHelper->getProjectTrackTypeMaxPossible($term);
       /** @var \Drupal\taxonomy\TermInterface $term */
       $dimensions = $this->projectTrackTypeHelper->getDimensions($term);
 
@@ -85,9 +87,9 @@ final class AiScreeningReportsController extends ControllerBase {
           'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED) ?? '',
         ],
         'axisMax' => [
-          'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED) * 2 ?? '',
-          'y' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 1, Evaluation::APPROVED) * 2 ?? '',
-          'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED) * 2 ?? '',
+          'x' => $max[0] ?? '',
+          'y' => $max[1] ?? '',
+          'z' => $max[2] ?? '',
         ],
         // Use the first three identified dimensions as axis.
         'labels' => [
@@ -103,9 +105,9 @@ final class AiScreeningReportsController extends ControllerBase {
           'label' => $projectTrack->getProject()->label(),
           'color' => self::COLOR_CODES[$loopCounter % count(self::COLOR_CODES)],
         ];
+        $sums = $projectTrack->getSummedValues();
         $projectData['dataset'][$loopCounter]['plots'] = [
-          // @todo get plots from the track.
-          ['x' => 30, 'y' => 15, 'r' => 3],
+          ['x' => $sums[0], 'y' => $sums[1] ?? 0, 'r' => $sums[2] ?? '3'],
         ];
         // Set a limit for the number of tracks to display.
         $loopCounter++;
