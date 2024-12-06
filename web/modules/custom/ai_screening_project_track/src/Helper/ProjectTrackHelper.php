@@ -84,7 +84,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    *
    * @see self::hasTrackData()
    */
-  public function getToolData(ProjectTrackInterface $track, ?string $key = NULL): mixed {
+  public function getToolsData(ProjectTrackInterface $track, ?string $key = NULL): mixed {
     $data = [];
     $projectTrackToolIds = $this->projectTrackToolStorage->getQuery()
       ->accessCheck(FALSE)
@@ -154,7 +154,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   public function projectTrackToolComputed(ProjectTrackToolComputedEvent $event): void {
     $tool = $event->getTool();
     $track = $tool->getProjectTrack();
-    $tools = $this->getToolData($track);
+    $tools = $this->getToolsData($track);
     $summedDimensions = [];
 
     // Sum up all project track tools.
@@ -162,7 +162,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     foreach ($tools as $tool) {
       // Sum up each dimension.
       foreach (array_keys($summedDimensions + $tool['summed_dimensions']) as $key) {
-        $summedDimensions[$key]['sum'] = ($summedDimensions[$key] ?? 0) + ($tool['summed_dimensions'][$key][1] ?? 0);
+        $summedDimensions[$key]['sum'] = ($summedDimensions[$key] ?? 0) + ($tool['summed_dimensions'][$key] ?? 0);
         $summedDimensions[$key]['undecidedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::UNDECIDED);
         $summedDimensions[$key]['approvedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::APPROVED);
       }

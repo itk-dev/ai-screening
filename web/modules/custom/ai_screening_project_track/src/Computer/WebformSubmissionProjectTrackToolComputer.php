@@ -28,33 +28,26 @@ final class WebformSubmissionProjectTrackToolComputer implements ProjectTrackToo
   public function compute(ProjectTrackToolInterface $tool, EntityInterface $entity): void {
     assert($entity instanceof WebformSubmissionInterface);
 
-    $dimensions = $tool->getProjectTrack()->getDimensions();
     $calculated = [];
 
     // Loop over form fields values and calculate sums.
     foreach ($entity->getData() as $value) {
       try {
-        $fieldValues = FormHelper::getIntegers($value);
-        foreach (array_keys($calculated + $fieldValues) as $key) {
-          $calculated[$key] = ($calculated[$key] ?? 0) + ($fieldValues[$key] ?? 0);
+        if (!empty($value)) {
+          $fieldValues = FormHelper::getIntegers($value);
+          foreach (array_keys($calculated + $fieldValues) as $key) {
+            $calculated[$key] = ($calculated[$key] ?? 0) + ($fieldValues[$key] ?? 0);
+          }
         }
+
       }
       catch (InvalidValueException $e) {
-        // Form fields without numeric values would end here, but since we
-        // expect this to happen on all non-radio fields we don't take further
-        // actions.
       }
     }
 
-    $mappedValues = array_map(function ($key, $value) {
-      return [$key, $value];
-    },
-      $dimensions, $calculated
-    );
-
     // Add the sums to track data.
     $toolData = $tool->getToolData();
-    $toolData['summed_dimensions'] = $mappedValues;
+    $toolData['summed_dimensions'] = $calculated;
     $tool->setToolData($toolData);
 
     $tool->setProjectTrackToolStatus(Status::IN_PROGRESS);
