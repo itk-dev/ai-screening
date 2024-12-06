@@ -105,9 +105,9 @@ final class AiScreeningReportsController extends ControllerBase {
           'label' => $projectTrack->getProject()->label(),
           'color' => self::COLOR_CODES[$loopCounter % count(self::COLOR_CODES)],
         ];
+        $sums = $projectTrack->getSummedValues();
         $projectData['dataset'][$loopCounter]['plots'] = [
-          // @todo get plots from the track.
-          ['x' => 30, 'y' => 15, 'r' => 3],
+          ['x' => $sums[0], 'y' => $sums[1] ?? 0, 'r' => $sums[2] ?? '3'],
         ];
         // Set a limit for the number of tracks to display.
         $loopCounter++;

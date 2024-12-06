@@ -180,6 +180,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
    */
   public function getProjectTrackTypeMaxPossible(Term $projectTrackType): array {
     $currentMax = [];
+    $currentMaxTrack = [];
     $webforms = $projectTrackType->get('field_webform')->referencedEntities();
     // Loop over each tool in the project track.
     foreach ($webforms as $webform) {
@@ -195,8 +196,12 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
             foreach ($values as $key => $value) {
               $currentMax[$key] = max($currentMax[$key] ?? 0, $value);
             }
+
           }
         }
+        $currentMaxTrack = array_map(function () {
+          return array_sum(func_get_args());
+        }, $currentMaxTrack, $currentMax);
       }
     }
 
