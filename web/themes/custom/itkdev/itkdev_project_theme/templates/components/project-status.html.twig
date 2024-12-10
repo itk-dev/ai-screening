@@ -12,23 +12,17 @@
 #}
 
 {% set evaluation = project_status.track_evaluation|default([0]) %}
-{% set project_status_max = max(evaluation) %}
-{% set project_status_min = min(evaluation) %}
 
 <div class="flex flex-col gap-1 w-20">
     <div class="w-full h-2
-        {% if project_status_min == 0 %}
-            bg-zinc-400
-        {% elseif project_status_max >= 1 %}
-            {% if project_status_max == 1 %}
-                bg-green-600
-            {% endif %}
-            {% if project_status_max == 2 %}
-                bg-yellow-600
-            {% endif %}
-            {% if project_status_max == 3 %}
-                bg-red-600
-            {% endif %}
+        {% if evaluation[1] is same as('none') %}
+          bg-zinc-400
+        {% elseif evaluation[1] is same as('approved') %}
+          bg-green-600
+        {% elseif evaluation[1] is same as('undecided')%}
+          bg-yellow-600
+        {% elseif evaluation[1] is same as('refused') %}
+          bg-red-600
         {% endif %}
     ">
     </div>
@@ -36,16 +30,16 @@
     <div class="flex flex-row items-center gap-1 text-sm">
         {% for status in project_status.track_evaluation %}
             <div class="min-w-1 grow h-2
-                {% if status == 0 %}
+                {% if status == 'none' %}
                     bg-zinc-400
                 {% endif %}
-                {% if status == 1 %}
+                {% if status == 'approved' %}
                     bg-green-600
                 {% endif %}
-                {% if status == 2 %}
+                {% if status == 'undecided' %}
                     bg-yellow-600
                 {% endif %}
-                {% if status == 3 %}
+                {% if status == 'refused' %}
                     bg-red-600
                 {% endif %}
             "></div>

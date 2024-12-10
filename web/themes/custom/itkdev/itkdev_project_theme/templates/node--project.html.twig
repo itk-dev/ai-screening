@@ -71,11 +71,11 @@
   <div class="grid grid-cols-2 gap-4">
     {% for key, projectTrack in projectTracks %}
       {% set projectTrackEvaluation = projectTrack.getProjectTrackEvaluation() %}
-      {% if projectTrackEvaluation is same as '0' %}
+      {% if projectTrackEvaluation is same as 'none' %}
         {% set borderColorClass = 'border-slate-300' %}
-      {% elseif projectTrackEvaluation is same as '1' %}
+      {% elseif projectTrackEvaluation is same as 'approved' %}
         {% set borderColorClass = 'border-green-700' %}
-      {% elseif projectTrackEvaluation is same as '2' %}
+      {% elseif projectTrackEvaluation is same as 'undecided' %}
         {% set borderColorClass = 'border-yellow-700' %}
       {% else %}
         {% set borderColorClass = 'border-red-700' %}

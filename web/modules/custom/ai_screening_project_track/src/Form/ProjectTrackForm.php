@@ -9,6 +9,7 @@ use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackToolHelper;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
@@ -63,10 +64,27 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
     $form['#tool_helper'] = $this->projectTrackToolHelper;
 
     $form['project_track_evaluation'] = [
+      '#markup' => Evaluation::asOptions(),
+    ];
+
+    $form['project_track_evaluation_set_manual'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Evaluate manually'),
+      '#attributes' => ['class' => ['order-last']],
+      '#default_value' => !empty($this->entity->getProjectTrackEvaluationOverridden()),
+    ];
+
+    $form['project_track_evaluation_overridden'] = [
       '#type' => 'select',
-      '#title' => $this->t('Evaluation: @track_title', ['@track_title' => $this->entity->getTitle()]),
       '#options' => $this->projectTrackHelper->getEvaluationOptions(),
-      '#default_value' => $this->entity->getProjectTrackEvaluation(),
+      '#default_value' => $this->entity->getProjectTrackEvaluationOverridden(),
+      '#states' => [
+        'visible' => [
+          ':input[name="project_track_evaluation_set_manual"]' => [
+            'checked' => TRUE,
+          ],
+        ],
+      ],
     ];
 
     $form['project_track_status'] = [
@@ -107,6 +125,13 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state): int {
+    // Reset overridden field if "set manual" is unchecked.
+    if (!$form_state->getValue('project_track_evaluation_set_manual')) {
+      // Can't seem to make this work by changing form state, so we change the
+      // entity directly.
+      $this->entity->set('project_track_evaluation_overridden', NULL);
+      $this->entity->save();
+    }
     $result = parent::save($form, $form_state);
 
     if (!($this->entity instanceof ProjectTrackInterface)) {

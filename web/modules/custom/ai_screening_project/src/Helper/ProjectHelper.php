@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_screening_project\Helper;
 
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
@@ -494,7 +495,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
             'type' => $projectTrackTerm->id(),
             'title' => $projectTrackTerm->getName(),
             'description' => $projectTrackTerm->getDescription(),
-            'project_track_evaluation' => '0',
+            'project_track_evaluation' => Evaluation::NONE->value,
             'project_id' => $entity,
           ])
           ->setProjectTrackStatus(Status::NEW)

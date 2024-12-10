@@ -1,11 +1,11 @@
 let colorScheme = {
-  0:'bg-slate-300',
-  1:'bg-green-700',
-  2:'bg-yellow-700',
-  3:'bg-red-700'
+  'none':'bg-slate-300',
+  'approved':'bg-green-700',
+  'undecided':'bg-yellow-700',
+  'refused':'bg-red-700'
 }
 
-let select = document.getElementById('edit-project-track-evaluation')
+let select = document.getElementById('edit-project-track-evaluation-overridden')
 let colorBlock = document.getElementById('selectColorBlock');
 
 if (colorBlock) {

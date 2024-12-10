@@ -23,6 +23,14 @@
 {% endblock %}
 
 {% block content %}
+  {%
+    set evaluationColors = {
+    'none':'bg-slate-300',
+    'approved':'bg-green-700',
+    'undecided':'bg-yellow-700',
+    'refused':'bg-red-700'
+  }
+  %}
   <div class="container my-8 px-5">
     {{ form['#project_track'].getDescription|raw }}
   </div>
@@ -32,11 +40,26 @@
     </header>
     <div class="grid grid-cols-2 gap-16 px-4 py-4">
       <div class="full-width">
-        {{ form.project_track_evaluation }}
+        <div class="form-item mb-3 md:mb-5">
+          <label class="font-semibold block">{{ 'Evaluation: @trackName'|t({'@trackName': form['#title']}) }}</label>
+          <div class="description">{{ 'System evaluation'|t }}</div>
+          <div class="flex justify-between gap-16 mt-3">
+            <div id="auto-evaluation" class="relative bg-white flex items-center mb-3 md:mb-5">
+              <div class="h-5 w-5 z-0 mr-3 {{ evaluationColors[form['#project_track'].getProjectTrackEvaluation(TRUE)] ?? 'bg-slate-300' }}"></div>
+              <div>{{ form.project_track_evaluation['#markup'][form['#project_track'].getProjectTrackEvaluation(TRUE)] ?? 'Not started'|t }}</div>
+            </div>
+            <div class="justify-self-end">
+              {{ form.project_track_evaluation_set_manual }}
+            </div>
+          </div>
+        </div>
+        <div>
+          {{ form.project_track_evaluation_overridden }}
+        </div>
         {{ form.project_track_status }}
       </div>
       <div>
-        {{ form|without('advanced', 'project_track_evaluation', 'project_track_status') }}
+        {{ form|without('advanced', 'project_track_evaluation', 'project_track_status', 'project_track_evaluation_overridden', 'project_track_evaluation_set_manual') }}
       </div>
     </div>
   </div>
