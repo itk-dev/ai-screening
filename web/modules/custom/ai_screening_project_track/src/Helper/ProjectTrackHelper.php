@@ -166,7 +166,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
       /** @var \Drupal\ai_screening_project_track\Entity\ProjectTrackTool $tool */
       foreach ($tools as $tool) {
         // Sum up each dimension.
-        foreach (array_keys($summedDimensions + $tool['summed_dimensions']) as $key) {
+        foreach (array_keys($summedDimensions + $tool['summed_dimensions' ?? []]) as $key) {
           $summedDimensions[$key]['sum'] = ($summedDimensions[$key] ?? 0) + ($tool['summed_dimensions'][$key] ?? 0);
           $summedDimensions[$key]['undecidedThreshold'] = $track->getType() ? $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::UNDECIDED) : $track->getThresholds();
           $summedDimensions[$key]['approvedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::APPROVED);

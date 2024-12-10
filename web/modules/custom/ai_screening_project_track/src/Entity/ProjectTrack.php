@@ -252,7 +252,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
    */
   public function getConfiguration(): array {
     try {
-      return json_decode($this->get('configuration')->getString(), TRUE) ?? [];
+      return json_decode($this->get('configuration')->getString(), TRUE);
     }
     catch (\Exception) {
       return [];
@@ -274,7 +274,6 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   public function getDimensions(): array {
     return $this->getConfiguration()[ProjectTrackTypeHelper::CONFIGURATION_KEY_DIMENSIONS] ?? [];
   }
-
 
   /**
    * {@inheritdoc}
