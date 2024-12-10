@@ -17,7 +17,7 @@ interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInt
   /**
    * Get type.
    */
-  public function getType(): TermInterface;
+  public function getType(): ?TermInterface;
 
   /**
    * Get title.
