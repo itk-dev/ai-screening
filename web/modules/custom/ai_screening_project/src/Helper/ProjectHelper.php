@@ -36,7 +36,6 @@ use Drupal\group\Entity\Storage\GroupStorage;
 use Drupal\node\NodeInterface;
 use Drupal\node\NodeStorageInterface;
 use Drupal\preprocess_event_dispatcher\Event\NodePreprocessEvent;
-use Drupal\taxonomy\TermInterface;
 use Drupal\user\UserStorageInterface;
 use Drupal\webform\WebformSubmissionStorageInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -630,9 +629,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     if ($project instanceof NodeInterface) {
       $projectTracks = $this->loadProjectTracks($project);
       foreach ($projectTracks as $projectTrack) {
-        if ($projectTrack->getType() instanceof TermInterface) {
-          $statuses['track_evaluation'][$projectTrack->getType()->id()] = $projectTrack->getProjectTrackEvaluation();
-        }
+        $statuses['track_evaluation'][$projectTrack->id()] = $projectTrack->getProjectTrackEvaluation();
       }
     }
 

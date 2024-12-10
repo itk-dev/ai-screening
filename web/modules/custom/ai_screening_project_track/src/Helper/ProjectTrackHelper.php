@@ -154,17 +154,23 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   public function projectTrackToolComputed(ProjectTrackToolComputedEvent $event): void {
     $tool = $event->getTool();
     $track = $tool->getProjectTrack();
+    $trackConfig = $track->getConfiguration();
     $tools = $this->getToolsData($track);
     $summedDimensions = [];
 
-    // Sum up all project track tools.
-    /** @var \Drupal\ai_screening_project_track\Entity\ProjectTrackTool $tool */
-    foreach ($tools as $tool) {
-      // Sum up each dimension.
-      foreach (array_keys($summedDimensions + $tool['summed_dimensions']) as $key) {
-        $summedDimensions[$key]['sum'] = ($summedDimensions[$key] ?? 0) + ($tool['summed_dimensions'][$key] ?? 0);
-        $summedDimensions[$key]['undecidedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::UNDECIDED);
-        $summedDimensions[$key]['approvedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::APPROVED);
+    if (empty($track->getType())) {
+      $summedDimensions = $trackConfig['sums'] ?? [];
+    }
+    else {
+      // Sum up all project track tools.
+      /** @var \Drupal\ai_screening_project_track\Entity\ProjectTrackTool $tool */
+      foreach ($tools as $tool) {
+        // Sum up each dimension.
+        foreach (array_keys($summedDimensions + $tool['summed_dimensions']) as $key) {
+          $summedDimensions[$key]['sum'] = ($summedDimensions[$key] ?? 0) + ($tool['summed_dimensions'][$key] ?? 0);
+          $summedDimensions[$key]['undecidedThreshold'] = $track->getType() ? $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::UNDECIDED) : $track->getThresholds();
+          $summedDimensions[$key]['approvedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::APPROVED);
+        }
       }
     }
 
@@ -199,7 +205,6 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
       $evaluation = Evaluation::APPROVED;
     }
 
-    $trackConfig = $track->getConfiguration();
     $trackConfig['sums'] = $summedDimensions;
     $trackConfig['evaluation'] = $evaluation ?? Evaluation::NONE;
     $track->setProjectTrackEvaluation($evaluation ?? Evaluation::NONE);
