@@ -13,6 +13,10 @@ module.exports = {
     "bg-red-700",
     "grid-cols-4",
     "order-last",
-    "text-slate-300"
+    "text-slate-300",
+    "border-zinc-400",
+    "border-red-600",
+    "border-yellow-600",
+    "border-green-600",
   ],
 };

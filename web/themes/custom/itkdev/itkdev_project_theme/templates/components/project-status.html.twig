@@ -30,18 +30,12 @@
     <div class="flex flex-row items-center gap-1 text-sm">
         {% for status in project_status.track_evaluation %}
             <div class="min-w-1 grow h-2
-                {% if status == 'none' %}
-                    bg-zinc-400
-                {% endif %}
-                {% if status == 'approved' %}
-                    bg-green-600
-                {% endif %}
-                {% if status == 'undecided' %}
-                    bg-yellow-600
-                {% endif %}
-                {% if status == 'refused' %}
-                    bg-red-600
-                {% endif %}
+              {{ {
+                none: 'bg-zinc-400',
+                refused: 'bg-red-600',
+                undecided: 'bg-yellow-600',
+                approved: 'bg-green-600',
+            }[status] ?? '' }}
             "></div>
         {% endfor %}
     </div>

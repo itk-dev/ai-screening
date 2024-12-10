@@ -193,7 +193,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       return $this->get('project_track_evaluation')->getString();
     }
     else {
-      return !empty($this->getProjectTrackEvaluationOverridden()) ? $this->getProjectTrackEvaluationOverridden() : $this->get('project_track_evaluation')->getString();
+      return $this->getProjectTrackEvaluationOverridden() ?: $this->getProjectTrackEvaluation(TRUE);
     }
 
   }

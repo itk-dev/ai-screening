@@ -24,13 +24,17 @@
 
 {% block content %}
   {%
-    set evaluationColors = {
+    set evaluationClasses = {
     none: 'bg-slate-300',
     approved: 'bg-green-700',
     undecided: 'bg-yellow-700',
     refused: 'bg-red-700',
   }
   %}
+  {% set evaluation = form['#project_track'].getProjectTrackEvaluation(TRUE) %}
+  {% set classNames = evaluationClasses[evaluation] ?? 'bg-slate-300' %}
+  {% set message = form.project_track_evaluation['#markup'][evaluation] ?? 'Not started'|t %}
+
   <div class="container my-8 px-5">
     {{ form['#project_track'].getDescription|raw }}
   </div>
@@ -45,8 +49,8 @@
           <div class="description">{{ 'System evaluation'|t }}</div>
           <div class="flex justify-between gap-16 mt-3">
             <div id="auto-evaluation" class="relative bg-white flex items-center mb-3 md:mb-5">
-              <div class="h-5 w-5 z-0 mr-3 {{ evaluationColors[form['#project_track'].getProjectTrackEvaluation(TRUE)] ?? 'bg-slate-300' }}"></div>
-              <div>{{ form.project_track_evaluation['#markup'][form['#project_track'].getProjectTrackEvaluation(TRUE)] ?? 'Not started'|t }}</div>
+              <div class="h-5 w-5 z-0 mr-3 {{ classNames }}"></div>
+              <div>{{ message }}</div>
             </div>
             <div class="justify-self-end">
               {{ form.project_track_evaluation_set_manual }}
