@@ -159,7 +159,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   public function getType(): ?TermInterface {
     $entities = $this->get('type')->referencedEntities();
 
-    return $entities ? reset($entities): null;
+    return $entities ? reset($entities) : NULL;
   }
 
   /**
