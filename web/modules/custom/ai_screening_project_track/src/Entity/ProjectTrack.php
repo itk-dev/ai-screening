@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening_project_track\Entity;
 
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
@@ -173,6 +174,15 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
    */
   public function getDescription(): string {
     return $this->get('description')->getString();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setProjectTrackEvaluation(Evaluation $evaluation): self {
+    $this->set('project_track_evaluation', $evaluation->value);
+
+    return $this;
   }
 
   /**

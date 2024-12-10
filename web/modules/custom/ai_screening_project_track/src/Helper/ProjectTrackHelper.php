@@ -201,8 +201,8 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
 
     $trackConfig = $track->getConfiguration();
     $trackConfig['sums'] = $summedDimensions;
-    $trackConfig['evaluation'] = $evaluation ?? [];
-
+    $trackConfig['evaluation'] = $evaluation ?? Evaluation::NONE;
+    $track->setProjectTrackEvaluation($evaluation ?? Evaluation::NONE);
     $track->setConfiguration($trackConfig);
     $track->save();
   }

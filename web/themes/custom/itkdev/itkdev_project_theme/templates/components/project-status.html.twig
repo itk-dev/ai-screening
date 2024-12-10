@@ -15,14 +15,14 @@
 
 <div class="flex flex-col gap-1 w-20">
     <div class="w-full h-2
-        {% if evaluation[1] is same as('none') %}
+        {% if 'none' in evaluation %}
           bg-zinc-400
-        {% elseif evaluation[1] is same as('approved') %}
-          bg-green-600
-        {% elseif evaluation[1] is same as('undecided') %}
-          bg-yellow-600
-        {% elseif evaluation[1] is same as('refused') %}
+        {% elseif 'refused' in evaluation %}
           bg-red-600
+        {% elseif 'undecided' in evaluation %}
+          bg-yellow-600
+        {% elseif 'approved' in evaluation %}
+          bg-green-600
         {% endif %}
     ">
     </div>
