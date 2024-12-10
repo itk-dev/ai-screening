@@ -8,7 +8,7 @@ import Chart from '../node_modules/chart.js/auto'
     attach: function (context, settings) {
       const chart = once('itkProjectThemeBehavior', document.getElementById('chart'));
       const chartSettings = drupalSettings['reports_project_track'];
-      if (chart) {
+      if (chart && chartSettings) {
         const datasets = chartSettings['dataset'].map(drupalData => {
           return {
             label: drupalData.chart.label,

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-70](https://github.com/itk-dev/ai-screening/pull/70)
+  - Added manual evaluation to project tracks
 - [PR-67](https://github.com/itk-dev/ai-screening/pull/67)
   - Add max values calculation.
   - Add track tool sum calculation

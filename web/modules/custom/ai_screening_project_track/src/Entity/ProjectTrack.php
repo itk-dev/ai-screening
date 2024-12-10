@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\RevisionableContentEntityBase;
 use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\Status;
@@ -105,16 +106,20 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setSetting('handler_settings', ['target_bundles' => ['project_track_type' => 'project_track_type']]);
 
     $fields['title'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Project track evaluation'))
-      ->setDescription(t('The type of the project track.'));
+      ->setLabel(t('Project track title'))
+      ->setDescription(t('The title of the project track.'));
 
     $fields['description'] = BaseFieldDefinition::create('string_long')
-      ->setLabel(t('Project track note'))
-      ->setDescription(t('A note related to project track evaluation.'));
+      ->setLabel(t('Project track description'))
+      ->setDescription(t('A description of the project track.'));
 
     $fields['project_track_evaluation'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Project track evaluation'))
-      ->setDescription(t('The type of the project track.'));
+      ->setDescription(t('The evaluation of the project track.'));
+
+    $fields['project_track_evaluation_overridden'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Project track evaluation overridden'))
+      ->setDescription(t('The overridden evaluation of the project track.'));
 
     $fields['project_track_note'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Project track note'))
@@ -174,8 +179,30 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
-  public function getProjectTrackEvaluation(): string {
-    return $this->get('project_track_evaluation')->getString();
+  public function setProjectTrackEvaluation(Evaluation $evaluation): self {
+    $this->set('project_track_evaluation', $evaluation->value);
+
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProjectTrackEvaluation($ignoreOverridden = FALSE): string {
+    if ($ignoreOverridden) {
+      return $this->get('project_track_evaluation')->getString();
+    }
+    else {
+      return $this->getProjectTrackEvaluationOverridden() ?: $this->getProjectTrackEvaluation(TRUE);
+    }
+
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getProjectTrackEvaluationOverridden(): string {
+    return $this->get('project_track_evaluation_overridden')->getString();
   }
 
   /**

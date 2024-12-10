@@ -21,3 +21,18 @@ function ai_screening_project_track_update_11001() {
       ->installFieldStorageDefinition($fieldName, 'project_track', 'ai_screening_project_track', $fieldDefinition);
   }
 }
+
+/**
+ * Add evaluation_overridden_field.
+ */
+function ai_screening_project_track_update_11002() {
+  $fields['project_track_evaluation_overridden'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('Project track evaluation overridden'))
+    ->setDescription(t('The overridden evaluation of the project track'))
+    ->setReadOnly(TRUE);
+
+  foreach ($fields as $fieldName => $fieldDefinition) {
+    \Drupal::entityDefinitionUpdateManager()
+      ->installFieldStorageDefinition($fieldName, 'project_track', 'ai_screening_project_track', $fieldDefinition);
+  }
+}

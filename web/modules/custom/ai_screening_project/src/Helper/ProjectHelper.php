@@ -14,6 +14,7 @@ use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\ai_screening\Helper\AbstractHelper;
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
@@ -494,7 +495,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
             'type' => $projectTrackTerm->id(),
             'title' => $projectTrackTerm->getName(),
             'description' => $projectTrackTerm->getDescription(),
-            'project_track_evaluation' => '0',
+            'project_track_evaluation' => Evaluation::NONE->value,
             'project_id' => $entity,
           ])
           ->setProjectTrackStatus(Status::NEW)

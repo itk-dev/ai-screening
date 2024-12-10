@@ -35,6 +35,11 @@ interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInt
   public function getProjectTrackEvaluation(): string;
 
   /**
+   * Get project track evaluation.
+   */
+  public function getProjectTrackEvaluationOverridden(): string;
+
+  /**
    * Get project track note.
    */
   public function getProjectTrackNote(): string;
@@ -43,6 +48,11 @@ interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInt
    * Get project track status.
    */
   public function getProjectTrackStatus(): Status;
+
+  /**
+   * Set project track evaluation.
+   */
+  public function setProjectTrackEvaluation(Evaluation $evaluation): self;
 
   /**
    * Set project track status.
