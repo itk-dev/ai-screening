@@ -231,10 +231,10 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
-  public function getProject(): ?NodeInterface {
+  public function getProject(): NodeInterface {
     $entities = $this->get('project_id')->referencedEntities();
 
-    return $entities ? reset($entities) : NULL;
+    return reset($entities);
   }
 
   /**
@@ -252,7 +252,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
    */
   public function getConfiguration(): array {
     try {
-      return json_decode($this->get('configuration')->getString(), TRUE) ?? [];
+      return json_decode($this->get('configuration')->getString(), TRUE) ?? [;
     }
     catch (\Exception) {
       return [];
