@@ -14,7 +14,12 @@
  */
 #}
 
-<div class="flex justify-between pb-4 mb-4 border-b">
-  <div class="font-thin">{{ title }}</div>
-  <div>{{ value }}</div>
+<div class="pb-4 mb-4 border-b">
+  <div class="font-thin mb-2">{{ title }}</div>
+  {% if element['#help'] %}
+    <div class="font-thin mb-2">( {{ element['#help']|striptags }} )</div>
+  {% endif %}
+
+  {% set value = value['#markup'] is same as ('{Empty}') ? 'None'|t : value %}
+  <div class="line-clamp-6">{{ value }}</div>
 </div>
