@@ -62,7 +62,7 @@ interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInt
   /**
    * Get project.
    */
-  public function getProject(): NodeInterface;
+  public function getProject(): ?NodeInterface;
 
   /**
    * Get configuration.
