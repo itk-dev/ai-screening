@@ -79,7 +79,6 @@ final class AiScreeningReportsController extends ControllerBase {
       $max = $this->projectTrackTypeHelper->getProjectTrackTypeMaxPossible($term);
       /** @var \Drupal\taxonomy\TermInterface $term */
       $dimensions = $this->projectTrackTypeHelper->getDimensions($term);
-
       $projectData = [
         'thresholds' => [
           'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED) ?? '',
@@ -107,7 +106,7 @@ final class AiScreeningReportsController extends ControllerBase {
         ];
         $sums = $projectTrack->getSummedValues();
         $projectData['dataset'][$loopCounter]['plots'] = [
-          ['x' => $sums[0], 'y' => $sums[1] ?? 0, 'r' => $sums[2] ?? '3'],
+          ['x' => $sums[0] ?? 0, 'y' => $sums[1] ?? 0, 'r' => $sums[2] ?? '3'],
         ];
         // Set a limit for the number of tracks to display.
         $loopCounter++;

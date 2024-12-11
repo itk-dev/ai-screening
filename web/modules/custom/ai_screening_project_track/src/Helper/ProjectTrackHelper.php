@@ -184,7 +184,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
       if ($summedDimension['sum'] < $summedDimension['undecidedThreshold']) {
         $result['refuse'] = TRUE;
       }
-      if (($summedDimension['undecidedThreshold'] > $summedDimension['sum']) &&
+      if (($summedDimension['undecidedThreshold'] < $summedDimension['sum']) &&
           ($summedDimension['sum'] < $summedDimension['approvedThreshold'])) {
         $result['undecided'] = TRUE;
       }
@@ -205,6 +205,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
       $evaluation = Evaluation::APPROVED;
     }
 
+    $trackConfig['dimensions'] = $this->projectTrackTypeHelper->getDimensions($track->getType());
     $trackConfig['sums'] = $summedDimensions;
     $trackConfig['evaluation'] = $evaluation ?? Evaluation::NONE;
     $track->setProjectTrackEvaluation($evaluation ?? Evaluation::NONE);

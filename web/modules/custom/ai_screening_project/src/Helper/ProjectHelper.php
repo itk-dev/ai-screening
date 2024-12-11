@@ -253,11 +253,14 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    * Load all accessible projects that are not corrupted.
    */
   public function loadProjects(): array {
-    $projectIds = $this->nodeStorage->getQuery()
-      ->accessCheck(TRUE)
-      ->condition('type', 'project')
+    $query = $this->nodeStorage->getQuery();
+    $corruptedCondition = $query->orConditionGroup()
       ->condition(self::FIELD_CORRUPTED, FALSE)
-      ->execute();
+      ->condition(self::FIELD_CORRUPTED, NULL, 'IS NULL');
+    $query
+      ->condition('type', 'project')
+      ->condition($corruptedCondition);
+    $projectIds = $query->accessCheck()->execute();
 
     return $this->nodeStorage->loadMultiple($projectIds);
   }
