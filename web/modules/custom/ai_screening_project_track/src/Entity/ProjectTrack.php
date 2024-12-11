@@ -231,10 +231,10 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
-  public function getProject(): NodeInterface {
+  public function getProject(): ?NodeInterface {
     $entities = $this->get('project_id')->referencedEntities();
 
-    return reset($entities);
+    return $entities ? reset($entities) : NULL;
   }
 
   /**
@@ -243,7 +243,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   public function getCacheTagsToInvalidate(): array {
     return array_merge(
       parent::getCacheTagsToInvalidate(),
-      $this->getProject()->getCacheTagsToInvalidate()
+      $this->getProject() ? $this->getProject()->getCacheTagsToInvalidate() : []
     );
   }
 
@@ -252,7 +252,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
    */
   public function getConfiguration(): array {
     try {
-      return json_decode($this->get('configuration')->getString(), TRUE) ?? [;
+      return json_decode($this->get('configuration')->getString(), TRUE) ?? [];
     }
     catch (\Exception) {
       return [];
