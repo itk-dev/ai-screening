@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
+
 - [PR-71](https://github.com/itk-dev/ai-screening/pull/71)
   - Added link to chart
   - Changed display of form submission values
