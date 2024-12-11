@@ -179,7 +179,6 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
    * @throws \Drupal\ai_screening_project_track\Exception\InvalidValueException
    */
   public function getProjectTrackTypeMaxPossible(Term $projectTrackType): array {
-    $currentMax = [];
     $currentMaxTrack = [];
     $webforms = $projectTrackType->get('field_webform')->referencedEntities();
     // Loop over each tool in the project track.
@@ -187,6 +186,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
       $elements = $webform->getElementsDecodedAndFlattened();
       // Look at each field in the webform.
       foreach ($elements as $element) {
+        $currentMax = [];
         // Currently we only look at weighted radios.
         if ('ai_screening_weighted_radios' === $element['#type'] && array_key_exists('#options', $element)) {
           // Get all options for the field.
@@ -205,7 +205,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
       }
     }
 
-    return $currentMax;
+    return $currentMaxTrack;
   }
 
   /**
