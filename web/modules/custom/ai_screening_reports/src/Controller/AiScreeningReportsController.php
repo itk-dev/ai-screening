@@ -21,6 +21,8 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 final class AiScreeningReportsController extends ControllerBase {
   use AutowireTrait;
 
+  public const string PROJECT_TRACK_ID_NAME = 'project_track_id';
+
   private const array COLOR_CODES = [
     '#047857',
     '#aac451',
@@ -70,7 +72,7 @@ final class AiScreeningReportsController extends ControllerBase {
    */
   public function projectTrack(Request $request): array|RedirectResponse {
     $loopCounter = 0;
-    $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get('project_track_id'));
+    $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get(self::PROJECT_TRACK_ID_NAME));
 
     // Ensure proper url parameters: ?project_track_id[]=1&project_track_id[]=3.
     if (!empty($projectTracks)) {
@@ -127,6 +129,12 @@ final class AiScreeningReportsController extends ControllerBase {
         '#data' => [
           'request' => $request,
           'projectTracks' => $projectTracks,
+        ],
+        '#cache' => [
+          'contexts' => [
+            // https://www.drupal.org/docs/drupal-apis/cache-api/cache-contexts#core-contexts
+            'url.query_args:' . self::PROJECT_TRACK_ID_NAME,
+          ],
         ],
       ];
     }
