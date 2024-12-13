@@ -85,13 +85,20 @@
             <div>{{ projectTrackStatus }}</div>
           </header>
           <div class="px-4 py-4">
-            <div>{{ projectTrack.getDescription()|raw }}</div>
-            <div class="flex justify-end">
-              {% if projectTrack.access('update') %}
-                <a href="{{ path('entity.project_track.edit_form', {project_track: projectTrack.id.value}) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
-                  <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>
+            <div class="mb-3">{{ projectTrack.getDescription()|raw }}</div>
+            <div class="flex justify-between">
+              <div class="flex justify-start">
+                <a href="{{ path('ai_screening_reports.project_track', {project_track_id: [projectTrack.id.value]}) }}">
+                  {{ include('@itkdev_project_theme/components/chart-image.svg') }}
                 </a>
-              {% endif %}
+              </div>
+              <div class="block self-end">
+                {% if projectTrack.access('update') %}
+                  <a href="{{ path('entity.project_track.edit_form', {project_track: projectTrack.id.value}) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
+                    <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>
+                  </a>
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>
