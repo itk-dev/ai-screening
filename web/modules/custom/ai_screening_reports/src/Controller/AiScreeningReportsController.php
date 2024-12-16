@@ -137,7 +137,7 @@ final class AiScreeningReportsController extends ControllerBase {
           ],
           'tags' => [
             'project_track:' . $projectTrack->id(),
-          ]
+          ],
         ],
       ];
     }

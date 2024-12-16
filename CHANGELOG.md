@@ -8,7 +8,11 @@ and this project adheres to [Semantic Versioning].
 ## [Unreleased]
 
 - [PR-72](https://github.com/itk-dev/ai-screening/pull/72)
-  Added cache context
+  - Added cache context
+  - Added cache tag
+  - Added js dependencies
+  - Fixed bug in frontpage stats
+  - Added group member role to group AddUser
 - [PR-71](https://github.com/itk-dev/ai-screening/pull/71)
   - Added link to chart
   - Changed display of form submission values
