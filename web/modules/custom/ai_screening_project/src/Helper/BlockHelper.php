@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening_project\Helper;
 
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
@@ -77,23 +78,18 @@ final readonly class BlockHelper implements EventSubscriberInterface {
 
     foreach ($activeProjects as $project) {
       $evaluation = $this->projectHelper->getProjectTrackEvaluation($project->id());
-      if (empty($evaluation['track_evaluation'])) {
+
+      if (in_array(Evaluation::NONE->value, $evaluation['track_evaluation'])) {
         continue;
       }
-      // Calculate the best possible status for the project based on each track.
-      $max = max($evaluation['track_evaluation']);
-      switch ($max) {
-        case '1':
-          $stats['approvedCount']++;
-          break;
-
-        case '2':
-          $stats['inProgressCount']++;
-          break;
-
-        case '3':
-          $stats['refusedCount']++;
-          break;
+      elseif (in_array(Evaluation::REFUSED->value, $evaluation['track_evaluation'])) {
+        $stats['refusedCount']++;
+      }
+      elseif (in_array(Evaluation::UNDECIDED->value, $evaluation['track_evaluation'])) {
+        $stats['inProgressCount']++;
+      }
+      elseif (in_array(Evaluation::APPROVED->value, $evaluation['track_evaluation'])) {
+        $stats['approvedCount']++;
       }
     }
 
