@@ -9,7 +9,7 @@ test("Create project", async ({ page }) => {
 
   await page.getByLabel("Username").fill("user");
   await page.getByLabel("Password").fill("user");
-  await page.getByRole("button", { name: "Login", exact: true }).click();
+  await page.getByRole("button", { name: "Log in", exact: true }).click();
 
   await page.getByRole("link", { name: "Projekter" }).click();
 
