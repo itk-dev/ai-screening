@@ -28,7 +28,6 @@ ai_screening_reports.project_track:
   requirements:
     _permission: 'access content'
   options:
-    no_cache: TRUE
     parameters:
       project_track_type:
         type: project_track_type
