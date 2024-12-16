@@ -130,12 +130,6 @@ final class AiScreeningReportsController extends ControllerBase {
           'request' => $request,
           'projectTracks' => $projectTracks,
         ],
-        '#cache' => [
-          'contexts' => [
-            // https://www.drupal.org/docs/drupal-apis/cache-api/cache-contexts#core-contexts
-            'url.query_args:' . self::PROJECT_TRACK_ID_NAME,
-          ],
-        ],
       ];
     }
 
