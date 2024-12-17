@@ -6,6 +6,7 @@ dependencies:
     - taxonomy.vocabulary.department
     - taxonomy.vocabulary.project_track_type
   module:
+    - ai_screening
     - navigation
     - system
     - taxonomy
@@ -19,6 +20,7 @@ permissions:
   - 'access navigation'
   - 'access site in maintenance mode'
   - 'access site reports'
+  - 'access site setup'
   - 'access taxonomy overview'
   - 'access webform overview'
   - 'create terms in department'

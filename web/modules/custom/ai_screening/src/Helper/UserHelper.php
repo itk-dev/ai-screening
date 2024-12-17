@@ -80,7 +80,9 @@ final class UserHelper extends AbstractHelper implements EventSubscriberInterfac
     $name = &$event->getName();
     $user = $this->userStorage->load($event->getAccount()->id());
     $fieldName = $user?->get('field_name')->getString();
-    $name = $fieldName ?: $event->getAccount()->getEmail();
+    // Prevent "TypeError: Cannot assign null to reference held by property
+    // Drupal\user_event_dispatcher\Event\User\UserFormatNameAlterEvent::$name".
+    $name = $fieldName ?: $event->getAccount()->getEmail() ?: $name;
   }
 
   /**
