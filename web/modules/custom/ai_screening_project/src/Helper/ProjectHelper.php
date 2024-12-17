@@ -409,7 +409,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
 
     foreach ($membersToAdd as $user) {
       /** @var \Drupal\user\Entity\User $user */
-      $group->addMember($user);
+      $group->addMember($user, ['group_roles' => 'project_group-member']);
     }
 
     foreach ($membersToRemove as $user) {
@@ -421,12 +421,14 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
 
     if ($groupOwner !== $group->getOwner()->id()) {
       $group->setOwner($this->userStorage->load($groupOwner));
-      $group->save();
+
       // And also change project creator, to reflect the group owner.
       $project = $formState->getFormObject()->getEntity();
       $project->setOwnerId($groupOwner);
       $project->save();
     }
+
+    $group->save();
   }
 
   /**

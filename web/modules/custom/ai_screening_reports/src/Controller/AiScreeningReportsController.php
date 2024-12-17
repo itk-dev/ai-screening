@@ -21,6 +21,8 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 final class AiScreeningReportsController extends ControllerBase {
   use AutowireTrait;
 
+  public const string PROJECT_TRACK_ID_NAME = 'project_track_id';
+
   private const array COLOR_CODES = [
     '#047857',
     '#aac451',
@@ -70,9 +72,9 @@ final class AiScreeningReportsController extends ControllerBase {
    */
   public function projectTrack(Request $request): array|RedirectResponse {
     $colorCounter = 0;
-    $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get('project_track_id'));
     $groupedTracks = [];
     $projectColors = [];
+    $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get(self::PROJECT_TRACK_ID_NAME));
 
     // Ensure proper url parameters: ?project_track_id[]=1&project_track_id[]=3.
     if (!empty($projectTracks)) {
