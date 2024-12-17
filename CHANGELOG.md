@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-73](https://github.com/itk-dev/ai-screening/pull/73)
+  - Added colors to graphs
+  - Added possibility to display graphs of multiple projects
 - [PR-72](https://github.com/itk-dev/ai-screening/pull/72)
   - Added cache context
   - Added cache tag
