@@ -39,7 +39,7 @@ final class AiScreeningReportsController extends ControllerBase {
     '#ec44d4',
   ];
 
-  private const int MAX_NUMBER_OF_TRACKS = 15;
+  private const int MAX_NUMBER_OF_PROJECTS = 15;
 
   public function __construct(
     private readonly ProjectTrackHelper $projectTrackHelper,
@@ -69,50 +69,59 @@ final class AiScreeningReportsController extends ControllerBase {
    * @throws \Drupal\ai_screening_project_track\Exception\InvalidValueException
    */
   public function projectTrack(Request $request): array|RedirectResponse {
-    $loopCounter = 0;
+    $colorCounter = 0;
     $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get('project_track_id'));
+    $groupedTracks = [];
+    $projectColors = [];
 
     // Ensure proper url parameters: ?project_track_id[]=1&project_track_id[]=3.
     if (!empty($projectTracks)) {
-      // Allow the first term to define the dimensions and the thresholds.
-      $term = reset($projectTracks)->getType();
-      $max = $this->projectTrackTypeHelper->getProjectTrackTypeMaxPossible($term);
-      /** @var \Drupal\taxonomy\TermInterface $term */
-      $dimensions = $this->projectTrackTypeHelper->getDimensions($term);
-      $projectData = [
-        'thresholds' => [
-          'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED) ?? '',
-          'y' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 1, Evaluation::APPROVED) ?? '',
-          'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED) ?? '',
-        ],
-        'axisMax' => [
-          'x' => $max[0] ?? '',
-          'y' => $max[1] ?? '',
-          'z' => $max[2] ?? '',
-        ],
-        // Use the first three identified dimensions as axis.
-        'labels' => [
-          'x' => isset($dimensions[0]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[0]]) : '',
-          'y' => isset($dimensions[1]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[1]]) : '',
-          'z' => isset($dimensions[2]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[2]]) : '',
-        ],
-      ];
+      foreach ($projectTracks as $key => $projectTrack) {
+        if (empty($projectColors[$projectTrack->getProject()->id()])) {
+          $projectColors[$projectTrack->getProject()->id()] = self::COLOR_CODES[$colorCounter];
+          $colorCounter++;
+        }
 
-      // Create a dataset for each project track.
-      foreach ($projectTracks as $projectTrack) {
-        $projectData['dataset'][$loopCounter]['chart'] = [
-          'label' => $projectTrack->getProject()->label(),
-          'color' => self::COLOR_CODES[$loopCounter % count(self::COLOR_CODES)],
+        $groupedTracks[$projectTrack->getType()->id()]['entity'] = $projectTrack;
+
+        // Allow the first term to define the dimensions and the thresholds.
+        $term = $projectTrack->getType();
+        $max = $this->projectTrackTypeHelper->getProjectTrackTypeMaxPossible($term);
+        /** @var \Drupal\taxonomy\TermInterface $term */
+        $dimensions = $this->projectTrackTypeHelper->getDimensions($term);
+
+        // Graph setup.
+        $groupedTracks[$projectTrack->getType()->id()]['graph'] = [
+          'thresholds' => [
+            'x' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 0, Evaluation::APPROVED) ?? '',
+            'y' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 1, Evaluation::APPROVED) ?? '',
+            'z' => $this->projectTrackTypeHelper->getThreshold((int) $term->id(), 2, Evaluation::APPROVED) ?? '',
+          ],
+          'axisMax' => [
+            'x' => $max[0] ?? '',
+            'y' => $max[1] ?? '',
+            'z' => $max[2] ?? '',
+          ],
+          // Use the first three identified dimensions as axis.
+          'labels' => [
+            'x' => isset($dimensions[0]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[0]]) : '',
+            'y' => isset($dimensions[1]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[1]]) : '',
+            'z' => isset($dimensions[2]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[2]]) : '',
+          ],
         ];
+
+        // Data setup.
         $sums = $projectTrack->getSummedValues();
-        $projectData['dataset'][$loopCounter]['plots'] = [
+        $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['dataset']['plots'] = [
           ['x' => $sums[0] ?? 0, 'y' => $sums[1] ?? 0, 'r' => $sums[2] ?? '3'],
         ];
-        // Set a limit for the number of tracks to display.
-        $loopCounter++;
-        if ($loopCounter >= self::MAX_NUMBER_OF_TRACKS) {
+
+        $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['dataset']['chart']['label'] = $projectTrack->getProject()->label();
+        $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['dataset']['chart']['color'] = $projectColors[$projectTrack->getProject()->id()];
+
+        if ($colorCounter >= self::MAX_NUMBER_OF_PROJECTS) {
           $this->messenger()
-            ->addWarning($this->t('A maximum of @max tracks can be displayed.', ['@max' => self::MAX_NUMBER_OF_TRACKS]));
+            ->addWarning($this->t('A maximum of @max tracks can be displayed.', ['@max' => self::MAX_NUMBER_OF_PROJECTS]));
           break;
         }
       }
@@ -121,12 +130,12 @@ final class AiScreeningReportsController extends ControllerBase {
         '#theme' => 'reports_project_track',
         '#attached' => [
           'drupalSettings' => [
-            'reports_project_track' => $projectData,
+            'reports_project_track' => $groupedTracks,
           ],
         ],
         '#data' => [
           'request' => $request,
-          'projectTracks' => $projectTracks,
+          'projectTracks' => $groupedTracks,
         ],
       ];
     }

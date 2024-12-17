@@ -2,7 +2,10 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "choices.js": "^11.0.2",
-    "chart.js": "^4.4.6"
+    "chart.js": "^4.4.6",
+    "choices.js": "^11.0.2"
+  },
+  "dependencies": {
+    "chartjs-plugin-annotation": "^3.1.0"
   }
 }

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Drupal\ai_screening_reports\Form;
 
 use Drupal\Core\DependencyInjection\AutowireTrait;
+use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
@@ -15,9 +17,18 @@ use Drupal\ai_screening_project\Helper\ProjectHelper;
 final class CreateReport extends FormBase {
   use AutowireTrait;
 
+  /**
+   * The project track storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  private readonly EntityStorageInterface $nodeStorage;
+
   public function __construct(
     private readonly ProjectHelper $projectHelper,
+    EntityTypeManagerInterface $entityTypeManager,
   ) {
+    $this->nodeStorage = $entityTypeManager->getStorage('node');
   }
 
   /**
@@ -39,8 +50,10 @@ final class CreateReport extends FormBase {
 
     $form['project'] = [
       '#type' => 'select',
+      '#multiple' => TRUE,
       '#title' => $this->t('Select project'),
       '#options' => $options,
+      '#attributes' => ['class' => ['use-choicesjs-plugin bg-primary text-primary border border-primary rounded-md py-2 px-3 my-1 w-full']],
     ];
 
     $form['actions'] = [
@@ -58,7 +71,19 @@ final class CreateReport extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $form_state->setRedirect('ai_screening_reports.project', ['node' => $form_state->getValue('project')]);
+    $projectTrackIds = [];
+    $projectIds = $form_state->getValue('project');
+    if (1 === count($projectIds)) {
+      $form_state->setRedirect('ai_screening_reports.project', ['node' => reset($projectIds)]);
+    }
+    else {
+      $projects = $this->nodeStorage->loadMultiple($projectIds);
+      foreach ($projects as $project) {
+        $projectTracks = $this->projectHelper->loadProjectTracks($project);
+        $projectTrackIds = array_merge($projectTrackIds, array_keys($projectTracks));
+      }
+      $form_state->setRedirect('ai_screening_reports.project_track', ['project_track_id' => $projectTrackIds]);
+    }
   }
 
 }
