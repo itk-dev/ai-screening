@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-75](https://github.com/itk-dev/ai-screening/pull/75)
+  - Added configurable report types
 - [PR-73](https://github.com/itk-dev/ai-screening/pull/73)
   - Added colors to graphs
   - Added possibility to display graphs of multiple projects
