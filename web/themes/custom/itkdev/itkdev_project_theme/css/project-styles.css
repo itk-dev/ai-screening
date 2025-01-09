@@ -210,6 +210,6 @@ table td {
 }
 
 table td:first-child {
-  text-align: Left;
+  text-align: left;
   width: 50%;
 }
