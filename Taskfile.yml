@@ -83,6 +83,22 @@ tasks:
       - task set-user-roles
     silent: true
 
+  import-translations:
+    desc: "Import string and config translations from .po files"
+    prompt: "This will reset all translations to match .po files. Continue?"
+    cmds:
+      - task drush -- locale:import da ../translations/strings/ai-screening.da.po
+      - task drush -- config_translation_po:import da ../translations/config/ai-screening-config.da.po
+      - task drush -- cache:rebuild
+    silent: true
+
+  export-translation-strings:
+    desc: "Export string translations from .po files"
+    prompt: "This will update the .po file in /translations/strings folder"
+    cmds:
+      - task drush -- locale:export da > translations/strings/ai-screening.da.po
+    silent: true
+
   site-install-new:
     desc: "Install minimal Drupal site from scratch"
     prompt: "This will reset your setup. Continue?"
@@ -140,7 +156,7 @@ tasks:
   test-module-test:
     desc: "Run custom module unit tests. Any additional arguments are passed to `phpunit`, e.g. `task test-module-test -- --debug`"
     cmds:
-      - task compose -- exec phpfpm bash -c 'cd web && ../vendor/bin/phpunit --configuration ../phpunit.xml modules/custom {{.CLI_ARGS}}'
+      - task compose -- exec phpfpm bash  -c 'cd web && ../vendor/bin/phpunit --configuration ../phpunit.xml modules/custom {{.CLI_ARGS}}'
     silent: true
 
   test-playwright-test:
