@@ -13,10 +13,10 @@ settings:
   allowed_values:
     -
       value: active
-      label: Active
+      label: Aktiv
     -
       value: finished
-      label: Finished
+      label: Afsluttet
   allowed_values_function: ''
 module: options
 locked: false
