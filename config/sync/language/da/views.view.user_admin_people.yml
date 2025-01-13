@@ -29,8 +29,6 @@ display:
             past_format: '@interval siden'
         operations:
           label: Handlinger
-        mail:
-          separator: ', '
       pager:
         options:
           tags:

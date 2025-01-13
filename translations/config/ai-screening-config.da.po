@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2025-01-10 10:49+0100\n"
-"PO-Revision-Date: 2025-01-13 14:15+0100\n"
+"PO-Revision-Date: 2025-01-13 14:45+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "Language: da\n"
@@ -844,7 +844,7 @@ msgstr "Anvend"
 
 msgctxt "views.view.archive:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Nulstil filtrering"
+msgstr "Nulstil"
 
 msgctxt "views.view.archive:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -928,11 +928,11 @@ msgstr "Offset"
 
 msgctxt "views.view.authmap:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.authmap:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.authmap:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -992,7 +992,7 @@ msgstr "Content"
 
 msgctxt "views.view.content:display:default:display_options:fields:title:label"
 msgid "Title"
-msgstr "Title"
+msgstr "Titel"
 
 msgctxt "views.view.content:display:default:display_options:fields:type:label"
 msgid "Content type"
@@ -1016,7 +1016,7 @@ msgstr "Published"
 
 msgctxt "views.view.content:display:default:display_options:fields:changed:label"
 msgid "Updated"
-msgstr "Updated"
+msgstr "Opdateret"
 
 msgctxt "views.view.content:display:default:display_options:fields:langcode:label"
 msgid "Language"
@@ -1028,11 +1028,11 @@ msgstr "Operations"
 
 msgctxt "views.view.content:display:default:display_options:pager:options:tags:next"
 msgid "Next ›"
-msgstr "Next ›"
+msgstr "Næste ›"
 
 msgctxt "views.view.content:display:default:display_options:pager:options:tags:previous"
 msgid "‹ Previous"
-msgstr "‹ Previous"
+msgstr "‹ Forrige"
 
 msgctxt "views.view.content:display:default:display_options:pager:options:tags:first"
 msgid "« First"
@@ -1048,7 +1048,7 @@ msgstr "Filter"
 
 msgctxt "views.view.content:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.content:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -1068,7 +1068,7 @@ msgstr "No content available."
 
 msgctxt "views.view.content:display:default:display_options:filters:title:expose:label"
 msgid "Title"
-msgstr "Title"
+msgstr "Titel"
 
 msgctxt "views.view.content:display:default:display_options:filters:type:expose:label"
 msgid "Content type"
@@ -1128,11 +1128,11 @@ msgstr "Recent content"
 
 msgctxt "views.view.content_recent:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.content_recent:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.content_recent:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -1228,11 +1228,11 @@ msgstr "Operations"
 
 msgctxt "views.view.files:display:default:display_options:pager:options:tags:next"
 msgid "Next ›"
-msgstr "Next ›"
+msgstr "Næste ›"
 
 msgctxt "views.view.files:display:default:display_options:pager:options:tags:previous"
 msgid "‹ Previous"
-msgstr "‹ Previous"
+msgstr "‹ Forrige"
 
 msgctxt "views.view.files:display:default:display_options:pager:options:expose:items_per_page_label"
 msgid "Items per page"
@@ -1252,7 +1252,7 @@ msgstr "Filter"
 
 msgctxt "views.view.files:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.files:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -1320,11 +1320,11 @@ msgstr "1\\003@count"
 
 msgctxt "views.view.files:display:page_2:display_options:pager:options:tags:next"
 msgid "Next ›"
-msgstr "Next ›"
+msgstr "Næste ›"
 
 msgctxt "views.view.files:display:page_2:display_options:pager:options:tags:previous"
 msgid "‹ Previous"
-msgstr "‹ Previous"
+msgstr "‹ Forrige"
 
 msgctxt "views.view.files:display:page_2:display_options:pager:options:expose:items_per_page_label"
 msgid "Items per page"
@@ -1416,11 +1416,11 @@ msgstr "Default"
 
 msgctxt "views.view.frontpage:display:default:display_options:pager:options:tags:next"
 msgid "Next ›"
-msgstr "Next ›"
+msgstr "Næste ›"
 
 msgctxt "views.view.frontpage:display:default:display_options:pager:options:tags:previous"
 msgid "‹ Previous"
-msgstr "‹ Previous"
+msgstr "‹ Forrige"
 
 msgctxt "views.view.frontpage:display:default:display_options:pager:options:tags:first"
 msgid "« First"
@@ -1444,11 +1444,11 @@ msgstr "Offset"
 
 msgctxt "views.view.frontpage:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.frontpage:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.frontpage:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -1496,7 +1496,7 @@ msgstr "Default"
 
 msgctxt "views.view.glossary:display:default:display_options:fields:title:label"
 msgid "Title"
-msgstr "Title"
+msgstr "Titel"
 
 msgctxt "views.view.glossary:display:default:display_options:fields:name:label"
 msgid "Author"
@@ -1520,11 +1520,11 @@ msgstr "Offset"
 
 msgctxt "views.view.glossary:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.glossary:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.glossary:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -1572,7 +1572,7 @@ msgstr "Roles"
 
 msgctxt "views.view.group_members:display:default:display_options:fields:changed:label"
 msgid "Updated"
-msgstr "Updated"
+msgstr "Opdateret"
 
 msgctxt "views.view.group_members:display:default:display_options:fields:created:label"
 msgid "Joined"
@@ -1628,11 +1628,11 @@ msgstr "Offset"
 
 msgctxt "views.view.group_members:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.group_members:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.group_members:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -1704,7 +1704,7 @@ msgstr "Published"
 
 msgctxt "views.view.group_nodes:display:default:display_options:fields:changed:label"
 msgid "Updated"
-msgstr "Updated"
+msgstr "Opdateret"
 
 msgctxt "views.view.group_nodes:display:default:display_options:fields:view_group_relationship:admin_label"
 msgid "View relation link"
@@ -1792,11 +1792,11 @@ msgstr "Offset"
 
 msgctxt "views.view.group_nodes:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.group_nodes:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.group_nodes:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -1872,7 +1872,7 @@ msgstr "Note"
 
 msgctxt "views.view.projects:display:default:display_options:fields:title:label"
 msgid "Name"
-msgstr "Name"
+msgstr "Navn"
 
 msgctxt "views.view.projects:display:default:display_options:fields:title:alter:text"
 msgid ""
@@ -1932,11 +1932,11 @@ msgstr "Offset"
 
 msgctxt "views.view.projects:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.projects:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.projects:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -2024,11 +2024,11 @@ msgstr "Offset"
 
 msgctxt "views.view.taxonomy_term:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.taxonomy_term:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.taxonomy_term:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -2136,11 +2136,11 @@ msgstr "Operations"
 
 msgctxt "views.view.user_admin_people:display:default:display_options:pager:options:tags:next"
 msgid "Next ›"
-msgstr "Next ›"
+msgstr "Næste ›"
 
 msgctxt "views.view.user_admin_people:display:default:display_options:pager:options:tags:previous"
 msgid "‹ Previous"
-msgstr "‹ Previous"
+msgstr "‹ Forrige"
 
 msgctxt "views.view.user_admin_people:display:default:display_options:pager:options:tags:first"
 msgid "« First"
@@ -2168,7 +2168,7 @@ msgstr "Filter"
 
 msgctxt "views.view.user_admin_people:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.user_admin_people:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -2308,7 +2308,7 @@ msgstr "Filter"
 
 msgctxt "views.view.watchdog:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.watchdog:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -2404,11 +2404,11 @@ msgstr "Offset"
 
 msgctxt "views.view.webform_submissions:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.webform_submissions:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.webform_submissions:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -2468,7 +2468,7 @@ msgstr "Created"
 
 msgctxt "views.view.webform_submissions:display:embed_administer:display_options:fields:completed:label"
 msgid "Completed"
-msgstr "Completed"
+msgstr "Afsluttet"
 
 msgctxt "views.view.webform_submissions:display:embed_administer:display_options:fields:remote_addr:label"
 msgid "IP address"
@@ -2536,7 +2536,7 @@ msgstr "Created"
 
 msgctxt "views.view.webform_submissions:display:embed_manage:display_options:fields:completed:label"
 msgid "Completed"
-msgstr "Completed"
+msgstr "Afsluttet"
 
 msgctxt "views.view.webform_submissions:display:embed_manage:display_options:fields:remote_addr:label"
 msgid "IP address"
@@ -2600,7 +2600,7 @@ msgstr "Created"
 
 msgctxt "views.view.webform_submissions:display:embed_review:display_options:fields:completed:label"
 msgid "Completed"
-msgstr "Completed"
+msgstr "Afsluttet"
 
 msgctxt "views.view.webform_submissions:display:embed_review:display_options:fields:remote_addr:label"
 msgid "IP address"
@@ -2648,11 +2648,11 @@ msgstr "Who's new"
 
 msgctxt "views.view.who_s_new:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.who_s_new:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.who_s_new:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -2700,11 +2700,11 @@ msgstr "Who's online"
 
 msgctxt "views.view.who_s_online:display:default:display_options:exposed_form:options:submit_button"
 msgid "Apply"
-msgstr "Apply"
+msgstr "Anvend"
 
 msgctxt "views.view.who_s_online:display:default:display_options:exposed_form:options:reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "views.view.who_s_online:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
@@ -2752,7 +2752,7 @@ msgstr "Submit"
 
 msgctxt "webform.settings:settings:default_reset_button_label"
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgctxt "webform.settings:settings:default_delete_button_label"
 msgid "Delete"
@@ -2788,11 +2788,11 @@ msgstr "Indicates required field"
 
 msgctxt "webform.settings:settings:default_wizard_prev_button_label"
 msgid "< Previous"
-msgstr "< Previous"
+msgstr "‹ Forrige"
 
 msgctxt "webform.settings:settings:default_wizard_next_button_label"
 msgid "Next >"
-msgstr "Next >"
+msgstr "Næste >"
 
 msgctxt "webform.settings:settings:default_wizard_start_label"
 msgid "Start"
@@ -2800,7 +2800,7 @@ msgstr "Start"
 
 msgctxt "webform.settings:settings:default_wizard_confirmation_label"
 msgid "Complete"
-msgstr "Complete"
+msgstr "Afslut"
 
 msgctxt "webform.settings:settings:default_wizard_toggle_show_label"
 msgid "Show all"
@@ -2816,7 +2816,7 @@ msgstr "Preview"
 
 msgctxt "webform.settings:settings:default_preview_prev_button_label"
 msgid "< Previous"
-msgstr "< Previous"
+msgstr "‹ Forrige"
 
 msgctxt "webform.settings:settings:default_preview_label"
 msgid "Preview"

@@ -6,19 +6,15 @@ display:
       fields:
         title:
           label: Titel
-          separator: ', '
         type:
           label: Indholdstype
-          separator: ', '
         status:
           label: Status
           settings:
             format_custom_false: 'Ikke udgivet'
             format_custom_true: Udgivet
-          separator: ', '
         changed:
           label: Opdateret
-          separator: ', '
         dropbutton:
           label: Handlinger
       pager:
