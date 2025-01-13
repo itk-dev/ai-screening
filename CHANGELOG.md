@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
+
 - [PR-77](https://github.com/itk-dev/ai-screening/pull/77)
   - Added translation functionality
   - Added .po files
