@@ -1,90 +1,67 @@
-label: 'Group nodes'
-description: 'Lists all of the nodes that have been added to a group.'
 display:
   default:
     display_title: Master
     display_options:
-      title: Nodes
+      title: Indhold
       fields:
         title:
-          label: Title
+          label: Titel
           separator: ', '
         type:
-          label: 'Content type'
+          label: Indholdstype
           separator: ', '
         status:
           label: Status
           settings:
-            format_custom_false: Unpublished
-            format_custom_true: Published
+            format_custom_false: 'Ikke udgivet'
+            format_custom_true: Udgivet
           separator: ', '
         changed:
           label: Opdateret
           separator: ', '
-        view_group_relationship:
-          admin_label: 'View relation link'
-          label: 'Link to Group relationship'
-          text: 'View relation'
-        edit_group_relationship:
-          admin_label: 'Edit relation link'
-          label: 'Link to edit Group relationship'
-          text: 'Edit relation'
-        delete_group_relationship:
-          admin_label: 'Delete relation link'
-          label: 'Link to delete Group relationship'
-          text: 'Delete relation'
-        edit_node:
-          admin_label: 'Edit node link'
-          label: 'Link to edit Content'
-          text: 'Edit node'
-        delete_node:
-          admin_label: 'Delete node link'
-          label: 'Link to delete Content'
-          text: 'Delete node'
         dropbutton:
-          label: Operations
+          label: Handlinger
       pager:
         options:
           tags:
             next: ››
             previous: ‹‹
-            first: '« First'
-            last: 'Last »'
+            first: '« Første'
+            last: 'Sidste »'
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
       exposed_form:
         options:
-          submit_button: Anvend
-          reset_button_label: Nulstil
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       empty:
         area_text_custom:
-          content: 'No content available.'
+          content: 'Der er intet indhold at vise.'
       arguments:
         gid:
           exception:
-            title: All
-          title: '{{ arguments.gid|placeholder }} nodes'
+            title: Alle
       filters:
         status:
           expose:
-            label: 'Published status'
+            label: Publiceringsstatus
           group_info:
-            label: 'Published status'
+            label: Publiceringsstatus
             group_items:
               1:
-                title: Published
+                title: Udgivet
               2:
-                title: Unpublished
+                title: 'Ikke udgivet'
         type:
           expose:
             label: Type
   page_1:
-    display_title: Page
+    display_title: Side
     display_options:
       menu:
-        title: Nodes
+        title: Indhold

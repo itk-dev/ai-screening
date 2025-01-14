@@ -1,61 +1,42 @@
-label: 'Group members'
 display:
   default:
     display_title: Master
     display_options:
-      title: Members
       fields:
         name:
-          label: User
+          label: Bruger
           separator: ', '
         group_roles:
-          label: Roles
+          label: Roller
           separator: ', '
         changed:
           label: Opdateret
           separator: ', '
         created:
-          label: Joined
           separator: ', '
-        view_group_relationship:
-          admin_label: 'View member link'
-          text: 'View member'
-        edit_group_relationship:
-          admin_label: 'Edit member link'
-          text: 'Edit member'
-        delete_group_relationship:
-          admin_label: 'Remove member link'
-          text: 'Remove member'
         dropbutton:
-          label: Operations
+          label: Handlinger
       pager:
         options:
           tags:
             next: ››
             previous: ‹‹
-            first: '« First'
-            last: 'Last »'
+            first: '« Første'
+            last: 'Sidste »'
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
       exposed_form:
         options:
-          submit_button: Anvend
-          reset_button_label: Nulstil
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      empty:
-        area_text_custom:
-          content: 'No members available.'
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       arguments:
         gid:
           exception:
-            title: All
-          title: '{{ arguments.gid|placeholder }} members'
+            title: Alle
   page_1:
-    display_title: Page
-    display_options:
-      menu:
-        title: Members
+    display_title: Side

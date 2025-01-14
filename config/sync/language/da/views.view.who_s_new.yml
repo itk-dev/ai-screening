@@ -1,20 +1,20 @@
-label: "Who's new"
-description: 'Shows a list of the newest user accounts on the site.'
+label: 'Nye brugere'
+description: 'Viser en liste af de nyeste brugerkonti på sitet.'
 display:
   default:
-    display_title: Default
+    display_title: Standard
     display_options:
-      title: "Who's new"
+      title: 'Nye brugere'
       exposed_form:
         options:
-          submit_button: Anvend
-          reset_button_label: Nulstil
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
   block_1:
-    display_title: "Who's new"
+    display_title: 'Nye brugere'
     display_options:
-      display_description: 'A list of new users'
-      block_description: "Who's new"
-      block_category: User
+      display_description: 'En liste af nye brugere'
+      block_description: 'Nye brugere'
+      block_category: Bruger

@@ -1,23 +1,23 @@
-label: 'Recent content'
-description: 'Recent content.'
+label: 'Seneste indhold'
+description: 'Seneste indhold.'
 display:
   default:
-    display_title: Default
+    display_title: Standard
     display_options:
-      title: 'Recent content'
+      title: 'Seneste indhold'
       fields:
         changed:
           separator: ', '
       exposed_form:
         options:
-          submit_button: Anvend
-          reset_button_label: Nulstil
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       empty:
         area_text_custom:
-          content: 'No content available.'
-      use_more_text: More
+          content: 'Der er intet indhold at vise.'
+      use_more_text: Mere
   block_1:
-    display_title: Block
+    display_title: Blok
