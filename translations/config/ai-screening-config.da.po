@@ -1,10 +1,10 @@
-# da translation of Drush Site-Install
+# da translation of AI-Screening
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-01-14 11:14+0100\n"
-"PO-Revision-Date: 2025-01-14 11:14+0100\n"
+"POT-Creation-Date: 2025-01-14 12:15+0100\n"
+"PO-Revision-Date: 2025-01-14 12:15+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -217,8 +217,8 @@ msgid "Description"
 msgstr "Beskrivelse"
 
 msgctxt "field.field.node.project.field_project_state:label"
-msgid "Projekt tilstand"
-msgstr "Projekt tilstand"
+msgid "Project state"
+msgstr "Projekttilstand"
 
 msgctxt "field.field.taxonomy_term.project_track_type.field_configuration:label"
 msgid "Configuration"
@@ -332,7 +332,7 @@ msgstr "Wide (1090)"
 
 msgctxt "language.entity.da:label"
 msgid "Danish"
-msgstr "Danish"
+msgstr "Dansk"
 
 msgctxt "language.entity.en:label"
 msgid "English"
@@ -436,7 +436,7 @@ msgstr "Unblock the selected user(s)"
 
 msgctxt "system.action.webform_archive_action:label"
 msgid "Archive webform"
-msgstr "Archive webform"
+msgstr "Arkivér webform"
 
 msgctxt "system.action.webform_close_action:label"
 msgid "Close webform"
@@ -464,7 +464,7 @@ msgstr "Star/flag submission"
 
 msgctxt "system.action.webform_submission_make_unlock_action:label"
 msgid "Unlock submission"
-msgstr "Unlock submission"
+msgstr "Lås submission op"
 
 msgctxt "system.action.webform_submission_make_unsticky_action:label"
 msgid "Unstar/unflag submission"
@@ -472,7 +472,7 @@ msgstr "Unstar/unflag submission"
 
 msgctxt "system.action.webform_unarchive_action:label"
 msgid "Restore webform"
-msgstr "Restore webform"
+msgstr "Gendan webform"
 
 msgctxt "system.maintenance:message"
 msgid ""
@@ -1080,7 +1080,7 @@ msgstr "Default"
 
 msgctxt "views.view.content:display:default:display_options:title"
 msgid "Content"
-msgstr "Content"
+msgstr "Indhold"
 
 msgctxt "views.view.content:display:default:display_options:fields:title:label"
 msgid "Title"
@@ -1088,11 +1088,11 @@ msgstr "Titel"
 
 msgctxt "views.view.content:display:default:display_options:fields:type:label"
 msgid "Content type"
-msgstr "Content type"
+msgstr "Indholdstype"
 
 msgctxt "views.view.content:display:default:display_options:fields:name:label"
 msgid "Author"
-msgstr "Author"
+msgstr "Forfatter"
 
 msgctxt "views.view.content:display:default:display_options:fields:status:label"
 msgid "Status"
@@ -1100,11 +1100,11 @@ msgstr "Status"
 
 msgctxt "views.view.content:display:default:display_options:fields:status:settings:format_custom_false"
 msgid "Unpublished"
-msgstr "Unpublished"
+msgstr "Afpubliseret"
 
 msgctxt "views.view.content:display:default:display_options:fields:status:settings:format_custom_true"
 msgid "Published"
-msgstr "Published"
+msgstr "Publiseret"
 
 msgctxt "views.view.content:display:default:display_options:fields:changed:label"
 msgid "Updated"
@@ -1112,7 +1112,7 @@ msgstr "Opdateret"
 
 msgctxt "views.view.content:display:default:display_options:fields:langcode:label"
 msgid "Language"
-msgstr "Language"
+msgstr "Sprog"
 
 msgctxt "views.view.content:display:default:display_options:fields:operations:label"
 msgid "Operations"
@@ -1144,19 +1144,19 @@ msgstr "Nulstil"
 
 msgctxt "views.view.content:display:default:display_options:exposed_form:options:exposed_sorts_label"
 msgid "Sort by"
-msgstr "Sort by"
+msgstr "Sorter efter"
 
 msgctxt "views.view.content:display:default:display_options:exposed_form:options:sort_asc_label"
 msgid "Asc"
-msgstr "Asc"
+msgstr "Stigende"
 
 msgctxt "views.view.content:display:default:display_options:exposed_form:options:sort_desc_label"
 msgid "Desc"
-msgstr "Desc"
+msgstr "Faldende"
 
 msgctxt "views.view.content:display:default:display_options:empty:area_text_custom:content"
 msgid "No content available."
-msgstr "No content available."
+msgstr "Intet indhold."
 
 msgctxt "views.view.content:display:default:display_options:filters:title:expose:label"
 msgid "Title"
@@ -1164,7 +1164,7 @@ msgstr "Titel"
 
 msgctxt "views.view.content:display:default:display_options:filters:type:expose:label"
 msgid "Content type"
-msgstr "Content type"
+msgstr "Indholdstype"
 
 msgctxt "views.view.content:display:default:display_options:filters:status:expose:label"
 msgid "Status"
@@ -1172,23 +1172,23 @@ msgstr "Status"
 
 msgctxt "views.view.content:display:default:display_options:filters:status:group_info:label"
 msgid "Published status"
-msgstr "Published status"
+msgstr "Publiseringsstatus status"
 
 msgctxt "views.view.content:display:default:display_options:filters:status:group_info:group_items:1:title"
 msgid "Published"
-msgstr "Published"
+msgstr "Publiseret"
 
 msgctxt "views.view.content:display:default:display_options:filters:status:group_info:group_items:2:title"
 msgid "Unpublished"
-msgstr "Unpublished"
+msgstr "Ikke publiseret"
 
 msgctxt "views.view.content:display:default:display_options:filters:langcode:expose:label"
 msgid "Language"
-msgstr "Language"
+msgstr "Sprog"
 
 msgctxt "views.view.content:display:page_1:display_title"
 msgid "Page"
-msgstr "Page"
+msgstr "Side"
 
 msgctxt "views.view.content:display:page_1:display_options:menu:title"
 msgid "Content"
@@ -1196,7 +1196,7 @@ msgstr "Content"
 
 msgctxt "views.view.content:display:page_1:display_options:tab_options:title"
 msgid "Content"
-msgstr "Content"
+msgstr "Indhold"
 
 msgctxt "views.view.content:display:page_1:display_options:tab_options:description"
 msgid "Find and manage content"
@@ -3062,7 +3062,7 @@ msgstr "Wide"
 
 msgctxt "webform.settings:element:empty_message"
 msgid "{Empty}"
-msgstr "{Empty}"
+msgstr "{Ingen}"
 
 msgctxt "webform.settings:element:default_more_title"
 msgid "More"

@@ -43,7 +43,7 @@ settings:
     wide:
       title: Wide
 element:
-  empty_message: '{Ingen}'
+  empty_message: '{Empty}'
   default_more_title: More
   default_section_title_tag: h2
 file:

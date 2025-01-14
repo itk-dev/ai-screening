@@ -36,32 +36,32 @@ display:
         options:
           submit_button: Filter
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sorter efter'
-          sort_asc_label: Stigende
-          sort_desc_label: Faldende
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       empty:
         area_text_custom:
-          content: 'Intet indhold.'
+          content: 'No content available.'
       filters:
         title:
           expose:
             label: Titel
         type:
           expose:
-            label: 'Indholdstype'
+            label: 'Content type'
         status:
           expose:
             label: Status
           group_info:
-            label: 'Publiseringsstatus'
+            label: 'Published status'
             group_items:
               1:
-                title: Publiseret
+                title: Published
               2:
-                title: Ikke publiseret
+                title: Unpublished
         langcode:
           expose:
-            label: Sprog
+            label: Language
   page_1:
     display_title: Page
     display_options:
