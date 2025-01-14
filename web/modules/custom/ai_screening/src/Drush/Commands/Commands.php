@@ -123,7 +123,7 @@ final class Commands extends DrushCommands {
   }
 
   /**
-   * Post command hook for pm:install
+   * Post command hook for pm:install.
    */
   #[CLI\Hook(HookManager::POST_COMMAND_HOOK, target: 'pm:install')]
   public function postCommand($result, CommandData $commandData): void {
