@@ -4,24 +4,24 @@ display:
   default:
     display_title: Default
     display_options:
-      title: Content
+      title: Indhold
       fields:
         title:
           label: Titel
         type:
-          label: 'Content type'
+          label: Indholdstype
           separator: ', '
         name:
-          label: Author
+          label: Forfatter
         status:
           label: Status
           settings:
-            format_custom_false: Unpublished
-            format_custom_true: Published
+            format_custom_false: Afpubliseret
+            format_custom_true: Publiseret
         changed:
           label: Opdateret
         langcode:
-          label: Language
+          label: Sprog
           separator: ', '
         operations:
           label: Operations
@@ -36,37 +36,37 @@ display:
         options:
           submit_button: Filter
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          exposed_sorts_label: 'Sorter efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       empty:
         area_text_custom:
-          content: 'No content available.'
+          content: 'Intet indhold.'
       filters:
         title:
           expose:
             label: Titel
         type:
           expose:
-            label: 'Content type'
+            label: Indholdstype
         status:
           expose:
             label: Status
           group_info:
-            label: 'Published status'
+            label: 'Publiseringsstatus status'
             group_items:
               1:
-                title: Published
+                title: Publiseret
               2:
-                title: Unpublished
+                title: 'Ikke publiseret'
         langcode:
           expose:
-            label: Language
+            label: Sprog
   page_1:
-    display_title: Page
+    display_title: Side
     display_options:
       menu:
         title: Content
       tab_options:
-        title: Content
+        title: Indhold
         description: 'Find and manage content'
