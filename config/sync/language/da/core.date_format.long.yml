@@ -1,2 +1,2 @@
-label: 'Standard lang dato'
+label: 'Default long date'
 pattern: 'l, F j, Y - H:i'
