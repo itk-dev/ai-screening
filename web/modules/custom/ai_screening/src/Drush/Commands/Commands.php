@@ -2,6 +2,9 @@
 
 namespace Drupal\ai_screening\Drush\Commands;
 
+use Drupal\Core\Session\AccountSwitcherInterface;
+use Consolidation\AnnotatedCommand\CommandData;
+use Consolidation\AnnotatedCommand\Hooks\HookManager;
 use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -9,6 +12,7 @@ use Drupal\ai_screening\Exception\InvalidArgumentException;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackToolHelper;
 use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
+use Drupal\Core\Session\UserSession;
 use Drupal\user\UserInterface;
 use Drush\Attributes as CLI;
 use Drush\Commands\AutowireTrait;
@@ -38,6 +42,7 @@ final class Commands extends DrushCommands {
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly ProjectTrackHelper $projectTrackHelper,
     private readonly ProjectTrackToolHelper $projectTrackToolHelper,
+    private readonly AccountSwitcherInterface $accountSwitcher,
   ) {
     $this->projectTrackStorage = $this->entityTypeManager->getStorage('project_track');
   }
@@ -109,4 +114,13 @@ final class Commands extends DrushCommands {
     return new RowsOfFields($rows);
   }
 
+  #[CLI\Hook(HookManager::PRE_COMMAND_HOOK, target: 'pm:install')]
+  public function preCommand(CommandData $commandData): void {
+    $this->accountSwitcher->switchTo(new UserSession(['uid' => 1]));
+  }
+
+  #[CLI\Hook(HookManager::POST_COMMAND_HOOK, target: 'pm:install')]
+  public function postCommand($result, CommandData $commandData): void {
+    $this->accountSwitcher->switchBack();
+  }
 }

@@ -21,16 +21,10 @@ display:
             items_per_page_options_all_label: '- Alle -'
             offset_label: Forskydning
       fields:
-        sid:
-          separator: ', '
-        in_draft:
-          separator: ', '
         created:
           label: Oprettet
-          separator: ', '
         remote_addr:
           label: IP-adresse
-          separator: ', '
         view_webform_submission:
           label: Handlinger
           text: vis
@@ -46,22 +40,12 @@ display:
       fields:
         webform_submission_bulk_form:
           action_title: Handling
-        sid:
-          separator: ', '
-        in_draft:
-          separator: ', '
-        sticky:
-          separator: ', '
-        locked:
-          separator: ', '
         created:
           label: Oprettet
-          separator: ', '
         completed:
-          separator: ', '
+          label: Afsluttet
         remote_addr:
           label: IP-adresse
-          separator: ', '
         operations:
           label: Handlinger
   embed_manage:
@@ -69,22 +53,12 @@ display:
       fields:
         webform_submission_bulk_form:
           action_title: Handling
-        sid:
-          separator: ', '
-        in_draft:
-          separator: ', '
-        sticky:
-          separator: ', '
-        locked:
-          separator: ', '
         created:
           label: Oprettet
-          separator: ', '
         completed:
-          separator: ', '
+          label: Afsluttet
         remote_addr:
           label: IP-adresse
-          separator: ', '
         view_webform_submission:
           label: Handlinger
           text: vis
@@ -94,22 +68,12 @@ display:
   embed_review:
     display_options:
       fields:
-        sid:
-          separator: ', '
-        in_draft:
-          separator: ', '
-        sticky:
-          separator: ', '
-        locked:
-          separator: ', '
         created:
           label: Oprettet
-          separator: ', '
         completed:
-          separator: ', '
+          label: Afsluttet
         remote_addr:
           label: IP-adresse
-          separator: ', '
         view_webform_submission:
           label: Handlinger
           text: vis

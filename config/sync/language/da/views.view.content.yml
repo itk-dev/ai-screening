@@ -10,7 +10,6 @@ display:
           label: Titel
         type:
           label: Indholdstype
-          separator: ', '
         name:
           label: Forfatter
         status:
@@ -22,7 +21,6 @@ display:
           label: Opdateret
         langcode:
           label: Sprog
-          separator: ', '
         operations:
           label: Handlinger
       pager:

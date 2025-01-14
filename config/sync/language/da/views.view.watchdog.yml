@@ -23,7 +23,6 @@ display:
             alt: '{{ message }}'
         name:
           label: Bruger
-          separator: ', '
         link:
           label: Handlinger
       pager:

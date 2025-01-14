@@ -5,15 +5,10 @@ display:
       fields:
         name:
           label: Bruger
-          separator: ', '
         group_roles:
           label: Roller
-          separator: ', '
         changed:
           label: Opdateret
-          separator: ', '
-        created:
-          separator: ', '
         dropbutton:
           label: Handlinger
       pager:

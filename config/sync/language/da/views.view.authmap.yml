@@ -21,8 +21,6 @@ display:
       fields:
         uid:
           format_plural_string: !!binary MQNAY291bnQ=
-        name:
-          separator: ', '
         delete_link:
           label: slet
           text: slet
