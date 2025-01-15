@@ -18,5 +18,9 @@
       <h3>{{ track.entity.label }}</h3>
       <div class="w-full mb-16"><canvas id="track-type-{{ key }}" class="chart" track-id="{{ key }}"></canvas></div>
     {% endfor %}
+
+    <div>
+      <a href="javascript:history.back()" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">{{ 'Go Back'|t }}</a>
+    </div>
   </div>
 {% endblock %}
