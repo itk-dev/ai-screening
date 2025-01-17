@@ -29,6 +29,7 @@ jobs:
       - name: Build theme assets
         run: |
           task theme-build
+          task theme-clean-up
 
       - name: Make assets dir
         run: |
