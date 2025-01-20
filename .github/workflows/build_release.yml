@@ -24,7 +24,7 @@ jobs:
       - name: Composer install
         run: |
           docker network create frontend
-          docker compose --rm run phpfpm composer install --no-dev -o
+          docker compose run --rm phpfpm composer install --no-dev -o
 
       - name: Build theme assets
         run: |
