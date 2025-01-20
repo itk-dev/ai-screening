@@ -8,6 +8,9 @@ name: Create Github Release
 permissions:
   contents: write
 
+env:
+  COMPOSE_USER: runner
+
 jobs:
   create-release:
     runs-on: ubuntu-24.04
