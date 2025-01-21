@@ -17,6 +17,17 @@ module.exports = {
     "border-zinc-400",
     "border-red-600",
     "border-yellow-600",
+    "green-600",
+    "green-700",
     "border-green-600",
   ],
+  theme: {
+    colors: {
+      'green': {
+        DEFAULT: '#047857',
+        600: '#047857',
+        700: '#064E3B',
+      },
+    },
+  }
 };

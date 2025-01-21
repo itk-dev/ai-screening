@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning].
 - [PR-77](https://github.com/itk-dev/ai-screening/pull/77)
   - Added translation functionality
   - Added .po files
+- [PR-76](https://github.com/itk-dev/ai-screening/pull/76)
+  - Align the green color
+  - Add default colors to base tailwind config
+  - Change description length in views
+  - Fix table cells
 - [PR-73](https://github.com/itk-dev/ai-screening/pull/73)
   - Added colors to graphs
   - Added possibility to display graphs of multiple projects
