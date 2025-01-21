@@ -204,12 +204,12 @@ input.error {
   border-color: var(--theme-error-border);
 }
 
-table td {
+table th, td {
   text-align: center;
   width: 10%;
 }
 
-table td:first-child {
+table th:first-child, table td:first-child {
   text-align: left;
   width: 50%;
 }
