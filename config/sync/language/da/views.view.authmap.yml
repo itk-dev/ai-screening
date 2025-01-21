@@ -1,44 +1,55 @@
+label: 'External authentication links'
+description: 'Provides overview of external authentication links.'
 display:
   default:
     display_title: Master
     display_options:
-      exposed_form:
-        options:
-          submit_button: Udfør
-          reset_button_label: Gendan
-          exposed_sorts_label: 'Sortér efter'
-          sort_asc_label: Stigende
-          sort_desc_label: Faldende
-      pager:
-        options:
-          expose:
-            items_per_page_label: 'Antal elementer'
-            items_per_page_options_all_label: '- Alle -'
-            offset_label: Forskydning
-          tags:
-            previous: ‹‹
-            next: ››
+      title: 'External authentication links'
       fields:
+        authname:
+          label: 'Authentication Name'
         uid:
+          label: 'Drupal User ID'
           format_plural_string: !!binary MQNAY291bnQ=
         name:
+          label: 'Drupal User Name'
           separator: ', '
         delete_link:
           label: slet
           text: slet
-      filters:
-        authname:
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
           expose:
-            label: Autentificeringsnavn
-        uid:
-          expose:
-            label: 'Drupal bruger'
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
+      exposed_form:
+        options:
+          submit_button: Anvend
+          reset_button_label: Nulstil
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      empty:
+        area_text_custom:
+          content: 'No links (from Authentication name to Drupal user) found.'
       arguments:
         provider_field:
           exception:
-            title: Alle
+            title: All
+          title: 'Links for {{ arguments.provider_field }}'
+      filters:
+        authname:
+          expose:
+            label: 'Authentication name'
+        uid:
+          expose:
+            label: 'Drupal user'
   page:
-    display_title: Side
+    display_title: Page
     display_options:
       menu:
-        title: Eksterne
+        title: External

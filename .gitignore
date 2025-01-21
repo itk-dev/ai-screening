@@ -63,6 +63,8 @@
 /web/sites/example.sites.php
 /web/themes/README.txt
 
+# Ignore Mac
+.DS_Store
 
 # Ignore PhpStorm
 .idea

@@ -1,0 +1,34 @@
+label: Frontpage
+display:
+  default:
+    display_title: Default
+    display_options:
+      title: Frontpage
+      fields:
+        nid:
+          label: ID
+          separator: ', '
+        field_description:
+          separator: ', '
+        title:
+          alter:
+            text: "<h4>{{ title }}</h4>\r\n{{ field_description }}"
+          separator: ', '
+        field_project_state:
+          separator: ', '
+        nothing:
+          alter:
+            text: "{% set project_status = project_track_evaluation(nid.__toString()) %}\r\n{{ include('@itkdev_project_theme/components/project-status.html.twig') }}"
+        field_department:
+          separator: ', '
+        name:
+          separator: ', '
+      exposed_form:
+        options:
+          submit_button: Udfør
+          reset_button_label: Gendan
+          exposed_sorts_label: 'Sortér efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+  page_1:
+    display_title: Page

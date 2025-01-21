@@ -1,19 +1,26 @@
-label: Personer
-description: 'Find og håndtér personer som bruger dit site.'
+label: People
+description: 'Find and manage people interacting with your site.'
 display:
   default:
-    display_title: Standard
+    display_title: Default
     display_options:
-      title: Personer
+      title: People
       fields:
         user_bulk_form:
-          label: Masseopdatering
+          label: 'Bulk update'
         name:
           label: Brugernavn
+          separator: ', '
+        field_name:
+          label: Navn
+          separator: ', '
+        field_department:
+          label: Magistrat
+          separator: ', '
         status:
           label: Status
           settings:
-            format_custom_false: Blokeret
+            format_custom_false: Blocked
             format_custom_true: Aktiv
         roles_target_id:
           label: Roller
@@ -23,12 +30,12 @@ display:
             future_format: '@interval'
             past_format: '@interval'
         access:
-          label: 'Seneste tilgang'
+          label: 'Last access'
           settings:
-            future_format: 'om @interval'
-            past_format: '@interval siden'
+            future_format: '@interval hence'
+            past_format: '@interval ago'
         operations:
-          label: Handlinger
+          label: Operations
         mail:
           separator: ', '
       pager:
@@ -36,47 +43,47 @@ display:
           tags:
             next: 'Næste ›'
             previous: '‹ Forrige'
-            first: '« Første'
-            last: 'Sidste »'
+            first: '« First'
+            last: 'Last »'
           expose:
-            items_per_page_label: 'Antal elementer'
-            items_per_page_options_all_label: '- Alle -'
-            offset_label: Forskydning
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       exposed_form:
         options:
           submit_button: Filter
-          reset_button_label: Gendan
-          exposed_sorts_label: 'Sortér efter'
-          sort_asc_label: Stigende
-          sort_desc_label: Faldende
+          reset_button_label: Nulstil
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       empty:
         area_text_custom:
-          content: 'Ingen personer til rådighed.'
+          content: 'No people available.'
       filters:
         combine:
           expose:
-            label: 'Navn eller e-mail indeholder'
+            label: 'Navn eller email indeholder'
         status:
           group_info:
             label: Status
             group_items:
               1:
-                title: Aktiv
+                title: Active
               2:
-                title: Blokeret
+                title: Blocked
         roles_target_id:
           expose:
-            label: Rolle
+            label: Role
         permission:
           expose:
-            label: Tilladelse
-      use_more_text: mere
+            label: Permission
+      use_more_text: more
   page_1:
-    display_title: Side
+    display_title: Page
     display_options:
       menu:
-        title: Vis
-        description: 'Find og håndtér personer som bruger dit site.'
+        title: List
+        description: 'Find and manage people interacting with your site.'
       tab_options:
-        title: Personer
-        description: 'Håndtér brugerkonti, roller og tilladelser.'
+        title: People
+        description: 'Manage user accounts, roles, and permissions.'
