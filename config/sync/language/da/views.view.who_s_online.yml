@@ -1,30 +1,30 @@
-label: 'Hvem er online'
-description: 'Viser navnene på de brugere, der senste har været aktive, og det totale antal af aktive brugere.'
+label: "Who's online block"
+description: 'Shows the user names of the most recently active users, and the total number of active users.'
 display:
   default:
-    display_title: Standard
+    display_title: Default
     display_options:
-      title: 'Hvem er online'
+      title: "Who's online"
       exposed_form:
         options:
-          submit_button: Udfør
-          reset_button_label: Gendan
-          exposed_sorts_label: 'Sortér efter'
-          sort_asc_label: Stigende
-          sort_desc_label: Faldende
+          submit_button: Anvend
+          reset_button_label: Nulstil
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       empty:
         area_text_custom:
-          content: 'Der er i øjeblikket 0 brugere online.'
+          content: 'There are currently 0 users online.'
       filters:
         access:
           expose:
-            label: 'Seneste tilgang'
-            description: 'En bruger bliver opfattet som online i dette tidsrum efter hun sidst har set en side.'
+            label: 'Last access'
+            description: 'A user is considered online for this long after they have last viewed a page.'
       header:
         result:
-          content: 'Der er i øjeblikket @total brugere online.'
+          content: 'There are currently @total users online.'
   who_s_online_block:
-    display_title: 'Hvem er online'
+    display_title: "Who's online"
     display_options:
-      display_description: 'En liste af indloggede brugere.'
-      block_description: 'Hvem er online'
+      display_description: 'A list of users that are currently logged in.'
+      block_description: "Who's online"

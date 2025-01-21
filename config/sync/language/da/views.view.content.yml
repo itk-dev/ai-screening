@@ -1,8 +1,8 @@
-label: Indhold
-description: 'Find og håndtér indhold.'
+label: Content
+description: 'Find and manage content.'
 display:
   default:
-    display_title: Standard
+    display_title: Default
     display_options:
       title: Indhold
       fields:
@@ -16,32 +16,32 @@ display:
         status:
           label: Status
           settings:
-            format_custom_false: 'Ikke udgivet'
-            format_custom_true: Udgivet
+            format_custom_false: Afpubliseret
+            format_custom_true: Publiseret
         changed:
           label: Opdateret
         langcode:
           label: Sprog
           separator: ', '
         operations:
-          label: Handlinger
+          label: Operations
       pager:
         options:
           tags:
             next: 'Næste ›'
             previous: '‹ Forrige'
-            first: '« Første'
-            last: 'Sidste »'
+            first: '« First'
+            last: 'Last »'
       exposed_form:
         options:
           submit_button: Filter
-          reset_button_label: Gendan
-          exposed_sorts_label: 'Sortér efter'
+          reset_button_label: Nulstil
+          exposed_sorts_label: 'Sorter efter'
           sort_asc_label: Stigende
           sort_desc_label: Faldende
       empty:
         area_text_custom:
-          content: 'Der er intet indhold at vise.'
+          content: 'Intet indhold.'
       filters:
         title:
           expose:
@@ -53,12 +53,12 @@ display:
           expose:
             label: Status
           group_info:
-            label: Publiceringsstatus
+            label: 'Publiseringsstatus status'
             group_items:
               1:
-                title: Udgivet
+                title: Publiseret
               2:
-                title: 'Ikke udgivet'
+                title: 'Ikke publiseret'
         langcode:
           expose:
             label: Sprog
@@ -66,7 +66,7 @@ display:
     display_title: Side
     display_options:
       menu:
-        title: Indhold
+        title: Content
       tab_options:
         title: Indhold
-        description: 'Find og håndtér indhold'
+        description: 'Find and manage content'
