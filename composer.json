@@ -137,6 +137,9 @@
             },
             "drupal/masquerade": {
                 "Provide a foolproof way to unmasquerade (https://www.drupal.org/project/masquerade/issues/2962970)": "https://www.drupal.org/files/issues/2024-01-25/2962970-17.patch"
+            },
+            "drupal/config_translation_po": {
+              "Add drush command for config po import (https://www.drupal.org/project/config_translation_po/issues/3439416)": "https://www.drupal.org/files/issues/2024-04-08/drush.patch"
             }
         }
     },
