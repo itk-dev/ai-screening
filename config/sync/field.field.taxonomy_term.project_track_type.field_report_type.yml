@@ -1,0 +1,21 @@
+uuid: c8acb243-dde2-40c7-b3f2-1fbdf1adb18c
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_report_type
+    - taxonomy.vocabulary.project_track_type
+  module:
+    - options
+id: taxonomy_term.project_track_type.field_report_type
+field_name: field_report_type
+entity_type: taxonomy_term
+bundle: project_track_type
+label: 'Report type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

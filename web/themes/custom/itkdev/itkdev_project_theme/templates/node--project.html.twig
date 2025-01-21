@@ -88,9 +88,11 @@
             <div class="mb-3">{{ projectTrack.getDescription()|raw }}</div>
             <div class="flex justify-between">
               <div class="flex justify-start">
-                <a href="{{ path('ai_screening_reports.project_track', {project_track_id: [projectTrack.id.value]}) }}">
-                  {{ include('@itkdev_project_theme/components/chart-image.svg') }}
-                </a>
+                {% if projectTrack.getType.field_report_type.value is same as('bubble_chart') %}
+                  <a class="underline" href="{{ path('ai_screening_reports.project_track', {project_track_id: [projectTrack.id.value]}) }}">
+                    {{ 'View report'|t }}
+                  </a>
+                {% endif %}
               </div>
               <div class="block self-end">
                 {% if projectTrack.access('update') %}

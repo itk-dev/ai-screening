@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning].
   - Add default colors to base tailwind config
   - Change description length in views
   - Fix table cells
+- [PR-75](https://github.com/itk-dev/ai-screening/pull/75)
+  - Added configurable report types
 - [PR-73](https://github.com/itk-dev/ai-screening/pull/73)
   - Added colors to graphs
   - Added possibility to display graphs of multiple projects

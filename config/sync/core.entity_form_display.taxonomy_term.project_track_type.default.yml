@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.project_track_type.field_configuration
+    - field.field.taxonomy_term.project_track_type.field_report_type
     - field.field.taxonomy_term.project_track_type.field_webform
     - taxonomy.vocabulary.project_track_type
   module:
@@ -31,9 +32,15 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_report_type:
+    type: options_buttons
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_webform:
     type: entity_reference_autocomplete
-    weight: 3
+    weight: 4
     region: content
     settings:
       match_operator: CONTAINS
