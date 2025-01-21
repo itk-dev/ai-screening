@@ -15,6 +15,7 @@
         "cweagans/composer-patches": "^1.7",
         "drupal/better_exposed_filters": "^7.0",
         "drupal/config_ignore": "^3.3",
+        "drupal/config_translation_po": "^1.0",
         "drupal/core-composer-scaffold": "^11.0",
         "drupal/core-project-message": "^11.0",
         "drupal/core-recommended": "^11.0",

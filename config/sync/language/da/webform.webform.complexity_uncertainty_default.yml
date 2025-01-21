@@ -1,0 +1,108 @@
+title: Kompleksitet
+elements: |-
+  kompleksitet:
+    '#type': webform_wizard_page
+    '#title': Kompleksitet
+    hvor_stor_er_projektorganisationen:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvor stor er projektorganisationen?'
+      '#options':
+        '1,0': '1-5 personer'
+        '3,0': '6-10 personer'
+        '5,0': '11-15 personer'
+        '7,0': '16-20 personer'
+        '10,0': '21+ personer'
+      '#options__properties': ''
+    hvor_stor_er_projektets_indflydelse_paa_forretningsstrategiske_m:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvor stor er projektets indflydelse på forretningsstrategiske mål?'
+      '#options':
+        '1,0': Uvæsentlig
+        '3,0': 'Rar at have'
+        '5,0': 'Vil få en vis betydning for dele af forretningen'
+        '7,0': 'Ganske betydningsfuld for alle'
+        '10,0': Afgørende
+      '#options__properties': ''
+    hvad_er_den_geografiske_distribution_af_projektorganisationen:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvad er den geografiske distribution af projektorganisationen?'
+      '#options':
+        '1,0': 'Samme bygning'
+        '3,0': 'Samme magistratsafdeling'
+        '5,0': 'Samme kommune'
+        '7,0': 'Samme region'
+        '10,0': National
+      '#options__properties': ''
+    har_projektorganisationen_erfaring_med_de_involverede_teknologie:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Har projektorganisationen erfaring med de involverede teknologier?'
+      '#options':
+        '1,0': 'Etablerede eksperter'
+        '3,0': 'Har gennemført projekter med samme teknologi med ekstern bistand'
+        '5,0': 'Har gennemført pilotforløb med teknologien'
+        '7,0': 'Har arbejdet med lignende teknologier'
+        '10,0': 'Ingen erfaring med teknologien'
+      '#options__properties': ''
+    hvilke_organisatoriske_afhaengigheder_er_der_i_projektafviklinge:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvilke organisatoriske afhængigheder er der i projektafviklingen?'
+      '#options':
+        '1,0': Ingen
+        '3,0': 'Fordrer koordination med andre indsatser'
+        '5,0': 'Fordrer intern styregruppe'
+        '7,0': 'Fordrer styregruppe på tværs af organisationer'
+        '10,0': 'Skal være del af et program'
+      '#options__properties': ''
+    hvilke_tekniske_afhaengigheder_er_der_i_projektafviklingen:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvilke tekniske afhængigheder er der i projektafviklingen?'
+      '#options':
+        '1,0': Ingen
+        '3,0': 'Mindre tilretninger af etablerede platforme'
+        '5,0': 'Større ændringer i etablerede platforme'
+        '7,0': 'Flere essentielle leverancer fra andet projekt'
+        '10,0': 'Flere essentielle leverancer til/fra andre projekter'
+      '#options__properties': ''
+  usikkerhed:
+    '#type': webform_wizard_page
+    '#title': Usikkerhed
+    hvordan_er_loesningen_leverandoeren_etableret_i_markedet:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvordan er løsningen/leverandøren etableret i markedet?'
+      '#options':
+        '0,1': 'Kendt løsning/leverandør samt juridiske krav/governance.'
+        '0,2': 'Ny løsning, der indføres sammen med andre. Jura/governance antages uproblematiske​.'
+        '0,3': 'Ny løsning med kendt  og velestimeret leverandør. Der er behov for afklaring af visse spørgsmål til jura/governance​'
+        '0,4': 'Ny løsning med kendt  og velestimeret leverandør. Der er behov for afklaring af visse spørgsmål til jura/governance​'
+        '0,5': 'Ny løsning/leverandør, ingen erfaring med de juridiske krav/governance​'
+      '#options__properties': ''
+    hvor_kompliceret_er_den_tekniske_integration_af_loesningen:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvor kompliceret er den tekniske integration af løsningen?'
+      '#options':
+        '0,1': 'PnP. Kendte og indfriede krav​.'
+        '0,3': "Løsningen leveres med velbeskrevne API'er, der dog skal undersøges nærmere​"
+        '0,5': 'Integrationer fordrer en mindre og ikke-kompleks udviklingsindsats​.'
+        '0,7': 'Leverandøren har omfattende, men kendte, krav til teknisk integration – nogle af disse fordrer udviklingsindsats​.'
+        '0,10': 'Ukendte krav, skal kortlægges gennem udviklingsindsats​.'
+      '#options__properties': ''
+    hvor_lang_tid_vil_projektet_formodentligt_straekke_sig_over:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvor lang tid vil projektet formodentligt strække sig over?'
+      '#options':
+        '0,1': '0-6 uger'
+        '0,3': '7-12 uger'
+        '0,5': '13-18 uger'
+        '0,7': '19-24 uger'
+        '0,10': '25+ uger'
+      '#options__properties': ''
+    hvordan_er_projektet_scopet:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvordan er projektet scopet?'
+      '#options':
+        '0,1': 'Klar og velstruktureret tidsplan,​ veldefineret omfang.'
+        '0,3': 'Tidsplan kræver afklaring, omfang løst defineret​'
+        '0,5': 'Løst defineret tidsplan, omfang løst defineret​'
+        '0,7': 'Løst defineret tidsplan, omfang kræver afklaring​'
+        '0,10': 'Tidsplan og omfang ikke defineret​'
+      '#options__properties': ''

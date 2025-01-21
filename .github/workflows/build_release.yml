@@ -1,0 +1,55 @@
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+name: Create Github Release
+
+permissions:
+  contents: write
+
+env:
+  COMPOSE_USER: runner
+
+jobs:
+  create-release:
+    runs-on: ubuntu-24.04
+    env:
+      COMPOSER_ALLOW_SUPERUSER: 1
+      APP_ENV: prod
+    steps:
+      - name: Install Task
+        uses: arduino/setup-task@v2
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Composer install
+        run: |
+          docker network create frontend
+          docker compose run --rm phpfpm composer install --no-dev -o
+
+      - name: Build theme assets
+        run: |
+          task theme-build
+          task theme-clean-up
+
+      - name: Make assets dir
+        run: |
+          mkdir -p ../assets
+
+      - name: Create archive
+        run: |
+          sudo chown -R runner:runner ./
+          tar --exclude='.git' -zcf ../assets/${{ github.event.repository.name }}-${{ github.ref_name }}.tar.gz ./
+
+      - name: Create checksum
+        run: |
+          cd ../assets
+          sha256sum ${{ github.event.repository.name }}-${{ github.ref_name }}.tar.gz > ../assets/checksum.txt
+
+      - name: Create a release in GitHub and uploads assets
+        run: gh release create ${{ github.ref_name }} --verify-tag --generate-notes ../assets/*.*
+        env:
+          GITHUB_TOKEN: ${{ github.TOKEN }}
+        shell: bash
