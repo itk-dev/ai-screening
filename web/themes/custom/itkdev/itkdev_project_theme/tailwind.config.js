@@ -11,6 +11,8 @@ module.exports = {
     "bg-slate-300",
     "bg-yellow-700",
     "bg-red-700",
+    "bg-green-600",
+    "bg-green-700",
     "grid-cols-4",
     "order-last",
     "text-slate-300",
