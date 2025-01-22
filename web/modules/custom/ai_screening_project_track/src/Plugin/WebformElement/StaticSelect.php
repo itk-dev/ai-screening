@@ -2,7 +2,7 @@
 
 namespace Drupal\ai_screening_project_track\Plugin\WebformElement;
 
-use Drupal\webform\Plugin\WebformElement\Select;
+use Drupal\webform\Plugin\WebformElementBase;
 
 /**
  * Weighted radios element.
@@ -14,6 +14,16 @@ use Drupal\webform\Plugin\WebformElement\Select;
  *   category = @Translation("AI Screening"),
  * )
  */
-class StaticSelect extends Select {
-
+class StaticSelect extends WebformElementBase {
+  /**
+   * {@inheritdoc}
+   */
+  #[\Override]
+  protected function defineDefaultProperties() {
+    return [
+        'empty_option' => '',
+        'empty_value' => '',
+        'options' => []
+      ] + parent::defineDefaultProperties();
+  }
 }

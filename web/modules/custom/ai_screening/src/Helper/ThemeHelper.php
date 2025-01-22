@@ -52,6 +52,10 @@ final class ThemeHelper extends AbstractHelper implements EventSubscriberInterfa
       $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
     }
     if ($hook === 'select' & !empty($variables['element']['#id'])) {
+      if ('ai_screening_static_select' === $variables['element']['#type']) {
+        $suggestions[] = 'select__' . str_replace('-', '_', $variables['element']['#type']);
+      }
+
       $suggestions[] = 'select__' . str_replace('-', '_', $variables['element']['#id']);
     }
   }
