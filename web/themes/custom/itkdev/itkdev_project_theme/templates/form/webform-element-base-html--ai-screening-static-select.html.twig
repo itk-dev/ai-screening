@@ -30,7 +30,7 @@
     <div class="font-thin mb-2">( {{ element['#help']|striptags }} )</div>
   {% endif %}
 
-  {% set displayedValue = value['#markup'] is same as ('{Empty}') ? 'None'|t : value['#plain_text']|t %}
+  {% set displayedValue = (value['#markup'] is same as ('{Empty}')) or (value['#plain_text'] is empty) ? '{Empty}'|t : value['#plain_text']|t %}
   <div class="capitalize">
     <div id="auto-evaluation" class="relative bg-white flex items-center mb-3 md:mb-5 min-w-28 justify-end">
       <div class="mr-3 line-clamp-6">

@@ -213,3 +213,8 @@ table th:first-child, table td:first-child {
   text-align: left;
   width: 50%;
 }
+
+.line-height-xs {
+  line-height: .5rem;
+  font-size: .5rem;
+}
