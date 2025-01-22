@@ -9,9 +9,9 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\State\StateInterface;
+use Drupal\Core\Url;
 use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
-use Drupal\Core\Url;
 
 /**
  * Configure AI Screening project track settings for this site.
@@ -112,10 +112,18 @@ final class ThresholdsForm extends FormBase {
     $link = new Link($this->t('Go back'), $url);
 
     $build['link'] = $link->toRenderable();
-    $build['link']['#attributes'] = ['class' => ['inline-block', 'btn-primary', 'bg-black', 'text-white', 'hover:bg-stone-700']];
+    $build['link']['#attributes'] = [
+      'class' => [
+        'inline-block',
+        'btn-primary',
+        'bg-black',
+        'text-white',
+        'hover:bg-stone-700',
+      ],
+    ];
 
     $form['form_footer']['back'] = [
-      $build['link']
+      $build['link'],
     ];
 
     $form['form_footer']['actions'] = [
