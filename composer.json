@@ -15,6 +15,7 @@
         "cweagans/composer-patches": "^1.7",
         "drupal/better_exposed_filters": "^7.0",
         "drupal/config_ignore": "^3.3",
+        "drupal/config_translation_po": "^1.0",
         "drupal/core-composer-scaffold": "^11.0",
         "drupal/core-project-message": "^11.0",
         "drupal/core-recommended": "^11.0",
@@ -128,6 +129,9 @@
             ]
         },
         "patches": {
+            "drupal/config_translation_po": {
+                "Add drush command for config po import (https://www.drupal.org/project/config_translation_po/issues/3439416)": "https://www.drupal.org/files/issues/2024-04-08/drush.patch"
+            },
             "drupal/core": {
                 "Add an Autowire trait for plugins (https://www.drupal.org/project/drupal/issues/3294266)": "https://www.drupal.org/files/issues/2023-08-18/3294266-24.patch",
                 "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540)": "https://www.drupal.org/files/issues/2024-08-06/3150540-43-MR9103-11.x.diff",

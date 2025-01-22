@@ -22,6 +22,7 @@ services:
 
   phpfpm:
     image: itkdev/php8.3-fpm:latest
+    user: ${COMPOSE_USER:-deploy}
     networks:
       - app
     extra_hosts:

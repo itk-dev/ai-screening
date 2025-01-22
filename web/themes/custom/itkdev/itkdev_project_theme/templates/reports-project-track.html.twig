@@ -15,8 +15,10 @@
 {% block content %}
   <div class="p-5 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-slate-600 drop-shadow-md">
     {% for key, track in data.projectTracks %}
-      <h3>{{ track.entity.label }}</h3>
-      <div class="w-full mb-16"><canvas id="track-type-{{ key }}" class="chart" track-id="{{ key }}"></canvas></div>
+      {% if track.entity.getType.field_report_type.value is same as('bubble_chart') %}
+        <h3>{{ track.entity.label }}</h3>
+        <div class="w-full mb-16"><canvas id="track-type-{{ key }}" class="chart" track-id="{{ key }}"></canvas></div>
+      {% endif %}
     {% endfor %}
 
     <div>

@@ -29,7 +29,7 @@
             {{ projectTrack.getDescription }}
           </div>
           <div class="basis-full flex justify-end">
-            <a href="{{ path('ai_screening_reports.project_track', {project_track_id: [projectTrack.id.value]}) }}" class="font-thin bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded inline-flex items-center">
+            <a href="{{ path('ai_screening_reports.project_track', {project_track_id: [projectTrack.id.value]}) }}" class="font-thin bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded inline-flex items-center">
               <i class="fa-solid fa-circle-plus mr-3"></i>
               <span>{{ 'Create report for "@trackLabel" track'|t({'@trackLabel': projectTrack.label}) }}</span>
             </a>

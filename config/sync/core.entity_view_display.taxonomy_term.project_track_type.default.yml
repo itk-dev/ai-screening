@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.project_track_type.field_configuration
+    - field.field.taxonomy_term.project_track_type.field_report_type
     - field.field.taxonomy_term.project_track_type.field_webform
     - taxonomy.vocabulary.project_track_type
   module:
+    - options
     - text
 id: taxonomy_term.project_track_type.default
 targetEntityType: taxonomy_term
@@ -26,6 +28,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_report_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_webform:
     type: entity_reference_label

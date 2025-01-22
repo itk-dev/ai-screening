@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default theme implementation for a select element.
+ * Customized implementation of a select element.
  *
  * Available variables:
  * - attributes: HTML attributes for the <select> tag.
@@ -14,10 +14,10 @@
 #}
 
 {% apply spaceless %}
-  {% set colorBlock = 'h-3 w-3 absolute h-5 w-5 z-0 ml-3' %}
+  {% set colorBlock = 'h-3 w-3 absolute h-5 w-5 z-0 ml-3 select-color-block' %}
   <div class="relative bg-white flex items-center">
-    <div id="selectColorBlock" class="{{ colorBlock }}"></div>
-    <select{{ attributes.addClass('w-full p-3 pl-12 relative z-1 bg-transparent') }}>
+    <div data-scheme="colorSchemeStatus" class="{{ colorBlock }}"></div>
+    <select{{ attributes.addClass('w-full p-3 pl-12 relative z-1 bg-transparent colored-select') }}>
       {% for option in options %}
         {% if option.type == 'optgroup' %}
           <optgroup label="{{ option.label }}">
