@@ -31,7 +31,9 @@ class StaticSelect extends Select {
 
   /**
    * Allow translation of options.
+   *
    * @return array
+   *   The options after translations have been applied.
    */
   private function translatedOptions(): array {
     $translatedOptions = [];
@@ -41,4 +43,5 @@ class StaticSelect extends Select {
 
     return $translatedOptions;
   }
+
 }

@@ -15,15 +15,17 @@ use Drupal\webform\Plugin\WebformElementBase;
  * )
  */
 class StaticSelect extends WebformElementBase {
+
   /**
    * {@inheritdoc}
    */
   #[\Override]
   protected function defineDefaultProperties() {
     return [
-        'empty_option' => '',
-        'empty_value' => '',
-        'options' => []
-      ] + parent::defineDefaultProperties();
+      'empty_option' => '',
+      'empty_value' => '',
+      'options' => [],
+    ] + parent::defineDefaultProperties();
   }
+
 }
