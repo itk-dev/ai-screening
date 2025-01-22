@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-81](https://github.com/itk-dev/ai-screening/pull/81)
+  - Added availability icons and text to status
 - [PR-80](https://github.com/itk-dev/ai-screening/pull/80)
   - Added static select webform element
 - [PR-77](https://github.com/itk-dev/ai-screening/pull/77)
