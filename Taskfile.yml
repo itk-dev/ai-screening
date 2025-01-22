@@ -87,7 +87,7 @@ tasks:
     desc: "Import string and config translations from .po files"
     prompt: "This will reset all translations to match .po files. Continue?"
     cmds:
-      - task drush -- locale:import da ../translations/strings/ai-screening.da.po
+      - task drush -- locale:import da ../translations/strings/ai-screening.da.po --override=all
       - task drush -- config_translation_po:import da ../translations/config/ai-screening-config.da.po
       - task drush -- cache:rebuild
     silent: true
