@@ -177,7 +177,6 @@ element:
     number: number
     password: password
     password_confirm: password_confirm
-    processed_text: processed_text
     radios: radios
     range: range
     search: search
@@ -185,7 +184,6 @@ element:
     table: table
     tableselect: tableselect
     tel: tel
-    text_format: text_format
     textarea: textarea
     textfield: textfield
     url: url
