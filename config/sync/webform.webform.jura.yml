@@ -13,7 +13,7 @@ title: Jura
 description: ''
 categories: {  }
 elements: |-
-  q:
+  q0:
     '#type': ai_screening_yes_no_stop
     '#title': 'An important question'
     '#description': '<p>Do you know stuff?</p>'
@@ -22,10 +22,46 @@ elements: |-
     '#text_no': '<p>No!</p>'
     '#stop_value': '1'
     '#text_stop': '<p><strong>STOP!</strong></p>'
+  q1:
+    '#type': ai_screening_yes_no_stop
+    '#title': 'An important question'
+    '#description': '<p>Do you know stuff?</p>'
+    '#text_question': "<p>Do you really know what you're doing?</p>"
+    '#text_yes': '<p>Yes, sir!</p>'
+    '#text_no': '<p>No!</p>'
+    '#stop_value': '0'
+    '#text_stop': '<p><strong>STOP!</strong></p>'
     '#text_question_format': simple_editor
     '#text_yes_format': simple_editor
     '#text_no_format': simple_editor
     '#text_stop_format': simple_editor
+  q2:
+    '#type': ai_screening_yes_no_stop
+    '#title': 'An important question'
+    '#description': '<p>Do you know stuff?</p>'
+    '#text_question': "<p>Do you really know what you're doing?</p>"
+    '#text_yes': '<p>Yes, sir!</p>'
+    '#text_no': '<p>No!</p>'
+    '#stop_value': '0'
+    '#text_question_format': simple_editor
+    '#text_yes_format': simple_editor
+    '#text_no_format': simple_editor
+    '#text_stop_format': simple_editor
+  q3:
+    '#type': ai_screening_yes_no_stop
+    '#title': 'An important question'
+    '#description': '<p>Do you know stuff?</p>'
+    '#text_question': "<p>Do you really know what you're doing?</p>"
+    '#text_yes': '<p>Yes, sir!</p>'
+    '#text_no': '<p>No!</p>'
+    '#stop_value': '0'
+    '#text_question_format': simple_editor
+    '#text_yes_format': simple_editor
+    '#text_no_format': simple_editor
+    '#text_stop_format': simple_editor
+  markup:
+    '#type': webform_markup
+    '#markup': "<p>That's all Folks!</p>"
 css: ''
 javascript: ''
 settings:

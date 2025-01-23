@@ -8,6 +8,7 @@ use Drupal\Core\Render\Element\CompositeFormElementTrait;
 use Drupal\Core\Render\Element\Select;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\ai_screening_project_track\Plugin\WebformElement\YesNoStop as WebformYesNoStopElement;
+use Drupal\webform\Element\WebformHtmlEditor;
 
 /**
  * Yes/no stop element.
@@ -69,11 +70,7 @@ final class YesNoStop extends Select {
       $element[$elementName] = [
         '#type' => 'container',
         '#attributes' => ['class' => $classNames],
-        'message' => [
-          '#type' => 'processed_text',
-          '#text' => $element[$elementKey] ?? '',
-          '#format' => $element[WebformYesNoStopElement::getFormatKey($elementKey)] ?? WebformYesNoStopElement::getTextFormat(),
-        ],
+        'message' => WebformHtmlEditor::checkMarkup($element[$elementKey] ?? '', ['tidy' => FALSE]),
         '#states' => $states(value: $value),
       ];
     }

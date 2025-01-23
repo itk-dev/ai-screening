@@ -6,7 +6,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\webform\Plugin\WebformElement\OptionsBase;
-use Drupal\webform\WebformSubmissionInterface;
 
 /**
  * Yes/no stop element.
@@ -52,7 +51,6 @@ final class YesNoStop extends OptionsBase {
     foreach (static::TEXT_ELEMENTS as $name) {
       $defaultProperties += [
         $name => '',
-        self::getFormatKey($name) => '',
       ];
     }
 
@@ -71,12 +69,9 @@ final class YesNoStop extends OptionsBase {
       $form['options'][$key]['#access'] = FALSE;
     }
 
-    $format = static::getTextFormat();
-    $addTextElement = static function &(string $key, string|TranslatableMarkup $title, string|TranslatableMarkup|null $description = NULL) use (&$form, $format): array {
+    $addTextElement = static function &(string $key, string|TranslatableMarkup $title, string|TranslatableMarkup|null $description = NULL) use (&$form): array {
       $form['options'][$key] = [
-        '#type' => 'text_format',
-        '#format' => $format,
-        '#allowed_formats' => [$format],
+        '#type' => 'webform_html_editor',
         '#title' => $title,
         '#description' => $description,
       ];
@@ -125,52 +120,6 @@ final class YesNoStop extends OptionsBase {
     ];
 
     return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   *
-   * @see ProcessedText::setConfigurationFormDefaultValue()
-   */
-  protected function setConfigurationFormDefaultValue(array &$form, array &$element_properties, array &$property_element, $property_name) {
-    if (in_array($property_name, static::TEXT_ELEMENTS)) {
-      $formatKey = static::getFormatKey($property_name);
-      if (isset($element_properties[$formatKey])) {
-        $property_element['#format'] = $element_properties[$formatKey];
-        unset($element_properties[$formatKey]);
-      }
-    }
-
-    parent::setConfigurationFormDefaultValue($form, $element_properties, $property_element, $property_name);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function getConfigurationFormProperty(array &$properties, $property_name, $property_value, array $element) {
-    if (in_array($property_name, static::TEXT_ELEMENTS)) {
-      if (isset($property_value['value'], $property_value['format'])) {
-        $properties[$property_name] = $property_value['value'] ?? NULL;
-        $properties[static::getFormatKey($property_name)] = $property_value['format'] ?? NULL;
-      }
-    }
-    else {
-      parent::getConfigurationFormProperty($properties, $property_name, $property_value, $element);
-    }
-  }
-
-  /**
-   * Get text format.
-   */
-  public static function getTextFormat(): string {
-    return 'simple_editor';
-  }
-
-  /**
-   * Get (text) format key.
-   */
-  public static function getFormatKey(string $key): string {
-    return $key . '_format';
   }
 
 }
