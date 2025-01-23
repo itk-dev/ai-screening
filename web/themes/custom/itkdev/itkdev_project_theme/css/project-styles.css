@@ -218,3 +218,7 @@ table th:first-child, table td:first-child {
   line-height: .5rem;
   font-size: .5rem;
 }
+
+.show-color + select{
+  padding-left: 3rem;
+}

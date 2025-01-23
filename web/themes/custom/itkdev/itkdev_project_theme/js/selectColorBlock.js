@@ -20,11 +20,20 @@ selectElements.forEach(function(element) {
   if (colorBlock) {
     // Set color on page load.
     colorBlock.classList.add(scheme[element.value])
+    if ('{Ingen}' !== element.value) {
+      colorBlock.classList.add('show-color')
+    }
 
     // Set color on change.
     element.addEventListener("change", function() {
-      colorBlock.classList.remove(...Object.values(scheme));
-      colorBlock.classList.add(scheme[element.value])
+      if ('{Ingen}' === element.value) {
+        colorBlock.classList.remove('show-color');
+        colorBlock.classList.remove(...Object.values(scheme));
+      }
+      else {
+        colorBlock.classList.remove(...Object.values(scheme));
+        colorBlock.classList.add(scheme[element.value], 'show-color')
+      }
     });
   }
 });
