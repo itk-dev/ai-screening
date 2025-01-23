@@ -117,7 +117,7 @@ final class Commands extends DrushCommands {
   /**
    * Pre command hook for pm:install.
    */
-  #[CLI\Hook(HookManager::PRE_COMMAND_HOOK, target: '*')]
+  #[CLI\Hook(HookManager::PRE_COMMAND_HOOK, target: 'pm:install')]
   public function preCommand(CommandData $commandData): void {
     $this->accountSwitcher->switchTo(new UserSession(['uid' => 1]));
   }
@@ -125,7 +125,7 @@ final class Commands extends DrushCommands {
   /**
    * Post command hook for pm:install.
    */
-  #[CLI\Hook(HookManager::POST_COMMAND_HOOK, target: '*')]
+  #[CLI\Hook(HookManager::POST_COMMAND_HOOK, target: 'pm:install')]
   public function postCommand($result, CommandData $commandData): void {
     $this->accountSwitcher->switchBack();
   }
