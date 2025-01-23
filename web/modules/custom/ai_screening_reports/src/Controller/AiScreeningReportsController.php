@@ -106,7 +106,7 @@ final class AiScreeningReportsController extends ControllerBase {
           'labels' => [
             'x' => '',
             'y' => '',
-            'z' => ''
+            'z' => '',
           ],
         ];
 
@@ -137,7 +137,7 @@ final class AiScreeningReportsController extends ControllerBase {
           'request' => $request,
           'projectTracks' => $groupedTracks,
           'trackHelper' => $this->projectTrackHelper,
-          'colorList' => self::COLOR_CODES
+          'colorList' => self::COLOR_CODES,
         ],
       ];
     }

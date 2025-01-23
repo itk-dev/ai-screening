@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-83](https://github.com/itk-dev/ai-screening/pull/83)
+  - Move labels out of graph.
+  - Change color and bubble size
+  - Add information about overridden evaluation
 - [PR-80](https://github.com/itk-dev/ai-screening/pull/80)
   - Added static select webform element
 - [PR-77](https://github.com/itk-dev/ai-screening/pull/77)
