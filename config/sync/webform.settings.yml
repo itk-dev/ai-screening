@@ -215,7 +215,6 @@ element:
     webform_likert: webform_likert
     webform_link: webform_link
     webform_mapping: webform_mapping
-    webform_markup: webform_markup
     webform_message: webform_message
     webform_more: webform_more
     webform_name: webform_name
