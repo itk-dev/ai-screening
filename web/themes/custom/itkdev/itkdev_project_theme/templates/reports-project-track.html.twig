@@ -42,7 +42,7 @@
                 </div>
                 {% if track.entity.getProjectTrackEvaluationOverridden is not empty and projectCount is same as (1) %}
                   <div>
-                    {{ 'This project has been manually evaluated.' }}
+                    {{ 'This project has been manually evaluated.'|t }}
                   </div>
                 {% endif %}
                 {% if track.entity.getProjectTrackEvaluationOverridden is not empty and projectCount is same as (1) %}
