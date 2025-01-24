@@ -37,6 +37,3 @@ selectElements.forEach(function(element) {
     });
   }
 });
-
-
-
