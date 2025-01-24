@@ -495,6 +495,10 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         catch (\Throwable $exception) {
           $configuration = [];
         }
+        // Project track expects the configuration to be an array.
+        if (!is_array($configuration)) {
+          $configuration = [];
+        }
         $projectTrack = $this->projectTrackStorage
           ->create([
             'type' => $projectTrackTerm->id(),

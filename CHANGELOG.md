@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-84](https://github.com/itk-dev/ai-screening/pull/84)
+  Implemented form element value formatting
 - [PR-82](https://github.com/itk-dev/ai-screening/pull/82)
   Added Yes/no stop webform element
 - [PR-81](https://github.com/itk-dev/ai-screening/pull/81)

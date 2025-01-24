@@ -34,10 +34,6 @@ final class YesNoStop extends Select {
    * Process callback.
    */
   public static function processYesNoStop(array &$element, FormStateInterface $form_state, array &$complete_form): array {
-    $element['#options'] = [
-      WebformYesNoStopElement::VALUE_YES => new TranslatableMarkup('Yes'),
-      WebformYesNoStopElement::VALUE_NO => new TranslatableMarkup('No'),
-    ];
     $element['#empty_option'] = (string) (new TranslatableMarkup('- Select -'));
     $element['#required'] = TRUE;
 
