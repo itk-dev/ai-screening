@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-85](https://github.com/itk-dev/ai-screening/pull/85)
+  - Changed tool header
 - [PR-80](https://github.com/itk-dev/ai-screening/pull/80)
   - Added static select webform element
 - [PR-79](https://github.com/itk-dev/ai-screening/pull/79)
