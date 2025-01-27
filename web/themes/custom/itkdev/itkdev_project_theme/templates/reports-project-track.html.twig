@@ -13,11 +13,73 @@
 {% endblock %}
 
 {% block content %}
+  {%
+    set evaluationClasses = {
+    none: 'bg-slate-300',
+    approved: 'bg-green-600',
+    undecided: 'bg-yellow-700',
+    refused: 'bg-red-700',
+  }
+  %}
+  {% set projectCount = data.projectTracks|length %}
+
   <div class="p-5 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-slate-600 drop-shadow-md">
     {% for key, track in data.projectTracks %}
       {% if track.entity.getType.field_report_type.value is same as('bubble_chart') %}
-        <h3>{{ track.entity.label }}</h3>
-        <div class="w-full mb-16"><canvas id="track-type-{{ key }}" class="chart" track-id="{{ key }}"></canvas></div>
+        {% set dimensions = track.entity.getDimensions %}
+        {% set evaluationOptions = data.trackHelper.getEvaluationOptions %}
+        {% set evaluationColor = evaluationOptions[evaluation] ?? 'bg-slate-300' %}
+
+        <div class="mb-16">
+          <header class="flex justify-between px-4 py-4 border-b">
+            <h2 class="m-0 text-lg dark:text-white">{{ track.entity.label }}</h2>
+          </header>
+          <div>
+            <div class="my-3 flex flex-wrap px-4">
+              <div class="basis-full">
+                <div>
+                  {{ 'The graph shows the automatically calculated evaluation.'|t }}
+                </div>
+                {% if track.entity.getProjectTrackEvaluationOverridden is not empty and projectCount is same as (1) %}
+                  <div>
+                    {{ 'This project has been manually evaluated.'|t }}
+                  </div>
+                {% endif %}
+                {% if track.entity.getProjectTrackEvaluationOverridden is not empty and projectCount is same as (1) %}
+                <div class="flex gap-16 mt-3">
+                  <div>
+                    <div class="description text-xs">{{ 'System evaluation'|t }}</div>
+                    <div class="relative bg-white flex items-center mb-3 md:mb-5">
+                      <div class="h-5 w-5 z-0 mr-3 {{ evaluationClasses[track.entity.getProjectTrackEvaluation(TRUE)] }}"></div>
+                      <div>{{ evaluationOptions[track.entity.getProjectTrackEvaluation(TRUE)] }}</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="description text-xs">{{ 'Manual evaluation'|t }}</div>
+                    <div class="relative bg-white flex items-center mb-3 md:mb-5">
+                      <div class="h-5 w-5 z-0 mr-3 {{ evaluationClasses[track.entity.getProjectTrackEvaluationOverridden] }}"></div>
+                      <div>{{ evaluationOptions[track.entity.getProjectTrackEvaluationOverridden] }}</div>
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full">
+            <div class="px-4">{{ dimensions[1] }}</div>
+            <canvas id="track-type-{{ key }}" class="chart" track-id="{{ key }}"></canvas>
+            <div class="px-4 text-right">{{ dimensions[0] }}</div>
+          </div>
+          <div class="my-3 flex flex-wrap px-4">
+            <div class="basis-full mb-5">
+                <div> {{ dimensions[2] is not empty ? '@dimension is illustrated by bubble size'|t({'@dimension': dimensions[2]}) }}</div>
+            </div>
+          </div>
+          {% if projectCount > 1 %}
+            {% include '@itkdev_project_theme/components/reportsMultiProjectTable.html.twig' %}
+          {% endif %}
+        </div>
       {% endif %}
     {% endfor %}
   </div>
