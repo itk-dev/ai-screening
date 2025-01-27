@@ -130,7 +130,6 @@ final class ThresholdsForm extends FormBase {
       ];
     }
 
-
     $form['form_footer']['actions'] = [
       '#type' => 'actions',
       'submit' => [
