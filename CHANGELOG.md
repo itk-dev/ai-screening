@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-85](https://github.com/itk-dev/ai-screening/pull/85)
+  - Changed tool header
 - [PR-83](https://github.com/itk-dev/ai-screening/pull/83)
   - Move labels out of graph.
   - Change color and bubble size
@@ -17,6 +19,8 @@ and this project adheres to [Semantic Versioning].
   - Added availability icons and text to status
 - [PR-80](https://github.com/itk-dev/ai-screening/pull/80)
   - Added static select webform element
+- [PR-79](https://github.com/itk-dev/ai-screening/pull/79)
+  - Added back buttons on several pages
 - [PR-77](https://github.com/itk-dev/ai-screening/pull/77)
   - Added translation functionality
   - Added .po files

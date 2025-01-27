@@ -77,10 +77,14 @@
             </div>
           </div>
           {% if projectCount > 1 %}
-            {% include '@itkdev_project_theme/components/reportsMultiProjectTable.html.twig' %}
+            {{ include('@itkdev_project_theme/components/reportsMultiProjectTable.html.twig') }}
           {% endif %}
         </div>
       {% endif %}
     {% endfor %}
+
+    <div>
+      <a href="javascript:history.back()" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">{{ 'Go Back'|t }}</a>
+    </div>
   </div>
 {% endblock %}
