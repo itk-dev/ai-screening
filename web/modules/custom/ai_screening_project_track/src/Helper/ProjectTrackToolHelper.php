@@ -372,7 +372,9 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
       ->condition('tool_id', $submission->id(), '=')
       ->execute();
 
-    return $this->projectTrackToolStorage->load(reset($ids)) ?: NULL;
+    $id = reset($ids) ?: NULL;
+
+    return $id !== NULL ? $this->projectTrackToolStorage->load($id) : NULL;
   }
 
 }

@@ -213,3 +213,12 @@ input.error {
   text-align: left;
   width: 50%;
 }
+
+.line-height-xs {
+  line-height: .5rem;
+  font-size: .5rem;
+}
+
+.show-color + select{
+  padding-left: 3rem;
+}
