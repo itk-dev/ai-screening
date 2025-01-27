@@ -1,15 +1,30 @@
 {% set toolLabel = form['#tool_helper'].getToolLabel(projectTrackTool) %}
 {% set toolStatus = form['#tool_helper'].getToolStatus(projectTrackTool) %}
 
-<header class="flex justify-between px-4 py-4 border-b">
-  <h2 class="m-0 text-lg dark:text-white">{{ toolLabel }}</h2>
-  <div>
-    {% if toolStatus.fields is same as 0 %}
-      {{ 'New'|t }}
-    {% elseif toolStatus.fields is same as toolStatus.populated %}
-      <span class="mr-3 align-middle">{{ 'Completed'|t }}</span><span class="rounded-full align-middle inline-flex shadow-[0_0_10px_rgba(21,128,61,.75)]"><i class="text-green-700 fa-solid fa-circle-check"></i></span>
-    {% else %}
-      {{ 'Started @populated of @fields steps'|t({'@populated': toolStatus.populated, '@fields': toolStatus.fields}) }}
+<header class="border-b flex justify-between">
+  <div class="flex justify-between px-4 py-4 pl-4 flex-nowrap w-full items-center">
+    {% if projectTrackTool.access('update') %}
+      <a href="{{ path('entity.webform_submission.edit_form', {
+        webform: 'complexity_uncertainty_default',
+        webform_submission: projectTrackTool.getToolId,
+        destination: form['#action'],
+      }) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700 px-6">
+        <i class="fa-solid fa-pencil"></i></span>
+      </a>
     {% endif %}
+    <h2 class="m-0 text-lg dark:text-white grow pl-4 basis-72 overflow-hidden text-ellipsis whitespace-nowrap">{{ toolLabel }}</h2>
+    <div class="grow pl-4 text-right">
+      {% if toolStatus.fields is same as 0 %}
+        {{ 'New'|t }}
+      {% elseif toolStatus.fields is same as toolStatus.populated %}
+        <span class="mr-3 align-middle">{{ 'Completed'|t }}</span><span class="rounded-full align-middle inline-flex shadow-[0_0_10px_rgba(21,128,61,.75)]"><i class="text-green-700 fa-solid fa-circle-check"></i></span>
+      {% else %}
+        {{ 'Started @populated of @fields steps'|t({'@populated': toolStatus.populated, '@fields': toolStatus.fields}) }}
+      {% endif %}
+    </div>
+  </div>
+  <div x-on:click="open =! open" class="flex w-20 border-l-2 cursor-pointer">
+    <div x-show="!open" class="flex align-center items-center"><i class="fa-solid fa-angle-down"></i></div>
+    <div x-show="open" class="flex align-center items-center"><i class="fa-solid fa-angle-up"></i></div>
   </div>
 </header>
