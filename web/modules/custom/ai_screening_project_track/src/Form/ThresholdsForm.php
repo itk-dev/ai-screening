@@ -108,23 +108,28 @@ final class ThresholdsForm extends FormBase {
       '#attributes' => ['class' => ['flex', 'justify-between']],
     ];
 
-    $url = Url::fromUri($_SERVER['HTTP_REFERER']);
-    $link = new Link($this->t('Go back'), $url);
+    $referer = $this->getRequest()->server->get('HTTP_REFERER');
 
-    $build['link'] = $link->toRenderable();
-    $build['link']['#attributes'] = [
-      'class' => [
-        'inline-block',
-        'btn-primary',
-        'bg-black',
-        'text-white',
-        'hover:bg-stone-700',
-      ],
-    ];
+    if (!empty($referer)) {
+      $url = Url::fromUri($referer);
+      $link = new Link($this->t('Go back'), $url);
 
-    $form['form_footer']['back'] = [
-      $build['link'],
-    ];
+      $build['link'] = $link->toRenderable();
+      $build['link']['#attributes'] = [
+        'class' => [
+          'inline-block',
+          'btn-primary',
+          'bg-black',
+          'text-white',
+          'hover:bg-stone-700',
+        ],
+      ];
+
+      $form['form_footer']['back'] = [
+        $build['link'],
+      ];
+    }
+
 
     $form['form_footer']['actions'] = [
       '#type' => 'actions',
