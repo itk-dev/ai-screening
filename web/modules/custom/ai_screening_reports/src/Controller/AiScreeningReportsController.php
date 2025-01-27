@@ -24,7 +24,7 @@ final class AiScreeningReportsController extends ControllerBase {
   public const string PROJECT_TRACK_ID_NAME = 'project_track_id';
 
   private const array COLOR_CODES = [
-    '#047857',
+    '#000000',
     '#aac451',
     '#a4011e',
     '#4e6ebe',
@@ -89,8 +89,6 @@ final class AiScreeningReportsController extends ControllerBase {
         // Allow the first term to define the dimensions and the thresholds.
         $term = $projectTrack->getType();
         $max = $this->projectTrackTypeHelper->getProjectTrackTypeMaxPossible($term);
-        /** @var \Drupal\taxonomy\TermInterface $term */
-        $dimensions = $this->projectTrackTypeHelper->getDimensions($term);
 
         // Graph setup.
         $groupedTracks[$projectTrack->getType()->id()]['graph'] = [
@@ -104,23 +102,23 @@ final class AiScreeningReportsController extends ControllerBase {
             'y' => $max[1] ?? '',
             'z' => $max[2] ?? '',
           ],
-          // Use the first three identified dimensions as axis.
+          // Don't use labels in graph.
           'labels' => [
-            'x' => isset($dimensions[0]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[0]]) : '',
-            'y' => isset($dimensions[1]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[1]]) : '',
-            'z' => isset($dimensions[2]) ? $this->t('@dimension approval limit', ['@dimension' => $dimensions[2]]) : '',
+            'x' => '',
+            'y' => '',
+            'z' => '',
           ],
         ];
 
         // Data setup.
         $sums = $projectTrack->getSummedValues();
         $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['dataset']['plots'] = [
-          ['x' => $sums[0] ?? 0, 'y' => $sums[1] ?? 0, 'r' => $sums[2] ?? '3'],
+          ['x' => $sums[0] ?? 0, 'y' => $sums[1] ?? 0, 'r' => $sums[2] ?? '5'],
         ];
 
         $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['dataset']['chart']['label'] = $projectTrack->getProject()->label();
         $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['dataset']['chart']['color'] = $projectColors[$projectTrack->getProject()->id()];
-
+        $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['entity'] = $projectTrack;
         if ($colorCounter >= self::MAX_NUMBER_OF_PROJECTS) {
           $this->messenger()
             ->addWarning($this->t('A maximum of @max tracks can be displayed.', ['@max' => self::MAX_NUMBER_OF_PROJECTS]));
@@ -138,6 +136,8 @@ final class AiScreeningReportsController extends ControllerBase {
         '#data' => [
           'request' => $request,
           'projectTracks' => $groupedTracks,
+          'trackHelper' => $this->projectTrackHelper,
+          'colorList' => self::COLOR_CODES,
         ],
       ];
     }

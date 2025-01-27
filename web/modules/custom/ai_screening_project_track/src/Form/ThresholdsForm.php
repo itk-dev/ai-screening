@@ -7,7 +7,9 @@ namespace Drupal\ai_screening_project_track\Form;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\State\StateInterface;
+use Drupal\Core\Url;
 use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 
@@ -100,7 +102,35 @@ final class ThresholdsForm extends FormBase {
     }
 
     $form['#validate'][] = $this->validateThresholds(...);
-    $form['actions'] = [
+
+    $form['form_footer'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['flex', 'justify-between']],
+    ];
+
+    $referer = $this->getRequest()->server->get('HTTP_REFERER');
+
+    if (!empty($referer)) {
+      $url = Url::fromUri($referer);
+      $link = new Link($this->t('Go back'), $url);
+
+      $build['link'] = $link->toRenderable();
+      $build['link']['#attributes'] = [
+        'class' => [
+          'inline-block',
+          'btn-primary',
+          'bg-black',
+          'text-white',
+          'hover:bg-stone-700',
+        ],
+      ];
+
+      $form['form_footer']['back'] = [
+        $build['link'],
+      ];
+    }
+
+    $form['form_footer']['actions'] = [
       '#type' => 'actions',
       'submit' => [
         '#type' => 'submit',
