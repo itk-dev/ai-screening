@@ -893,6 +893,7 @@ $settings['twig_sandbox_allowed_methods'] = [
   // Additions
   // Allow calling `entity.access`
   'access',
+  'referencedEntities'
 ];
 
 /**

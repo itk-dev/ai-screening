@@ -204,12 +204,21 @@ input.error {
   border-color: var(--theme-error-border);
 }
 
-table th, td {
+.projects-table th, td {
   text-align: center;
   width: 10%;
 }
 
-table th:first-child, table td:first-child {
+.projects-table th:first-child, .projects-table td:first-child {
   text-align: left;
   width: 50%;
+}
+
+.line-height-xs {
+  line-height: .5rem;
+  font-size: .5rem;
+}
+
+.show-color + select{
+  padding-left: 3rem;
 }

@@ -39,9 +39,7 @@ import annotationPlugin from 'chartjs-plugin-annotation';
                     suggestedMin: 0,
                     suggestedMax: chartSettings.graph.axisMax.x,
                     title: {
-                      display: true,
-                      align: 'start',
-                      text: `${chartSettings.graph.labels.y} (${chartSettings.graph.thresholds.y})`,
+                      display: false,
                     },
                     ticks: {
                       maxTicksLimit: 0,
@@ -55,9 +53,7 @@ import annotationPlugin from 'chartjs-plugin-annotation';
                     suggestedMin: 0,
                     suggestedMax: chartSettings.graph.axisMax.y,
                     title: {
-                      display: true,
-                      align: 'center',
-                      text: `${chartSettings.graph.labels.x} (${chartSettings.graph.thresholds.x})`,
+                      display: false,
                     },
                     ticks: {
                       maxTicksLimit: 0,
@@ -66,6 +62,12 @@ import annotationPlugin from 'chartjs-plugin-annotation';
                   },
                 },
                 plugins: {
+                  legend: {
+                    display: false
+                  },
+                  tooltip: {
+                    enabled: false
+                  },
                   annotation: {
                     annotations: {
                       refused: {
