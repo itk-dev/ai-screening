@@ -37,6 +37,22 @@ YAML,
 
     $term->save();
     $this->setReference('term:kan_vi', $term);
+
+    $term = Term::create([
+      'vid' => 'project_track_type',
+      'weight' => 0,
+      'name' => 'Må vi?',
+      'description' => [
+        'value' => 'Jura, jura, jura, …',
+        'format' => 'plain_text',
+      ],
+      'field_webform' => ['target_id' => 'jura'],
+      'field_configuration' => <<<'YAML'
+YAML,
+    ]);
+
+    $term->save();
+    $this->setReference('term:må_vi', $term);
   }
 
   /**

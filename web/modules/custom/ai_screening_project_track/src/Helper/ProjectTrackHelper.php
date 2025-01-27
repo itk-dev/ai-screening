@@ -223,6 +223,15 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
         'path' => 'modules/custom/ai_screening_project_track/templates',
         'render element' => 'form',
       ]);
+    // Theme used in Drupal\ai_screening_project_track\Plugin\WebformElement\YesNoStop::formatHtmlItem().
+    $event->addNewTheme(
+      'ai_screening_yes_no_stop_html',
+      [
+        'path' => 'modules/custom/ai_screening_project_track/templates',
+        'variables' => [
+          'element' => [],
+        ],
+      ]);
   }
 
   /**

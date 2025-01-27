@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning].
 
 - [PR-85](https://github.com/itk-dev/ai-screening/pull/85)
   - Changed tool header
+- [PR-84](https://github.com/itk-dev/ai-screening/pull/84)
+  Implemented form element value formatting
 - [PR-83](https://github.com/itk-dev/ai-screening/pull/83)
   - Move labels out of graph.
   - Change color and bubble size
