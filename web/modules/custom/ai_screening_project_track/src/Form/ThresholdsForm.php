@@ -108,7 +108,7 @@ final class ThresholdsForm extends FormBase {
       '#attributes' => ['class' => ['flex', 'justify-between']],
     ];
 
-    $url = Url::fromUserInput($_SERVER['REQUEST_URI']);
+    $url = Url::fromUri($_SERVER['HTTP_REFERER']);
     $link = new Link($this->t('Go back'), $url);
 
     $build['link'] = $link->toRenderable();
