@@ -141,14 +141,14 @@ tasks:
   check-code:
     desc: "Check coding standards"
     cmds:
-      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md'
+      - docker run --rm --volume "$PWD:/md" itkdev/markdownlint '**/*.md'
       - task composer -- code-analysis
       - task composer -- coding-standards-check
 
   coding-standards-apply:
     desc: "Apply coding standards"
     cmds:
-      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md' --fix
+      - docker run --rm --volume "$PWD:/md" itkdev/markdownlint '**/*.md' --fix
       - task composer -- coding-standards-apply
 
   apply-fixtures:

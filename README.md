@@ -117,13 +117,13 @@ docker compose exec phpfpm composer code-analysis
 ```
 
 ```shell name=coding-standards-markdown
-docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md) --fix
-docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
+docker run --rm --volume "$PWD:/md" itkdev/markdownlint $(git ls-files *.md) --fix
+docker run --rm --volume "$PWD:/md" itkdev/markdownlint $(git ls-files *.md)
 ```
 
 ```shell name=coding-standards-markdown
-docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md) --fix
-docker run --platform linux/amd64 --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
+docker run --rm --volume "$PWD:/md" itkdev/markdownlint $(git ls-files *.md) --fix
+docker run --rm --volume "$PWD:/md" itkdev/markdownlint $(git ls-files *.md)
 ```
 
 ``` shell name=coding-standards-js
