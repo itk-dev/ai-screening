@@ -29918,7 +29918,7 @@ msgid "Add field group"
 msgstr ""
 
 msgid "View report"
-msgstr ""
+msgstr "Se rapport"
 
 msgid "Filter by view name, machine name, description, or display path"
 msgstr ""
