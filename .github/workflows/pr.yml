@@ -270,7 +270,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup-docker
     steps:
-      - uses: actions/checkout@master
+      - uses: setup-docker
 
       - name: Run audit
         run: |
