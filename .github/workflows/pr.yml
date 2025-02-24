@@ -246,31 +246,20 @@ jobs:
         run: |
           docker compose exec --user root phpfpm vendor/bin/drush deploy --yes
 
-  setup-docker:
-    name: Setup Docker
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Create Docker network (optional)
-        run: docker network create frontend || true
-
-      - name: Pull Docker images
-        run: docker compose pull
-
-      - name: Start Docker containers
-        run: docker compose up --detach
-
-      - name: Install Composer dependencies
-        run: docker compose exec --user root phpfpm composer install --no-interaction
-
   composer-audit:
     name: Check that required packages are up to date
     runs-on: ubuntu-latest
-    needs: setup-docker
     steps:
-      - uses: setup-docker
+      - uses: actions/checkout@master
+
+      - name: Install site
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec --user root phpfpm composer install --no-interaction
 
       - name: Run audit
         run: |
