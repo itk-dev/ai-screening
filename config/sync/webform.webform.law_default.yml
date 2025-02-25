@@ -8,8 +8,8 @@ close: null
 uid: 1
 template: false
 archive: false
-id: jura
-title: 'Jura'
+id: law_default
+title: Jura
 description: ''
 categories: {  }
 elements: |-
@@ -19,7 +19,7 @@ elements: |-
     indgaar_der_personoplysninger_i_loesning:
       '#type': ai_screening_yes_no_stop
       '#title': 'Indgår der personoplysninger i løsning?'
-      '#text_yes': '<p><strong>OVERVEJELSE</strong></p><p>Husk fra start at indtænke databeskyttelse gennem design og standardindstillinger, herunder også løbende opfølgning derpå efter udviklingen, for at sikre passende sikkerhed.</p><p><strong>OPGAVE</strong></p><p>Der skal gennemføres en GDPR-mæssig risikovurdering og GDPR-mæssig konsekvensanalyse (DPIA).</p><p><strong>OPGAVE</strong></p><p>De registrerede skal både ved udvikling og drift, i en oplysningstekst, informeres om de nye formål (AI træning) vi vil anvende allerede indsamlede personoplysninger til, og ligeledes hvis vi indsamler oplysninger direkte til formålet. Alle andre krav vedr. oplysningstekst skal også efterleves jf. databeskyttelsesforordningens artikel 13 eller artikel 14.</p><p><strong>OPGAVE</strong></p><p>Der skal oprettes en intern anmeldelse jf. sikkerhedshåndbogen procedure herfor.</p>'
+      '#text_yes': '<div><p><strong>OVERVEJELSE</strong></p><p>Husk fra start at indtænke databeskyttelse gennem design og standardindstillinger, herunder også løbende opfølgning derpå efter udviklingen, for at sikre passende sikkerhed.</p></div><p><strong>OPGAVE</strong></p><p>Der skal gennemføres en GDPR-mæssig risikovurdering og GDPR-mæssig konsekvensanalyse (DPIA).</p><p><strong>OPGAVE</strong></p><p>De registrerede skal både ved udvikling og drift, i en oplysningstekst, informeres om de nye formål (AI træning) vi vil anvende allerede indsamlede personoplysninger til, og ligeledes hvis vi indsamler oplysninger direkte til formålet. Alle andre krav vedr. oplysningstekst skal også efterleves jf. databeskyttelsesforordningens artikel 13 eller artikel 14.</p><p><strong>OPGAVE</strong></p><p>Der skal oprettes en intern anmeldelse jf. sikkerhedshåndbogen procedure herfor.</p>'
       '#stop_value': '0'
     er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret:
       '#type': ai_screening_yes_no_stop
@@ -242,7 +242,7 @@ settings:
   wizard_progress_states: false
   wizard_start_label: ''
   wizard_preview_link: false
-  wizard_confirmation: true
+  wizard_confirmation: false
   wizard_confirmation_label: ''
   wizard_auto_forward: true
   wizard_auto_forward_hide_next_button: false

@@ -18,7 +18,7 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<br> <p> <h2> <h3> <h4> <strong> <em> <blockquote> <a href> <ul> <ol reversed start> <li>'
+      allowed_html: '<br> <p class="text-align-left text-align-justify"> <h2 class="text-align-left text-align-justify"> <h3 class="text-align-left text-align-justify"> <h4 class="text-align-left text-align-justify"> <div class="task consideration rule always_show always_hide text-align-left text-align-justify"> <strong> <em> <blockquote> <a href> <ul> <ol reversed start> <li>'
       filter_html_help: true
       filter_html_nofollow: false
   filter_htmlcorrector:

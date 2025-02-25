@@ -33,6 +33,7 @@ dimensions:
   - The first dimension
   - Another dimension
 YAML,
+      'field_report_type' => ['bubble_chart']
     ]);
 
     $term->save();
@@ -43,17 +44,35 @@ YAML,
       'weight' => 0,
       'name' => 'Må vi?',
       'description' => [
-        'value' => 'Jura, jura, jura, …',
+        'value' => 'Vurdering af de juridiske aspekter af AI-initiativer.',
         'format' => 'plain_text',
       ],
-      'field_webform' => ['target_id' => 'jura'],
-      'field_configuration' => <<<'YAML'
-YAML,
+      'field_webform' => ['target_id' => 'law_default'],
+      'field_configuration' => '',
+      'field_report_type' => []
     ]);
 
     $term->save();
-    $this->setReference('term:må_vi', $term);
+    $this->setReference('term:maa_vi', $term);
+
+    $term = Term::create([
+      'vid' => 'project_track_type',
+      'weight' => 0,
+      'name' => 'Bør vi?',
+      'description' => [
+        'value' => 'Vurdering af de etiske aspekter af AI-initiativer.',
+        'format' => 'plain_text',
+      ],
+      'field_webform' => ['target_id' => 'ethics_default'],
+      'field_configuration' => '',
+      'field_report_type' => []
+    ]);
+
+    $term->save();
+    $this->setReference('term:boer_vi', $term);
   }
+
+
 
   /**
    * {@inheritdoc}
