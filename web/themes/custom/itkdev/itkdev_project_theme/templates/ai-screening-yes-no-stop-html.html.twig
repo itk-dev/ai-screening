@@ -1,4 +1,4 @@
-<div {{element.attributes}}>
+<div {{ element.attributes }}>
   {% if element.text_question.message['#text'] %}
     <div class="font-light">{{ element.text_question }}</div>
   {% endif %}
@@ -7,7 +7,6 @@
     <span>{{ 'Response'|t }}:</span>
     <span class="inline-block">{{ element.response }}</span>
   </div>
-
 
   {% if element.text_yes %}
     {{ element.text_yes }}

@@ -3,6 +3,7 @@
 namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Entity\EntityAccessControlHandlerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -15,7 +16,6 @@ use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolComputerInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface;
-use Drupal\Core\Serialization\Yaml;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Entity\EntityAccessEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
@@ -359,7 +359,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   }
 
   /**
-   * Get the status for a tool.
+   * Get blockers for a tool.
    */
   public function getToolBlockers(ProjectTrackToolInterface $tool): array {
     if ($tool->getToolEntityType() !== 'webform_submission') {
@@ -367,9 +367,11 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     }
     $toolId = $tool->getToolId();
     $toolData = $tool->getToolData();
+
     if (empty($toolData) || empty($toolId)) {
       return [];
     }
+
     $webform = $toolData['webform_submission:' . $toolId]['webform'];
     $submission = $toolData['webform_submission:' . $toolId]['submission'];
 
@@ -378,6 +380,8 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     ]);
 
     $elements = $webformFromConfig->getElementsDecodedAndFlattened();
+
+    // We are only looking for ai_screening_yes_no_stop elements.
     foreach ($elements as $key => $element) {
       if ('ai_screening_yes_no_stop' !== $element['#type']) {
         unset($elements[$key]);
@@ -385,6 +389,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     }
 
     $blockers = [];
+    // Match submission against webforms stop fields.
     foreach ($submission as $field => $value) {
       if (isset($elements[$field]['#stop_value']) && $elements[$field]['#stop_value'] === $value) {
         $blockers[] = $elements[$field];

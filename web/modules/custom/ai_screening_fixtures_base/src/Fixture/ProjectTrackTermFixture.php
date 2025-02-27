@@ -33,7 +33,7 @@ dimensions:
   - The first dimension
   - Another dimension
 YAML,
-      'field_report_type' => ['bubble_chart']
+      'field_report_type' => ['bubble_chart'],
     ]);
 
     $term->save();
@@ -49,7 +49,7 @@ YAML,
       ],
       'field_webform' => ['target_id' => 'law_default'],
       'field_configuration' => '',
-      'field_report_type' => []
+      'field_report_type' => [],
     ]);
 
     $term->save();
@@ -65,14 +65,12 @@ YAML,
       ],
       'field_webform' => ['target_id' => 'ethics_default'],
       'field_configuration' => '',
-      'field_report_type' => []
+      'field_report_type' => [],
     ]);
 
     $term->save();
     $this->setReference('term:boer_vi', $term);
   }
-
-
 
   /**
    * {@inheritdoc}

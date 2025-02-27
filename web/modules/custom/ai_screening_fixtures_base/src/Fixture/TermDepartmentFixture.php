@@ -25,11 +25,11 @@ class TermDepartmentFixture extends TaxonomyTermFixture {
     'Department F',
   ];
 
-
   /**
    * {@inheritdoc}
    */
   public function getGroups() {
     return ['taxonomy_department'];
   }
+
 }
