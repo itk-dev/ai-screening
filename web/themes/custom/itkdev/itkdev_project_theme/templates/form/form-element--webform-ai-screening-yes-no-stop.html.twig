@@ -11,6 +11,8 @@
     'mb-3 md:mb-5',
     type == 'radio' ? 'flex items-center gap-3 cursor-pointer',
     type == 'checkbox' ? 'flex items-center gap-3',
+    'yes-no-stop',
+    'content-wrapper'
   ]
 %}
 {%
@@ -32,7 +34,7 @@
     </div>
   {% endif %}
 
-  {% if element.text_question %}
+  {% if element.text_question.message['#text'] %}
     {{ element.text_question }}
   {% endif %}
 
@@ -56,11 +58,16 @@
   {% endif %}
 
   {% if element.text_yes %}
-    {{ element.text_yes }}
+    <div>
+      {{ element.text_yes }}
+    </div>
   {% endif %}
   {% if element.text_no %}
-    {{ element.text_no }}
+    <div>
+      {{ element.text_no }}
+    </div>
   {% endif %}
+
   {% if element.text_stop %}
     {{ element.text_stop }}
   {% endif %}

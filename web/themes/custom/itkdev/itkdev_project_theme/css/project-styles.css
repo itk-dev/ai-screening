@@ -222,3 +222,43 @@ input.error {
 .show-color + select{
   padding-left: 3rem;
 }
+
+.ai-screening-yes-no-stop--text-yes,
+.ai-screening-yes-no-stop--text-no,
+.ai-screening-yes-no-stop--text-stop {
+
+  .consideration,
+  .task,
+  .rule,
+  .stop {
+    background: var(--theme-secondary);
+    padding: .5rem;
+  }
+}
+
+.ai-screening-yes-no-stop--text-question {
+  margin: 0 0 1em;
+}
+
+.yes-no-stop {
+  select {
+    margin-bottom: .5em;
+  }
+
+  .consideration,
+  .rule,
+  .task,
+  .stop {
+    img {
+      display: inline-block;
+      height: 1em;
+      margin-right: .5em;
+    }
+
+    h5 {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+}

@@ -15,10 +15,12 @@ use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolComputerInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface;
+use Drupal\Core\Serialization\Yaml;
 use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Entity\EntityAccessEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityUpdateEvent;
+use Drupal\webform\Entity\Webform;
 use Drupal\webform\WebformSubmissionInterface;
 use Drupal\webform\WebformSubmissionStorageInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -354,6 +356,42 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     }
 
     return $status;
+  }
+
+  /**
+   * Get the status for a tool.
+   */
+  public function getToolBlockers(ProjectTrackToolInterface $tool): array {
+    if ($tool->getToolEntityType() !== 'webform_submission') {
+      return [];
+    }
+    $toolId = $tool->getToolId();
+    $toolData = $tool->getToolData();
+    if (empty($toolData) || empty($toolId)) {
+      return [];
+    }
+    $webform = $toolData['webform_submission:' . $toolId]['webform'];
+    $submission = $toolData['webform_submission:' . $toolId]['submission'];
+
+    $webformFromConfig = Webform::create([
+      'elements' => Yaml::encode($webform),
+    ]);
+
+    $elements = $webformFromConfig->getElementsDecodedAndFlattened();
+    foreach ($elements as $key => $element) {
+      if ('ai_screening_yes_no_stop' !== $element['#type']) {
+        unset($elements[$key]);
+      }
+    }
+
+    $blockers = [];
+    foreach ($submission as $field => $value) {
+      if (isset($elements[$field]['#stop_value']) && $elements[$field]['#stop_value'] === $value) {
+        $blockers[] = $elements[$field];
+      }
+    }
+
+    return $blockers;
   }
 
   /**

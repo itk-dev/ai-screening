@@ -37558,3 +37558,6 @@ msgstr "@dimension illustreret af prik størrelse"
 
 msgid "This project has been manually evaluated."
 msgstr "Dette projekt bliver manuelt evalueret."
+
+msgid "Response"
+msgstr "Svar"

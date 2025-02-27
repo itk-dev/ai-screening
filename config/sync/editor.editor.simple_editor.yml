@@ -31,6 +31,7 @@ settings:
         - heading2
         - heading3
         - heading4
+        - heading5
     ckeditor5_list:
       properties:
         reversed: true
@@ -56,5 +57,8 @@ settings:
         -
           label: 'Always hide'
           element: '<div class="always_hide">'
+        -
+          label: Stop
+          element: '<div class="stop">'
 image_upload:
   status: false

@@ -81,6 +81,12 @@
           {% endif %}
         </div>
       {% endif %}
+      {% if track.entity.getType.field_report_type.value is same as('webform_submission') %}
+        {% set tools = data.trackHelper.getToolsData(track.entity) %}
+        {% for id, tool in tools %}
+          <div>{{ drupal_entity('webform_submission', id) }}</div>
+        {% endfor %}
+      {% endif %}
     {% endfor %}
 
     <div>
