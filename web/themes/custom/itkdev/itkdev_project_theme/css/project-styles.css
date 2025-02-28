@@ -236,6 +236,10 @@ input.error {
   }
 }
 
+.element-yes-no-stop-minimize {
+  background: var(--theme-secondary);
+}
+
 .ai-screening-yes-no-stop--text-question {
   margin: 0 0 1em;
 }
