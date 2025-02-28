@@ -1,0 +1,35 @@
+{% if blockers|length > 0 %}
+  <div class="blockers flex alert-danger p-3 rounded">
+    <div class="m-5 self-center text-xl">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+    <div>
+      {% for blocker in blockers %}
+        <div>
+          {{ blocker['#text_stop']|raw }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{# Specific to law track webform submissions #}
+{% if tool.getToolData['webform_submission:' ~ tool.id.value].webform|keys|first is same as ('maa_vi') %}
+  <div class="mt-3 flex alert-warning p-3 rounded">
+    <div>
+      <div>
+        <div class="consideration">
+          <div><i class="mr-2 fa-regular fa-circle-check"></i><h5 class="inline-block">{{ 'Task'|t }}</h5></div>
+          <p>{{ 'You must ensure that users/citizens that use an AI-system are informed that it is an AI-system.'|t }}</p>
+        </div>
+      </div>
+      <div>
+        <div class="consideration">
+          <div class="inline-block"><i class="mr-2 fa-regular fa-circle-check"></i><h5 class="inline-block">{{ 'Task'|t }}</h5></div>
+          <p>{{ 'A Fundamental rights impact assessment (FRIA) must always be implemented.'|t }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
