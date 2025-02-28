@@ -82,9 +82,26 @@
         </div>
       {% endif %}
       {% if track.entity.getType.field_report_type.value is same as('webform_submission') %}
-        {% set tools = data.trackHelper.getToolsData(track.entity) %}
+        {% set tools = data.toolHelper.loadTools(track.entity) %}
         {% for id, tool in tools %}
-          <div>{{ drupal_entity('webform_submission', id) }}</div>
+          <div>
+            {% set blockers = data.toolHelper.getToolBlockers(tool) %}
+            {% if blockers|length > 0 %}
+              <div class="blockers flex alert-danger p-3 rounded">
+                <div class="m-5 self-center text-xl">
+                  <i class="text-red-700 fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                  {% for blocker in blockers %}
+                    <div>
+                      {{ blocker['#text_stop']|raw }}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+            {{ drupal_entity('webform_submission', id) }}
+          </div>
         {% endfor %}
       {% endif %}
     {% endfor %}

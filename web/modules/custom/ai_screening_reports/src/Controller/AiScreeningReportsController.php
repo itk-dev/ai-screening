@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\ai_screening_reports\Controller;
 
+use Drupal\ai_screening_project_track\Helper\ProjectTrackToolHelper;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
@@ -47,6 +48,7 @@ final class AiScreeningReportsController extends ControllerBase {
     private readonly ProjectTrackHelper $projectTrackHelper,
     private readonly ProjectHelper $projectHelper,
     private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
+    private readonly ProjectTrackToolHelper $projectTrackToolHelper,
   ) {
   }
 
@@ -137,6 +139,7 @@ final class AiScreeningReportsController extends ControllerBase {
           'request' => $request,
           'projectTracks' => $groupedTracks,
           'trackHelper' => $this->projectTrackHelper,
+          'toolHelper' => $this->projectTrackToolHelper,
           'colorList' => self::COLOR_CODES,
         ],
       ];

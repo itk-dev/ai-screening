@@ -888,6 +888,7 @@ $settings['twig_sandbox_allowed_methods'] = [
   'bundle',
   'get',
   'loadProjectTracks',
+  'loadTools',
   '__toString',
   'toString',
   // Additions
