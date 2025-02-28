@@ -86,20 +86,7 @@
         {% for id, tool in tools %}
           <div>
             {% set blockers = data.toolHelper.getToolBlockers(tool) %}
-            {% if blockers|length > 0 %}
-              <div class="blockers flex alert-danger p-3 rounded">
-                <div class="m-5 self-center text-xl">
-                  <i class="text-red-700 fa-solid fa-triangle-exclamation"></i>
-                </div>
-                <div>
-                  {% for blocker in blockers %}
-                    <div>
-                      {{ blocker['#text_stop']|raw }}
-                    </div>
-                  {% endfor %}
-                </div>
-              </div>
-            {% endif %}
+            {% include '@itkdev_project_theme/components/webformSubmissionReportHeader.html.twig' with {'blockers': blockers, 'tool': tool} %}
             {{ drupal_entity('webform_submission', id) }}
           </div>
         {% endfor %}

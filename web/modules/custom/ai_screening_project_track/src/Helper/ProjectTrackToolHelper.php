@@ -365,6 +365,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     if ($tool->getToolEntityType() !== 'webform_submission') {
       return [];
     }
+
     $toolId = $tool->getToolId();
     $toolData = $tool->getToolData();
 

@@ -1,8 +1,8 @@
 /**
  * @file
- * Header icons
+ * Header icons.
+ * We don't have access to the html within ckeditors, so our best approach is to add icons to through js.
  */
-
 
 (function () {
   Drupal.behaviors.headerIcons = {
@@ -32,14 +32,6 @@
         }
 
         parent.insertBefore(img, element)
-      })
-
-      const stopper = document.querySelectorAll('.text-stop');
-      stopper.forEach((element) => {
-        let img = document.createElement('img');
-        const children = element.childNodes;
-        img.src = triangleExclamation;
-        element.insertBefore(img, children[0])
       })
     }
   }
