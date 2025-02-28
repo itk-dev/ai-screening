@@ -85,7 +85,7 @@
               <div class="px-4 py-4" x-show="open" x-transition>
                 {% if hasSubmissionReportType %}
                   {% set blockers = form['#tool_helper'].getToolBlockers(projectTrackTool) %}
-                  {% include '@itkdev_project_theme/components/webformSubmissionReportHeader.html.twig' with {'blockers': blockers, 'tool': projectTrackTool} %}
+                  {{ include('@itkdev_project_theme/components/webformSubmissionReportHeader.html.twig', {blockers: blockers, tool: projectTrackTool}) }}
                 {% endif %}
                 {{ drupal_entity(projectTrackTool.getToolEntityType, projectTrackTool.getToolId) }}
                 <div class="flex justify-end">
