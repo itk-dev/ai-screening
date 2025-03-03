@@ -383,11 +383,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     $elements = $webformFromConfig->getElementsDecodedAndFlattened();
 
     // We are only looking for ai_screening_yes_no_stop elements.
-    foreach ($elements as $key => $element) {
-      if ('ai_screening_yes_no_stop' !== $element['#type']) {
-        unset($elements[$key]);
-      }
-    }
+    $elements = array_filter($elements, static fn (array $element) => 'ai_screening_yes_no_stop' === ($element['#type'] ?? NULL));
 
     $blockers = [];
     // Match submission against webforms stop fields.

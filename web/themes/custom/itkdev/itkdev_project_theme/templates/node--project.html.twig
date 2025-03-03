@@ -88,7 +88,7 @@
             <div class="mb-3">{{ projectTrack.getDescription()|raw }}</div>
             <div class="flex justify-between">
               <div class="flex justify-start">
-                {% if projectTrack.getType.field_report_type.value is same as('bubble_chart') or projectTrack.getType.field_report_type.value is same as('webform_submission') %}
+                {% if projectTrack.getType.field_report_type.value in ['bubble_chart', 'webform_submission']) %}
                   <a class="underline" href="{{ path('ai_screening_reports.project_track', {project_track_id: [projectTrack.id.value]}) }}">
                     {{ 'View report'|t }}
                   </a>
