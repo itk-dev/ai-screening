@@ -87,7 +87,7 @@
           <div>
             {% set blockers = data.toolHelper.getToolBlockers(tool) %}
             {{ include('@itkdev_project_theme/components/webformSubmissionReportHeader.html.twig', {blockers: blockers, tool: tool}) }}
-            {{ drupal_entity('webform_submission', id) }}
+            {{ drupal_entity('webform_submission', tool.tool_id.value) }}
           </div>
         {% endfor %}
       {% endif %}

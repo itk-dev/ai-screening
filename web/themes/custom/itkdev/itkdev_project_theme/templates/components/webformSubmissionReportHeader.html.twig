@@ -15,7 +15,7 @@
 
 {# Specific to law track webform submissions #}
 {# Getting webform from tool data means we are sure there is only one webform to check against #}
-{% if tool.getToolData['webform_submission:' ~ tool.id.value].webform|keys|first is same as ('maa_vi') %}
+{% if tool.getToolData['webform_submission:' ~ tool.tool_id.value].webform|keys|first is same as ('maa_vi') %}
   <div class="mt-3 flex alert-warning p-3 rounded">
     <div>
       <div>
