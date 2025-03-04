@@ -1,4 +1,4 @@
-# itk-version: 3.2.1
+# itk-version: 3.2.3
 networks:
   frontend:
     external: true
@@ -13,12 +13,21 @@ services:
       - app
     ports:
       - '3306'
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_USER=db
       - MYSQL_PASSWORD=db
       - MYSQL_DATABASE=db
       #- ENCRYPT=1 # Uncomment to enable database encryption.
+    # https://symfony.com/doc/current/setup/symfony_server.html#docker-integration
+    labels:
+      com.symfony.server.service-prefix: 'DATABASE'
 
   phpfpm:
     image: itkdev/php8.3-fpm:latest
@@ -32,13 +41,14 @@ services:
       - PHP_MAX_EXECUTION_TIME=30
       - PHP_MEMORY_LIMIT=256M
       # Depending on the setup, you may have to remove --read-envelope-from from msmtp (cf. https://marlam.de/msmtp/msmtp.html) or use SMTP to send mail
-      - PHP_SENDMAIL_PATH=/usr/bin/msmtp --host=mail --port=1025 --read-recipients
+      - PHP_SENDMAIL_PATH=/usr/bin/msmtp --host=mail --port=1025 --read-recipients --read-envelope-from
       - DOCKER_HOST_DOMAIN=${COMPOSE_DOMAIN}
-      - COMPOSER_VERSION=2
       - PHP_IDE_CONFIG=serverName=localhost
     depends_on:
-      - mariadb
-      - memcached
+      mariadb:
+        condition: service_healthy
+      memcached:
+        condition: service_healthy
     volumes:
       - .:/app
 
@@ -63,16 +73,20 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=frontend"
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${COMPOSE_DOMAIN}`)"
-      # HTTPS config - uncomment to enable redirect from :80 to :443
-      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.middlewares=redirect-to-https"
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+#      HTTPS config - uncomment to enable redirect from :80 to :443
+#      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.middlewares=redirect-to-https"
+#      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
   memcached:
-    image: 'memcached:latest'
+    image: memcached:alpine
     networks:
       - app
     ports:
       - '11211'
+    healthcheck:
+      test: echo "version" | nc -vn -w 1 127.0.0.1 11211
+      interval: 10s
+      retries: 60
     environment:
       - MEMCACHED_CACHE_SIZE=64
 
