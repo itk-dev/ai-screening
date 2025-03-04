@@ -125,7 +125,7 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
   /**
    * {@inheritdoc}
    */
-    public function getProjectTrack(): ProjectTrackInterface|false {
+  public function getProjectTrack(): ProjectTrackInterface {
     $entities = $this->get('project_track_id')->referencedEntities();
 
     return reset($entities);
