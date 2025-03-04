@@ -10,6 +10,7 @@ dependencies:
     - filter
     - node
     - system
+    - webform
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated
@@ -24,3 +25,4 @@ permissions:
   - 'use text format webform_default'
   - 'view own unpublished content'
   - 'view user email addresses'
+  - 'view any webform submission'
