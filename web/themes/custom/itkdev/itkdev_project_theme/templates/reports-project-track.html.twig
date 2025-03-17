@@ -81,6 +81,16 @@
           {% endif %}
         </div>
       {% endif %}
+      {% if track.entity.getType.field_report_type.value is same as('webform_submission') %}
+        {% set tools = data.toolHelper.loadTools(track.entity) %}
+        {% for id, tool in tools %}
+          <div>
+            {% set blockers = data.toolHelper.getToolBlockers(tool) %}
+            {{ include('@itkdev_project_theme/components/webformSubmissionReportHeader.html.twig', {blockers: blockers, tool: tool}) }}
+            {{ drupal_entity('webform_submission', tool.tool_id.value) }}
+          </div>
+        {% endfor %}
+      {% endif %}
     {% endfor %}
 
     <div>

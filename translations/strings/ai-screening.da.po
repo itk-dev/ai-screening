@@ -37558,3 +37558,15 @@ msgstr "@dimension illustreret af prik størrelse"
 
 msgid "This project has been manually evaluated."
 msgstr "Dette projekt bliver manuelt evalueret."
+
+msgid "Response"
+msgstr "Svar"
+
+msgid "Task"
+msgstr "Opgave"
+
+msgid "You must ensure that users/citizens that use an AI-system are informed that it is an AI-system."
+msgstr "Du skal sikre at brugere/borgere der anvender et AI-system er oplyst om at det er et AI-system."
+
+msgid "A Fundamental rights impact assessment (FRIA) must always be implemented."
+msgstr "Der skal altid gennemføres Fundamental rights impact assessment (FRIA)."

@@ -3,6 +3,7 @@
 namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Entity\EntityAccessControlHandlerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -19,6 +20,7 @@ use Drupal\core_event_dispatcher\EntityHookEvents;
 use Drupal\core_event_dispatcher\Event\Entity\EntityAccessEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityInsertEvent;
 use Drupal\core_event_dispatcher\Event\Entity\EntityUpdateEvent;
+use Drupal\webform\Entity\Webform;
 use Drupal\webform\WebformSubmissionInterface;
 use Drupal\webform\WebformSubmissionStorageInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -354,6 +356,44 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     }
 
     return $status;
+  }
+
+  /**
+   * Get blockers for a tool.
+   */
+  public function getToolBlockers(ProjectTrackToolInterface $tool): array {
+    if ($tool->getToolEntityType() !== 'webform_submission') {
+      return [];
+    }
+
+    $toolId = $tool->getToolId();
+    $toolData = $tool->getToolData();
+
+    if (empty($toolData) || empty($toolId)) {
+      return [];
+    }
+
+    $webform = $toolData['webform_submission:' . $toolId]['webform'];
+    $submission = $toolData['webform_submission:' . $toolId]['submission'];
+
+    $webformFromConfig = Webform::create([
+      'elements' => Yaml::encode($webform),
+    ]);
+
+    $elements = $webformFromConfig->getElementsDecodedAndFlattened();
+
+    // We are only looking for ai_screening_yes_no_stop elements.
+    $elements = array_filter($elements, static fn (array $element) => 'ai_screening_yes_no_stop' === ($element['#type'] ?? NULL));
+
+    $blockers = [];
+    // Match submission against webforms stop fields.
+    foreach ($submission as $field => $value) {
+      if (isset($elements[$field]['#stop_value']) && $elements[$field]['#stop_value'] === $value) {
+        $blockers[] = $elements[$field];
+      }
+    }
+
+    return $blockers;
   }
 
   /**

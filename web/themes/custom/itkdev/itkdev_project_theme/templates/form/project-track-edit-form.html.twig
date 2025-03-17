@@ -34,7 +34,13 @@
   {% set evaluation = form['#project_track'].getProjectTrackEvaluation(TRUE) %}
   {% set classNames = evaluationClasses[evaluation] ?? 'bg-slate-300' %}
   {% set message = form.project_track_evaluation['#markup'][evaluation] ?? 'Not started'|t %}
-
+  {% set projectTrackReportTypes = form['#project_track'].getType.field_report_type.getValue() %}
+  {% set hasSubmissionReportType = FALSE %}
+  {% for type in projectTrackReportTypes %}
+    {% if type['value'] is same as('webform_submission') %}
+      {% set hasSubmissionReportType = TRUE %}
+    {% endif %}
+  {% endfor %}
   <div class="container my-8 px-5">
     {{ form['#project_track'].getDescription|raw }}
   </div>
@@ -75,18 +81,24 @@
         <div class="tool-wrapper" x-data="{{ defaultOpen ? '{open: true}' : '{open: false}' }}">
           <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
             {{ include('@itkdev_project_theme/components/project-track-tool-header.html.twig') }}
-            <div class="px-4 py-4" x-show="open" x-transition>
-              {{ drupal_entity(projectTrackTool.getToolEntityType, projectTrackTool.getToolId) }}
-              <div class="flex justify-end">
-                {% if projectTrackTool.access('update') %}
-                  <a href="{{ path('entity.webform_submission.edit_form', {
-                    webform: 'complexity_uncertainty_default',
-                    webform_submission: projectTrackTool.getToolId,
-                    destination: form['#action'],
-                  }) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
-                    <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>
-                  </a>
+            <div>
+              <div class="px-4 py-4" x-show="open" x-transition>
+                {% if hasSubmissionReportType %}
+                  {% set blockers = form['#tool_helper'].getToolBlockers(projectTrackTool) %}
+                  {{ include('@itkdev_project_theme/components/webformSubmissionReportHeader.html.twig', {blockers: blockers, tool: projectTrackTool}) }}
                 {% endif %}
+                {{ drupal_entity(projectTrackTool.getToolEntityType, projectTrackTool.getToolId) }}
+                <div class="flex justify-end">
+                  {% if projectTrackTool.access('update') %}
+                    <a href="{{ path('entity.webform_submission.edit_form', {
+                      webform: 'complexity_uncertainty_default',
+                      webform_submission: projectTrackTool.getToolId,
+                      destination: form['#action'],
+                    }) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
+                      <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>
+                    </a>
+                  {% endif %}
+                </div>
               </div>
             </div>
           </div>

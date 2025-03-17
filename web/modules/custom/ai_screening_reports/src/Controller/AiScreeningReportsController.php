@@ -9,6 +9,7 @@ use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
 use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
+use Drupal\ai_screening_project_track\Helper\ProjectTrackToolHelper;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -47,6 +48,7 @@ final class AiScreeningReportsController extends ControllerBase {
     private readonly ProjectTrackHelper $projectTrackHelper,
     private readonly ProjectHelper $projectHelper,
     private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
+    private readonly ProjectTrackToolHelper $projectTrackToolHelper,
   ) {
   }
 
@@ -137,6 +139,7 @@ final class AiScreeningReportsController extends ControllerBase {
           'request' => $request,
           'projectTracks' => $groupedTracks,
           'trackHelper' => $this->projectTrackHelper,
+          'toolHelper' => $this->projectTrackToolHelper,
           'colorList' => self::COLOR_CODES,
         ],
       ];

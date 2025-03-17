@@ -14,6 +14,9 @@ settings:
     -
       value: bubble_chart
       label: 'Bubble chart'
+    -
+      value: webform_submission
+      label: 'Webform submission'
   allowed_values_function: ''
 module: options
 locked: false

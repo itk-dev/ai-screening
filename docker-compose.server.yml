@@ -1,4 +1,4 @@
-# itk-version: 3.2.1
+# itk-version: 3.2.3
 networks:
   frontend:
     external: true
@@ -17,7 +17,6 @@ services:
     environment:
       - PHP_MAX_EXECUTION_TIME=30
       - PHP_MEMORY_LIMIT=128M
-      - COMPOSER_VERSION=2
     depends_on:
       - memcached
     volumes:

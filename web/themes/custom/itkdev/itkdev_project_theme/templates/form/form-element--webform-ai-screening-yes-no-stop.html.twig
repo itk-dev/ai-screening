@@ -11,6 +11,8 @@
     'mb-3 md:mb-5',
     type == 'radio' ? 'flex items-center gap-3 cursor-pointer',
     type == 'checkbox' ? 'flex items-center gap-3',
+    'yes-no-stop',
+    'content-wrapper',
   ]
 %}
 {%
@@ -32,7 +34,7 @@
     </div>
   {% endif %}
 
-  {% if element.text_question %}
+  {% if element.text_question.message['#text'] %}
     {{ element.text_question }}
   {% endif %}
 
@@ -54,15 +56,29 @@
       {{ description.content }}
     </div>
   {% endif %}
+  <div x-data="{{ defaultOpen ? '{open: false}' : '{open: true}' }}" :class="open ? 'overflow-hidden' : 'overflow-visible'">
+    <div class="relative">
+      <div x-on:click="open = !open" class="cursor-pointer absolute right-0 top-0 mr-3 mt-1">
+        <div x-show="!open" class="flex align-center items-center"><i class="fa-regular fa-square-plus"></i></div>
+        <div x-show="open" class="flex align-center items-center"><i class="fa-regular fa-square-minus"></i></div>
+      </div>
+    </div>
+    <div x-show="open" x-transition>
+      {% if element.text_yes %}
+        <div>
+          {{ element.text_yes }}
+        </div>
+      {% endif %}
 
-  {% if element.text_yes %}
-    {{ element.text_yes }}
-  {% endif %}
-  {% if element.text_no %}
-    {{ element.text_no }}
-  {% endif %}
-  {% if element.text_stop %}
-    {{ element.text_stop }}
-  {% endif %}
+      {% if element.text_no %}
+        <div>
+          {{ element.text_no }}
+        </div>
+      {% endif %}
 
+      {% if element.text_stop %}
+        {{ element.text_stop }}
+      {% endif %}
+    </div>
+  </div>
 </div>

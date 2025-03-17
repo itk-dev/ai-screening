@@ -35,7 +35,6 @@ final class YesNoStop extends Select {
    */
   public static function processYesNoStop(array &$element, FormStateInterface $form_state, array &$complete_form): array {
     $element['#empty_option'] = (string) (new TranslatableMarkup('- Select -'));
-    $element['#required'] = TRUE;
 
     $states = static fn(?string $value = NULL): array => NULL !== $value
       ? [

@@ -12,22 +12,53 @@ settings:
   toolbar:
     items:
       - heading
+      - style
       - bold
       - italic
       - bulletedList
       - numberedList
       - link
       - blockQuote
+      - sourceEditing
+      - alignment
   plugins:
+    ckeditor5_alignment:
+      enabled_alignments:
+        - justify
+        - left
     ckeditor5_heading:
       enabled_headings:
         - heading2
         - heading3
         - heading4
+        - heading5
     ckeditor5_list:
       properties:
         reversed: true
         startIndex: true
       multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<div>'
+    ckeditor5_style:
+      styles:
+        -
+          label: Task
+          element: '<div class="task">'
+        -
+          label: Consideration
+          element: '<div class="consideration">'
+        -
+          label: Rule
+          element: '<div class="rule">'
+        -
+          label: 'Always show'
+          element: '<div class="always_show">'
+        -
+          label: 'Always hide'
+          element: '<div class="always_hide">'
+        -
+          label: Stop
+          element: '<div class="stop">'
 image_upload:
   status: false
