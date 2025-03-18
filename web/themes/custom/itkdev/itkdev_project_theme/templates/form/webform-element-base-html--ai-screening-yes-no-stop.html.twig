@@ -14,12 +14,17 @@
  */
 #}
 
-<div class="content-wrapper yes-no-stop pb-4 mb-4 border-b">
-  <div class="font-thin mb-2">{{ title }}</div>
-  {% if element['#help'] %}
-    <div class="font-thin mb-2">( {{ element['#help']|striptags }} )</div>
-  {% endif %}
+<div class="webform-element content-wrapper yes-no-stop pb-4 mb-4 border-b">
+  <div class="element-question">
+    <div class="font-thin mb-2">{{ title }}</div>
+    {% if element['#help'] %}
+      <div class="font-thin mb-2">( {{ element['#help']|striptags }} )</div>
+    {% endif %}
+  </div>
 
-  {% set value = value['#markup'] is same as ('{Empty}') ? 'None'|t : value %}
-  <div class="w-full xl:w-[800px]">{{ value }}</div>
+  {% if value['#element'] is not defined  %}
+    {% set value = 'None'|t %}
+    {% set valueWrapperClasses = 'element-value-empty' %}
+  {% endif %}
+  <div class="{{ valueWrapperClasses }} w-full xl:w-[800px]">{{ value }}</div>
 </div>
