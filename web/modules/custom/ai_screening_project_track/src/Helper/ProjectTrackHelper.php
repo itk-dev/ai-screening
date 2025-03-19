@@ -155,6 +155,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     $track = $event->getTool()->getProjectTrack();
     $trackConfig = $track->getConfiguration();
     $toolsData = $this->getToolsData($track);
+    $configResult = [];
 
     $reportTypeValues = $track->getType()->get('field_report_type')->getValue();
     $reportTypes = array_map(function ($reportTypeValues) {
@@ -162,16 +163,16 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     }, $reportTypeValues);
 
     if (in_array('bubble_chart', $reportTypes)) {
-      $configResult['bubbleChartReportResult'] = $this->computeBubbleChartReportValues($toolsData, $track, $trackConfig);
+      $configResult['bubbleChartReportResult'] = $this->computeBubbleChartReportValues($toolsData, $track, $trackConfig['bubbleChartReportResult']);
     }
 
     if (in_array('webform_submission', $reportTypes)) {
-      $configResult['submissionReportResult'] = $this->computeWebformSubmissionReportValues($track, $trackConfig);
+      $configResult['submissionReportResult'] = $this->computeWebformSubmissionReportValues($track, $trackConfig['submissionReportResult']);
     }
 
     foreach ($configResult as $type => $result) {
       if ($result['evaluation']) {
-        $evaluation[$type] = $result['evaluation'];
+        $evaluations[$type] = $result['evaluation'];
       }
     }
 
