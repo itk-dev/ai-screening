@@ -180,7 +180,8 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
    * {@inheritdoc}
    */
   public function setProjectTrackEvaluation(array $evaluations): self {
-    // Set track evaluation to the least possible approval found across the tools.
+    // Set track evaluation to the least possible approval found across the
+    // tools.
     if (in_array(Evaluation::REFUSED, $evaluations)) {
       $this->set('project_track_evaluation', Evaluation::REFUSED->value);
     }
