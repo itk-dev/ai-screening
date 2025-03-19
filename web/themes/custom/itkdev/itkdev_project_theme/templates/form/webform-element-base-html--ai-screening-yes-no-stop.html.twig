@@ -22,7 +22,7 @@
     {% endif %}
   </div>
 
-  {% if value['#element'] is not defined  %}
+  {% if value['#element'] is not defined %}
     {% set value = 'None'|t %}
     {% set valueWrapperClasses = 'element-value-empty' %}
   {% endif %}

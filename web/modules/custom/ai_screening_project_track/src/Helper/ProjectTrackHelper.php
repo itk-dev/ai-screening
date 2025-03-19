@@ -152,64 +152,32 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function projectTrackToolComputed(ProjectTrackToolComputedEvent $event): void {
-    $tool = $event->getTool();
-    $track = $tool->getProjectTrack();
+    $track = $event->getTool()->getProjectTrack();
     $trackConfig = $track->getConfiguration();
-    $tools = $this->getToolsData($track);
-    $summedDimensions = [];
+    $toolsData = $this->getToolsData($track);
 
-    if (empty($track->getType())) {
-      $summedDimensions = $trackConfig['sums'] ?? [];
+    $reportTypeValues = $track->getType()->get('field_report_type')->getValue();
+    $reportTypes = array_map(function ($reportTypeValues) {
+        return $reportTypeValues['value'];
+    }, $reportTypeValues);
+
+    if (in_array('bubble_chart', $reportTypes)) {
+      $configResult['bubbleChartReportResult'] = $this->computeBubbleChartReportValues($toolsData, $track, $trackConfig);
     }
-    else {
-      // Sum up all project track tools.
-      /** @var \Drupal\ai_screening_project_track\Entity\ProjectTrackTool $tool */
-      foreach ($tools as $tool) {
-        // Sum up each dimension.
-        foreach (array_keys($summedDimensions + ($tool['summed_dimensions'] ?? [])) as $key) {
-          $summedDimensions[$key]['sum'] = ($summedDimensions[$key]['sum'] ?? 0) + ($tool['summed_dimensions'][$key] ?? 0);
-          $summedDimensions[$key]['undecidedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::UNDECIDED);
-          $summedDimensions[$key]['approvedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::APPROVED);
-        }
+
+    if (in_array('webform_submission', $reportTypes)) {
+      $configResult['submissionReportResult'] = $this->computeWebformSubmissionReportValues($track, $trackConfig);
+    }
+
+    foreach ($configResult as $type => $result) {
+      if ($result['evaluation']) {
+        $evaluation[$type] = $result['evaluation'];
       }
     }
 
-    // Determine the Evaluation as a sum of all dimensions and track thresholds.
-    // There is probably some smarter way I just couldn't find one.
-    $result = [];
-
-    // Loop over all dimensions and determine which threshold the sum value
-    // matches.
-    foreach ($summedDimensions as $summedDimension) {
-      if ($summedDimension['sum'] < $summedDimension['undecidedThreshold']) {
-        $result['refuse'] = TRUE;
-      }
-      if (($summedDimension['undecidedThreshold'] < $summedDimension['sum']) &&
-          ($summedDimension['sum'] < $summedDimension['approvedThreshold'])) {
-        $result['undecided'] = TRUE;
-      }
-      if ($summedDimension['sum'] > $summedDimension['approvedThreshold']) {
-        $result['approved'] = TRUE;
-      }
-    }
-
-    // After loop we set the evaluation only ending on approved if other keys
-    // were not found.
-    if (array_key_exists('refuse', $result)) {
-      $evaluation = Evaluation::REFUSED;
-    }
-    elseif (array_key_exists('undecided', $result)) {
-      $evaluation = Evaluation::UNDECIDED;
-    }
-    elseif (array_key_exists('approved', $result)) {
-      $evaluation = Evaluation::APPROVED;
-    }
-
-    $trackConfig['dimensions'] = $this->projectTrackTypeHelper->getDimensions($track->getType());
-    $trackConfig['sums'] = $summedDimensions;
-    $trackConfig['evaluation'] = $evaluation ?? Evaluation::NONE;
-    $track->setProjectTrackEvaluation($evaluation ?? Evaluation::NONE);
-    $track->setConfiguration($trackConfig);
+    // @todo Change this
+    $track->setProjectTrackEvaluation($evaluation ?? [Evaluation::NONE]);
+    $track->setConfiguration($configResult);
     $track->save();
   }
 
@@ -243,6 +211,107 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
       ProjectTrackToolComputedEvent::class => 'projectTrackToolComputed',
       ThemeHookEvents::THEME => 'projectTrackTheme',
     ];
+  }
+
+  /**
+   * Compute values for Bubble chart report.
+   *
+   * @param array $toolsData
+   *   Tools in the track.
+   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $track
+   *   The project track.
+   * @param array $trackConfig
+   *   Configuration for the project track.
+   *
+   * @return array
+   *   Values for bubble chart report.
+   */
+  private function computeBubbleChartReportValues(array $toolsData, ProjectTrackInterface $track, array $trackConfig): array {
+    $summedDimensions = [];
+
+    if (empty($track->getType())) {
+      $summedDimensions = $trackConfig['sums'] ?? [];
+    }
+    else {
+      // Sum up all project track tools.
+      /** @var \Drupal\ai_screening_project_track\Entity\ProjectTrackTool $tool */
+      foreach ($toolsData as $tool) {
+        // Sum up each dimension.
+        foreach (array_keys($summedDimensions + ($tool['summed_dimensions'] ?? [])) as $key) {
+          $summedDimensions[$key]['sum'] = ($summedDimensions[$key]['sum'] ?? 0) + ($tool['summed_dimensions'][$key] ?? 0);
+          $summedDimensions[$key]['undecidedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::UNDECIDED);
+          $summedDimensions[$key]['approvedThreshold'] = $this->projectTrackTypeHelper->getThreshold($track->getType()->id(), $key, Evaluation::APPROVED);
+        }
+      }
+    }
+
+    // Determine the Evaluation as a sum of all dimensions and track thresholds.
+    // There is probably some smarter way I just couldn't find one.
+    $result = [];
+
+    // Loop over all dimensions and determine which threshold the sum value
+    // matches.
+    foreach ($summedDimensions as $summedDimension) {
+      if ($summedDimension['sum'] < $summedDimension['undecidedThreshold']) {
+        $result['refuse'] = TRUE;
+      }
+      if (($summedDimension['undecidedThreshold'] < $summedDimension['sum']) &&
+        ($summedDimension['sum'] < $summedDimension['approvedThreshold'])) {
+        $result['undecided'] = TRUE;
+      }
+      if ($summedDimension['sum'] > $summedDimension['approvedThreshold']) {
+        $result['approved'] = TRUE;
+      }
+    }
+
+    // After loop we set the evaluation only ending on approved if other keys
+    // were not found.
+    if (array_key_exists('refuse', $result)) {
+      $evaluation = Evaluation::REFUSED;
+    }
+    elseif (array_key_exists('undecided', $result)) {
+      $evaluation = Evaluation::UNDECIDED;
+    }
+    elseif (array_key_exists('approved', $result)) {
+      $evaluation = Evaluation::APPROVED;
+    }
+
+    $trackConfig['dimensions'] = $this->projectTrackTypeHelper->getDimensions($track->getType());
+    $trackConfig['sums'] = $summedDimensions;
+    $trackConfig['evaluation'] = $evaluation ?? Evaluation::NONE;
+
+    return $trackConfig;
+  }
+
+  /**
+   * Compute values for submission report.
+   *
+   * @param \Drupal\ai_screening_project_track\ProjectTrackInterface $track
+   *   The project track.
+   * @param array $trackConfig
+   *   Configuration for the project track.
+   *
+   * @return array
+   *   Values for submission report.
+   */
+  private function computeWebformSubmissionReportValues(ProjectTrackInterface $track, array $trackConfig): array {
+    $tools = $this->projectTrackToolHelper->loadTools($track);
+
+    // Check for blockers in all tools. and add them to config.
+    foreach ($tools as $tool) {
+      $trackConfig['blockers'][$tool->id()] = $this->projectTrackToolHelper->getToolBlockers($tool);
+    }
+
+    // Set evaluation to refused if a blocker was found.
+    foreach ($trackConfig['blockers'] as $blocker) {
+      if (!empty($blocker)) {
+        $evaluation = Evaluation::REFUSED;
+      }
+    }
+
+    $trackConfig['evaluation'] = $evaluation ?? Evaluation::NONE;
+
+    return $trackConfig;
   }
 
 }

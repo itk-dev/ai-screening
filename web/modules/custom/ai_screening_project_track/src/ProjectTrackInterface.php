@@ -52,7 +52,7 @@ interface ProjectTrackInterface extends ContentEntityInterface, EntityChangedInt
   /**
    * Set project track evaluation.
    */
-  public function setProjectTrackEvaluation(Evaluation $evaluation): self;
+  public function setProjectTrackEvaluation(array $evaluation): self;
 
   /**
    * Set project track status.
