@@ -179,18 +179,19 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
-  public function setProjectTrackEvaluation(array $evaluation): self {
-    if (in_array(Evaluation::REFUSED, $evaluation)) {
-      $this->set('project_track_evaluation', 'refused');
+  public function setProjectTrackEvaluation(array $evaluations): self {
+    // Set track evaluation to the least possible approval found across the tools.
+    if (in_array(Evaluation::REFUSED, $evaluations)) {
+      $this->set('project_track_evaluation', Evaluation::REFUSED);
     }
-    elseif (in_array(Evaluation::UNDECIDED, $evaluation)) {
-      $this->set('project_track_evaluation', 'undecided');
+    elseif (in_array(Evaluation::UNDECIDED, $evaluations)) {
+      $this->set('project_track_evaluation', Evaluation::UNDECIDED);
     }
-    elseif (in_array(Evaluation::APPROVED, $evaluation)) {
-      $this->set('project_track_evaluation', 'approved');
+    elseif (in_array(Evaluation::APPROVED, $evaluations)) {
+      $this->set('project_track_evaluation', Evaluation::APPROVED);
     }
     else {
-      $this->set('project_track_evaluation', 'undecided');
+      $this->set('project_track_evaluation', Evaluation::UNDECIDED);
     }
 
     return $this;

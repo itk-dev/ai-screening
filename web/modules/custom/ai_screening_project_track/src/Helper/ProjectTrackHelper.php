@@ -175,8 +175,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
       }
     }
 
-    // @todo Change this
-    $track->setProjectTrackEvaluation($evaluation ?? [Evaluation::NONE]);
+    $track->setProjectTrackEvaluation($evaluations ?? [Evaluation::NONE]);
     $track->setConfiguration($configResult);
     $track->save();
   }
