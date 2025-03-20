@@ -192,7 +192,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       $this->set('project_track_evaluation', Evaluation::APPROVED->value);
     }
     else {
-      $this->set('project_track_evaluation', Evaluation::UNDECIDED->value);
+      $this->set('project_track_evaluation', Evaluation::NONE->value);
     }
 
     return $this;
