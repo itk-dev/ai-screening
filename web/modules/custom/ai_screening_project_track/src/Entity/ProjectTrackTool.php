@@ -204,7 +204,7 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
   public function getCacheTagsToInvalidate(): array {
     return array_merge(
       parent::getCacheTagsToInvalidate(),
-      $this->getProjectTrack()->getCacheTagsToInvalidate()
+      $this->getProjectTrack()?->getCacheTagsToInvalidate()
     );
   }
 
