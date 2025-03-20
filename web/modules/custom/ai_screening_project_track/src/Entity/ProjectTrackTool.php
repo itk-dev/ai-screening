@@ -125,7 +125,7 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
   /**
    * {@inheritdoc}
    */
-  public function getProjectTrack(): ProjectTrackInterface|false {
+  public function getProjectTrack(): ProjectTrackInterface {
     $entities = $this->get('project_track_id')->referencedEntities();
 
     return reset($entities);
@@ -204,7 +204,7 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
   public function getCacheTagsToInvalidate(): array {
     return array_merge(
       parent::getCacheTagsToInvalidate(),
-      $this->getProjectTrack()?->getCacheTagsToInvalidate()
+      $this->getProjectTrack()->getCacheTagsToInvalidate()
     );
   }
 
