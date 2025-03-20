@@ -21,7 +21,7 @@ interface ProjectTrackToolInterface extends ContentEntityInterface, EntityChange
   /**
    * Get project track.
    */
-  public function getProjectTrack(): ProjectTrackInterface;
+  public function getProjectTrack(): ProjectTrackInterface|false;
 
   /**
    * Get tool entity type.
