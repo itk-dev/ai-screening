@@ -40,65 +40,72 @@ final class ThresholdsForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state): array {
     $projectTrackTypes = $this->projectTrackTypeHelper->loadTerms();
     foreach ($projectTrackTypes as $termId => $projectTrackType) {
-      $max = $this->projectTrackTypeHelper->getProjectTrackTypeMaxPossible($projectTrackType);
-      $projectTrackConfiguration = $this->projectTrackTypeHelper->getConfiguration($projectTrackType);
+      $reportTypeValues = $projectTrackType->get('field_report_type')->getValue();
+      $reportTypes = array_map(function ($reportTypeValues) {
+        return $reportTypeValues['value'];
+      }, $reportTypeValues);
+      if (in_array('bubble_chart', $reportTypes)) {
+        $max = $this->projectTrackTypeHelper->getProjectTrackTypeMaxPossible($projectTrackType);
+        $projectTrackConfiguration = $this->projectTrackTypeHelper->getConfiguration($projectTrackType);
 
-      $form['project_track'][$termId] = [
-        '#type' => 'fieldset',
-        '#title' => $projectTrackType->label(),
-      ];
-
-      $form['project_track'][$termId]['term_wrapper'] = [
-        '#type' => 'container',
-      ];
-
-      $form['project_track'][$termId]['term_wrapper']['text'] = [
-        '#markup' => '<div class="mb-3 font-bold">' . $projectTrackType->getDescription() . '</div>',
-      ];
-
-      foreach ($projectTrackConfiguration[ProjectTrackTypeHelper::CONFIGURATION_KEY_DIMENSIONS] as $key => $dimension) {
-        $form['project_track'][$termId]['term_wrapper'][$key] = [
-          '#type' => 'container',
-          '#attributes' => ['class' => ['grid', 'gap-4', 'grid-cols-2']],
+        $form['project_track'][$termId] = [
+          '#type' => 'fieldset',
+          '#title' => $projectTrackType->label(),
         ];
 
-        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_text_wrapper'] = [
+        $form['project_track'][$termId]['term_wrapper'] = [
           '#type' => 'container',
         ];
 
-        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_text_wrapper']['text_1'] = [
-          '#prefix' => '<div>',
-          '#suffix' => '</div>',
-          '#markup' => $dimension,
+        $form['project_track'][$termId]['term_wrapper']['text'] = [
+          '#markup' => '<div class="mb-3 font-bold">' . $projectTrackType->getDescription() . '</div>',
         ];
 
-        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_text_wrapper']['text_2'] = [
-          '#prefix' => '<div class="description">',
-          '#suffix' => '</div>',
-          '#markup' => isset($max[$key]) ? $this->t('Max possible value obtainable: @max', ['@max' => $max[$key]]) : '',
-        ];
+        foreach ($projectTrackConfiguration[ProjectTrackTypeHelper::CONFIGURATION_KEY_DIMENSIONS] as $key => $dimension) {
+          $form['project_track'][$termId]['term_wrapper'][$key] = [
+            '#type' => 'container',
+            '#attributes' => ['class' => ['grid', 'gap-4', 'grid-cols-2']],
+          ];
 
-        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'] = [
-          '#type' => 'container',
-          '#attributes' => ['class' => ['grid', 'gap-4', 'grid-cols-2', 'border-bottom']],
-        ];
+          $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_text_wrapper'] = [
+            '#type' => 'container',
+          ];
 
-        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'][ProjectTrackTypeHelper::buildThresholdKey(Evaluation::APPROVED, $termId, $key)] = [
-          '#type' => 'number',
-          '#title' => $this->t('Approved'),
-          '#default_value' => $this->projectTrackTypeHelper->getThreshold($termId, $key, Evaluation::APPROVED),
-          '#min' => 0,
-          '#description' => $this->t('Undecided -> Approved'),
-        ];
+          $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_text_wrapper']['text_1'] = [
+            '#prefix' => '<div>',
+            '#suffix' => '</div>',
+            '#markup' => $dimension,
+          ];
 
-        $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'][ProjectTrackTypeHelper::buildThresholdKey(Evaluation::UNDECIDED, $termId, $key)] = [
-          '#type' => 'number',
-          '#title' => $this->t('Undecided'),
-          '#default_value' => $this->projectTrackTypeHelper->getThreshold($termId, $key, Evaluation::UNDECIDED),
-          '#description' => $this->t('Refused -> Undecided'),
-          '#min' => 0,
-        ];
+          $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_text_wrapper']['text_2'] = [
+            '#prefix' => '<div class="description">',
+            '#suffix' => '</div>',
+            '#markup' => isset($max[$key]) ? $this->t('Max possible value obtainable: @max', ['@max' => $max[$key]]) : '',
+          ];
+
+          $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'] = [
+            '#type' => 'container',
+            '#attributes' => ['class' => ['grid', 'gap-4', 'grid-cols-2', 'border-bottom']],
+          ];
+
+          $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'][ProjectTrackTypeHelper::buildThresholdKey(Evaluation::APPROVED, $termId, $key)] = [
+            '#type' => 'number',
+            '#title' => $this->t('Approved'),
+            '#default_value' => $this->projectTrackTypeHelper->getThreshold($termId, $key, Evaluation::APPROVED),
+            '#min' => 0,
+            '#description' => $this->t('Undecided -> Approved'),
+          ];
+
+          $form['project_track'][$termId]['term_wrapper'][$key]['dimensions_wrapper'][ProjectTrackTypeHelper::buildThresholdKey(Evaluation::UNDECIDED, $termId, $key)] = [
+            '#type' => 'number',
+            '#title' => $this->t('Undecided'),
+            '#default_value' => $this->projectTrackTypeHelper->getThreshold($termId, $key, Evaluation::UNDECIDED),
+            '#description' => $this->t('Refused -> Undecided'),
+            '#min' => 0,
+          ];
+        }
       }
+
     }
 
     $form['#validate'][] = $this->validateThresholds(...);

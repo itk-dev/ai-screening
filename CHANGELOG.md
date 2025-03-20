@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-89](https://github.com/itk-dev/ai-screening/pull/89)
+  - JS filter for law report
+  - Changes in report display
+  - Automaitc calculation of law track
+  - Changes to law webform.
+  - Further support for multiple tools under each track in relation to config storage and report display.
 - [PR-88](https://github.com/itk-dev/ai-screening/pull/88)
   - Update report for law track
   - Update maa_vi webform

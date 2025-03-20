@@ -1,35 +1,46 @@
-{% if blockers|length > 0 %}
-  <div class="blockers flex alert-danger p-3 rounded">
-    <div class="m-5 self-center text-xl">
-      <i class="fa-solid fa-triangle-exclamation"></i>
-    </div>
-    <div>
-      {% for blocker in blockers %}
-        <div>
-          {{ blocker['#text_stop']|raw }}
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-{% endif %}
-
 {# Specific to law track webform submissions #}
 {# Getting webform from tool data means we are sure there is only one webform to check against #}
 {% if tool.getToolData['webform_submission:' ~ tool.tool_id.value].webform|keys|first is same as ('maa_vi') %}
-  <div class="mt-3 flex alert-warning p-3 rounded">
-    <div>
-      <div>
-        <div class="consideration">
-          <div><i class="mr-2 fa-regular fa-circle-check"></i><h5 class="inline-block">{{ 'Task'|t }}</h5></div>
-          <p>{{ 'You must ensure that users/citizens that use an AI-system are informed that it is an AI-system.'|t }}</p>
-        </div>
-      </div>
-      <div>
-        <div class="consideration">
-          <div class="inline-block"><i class="mr-2 fa-regular fa-circle-check"></i><h5 class="inline-block">{{ 'Task'|t }}</h5></div>
-          <p>{{ 'A Fundamental rights impact assessment (FRIA) must always be implemented.'|t }}</p>
-        </div>
-      </div>
+  <div id="reportLawTrackToolbar" class="flex flex-wrap -mx-5 px-5 border-b mb-3">
+    <div class="my-5 mr-5 basis-1/6 flex-none flex flex-nowrap">
+      <input class="form-checkbox bg-primary text-primary border border-primary rounded-md py-3 px-3" type="checkbox" id="hideQuestionsAnswers" name="hideQuestionsAnswers" checked />
+      <label class="ml-3 whitespace-nowrap option font-semibold" for="hideQuestionsAnswers">{{ 'Hide questions/answers'|t }}</label>
+    </div>
+    <div class="my-5 mr-5 basis-1/6 flex-none flex flex-nowrap">
+      <input class="form-checkbox bg-primary text-primary border border-primary rounded-md py-3 px-3" type="checkbox" id="showStops" name="showStops" checked />
+      <label class="ml-3 whitespace-nowrap option font-semibold" for="showStops">{{ 'Demands'|t }}</label>
+    </div>
+    <div class="my-5 mr-5 basis-1/6 flew-none flex flex-nowrap">
+      <input class="form-checkbox bg-primary text-primary border border-primary rounded-md py-3 px-3" type="checkbox" id="showRules" name="showRules" checked />
+      <label class="ml-3 whitespace-nowrap option font-semibold" for="showRules">{{ 'Rules'|t }}</label>
+    </div>
+    <div class="my-5 mr-5 basis-1/6 flex-none flex flex-nowrap">
+      <input class="form-checkbox bg-primary text-primary border border-primary rounded-md py-3 px-3" type="checkbox" id="showTasks" name="showTasks" checked />
+      <label class="ml-3 whitespace-nowrap option font-semibold" for="showTasks">{{ 'Tasks'|t }}</label>
+    </div>
+    <div class="my-5 mr-5 basis-1/6 flex-none flex flex-nowrap">
+      <input class="form-checkbox bg-primary text-primary border border-primary rounded-md py-3 px-3" type="checkbox" id="showConsiderations" name="showConsiderations" checked />
+      <label class="ml-3 whitespace-nowrap option font-semibold" for="showConsiderations">{{ 'Considerations'|t }}</label>
+    </div>
+  </div>
+
+  <div id="elementGroups" class="w-full xl:w-[800px] mb-3">
+    <h2 class="mt-0 mb-3">{{ 'Summary'|t }}</h2>
+    <div id="groupDemands"></div>
+    <div id="groupRules"></div>
+    <div id="groupTasks"></div>
+    <div id="groupConsiderations"></div>
+  </div>
+
+  <div class="ai-screening-yes-no-stop w-full xl:w-[800px] pb-4 mb-4 border-b">
+    <h2 class="mt-0 mb-3">{{ 'Report'|t }}</h2>
+    <div class="task">
+      <div><i class="text-green-700 mr-2 fa-regular fa-circle-check"></i><h5 class="inline-block">{{ 'Task'|t }}</h5></div>
+      <p>{{ 'You must ensure that users/citizens that use an AI-system are informed that it is an AI-system.'|t }}</p>
+    </div>
+    <div class="task">
+      <div class="inline-block"><i class="text-green-700 mr-2 fa-regular fa-circle-check"></i><h5 class="inline-block">{{ 'Task'|t }}</h5></div>
+      <p>{{ 'A Fundamental rights impact assessment (FRIA) must always be implemented.'|t }}</p>
     </div>
   </div>
 {% endif %}

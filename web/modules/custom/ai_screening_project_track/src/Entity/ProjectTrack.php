@@ -179,8 +179,21 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   /**
    * {@inheritdoc}
    */
-  public function setProjectTrackEvaluation(Evaluation $evaluation): self {
-    $this->set('project_track_evaluation', $evaluation->value);
+  public function setProjectTrackEvaluation(array $evaluations): self {
+    // Set track evaluation to the least possible approval found across the
+    // tools.
+    if (in_array(Evaluation::REFUSED, $evaluations)) {
+      $this->set('project_track_evaluation', Evaluation::REFUSED->value);
+    }
+    elseif (in_array(Evaluation::UNDECIDED, $evaluations)) {
+      $this->set('project_track_evaluation', Evaluation::UNDECIDED->value);
+    }
+    elseif (in_array(Evaluation::APPROVED, $evaluations)) {
+      $this->set('project_track_evaluation', Evaluation::APPROVED->value);
+    }
+    else {
+      $this->set('project_track_evaluation', Evaluation::NONE->value);
+    }
 
     return $this;
   }
@@ -195,7 +208,6 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
     else {
       return $this->getProjectTrackEvaluationOverridden() ?: $this->getProjectTrackEvaluation(TRUE);
     }
-
   }
 
   /**
@@ -272,7 +284,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
    * {@inheritdoc}
    */
   public function getDimensions(): array {
-    return $this->getConfiguration()[ProjectTrackTypeHelper::CONFIGURATION_KEY_DIMENSIONS] ?? [];
+    return $this->getConfiguration()['bubbleChartReportResult'][ProjectTrackTypeHelper::CONFIGURATION_KEY_DIMENSIONS] ?? [];
   }
 
   /**
@@ -281,7 +293,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   public function getSummedValues(): ?array {
     $values = [];
     $config = $this->getConfiguration();
-    foreach ($config['sums'] as $key => $sum) {
+    foreach ($config['bubbleChartReportResult']['sums'] as $key => $sum) {
       $values[$key] = $sum['sum'];
     }
 

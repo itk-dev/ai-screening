@@ -113,8 +113,7 @@ elements: |-
     er_der_paataenkt_databeskyttelseslovens_ss10_forskning_og_statis:
       '#type': ai_screening_yes_no_stop
       '#title': 'Er der påtænkt databeskyttelseslovens §10 (forskning og statistik) som hjemmel til drift?'
-      '#stop_value': '1'
-      '#text_stop': '<div class="stop"><p><h5>Krav</h5></p><p>Databeskyttelsesloven §10 vil kun yderst sjældent kunne være driftshjemmel.</p></div>'
+      '#text_yes': '<div class="rule"><p><h5>Regel</h5></p><p>Databeskyttelsesloven §10 vil kun yderst sjældent kunne være driftshjemmel.</p></div>'
       '#states':
         visible:
           ':input[name="indgaar_der_personoplysninger_i_loesning"]':
@@ -143,14 +142,12 @@ elements: |-
     skaber_ai_systemet_video_lyd_eller_billeder_som_efterligner_virk:
       '#type': ai_screening_yes_no_stop
       '#title': 'Skaber AI-systemet  video, lyd eller billeder, som efterligner virkelige objekter?'
-      '#stop_value': '1'
-      '#text_stop': '<div class="rule"><p><h5>Krav</h5></p><p>Der skal sikres at AI-systemet tydeligt angiver til brugeren/og i output, at indholdet er kunstigt genereret eller manipuleret.</p></div>'
+      '#text_yes': '<div class="rule"><p><h5>Regel</h5></p><p>Der skal sikres at AI-systemet tydeligt angiver til brugeren/og i output, at indholdet er kunstigt genereret eller manipuleret.</p></div>'
     vil_man_kunne_redegoere_for_ai_systemets_funktion_i_afgoerelser:
       '#type': ai_screening_yes_no_stop
       '#title': 'Vil man kunne redegøre for AI-systemets funktion i afgørelser?'
-      '#text_no': '<div class="rule"><p><h5>Regel</h5></p><p>Ved anvendelse af AI-systemer i forbindelse med borgerrettede afgørelser, skal der tages højde for, at forvaltningen skal kunne redegøre for, hvorfor en sag har fået et givent udfald. Dette også af hensyn til at sikre en ensartet sagsbehandling og overholdelse af lighedsgrundsætningen. Det hænger også sammen med forvaltningsrettens krav til begrundelse i afgørelsessager, da vi som myndighed er forpligtede til at begrunde, hvorfor afgørelsen har fået et givent udfald.</p></div>'
       '#stop_value': '0'
-      '#text_stop': '<div class="rule"><p><h5>Regel</h5></p><p>Ved anvendelse af AI-systemer i forbindelse med borgerrettede afgørelser, skal der tages højde for, at forvaltningen skal kunne redegøre for, hvorfor en sag har fået et givent udfald. Dette også af hensyn til at sikre en ensartet sagsbehandling og overholdelse af lighedsgrundsætningen. Det hænger også sammen med forvaltningsrettens krav til begrundelse i afgørelsessager, da vi som myndighed er forpligtede til at begrunde, hvorfor afgørelsen har fået et givent udfald.</p></div>'
+      '#text_stop': '<div class="stop"><p><h5>Krav</h5></p><p>Ved anvendelse af AI-systemer i forbindelse med borgerrettede afgørelser, skal der tages højde for, at forvaltningen skal kunne redegøre for, hvorfor en sag har fået et givent udfald. Dette også af hensyn til at sikre en ensartet sagsbehandling og overholdelse af lighedsgrundsætningen. Det hænger også sammen med forvaltningsrettens krav til begrundelse i afgørelsessager, da vi som myndighed er forpligtede til at begrunde, hvorfor afgørelsen har fået et givent udfald.</p></div>'
       '#states':
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':

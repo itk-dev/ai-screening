@@ -1,9 +1,9 @@
 <div {{ element.attributes }}>
   {% if element.text_question.message['#text'] %}
-    <div class="font-light">{{ element.text_question }}</div>
+    <div class="font-light element-question-text">{{ element.text_question }}</div>
   {% endif %}
 
-  <div class="mb-3 mt-2">
+  <div class="mb-3 mt-2 element-response">
     <span>{{ 'Response'|t }}:</span>
     <span class="inline-block">{{ element.response }}</span>
   </div>

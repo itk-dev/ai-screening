@@ -223,10 +223,8 @@ input.error {
   padding-left: 3rem;
 }
 
-.ai-screening-yes-no-stop--text-yes,
-.ai-screening-yes-no-stop--text-no,
-.ai-screening-yes-no-stop--text-stop {
-
+#elementGroups,
+.ai-screening-yes-no-stop {
   .consideration,
   .task,
   .rule,
@@ -244,6 +242,7 @@ input.error {
   margin: 0 0 1em;
 }
 
+#elementGroups,
 .yes-no-stop {
   select {
     margin-bottom: .5em;
@@ -253,6 +252,7 @@ input.error {
   .rule,
   .task,
   .stop {
+
     img {
       display: inline-block;
       height: 1em;
