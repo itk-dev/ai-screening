@@ -29771,7 +29771,7 @@ msgid "Submission updated in %form."
 msgstr "Indsendelse opdateret."
 
 msgid "Started @populated of @fields steps"
-msgstr ""
+msgstr "Begyndt @populated af @fields trin"
 
 msgid "Project owner"
 msgstr ""
@@ -37570,3 +37570,18 @@ msgstr "Du skal sikre at brugere/borgere der anvender et AI-system er oplyst om 
 
 msgid "A Fundamental rights impact assessment (FRIA) must always be implemented."
 msgstr "Der skal altid gennemføres Fundamental rights impact assessment (FRIA)."
+
+msgid "Hide questions/answers"
+msgstr "Skjul spørgsmål/svar"
+
+msgid "Demands"
+msgstr "Krav"
+
+msgid "Rules"
+msgstr "Regler"
+
+msgid "Considerations"
+msgstr "Overvejelser"
+
+msgid "Report"
+msgstr "Rapport"
