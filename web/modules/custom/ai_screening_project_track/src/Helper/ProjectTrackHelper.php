@@ -154,6 +154,8 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   public function projectTrackToolComputed(ProjectTrackToolComputedEvent $event): void {
     $track = $event->getTool()->getProjectTrack();
     $trackConfig = $track->getConfiguration();
+    $trackConfig['bubbleChartReportResult'] = $trackConfig['bubbleChartReportResult'] ?? [];
+    $trackConfig['submissionReportResult'] = $trackConfig['submissionReportResult'] ?? [];
     $toolsData = $this->getToolsData($track);
     $configResult = [];
 
