@@ -51,6 +51,14 @@ final class WebformSubmissionProjectTrackToolComputer implements ProjectTrackToo
     $tool->setToolData($toolData);
 
     $tool->setProjectTrackToolStatus(Status::IN_PROGRESS);
+
+    if (!empty($tool->getToolData()['history'])) {
+      $projectTrack = $tool->getProjectTrack();
+      if (Status::NEW === $projectTrack->getProjectTrackStatus()) {
+        $projectTrack->setProjectTrackStatus(Status::IN_PROGRESS);
+        $projectTrack->save();
+      }
+    }
   }
 
 }
