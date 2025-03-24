@@ -20,7 +20,7 @@
     color: inherit;
   }
 
-  #main-content,
+  #main-content-wrapper,
   #elementGroups,
   #groupDemands,
   #groupRules
@@ -28,7 +28,7 @@
   #groupConsiderations,
   .ai-screening-yes-no-stop--text-stop,
   .ai-screening-yes-no-stop--text-yes {
-    position: relative!important;
+    position: relative;
   }
 
   .task,
