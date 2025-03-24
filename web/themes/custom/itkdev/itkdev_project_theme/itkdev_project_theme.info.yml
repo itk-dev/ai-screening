@@ -9,5 +9,3 @@ regions:
   navigation: Navigation
   content: Content
   footer: Footer
-libraries:
-  - itkdev_project_theme/print-styling

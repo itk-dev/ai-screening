@@ -13,7 +13,7 @@
   .admin-toolbar-control-bar,
   .btn,
   .btn-primary {
-    display: none !important;
+    display: none;
   }
 
   a {
@@ -35,9 +35,9 @@
   .consideration,
   .rule,
   .stop {
-    display: block!important;
-    position: relative!important;
-    break-inside: avoid-page!important;
+    display: block;
+    position: relative;
+    break-inside: avoid-page;
   }
 
 }

@@ -211,7 +211,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
   public static function getSubscribedEvents(): array {
     return [
       ProjectTrackToolComputedEvent::class => 'projectTrackToolComputed',
-      ThemeHookEvents::THEME => 'projectTrackTheme'
+      ThemeHookEvents::THEME => 'projectTrackTheme',
     ];
   }
 
