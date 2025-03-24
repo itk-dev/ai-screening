@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * AI screening FrontpageStatsTopBlock.php
+ *
+ * @see web/modules/custom/ai_screening/templates/stats-top-block.html.twig
+ *
+ * Available variables:
+ * - data: Data about project status across the site.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if data.help_text is not empty %}
+<div class="mb-5 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-slate-600 sm:px-7.5 xl:col-span-8 drop-shadow-md overflow-x-auto">
+  <div class="content w-full xl:w-[800px]">
+    {{ data.help_text|raw }}
+  </div>
+</div>
+{% endif %}

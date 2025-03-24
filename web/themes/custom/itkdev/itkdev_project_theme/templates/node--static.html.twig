@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * AI screening implementation to display a node.
+ *
+ * @see web/core/modules/node/templates/node.html.twig
+ *
+ * @ingroup themeable
+ */
+#}
+{% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
+
+{% block title %}
+  <div class="inline-flex items-center">
+    <h1 class="dark:text-white inline-block">{{ label }}</h1>
+    {% if node.access('update') %}
+      <a href="{{ path('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+    <div class="content p-5 w-full xl:w-[800px]">
+      {{ content }}
+    </div>
+  </div>
+{% endblock %}

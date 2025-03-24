@@ -1,0 +1,141 @@
+title: Jura
+elements: |-
+  maa_vi:
+    '#type': webform_wizard_page
+    '#title': 'Må vi'
+    indgaar_der_personoplysninger_i_loesning:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Indgår der personoplysninger i løsning?'
+      '#text_yes': '<div class="consideration"><h5>Overvejelse</h5><p>Husk fra start at indtænke databeskyttelse gennem design og standardindstillinger, herunder også løbende opfølgning derpå efter udviklingen, for at sikre passende sikkerhed.</p></div><div class="task"><h5>Opgave</h5><p>Der skal gennemføres en GDPR-mæssig risikovurdering og GDPR-mæssig konsekvensanalyse (DPIA).</p></div><div class="task"><h5>Opgave</h5><p>De registrerede skal både ved udvikling og drift, i en oplysningstekst, informeres om de nye formål (AI træning) vi vil anvende allerede indsamlede personoplysninger til, og ligeledes hvis vi indsamler oplysninger direkte til formålet. Alle andre krav vedr. oplysningstekst skal også efterleves jf. databeskyttelsesforordningens artikel 13 eller artikel 14.</p></div><div class="task"><h5>Opgave</h5><p>Der skal oprettes en intern anmeldelse jf. sikkerhedshåndbogen procedure herfor.</p></div>'
+    er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Er der tale om en ren intern løsning, der ikke anvendes borgerettet eller til borgererettede output / sagsbehandling? '
+    anvendes_systemet_til_sagsbehandling_uanset_om_det_er_borgerrett:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Anvendes systemet til sagsbehandling (uanset om det er borgerrettet eller virksomhedsrettet)?'
+      '#text_yes': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Det følger af det forvaltningsretlige undersøgelsesprincip , at myndigheden er forpligtet til at sikre tilstrækkelig og relevant sagsoplysning. En automatiseret sagsgang forudsætter derfor, at myndigheden på forhånd kan afgrænse, hvilke oplysninger og fakta, der er relevant til brug for sagsbehandlingen. Uanset om det er muligt på forhånd at afgrænse, hvilke oplysninger der er nødvendige i forbindelse med den konkrete sagsbehandling, kan der ved en fuldautomatiseret afgørelse være risiko for, at tilfælde med atypiske fakta eller andre forhold, som normalt ikke er relevante, overses.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal du afdække om der er særlovgivning, der regulerer området eller har anden indvirkning.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal der gennemføres en forvaltningsretlig konsekvensanalyse (EVT LINK TODO HUSK)</p></div>'
+      '#states':
+        visible:
+          ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
+            value: '1'
+    anvedes_systemet_til_borgerrettet_ai:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Anvedes systemet til borgerrettet AI?'
+      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal der gennemføres en forvaltningsretlig konsekvensanalyse (EVT LINK TODO HUSK)</p></div><div class="task"><p><h5>Opgave</h5></p><p>Det skal sikres at AI’en opfylder forvaltningslovens vejledningsforpligtelse (EVT LINK TODO HUSK) samt der skal vejledes borgere ifm. Chatbots og lign. om, at der findes andre kanaler at kontakte kommunen på.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Systemet skal tydeligt oplyse borgeren at der er tale om et AI system.</p></div>'
+      '#states':
+        visible:
+          ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
+            value: '1'
+    anvendes_det_af_borgerne_til_ansoegninger_og_lign_handlinger:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Anvendes det af borgerne til ansøgninger og lign. handlinger?'
+      '#text_yes': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Det følger af det forvaltningsretlige undersøgelsesprincip , at myndigheden er forpligtet til at sikre tilstrækkelig og relevant sagsoplysning. En automatiseret sagsgang forudsætter derfor, at myndigheden på forhånd kan afgrænse, hvilke oplysninger og fakta, der er relevant til brug for sagsbehandlingen. Uanset om det er muligt på forhånd at afgrænse, hvilke oplysninger der er nødvendige i forbindelse med den konkrete sagsbehandling, kan der ved en fuldautomatiseret afgørelse være risiko for, at tilfælde med atypiske fakta eller andre forhold, som normalt ikke er relevante, overses.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal du afdække om der er særlovgivning, der regulerer området eller har anden indvirkning.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal der gennemføres en forvaltningsretlig konsekvensanalyse (EVT LINK TODO HUSK)</p></div>'
+      '#states':
+        visible:
+          ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
+            value: '1'
+    falder_behandlingen_inden_for_listen_over_forbudt_ai_biometriske:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Falder behandlingen inden for listen over forbudt AI?'
+      '#text_question': "<ul><li>Biometriske kategoriseringssystemer, der anvender følsomme karakteristika, såsom politiske, religiøse, filosofiske overbevisninger, seksuel orientering, race.</li><li>Ugrundet indsamling af ansigtsbilleder fra internettet eller overvågningskameraer til oprettelse af ansigtsgenkendelsesdatabaser.</li><li>Systemer for følelsesgenkendelse på arbejdspladsen og uddannelsesinstitutioner.</li><li>AI-systemer, der tillader brugen af 'sociale point' tildelt af regeringer eller virksomheder baseret på social adfærd eller personlige karakteristika.</li><li>Kunstig intelligens, der manipulerer menneskelig adfærd for at omgå deres frie vilje.</li><li>Kunstig intelligens, der udnytter sårbarheder hos mennesker.</li><li>Anvendelse af biometrisk fjernidentifikation i realtid på offentlige steder med henblik på retshåndhævelse (med snævre undtagelser)?</li></ul>"
+      '#stop_value': '1'
+      '#text_stop': '<div class="stop"><p><h5>Krav</h5></p><p>Da den tiltænkte AI-løsning er på listen over forbudte AI-systemer er det ulovligt at fortsætte udviklingen/anvendelsen.</p></div>'
+    skal_systemet_anvendes_af_medarbejdere:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Skal systemet anvendes af medarbejdere?'
+      '#text_yes': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Vær opmærksom på at offentligt ansatte har tavshedspligt. Det indebærer, at fortrolige oplysninger, som der opnås adgang til i forbindelse med arbejdet, ikke må videregives til uvedkommende. Fortrolige oplysninger kan kun indtastes i interne generative AI-systemer, hvis der er foretaget en risikovurdering af brugen af den valgte løsning. Risikovurderingen skal genbesøges Regelmæssigt, således den aktuelle anvendelse af AI-systemet svarer til de accepterede risici. Fortrolige oplysninger må ikke indtastes i generative AI-systemer, som er gratis tilgængelige via offentligt tilgængelige hjemmesider. Vær opmærksom på, at oplysninger af fortrolig karakter og dermed underlagt krav om tavshedspligt både kan vedrøre personoplysninger og andre forhold, eksempelvis virksomheders forretningshemmeligheder.</p></div>'
+    er_der_tale_om_et_ai_system_hvor_der_sker_en_hel_eller_delvis_au:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Er der tale om et AI-system, hvor der sker en hel eller delvis automatiseret sagsbehandling i sager, hvor der træffes borger- eller virksomhedsrettede afgørelser?'
+      '#text_yes': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Der skal være opmærksomhed på automation bias i afgørelser, da det kan medføre at afgørelsen defacto bliver en automatisk afgørelse.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Der skal sikres mulighed for partshøring af parterne i, hvis der anvendes oplysninger, som en part ikke kan antages at være bekendt med, og disse er til ugunst for parten.</p></div><div class="rule"><p><h5>Regel</h5></p><p>Er sagsbehandlingsområdet pålagt at kommunen skal foretage et skøn (og sagen altså ikke må afgøres alene pba. regler) - det som hedder Skøn under Regel (EVT LINK) - så må behandlingen ikke være fuldautomatisk.</p></div><div class="rule"><p><h5>Regel</h5></p><p>Fuldautomatiserede afgørelser er forbudt jf. artikel 22 GDPR, medmindre det er eksplicit hjemlet i anden EU- eller dansk lovgivning – det skal fremgå direkte at automatiske afgørelse kan anvendes!</p></div>'
+      '#states':
+        visible:
+          ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
+            value: '1'
+    kan_der_beskrives_et_baade_udtrykkeligt_og_legitimt_formaal_vaer:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Kan der beskrives et både udtrykkeligt og legitimt formål (vær opmærksom på at der typisk vil være krævet forskellige hjemler til  henholdsvis udvikling og drift)?'
+      '#stop_value': '0'
+      '#text_stop': '<div class="stop"><h5>Krav</h5><p>Der er besvaret at der ikke kan gives et udtrykkeligt og legitimt formål. Det er påkrævet efter GDPR.</p></div>'
+      '#states':
+        visible:
+          ':input[name="indgaar_der_personoplysninger_i_loesning"]':
+            value: '1'
+    benyttes_personoplysninger_fra_andre_eksisterende_behandlinger_h:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Benyttes personoplysninger fra andre eksisterende behandlinger hvor formålet (AI-udvikling eller drift) er uforeneligt med det oprindelige formål?'
+      '#stop_value': '1'
+      '#text_stop': '<div class="stop"><p><h5>Krav</h5></p><p>Der er besvaret at der anvendes personoplysninger fra eksisterende behandlinger hvis formål ikke er foreneligt med AI-udvikling og drift. Personoplysninger må jf. GDPR ikke anvendes til uforeningelige formål!</p></div>'
+      '#states':
+        visible:
+          ':input[name="indgaar_der_personoplysninger_i_loesning"]':
+            value: '1'
+    er_personoplysningerne_der_anvendes_i_ai_loesningen_proportionel:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Er personoplysningerne der anvendes i AI løsningen proportionelle (egnede, nødvendige og forholdsmæssige)?'
+      '#stop_value': '0'
+      '#text_stop': '<div class="stop"><p><h5>Krav</h5></p><p>Der er besvaret at personoplysningerne der anvendes ikke er proportionelle. Det skal de være jf. GDPR</p></div>'
+      '#states':
+        visible:
+          ':input[name="indgaar_der_personoplysninger_i_loesning"]':
+            value: '1'
+    skal_ai_systemet_traenes_paa_rigtige_personoplysninger:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Skal AI-systemet trænes på rigtige personoplysninger?'
+      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><p>Træning af AI-systemer på personoplysninger skal skriftligt dokumenteres, herunder hvorfor der kræves ægte personoplysninger, og træningen skal da i videst mulige omfang ske på pseudonymiserede data. Økonomiske hensyn kan ikke udgøre undtagelsesårsagen alene.</p></div>'
+      '#states':
+        visible:
+          ':input[name="indgaar_der_personoplysninger_i_loesning"]':
+            value: '1'
+    er_der_hjemmel_til_behandlingen_vaer_opmaerksom_paa_at_der_typis:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Er der hjemmel til behandlingen?'
+      '#text_question': '<p>Vær opmærksom på at der typisk er forskellige hjemler til henholdsvis udvikling og drift + at hvis der er tale om personoplysninger, så kan GDPR typisk ikke stå alene som hjemmelsgrundlag, men at der så også kræves aktiverende hjemmel i en faglovgivning el. lign.</p>'
+      '#stop_value': '0'
+      '#text_stop': '<div class="stop"><p><h5>Krav</h5></p><p>Der er besvaret at der mangler hjemmel. Der skal fastlægges og dokumenteres behandlingsgrundlag (hjemmel) til en AI-udvikling og/eller anvendelse i drift. Formålene for træning/udvikling og drift er per definition forskellige. Udviklingsfasens formål er netop udvikling, mens drift har løsning af konkret(e) myndighedsopgave(r) som formål. Derfor vil hjemlerne til formålene også være forskellige. Husk at der også skal fastlægges hjemmel for kontinuerlig træning i dynamiske AI-systemer. Og husk at GDPR som hjemmel eks. artikel 6, stk. 1, litra e (myndighedsudøvelse) vil kræve støtte/aktivering fra særlovgivning.</p></div>'
+      '#states':
+        visible:
+          ':input[name="indgaar_der_personoplysninger_i_loesning"]':
+            value: '1'
+    er_der_paataenkt_databeskyttelseslovens_ss10_forskning_og_statis:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Er der påtænkt databeskyttelseslovens §10 (forskning og statistik) som hjemmel til drift?'
+      '#text_yes': '<div class="rule"><p><h5>Regel</h5></p><p>Databeskyttelsesloven §10 vil kun yderst sjældent kunne være driftshjemmel.</p></div>'
+      '#states':
+        visible:
+          ':input[name="indgaar_der_personoplysninger_i_loesning"]':
+            value: '1'
+    benytter_ai_systemet_kun_almindelige_personoplysninger:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Benytter AI-systemet kun almindelige personoplysninger?'
+      '#text_no': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Selv hvis der ikke indgår artikel 9/10 oplysninger i en AI-behandling, skal vi være særligt opmærksomme på at output ikke medfører, at man (med en høj grad af sikkerhed) kan udlede artikel 9/10 oplysninger om de registrerede . Hvis man kan udlede særlige personoplysninger, så skal løsningen (trods den kun behandler almindelige personoplysninger) betragtes som behandlende særlige kategorier. Det øger kravene til hjemmel, jf. grundlæggende behandlingsforbud for artikel 9 oplysninger, hvorfor en undtagelseshjemmel skal findes</p></div>'
+      '#states':
+        visible:
+          ':input[name="indgaar_der_personoplysninger_i_loesning"]':
+            value: '1'
+    loeser_ai_systemet_en_opgave_som_kommunen_enten_er_forpligtet_ti:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Løser AI-systemet en opgave, som kommunen enten er forpligtet til at varetage som følge af lovgivningen, eller på anden måde varetager en saglig kommunal opgave?'
+      '#stop_value': '0'
+      '#text_stop': '<div class="stop"><p><h5>Krav</h5></p><p>Der må kun udvikles/anvendes AI-systemer, hvis der er tale om en opgave, som kommunen enten er forpligtet til at varetage som følge af lovgivningen, eller hvis der på anden måde varetages en saglig kommunal opgave ved anvendelsen af systemet.</p></div>'
+    indgaar_der_sundhedsjournaloplysninger:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Indgår der sundhedsjournaloplysninger?'
+      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><p>Såfremt oplysninger fra patientjournaler skal anvendes til AI, skal dette ske på baggrund af enten et sundhedsfagligt samtykke, sundhedslovens §42d, stk. 2, nr. 2 eller §46 (kun til forskning ). Anvendelse af journaloplysninger skal juridisk- og ledelsesmæssig godkendes (regionsrådsgodkendelse jf sundhedsloven). Journaloplysninger må ikke anvendes til AI i forbindelse med aktuel behandling af patienten, og formål der ikke er rummet af kvalitetssikring eller -udvikling af behandlingsforløb og arbejdsgange for det faglige område.</p></div>'
+    udgoer_ai_systemet_en_hoej_risiko_for_fysiske_personers_sundhed:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Udgør AI-systemet en høj risiko for fysiske personers sundhed og sikkerhed eller grundlæggende rettigheder (højrisiko AI-systemer)?'
+      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><ol><li>Der skal sikres, at der<br>oprettes og løbende evalueres via et risikostyringssystem</li><li>foretages datastyring i forbindelse trænings-, validerings- og prøvningsdatatsæt</li><li>udarbejdes teknisk dokumentation forinden ibrugtagning</li><li>foretages logning </li><li>sikres en passende gennemsigtighed med henblik på opfyldelse af de relevante bruger- og udbyderforpligtelser</li><li>udføres menneskeligt tilsyn i hele AI-systemets levetid</li><li>oplyses om nøjagtigheden af systemet</li><li>sikres robusthed vha. tekniske redundansløsninger (backupplaner)</li><li>sikres modstandsdygtige over for uautoriserede tredjeparters forsøg på at ændre systemet.</li><li>sikres vedligehold og dokumenter, kontinuerlig, iterativ proces igennem hele systemets levetid</li><li>sikres oplysningspligt til nationale kompetente myndigheder og samarbejde med nationalt kompetente myndigheder </li></ol></div>'
+    skaber_ai_systemet_video_lyd_eller_billeder_som_efterligner_virk:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Skaber AI-systemet  video, lyd eller billeder, som efterligner virkelige objekter?'
+      '#text_yes': '<div class="rule"><p><h5>Regel</h5></p><p>Der skal sikres at AI-systemet tydeligt angiver til brugeren/og i output, at indholdet er kunstigt genereret eller manipuleret.</p></div>'
+    vil_man_kunne_redegoere_for_ai_systemets_funktion_i_afgoerelser:
+      '#type': ai_screening_yes_no_stop
+      '#title': 'Vil man kunne redegøre for AI-systemets funktion i afgørelser?'
+      '#stop_value': '0'
+      '#text_stop': '<div class="stop"><p><h5>Krav</h5></p><p>Ved anvendelse af AI-systemer i forbindelse med borgerrettede afgørelser, skal der tages højde for, at forvaltningen skal kunne redegøre for, hvorfor en sag har fået et givent udfald. Dette også af hensyn til at sikre en ensartet sagsbehandling og overholdelse af lighedsgrundsætningen. Det hænger også sammen med forvaltningsrettens krav til begrundelse i afgørelsessager, da vi som myndighed er forpligtede til at begrunde, hvorfor afgørelsen har fået et givent udfald.</p></div>'
+      '#states':
+        visible:
+          ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
+            value: '1'

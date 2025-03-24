@@ -1,0 +1,11 @@
+uuid: 275e333e-0dcd-48fb-a3ac-6b3ee0bded68
+langcode: da
+status: true
+dependencies: {  }
+name: Static
+type: static
+description: null
+help: null
+new_revision: false
+preview_mode: 0
+display_submitted: true

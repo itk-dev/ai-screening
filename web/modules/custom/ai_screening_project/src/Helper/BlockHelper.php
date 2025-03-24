@@ -78,7 +78,9 @@ final readonly class BlockHelper implements EventSubscriberInterface {
 
     foreach ($activeProjects as $project) {
       $evaluation = $this->projectHelper->getProjectTrackEvaluation($project->id());
-
+      if (empty($evaluation['track_evaluation'])) {
+        continue;
+      }
       if (in_array(Evaluation::NONE->value, $evaluation['track_evaluation'])) {
         continue;
       }
