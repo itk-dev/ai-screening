@@ -1,0 +1,24 @@
+uuid: 7ba51e7d-0d8a-414a-8866-d503ce234461
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_text
+    - filter.format.simple_editor
+    - node.type.static
+  module:
+    - text
+id: node.static.field_text
+field_name: field_text
+entity_type: node
+bundle: static
+label: Text
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - simple_editor
+field_type: text_long

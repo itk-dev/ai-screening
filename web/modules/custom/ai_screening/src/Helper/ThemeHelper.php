@@ -36,7 +36,10 @@ final class ThemeHelper extends AbstractHelper implements EventSubscriberInterfa
     if ('node_project_form' === $formId) {
       $form['#title'] = t('Create new project');
     }
-    if (in_array($formId, ['node_project_edit_form', 'node_project_form'])) {
+    if ('node_static_form' === $formId) {
+      $form['#title'] = t('Create new static page');
+    }
+    if (in_array($formId, ['node_project_edit_form', 'node_project_form', 'node_static_edit_form', 'node_static_form'])) {
       $form['#theme'] = 'node_edit_form';
     }
   }
@@ -60,7 +63,9 @@ final class ThemeHelper extends AbstractHelper implements EventSubscriberInterfa
       }
     }
     if ($hook === 'details') {
-      $suggestions[] = 'details__' . str_replace('-', '_', $variables['element']['#id']);
+      if ($variables['element']['#id']) {
+        $suggestions[] = 'details__' . str_replace('-', '_', $variables['element']['#id']);
+      }
     }
   }
 
@@ -70,6 +75,14 @@ final class ThemeHelper extends AbstractHelper implements EventSubscriberInterfa
   public function theme(ThemeEvent $event): void {
     $event->addNewTheme(
       'site_setup',
+      [
+        'path' => 'modules/custom/ai_screening/templates',
+        'variables' => [
+          'data' => [],
+        ],
+      ]);
+    $event->addNewTheme(
+      'frontpage_help_text_block',
       [
         'path' => 'modules/custom/ai_screening/templates',
         'variables' => [
