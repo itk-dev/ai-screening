@@ -1,8 +1,8 @@
-label: Content
-description: 'Find and manage content.'
+label: Indhold
+description: 'Find og håndtér indhold.'
 display:
   default:
-    display_title: Default
+    display_title: Standard
     display_options:
       title: Indhold
       fields:
@@ -16,7 +16,7 @@ display:
         status:
           label: Status
           settings:
-            format_custom_false: Afpubliseret
+            format_custom_false: 'Ikke publiseret'
             format_custom_true: Publiseret
         changed:
           label: Opdateret
@@ -24,14 +24,14 @@ display:
           label: Sprog
           separator: ', '
         operations:
-          label: Operations
+          label: Handlinger
       pager:
         options:
           tags:
             next: 'Næste ›'
             previous: '‹ Forrige'
-            first: '« First'
-            last: 'Last »'
+            first: '« Første'
+            last: 'Sidste »'
       exposed_form:
         options:
           submit_button: Filter
@@ -66,7 +66,7 @@ display:
     display_title: Side
     display_options:
       menu:
-        title: Content
+        title: Indhold
       tab_options:
         title: Indhold
-        description: 'Find and manage content'
+        description: 'Find og håndtér indhold'
