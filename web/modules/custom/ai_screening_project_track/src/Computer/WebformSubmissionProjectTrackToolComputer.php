@@ -34,6 +34,9 @@ final class WebformSubmissionProjectTrackToolComputer implements ProjectTrackToo
     foreach ($entity->getData() as $value) {
       try {
         if (!empty($value)) {
+          if (!is_string($value)) {
+            continue;
+          }
           $fieldValues = FormHelper::getIntegers($value);
           foreach (array_keys($calculated + $fieldValues) as $key) {
             $calculated[$key] = ($calculated[$key] ?? 0) + ($fieldValues[$key] ?? 0);

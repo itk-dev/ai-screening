@@ -17,7 +17,7 @@
  * @ingroup themeable
  */
 #}
-<details{{ attributes }}>
+<div{{ attributes.addClass('mb-5') }} x-data="{{ defaultOpen ? '{open: false}' : '{open: true}' }}" class="open ? 'overflow-hidden' : 'overflow-visible'">
   {%
     set summary_classes = [
       required ? 'js-form-required',
@@ -25,18 +25,28 @@
     ]
   %}
   {%- if title -%}
-    <summary{{ summary_attributes.addClass(summary_classes) }}>
-      <h3 class="justify-between flex">{{ title }}<span><i class="fa-solid fa-sort-down self-center"></i></span></h3>
-    </summary>
+    <div>
+      <h3 class="justify-between flex">
+        <div>{{ title }}</div>
+        <div class="relative">
+          <div x-on:click="open = !open" class="cursor-pointer absolute right-0 top-0 mr-3 mt-1">
+            <div x-show="!open" class="flex align-center items-center"><i class="fa-regular fa-square-plus"></i></div>
+            <div x-show="open" class="flex align-center items-center"><i class="fa-regular fa-square-minus"></i></div>
+          </div>
+        </div>
+      </h3>
+    </div>
   {%- endif -%}
 
-  {% if errors %}
-    <div>
-      {{ errors }}
-    </div>
-  {% endif %}
+  <div x-show="open" x-transition>
+    {% if errors %}
+      <div>
+        {{ errors }}
+      </div>
+    {% endif %}
 
-  {{ description }}
-  {{ children }}
-  {{ value }}
-</details>
+    {{ description }}
+    {{ children }}
+    {{ value }}
+  </div>
+</div>

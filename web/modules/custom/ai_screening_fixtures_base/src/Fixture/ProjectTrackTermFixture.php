@@ -65,7 +65,7 @@ YAML,
       ],
       'field_webform' => ['target_id' => 'ethics_default'],
       'field_configuration' => '',
-      'field_report_type' => [],
+      'field_report_type' => ['webform_submission'],
     ]);
 
     $term->save();

@@ -67,6 +67,11 @@ final class ThemeHelper extends AbstractHelper implements EventSubscriberInterfa
         $suggestions[] = 'details__' . str_replace('-', '_', $variables['element']['#id']);
       }
     }
+    if ($hook === 'text_format_wrapper') {
+      if (isset($variables['description']['content']['more']['#type'])) {
+        $suggestions[] = 'text_format_wrapper__' . str_replace('-', '_', $variables['description']['content']['more']['#type']);
+      }
+    }
   }
 
   /**
