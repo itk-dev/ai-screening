@@ -12,4 +12,3 @@ ai_screening.frontpage_settings:
     _form: 'Drupal\ai_screening\Form\FrontpageForm'
   requirements:
     _permission: 'access site setup'
-

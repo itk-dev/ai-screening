@@ -24,6 +24,8 @@
     <!-- We want to be able to use "package" and "version" in our custom modules -->
     <exclude name="Drupal.InfoFiles.AutoAddedKeys.Project"/>
     <exclude name="Drupal.InfoFiles.AutoAddedKeys.Version"/>
+    <exclude name="Drupal.NamingConventions.ValidEnumCase.NoUpperAcronyms" />
+    <exclude name="Drupal.NamingConventions.ValidEnumCase.NoUnderscores" />
   </rule>
    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
 </ruleset>

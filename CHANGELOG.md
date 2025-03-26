@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-92](https://github.com/itk-dev/ai-screening/pull/92)
+  - Update drupal core
 - [PR-89](https://github.com/itk-dev/ai-screening/pull/89)
   - JS filter for law report
   - Changes in report display
