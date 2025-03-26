@@ -37,12 +37,12 @@ final class FrontpageForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state): array {
     $form['#prefix'] = '<div class="content">';
     $form['#suffix'] = '</div>';
-    $form['help_text'] = array(
+    $form['help_text'] = [
       '#type' => 'text_format',
       '#title' => t('Help text message'),
       '#default_value' => $this->state->get('ai_screening_frontpage_help', ''),
       '#format' => 'simple_editor',
-    );
+    ];
 
     $form['form_footer'] = [
       '#type' => 'container',
@@ -88,4 +88,5 @@ final class FrontpageForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $this->state->set('ai_screening_frontpage_help', $form_state->getValue('help_text')['value']);
   }
+
 }
