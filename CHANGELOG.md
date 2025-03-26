@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-90](https://github.com/itk-dev/ai-screening/pull/90)
+  - Add css ids to certain sections.
+  - Add print stylesheet
+  - Add project view template
 - [PR-89](https://github.com/itk-dev/ai-screening/pull/89)
   - JS filter for law report
   - Changes in report display
