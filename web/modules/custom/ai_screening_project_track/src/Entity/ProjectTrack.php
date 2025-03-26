@@ -293,8 +293,10 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
   public function getSummedValues(): ?array {
     $values = [];
     $config = $this->getConfiguration();
-    foreach ($config['bubbleChartReportResult']['sums'] as $key => $sum) {
-      $values[$key] = $sum['sum'];
+    if (isset($config['bubbleChartReportResult']['sums'])) {
+      foreach ($config['bubbleChartReportResult']['sums'] as $key => $sum) {
+        $values[$key] = $sum['sum'];
+      }
     }
 
     return $values;

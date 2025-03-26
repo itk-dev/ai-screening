@@ -29613,7 +29613,7 @@ msgid "Setup thresholds"
 msgstr "Opsætning af grænseværdier"
 
 msgid "Max possible value obtainable: @max"
-msgstr "Maksimal mulig værdi"
+msgstr "Maksimal mulig værdi: @max"
 
 msgid "Approved"
 msgstr "Godkendt"

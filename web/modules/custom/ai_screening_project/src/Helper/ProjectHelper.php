@@ -505,6 +505,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
             'title' => $projectTrackTerm->getName(),
             'description' => $projectTrackTerm->getDescription(),
             'project_track_evaluation' => Evaluation::NONE->value,
+            'project_track_status' => Status::NEW->value,
             'project_id' => $entity,
           ])
           ->setProjectTrackStatus(Status::NEW)

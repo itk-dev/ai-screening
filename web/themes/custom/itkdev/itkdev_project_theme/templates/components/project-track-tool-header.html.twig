@@ -13,15 +13,6 @@
       </a>
     {% endif %}
     <h2 class="m-0 text-lg dark:text-white grow pl-4 basis-72 overflow-hidden text-ellipsis whitespace-nowrap">{{ toolLabel }}</h2>
-    <div class="grow pl-4 text-right">
-      {% if toolStatus.fields is same as 0 %}
-        {{ 'New'|t }}
-      {% elseif toolStatus.fields is same as toolStatus.populated %}
-        <span class="mr-3 align-middle">{{ 'Completed'|t }}</span><span class="rounded-full align-middle inline-flex shadow-[0_0_10px_rgba(21,128,61,.75)]"><i class="text-green-700 fa-solid fa-circle-check"></i></span>
-      {% else %}
-        {{ 'Started @populated of @fields steps'|t({'@populated': toolStatus.populated, '@fields': toolStatus.fields}) }}
-      {% endif %}
-    </div>
   </div>
   <div x-on:click="open = !open" class="flex w-20 border-l-2 cursor-pointer">
     <div x-show="!open" class="flex align-center items-center"><i class="fa-solid fa-angle-down"></i></div>
