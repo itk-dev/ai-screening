@@ -4,6 +4,7 @@ namespace Drupal\ai_screening_project_track\Helper;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Component\Serialization\Yaml;
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Entity\EntityAccessControlHandlerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
@@ -239,7 +240,12 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     // Check access to webform submission by checking access to the owning tool.
     if ($entity instanceof WebformSubmissionInterface) {
       $tool = $this->loadToolByWebformSubmission($entity);
-      $access = $this->projectTrackToolAccessControlHandler->access($tool, $event->getOperation(), $event->getAccount(), TRUE);
+      if ($tool) {
+        $access = $this->projectTrackToolAccessControlHandler->access($tool, $event->getOperation(), $event->getAccount(), TRUE);
+      }
+      else {
+        $access = AccessResult::forbidden();
+      }
       if (!$access->isNeutral()) {
         $event->setAccessResult($access);
       }

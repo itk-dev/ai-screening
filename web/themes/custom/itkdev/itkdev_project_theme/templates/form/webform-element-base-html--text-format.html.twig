@@ -24,11 +24,14 @@
 %}
 {% set classNames = evaluationClasses[value['#plain_text']] ?? '' %}
 
-<div class="mb-4 border-b flex justify-between gap-16 mt-3 last:border-b-0">
-  <div class="font-thin mb-2">{{ title }}</div>
-  {% set displayedValue = (value['#markup'] is same as ('{Empty}')) or (value['#plain_text'] is empty) ? '{Empty}'|t : value['#plain_text']|t %}
+<div class="mb-4 border-b mt-3">
+  <h4>{{ title }}</h4>
+  {% if element['#help'] %}
+    <div class="font-thin mb-2">{{ element['#help']|striptags }}</div>
+  {% endif %}
+  {% set displayedValue = (value['#markup'] is same as ('{Empty}') or value['#string'] is same as ('{Empty}')) ? '{Empty}'|t : value %}
   <div class="capitalize">
-    <div class="relative bg-white flex items-center mb-3 md:mb-5 min-w-28 justify-end">
+    <div class="relative bg-white flex items-center mb-3 md:mb-5 min-w-28">
       <div class="{{ classNames is not empty ? 'mr-3' }} line-clamp-6">
         {{ displayedValue }}
       </div>

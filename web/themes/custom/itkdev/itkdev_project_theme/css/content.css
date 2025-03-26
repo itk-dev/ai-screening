@@ -15,15 +15,21 @@
   ul {
     margin-left: 1em;
     list-style-type: inherit;
+    margin-bottom: 0.75rem;
   }
 
   ol {
     margin-left: 1em;
     list-style-type: decimal;
+    margin-bottom: 0.75rem;
   }
 
   a {
     text-decoration: underline;
+  }
+
+  p {
+    margin-bottom: 0.75rem;
   }
 
   blockquote {
