@@ -1,0 +1,22 @@
+uuid: 73a2e772-96a0-4d27-954d-ba991b18bab5
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.static
+id: node.static.promote
+field_name: promote
+entity_type: node
+bundle: static
+label: 'Forfremmet til forside'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Tilsluttet
+  off_label: Afbrudt
+field_type: boolean

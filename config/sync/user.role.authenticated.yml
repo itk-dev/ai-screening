@@ -23,6 +23,6 @@ permissions:
   - 'create project content'
   - 'use text format simple_editor'
   - 'use text format webform_default'
+  - 'view any webform submission'
   - 'view own unpublished content'
   - 'view user email addresses'
-  - 'view any webform submission'

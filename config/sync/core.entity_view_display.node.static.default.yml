@@ -1,0 +1,29 @@
+uuid: c49119f4-9806-4f75-8d3c-5e2274fb1e24
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.node.static.field_text
+    - node.type.static
+  module:
+    - text
+    - user
+id: node.static.default
+targetEntityType: node
+bundle: static
+mode: default
+content:
+  field_text:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

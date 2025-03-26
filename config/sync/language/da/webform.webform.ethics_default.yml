@@ -1,0 +1,507 @@
+title: Etik
+elements: |-
+  borger_page:
+    '#type': webform_wizard_page
+    '#title': Borger
+    er_det_kortlagt_hvilke_borgere_der_skal_anvende_loesningen:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det kortlagt, hvilke borgere, der skal anvende løsningen?'
+      '#options':
+        '1,1,1': Ja
+        '1,2,3': Nej
+        '2,1,2': 'Det ved jeg ikke'
+        '3,2,1': 'Det er ikke relevant'
+    er_borgernes_forudsaetninger_for_at_forstaa_interaktionen_med_lo:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er borgernes forudsætninger for at forstå interaktionen med løsningen og gennemskue resultater af interaktionen kortlagt?'
+      '#options':
+        '1,2,4': Ja
+        '4,3,1': Nej
+        '9,9,9': 'Det ved jeg ikke'
+        '1,2,3': 'Det er ikke relevant'
+    er_det_kortlagt_om_loesningen_kan_bruges_til_andre_formaal_end_d:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det kortlagt, om løsningen kan bruges til andre formål, end det, Aarhus Kommune forestiller sig den brugt til?'
+      '#options':
+        '4,3,1': Ja
+        '6,5,4': Nej
+        '2,3,4': 'Det ved jeg ikke'
+        '6,5,55': 'Det er ikke relevant'
+    kan_saadanne_anvendelser_give_borgerne_bedre_muligheder:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan sådanne anvendelser give borgerne bedre muligheder?'
+      '#options':
+        '2,3,4': Ja
+        '1,2,3': Nej
+        '1,1,1': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    kan_saadanne_anvendelser_give_borgerne_daarligere_muligheder:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan sådanne anvendelser give borgerne dårligere muligheder?'
+      '#options':
+        '5,4,3': Ja
+        '3,2,1': Nej
+        '1,1,1': 'Det ved jeg ikke'
+        '5,5,5': 'Det er ikke relevant'
+    hvordan_vil_borgerne_opleve_deres_moede_med_kommunen_gennem_denn:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvordan vil borgerne opleve deres møde med kommunen gennem denne løsning – vil det primært være en negativ eller positiv oplevelse?'
+      '#options':
+        '1,2,1': 'Primær positiv'
+        '1,1,1': 'Primær negativ'
+        '1,3,4': 'Det ved jeg ikke'
+        '0,0,0': 'Det er ikke relevant'
+    vil_loesningen_faa_borgerne_til_at_foele_sig_bedre_moedt_af_komm:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Vil løsningen få borgerne til at føle sig bedre mødt af kommunen'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '4,4,4': 'Det ved jeg ikke'
+        '5,5,5': 'Det er ikke relevant'
+    er_der_risiko_for_at_den_kan_skabe_en_foelelse_af_fremmedgoerels:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er der risiko for, at den kan skabe en følelse af fremmedgørelse?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '5,5,5': 'Det er ikke relevant'
+    kan_loesningen_goere_borgerne_utrygge_over_hvordan_deres_data_br:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningen gøre borgerne utrygge over, hvordan deres data bruges?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    kan_loesningen_goere_borgerne_utrygge_over_hvordan_loesningen_ko:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningen gøre borgerne utrygge over, hvordan løsningen kommer frem til sit output?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    er_loesningen_udformet_saa_borgernes_tryghed_oeges:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er løsningen udformet, så borgernes tryghed øges?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    tilbyder_loesningen_gennemsigtig_kommunikation_om_hvordan_borger:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Tilbyder løsningen gennemsigtig kommunikation om, hvordan borgernes data beskyttes og behandles?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    hvordan_paavirker_loesningen_digital_inklusion_er_det_positivt_e:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan påvirker løsningen digital inklusion? Er det positivt, eksempelvis gennem tilpasset sprogbrug eller mulighed for interaktion, eller negativt, eksempelvis ved at bruge indforstået sprog eller stille høje krav til borgerens tekniske færdigheder?'
+    vil_borgerne_opfatte_loesningen_som_en_bedre_maade_at_interagere:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Vil borgerne opfatte løsningen som en bedre måde at interagere med kommunen på sammenlignet med andre løsninger, såsom traditionel selvbetjening eller personlig kontakt? Eller  vil løsningen give en samlet set værre interaktionsoplevelse end fornævnte løsninger?'
+      '#options':
+        '1,1,1': Bedre
+        '2,2,2': Værre
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    er_der_risiko_for_at_loesningen_kan_kompromittere_borgernes_ret:
+      '#type': ai_screening_weighted_radios
+      '#title': ' Er der risiko for, at løsningen kan kompromittere borgernes rettigheder i forhold til ligebehandling?'
+      '#options':
+        '5,5,5': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '1,1,1': 'Det er ikke relevant'
+    kan_loesningen_oege_ligebehandlingen:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningen øge ligebehandlingen?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    er_der_risiko_for_at_loesningens_data_indeholder_uerkendte_bias:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er der risiko for, at løsningens data indeholder uerkendte bias?'
+      '#options':
+        '1,1,1': Ja
+        '3,3,3': Nej
+        '2,2,2': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    er_der_taget_hoejde_for_hvordan_bias_eller_skaevheder_i_data_haa:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er der taget højde for, hvordan bias eller skævheder i data håndteres, hvis de er identificeret?'
+      '#options':
+        '0,1,1': Ja
+        '4,4,4': Nej
+        '2,2,2': 'Det ved jeg ikke'
+        '6,6,6': 'Det er ikke relevant'
+    er_der_risiko_for_at_datamaengderne_loesningen_baseres_paa_er_sa:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er der risiko for, at datamængderne, løsningen baseres på, er så store og/eller ustrukturerede, at løsningen kan overse væsentlige data, der kunne føre til andre output end dem, løsningen ellers når frem til?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '4,4,4': 'Det ved jeg ikke'
+        '3,3,3': 'Det er ikke relevant'
+    kan_borgerne_gennemskue_at_de_interagerer_med_en_ai:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan borgerne gennemskue, at de interagerer med en AI?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    kan_loesningen_medfoere_usikkerhed_om_hvem_der_har_truffet_en_gi:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningen medføre usikkerhed om, hvem der har truffet en given afgørelse?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    kan_loesningen_medfoere_usikkerhed_om_paa_hvilket_grundlag_der_h:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningen medføre usikkerhed om, på hvilket grundlag der har truffet en given afgørelse?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    er_det_tydeligt_hvem_der_er_ansvarlig_for_en_afgoerelse:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det tydeligt, hvem der er ansvarlig for en afgørelse?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    er_klagemuligheder_synliggjorte:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er klagemuligheder synliggjorte?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+    hvordan_sikrer_loesningen_at_borgere_med_saerlige_behov_ikke_bli:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan sikrer løsningen, at borgere med særlige behov ikke bliver ekskluderet fra at bruge løsningen effektivt?'
+      '#description': '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(12, 10, 9);display:inline !important;float:none;font-family:ui-sans-serif, system-ui, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:medium;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;"><strong>beskrivelse: Særlige behov kan eksempelvis være sproglige barrierer eller funktionsnedsættelser</strong></span></p>'
+    hvordan_haandteres_borgernes_ret_til_at_faa_indsigt_i_eller_udfo:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan håndteres borgernes ret til at få indsigt i eller udfordre løsningens beslutningsgrundlag?'
+    kan_loesningen_understoette_borgernes_laering_og_forstaaelse_af:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningen understøtte borgernes læring og forståelse af kommunale processer, så de bedre kan tage del i fremtidige beslutninger?'
+      '#options':
+        '1,1,1': Ja
+        '2,2,2': Nej
+        '3,3,3': 'Det ved jeg ikke'
+        '4,4,4': 'Det er ikke relevant'
+  borger:
+    '#type': webform_wizard_page
+    '#title': Medarbejder
+    er_det_kortlagt_hvilke_medarbejdere_der_skal_anvende_loesningen:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det kortlagt, hvilke medarbejdere, der skal anvende løsningen?'
+      '#options':
+        '0,0,0': Ja
+        '0,1,0': Nej
+        '1,0,0': 'Det er ikke relevant'
+        '1,1,1': 'Det ved jeg ikke'
+      '#options__properties': ''
+    2_er_det_kortlagt_om_loesningen_kan_bruges_til_andre_formaal_end:
+      '#type': ai_screening_static_select
+      '#title': 'Hvordan er deres forudsætninger for at forstå interaktionen med løsningen og gennemskue resultater af interaktionen?'
+      '#states':
+        visible:
+          ':input[name="er_det_kortlagt_hvilke_medarbejdere_der_skal_anvende_loesningen"]':
+            value: '0,0,0'
+    2_er_det_sikret_at_kun_de_medarbejdere_der_skal_bruge_loesningen:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det sikret, at kun de medarbejdere, der skal bruge løsningen, kan bruge løsningen?'
+      '#options':
+        '1,0,0': Ja
+        '1,1,0': Nej
+        '1,0,1': 'Det ved jeg ikke'
+        '1,1,1': 'Det er ikke relevant'
+      '#options__properties': ''
+    bemaerkning:
+      '#type': ai_screening_weighted_textarea
+      '#title': Bemærkning
+    3_er_det_kortlagt_om_loesningen_kan_bruges_til_andre_formaal_end:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det kortlagt, om løsningen kan bruges til andre formål, end det, Aarhus Kommune forestiller sig den brugt til?'
+      '#options':
+        '1,0,1': Ja
+        '1,0,0': Nej
+        '1,1,0': 'Det ved jeg ikke'
+        '1,2,1': 'Det er ikke relevant'
+      '#options__properties': ''
+    kan_saadanne_anvendelser_foere_til_bedre_beslutningsgrundlag_ell:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan sådanne anvendelser føre til bedre beslutningsgrundlag, eller til fejlslutninger?'
+      '#options':
+        '1,1,1': 'Bedre beslutningsgrundlag'
+        '2,2,2': Fejlslutninger
+        '4,4,4': 'Det ved jeg ikke'
+        '6,6,6': 'Det er ikke relevant'
+    er_der_i_givet_fald_taget_hoejde_for_dette:
+      '#type': ai_screening_static_select
+      '#title': 'Er der i givet fald taget højde for dette?'
+      '#states':
+        visible:
+          - ':input[name="kan_saadanne_anvendelser_foere_til_bedre_beslutningsgrundlag_ell"]':
+              value: '1,1,1'
+          - or
+          - ':input[name="kan_saadanne_anvendelser_foere_til_bedre_beslutningsgrundlag_ell"]':
+              value: '2,2,2'
+    4_vil_loesningen_stoette_medarbejdernes_faglige_doemmekraft:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Vil løsningen støtte medarbejdernes faglige dømmekraft? '
+      '#options':
+        '1,0,0': Ja
+        '1,0,1': Nej
+        '1,1,1': 'Det ved jeg ikke'
+        '1,1,2': 'Det er ikke relevant'
+      '#options__properties': ''
+    er_der_taget_hoejde_for_at_loesningen_kan_undergrave_medarbejder:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er der taget højde for at løsningen kan undergrave medarbejdernes faglige dømmekraft?'
+      '#options':
+        '1,1,1': Ja
+        '1,0,1': Nej
+        '1,1,0': 'Det ved jeg ikke'
+        '1,2,3': 'Det er ikke relevant'
+      '#options__properties': ''
+    kan_loesningen_oege_medarbejdernes_faglige_doemmekraft_og_samsp:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningen øge medarbejdernes faglige dømmekraft og samspil?'
+      '#options':
+        '1,1,1': Ja
+        '1,0,1': Nej
+        '1,0,0': 'Det ved jeg ikke'
+        '1,3,1': 'Det er ikke relevant'
+    vil_medarbejdere_opleve_at_de_bliver_hoert_og_inddraget_i_proces:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Vil medarbejdere opleve, at de bliver hørt og inddraget i processen med at implementere løsningen?'
+      '#options':
+        '1,0,0': Ja
+        '1,1,1': Nej
+        '0,0,0': 'Det ved jeg ikke'
+        '1,2,3': 'Det er ikke relevant'
+    hvordan_paavirker_loesningen_arbejdsmiljoeet:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan påvirker løsningen arbejdsmiljøet?'
+      '#description': '<p>Inspirationsspørgsmål: Skaber løsningen stress? Frigør løsningen tid?&nbsp;</p>'
+    kan_loesningen_minimere_monotont_arbejde:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan  løsningen minimere monotont arbejde?'
+      '#options':
+        '1,1,1': Ja
+        '1,1,0': Nej
+        '1,0,1': 'Det ved jeg ikke'
+        '1,3,2': 'Det er ikke relevant'
+    er_det_blevet_undersoegt_om_medarbejderne_med_denne_loesning_kan:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det blevet undersøgt, om medarbejderne med denne løsning kan udgøre en trussel mod opretholdelsen og udviklingen af deres faglige kompetencer på lang sigt?'
+      '#options':
+        '1,1,1': Ja
+        '1,0,1': Nej
+        '1,2,2': 'Det ved jeg ikke'
+        '1,2,3': 'Det er ikke relevant'
+    er_det_blevet_undersoeg_om_medarbejderne_med_denne_loesning_kan:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det blevet undersøg, om medarbejderne med denne løsning kan forbedre deres faglige kompetencer?'
+      '#options':
+        '1,1,1': Ja
+        '1,2,1': Nej
+        '1,2,3': 'Det ved jeg ikke'
+        '1,2,4': 'Det er ikke relevant'
+    bidrager_loesningen_til_at_skabe_vaerdi_i_medarbejdernes_daglige:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Bidrager løsningen til at skabe værdi i medarbejdernes daglige arbejde?'
+      '#options':
+        '1,1,1': Ja
+        '1,2,2': Nej
+        '1,3,4': 'Det ved jeg ikke'
+        '1,2,1': 'Det er ikke relevant'
+    hvordan_bidrager_loesningen_til_at_skabe_vaerdi_i_medarbejdernes:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan bidrager løsningen til at skabe værdi i medarbejdernes daglige arbejde?'
+      '#states':
+        visible:
+          ':input[name="bidrager_loesningen_til_at_skabe_vaerdi_i_medarbejdernes_daglige"]':
+            value: '1,1,1'
+    kan_medarbejderne_gennemskue_hvordan_loesningen_naar_frem_til_si:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan medarbejderne gennemskue, hvordan løsningen når frem til sit output?'
+      '#options':
+        '1,1,1': Ja
+        '1,2,2': Nej
+        '1,2,1': 'Det ved jeg ikke'
+        '1,4,2': 'Det er ikke relevant'
+    kan_medarbejderne_rette_output_de_opfatter_som_fagligt_forkert:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan medarbejderne rette output, de opfatter som fagligt forkert?'
+      '#options':
+        '1,2,1': Ja
+        '1,2,2': Nej
+        '1,2,3': 'Det ved jeg ikke'
+        '1,5,3': 'Det er ikke relevant'
+    kan_loesningen_laere_af_medarbejdernes_rettelser:
+      '#type': ai_screening_weighted_radios
+      '#title': ' Kan løsningen lære af medarbejdernes rettelser?'
+      '#options':
+        '1,2,1': Ja
+        '1,3,1': Nej
+        '1,2,3': 'Det ved jeg ikke'
+        '1,4,2': 'Det er ikke relevant'
+      '#states':
+        visible:
+          ':input[name="kan_medarbejderne_rette_output_de_opfatter_som_fagligt_forkert"]':
+            value: '1,2,1'
+    10_kan_medarbejderne_gennemskue_at_de_interagerer_med_en_ai:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan medarbejderne gennemskue, at de interagerer med en AI?'
+      '#options':
+        '1,2,1': Ja
+        '1,2,4': Nej
+        '1,2,3': 'Det ved jeg ikke'
+        '1,5,2': 'Det er ikke relevant'
+    hvordan_sikres_det_at_medarbejdere_har_tilstraekkelig_uddannelse:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan sikres det, at medarbejdere har tilstrækkelig uddannelse til at bruge og forstå løsningen?'
+    er_der_implementeret_systemer_der_indsamler_loebende_feedback_fr:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er der implementeret systemer, der indsamler løbende feedback fra medarbejdere om løsningens praktiske anvendelighed?'
+      '#options':
+        '1,1,1': Ja
+        '1,2,1': Nej
+        '1,3,2': 'Det ved jeg ikke'
+        '1,4,2': 'Det er ikke relevant'
+    kan_loesningen_anvendes_til_at_identificere_arbejdsmaessige_flas:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningen anvendes til at identificere arbejdsmæssige flaskehalse og dermed optimere arbejdsprocesser for medarbejderne?'
+      '#options':
+        '1,2,1': Ja
+        '1,1,1': Nej
+        '1,4,2': 'Det ved jeg ikke'
+        '1,4,3': 'Det er ikke relevant'
+    kan_loesningen_omvendt_skabe_nye_flaskehalse:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningen omvendt skabe nye flaskehalse?'
+      '#description': '<p>Dette spørgsmål er i forlængelse af ovenstående spørgsmål</p>'
+      '#options':
+        '1,2,1': Ja
+        '1,1,1': Nej
+        '1,3,1': 'Det ved jeg ikke'
+        '2,4,5': 'Det er ikke relevant'
+  kommune_og_samfund:
+    '#type': webform_wizard_page
+    '#title': 'Kommune og samfund'
+    er_det_blevet_droeftet_om_loesningen_kunne_aendre_borgeres_medar:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det blevet drøftet, om løsningen kunne ændre borgeres, medarbejderes og andre væsentlige interessenters opfattelse af Aarhus Kommune?'
+      '#options':
+        '1,1,1': Ja
+        '1,2,1': Nej
+        '1,2,3': 'Det ved jeg ikke'
+        '1,2,4': 'Det er ikke relevant'
+    hvis_ja_har_en_saadan_droeftelse_i_saa_fald_fundet_sted_politisk:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Hvis ja, har en sådan drøftelse i så fald fundet sted politisk?'
+      '#options':
+        '1,2,1': Ja
+        '1,1,1': Nej
+        '1,2,3': 'Det ved jeg ikke'
+        '1,4,2': 'Det er ikke relevant'
+      '#states':
+        visible:
+          ':input[name="er_det_blevet_droeftet_om_loesningen_kunne_aendre_borgeres_medar"]':
+            value: '1,1,1'
+    hvordan_bidrager_loesningen_til_aarhus_kommunes_omdoemme_som_en:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan bidrager løsningen til Aarhus Kommunes omdømme som en ansvarlig kommune?'
+    hvordan_bidrager_loesningen_til_aarhus_kommunes_omdoemme_som_inn:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan bidrager løsningen til Aarhus Kommunes omdømme som en innovativ kommune?'
+    er_det_vurderet_at_ressourceforbruget_af_loesningen_er_passende:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det vurderet, at ressourceforbruget af løsningen er passende i forhold til den nytte, kommunen opnår?'
+      '#options':
+        '1,2,1': Ja
+        '1,3,2': Nej
+        '1,4,3': 'Det ved jeg ikke'
+        '1,4,2': 'Det er ikke relevant'
+    er_det_sikret_at_loesningen_kan_skaleres_til_andre_dele_af_kommu:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er det sikret, at løsningen kan skaleres til andre dele af kommunen, hvis det er relevant? '
+      '#options':
+        '0,2,1': Ja
+        '4,2,3': Nej
+        '1,2,1': 'Det ved jeg ikke'
+        '5,3,2': 'Det er ikke relevant'
+    hvordan_bliver_det_sikret_at_loesningen_forbliver_skalerbar_og_f:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan bliver det sikret, at løsningen forbliver skalerbar og fleksibel i forhold til fremtidige behov?'
+    er_loesningens_langsigtede_effekter_positive_for_hele_samfundet:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Er løsningens langsigtede effekter positive for hele samfundet?'
+      '#options':
+        '1,2,1': Ja
+        '1,5,3': Nej
+        '1,1,1': 'Det ved jeg ikke'
+        '4,4,2': 'Det er ikke relevant'
+    kan_loesningens_langsigtede_effekter_vaere_skadelige:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningens langsigtede effekter være skadelige?'
+      '#options':
+        '1,3,4': Ja
+        '3,3,2': Nej
+        '5,3,2': 'Det ved jeg ikke'
+        '4,3,2': 'Det er ikke relevant'
+    vurderes_loesningen_overordnet_set_at_vaere_udtryk_for_en_rimeli:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Vurderes løsningen overordnet set at være udtryk for en rimelig balance mellem teknologisk innovation og etisk forsvarlig adfærd?'
+      '#options':
+        '1,2,4': Ja
+        '4,3,2': Nej
+        '3,2,5': 'Det ved jeg ikke'
+        '2,4,5': 'Det er ikke relevant'
+    kan_loesningen_fremme_kommunens_baeredygtighedsmaal:
+      '#type': ai_screening_weighted_radios
+      '#title': 'Kan løsningen fremme kommunens bæredygtighedsmål?'
+      '#options':
+        '3,2,1': Ja
+        '4,3,2': Nej
+        '4,3,1': 'Det ved jeg ikke'
+        '5,4,3': 'Det er ikke relevant'
+    hvordan_kan_loesningen_fremme_kommunens_baeredygtighedsmaal:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan kan løsningen fremme kommunens bæredygtighedsmål?'
+      '#states':
+        visible:
+          ':input[name="kan_loesningen_fremme_kommunens_baeredygtighedsmaal"]':
+            value: '3,2,1'
+    hvordan_maales_loesningens_succes:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Hvordan måles løsningens succes?'
+    hvilke_metoder_bruges_til_loebende_evaluering_og_forbedring:
+      '#type': ai_screening_weighted_radios
+      '#title': ' hvilke metoder bruges til løbende evaluering og forbedring?'
+      '#options':
+        '2,3,1': Ja
+        '4,3,2': Nej
+        '4,2,5': 'Det ved jeg ikke'
+        '1,1,1': 'Det er ikke relevant'
+    er_det_afklaret_hvem_der_har_ansvaret_for_at_overvaage_loesninge:
+      '#type': ai_screening_weighted_textarea
+      '#title': 'Er det afklaret, hvem der har ansvaret for at overvåge løsningen løbende? Dette inkluderer at følge op på konsistensen af resultater over tid, udviklingen i data,  brugernes interaktion mm.?'
