@@ -18,11 +18,13 @@
 
 {% block content %}
   {% if form.progress %}
-    <div class="bg-primary text-primary p-3 md:p-5 m-3 md:m-5 shadow-md max-w-xl">
+    <div class="bg-primary text-primary p-3 md:p-5 m-3 md:m-5 shadow-md">
       {{ form.progress }}
     </div>
   {% endif %}
-  <div class="bg-primary text-primary p-3 md:p-5 m-3 md:m-5 shadow-md max-w-xl">
-    {{ form|without('information', 'progress', 'navigation') }}
+  <div class="bg-primary text-primary p-3 md:p-5 m-3 md:m-5 shadow-md">
+    <div class="max-w-3xl">
+      {{ form|without('information', 'progress', 'navigation') }}
+    </div>
   </div>
 {% endblock %}

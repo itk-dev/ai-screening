@@ -15,7 +15,7 @@
 
 {% apply spaceless %}
   {% set colorBlock = 'h-3 w-3 absolute h-5 w-5 z-0 ml-3 select-color-block' %}
-  <div class="relative bg-white flex items-center">
+  <div class="relative bg-white flex items-center my-2">
     <div data-scheme="colorSchemeStaticSelect" class="{{ colorBlock }}"></div>
     <select{{ attributes.addClass('w-full relative z-1 bg-transparent colored-select') }}>
       {% for option in options %}

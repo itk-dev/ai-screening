@@ -88,7 +88,7 @@
                   {{ include('@itkdev_project_theme/components/webformSubmissionReportHeader.html.twig', {blockers: blockers, tool: projectTrackTool}) }}
                 {% endif %}
                 {{ drupal_entity(projectTrackTool.getToolEntityType, projectTrackTool.getToolId) }}
-                <div class="flex justify-end">
+                <div class="flex justify-end pt-5 border-t">
                   {% if projectTrackTool.access('update') %}
                     <a href="{{ path('entity.webform_submission.edit_form', {
                       webform: 'complexity_uncertainty_default',
