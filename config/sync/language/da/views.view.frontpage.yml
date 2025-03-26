@@ -1,33 +1,33 @@
-label: Frontpage
-description: 'All content promoted to the front page.'
+label: Forside
+description: 'Alt indhold som vises på forsiden.'
 display:
   default:
-    display_title: Default
+    display_title: Standard
     display_options:
       pager:
         options:
           tags:
             next: 'Næste ›'
             previous: '‹ Forrige'
-            first: '« First'
-            last: 'Last »'
+            first: '« Første'
+            last: 'Sidste »'
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
       exposed_form:
         options:
           submit_button: Anvend
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          exposed_sorts_label: 'Sorter efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       empty:
         area_text_custom:
-          content: 'No front page content has been created yet.<br/>Follow the <a target="_blank" href="https://www.drupal.org/docs/user_guide/en/index.html">User Guide</a> to start building your site.'
+          content: 'Der er ikke oprettet noget indhold på forsiden endnu.<br />Læs <a target="_blank" href="https://www.drupal.org/docs/user_guide/en/index.html">manualen</a> for at komme i gang med at bygge din hjemmeside.'
         title:
-          title: Welcome!
+          title: Velkommen!
   feed_1:
     display_title: Feed
   page_1:
-    display_title: Page
+    display_title: Side

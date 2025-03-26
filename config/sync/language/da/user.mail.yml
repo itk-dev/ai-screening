@@ -1,113 +1,78 @@
 cancel_confirm:
-  subject: 'Account cancellation request for [user:display-name] at [site:name]'
-  body: |-
-    [user:display-name]
-
-    A request to cancel your account has been made at [site:name].
-
-    You may now cancel your account on [site:url-brief] by clicking this link or copying and pasting it into your browser:
-
-    [user:cancel-url]
-
-    NOTE: The cancellation of your account is not reversible.
-
-    This link expires in one day and nothing will happen if it is not used.
-
-    --  [site:name] team
+  subject: 'Anmodning om opsigelse af konto for [user:display-name] på [site:name]'
 password_reset:
-  subject: 'Replacement login information for [user:display-name] at [site:name]'
+  subject: 'Ny login-information for [user:display-name] på [site:name]'
   body: |-
     [user:display-name],
 
-    A request to reset the password for your account has been made at [site:name].
+    Der er lavet en forespørgsel om at nulstille adgangskoden til din konto på [site:name].
 
-    You may now log in by clicking this link or copying and pasting it into your browser:
+    Du kan logge ind nu ved at klikke på linket eller ved at kopiere og indsætte det i din browser:
 
     [user:one-time-login-url]
 
-    This link can only be used once to log in and will lead you to a page where you can set your password. It expires after one day and nothing will happen if it's not used.
+    Dette link kan kun bruges til at logge ind én gang, og det sender dig til en side hvor du kan vælge en adgangskode. Linket udløber efter én dag og der sker ikke noget hvis det ikke bruges.
 
-    --  [site:name] team
+    -- Holdet bag [site:name]
 register_admin_created:
-  subject: 'An administrator created an account for you at [site:name]'
+  subject: 'En administrator har oprettet en konto til dig på [site:name]'
   body: |-
     [user:display-name],
 
-    A site administrator at [site:name] has created an account for you. You may now log in by clicking this link or copying and pasting it into your browser:
+    En administrator på [site:name] har oprettet en konto til dig. Du kan logge ind ved at klikke på linket eller ved at kopiere og indsætte det i din browser:
 
     [user:one-time-login-url]
 
-    This link can only be used once to log in and will lead you to a page where you can set your password.
+    Dette link kan kun bruges til at logge ind, og det sender dig til en side hvor du kan vælge en adgangskode.
 
-    After setting your password, you will be able to log in at [site:login-url] in the future using:
+    Når du har valgt en adgangskode kan du logge ind på [site:login-url] med:
 
-    username: [user:name]
-    password: Your password
+    Brugernavn: [user:name]
+    Adgangskode: Din adgangskode
 
-    --  [site:name] team
+    --  Holdet bag [site:name]
 register_no_approval_required:
-  subject: 'Account details for [user:display-name] at [site:name]'
+  subject: 'Kontoinformationer for [user:display-name] på [site:name] (blokeret)'
   body: |-
     [user:display-name],
 
-    Thank you for registering at [site:name]. You may now log in by clicking this link or copying and pasting it into your browser:
+    Tak fordi du har oprettet dig som bruger på [site:name]. Du kan nu logge ind ved at klikke på linket eller ved at kopiere og indsætte det i din browser:
 
     [user:one-time-login-url]
 
-    This link can only be used once to log in and will lead you to a page where you can set your password.
+    Dette link kan kun bruges til at logge ind, og det sender dig til en side hvor du kan vælge en adgangskode.
 
-    After setting your password, you will be able to log in at [site:login-url] in the future using:
+    Når du har valgt en adgangskode kan du logge ind på [site:login-url] med:
 
-    username: [user:name]
-    password: Your password
+    Brugernavn: [user:name]
+    Adgangskode: Din adgangskode
 
-    --  [site:name] team
+    --  Holdet bag [site:name]
 register_pending_approval:
-  subject: 'Account details for [user:display-name] at [site:name] (pending admin approval)'
+  subject: 'Kontoinformation for [user:display-name] på [site:name] (afventer godkendelse af administrator)'
   body: |-
-    [user:display-name],
+    [bruger:vist navn],
 
-    Thank you for registering at [site:name]. Your application for an account is currently pending approval. Once it has been approved, you will receive another email containing information about how to log in, set your password, and other details.
+    Tak for din tilmelding på [site:name]. Din ansøgning om en konto afventer i øjeblikket godkendelse. Når den er godkendt, modtager du en anden e-mail med oplysninger om, hvordan du logger ind, angiver din adgangskode og andre detaljer.
 
-    --  [site:name] team
+    -- [site:name] holdet
 register_pending_approval_admin:
-  subject: 'Account details for [user:display-name] at [site:name] (pending admin approval)'
+  subject: 'Kontoinformation for [user:display-name] på [site:name] (afventer godkendelse af administrator)'
   body: |-
-    [user:display-name] has applied for an account.
+    [user:display-name] har anmodet om en konto.
 
     [user:edit-url]
 status_activated:
-  subject: 'Account details for [user:display-name] at [site:name] (approved)'
-  body: |-
-    [user:display-name],
-
-    Your account at [site:name] has been activated.
-
-    You may now log in by clicking this link or copying and pasting it into your browser:
-
-    [user:one-time-login-url]
-
-    This link can only be used once to log in and will lead you to a page where you can set your password.
-
-    After setting your password, you will be able to log in at [site:login-url] in the future using:
-
-    username: [user:account-name]
-    password: Your password
-
-    --  [site:name] team
+  subject: 'Kontoinformationer for [user:display-name] på [site:name] (godkendt)'
+  body: "[user:display-name],\r\n\r\nDin konto på [site:name] er blevet aktiveret.\r\n\r\nDu kan logge ind ved at klikke på følgende link eller ved at kopiere og indsætte det i din browser:\r\n\r\n[user:one-time-login-url]\r\n\r\nLinket kan kun bruges én gang, og det fører dig til en side, hvor du kan vælge din adgangskode.\r\n\r\nNår du har valgt en adgangskode kan du fremover logge ind på [site:login-url] med:\r\n\r\nBrugernavn: [user:account-name]\r\nAdgangskode: Din adgangskode\r\n\r\n--  Holdet bag [site:name]"
 status_blocked:
-  subject: 'Account details for [user:display-name] at [site:name] (blocked)'
-  body: |-
-    [user:display-name],
-
-    Your account on [site:name] has been blocked.
-
-    --  [site:name] team
+  subject: 'Kontoinformationer for [user:display-name] på [site:name] (blokeret)'
+  body: "[user:display-name],\r\n\r\nDin konto på [site:name] er blevet blokeret.\r\n\r\n--  [site:name] team"
 status_canceled:
-  subject: 'Account details for [user:display-name] at [site:name] (canceled)'
+  subject: 'Kontoinformationer for [user:display-name] på [site:name] (opsagt)'
   body: |-
     [user:display-name],
 
-    Your account on [site:name] has been canceled.
+    Din konto på [site:name] er blevet lukket.
 
-    --  [site:name] team
+    --  [site:name] holdet

@@ -1,23 +1,23 @@
-label: Watchdog
-description: 'Recent log messages'
+label: Hændelseslog
+description: 'Seneste logmeddelelser'
 display:
   default:
-    display_title: Default
+    display_title: Standard
     display_options:
-      title: 'Recent log messages'
+      title: 'Seneste logmeddelelser'
       fields:
         nothing:
-          admin_label: Icon
+          admin_label: Ikon
         wid:
           label: WID
         severity:
-          label: Severity
+          label: Grad
         type:
           label: Type
         timestamp:
-          label: Date
+          label: Dato
         message:
-          label: Message
+          label: Meddelelse
           alter:
             path: 'admin/reports/dblog/event/{{ wid }}'
             alt: '{{ message }}'
@@ -25,33 +25,33 @@ display:
           label: Bruger
           separator: ', '
         link:
-          label: Operations
+          label: Handlinger
       pager:
         options:
           tags:
             next: ››
             previous: ‹‹
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
-            offset_label: Offset
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
       exposed_form:
         options:
           submit_button: Filter
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sort by'
-          sort_asc_label: Asc
-          sort_desc_label: Desc
+          exposed_sorts_label: 'Sorter efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
       empty:
         area:
-          admin_label: 'No log messages available.'
-          content: 'No log messages available.'
+          admin_label: 'Ingen logbeskeder til rådighed.'
+          content: 'Ingen logbeskeder til rådighed.'
       filters:
         type:
           expose:
             label: Type
         severity:
           expose:
-            label: Severity
+            label: Grad
   page:
-    display_title: Page
+    display_title: Side
