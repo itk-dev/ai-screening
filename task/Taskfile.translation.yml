@@ -125,7 +125,7 @@ tasks:
           matrix:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
-        cmd: task drush -- config_translation_po:export {{.ITEM.LANGUAGE}} > config/translations.{{.ITEM.LANGUAGE}}.po
+        cmd: task drush -- config_translation_po:export {{.ITEM.LANGUAGE}} --clear-same-as-source > config/translations.{{.ITEM.LANGUAGE}}.po
       # Fix plurals spec in Danish PO file
       # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
       # https://www.drupal.org/project/drupal/issues/3496223
