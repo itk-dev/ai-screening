@@ -1,0 +1,134 @@
+version: '3'
+
+vars:
+
+tasks:
+  translations:import:
+    cmds:
+      - task drush -- locale:import --type=not-customized --override=not-customized da ../translations/custom-translations.da.po
+      # - task drush -- php:eval "var_export(\Drupal::state()->get('locale.translation.formulae', []))"
+      # - 'task drush -- php:eval "var_export(array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, ''1 item'', ''@count items'', options: [''langcode'' => ''da'']))->render(), range(0, 5)));"'
+      # - 'task drush -- php:eval "var_export(array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, ''1 item'', ''@count items'', options: [''langcode'' => ''en'']))->render(), range(0, 5)));"'
+    silent: true
+
+  translations:export:
+    cmds:
+      # @todo Which types should we use here?
+      - task drush -- locale:export da --types=customized > translations/custom-translations.da.po
+      # Fix plurals spec in PO file
+      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+      # https://www.drupal.org/project/drupal/issues/3496223
+      - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/custom-translations.da.po'
+    silent: true
+
+  translations:diff:
+    cmds:
+      # Ignore some PO metadata when git diff'ing, e.g.
+      #
+      # "POT-Creation-Date: 2025-03-12 18:18+0100\n"
+      # "PO-Revision-Date: 2025-03-12 18:18+0100\n"
+      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' web/*/custom/*/translations/*.po translations/*.po
+
+  translations:checkout:
+    cmds:
+      - git checkout web/*/custom/*/translations/*.po translations/*.po
+    # https://taskfile.dev/reference/schema#precondition
+    preconditions:
+      - sh: task {{.TASK | replace ":checkout" ":diff" }}
+        msg: |
+          Translations seem to have changed.
+
+          Run
+
+              task {{.TASK | replace ":checkout" ":diff" }}
+
+          to check.
+
+  translations:extract:
+    cmds:
+      # - task drush -- --yes pm:install potx
+      - task: translations:extract:modules
+      - task: translations:extract:themes
+      # - task drush -- --yes pm:uninstall potx
+    silent: true
+    requires:
+      vars:
+        - TRANSLATION_MODULES
+        - TRANSLATION_THEMES
+
+  translations:extract:modules:
+    cmds:
+      # https://github.com/go-task/task/discussions/1543
+      - for:
+          matrix:
+            MODULE:
+              ref: .TRANSLATION_MODULES
+            LANGUAGE:
+              - da
+        cmd: |
+          export MODULE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.module")->getPath("{{.ITEM.MODULE}}")')
+          if [ -n "#MODULE_PATH" ]; then
+            task drush -- potx single --folder=${MODULE_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
+            mkdir -p web/${MODULE_PATH}/translations
+            mv web/general.pot web/${MODULE_PATH}/translations/{{.ITEM.MODULE}}.{{.ITEM.LANGUAGE}}.po
+          fi
+
+  translations:extract:themes:
+    cmds:
+      # https://github.com/go-task/task/discussions/1543
+      - for:
+          matrix:
+            THEME:
+              ref: .TRANSLATION_THEMES
+            LANGUAGE:
+              - da
+        # `drush potx` always writes to web/general.pot, so we move this file
+        # into the desired destination in the `translations` folder inside the
+        # module folder.
+        cmd: |
+          export THEME_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.theme")->getPath("{{.ITEM.THEME}}")')
+          if [ -n "#THEME_PATH" ]; then
+            task drush -- potx single --folder=${THEME_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
+            mkdir -p web/${THEME_PATH}/translations
+            mv web/general.pot web/${THEME_PATH}/translations/{{.ITEM.THEME}}.{{.ITEM.LANGUAGE}}.po
+          fi
+
+  # @todo Can we use `drush locale:check` and/or `drush locale:update` to update
+  # module translations without overriding existing translations?
+  # @todo Do we want to override (existing) translations?
+  translations:import:modules:
+    cmds:
+      - for:
+          matrix:
+            MODULE:
+              ref: .TRANSLATION_MODULES
+        cmd: task drush -- locale:import-all --override=none modules/custom/{{.ITEM.MODULE}}/translations/
+
+  translations:import:themes:
+    cmds:
+      - for:
+          matrix:
+            THEME:
+              ref: .TRANSLATION_THEMES
+        cmd: task drush -- locale:import-all --override=none themes/custom/{{.ITEM.THEME}}/translations/
+
+  translations:import:all:
+    cmds:
+      - task: translations:import:modules
+      - task: translations:import:themes
+    silent: true
+
+  config-translations:export:
+    cmds:
+      - task drush -- config_translation_po:export da > translations/config-translations.da.po
+      # Fix plurals spec in PO file
+      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+      # https://www.drupal.org/project/drupal/issues/3496223
+      - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/config-translations.da.po'
+    silent: true
+
+  config-translations:import:
+    cmds:
+      # Note: We use an empty type to import as not-customized.
+      - task drush -- config_translation_po:import --type='' --override=not-customized da ../translations/config-translations.da.po
+    silent: true

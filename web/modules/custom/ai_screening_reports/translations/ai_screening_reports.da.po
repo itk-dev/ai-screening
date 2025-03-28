@@ -1,0 +1,68 @@
+# $Id$
+#
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/ai_screening_reports/ai_screening_reports.info.yml: n/a
+#  modules/custom/ai_screening_reports/ai_screening_reports.links.menu.yml: n/a
+#  modules/custom/ai_screening_reports/ai_screening_reports.routing.yml: n/a
+#  modules/custom/ai_screening_reports/src/Controller/AiScreeningReportsController.php: n/a
+#  modules/custom/ai_screening_reports/src/Form/CreateReport.php: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-03-28 14:38+0100\n"
+"PO-Revision-Date: 2025-03-28 14:38+0100\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: modules/custom/ai_screening_reports/ai_screening_reports.info.yml:0
+msgid "AI screening reports"
+msgstr ""
+
+#: modules/custom/ai_screening_reports/ai_screening_reports.info.yml:0
+msgid "Reports for AI Screening"
+msgstr ""
+
+#: modules/custom/ai_screening_reports/ai_screening_reports.info.yml:0
+msgid "Custom"
+msgstr "Tilpasset"
+
+#: modules/custom/ai_screening_reports/ai_screening_reports.links.menu.yml:0
+msgid "Reports"
+msgstr "Rapporter"
+
+#: modules/custom/ai_screening_reports/ai_screening_reports.links.menu.yml:0
+msgid "Show reports"
+msgstr ""
+
+#: modules/custom/ai_screening_reports/ai_screening_reports.routing.yml:0
+msgid "Create report"
+msgstr ""
+
+#: modules/custom/ai_screening_reports/ai_screening_reports.routing.yml:0;0
+msgid "Project"
+msgstr ""
+
+#: modules/custom/ai_screening_reports/src/Controller/AiScreeningReportsController.php:126
+msgid "A maximum of @max tracks can be displayed."
+msgstr ""
+
+#: modules/custom/ai_screening_reports/src/Controller/AiScreeningReportsController.php:149
+msgid "Incorrect url parameters."
+msgstr ""
+
+#: modules/custom/ai_screening_reports/src/Form/CreateReport.php:54
+msgid "Select project"
+msgstr ""
+
+#: modules/custom/ai_screening_reports/src/Form/CreateReport.php:63
+msgid "Fetch report"
+msgstr ""
+

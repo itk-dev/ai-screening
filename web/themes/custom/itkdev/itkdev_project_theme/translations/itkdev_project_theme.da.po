@@ -1,0 +1,389 @@
+# $Id$
+#
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml: n/a
+#  themes/custom/itkdev/itkdev_project_theme/js/choices.js: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/ai-screening-yes-no-stop-html.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/form/project-track-edit-form.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/pager.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/reports-project.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/form/form--ai-screening-project-track-thresholds.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/stats-top-block.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/user.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/webform-progress-tracker.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/components/block--system-branding-block.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/components/breadcrumb.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/components/nav-button.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/components/new-project-button.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/views/views-view-table--front.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/components/project-status.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/components/tablesort-indicator.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/form/form--user-form.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--ai-screening-static-select.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--text-format.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--ai-screening-yes-no-stop.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html.html.twig: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-03-28 14:41+0100\n"
+"PO-Revision-Date: 2025-03-28 14:41+0100\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
+msgid "ITK-dev Project Theme"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
+msgid "Project theme"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
+msgid "itkdev"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
+msgid "Header"
+msgstr "Overskrift"
+
+#: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
+msgid "Navigation"
+msgstr "Navigation"
+
+#: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
+msgid "Content"
+msgstr "Indhold"
+
+#: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
+msgid "Footer"
+msgstr "Sidefod"
+
+#: themes/custom/itkdev/itkdev_project_theme/js/choices.js:0
+msgid "Select"
+msgstr "Vælg"
+
+#: themes/custom/itkdev/itkdev_project_theme/js/choices.js:0
+msgid "No results found"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/js/choices.js:0
+msgid "No choices to choose from"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/js/choices.js:0
+msgid "Press to select"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/ai-screening-yes-no-stop-html.html.twig:7
+msgid "Response"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:34
+msgid "State"
+msgstr "Status"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:39
+msgid "Department"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:44
+msgid "Owner"
+msgstr "Ejer"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:48
+msgid "Contributers"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:63
+msgid "Will we?"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:67
+msgid "Project eveluation of whether it should be used"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:68
+msgid "See project report"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:93
+msgid "View report"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:100 themes/custom/itkdev/itkdev_project_theme/templates/form/project-track-edit-form.html.twig:98
+msgid "Edit"
+msgstr "Redigér"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/pager.html.twig:39
+msgid "Pagination"
+msgstr "Sideinddeling"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/pager.html.twig:44
+msgid "Go to previous page"
+msgstr "Gå til forrige side"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/pager.html.twig:45
+msgid "Previous page"
+msgstr "Forrige side"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/pager.html.twig:60
+msgid "Go to next page"
+msgstr "Gå til næste side"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/pager.html.twig:61
+msgid "Next page"
+msgstr "Næste side"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:14
+msgid "Report: @node_label"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:15;18
+msgid "Report: Project tracks"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:50
+msgid "The graph shows the automatically calculated evaluation."
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:54
+msgid "This project has been manually evaluated."
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:60 themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig:8 themes/custom/itkdev/itkdev_project_theme/templates/form/project-track-edit-form.html.twig:55
+msgid "System evaluation"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:67 themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig:9
+msgid "Manual evaluation"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:85
+msgid "@dimension is illustrated by bubble size"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:106 themes/custom/itkdev/itkdev_project_theme/templates/reports-project.html.twig:42
+msgid "Go Back"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project.html.twig:10
+msgid "Report: @label"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project.html.twig:19
+msgid "Project tracks"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project.html.twig:34
+msgid "Create report for \"@trackLabel\" track"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig:10
+msgid "Site setup"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig:18;24
+msgid "Setup frontpage"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig:32 themes/custom/itkdev/itkdev_project_theme/templates/form/form--ai-screening-project-track-thresholds.html.twig:18
+msgid "Setup project track thresholds"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig:36
+msgid "Set up thresholds for each project. The thresholds are used to determine when a suggested project track evaluation changes from \"Refused\" to \"Undecided\" to \"Approved\""
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig:41
+msgid "Setup thresholds"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/stats-top-block.html.twig:18
+msgid "Project that complies to all demands for use"
+msgid_plural "Projects that comply to all demands for use"
+msgstr[0] ""
+msgstr[1] ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/stats-top-block.html.twig:28
+msgid "Project that complies to some demands for use"
+msgid_plural "Projects that comply to some demands for use"
+msgstr[0] ""
+msgstr[1] ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/stats-top-block.html.twig:38
+msgid "Project that does not comply to the demands for use"
+msgid_plural "Projects that do not comply to the demands for use"
+msgstr[0] ""
+msgstr[1] ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/user.html.twig:39
+msgid "User mail"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/webform-progress-tracker.html.twig:55
+msgid "Current"
+msgstr "Aktuelle"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/webform-progress-tracker.html.twig:55
+msgid "Completed"
+msgstr "Afsluttet"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/block--system-branding-block.html.twig:22
+msgid "Home"
+msgstr "Hjem"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/breadcrumb.html.twig:4
+msgid "Breadcrumb"
+msgstr "Brødkrumme"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/nav-button.html.twig:3
+msgid "Open navigation menu"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/nav-button.html.twig:4
+msgid "Close navigation menu"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/new-project-button.html.twig:6 themes/custom/itkdev/itkdev_project_theme/templates/views/views-view-table--front.html.twig:51
+msgid "Create new project"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/project-status.html.twig:22
+msgid "Refused"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/project-status.html.twig:26
+msgid "Undecided"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/project-status.html.twig:30
+msgid "Approved"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig:3
+msgid "Project evaluations"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig:7
+msgid "Project name"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/tablesort-indicator.html.twig:22
+msgid "Sort ascending"
+msgstr "Sortér stigende"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/tablesort-indicator.html.twig:27
+msgid "Sort descending"
+msgstr "Sortér faldende"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:3
+msgid "Administrator"
+msgstr "Administrator"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:4
+msgid "Editor"
+msgstr "Editor"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:5
+msgid "User"
+msgstr "Bruger"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:30
+msgid "My profile"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:35
+msgid "Log out"
+msgstr "Log ud"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:7
+msgid "Hide questions/answers"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:11
+msgid "Demands"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:15
+msgid "Rules"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:19
+msgid "Tasks"
+msgstr "Opgaver"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:23
+msgid "Considerations"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:28
+msgid "Summary"
+msgstr "Resumé"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:36
+msgid "Report"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:38;42
+msgid "Task"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:39
+msgid "You must ensure that users/citizens that use an AI-system are informed that it is an AI-system."
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:43
+msgid "A Fundamental rights impact assessment (FRIA) must always be implemented."
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/form/form--ai-screening-project-track-thresholds.html.twig:24
+msgid "Define thresholds for all projects. This is used by the system to make a suggested evaluation by measuring all the combined answers of each project track against the corresponding thresholds."
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/form/form--user-form.html.twig:18
+msgid "Update user profile"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/form/project-track-edit-form.html.twig:36
+msgid "Not started"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/form/project-track-edit-form.html.twig:49
+msgid "Status"
+msgstr "Status"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/form/project-track-edit-form.html.twig:54
+msgid "Evaluation: @trackName"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--ai-screening-static-select.html.twig:29 themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--text-format.html.twig:32
+msgid "{Empty}"
+msgstr "{Ingen}"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--ai-screening-yes-no-stop.html.twig:26 themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html.html.twig:23
+msgid "None"
+msgstr "Ingen"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/views/views-view-table--front.html.twig:54
+msgid "Latest"
+msgstr ""
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/views/views-view-table--front.html.twig:137
+msgid "Show all projects"
+msgstr ""
+
