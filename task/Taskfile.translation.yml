@@ -46,10 +46,10 @@ tasks:
 
   translations:extract:
     cmds:
-      # - task drush -- --yes pm:install potx
+      - task drush -- --yes pm:install potx
       - task: translations:extract:modules
       - task: translations:extract:themes
-      # - task drush -- --yes pm:uninstall potx
+      - task drush -- --yes pm:uninstall potx
     silent: true
     requires:
       vars:
