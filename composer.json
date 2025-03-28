@@ -15,7 +15,7 @@
         "cweagans/composer-patches": "^1.7",
         "drupal/better_exposed_filters": "^7.0",
         "drupal/config_ignore": "^3.3",
-        "drupal/config_translation_po": "^1.0",
+        "drupal/config_translation_po": "dev-3439416-added-drush-command",
         "drupal/core-composer-scaffold": "^11.1",
         "drupal/core-project-message": "^11.1",
         "drupal/core-recommended": "^11.1",
@@ -47,12 +47,17 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8",
             "exclude": [
+                "drupal/config_translation_po",
                 "drupal/openid_connect"
             ]
         },
         {
             "type": "git",
             "url": "https://git.drupalcode.org/issue/openid_connect-3452009.git"
+        },
+        {
+            "type": "git",
+            "url": "https://git.drupalcode.org/issue/config_translation_po-3439416.git"
         }
     ],
     "minimum-stability": "dev",

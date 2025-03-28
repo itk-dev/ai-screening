@@ -21,6 +21,9 @@ vars:
     - itkdev_base_theme
     - itkdev_project_theme
 
+  TRANSLATION_LANGUAGES:
+    - da
+
 tasks:
   compose:
     desc: "Run `docker compose` command. Example: task compose -- up --detach"

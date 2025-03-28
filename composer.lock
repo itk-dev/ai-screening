@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d13e40e74f48cac114cc55631d88d3d",
+    "content-hash": "b7f162e8cfc0d7737b09833a427e3b72",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1316,53 +1316,15 @@
         },
         {
             "name": "drupal/config_translation_po",
-            "version": "1.0.1",
+            "version": "dev-3439416-added-drush-command",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/config_translation_po.git",
-                "reference": "1.0.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/config_translation_po-1.0.1.zip",
-                "reference": "1.0.1",
-                "shasum": "452452f9cabef5efc6229db49cd88ada89babb5f"
-            },
-            "require": {
-                "drupal/core": "^9.3 || ^10 || ^11"
+                "url": "https://git.drupalcode.org/issue/config_translation_po-3439416.git",
+                "reference": "0d26a82eaa0b26317958ebe9d3206e7510c125b1"
             },
             "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "1.0.1",
-                    "datestamp": "1732743222",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "dj1999",
-                    "homepage": "https://www.drupal.org/user/387119"
-                },
-                {
-                    "name": "heddn",
-                    "homepage": "https://www.drupal.org/user/1463982"
-                },
-                {
-                    "name": "pedrop",
-                    "homepage": "https://www.drupal.org/user/1043368"
-                },
-                {
-                    "name": "szato",
-                    "homepage": "https://www.drupal.org/user/389677"
-                }
             ],
             "description": "Configuration Translations to po file",
             "homepage": "https://www.drupal.org/project/config_translation_po",
@@ -1370,9 +1332,10 @@
                 "Drupal"
             ],
             "support": {
-                "source": "https://git.drupalcode.org/project/config_translation_po",
-                "issues": "https://www.drupal.org/project/issues/config_translation_po"
-            }
+                "issues": "https://www.drupal.org/project/issues/config_translation_po",
+                "source": "https://git.drupalcode.org/project/config_translation_po"
+            },
+            "time": "2025-03-27T15:15:48+00:00"
         },
         {
             "name": "drupal/core",
@@ -14502,6 +14465,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "chx/drupal-issue-fork": 20,
+        "drupal/config_translation_po": 20,
         "drupal/openid_connect": 20,
         "drupal/webform": 20
     },
