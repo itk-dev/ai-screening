@@ -8,7 +8,7 @@ env:
   COMPOSE_USER: runner
 
 jobs:
-  check-translations:
+  check-site-translations:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,27 +21,28 @@ jobs:
           docker network create frontend
           task site-install --yes
 
-      - name: Extract translations
+      - name: Site translations
         run: |
-          task translation:translations:extract
+          task translation:site-translations:export
 
       - run: |
           task translation:translations:diff
 
-  check-config-translations:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: arduino/setup-task@v2
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install site
+      - name: Module translations
         run: |
-          docker network create frontend
-          task site-install --yes
+          task translation:module-translations:export
 
-      - name: Export config translations
+      - run: |
+          task translation:translations:diff
+
+      - name: Theme translations
+        run: |
+          task translation:theme-translations:export
+
+      - run: |
+          task translation:translations:diff
+
+      - name: Config translations
         run: |
           task translation:config-translations:export
 
