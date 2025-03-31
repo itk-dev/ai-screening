@@ -97,6 +97,7 @@ tasks:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
         cmd: |
+          task drush -- --yes pm:install potx
           export MODULE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.module")->getPath("{{.ITEM.MODULE}}")')
           if [ -n "$MODULE_PATH" ]; then
             task drush -- potx single --folder=${MODULE_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
@@ -152,6 +153,7 @@ tasks:
         # into the desired destination in the `translations` folder inside the
         # module folder.
         cmd: |
+          task drush -- --yes pm:install potx
           export THEME_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.theme")->getPath("{{.ITEM.THEME}}")')
           if [ -n "$THEME_PATH" ]; then
             task drush -- potx single --folder=${THEME_PATH}/ --language {{.ITEM.LANGUAGE}} --translations

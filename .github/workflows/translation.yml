@@ -8,8 +8,15 @@ env:
   COMPOSE_USER: runner
 
 jobs:
-  check-site-translations:
+  check-translations:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        task:
+          - translation:site-translations:export
+          - translation:module-translations:export
+          - translation:theme-translations:export
+          - translation:config-translations:export
     steps:
       - uses: actions/checkout@v4
       - uses: arduino/setup-task@v2
@@ -21,30 +28,9 @@ jobs:
           docker network create frontend
           task site-install --yes
 
-      - name: Site translations
+      - name: Export translations (${{ matrix.task }})
         run: |
-          task translation:site-translations:export
-
-      - run: |
-          task translation:translations:diff
-
-      - name: Module translations
-        run: |
-          task translation:module-translations:export
-
-      - run: |
-          task translation:translations:diff
-
-      - name: Theme translations
-        run: |
-          task translation:theme-translations:export
-
-      - run: |
-          task translation:translations:diff
-
-      - name: Config translations
-        run: |
-          task translation:config-translations:export
+          task ${{ matrix.task }}
 
       - run: |
           task translation:translations:diff
