@@ -89,19 +89,6 @@ tasks:
         sh: if [ ! -z "{{.BASE_URL}}" ]; then echo "https://{{.BASE_URL}}"; else echo "http://$(task compose -- port nginx 8080)"; fi
     silent: true
 
-  site-update:
-    desc: "Update site"
-    prompt: "This will reset your configuration. Continue?"
-    cmds:
-      - task start
-      - task drush -- deploy
-      - task theme-build
-      - task drush -- cache:rebuild
-      - task drush -- browse --no-browser
-      - task drush -- user:login
-      - task set-user-roles
-    silent: true
-
   import-translations:
     desc: "Import string and config translations from .po files"
     prompt: "This will reset all translations to match .po files. Continue?"
@@ -130,7 +117,23 @@ tasks:
     prompt: "This will reset your setup. Continue?"
     cmds:
       - task start
+      - task theme-build
       - task drush -- site-install --existing-config --yes
+      - task set-user-roles
+      - task drush -- cache:rebuild
+
+  site-update:
+    desc: "Update site"
+    prompt: "This will reset your configuration. Continue?"
+    cmds:
+      - task start
+      - task theme-build
+      - task drush -- deploy
+      - task set-user-roles
+      - task drush -- cache:rebuild
+      - task drush -- browse --no-browser
+      - task drush -- user:login
+    silent: true
 
   theme-build:
     desc: "Build theme"
@@ -212,7 +215,6 @@ tasks:
       # https://taskfile.dev/reference/schema#command and
       # https://taskfile.dev/reference/cli#flags
       - task: site-install
-      - task: site-update
       # Delete all translations.
       - task drush -- sql:query "DELETE FROM locales_target";
       - task drush -- cache:rebuild
