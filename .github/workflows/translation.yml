@@ -19,6 +19,11 @@ jobs:
           - translation:config-translations:export
     steps:
       - uses: actions/checkout@v4
+        # https://github.com/actions/checkout/issues/881
+        # https://github.com/actions/checkout/issues/504
+        # https://github.com/actions/checkout?tab=readme-ov-file#checkout-pull-request-head-commit-instead-of-merge-commit
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - uses: arduino/setup-task@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
@@ -31,6 +36,13 @@ jobs:
       - name: Export translations (${{ matrix.task }})
         run: |
           task ${{ matrix.task }}
+
+      # https://github.com/mxschmitt/action-tmate?tab=readme-ov-file#manually-triggered-debug
+      # Enable tmate debugging if debug logging is enabled (cf.
+      # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#runner-context)
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: 1 == runner.debug
 
       - run: |
           task translation:translations:diff
