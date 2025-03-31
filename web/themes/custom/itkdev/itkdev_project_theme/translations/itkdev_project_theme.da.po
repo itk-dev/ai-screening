@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-31 15:15+0200\n"
-"PO-Revision-Date: 2025-03-31 15:15+0200\n"
+"POT-Creation-Date: 2025-03-31 16:08+0200\n"
+"PO-Revision-Date: 2025-03-31 16:08+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -67,11 +67,11 @@ msgstr "Navigation"
 
 #: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
 msgid "Content"
-msgstr "Content"
+msgstr "Indhold"
 
 #: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
 msgid "Footer"
-msgstr "Footer"
+msgstr "Sidefod"
 
 #: themes/custom/itkdev/itkdev_project_theme/js/choices.js:0
 msgid "Select"
@@ -147,7 +147,7 @@ msgstr "Gå til næste side"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/pager.html.twig:61
 msgid "Next page"
-msgstr "Næste side"
+msgstr ""
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:14
 msgid "Report: @node_label"
@@ -241,7 +241,7 @@ msgstr "Aktuelle"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/webform-progress-tracker.html.twig:55
 msgid "Completed"
-msgstr "Completed"
+msgstr "Afsluttet"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/block--system-branding-block.html.twig:22
 msgid "Home"
@@ -301,7 +301,7 @@ msgstr "Editor"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:5
 msgid "User"
-msgstr "User"
+msgstr "Bruger"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:30
 msgid "My profile"
@@ -373,7 +373,7 @@ msgstr ""
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--ai-screening-static-select.html.twig:29 themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--text-format.html.twig:32
 msgid "{Empty}"
-msgstr "{Empty}"
+msgstr "{Ingen}"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--ai-screening-yes-no-stop.html.twig:26 themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html.html.twig:23
 msgid "None"

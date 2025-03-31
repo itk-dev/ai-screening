@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-31 15:15+0200\n"
-"PO-Revision-Date: 2025-03-31 15:15+0200\n"
+"POT-Creation-Date: 2025-03-31 16:08+0200\n"
+"PO-Revision-Date: 2025-03-31 16:08+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -91,11 +91,11 @@ msgstr "ID"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:20 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:23
 msgid "Created"
-msgstr "Created"
+msgstr "Oprettet"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:21 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:24
 msgid "Updated"
-msgstr "Updated"
+msgstr "Opdateret"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:20
 msgid "Label"
@@ -107,7 +107,7 @@ msgstr "Status"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:22
 msgid "Author"
-msgstr "Author"
+msgstr "Forfatter"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:35
 msgid "Enabled"
@@ -131,7 +131,7 @@ msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Status.php:24
 msgid "Completed"
-msgstr "Completed"
+msgstr "Afsluttet"
 
 #: modules/custom/ai_screening_project_track/src/Element/YesNoStop.php:37
 msgid "- Select -"
@@ -275,7 +275,7 @@ msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "Tools"
-msgstr "Tools"
+msgstr "Værktøjer"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "tool"
