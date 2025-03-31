@@ -47,6 +47,7 @@ tasks:
     silent: true
 
   site-translations:import:
+    prompt: "Really import site translations?"
     desc: 'Import site translations for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
       - for:
@@ -67,12 +68,12 @@ tasks:
       #
       # "POT-Creation-Date: 2025-03-12 18:18+0100\n"
       # "PO-Revision-Date: 2025-03-12 18:18+0100\n"
-      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' config/*.po translations/*.po web/*/custom/*/translations/*.po
+      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' '*.po'
 
   translations:checkout:
     desc: 'git checkout all translation file changes if only date metadata is changed'
     cmds:
-      - git checkout web/*/custom/*/translations/*.po translations/*.po
+      - git checkout '*.po'
     # https://taskfile.dev/reference/schema#precondition
     preconditions:
       - sh: task {{.TASK | replace ":checkout" ":diff" }}
@@ -119,6 +120,7 @@ tasks:
   # module translations without overriding existing translations?
   # @todo Do we want to override (existing) translations?
   module-translations:import:
+    prompt: "Really import module translations?"
     desc: 'Import translations for all modules ({{.TRANSLATION_MODULES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
       - for:
@@ -170,6 +172,7 @@ tasks:
     silent: true
 
   theme-translations:import:
+    prompt: "Really import theme translations?"
     desc: 'Import translations for all themes ({{.TRANSLATION_THEMES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
       - for:
@@ -205,6 +208,7 @@ tasks:
     silent: true
 
   config-translations:import:
+    prompt: "Really import config translations?"
     desc: 'Import config translation for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
       - for:
@@ -248,4 +252,22 @@ tasks:
             throw new \RuntimeException(sprintf('count: %d; expected: %s; actual: %s', \$count, var_export(\$expected, true), var_export(\$actual, true)));
           }
         }
+    silent: true
+
+  export:
+    desc: Run all translation export tasks
+    cmds:
+      - task {{.TASK | replace ":export" ":config-translations:export"}}
+      - task {{.TASK | replace ":export" ":module-translations:export"}}
+      - task {{.TASK | replace ":export" ":site-translations:export"}}
+      - task {{.TASK | replace ":export" ":theme-translations:export"}}
+    silent: true
+
+  import:
+    desc: Run all translation import tasks
+    cmds:
+      - task {{.TASK | replace ":import" ":config-translations:import"}}
+      - task {{.TASK | replace ":import" ":module-translations:import"}}
+      - task {{.TASK | replace ":import" ":site-translations:import"}}
+      - task {{.TASK | replace ":import" ":theme-translations:import"}}
     silent: true
