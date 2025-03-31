@@ -1,35 +1,76 @@
+# This is not a standalone Taskfile; it must be included in a main Taskfile which must also define three vars, e.g
+#
+#   includes:
+#     translation:
+#       taskfile: ./task/Taskfile.translation.yml
+#       vars:
+#         TRANSLATION_MODULES:
+#           - my_custom_module
+#           - another_module
+#
+#         TRANSLATION_THEMES:
+#           - my_custo_them
+#           - itkdev_project_theme
+#
+#         TRANSLATION_LANGUAGES:
+#           - da
+#
+# See https://taskfile.dev/usage/#including-other-taskfiles and https://taskfile.dev/usage/#vars-of-included-taskfiles for details on Taskfile includes.
+#
+# Furthermore, this Taskfile assumes that the parent Taskfile (i.e. the only including this)
+#
+# 1. defines a `compose` task to run docker compose and that a `phpfpm` service exists (used to run `sed`)
+# 2. defines a `drush` task for running Drush
+
 version: '3'
 
-vars:
-
 tasks:
-  translations:import:
+  site-translations:export:
+    desc: 'Export site translations for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
-      - task drush -- locale:import --type=not-customized --override=not-customized da ../translations/custom-translations.da.po
-      # - task drush -- php:eval "var_export(\Drupal::state()->get('locale.translation.formulae', []))"
-      # - 'task drush -- php:eval "var_export(array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, ''1 item'', ''@count items'', options: [''langcode'' => ''da'']))->render(), range(0, 5)));"'
-      # - 'task drush -- php:eval "var_export(array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, ''1 item'', ''@count items'', options: [''langcode'' => ''en'']))->render(), range(0, 5)));"'
+      - for:
+          matrix:
+            LANGUAGE:
+              ref: .TRANSLATION_LANGUAGES
+        cmd: |
+          task drush -- locale:export {{.ITEM.LANGUAGE}} --types=customized > translations/site-translations.{{.ITEM.LANGUAGE}}.po
+
+          # Fix plurals spec in Danish PO file
+          # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+          # https://www.drupal.org/project/drupal/issues/3496223
+          if [ "{{.ITEM.LANGUAGE}}" == "da" ]; then
+            task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/site-translations.{{.ITEM.LANGUAGE}}.po
+          fi
+    requires:
+      vars:
+        - TRANSLATION_LANGUAGES
     silent: true
 
-  translations:export:
+  site-translations:import:
+    desc: 'Import site translations for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
-      # @todo Which types should we use here?
-      - task drush -- locale:export da --types=customized > translations/custom-translations.da.po
-      # Fix plurals spec in PO file
-      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
-      # https://www.drupal.org/project/drupal/issues/3496223
-      - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/custom-translations.da.po'
+      - for:
+          matrix:
+            LANGUAGE:
+              ref: .TRANSLATION_LANGUAGES
+        cmd: task drush -- locale:import --type=not-customized --override=not-customized {{.ITEM.LANGUAGE}} ../translations/site-translations.{{.ITEM.LANGUAGE}}.po
+      - task '{{.TASK | replace ":site-translations:import" ":test-pluralization" }}'
+    requires:
+      vars:
+        - TRANSLATION_LANGUAGES
     silent: true
 
   translations:diff:
+    desc: 'git diff all translation files ignoring some date metadata changes'
     cmds:
       # Ignore some PO metadata when git diff'ing, e.g.
       #
       # "POT-Creation-Date: 2025-03-12 18:18+0100\n"
       # "PO-Revision-Date: 2025-03-12 18:18+0100\n"
-      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' web/*/custom/*/translations/*.po translations/*.po
+      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' config/*.po translations/*.po web/*/custom/*/translations/*.po
 
   translations:checkout:
+    desc: 'git checkout all translation file changes if only date metadata is changed'
     cmds:
       - git checkout web/*/custom/*/translations/*.po translations/*.po
     # https://taskfile.dev/reference/schema#precondition
@@ -44,20 +85,8 @@ tasks:
 
           to check.
 
-  translations:extract:
-    cmds:
-      - task drush -- --yes pm:install potx
-      - task: translations:extract:modules
-      - task: translations:extract:themes
-      - task drush -- --yes pm:uninstall potx
-    silent: true
-    requires:
-      vars:
-        - TRANSLATION_MODULES
-        - TRANSLATION_THEMES
-        - TRANSLATION_LANGUAGES
-
-  translations:extract:modules:
+  module-translations:export:
+    desc: 'Export translations for all modules ({{.TRANSLATION_MODULES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
       # https://github.com/go-task/task/discussions/1543
       - for:
@@ -68,13 +97,47 @@ tasks:
               ref: .TRANSLATION_LANGUAGES
         cmd: |
           export MODULE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.module")->getPath("{{.ITEM.MODULE}}")')
-          if [ -n "#MODULE_PATH" ]; then
+          if [ -n "$MODULE_PATH" ]; then
             task drush -- potx single --folder=${MODULE_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
             mkdir -p web/${MODULE_PATH}/translations
             mv web/general.pot web/${MODULE_PATH}/translations/{{.ITEM.MODULE}}.{{.ITEM.LANGUAGE}}.po
-          fi
 
-  translations:extract:themes:
+            # Fix plurals spec in Danish PO file
+            # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+            # https://www.drupal.org/project/drupal/issues/3496223
+            if [ "{{.ITEM.LANGUAGE}}" == "da" ]; then
+              task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" web/${MODULE_PATH}/translations/{{.ITEM.MODULE}}.{{.ITEM.LANGUAGE}}.po
+            fi
+          fi
+    requires:
+      vars:
+        - TRANSLATION_MODULES
+        - TRANSLATION_LANGUAGES
+    silent: true
+
+  # @todo Can we use `drush locale:check` and/or `drush locale:update` to update
+  # module translations without overriding existing translations?
+  # @todo Do we want to override (existing) translations?
+  module-translations:import:
+    desc: 'Import translations for all modules ({{.TRANSLATION_MODULES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+    cmds:
+      - for:
+          matrix:
+            MODULE:
+              ref: .TRANSLATION_MODULES
+        cmd: |
+          export MODULE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.module")->getPath("{{.ITEM.MODULE}}")')
+          if [ -n "$MODULE_PATH" ]; then
+            task drush -- locale:import-all --override=none ${MODULE_PATH}/translations/
+          fi
+      - task '{{.TASK | replace ":site-translations:import" ":test-pluralization" }}'
+    requires:
+      vars:
+        - TRANSLATION_MODULES
+    silent: true
+
+  theme-translations:export:
+    desc: 'Export translations for all themes ({{.TRANSLATION_THEMES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
       # https://github.com/go-task/task/discussions/1543
       - for:
@@ -88,38 +151,44 @@ tasks:
         # module folder.
         cmd: |
           export THEME_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.theme")->getPath("{{.ITEM.THEME}}")')
-          if [ -n "#THEME_PATH" ]; then
+          if [ -n "$THEME_PATH" ]; then
             task drush -- potx single --folder=${THEME_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
             mkdir -p web/${THEME_PATH}/translations
             mv web/general.pot web/${THEME_PATH}/translations/{{.ITEM.THEME}}.{{.ITEM.LANGUAGE}}.po
+
+            # Fix plurals spec in Danish PO file
+            # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+            # https://www.drupal.org/project/drupal/issues/3496223
+            if [ "{{.ITEM.LANGUAGE}}" == "da" ]; then
+              task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" web/${THEME_PATH}/translations/{{.ITEM.THEME}}.{{.ITEM.LANGUAGE}}.po
+            fi
           fi
+    requires:
+      vars:
+        - TRANSLATION_THEMES
+        - TRANSLATION_LANGUAGES
+    silent: true
 
-  # @todo Can we use `drush locale:check` and/or `drush locale:update` to update
-  # module translations without overriding existing translations?
-  # @todo Do we want to override (existing) translations?
-  translations:import:modules:
-    cmds:
-      - for:
-          matrix:
-            MODULE:
-              ref: .TRANSLATION_MODULES
-        cmd: task drush -- locale:import-all --override=none modules/custom/{{.ITEM.MODULE}}/translations/
-
-  translations:import:themes:
+  theme-translations:import:
+    desc: 'Import translations for all themes ({{.TRANSLATION_THEMES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
       - for:
           matrix:
             THEME:
               ref: .TRANSLATION_THEMES
-        cmd: task drush -- locale:import-all --override=none themes/custom/{{.ITEM.THEME}}/translations/
-
-  translations:import:all:
-    cmds:
-      - task: translations:import:modules
-      - task: translations:import:themes
+        cmd: |
+          export THEME_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.theme")->getPath("{{.ITEM.THEME}}")')
+          if [ -n "$THEME_PATH" ]; then
+            task drush -- locale:import-all --override=none ${THEME_PATH}/translations/
+          fi
+      - task '{{.TASK | replace ":site-translations:import" ":test-pluralization" }}'
+    requires:
+      vars:
+        - TRANSLATION_THEMES
     silent: true
 
   config-translations:export:
+    desc: 'Export config translation for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
       - for:
           matrix:
@@ -130,10 +199,53 @@ tasks:
       # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
       # https://www.drupal.org/project/drupal/issues/3496223
       - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" config/translations.da.po'
+    requires:
+      vars:
+        - TRANSLATION_LANGUAGES
     silent: true
 
   config-translations:import:
+    desc: 'Import config translation for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
-      # Note: We use an empty type to import as not-customized.
-      - task drush -- config_translation_po:import --type='' --override=not-customized da ../config/translations.da.po
+      - for:
+          matrix:
+            LANGUAGE:
+              ref: .TRANSLATION_LANGUAGES
+        cmd: task drush -- config_translation_po:import --type=not-customized --override=not-customized da ../config/translations.{{.ITEM.LANGUAGE}}.po
+      - task '{{.TASK | replace ":site-translations:import" ":test-pluralization" }}'
+    requires:
+      vars:
+        - TRANSLATION_LANGUAGES
+    silent: true
+
+  test-pluralization:
+    desc: "Report and test some pluralizations to make sure that they are correct"
+    cmds:
+      - defer: rm {{.SCRIPT_NAME}}
+      - echo "{{.PHP_SCRIPT}}" > {{.SCRIPT_NAME}}
+      - task drush -- php:script {{.SCRIPT_NAME}} -- en {{.TRANSLATION_LANGUAGES | join " "}}
+    vars:
+      SCRIPT_NAME: tmp.php
+      PHP_SCRIPT: |
+        <?php
+
+        var_export(['locale.translation.formulae' => \Drupal::state()->get('locale.translation.formulae', [])]);
+
+        \$stuff = [];
+        foreach (\$extra as \$langcode) {
+          \$stuff[\$langcode] = array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, '1 item', '@count items', options: ['langcode' => '{{.ITEM}}']))->render(), range(0, 9));
+        }
+        var_export(\$stuff);
+
+        // Check Danish translation
+        foreach ([
+          [0, '0 items'],
+          [1, '1 item'],
+          [2, '2 items'],
+        ] as [\$count, \$expected]) {
+          \$actual = (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, '1 item', '@count items', options: ['langcode' => 'da']))->render();
+          if (\$actual !== \$expected) {
+            throw new \RuntimeException(sprintf('count: %d; expected: %s; actual: %s', \$count, var_export(\$expected, true), var_export(\$actual, true)));
+          }
+        }
     silent: true

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7f162e8cfc0d7737b09833a427e3b72",
+    "content-hash": "fa0f8ebce9bb47b358099cd2069c1f6d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1320,7 +1320,10 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/issue/config_translation_po-3439416.git",
-                "reference": "0d26a82eaa0b26317958ebe9d3206e7510c125b1"
+                "reference": "327e06a6c8485642b62a4f73c0681971fca60fb8"
+            },
+            "require-dev": {
+                "drupal/coder": "^8.3"
             },
             "type": "drupal-module",
             "license": [
@@ -1335,7 +1338,7 @@
                 "issues": "https://www.drupal.org/project/issues/config_translation_po",
                 "source": "https://git.drupalcode.org/project/config_translation_po"
             },
-            "time": "2025-03-27T15:15:48+00:00"
+            "time": "2025-03-31T10:26:37+00:00"
         },
         {
             "name": "drupal/core",

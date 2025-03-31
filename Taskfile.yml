@@ -3,26 +3,28 @@ version: '3'
 dotenv: [".task.env", ".env"]
 
 includes:
-  translation: ./task/Taskfile.translation.yml
+  translation:
+    taskfile: ./task/Taskfile.translation.yml
+    vars:
+      TRANSLATION_MODULES:
+        - ai_screening
+        # - ai_screening_fixtures_base
+        - ai_screening_project
+        - ai_screening_project_track
+        - ai_screening_reports
+
+      TRANSLATION_THEMES:
+        - itkdev_base_theme
+        - itkdev_project_theme
+
+      TRANSLATION_LANGUAGES:
+        - da
 
 vars:
   DOCKER_COMPOSE: '{{ .TASK_DOCKER_COMPOSE | default "docker compose" }}'
   # https://taskfile.dev/reference/templating/
   BASE_URL: '{{.TASK_BASE_URL | default .COMPOSE_SERVER_DOMAIN | default .COMPOSE_DOMAIN | default ""}}'
 
-  TRANSLATION_MODULES:
-    - ai_screening
-    # - ai_screening_fixtures_base
-    - ai_screening_project
-    - ai_screening_project_track
-    - ai_screening_reports
-
-  TRANSLATION_THEMES:
-    - itkdev_base_theme
-    - itkdev_project_theme
-
-  TRANSLATION_LANGUAGES:
-    - da
 
 tasks:
   compose:
