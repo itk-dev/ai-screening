@@ -1,6 +1,7 @@
 # https://github.com/igorshubovych/markdownlint-cli?tab=readme-ov-file#ignoring-files
 vendor/
-web/*.md
+web/**/*.md
+!web/*/custom/**/*.md
 web/core/
 web/*/contrib/
 web/themes/custom/itkdev/*/node_modules/

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-64](https://github.com/itk-dev/ai-screening/pull/64)
+  PHP 8.4
 - [PR-92](https://github.com/itk-dev/ai-screening/pull/92)
   - Update drupal core
 - [PR-91](https://github.com/itk-dev/ai-screening/pull/91)
