@@ -34,13 +34,7 @@ tasks:
               ref: .TRANSLATION_LANGUAGES
         cmd: |
           task drush -- locale:export {{.ITEM.LANGUAGE}} --types=customized > translations/site-translations.{{.ITEM.LANGUAGE}}.po
-
-          # Fix plurals spec in Danish PO file
-          # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
-          # https://www.drupal.org/project/drupal/issues/3496223
-          if [ "{{.ITEM.LANGUAGE}}" == "da" ]; then
-            task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/site-translations.{{.ITEM.LANGUAGE}}.po
-          fi
+      - task: clean-up-translations
     requires:
       vars:
         - TRANSLATION_LANGUAGES
@@ -55,7 +49,7 @@ tasks:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
         cmd: task drush -- locale:import --type=not-customized --override=not-customized {{.ITEM.LANGUAGE}} ../translations/site-translations.{{.ITEM.LANGUAGE}}.po
-      - task '{{.TASK | replace ":site-translations:import" ":test-pluralization" }}'
+      - task: test-pluralization
     requires:
       vars:
         - TRANSLATION_LANGUAGES
@@ -103,14 +97,8 @@ tasks:
             task drush -- potx single --folder=${MODULE_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
             mkdir -p web/${MODULE_PATH}/translations
             mv web/general.pot web/${MODULE_PATH}/translations/{{.ITEM.MODULE}}.{{.ITEM.LANGUAGE}}.po
-
-            # Fix plurals spec in Danish PO file
-            # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
-            # https://www.drupal.org/project/drupal/issues/3496223
-            if [ "{{.ITEM.LANGUAGE}}" == "da" ]; then
-              task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" web/${MODULE_PATH}/translations/{{.ITEM.MODULE}}.{{.ITEM.LANGUAGE}}.po
-            fi
           fi
+      - task: clean-up-translations
     requires:
       vars:
         - TRANSLATION_MODULES
@@ -133,7 +121,7 @@ tasks:
           if [ -n "$MODULE_PATH" ]; then
             task drush -- locale:import-all --override=none ${MODULE_PATH}/translations/
           fi
-      - task '{{.TASK | replace ":site-translations:import" ":test-pluralization" }}'
+      - task: test-pluralization
     requires:
       vars:
         - TRANSLATION_MODULES
@@ -159,14 +147,8 @@ tasks:
             task drush -- potx single --folder=${THEME_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
             mkdir -p web/${THEME_PATH}/translations
             mv web/general.pot web/${THEME_PATH}/translations/{{.ITEM.THEME}}.{{.ITEM.LANGUAGE}}.po
-
-            # Fix plurals spec in Danish PO file
-            # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
-            # https://www.drupal.org/project/drupal/issues/3496223
-            if [ "{{.ITEM.LANGUAGE}}" == "da" ]; then
-              task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" web/${THEME_PATH}/translations/{{.ITEM.THEME}}.{{.ITEM.LANGUAGE}}.po
-            fi
           fi
+      - task: clean-up-translations
     requires:
       vars:
         - TRANSLATION_THEMES
@@ -186,7 +168,7 @@ tasks:
           if [ -n "$THEME_PATH" ]; then
             task drush -- locale:import-all --override=none ${THEME_PATH}/translations/
           fi
-      - task '{{.TASK | replace ":site-translations:import" ":test-pluralization" }}'
+      - task: test-pluralization
     requires:
       vars:
         - TRANSLATION_THEMES
@@ -200,10 +182,7 @@ tasks:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
         cmd: task drush -- config_translation_po:export {{.ITEM.LANGUAGE}} --clear-same-as-source > config/translations.{{.ITEM.LANGUAGE}}.po
-      # Fix plurals spec in Danish PO file
-      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
-      # https://www.drupal.org/project/drupal/issues/3496223
-      - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" config/translations.da.po'
+      - task: clean-up-translations
     requires:
       vars:
         - TRANSLATION_LANGUAGES
@@ -218,7 +197,7 @@ tasks:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
         cmd: task drush -- config_translation_po:import --type=not-customized --override=not-customized da ../config/translations.{{.ITEM.LANGUAGE}}.po
-      - task '{{.TASK | replace ":site-translations:import" ":test-pluralization" }}'
+      - task: test-pluralization
     requires:
       vars:
         - TRANSLATION_LANGUAGES
@@ -259,17 +238,25 @@ tasks:
   export:
     desc: Run all translation export tasks
     cmds:
-      - task {{.TASK | replace ":export" ":config-translations:export"}}
-      - task {{.TASK | replace ":export" ":module-translations:export"}}
-      - task {{.TASK | replace ":export" ":site-translations:export"}}
-      - task {{.TASK | replace ":export" ":theme-translations:export"}}
+      - task: config-translations:export
+      - task: module-translations:export
+      - task: site-translations:export
+      - task: theme-translations:export
     silent: true
 
   import:
     desc: Run all translation import tasks
     cmds:
-      - task {{.TASK | replace ":import" ":config-translations:import"}}
-      - task {{.TASK | replace ":import" ":module-translations:import"}}
-      - task {{.TASK | replace ":import" ":site-translations:import"}}
-      - task {{.TASK | replace ":import" ":theme-translations:import"}}
+      - task: config-translations:import
+      - task: module-translations:import
+      - task: site-translations:import
+      - task: theme-translations:import
     silent: true
+
+  clean-up-translations:
+    cmds:
+      # Fix plurals spec in Danish PO file
+      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+      # https://www.drupal.org/project/drupal/issues/3496223
+      - |
+          docker run --rm --volume "$PWD:/app" itkdev/php8.3-fpm sed --in-place 's/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/' $(git ls-files --others --exclude-standard '*.da.po') $(git ls-files '*.da.po')
