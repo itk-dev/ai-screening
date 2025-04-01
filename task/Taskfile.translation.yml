@@ -19,8 +19,7 @@
 #
 # Furthermore, this Taskfile assumes that the parent Taskfile (i.e. the only including this)
 #
-# 1. defines a `compose` task to run docker compose and that a `phpfpm` service exists (used to run `sed`)
-# 2. defines a `drush` task for running Drush
+# 1. defines a `drush` task for running Drush
 
 version: '3'
 
@@ -83,45 +82,28 @@ tasks:
   module-translations:export:
     desc: 'Export translations for all modules ({{.TRANSLATION_MODULES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
-      # https://github.com/go-task/task/discussions/1543
-      - for:
-          matrix:
-            MODULE:
-              ref: .TRANSLATION_MODULES
-            LANGUAGE:
-              ref: .TRANSLATION_LANGUAGES
-        cmd: |
-          task drush -- --yes pm:install potx
-          export MODULE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.module")->getPath("{{.ITEM.MODULE}}")')
-          if [ -n "$MODULE_PATH" ]; then
-            task drush -- potx single --folder=${MODULE_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
-            mkdir -p web/${MODULE_PATH}/translations
-            mv web/general.pot web/${MODULE_PATH}/translations/{{.ITEM.MODULE}}.{{.ITEM.LANGUAGE}}.po
-          fi
-      - task: clean-up-translations
+      - task: do-export
+        vars:
+          TYPE: module
+          NAMES:
+            ref: .TRANSLATION_MODULES
+          LANGUAGES:
+            ref: .TRANSLATION_LANGUAGES
     requires:
       vars:
         - TRANSLATION_MODULES
         - TRANSLATION_LANGUAGES
     silent: true
 
-  # @todo Can we use `drush locale:check` and/or `drush locale:update` to update
-  # module translations without overriding existing translations?
-  # @todo Do we want to override (existing) translations?
   module-translations:import:
     prompt: "Really import module translations?"
     desc: 'Import translations for all modules ({{.TRANSLATION_MODULES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
-      - for:
-          matrix:
-            MODULE:
-              ref: .TRANSLATION_MODULES
-        cmd: |
-          export MODULE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.module")->getPath("{{.ITEM.MODULE}}")')
-          if [ -n "$MODULE_PATH" ]; then
-            task drush -- locale:import-all --override=none ${MODULE_PATH}/translations/
-          fi
-      - task: test-pluralization
+      - task: do-import
+        vars:
+          TYPE: module
+          NAMES:
+            ref: .TRANSLATION_MODULES
     requires:
       vars:
         - TRANSLATION_MODULES
@@ -130,25 +112,13 @@ tasks:
   theme-translations:export:
     desc: 'Export translations for all themes ({{.TRANSLATION_THEMES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
-      # https://github.com/go-task/task/discussions/1543
-      - for:
-          matrix:
-            THEME:
-              ref: .TRANSLATION_THEMES
-            LANGUAGE:
-              ref: .TRANSLATION_LANGUAGES
-        # `drush potx` always writes to web/general.pot, so we move this file
-        # into the desired destination in the `translations` folder inside the
-        # module folder.
-        cmd: |
-          task drush -- --yes pm:install potx
-          export THEME_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.theme")->getPath("{{.ITEM.THEME}}")')
-          if [ -n "$THEME_PATH" ]; then
-            task drush -- potx single --folder=${THEME_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
-            mkdir -p web/${THEME_PATH}/translations
-            mv web/general.pot web/${THEME_PATH}/translations/{{.ITEM.THEME}}.{{.ITEM.LANGUAGE}}.po
-          fi
-      - task: clean-up-translations
+      - task: do-export
+        vars:
+          TYPE: theme
+          NAMES:
+            ref: .TRANSLATION_THEMES
+          LANGUAGES:
+            ref: .TRANSLATION_LANGUAGES
     requires:
       vars:
         - TRANSLATION_THEMES
@@ -159,16 +129,11 @@ tasks:
     prompt: "Really import theme translations?"
     desc: 'Import translations for all themes ({{.TRANSLATION_THEMES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
-      - for:
-          matrix:
-            THEME:
-              ref: .TRANSLATION_THEMES
-        cmd: |
-          export THEME_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.theme")->getPath("{{.ITEM.THEME}}")')
-          if [ -n "$THEME_PATH" ]; then
-            task drush -- locale:import-all --override=none ${THEME_PATH}/translations/
-          fi
-      - task: test-pluralization
+      - task: do-import
+        vars:
+          TYPE: theme
+          NAMES:
+            ref: .TRANSLATION_THEMES
     requires:
       vars:
         - TRANSLATION_THEMES
@@ -214,12 +179,18 @@ tasks:
       PHP_SCRIPT: |
         <?php
 
-        var_export(['locale.translation.formulae' => \Drupal::state()->get('locale.translation.formulae', [])]);
+        \$languages = \Drupal::service('language_manager')->getLanguages();
 
-        \$stuff = [];
-        foreach (\$extra as \$langcode) {
-          \$stuff[\$langcode] = array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, '1 item', '@count items', options: ['langcode' => '{{.ITEM}}']))->render(), range(0, 9));
+        \$stuff = [
+          'languages' => \$languages,
+          'defaultLanguage' => \Drupal::service('language.default')->get(),
+          'locale.translation.formulae' => \Drupal::state()->get('locale.translation.formulae', []),
+        ];
+
+        foreach (array_keys(\$languages) as \$langcode) {
+          \$stuff['pluralizations'][\$langcode] = array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, '1 item', '@count items', options: ['langcode' => '{{.ITEM}}']))->render(), range(0, 9));
         }
+
         var_export(\$stuff);
 
         // Check Danish translation
@@ -259,4 +230,56 @@ tasks:
       # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
       # https://www.drupal.org/project/drupal/issues/3496223
       - |
-          docker run --rm --volume "$PWD:/app" itkdev/php8.3-fpm sed --in-place 's/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/' $(git ls-files --others --exclude-standard '*.da.po') $(git ls-files '*.da.po')
+          docker run --user=${COMPOSE_USER:-deploy} --rm --volume "$PWD:/app" itkdev/php8.3-fpm sed --in-place 's/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/' $(git ls-files --others --exclude-standard '*.da.po') $(git ls-files '*.da.po')
+
+  # ------------------------------------------------------------------------------
+  # Internal helper tasks.
+  # ------------------------------------------------------------------------------
+
+  do-export:
+    internal: true
+    cmds:
+      - task drush -- --yes pm:install potx
+      # https://github.com/go-task/task/discussions/1543
+      - for:
+          matrix:
+            NAME:
+              ref: .NAMES
+            LANGUAGE:
+              ref: .LANGUAGES
+        cmd: |
+          export SOURCE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.{{.TYPE}}")->getPath("{{.ITEM.NAME}}")')
+          if [ -n "$SOURCE_PATH" ]; then
+            task drush -- potx single --folder=${SOURCE_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
+            mkdir -p web/${SOURCE_PATH}/translations
+            mv web/general.pot web/${SOURCE_PATH}/translations/{{.ITEM.NAME}}.{{.ITEM.LANGUAGE}}.po
+          fi
+      - task: clean-up-translations
+    requires:
+      vars:
+        - TYPE
+        - NAMES
+        - LANGUAGES
+    silent: true
+
+  # @todo Can we use `drush locale:check` and/or `drush locale:update` to update
+  # module translations without overriding existing translations?
+  # @todo Do we want to override (existing) translations?
+  do-import:
+    internal: true
+    cmds:
+      - for:
+          matrix:
+            NAME:
+              ref: .NAMES
+        cmd: |
+          export SOURCE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.{{.TYPE}}")->getPath("{{.ITEM.NAME}}")')
+          if [ -n "$SOURCE_PATH" ]; then
+            task drush -- locale:import-all --override=none ${SOURCE_PATH}/translations/
+          fi
+      - task: test-pluralization
+    requires:
+      vars:
+        - TYPE
+        - NAMES
+    silent: true
