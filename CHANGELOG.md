@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-94](https://github.com/itk-dev/ai-screening/pull/94)
+  - Update docker setup for auto deploy
+  - Add woodpecker workflow files
 - [PR-92](https://github.com/itk-dev/ai-screening/pull/92)
   - Update drupal core
 - [PR-91](https://github.com/itk-dev/ai-screening/pull/91)
