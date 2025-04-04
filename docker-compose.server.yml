@@ -17,6 +17,7 @@ services:
     environment:
       - PHP_MAX_EXECUTION_TIME=30
       - PHP_MEMORY_LIMIT=128M
+      - DRUSH_OPTIONS_URI=https://${COMPOSE_SERVER_DOMAIN}
     depends_on:
       - memcached
     volumes:

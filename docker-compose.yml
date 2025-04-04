@@ -44,6 +44,7 @@ services:
       - PHP_SENDMAIL_PATH=/usr/bin/msmtp --host=mail --port=1025 --read-recipients --read-envelope-from
       - DOCKER_HOST_DOMAIN=${COMPOSE_DOMAIN}
       - PHP_IDE_CONFIG=serverName=localhost
+      - DRUSH_OPTIONS_URI=http://${COMPOSE_DOMAIN}
     depends_on:
       mariadb:
         condition: service_healthy

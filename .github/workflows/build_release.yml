@@ -13,7 +13,7 @@ env:
 
 jobs:
   create-release:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     env:
       COMPOSER_ALLOW_SUPERUSER: 1
       APP_ENV: prod
@@ -27,7 +27,7 @@ jobs:
       - name: Composer install
         run: |
           docker network create frontend
-          docker compose run --rm phpfpm composer install --no-dev -o
+          docker compose run --rm phpfpm composer install --no-dev -o --classmap-authoritative
 
       - name: Build theme assets
         run: |

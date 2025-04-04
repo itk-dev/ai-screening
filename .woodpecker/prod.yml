@@ -1,0 +1,41 @@
+when:
+  - event: release
+
+skip_clone: true
+
+labels:
+  zone: CLOUD
+
+steps:
+  - name: Ansible playbook
+    image: itkdev/ansible-plugin:1
+    pull: true
+    settings:
+      id:
+        from_secret: id
+      secret:
+        from_secret: secret
+      host:
+        from_secret: prod_host
+      path:
+        from_secret: prod_path
+      user:
+        from_secret: user
+      playbook: 'release'
+      pre_up:
+        # Fixes issue with 'Drupal\mysql\Driver\Database\mysql\Connection' not found
+        - itkdev-docker-compose-server run --rm phpfpm composer2 dump-autoload
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes deploy
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:update
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:import da ../translations/strings/ai-screening.da.po --override=all
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes config_translation_po:import da ../translations/config/ai-screening-config.da.po
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes cache:rebuild
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes browse --no-browser
+      cron:
+        cron:
+          minute: '*/5'
+          hour: '*'
+          day: '*'
+          month: '*'
+          weekday: '*'
+          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush core:cron'
