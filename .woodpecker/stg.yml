@@ -11,8 +11,6 @@ steps:
   - name: Run stg site update
     image: itkdev/ansible-plugin:1
     pull: true
-    environment:
-      TASK_DOCKER_COMPOSE: itkdev-docker-compose-server
     settings:
       id:
         from_secret: id
