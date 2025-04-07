@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
-## 0.1.0
+## [0.1.0]
 
 - [PR-94](https://github.com/itk-dev/ai-screening/pull/94)
   - Update docker setup for auto deploy
