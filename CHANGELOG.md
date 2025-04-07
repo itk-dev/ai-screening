@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## 0.9.0
+
 - [PR-94](https://github.com/itk-dev/ai-screening/pull/94)
   - Update docker setup for auto deploy
   - Add woodpecker workflow files
@@ -207,4 +209,5 @@ and this project adheres to [Semantic Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/itk-dev/ai-screening/compare/main...develop
+[Unreleased]: https://github.com/itk-dev/ai-screening/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/itk-dev/ai-screening/releases/tag/0.1.0
