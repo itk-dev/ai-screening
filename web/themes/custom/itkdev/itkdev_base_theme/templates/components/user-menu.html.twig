@@ -1,0 +1,40 @@
+{# Get first user role and translate #}
+{% set role = {
+  administrator: 'Administrator'|trans,
+  editor: 'Editor'|trans,
+  user: 'User'|trans,
+  }[user.getRoles(true)|first|default('user')]
+%}
+
+<div class="relative" x-data="{ dropdownOpen: false }" @click.outside="dropdownOpen = false">
+    <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
+        <span class="hidden text-right lg:block">
+          <span class="block text-sm font-medium text-black dark:text-white">{{ user.displayname }}</span>
+          <span class="block text-xs font-medium">{{ role }}</span>
+        </span>
+
+        <span class="h-12 w-12 rounded-full bg-secondary">
+            {# TODO: Get avatar name from drupal #}
+            <img src="" alt="">
+        </span>
+
+        <i class="fa-solid fa-angle-down" :class="dropdownOpen && 'rotate-180'"></i>
+    </a>
+
+    <!-- Dropdown Start -->
+    <div x-show="dropdownOpen" class="absolute right-0 mt-3 flex w-56 flex-col rounded-sm border border-stroke bg-white dark:bg-secondary">
+        <ul class="flex flex-col border-b border-stroke divide-y">
+            <li>
+              <a href="{{ path('user.edit') }}" class="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-secondary hover:bg-secondary dark:hover:bg-primary lg:text-base px-4 py-3">
+                <i class="fa-solid fa-user me-1"></i>{{ 'My profile'|t }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('user.logout') }}" class="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-secondary hover:bg-secondary dark:hover:bg-primary lg:text-base px-4 py-3">
+                <i class="fa-solid fa-sign-out me-1"></i>{{ 'Log out'|t }}
+              </a>
+            </li>
+        </ul>
+    </div>
+    <!-- Dropdown End -->
+</div>

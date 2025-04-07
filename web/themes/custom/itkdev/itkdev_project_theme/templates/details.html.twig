@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a details element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the details element.
+ * - errors: (optional) Any errors for this details element, may not be set.
+ * - title: (optional) The title of the element, may not be set.
+ * - summary_attributes: A list of HTML attributes for the summary element.
+ * - description: (optional) The description of the element, may not be set.
+ * - children: (optional) The children of the element, may not be set.
+ * - value: (optional) The value of the element, may not be set.
+ *
+ * @see template_preprocess_details()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('mb-5') }} x-data="{{ defaultOpen ? '{open: false}' : '{open: true}' }}" class="open ? 'overflow-hidden' : 'overflow-visible'">
+  {%
+    set summary_classes = [
+      required ? 'js-form-required',
+      required ? 'form-required',
+    ]
+  %}
+  {%- if title -%}
+    <div>
+      <h3 class="justify-between flex">
+        <div>{{ title }}</div>
+        <div class="relative">
+          <div x-on:click="open = !open" class="cursor-pointer absolute right-0 top-0 mr-3 mt-1">
+            <div x-show="!open" class="flex align-center items-center"><i class="fa-regular fa-square-plus"></i></div>
+            <div x-show="open" class="flex align-center items-center"><i class="fa-regular fa-square-minus"></i></div>
+          </div>
+        </div>
+      </h3>
+    </div>
+  {%- endif -%}
+
+  <div x-show="open" x-transition>
+    {% if errors %}
+      <div>
+        {{ errors }}
+      </div>
+    {% endif %}
+
+    {{ description }}
+    {{ children }}
+    {{ value }}
+  </div>
+</div>

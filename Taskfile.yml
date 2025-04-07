@@ -4,40 +4,210 @@ dotenv: [".task.env", ".env"]
 
 vars:
   DOCKER_COMPOSE: '{{ .TASK_DOCKER_COMPOSE | default "docker compose" }}'
+  # https://taskfile.dev/reference/templating/
+  BASE_URL: '{{.TASK_BASE_URL | default .COMPOSE_SERVER_DOMAIN | default .COMPOSE_DOMAIN | default ""}}'
 
 tasks:
   compose:
+    desc: "Run `docker compose` command. Example: task compose -- up --detach"
     cmds:
       - '{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}'
+
+  compose-exec:
+    desc: "Run `docker compose exec` command handling content on stdin. Example: task compose-exec -- phpfpm php -v"
+    cmds:
+      # Check if we have content on stdin (cf.
+      # https://unix.stackexchange.com/questions/762992/bash-check-if-the-standard-input-contains-anything)
+      - if [[ ! -t 0 ]]; then task compose -- exec --no-TTY {{ .CLI_ARGS }}; else task compose -- exec {{ .CLI_ARGS }}; fi
     silent: true
 
   composer:
+    desc: "Run composer command. Example: task composer -- install"
     cmds:
-      - task compose -- exec phpfpm composer {{ .CLI_ARGS }}
+      - task compose-exec -- phpfpm composer {{ .CLI_ARGS }}
+    silent: true
+
+  start:
+    desc: "Start docker compose stuff and install composer stuff"
+    cmds:
+      - task compose -- pull
+      - task compose -- up --detach --remove-orphans --wait
+      - task composer -- install
     silent: true
 
   drush:
+    desc: "Run Drush command. Example: task drush -- user:login"
     cmds:
-      - task compose -- exec --no-TTY phpfpm vendor/bin/drush {{ .CLI_ARGS }}
+      # Notice: To make debugging (with Xdebug) work, we have to call
+      # vendor/bin/drush.php directly (and not vendor/bin/drush)
+      - task compose-exec -- phpfpm vendor/bin/drush.php --uri={{.URI}} {{ .CLI_ARGS }}
+    vars:
+      URI:
+        sh: task site-url
     silent: true
 
   build-site:new:
+    desc: "Build a new site"
     cmds:
-       - task drush -- site:install minimal -y
+      - task drush -- site:install minimal -y
+      - task set-user-roles
 
   build-site:existing-conf:
+    desc: "Build the site using existing configuration from the config/sync folder"
     cmds:
       - task compose -- up --detach
       - task composer -- install
       - task drush -- site-install --existing-config --yes
+      - task set-user-roles
+
+  site-url:
+    desc: "Show site URL"
+    cmds:
+      - echo {{.URL}}
+    vars:
+      URL:
+        # Compute base URL if not set.
+        sh: if [ ! -z "{{.BASE_URL}}" ]; then echo "https://{{.BASE_URL}}"; else echo "http://$(task compose -- port nginx 8080)"; fi
+    silent: true
+
+  site-update:
+    desc: "Update site"
+    prompt: "This will reset your configuration. Continue?"
+    cmds:
+      - task start
+      - task drush -- deploy
+      - task theme-build
+      - task drush -- cache:rebuild
+      - task drush -- browse --no-browser
+      - task drush -- user:login
+      - task set-user-roles
+    silent: true
+
+  import-translations:
+    desc: "Import string and config translations from .po files"
+    prompt: "This will reset all translations to match .po files. Continue?"
+    cmds:
+      - task drush -- locale:import da ../translations/strings/ai-screening.da.po --override=all
+      - task drush -- config_translation_po:import da ../translations/config/ai-screening-config.da.po
+      - task drush -- cache:rebuild
+    silent: true
+
+  export-translation-strings:
+    desc: "Export string translations from .po files"
+    prompt: "This will update the .po file in /translations/strings folder"
+    cmds:
+      - task drush -- locale:export da > translations/strings/ai-screening.da.po
+    silent: true
+
+  site-install-new:
+    desc: "Install minimal Drupal site from scratch"
+    prompt: "This will reset your setup. Continue?"
+    cmds:
+      - task start
+      - task drush -- --yes site:install minimal
+
+  site-install:
+    desc: "Install Drupal site with exiting config"
+    prompt: "This will reset your setup. Continue?"
+    cmds:
+      - task start
+      - task drush -- site-install --existing-config --yes
+
+  theme-build:
+    desc: "Build theme"
+    cmds:
+      - task compose -- run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_project_theme install
+      - task compose -- run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme install
+      - task compose -- run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme build
+
+  theme-clean-up:
+    desc: "Clean up theme building"
+    cmds:
+      - sudo chown -R $(id -u):$(id -g) web/themes/custom/itkdev/*/node_modules
+      - rm -rf web/themes/custom/itkdev/*/node_modules
+
+  theme-watch:
+    desc: "Build theme and watch for changes"
+    cmds:
+      - task theme-build
+      - task compose -- run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme watch
 
   simulate-github-actions:
+    desc: "Simulate most github actions to prepare the code and catch errors before github does"
     cmds:
       - task composer -- normalize
       - task check-code
 
   check-code:
+    desc: "Check coding standards"
     cmds:
-      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
+      - docker run --rm --volume "$PWD:/md" itkdev/markdownlint '**/*.md'
       - task composer -- code-analysis
-      - task composer -- coding-standards-check/twig-cs-fixer
+      - task composer -- coding-standards-check
+
+  coding-standards-apply:
+    desc: "Apply coding standards"
+    cmds:
+      - docker run --rm --volume "$PWD:/md" itkdev/markdownlint '**/*.md' --fix
+      - task composer -- coding-standards-apply
+
+  apply-fixtures:
+    desc: "Apply fixtures. Any cli arguments will be passed to `drush content-fixtures:load`"
+    prompt: "This will reset your content. Continue?"
+    cmds:
+      - task drush -- --yes pm:install ai_screening_fixtures_base
+      - task drush -- --yes content-fixtures:load {{.CLI_ARGS}}
+      - task drush -- --yes pm:uninstall ai_screening_fixtures_base content_fixtures
+
+  test-module-test:
+    desc: "Run custom module unit tests. Any additional arguments are passed to `phpunit`, e.g. `task test-module-test -- --debug`"
+    cmds:
+      - task compose -- exec phpfpm bash -c 'cd web && ../vendor/bin/phpunit --configuration ../phpunit.xml modules/custom {{.CLI_ARGS}}'
+    silent: true
+
+  test-playwright-test:
+    desc: "Run playwright tests"
+    cmds:
+      # Trigger task to pass on `--yes` (and other task flags), cf.
+      # https://taskfile.dev/reference/schema#command and
+      # https://taskfile.dev/reference/cli#flags
+      - task: test-playwright-initialize
+      # See https://playwright.dev/docs/test-reporters#html-reporter
+      - task compose -- run --rm --env _CI=1 --env PLAYWRIGHT_HTML_OPEN=never playwright npx playwright test || true
+      - open playwright-report/index.html
+
+  test-playwright-test-ui:
+    desc: "Run playwright tests UI"
+    cmds:
+      # Trigger task to pass on `--yes` (and other task flags), cf.
+      # https://taskfile.dev/reference/schema#command and
+      # https://taskfile.dev/reference/cli#flags
+      - task: test-playwright-initialize
+      - xhost + 127.0.0.1
+      - task compose -- run --rm --env DISPLAY=host.docker.internal:0 playwright npx playwright test --ui
+
+  test-playwright-initialize:
+    internal: true
+    cmds:
+      # Trigger task to pass on `--yes` (and other task flags), cf.
+      # https://taskfile.dev/reference/schema#command and
+      # https://taskfile.dev/reference/cli#flags
+      - task: site-install
+      - task: site-update
+      # Delete all translations.
+      - task drush -- sql:query "DELETE FROM locales_target";
+      - task drush -- cache:rebuild
+      - task compose -- run --rm node npm install
+      - task compose -- run --rm playwright npx playwright install
+
+  set-user-roles:
+    desc: "Set some user's roles"
+    cmds:
+      - task drush -- user:role:add 'administrator' admin
+    silent: true
+
+  prettier:
+    desc: "Run Prettier on tests source"
+    cmds:
+      - docker run --rm -v $(pwd):/work tmknom/prettier --write tests
+      - docker run --rm -v $(pwd):/work tmknom/prettier --check tests

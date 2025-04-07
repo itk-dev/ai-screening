@@ -88,7 +88,18 @@
  * ];
  * @endcode
  */
-$databases = [];
+$databases['default']['default'] = [
+  'database' => 'db',
+  'username' => 'db',
+  'password' => 'db',
+  'prefix' => '',
+  'host' => 'mariadb',
+  'port' => '',
+  'isolation_level' => 'READ COMMITTED',
+  'driver' => 'mysql',
+  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
+  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
+];
 
 /**
  * Customizing database settings.
@@ -256,7 +267,7 @@ $databases = [];
  * directory in the public files path. The setting below allows you to set
  * its location.
  */
-# $settings['config_sync_directory'] = '/directory/outside/webroot';
+$settings['config_sync_directory'] = '../config/sync';
 
 /**
  * Settings:
@@ -376,7 +387,8 @@ $settings['update_free_access'] = FALSE;
  * Be aware, however, that it is likely that this would allow IP
  * address spoofing unless more advanced precautions are taken.
  */
-# $settings['reverse_proxy'] = TRUE;
+// https://www.drupal.org/docs/getting-started/installing-drupal/using-a-load-balancer-or-reverse-proxy
+$settings['reverse_proxy'] = TRUE;
 
 /**
  * Reverse proxy addresses.
@@ -385,7 +397,7 @@ $settings['update_free_access'] = FALSE;
  * IPv4/IPv6 addresses or subnets in CIDR notation. This setting is required if
  * $settings['reverse_proxy'] is TRUE.
  */
-# $settings['reverse_proxy_addresses'] = ['a.b.c.d', 'e.f.g.h/24', ...];
+$settings['reverse_proxy_addresses'] = [$_SERVER['REMOTE_ADDR']];
 
 /**
  * Reverse proxy trusted headers.
@@ -854,6 +866,37 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # $settings['migrate_file_public_path'] = '';
 # $settings['migrate_file_private_path'] = '';
 
+$settings['skip_permissions_hardening'] = TRUE;
+
+// Exclude development modules from configuration synchronization
+// https://www.drupal.org/node/3079028
+$settings['config_exclude_modules'] = [
+  'webprofiler',
+  'devel',
+  'tracer',
+  'menu_ui',
+  'field_ui',
+  'views_ui',
+  'masquerade',
+];
+
+// See https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Template%21TwigSandboxPolicy.php/11.x
+$settings['twig_sandbox_allowed_methods'] = [
+  // Defaults (cf. Drupal\Core\Template\TwigSandboxPolicy::__construct()).
+  'id',
+  'label',
+  'bundle',
+  'get',
+  'loadProjectTracks',
+  'loadTools',
+  '__toString',
+  'toString',
+  // Additions
+  // Allow calling `entity.access`
+  'access',
+  'referencedEntities'
+];
+
 /**
  * Load local development override configuration, if available.
  *
@@ -867,22 +910,6 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
  *
  * Keep this code block at the end of this file to take full effect.
  */
-#
-# if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-#   include $app_root . '/' . $site_path . '/settings.local.php';
-# }
 if (file_exists($app_root . "/" . $site_path . "/settings.local.php")) {
   include $app_root . "/" . $site_path . "/settings.local.php";
 }
-$databases['default']['default'] = array (
-  'database' => 'db',
-  'username' => 'db',
-  'password' => 'db',
-  'prefix' => '',
-  'host' => 'mariadb',
-  'port' => '',
-  'isolation_level' => 'READ COMMITTED',
-  'driver' => 'mysql',
-  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
-  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
-);

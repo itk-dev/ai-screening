@@ -1,0 +1,18 @@
+<div {{element.attributes}}>
+  {% if element.text_question %}
+    {{ element.text_question }}
+  {% endif %}
+
+  {{ element.response }}
+
+  {% if element.text_yes %}
+    {{ element.text_yes }}
+  {% endif %}
+  {% if element.text_no %}
+    {{ element.text_no }}
+  {% endif %}
+
+  {% if element.text_stop %}
+    {{ element.text_stop }}
+  {% endif %}
+</div>

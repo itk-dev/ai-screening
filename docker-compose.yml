@@ -1,4 +1,4 @@
-# itk-version: 3.2.1
+# itk-version: 3.2.3
 networks:
   frontend:
     external: true
@@ -13,6 +13,12 @@ services:
       - app
     ports:
       - '3306'
+    healthcheck:
+      test: [ "CMD", "healthcheck.sh", "--connect", "--innodb_initialized" ]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_USER=db
@@ -24,7 +30,8 @@ services:
       com.symfony.server.service-prefix: 'DATABASE'
 
   phpfpm:
-    image: itkdev/php8.2-fpm:latest
+    image: itkdev/php8.3-fpm:latest
+    user: ${COMPOSE_USER:-deploy}
     networks:
       - app
     extra_hosts:
@@ -36,11 +43,13 @@ services:
       # Depending on the setup, you may have to remove --read-envelope-from from msmtp (cf. https://marlam.de/msmtp/msmtp.html) or use SMTP to send mail
       - PHP_SENDMAIL_PATH=/usr/bin/msmtp --host=mail --port=1025 --read-recipients --read-envelope-from
       - DOCKER_HOST_DOMAIN=${COMPOSE_DOMAIN}
-      - COMPOSER_VERSION=2
       - PHP_IDE_CONFIG=serverName=localhost
+      - DRUSH_OPTIONS_URI=http://${COMPOSE_DOMAIN}
     depends_on:
-      - mariadb
-      - memcached
+      mariadb:
+        condition: service_healthy
+      memcached:
+        condition: service_healthy
     volumes:
       - .:/app
 
@@ -70,11 +79,15 @@ services:
 #      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
   memcached:
-    image: 'memcached:latest'
+    image: memcached:alpine
     networks:
       - app
     ports:
       - '11211'
+    healthcheck:
+      test: echo "version" | nc -vn -w 1 127.0.0.1 11211
+      interval: 10s
+      retries: 60
     environment:
       - MEMCACHED_CACHE_SIZE=64
 

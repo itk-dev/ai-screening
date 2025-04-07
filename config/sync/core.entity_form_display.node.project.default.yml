@@ -1,0 +1,88 @@
+uuid: c9afd120-09d6-445b-baeb-f1b772d69ca2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.project.field_department
+    - field.field.node.project.field_description
+    - field.field.node.project.field_project_state
+    - node.type.project
+  module:
+    - field_group
+    - text
+third_party_settings:
+  field_group:
+    group_project_information:
+      children:
+        - title
+        - field_description
+        - field_department
+      label: Projektinformation
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        description: ''
+        required_fields: true
+    group_state:
+      children:
+        - field_project_state
+      label: State
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        description: ''
+        required_fields: false
+id: node.project.default
+targetEntityType: node
+bundle: project
+mode: default
+content:
+  field_department:
+    type: options_buttons
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+      hide_help: true
+      hide_guidelines: true
+    third_party_settings: {  }
+  field_project_state:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a webform base element as html.
+ *
+ * Available variables:
+ * - element: The element.
+ * - title: The label for the element.
+ * - value: The content for the element.
+ * - item: The form item used to display the element.
+ * - options Associative array of options for element.
+ *   - multiline: Flag to determine if value spans multiple lines.
+ *   - email: Flag to determine if element is for an email.
+ */
+#}
+
+<div class="webform-element content-wrapper yes-no-stop pb-4 mb-4 border-b last:border-b-0">
+  <div class="element-question">
+    <div class="font-thin mb-2  w-full xl:w-[800px]">{{ title }}</div>
+    {% if element['#help'] %}
+      <div class="font-thin mb-2">( {{ element['#help']|striptags }} )</div>
+    {% endif %}
+  </div>
+
+  {% if value['#element'] is not defined %}
+    {% set value = 'None'|t %}
+    {% set valueWrapperClasses = 'element-value-empty' %}
+  {% endif %}
+  <div class="{{ valueWrapperClasses }} w-full xl:w-[800px]">{{ value }}</div>
+</div>

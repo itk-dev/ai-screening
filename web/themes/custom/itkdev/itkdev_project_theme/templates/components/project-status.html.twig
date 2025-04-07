@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * AI screening implementation to display a node.
+ *
+ * @see web/core/modules/node/templates/node.html.twig
+ *
+ * This component requires additional parameters to be included.
+ *   - @param array project_status
+ *       A list of integers with values 0-3 that indicates the status of each project track.
+ */
+#}
+
+{% set evaluation = project_status.track_evaluation|default([0]) %}
+{% if 'none' in evaluation %}
+  {% set icon = '' %}
+  {% set color = 'bg-zinc-400' %}
+  {% set evaluationText = '' %}
+{% elseif 'refused' in evaluation %}
+  {% set icon = 'fa-ban' %}
+  {% set color = 'bg-red-600' %}
+  {% set evaluationText = 'Refused'|t %}
+{% elseif 'undecided' in evaluation %}
+  {% set icon = 'fa-triangle-exclamation' %}
+  {% set color = 'bg-yellow-600' %}
+  {% set evaluationText = 'Undecided'|t %}
+{% elseif 'approved' in evaluation %}
+  {% set icon = 'fa-check' %}
+  {% set color = 'bg-green-600' %}
+  {% set evaluationText = 'Approved'|t %}
+{% endif %}
+
+<div class="flex flex-col gap-1 w-20 align-center">
+    <div class="w-full h-2 {{ color }}">
+      <div class="text-xs line-height-xs text-white text-center"><i class="fa-solid {{ icon }}"></i></div>
+    </div>
+
+    <div class="flex flex-row items-center gap-1 text-sm">
+        {% for status in project_status.track_evaluation %}
+          {% if 'none' in status %}
+            {% set icon = '' %}
+            {% set color = 'bg-zinc-400' %}
+          {% elseif 'refused' in status %}
+            {% set icon = 'fa-ban' %}
+            {% set color = 'bg-red-600' %}
+          {% elseif 'undecided' in status %}
+            {% set icon = 'fa-triangle-exclamation' %}
+            {% set color = 'bg-yellow-600' %}
+          {% elseif 'approved' in status %}
+            {% set icon = 'fa-check' %}
+            {% set color = 'bg-green-600' %}
+          {% endif %}
+
+          <div class="min-w-1 grow h-2 {{ color ?? '' }}">
+            <div class="text-xs line-height-xs text-white text-center"><i class="fa-solid {{ icon }}"></i></div>
+          </div>
+        {% endfor %}
+    </div>
+    <div class="text-center text-sm">
+      {{ evaluationText }}
+    </div>
+</div>

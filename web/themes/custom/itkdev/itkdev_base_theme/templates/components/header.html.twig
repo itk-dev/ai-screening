@@ -1,0 +1,23 @@
+<header role="banner" class="bg-white dark:bg-secondary text-primary px-3 md:px-5 py-3 flex flex-row items-center gap-5 border-b border-primary" >
+
+  <div class="flex items-center place-items-start gap-5">
+
+    {{ include('@itkdev_base_theme/components/nav-button.html.twig') }}
+
+    <div class="brand dark:text-white">
+      {{ page.header.itkdev_base_theme_sitebranding }}
+    </div>
+
+    <div class="breadcrumb">
+      {{ page.header.itkdev_base_theme_breadcrumbs }}
+    </div>
+
+  </div>
+
+  <div class="ml-auto gap-4 md:flex">
+    {{ page.header|without('itkdev_base_theme_sitebranding', 'itkdev_base_theme_breadcrumbs') }}
+  </div>
+
+  {{ include('@itkdev_base_theme/components/darkmode-toggle.html.twig') }}
+
+</header>

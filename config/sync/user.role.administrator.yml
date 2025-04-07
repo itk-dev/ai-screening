@@ -1,0 +1,35 @@
+uuid: 77a8af8d-26fc-4164-9026-485562c09905
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.department
+    - taxonomy.vocabulary.project_track_type
+  module:
+    - ai_screening
+    - navigation
+    - system
+    - taxonomy
+    - webform
+id: administrator
+label: Administrator
+weight: 3
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access navigation'
+  - 'access site in maintenance mode'
+  - 'access site reports'
+  - 'access site setup'
+  - 'access taxonomy overview'
+  - 'access webform overview'
+  - 'create terms in department'
+  - 'create terms in project_track_type'
+  - 'create webform'
+  - 'delete terms in department'
+  - 'delete terms in project_track_type'
+  - 'edit any webform'
+  - 'edit terms in department'
+  - 'edit terms in project_track_type'
+  - 'view the administration theme'
+  - 'view vocabulary labels'

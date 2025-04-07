@@ -1,0 +1,84 @@
+{%
+  set classes = [
+    'js-form-item',
+    'form-item',
+    'js-form-type-' ~ type|clean_class,
+    'form-item-' ~ name|clean_class,
+    'js-form-item-' ~ name|clean_class,
+    title_display not in ['after', 'before'] ? 'form-no-label',
+    disabled == 'disabled' ? 'form-disabled',
+    errors ? 'form-item--error',
+    'mb-3 md:mb-5',
+    type == 'radio' ? 'flex items-center gap-3 cursor-pointer',
+    type == 'checkbox' ? 'flex items-center gap-3',
+    'yes-no-stop',
+    'content-wrapper',
+  ]
+%}
+{%
+  set description_classes = [
+    'description',
+    description_display == 'invisible' ? 'visually-hidden',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {% if label_display in ['before', 'invisible'] %}
+    {{ label }}
+  {% endif %}
+  {% if prefix is not empty %}
+    <span class="field-prefix">{{ prefix }}</span>
+  {% endif %}
+  {% if description.content and (description_display == 'before' or type == 'radio') %}
+    <div{{ description.attributes.addClass(description_classes) }}>
+      {{ description.content }}
+    </div>
+  {% endif %}
+
+  {% if element.text_question.message['#text'] %}
+    {{ element.text_question }}
+  {% endif %}
+
+  {{ children }}
+
+  {% if suffix is not empty %}
+    <span class="field-suffix">{{ suffix }}</span>
+  {% endif %}
+  {% if label_display == 'after' %}
+    {{ label }}
+  {% endif %}
+  {% if errors %}
+    <div class="form-item--error-message">
+      {{ errors }}
+    </div>
+  {% endif %}
+  {% if description_display in ['after', 'invisible'] and description.content %}
+    <div{{ description.attributes.addClass(description_classes) }}>
+      {{ description.content }}
+    </div>
+  {% endif %}
+  <div x-data="{{ defaultOpen ? '{open: false}' : '{open: true}' }}" :class="open ? 'overflow-hidden' : 'overflow-visible'">
+    <div class="relative">
+      <div x-on:click="open = !open" class="cursor-pointer absolute right-0 top-0 mr-3 mt-1">
+        <div x-show="!open" class="flex align-center items-center"><i class="fa-regular fa-square-plus"></i></div>
+        <div x-show="open" class="flex align-center items-center"><i class="fa-regular fa-square-minus"></i></div>
+      </div>
+    </div>
+    <div x-show="open" x-transition>
+      {% if element.text_yes %}
+        <div>
+          {{ element.text_yes }}
+        </div>
+      {% endif %}
+
+      {% if element.text_no %}
+        <div>
+          {{ element.text_no }}
+        </div>
+      {% endif %}
+
+      {% if element.text_stop %}
+        {{ element.text_stop }}
+      {% endif %}
+    </div>
+  </div>
+</div>

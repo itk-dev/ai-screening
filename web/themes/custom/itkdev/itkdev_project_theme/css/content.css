@@ -1,0 +1,39 @@
+.content {
+
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  h4 {
+    font-size: 1.2em;
+  }
+
+  ul {
+    margin-left: 1em;
+    list-style-type: inherit;
+    margin-bottom: 0.75rem;
+  }
+
+  ol {
+    margin-left: 1em;
+    list-style-type: decimal;
+    margin-bottom: 0.75rem;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  p {
+    margin-bottom: 0.75rem;
+  }
+
+  blockquote {
+    border-left: 2px solid #E4E4E7;
+    padding-left: 1em;
+  }
+}

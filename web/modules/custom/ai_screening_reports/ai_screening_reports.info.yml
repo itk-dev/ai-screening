@@ -1,0 +1,9 @@
+name: 'AI screening reports'
+type: module
+description: 'Reports for AI Screening'
+package: Custom
+core_version_requirement: ^11
+dependencies:
+  - ai_screening:ai_screening
+  - ai_screening_project:ai_screening_project
+  - ai_screening_project_track:ai_screening_project_track

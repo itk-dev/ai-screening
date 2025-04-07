@@ -1,0 +1,14 @@
+ai_screening.site_setup:
+  path: '/site-setup'
+  defaults:
+    _controller: '\Drupal\ai_screening\Controller\SiteSetupController'
+    _title: 'Site setup'
+  requirements:
+    _permission: 'access site setup'
+ai_screening.frontpage_settings:
+  path: '/site-setup/frontpage'
+  defaults:
+    _title: 'Frontpage settings'
+    _form: 'Drupal\ai_screening\Form\FrontpageForm'
+  requirements:
+    _permission: 'access site setup'

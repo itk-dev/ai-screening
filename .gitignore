@@ -10,7 +10,7 @@
 # Ignore core when managing all of a project's dependencies with Composer
 # including Drupal core.
 # core
-web/core/
+/web/core/
 
 # Ignore dependencies that are managed with Composer.
 # Generally you should only ignore the root vendor directory. It's important
@@ -19,15 +19,15 @@ web/core/
 /vendor/
 
 # Ignore configuration files that may contain sensitive information.
-sites/*/settings.local.php
-sites/*/services.local.yml
+/web/sites/*/settings.local.php
+/web/sites/*/services.local.yml
 
 # Ignore paths that contain user-generated content.
-sites/*/files
-sites/*/private
+/web/sites/*/files
+/web/sites/*/private
 
 # Ignore multi-site test environment.
-sites/simpletest
+/web/sites/simpletest
 
 # Ignore scaffold files
 #
@@ -63,6 +63,8 @@ sites/simpletest
 /web/sites/example.sites.php
 /web/themes/README.txt
 
+# Ignore Mac
+.DS_Store
 
 # Ignore PhpStorm
 .idea
@@ -78,3 +80,14 @@ private-files/
 
 # Ignore cache files
 .*.cache
+
+# Ignore contrib modules
+/web/modules/contrib
+
+.env.local
+.env.docker.local
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

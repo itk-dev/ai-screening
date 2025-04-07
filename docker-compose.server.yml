@@ -1,4 +1,4 @@
-# itk-version: 3.2.1
+# itk-version: 3.2.3
 networks:
   frontend:
     external: true
@@ -8,7 +8,7 @@ networks:
 
 services:
   phpfpm:
-    image: itkdev/php8.2-fpm:alpine
+    image: itkdev/php8.3-fpm:alpine
     restart: unless-stopped
     networks:
       - app
@@ -17,7 +17,7 @@ services:
     environment:
       - PHP_MAX_EXECUTION_TIME=30
       - PHP_MEMORY_LIMIT=128M
-      - COMPOSER_VERSION=2
+      - DRUSH_OPTIONS_URI=https://${COMPOSE_SERVER_DOMAIN}
     depends_on:
       - memcached
     volumes:

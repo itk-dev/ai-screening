@@ -1,0 +1,6 @@
+<div class="nav-button">
+  <button @click.stop="sidebarToggle = !sidebarToggle" class="border border-primary bg-secondary text-secondary lg:hidden rounded px-3 py-2">
+    <span x-show="!sidebarToggle"><i class="fa-solid fa-bars"></i><span class="sr-only">{{ 'Open navigation menu'|t }}</span></span>
+    <span x-show="sidebarToggle"><i class="fa-solid fa-xmark"></i><span class="sr-only">{{ 'Close navigation menu'|t }}</span></span>
+  </button>
+</div>

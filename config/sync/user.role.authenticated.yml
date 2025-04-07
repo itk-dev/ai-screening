@@ -1,0 +1,28 @@
+uuid: 28253337-dde9-44fa-9ce1-9bcbeeb35b45
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.simple_editor
+    - filter.format.webform_default
+    - node.type.project
+  module:
+    - filter
+    - node
+    - system
+    - webform
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Godkendt bruger'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access user profiles'
+  - 'create project content'
+  - 'use text format simple_editor'
+  - 'use text format webform_default'
+  - 'view any webform submission'
+  - 'view own unpublished content'
+  - 'view user email addresses'

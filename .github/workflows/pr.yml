@@ -1,6 +1,9 @@
 on: pull_request
 name: Review
 
+env:
+  COMPOSE_USER: runner
+
 jobs:
   changelog:
     runs-on: ubuntu-latest
@@ -21,7 +24,6 @@ jobs:
       - name: Check that changelog has been updated.
         run: git diff --exit-code origin/${{ github.base_ref }} -- CHANGELOG.md && exit 1 || exit 0
 
-
   markdown-coding-standards:
     name: Markdown coding standards
     runs-on: ubuntu-latest
@@ -31,7 +33,7 @@ jobs:
 
       - name: Coding standards
         run: |
-          docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint $(git ls-files *.md)
+          docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint '**/*.md'
 
   composer-normalize:
     name: composer-normalize
@@ -44,8 +46,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           docker network create frontend
-          docker compose run --user root --rm phpfpm composer install
-          docker compose run --user root --rm phpfpm composer normalize
+          docker compose run --rm phpfpm composer install
+          docker compose run --rm phpfpm composer normalize --dry-run
 
   coding-standards-phpcs:
     name: coding-standards-check/phpcs
@@ -58,8 +60,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           docker network create frontend
-          docker compose run --user root --rm phpfpm composer install
-          docker compose run --user root --rm phpfpm composer coding-standards-check/phpcs
+          docker compose run --rm phpfpm composer install
+          docker compose run --rm phpfpm composer coding-standards-check/phpcs
 
   coding-standards-twig-cs-fixer:
     name: coding-standards-check/twig-cs-fixer
@@ -72,8 +74,8 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           docker network create frontend
-          docker compose run --user root --rm phpfpm composer install
-          docker compose run --user root --rm phpfpm composer coding-standards-check/twig-cs-fixer
+          docker compose run --rm phpfpm composer install
+          docker compose run --rm phpfpm composer coding-standards-check/twig-cs-fixer
 
   install-site:
     name: Check that site can be installed
@@ -86,22 +88,27 @@ jobs:
           docker network create frontend
           docker compose pull
           docker compose up --detach
-          
+
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
-          docker compose exec --user root phpfpm composer install --no-interaction
+          docker compose exec phpfpm composer install --no-interaction
 
       - name: Install site
         if: ${{ (hashFiles('config/sync/core.extension.yml') == '') && (hashFiles('web/sites/default/settings.local.php') != '') }}
         run: |
           # Install the site
-          docker compose exec --user root phpfpm vendor/bin/drush site:install minimal
+          docker compose exec phpfpm vendor/bin/drush site:install minimal
 
       - name: Install site from config
         if: ${{ hashFiles('config/sync/core.extension.yml') != '' }}
         run: |
           # Install the site from config
-          docker compose exec --user root phpfpm vendor/bin/drush site:install --existing-config --yes
+          docker compose exec phpfpm vendor/bin/drush site:install --existing-config --yes
 
+      - name: Apply fixtures
+        run: |
+          echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) pm:install ai_screening_fixtures_base)
+          echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) content-fixtures:load --yes)
+          echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) pm:uninstall ai_screening_fixtures_base content_fixtures)
       - name: Open site
         run: |
           echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) user:login)
@@ -120,14 +127,14 @@ jobs:
           docker compose up --detach
 
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
-          docker compose exec --user root phpfpm composer install --no-interaction
+          docker compose exec phpfpm composer install --no-interaction
 
           # Install the site
-          docker compose exec --user root phpfpm vendor/bin/drush site:install --existing-config --yes
+          docker compose exec phpfpm vendor/bin/drush site:install --existing-config --yes
 
       - name: Export config
         if: ${{ (hashFiles('config/sync/core.extension.yml') != '') && (hashFiles('web/sites/default/settings.local.php') != '') }}
-        run: docker compose exec --user root phpfpm vendor/bin/drush config:export --yes
+        run: docker compose exec phpfpm vendor/bin/drush config:export --yes
       - name: Check for changes in config
         if: ${{ (hashFiles('config/sync/core.extension.yml') != '') && (hashFiles('web/sites/default/settings.local.php') != '') }}
         run: git diff --diff-filter=ACMRT --exit-code config/
@@ -153,7 +160,7 @@ jobs:
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -165,3 +172,98 @@ jobs:
       - name: code-analysis
         run: |
           composer code-analysis
+
+  theme-build:
+    name: Check that theme can be built
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build theme
+        run: |
+          docker network create frontend
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_project_theme install
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme install
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme build
+
+  run-module-tests:
+    name: Run module tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up
+        run: |
+          docker network create frontend
+          docker compose up --detach
+          docker compose exec phpfpm composer install
+
+      - name: Run module tests
+        run: |
+          docker compose exec phpfpm bash -c 'cd web && ../vendor/bin/phpunit --configuration ../phpunit.xml modules/custom'
+
+  update-site:
+    name: Check that site can be updated
+    runs-on: ubuntu-latest
+    steps:
+      # Install site from our base ref
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+
+      - name: setup-docker-and-composer
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec phpfpm composer install --no-interaction
+
+      - name: Install site
+        run: |
+          # Install the site from config
+          docker compose exec phpfpm vendor/bin/drush site:install --existing-config --yes
+
+      - name: Clean up root stuff
+        run: |
+          # sudo chown -Rv $USER:$USER . || true
+          sudo chmod -Rv a+w web/sites/default || true
+
+      # Install site with our current ref
+      - uses: actions/checkout@v4
+        with:
+          # We want to keep site files generated by site install.
+          # https://github.com/actions/checkout?tab=readme-ov-file#usage
+          clean: false
+
+      - name: setup-docker-and-composer
+        run: |
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec phpfpm composer install --no-interaction
+
+      - name: Update site
+        run: |
+          docker compose exec phpfpm vendor/bin/drush deploy --yes
+
+  composer-audit:
+    name: Check that required packages are up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Install site
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec phpfpm composer install --no-interaction
+
+      - name: Run audit
+        run: |
+          docker compose exec phpfpm composer audit

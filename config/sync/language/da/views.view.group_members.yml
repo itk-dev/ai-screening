@@ -1,0 +1,46 @@
+display:
+  default:
+    display_title: Master
+    display_options:
+      title: Medlemmer
+      fields:
+        name:
+          label: Bruger
+          separator: ', '
+        group_roles:
+          label: Roller
+          separator: ', '
+        changed:
+          label: Opdateret
+          separator: ', '
+        created:
+          separator: ', '
+        dropbutton:
+          label: Handlinger
+      pager:
+        options:
+          tags:
+            next: ››
+            previous: ‹‹
+            first: '« Første'
+            last: 'Sidste »'
+          expose:
+            items_per_page_label: 'Antal elementer'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Forskydning
+      exposed_form:
+        options:
+          submit_button: Anvend
+          reset_button_label: Nulstil
+          exposed_sorts_label: 'Sorter efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      arguments:
+        gid:
+          exception:
+            title: Alle
+  page_1:
+    display_title: Side
+    display_options:
+      menu:
+        title: Medlemmer

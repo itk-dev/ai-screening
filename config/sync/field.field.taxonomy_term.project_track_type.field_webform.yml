@@ -1,0 +1,23 @@
+uuid: dfe9903b-7cfb-4f2e-b3d1-72102ce0fcd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_webform
+    - taxonomy.vocabulary.project_track_type
+id: taxonomy_term.project_track_type.field_webform
+field_name: field_webform
+entity_type: taxonomy_term
+bundle: project_track_type
+label: Webform
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+field_type: entity_reference

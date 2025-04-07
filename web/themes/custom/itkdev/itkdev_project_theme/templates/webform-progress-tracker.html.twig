@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * Default theme implementation for webform wizard progress tracker.
+ *
+ * Available variables:
+ * - webform: A webform.
+ * - pages: Associative array of wizard pages.
+ * - progress: Array of wizard progress containing page titles.
+ * - current_page: Current wizard page key.
+ * - current_index: The current wizard page index.
+ * - max_pages: Maximum number of pages that progress text should be displayed on.
+ *
+ * @see template_preprocess_webform_progress_tracker()
+ * @see https://www.w3.org/WAI/tutorials/forms/multi-page/
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('webform/webform.progress.tracker') }}
+
+<ul class="flex flex-wrap" data-webform-progress-steps>
+  {% for index, page in progress %}
+    {% set is_completed = index < current_index %}
+    {% set is_active = index == current_index %}
+    {%
+      set classes = [
+      'progress-step',
+      is_completed ? 'is-complete ',
+      is_active ? 'is-active',
+    ]
+    %}
+    {%
+      set attributes = create_attribute()
+      .setAttribute('data-webform-' ~ page.type, page.name)
+      .setAttribute('title', page.title)
+      .setAttribute('class', '')
+      .addClass(classes)
+    %}
+    {% if is_active %}
+      {% set attributes = attributes.setAttribute('aria-current', 'step') %}
+    {% endif %}
+    <li{{ attributes.addClass('inline-block', 'basis-full', 'mb-2') }}>
+      {% if index < current_index %}
+        <span class="mr-3 text-xl" data-webform-progress-step data-webform-progress-link data-text="{{ index + 1 }}">
+          <i class="fa-regular fa-circle-check"></i>
+        </span>
+      {% else %}
+        <span class="mr-3 text-xl" data-webform-progress-step data-webform-progress-link data-text="{{ index + 1 }}">
+          <i class="fa-regular fa-circle"></i>
+        </span>
+      {% endif %}
+      {% if progress|length < max_pages %}
+        <span class="progress-title" data-webform-progress-link>
+          <span class="visually-hidden" data-webform-progress-state>{% if is_active or is_completed %}{{ is_active ? 'Current'|t : 'Completed'|t }}{% endif %}</span>
+          {{ page.title }}
+        </span>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

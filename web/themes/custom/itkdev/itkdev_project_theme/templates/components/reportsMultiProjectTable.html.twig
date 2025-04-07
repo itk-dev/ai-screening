@@ -1,0 +1,39 @@
+<div class="my-3 flex flex-wrap px-4">
+  <div class="basis-full mb-5">
+    <h3>{{ 'Project evaluations'|t }}</h3>
+    <table class="cols-3 table-auto border-separate border-slate-400 2xl:w-6/12 w-full">
+      <thead>
+      <tr>
+        <th class="text-left">{{ 'Project name'|t }}</th>
+        <th class="text-left">{{ 'System evaluation'|t }}</th>
+        <th class="text-left">{{ 'Manual evaluation'|t }}</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      {% for trackEntity in track.tracks %}
+        <tr>
+          <td class="text-left">
+            <div class="relative flex items-center my-1">
+              <div class="h-3 w-3 z-0 mr-3 rounded-full" style="background-color: {{ data.colorList[loop.index0] }}"></div>
+              <div>{{ trackEntity.entity.getProject.label }}</div>
+            </div>
+          </td>
+          <td class="text-left">
+            <div class="relative bg-white flex items-center my-1">
+              <div class="h-5 w-5 z-0 mr-3 {{ evaluationClasses[trackEntity.entity.getProjectTrackEvaluation(true)] }}"></div>
+              <div>{{ evaluationOptions[trackEntity.entity.getProjectTrackEvaluation(true)] }}</div>
+            </div>
+          </td>
+          <td class="text-left">
+            <div class="relative bg-white flex items-center my-1">
+              <div class="h-5 w-5 z-0 mr-3 {{ evaluationClasses[trackEntity.entity.getProjectTrackEvaluationOverridden] }}"></div>
+              <div>{{ evaluationOptions[trackEntity.entity.getProjectTrackEvaluationOverridden] }}</div>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>

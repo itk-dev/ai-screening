@@ -1,0 +1,23 @@
+uuid: 33559ca3-398e-42b5-b29a-324babf20330
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_state
+    - node.type.project
+  module:
+    - options
+id: node.project.field_project_state
+field_name: field_project_state
+entity_type: node
+bundle: project
+label: 'Project state'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: active
+default_value_callback: ''
+settings: {  }
+field_type: list_string

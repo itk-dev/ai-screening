@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present all user data.
+ *
+ * This template is used when viewing a registered user's page,
+ * e.g., example.com/user/123. 123 being the user's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.field_example'. Fields attached to a user
+ *   such as 'user_picture' are available as 'content.user_picture'.
+ * - attributes: HTML attributes for the container element.
+ * - user: A Drupal User entity.
+ *
+ * @see template_preprocess_user()
+ *
+ * @ingroup themeable
+ */
+#}
+{% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
+
+{% block title %}
+  <div class="inline-flex items-center">
+    <h1 class="dark:text-white inline-block">{{ content.field_name }}</h1>
+    {% if user.access('update') %}
+      <a href="{{ url('entity.user.edit_form', {user: user.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div class="p-5 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-slate-600 drop-shadow-md">
+    <article{{ attributes }}>
+      {% if content %}
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <div class="mb-3">
+              <label class="font-bold">{{ 'User mail'|t }}</label>
+              <div>
+                {{ user.mail.value }}
+              </div>
+            </div>
+            {{- content|without('field_name', 'field_image') -}}
+          </div>
+          <div class="justify-self-end">
+            {{ content.field_image }}
+          </div>
+        </div>
+      {% endif %}
+    </article>
+  </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+name: 'ai_screening'
+type: module
+description: 'ai_screening'
+package: Custom
+core_version_requirement: ^11
+dependencies:
+  - drupal:user
+  - openid_connect:openid_connect
+  - custom_event_dispatcher:custom_event_dispatcher
+  - core_event_dispatcher:user_event_dispatcher

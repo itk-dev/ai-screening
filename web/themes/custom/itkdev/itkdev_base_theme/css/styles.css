@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Define common background colors */
+
+  .theme-bg-primary {
+    background-color: var(--theme-primary);
+  }
+  .theme-bg-secondary {
+    background-color: var(--theme-secondary);
+  }
+  .theme-bg-brand {
+    background-color: var(--theme-brand);
+  }
+  .theme-bg-brand-hover {
+    background-color: var(--theme-brand-hover);
+  }
+  .bg-primary {
+    @apply theme-bg-primary dark:bg-zinc-900;
+  }
+  .bg-secondary {
+    @apply theme-bg-secondary dark:bg-zinc-800;
+  }
+  .bg-brand {
+    @apply theme-bg-brand;
+  }
+
+  /* Define common text colors */
+  .theme-text-primary {
+    color: var(--theme-primary);
+  }
+  .theme-text-secondary {
+    color: var(--theme-secondary);
+  }
+  .theme-text-brand {
+    color: var(--theme-brand);
+  }
+  .text-primary {
+    @apply text-stone-950 dark:text-stone-50;
+  }
+  .text-secondary {
+    @apply text-stone-600 dark:text-stone-300;
+  }
+  .text-brand {
+    @apply theme-text-brand;
+  }
+
+  /* Define common border colors */
+  .border-primary {
+    border-color: var(--theme-border);
+  }
+  .border-brand {
+    border-color: var(--theme-brand);
+  }
+
+  /* Define common buttons */
+  .btn-primary {
+    @apply border border-brand bg-brand text-white rounded px-3 py-2 min-h-9 hover:theme-bg-brand-hover transition-colors duration-200;
+  }
+  .btn-default {
+    @apply border border-primary bg-secondary text-secondary rounded px-3 py-2 min-h-9 hover:bg-zinc-200 hover:dark:bg-zinc-800;
+  }
+  .btn-icon {
+    @apply btn-default px-2 py-1;
+  }
+
+  /* Icons sizes */
+  .icon {
+    @apply w-5;
+  }
+
+  /* Common typography */
+  h1 {
+    @apply text-3xl font-semibold my-5;
+  }
+  h2 {
+    @apply text-2xl font-semibold my-5;
+  }
+  h3 {
+    @apply text-xl font-semibold my-4;
+  }
+  h4 {
+    @apply text-lg font-semibold my-3;
+  }
+  h5 {
+    @apply text-base font-semibold my-2;
+  }
+  h6 {
+    @apply text-base font-normal my-1;
+  }
+
+  /* Body content image */
+  p img {
+    @apply my-2;
+  }
+
+  /* Specific page typography */
+  .page--user p {
+    @apply mb-2;
+  }
+
+  /* Forms */
+  form .description {
+    @apply text-secondary text-sm;
+  }
+
+  /* List styling */
+  .content-wrapper ul {
+    @apply list-disc my-3 pl-6;
+  }
+
+  .content-wrapper ol {
+    @apply list-decimal my-3 pl-6;
+  }
+
+  /* Alerts */
+  .alert {
+    @apply flex mx-auto mb-3 md:mb-5 rounded border px-3 py-1 md:px-4 md:py-2 max-w-3xl;
+  }
+  .alert-sm {
+    @apply px-3 py-1;
+  }
+  .alert-lg {
+    @apply px-5 py-3;
+  }
+  .alert-info {
+    @apply bg-blue-100 text-blue-700  border-blue-300;
+  }
+  .alert-success {
+    @apply bg-green-100 text-green-700  border-green-300;
+  }
+  .alert-warning {
+    @apply bg-yellow-100 text-yellow-700  border-yellow-300;
+  }
+  .alert-danger {
+    @apply bg-red-100 text-red-700  border-red-300;
+  }
+}
+
+/* Set relative container to avoid site hiding behind admin sidebar */
+.dialog-off-canvas-main-canvas {
+  position: relative;
+}

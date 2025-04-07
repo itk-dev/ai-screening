@@ -1,0 +1,72 @@
+label: Indhold
+description: 'Find og håndtér indhold.'
+display:
+  default:
+    display_title: Standard
+    display_options:
+      title: Indhold
+      fields:
+        title:
+          label: Titel
+        type:
+          label: Indholdstype
+          separator: ', '
+        name:
+          label: Forfatter
+        status:
+          label: Status
+          settings:
+            format_custom_false: 'Ikke publiseret'
+            format_custom_true: Publiseret
+        changed:
+          label: Opdateret
+        langcode:
+          label: Sprog
+          separator: ', '
+        operations:
+          label: Handlinger
+      pager:
+        options:
+          tags:
+            next: 'Næste ›'
+            previous: '‹ Forrige'
+            first: '« Første'
+            last: 'Sidste »'
+      exposed_form:
+        options:
+          submit_button: Filter
+          reset_button_label: Nulstil
+          exposed_sorts_label: 'Sorter efter'
+          sort_asc_label: Stigende
+          sort_desc_label: Faldende
+      empty:
+        area_text_custom:
+          content: 'Intet indhold.'
+      filters:
+        title:
+          expose:
+            label: Titel
+        type:
+          expose:
+            label: Indholdstype
+        status:
+          expose:
+            label: Status
+          group_info:
+            label: 'Publiseringsstatus status'
+            group_items:
+              1:
+                title: Publiseret
+              2:
+                title: 'Ikke publiseret'
+        langcode:
+          expose:
+            label: Sprog
+  page_1:
+    display_title: Side
+    display_options:
+      menu:
+        title: Indhold
+      tab_options:
+        title: Indhold
+        description: 'Find og håndtér indhold'

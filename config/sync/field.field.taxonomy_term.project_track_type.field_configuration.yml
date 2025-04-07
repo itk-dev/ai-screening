@@ -1,0 +1,21 @@
+uuid: 10bb8d3f-e565-4b38-a3bd-19bb9010e0ed
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_configuration
+    - taxonomy.vocabulary.project_track_type
+id: taxonomy_term.project_track_type.field_configuration
+field_name: field_configuration
+entity_type: taxonomy_term
+bundle: project_track_type
+label: Configuration
+description: "Configuration for tracks created from the term. Must be a valid <a href=\"https://en.wikipedia.org/wiki/YAML\">YAML</a> structure with a <code>dimensions</code> key, e.g.\r\n\r\n<pre><code>\r\ndimensions:\r\n  - Usikkerhed \r\n  - Nyttighed\r\n</code></pre>"
+required: true
+translatable: false
+default_value:
+  -
+    value: "dimensions:\r\n"
+default_value_callback: ''
+settings: {  }
+field_type: string_long

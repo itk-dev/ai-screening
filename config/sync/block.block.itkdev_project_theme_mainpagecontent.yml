@@ -1,0 +1,20 @@
+uuid: 6fa22c5f-7e50-45dd-8c89-c75050628964
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - itkdev_project_theme
+id: itkdev_project_theme_mainpagecontent
+theme: itkdev_project_theme
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

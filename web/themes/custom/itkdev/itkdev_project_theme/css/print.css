@@ -1,0 +1,43 @@
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* All your print styles go here */
+  #admin-toolbar,
+  #sidebar-nav,
+  #header,
+  #reportLawTrackToolbar,
+  #breadcrumb,
+  .admin-toolbar-control-bar,
+  .btn,
+  .btn-primary {
+    display: none;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  #main-content-wrapper,
+  #elementGroups,
+  #groupDemands,
+  #groupRules
+  #groupTasks,
+  #groupConsiderations,
+  .ai-screening-yes-no-stop--text-stop,
+  .ai-screening-yes-no-stop--text-yes {
+    position: relative;
+  }
+
+  .task,
+  .consideration,
+  .rule,
+  .stop {
+    display: block;
+    position: relative;
+    break-inside: avoid-page;
+  }
+
+}

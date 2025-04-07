@@ -1,0 +1,15 @@
+uuid: 5cd1c2ff-e0fa-4234-ad94-fd24b305a63f
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.project_group
+  module:
+    - user
+id: project_group-group_membership
+group_type: project_group
+content_plugin: group_membership
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

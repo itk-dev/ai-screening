@@ -1,0 +1,23 @@
+<div class="flex justify-between my-7 px-5">
+  {% block title %}
+    <div class="block">
+      {% if pageTitle is not empty %}
+        <h1 class="dark:text-white inline-block">
+          {{ pageTitle }}
+        </h1>
+      {% endif %}
+    </div>
+  {% endblock %}
+
+  {% block controls %}
+    <div class="inline-flex items-center">
+      {{ drupal_block('system_breadcrumb_block') }}
+    </div>
+  {% endblock %}
+</div>
+
+{% block content %}
+  <div{{ attributes }}>
+    {{ content }}
+  </div>
+{% endblock %}

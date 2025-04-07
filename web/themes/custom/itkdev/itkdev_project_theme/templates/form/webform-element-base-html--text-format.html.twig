@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a webform base element as html.
+ *
+ * Available variables:
+ * - element: The element.
+ * - title: The label for the element.
+ * - value: The content for the element.
+ * - item: The form item used to display the element.
+ * - options Associative array of options for element.
+ *   - multiline: Flag to determine if value spans multiple lines.
+ *   - email: Flag to determine if element is for an email.
+ */
+#}
+
+{%
+  set evaluationClasses = {
+    irrelevant: 'bg-slate-300',
+    high: 'bg-green-600',
+    average: 'bg-yellow-700',
+    low: 'bg-red-700',
+  }
+%}
+{% set classNames = evaluationClasses[value['#plain_text']] ?? '' %}
+
+<div class="mb-4 border-b mt-3">
+  <h4>{{ title }}</h4>
+  {% if element['#help'] %}
+    <div class="font-thin mb-2">{{ element['#help']|striptags }}</div>
+  {% endif %}
+  {% set displayedValue = (value['#markup'] is same as ('{Empty}') or value['#string'] is same as ('{Empty}')) ? '{Empty}'|t : value %}
+  <div class="capitalize">
+    <div class="relative bg-white flex items-center mb-3 md:mb-5 min-w-28">
+      <div class="{{ classNames is not empty ? 'mr-3' }} line-clamp-6">
+        {{ displayedValue }}
+      </div>
+      {% if classNames is not empty %}
+        <div class="h-5 w-5 z-0 {{ classNames }}"></div>
+      {% endif %}
+    </div>
+  </div>
+</div>

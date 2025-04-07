@@ -1,0 +1,21 @@
+<div {{ element.attributes }}>
+  {% if element.text_question.message['#text'] %}
+    <div class="font-light element-question-text">{{ element.text_question }}</div>
+  {% endif %}
+
+  <div class="mb-3 mt-2 element-response">
+    <span>{{ 'Response'|t }}:</span>
+    <span class="inline-block">{{ element.response }}</span>
+  </div>
+
+  {% if element.text_yes %}
+    {{ element.text_yes }}
+  {% endif %}
+  {% if element.text_no %}
+    {{ element.text_no }}
+  {% endif %}
+
+  {% if element.text_stop %}
+    {{ element.text_stop }}
+  {% endif %}
+</div>

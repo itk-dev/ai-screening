@@ -1,58 +1,104 @@
 {
     "name": "itk-dev/ai-screening",
     "description": "AI Screening project",
-    "type": "project",
     "license": "GPL-2.0-or-later",
+    "type": "project",
     "homepage": "https://www.drupal.org/project/drupal",
     "support": {
-        "docs": "https://www.drupal.org/docs/user_guide/en/index.html",
-        "chat": "https://www.drupal.org/node/314178"
+        "chat": "https://www.drupal.org/node/314178",
+        "docs": "https://www.drupal.org/docs/user_guide/en/index.html"
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        }
-    ],
     "require": {
+        "php": "^8.3",
+        "chx/drupal-issue-fork": "dev-main",
         "composer/installers": "^2.0",
-        "drupal/core-composer-scaffold": "^11.0",
-        "drupal/core-project-message": "^11.0",
-        "drupal/core-recommended": "^11.0",
-        "drush/drush": "^13.2"
+        "cweagans/composer-patches": "^1.7",
+        "drupal/better_exposed_filters": "^7.0",
+        "drupal/config_ignore": "^3.3",
+        "drupal/config_translation_po": "^1.0",
+        "drupal/core-composer-scaffold": "^11.1",
+        "drupal/core-project-message": "^11.1",
+        "drupal/core-recommended": "^11.1",
+        "drupal/field_group": "^3.6",
+        "drupal/group": "^3.3",
+        "drupal/hook_event_dispatcher": "^4.2",
+        "drupal/openid_connect": "dev-3452009-drupal-11-compatibility",
+        "drupal/twig_tweak": "^3.4",
+        "drupal/webform": "^6.0@dev",
+        "drush/drush": "^13.2",
+        "thecodingmachine/safe": "^2.5"
     },
     "require-dev": {
-      "drupal/core-dev": "^11.0",
-      "ergebnis/composer-normalize": "^2.43",
-      "vincentlanglet/twig-cs-fixer": "^3.0",
-      "mglaman/phpstan-drupal": "^1.1",
-      "phpstan/extension-installer": "^1.2",
-      "phpstan/phpstan-deprecation-rules": "^1.1"
+        "drupal/core-dev": "^11.0",
+        "drupal/masquerade": "^2.0",
+        "drupal/webprofiler": "11.1.0",
+        "ergebnis/composer-normalize": "^2.43",
+        "mglaman/phpstan-drupal": "^1.1",
+        "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "vincentlanglet/twig-cs-fixer": "^3.0"
     },
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8",
+            "exclude": [
+                "drupal/openid_connect"
+            ]
+        },
+        {
+            "type": "git",
+            "url": "https://git.drupalcode.org/issue/openid_connect-3452009.git"
+        }
+    ],
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
+            "chx/drupal-issue-fork": true,
             "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true,
             "php-http/discovery": true,
-            "tbachert/spi": true,
-            "ergebnis/composer-normalize": true
+            "phpstan/extension-installer": true,
+            "tbachert/spi": true
         },
         "sort-packages": true
     },
     "extra": {
+        "drupal-core-project-message": {
+            "include-keys": [
+                "homepage",
+                "support"
+            ],
+            "post-create-project-cmd-message": [
+                "<bg=blue;fg=white>                                                         </>",
+                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
+                "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
+                "<bg=blue;fg=white>                                                         </>",
+                "",
+                "<bg=yellow;fg=black>Next steps</>:",
+                "  * Install the site: https://www.drupal.org/docs/installing-drupal",
+                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
+                "  * Get support: https://www.drupal.org/support",
+                "  * Get involved with the Drupal community:",
+                "      https://www.drupal.org/getting-involved",
+                "  * Remove the plugin that prints this message:",
+                "      composer remove drupal/core-project-message"
+            ]
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
             }
         },
+        "enable-patching": true,
         "installer-paths": {
             "web/core": [
                 "type:drupal-core"
@@ -82,54 +128,47 @@
                 "type:drupal-custom-theme"
             ]
         },
-        "drupal-core-project-message": {
-            "include-keys": [
-                "homepage",
-                "support"
-            ],
-            "post-create-project-cmd-message": [
-                "<bg=blue;fg=white>                                                         </>",
-                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
-                "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
-                "<bg=blue;fg=white>                                                         </>",
-                "",
-                "<bg=yellow;fg=black>Next steps</>:",
-                "  * Install the site: https://www.drupal.org/docs/installing-drupal",
-                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
-                "  * Get support: https://www.drupal.org/support",
-                "  * Get involved with the Drupal community:",
-                "      https://www.drupal.org/getting-involved",
-                "  * Remove the plugin that prints this message:",
-                "      composer remove drupal/core-project-message"
-            ]
+        "patches": {
+            "drupal/config_translation_po": {
+                "Add drush command for config po import (https://www.drupal.org/project/config_translation_po/issues/3439416)": "https://www.drupal.org/files/issues/2024-04-08/drush.patch"
+            },
+            "drupal/core": {
+                "Add an Autowire trait for plugins (https://www.drupal.org/project/drupal/issues/3294266)": "https://www.drupal.org/files/issues/2023-08-18/3294266-24.patch",
+                "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540)": "https://www.drupal.org/files/issues/2024-08-06/3150540-43-MR9103-11.x.diff",
+                "Missing menu active trail on views (https://www.drupal.org/project/drupal/issues/3359511)": "https://www.drupal.org/files/issues/2024-09-23/3359511-100.patch",
+                "Add an option to 'hide filter tips' on text fields (https://www.drupal.org/project/drupal/issues/3323007)": "https://git.drupalcode.org/project/drupal/-/merge_requests/5453.diff"
+            },
+            "drupal/masquerade": {
+                "Provide a foolproof way to unmasquerade (https://www.drupal.org/project/masquerade/issues/2962970)": "https://www.drupal.org/files/issues/2024-01-25/2962970-17.patch"
+            }
         }
     },
     "scripts": {
-      "coding-standards-apply": [
-        "@coding-standards-apply/phpcs",
-        "@coding-standards-apply/twig-cs-fixer"
-      ],
-      "coding-standards-apply/phpcs": [
-        "phpcbf --standard=phpcs.xml.dist"
-      ],
-      "coding-standards-apply/twig-cs-fixer": [
-        "twig-cs-fixer lint web/themes/custom/*/templates --fix"
-      ],
-      "coding-standards-check": [
-        "@coding-standards-check/phpcs",
-        "@coding-standards-check/twig-cs-fixer"
-      ],
-      "coding-standards-check/phpcs": [
-        "phpcs --standard=phpcs.xml.dist"
-      ],
-      "coding-standards-check/twig-cs-fixer": [
-        "twig-cs-fixer lint web/themes/custom/*/templates"
-      ],
-      "code-analysis/phpstan": [
-        "phpstan analyse --configuration=phpstan.neon"
-      ],
-      "code-analysis": [
-        "@code-analysis/phpstan"
-      ]
+        "code-analysis": [
+            "@code-analysis/phpstan"
+        ],
+        "code-analysis/phpstan": [
+            "phpstan analyse --configuration=phpstan.neon"
+        ],
+        "coding-standards-apply": [
+            "@coding-standards-apply/phpcs",
+            "@coding-standards-apply/twig-cs-fixer"
+        ],
+        "coding-standards-apply/phpcs": [
+            "phpcbf --standard=phpcs.xml.dist"
+        ],
+        "coding-standards-apply/twig-cs-fixer": [
+            "twig-cs-fixer lint web/themes/custom/itkdev/*/templates --fix"
+        ],
+        "coding-standards-check": [
+            "@coding-standards-check/phpcs",
+            "@coding-standards-check/twig-cs-fixer"
+        ],
+        "coding-standards-check/phpcs": [
+            "phpcs --standard=phpcs.xml.dist"
+        ],
+        "coding-standards-check/twig-cs-fixer": [
+            "twig-cs-fixer lint web/themes/custom/itkdev/*/templates"
+        ]
     }
 }

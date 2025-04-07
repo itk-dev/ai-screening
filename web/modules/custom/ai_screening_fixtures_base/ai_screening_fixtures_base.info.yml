@@ -1,0 +1,8 @@
+name: AI screening fixtures base
+type: module
+description: 'Provides base fixtures for the site.'
+core_version_requirement: ^11
+package: ITK
+dependencies:
+  - content_fixtures:content_fixtures
+  - ai_screening_project:ai_screening_project

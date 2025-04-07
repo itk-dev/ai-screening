@@ -1,0 +1,27 @@
+uuid: 1841d4b9-ae1b-4960-bdb6-ae83a3882840
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_project_state
+field_name: field_project_state
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: active
+      label: Aktiv
+    -
+      value: finished
+      label: Afsluttet
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

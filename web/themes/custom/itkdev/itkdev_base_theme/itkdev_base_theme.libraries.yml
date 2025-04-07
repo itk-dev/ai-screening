@@ -1,0 +1,11 @@
+styles:
+  version: VERSION
+  css:
+    theme:
+      build/app.css: { minified: true }
+  js:
+    build/app.js: { minified: true }
+    build/runtime.js: { minified: true }
+  dependencies:
+    - core/drupal
+    - core/once

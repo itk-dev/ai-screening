@@ -1,0 +1,9 @@
+uuid: 4196ab15-1d8d-4aa1-8a15-e83539d6ab1f
+langcode: en
+status: true
+dependencies: {  }
+name: 'Project track type'
+vid: project_track_type
+description: 'Project tracks are used to group tools to represent a unified evaluation of part of a project'
+weight: 0
+new_revision: false

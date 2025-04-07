@@ -1,0 +1,20 @@
+uuid: 85e2ae88-3662-4d8b-9a36-b73c30e8c929
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - itkdev_project_theme
+id: itkdev_project_theme_messages
+theme: itkdev_project_theme
+region: header
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: Messages
+  label_display: '0'
+  provider: system
+visibility: {  }

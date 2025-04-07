@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Hooks related to installing/updating/uninstalling this module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function ai_screening_project_install(): void {
+  _ai_screening_project_update_node_entity_type();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function ai_screening_project_uninstall(): void {
+  _ai_screening_project_update_node_entity_type();
+}
+
+/**
+ * Update node entity.
+ */
+function _ai_screening_project_update_node_entity_type(): void {
+  $entityType = \Drupal::entityTypeManager()->getDefinition('node');
+  \Drupal::entityDefinitionUpdateManager()->updateEntityType($entityType);
+}

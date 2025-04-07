@@ -1,0 +1,110 @@
+{#
+/**
+ * @file
+ * AI screening implementation to display a node.
+ *
+ * @see web/core/modules/node/templates/node.html.twig
+ *
+ * Additional variables:
+ * - projectTracks: The project tracks related to the node.
+ * - projectGroup: The group of users that belongs to this project
+ * - projectMembers: THe members of the group.
+ *
+ * @ingroup themeable
+ */
+#}
+{% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
+
+{% block title %}
+  <div class="inline-flex items-center">
+    <h1 class="dark:text-white inline-block">{{ label }}</h1>
+    {% if node.access('update') %}
+      <a href="{{ path('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block content %}
+  {% set owner = drupal_entity('user', projectGroup.uid.target_id)['#user'] %}
+  {% set project_status = project_track_evaluation(node.id) %}
+  <div class="container my-8 px-5">
+    <p>{{ content.field_description }}</p>
+    <div class="grid grid-cols-4">
+      <div>
+        <h3>{{ 'State'|t }}</h3>
+        <div>{{ content.field_project_state }}</div>
+      </div>
+      {% if node.field_department.value %}
+        <div>
+          <h3>{{ 'Department'|t }}</h3>
+          <div>{{ content.field_department }}</div>
+        </div>
+      {% endif %}
+      <div>
+        <h3>{{ 'Owner'|t }}</h3>
+        <div><a href="{{ path('entity.user.canonical', {user: owner.id}) }}">{{ owner.getDisplayName }}</a></div>
+      </div>
+      <div>
+        <h3>{{ 'Contributers'|t }}</h3>
+        {% for member in projectMembers %}
+          <span class="project-members">
+            <span>
+              <a href="{{ path('entity.user.canonical', {user: member.id}) }}">{{ member.getDisplayName }}</a>
+            </span>
+            <span class="spacing">{{ ', ' }}</span>
+          </span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+    <header class="flex justify-between px-4 py-4 border-b">
+      <h2 class="m-0 text-lg dark:text-white">{{ 'Will we?'|t }}</h2>
+      <div>{{ include('@itkdev_project_theme/components/project-status.html.twig') }}</div>
+    </header>
+    <div class="flex justify-between px-4 py-4">
+      <div>{{ 'Project eveluation of whether it should be used'|t }}</div>
+      <div><a class="underline" href="{{ path('ai_screening_reports.project', {node: node.id}) }}">{{ 'See project report'|t }}</a></div>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    {% for key, projectTrack in projectTracks %}
+      {% set projectTrackEvaluation = projectTrack.getProjectTrackEvaluation() %}
+
+      <div class="track-wrapper">
+        <div class="container bg-white dark:bg-secondary my-4 drop-shadow-md">
+          <header class="flex justify-between px-4 py-4 border-b-2
+          {{ {
+            none: 'border-zinc-400',
+            refused: 'border-red-600',
+            undecided: 'border-yellow-600',
+            approved: 'border-green-600',
+          }[projectTrackEvaluation] ?? '' }}">
+            <h2 class="m-0 text-lg dark:text-white">{{ projectTrack.getTitle() }}</h2>
+            <div>{{ projectTrackStatus }}</div>
+          </header>
+          <div class="px-4 py-4">
+            <div class="mb-3">{{ projectTrack.getDescription()|raw }}</div>
+            <div class="flex justify-between">
+              <div class="flex justify-start">
+                {% if projectTrack.getType.field_report_type.value in ['bubble_chart', 'webform_submission'] %}
+                  <a class="underline" href="{{ path('ai_screening_reports.project_track', {project_track_id: [projectTrack.id.value]}) }}">
+                    {{ 'View report'|t }}
+                  </a>
+                {% endif %}
+              </div>
+              <div class="block self-end">
+                {% if projectTrack.access('update') %}
+                  <a href="{{ path('entity.project_track.edit_form', {project_track: projectTrack.id.value}) }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
+                    <i class="fa-solid fa-pencil"></i><span class="ml-3">{{ 'Edit'|t }}</span>
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

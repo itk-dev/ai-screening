@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Default implementation of site setup page
+ */
+#}
+{% extends '@itkdev_project_theme/content-wrapper.html.twig' %}
+
+{% block title %}
+  {% set pageTitle = 'Site setup'|t %}
+  {{ parent() }}
+{% endblock %}
+
+{% block content %}
+  <div class="p-5 rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-slate-600 drop-shadow-md">
+    <div class="mb-8">
+      <header class="flex justify-between px-4 py-4 border-b">
+        <h2 class="m-0 text-lg dark:text-white">{{ 'Setup frontpage'|t }}</h2>
+      </header>
+      <div class="my-5 flex flex-wrap px-4">
+        <div class="basis-full flex justify-end">
+          <a href="{{ path('ai_screening.frontpage_settings') }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
+            <i class="fa-solid fa-pencil mr-3"></i>
+            <span>{{ 'Setup frontpage'|t }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <header class="flex justify-between px-4 py-4 border-b">
+        <h2 class="m-0 text-lg dark:text-white">{{ 'Setup project track thresholds'|t }}</h2>
+      </header>
+      <div class="my-5 flex flex-wrap px-4">
+        <div class="basis-full mb-5">
+          {{ 'Set up thresholds for each project. The thresholds are used to determine when a suggested project track evaluation changes from "Refused" to "Undecided" to "Approved"'|t }}
+        </div>
+        <div class="basis-full flex justify-end">
+          <a href="{{ path('ai_screening_project_track.thresholds_settings') }}" class="inline-block btn-primary bg-black text-white hover:bg-stone-700">
+            <i class="fa-solid fa-pencil mr-3"></i>
+            <span>{{ 'Setup thresholds'|t }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

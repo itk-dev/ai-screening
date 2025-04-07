@@ -1,0 +1,22 @@
+{% if breadcrumb %}
+  <div id="breadcrumb" class="container mx-auto px-3 text-secondary my-3 flex justify-end">
+    <nav role="navigation" aria-labelledby="system-breadcrumb">
+      <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
+      <ol class="flex gap-1">
+        {% for item in breadcrumb %}
+          <li>
+            {% if item.url %}
+              <a class="{{ loop.last ? 'text-green-600' }} font-semibold" href="{{ item.url }}">{{ item.text }}</a>
+            {% else %}
+              {{ item.text }}
+            {% endif %}
+
+            {% if not loop.last %}
+              <span>/</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </div>
+{% endif %}
