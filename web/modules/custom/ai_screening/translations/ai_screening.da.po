@@ -1,0 +1,99 @@
+# $Id$
+#
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/ai_screening/ai_screening.info.yml: n/a
+#  modules/custom/ai_screening/src/Plugin/Block/FrontpageHelpTextBlock.php: n/a
+#  modules/custom/ai_screening/ai_screening.links.menu.yml: n/a
+#  modules/custom/ai_screening/ai_screening.links.task.yml: n/a
+#  modules/custom/ai_screening/ai_screening.routing.yml: n/a
+#  modules/custom/ai_screening/ai_screening.permissions.yml: n/a
+#  modules/custom/ai_screening/custom_event_dispatcher/custom_event_dispatcher.info.yml: n/a
+#  modules/custom/ai_screening/src/Form/FrontpageForm.php: n/a
+#  modules/custom/ai_screening/src/Helper/AbstractHelper.php: n/a
+#  modules/custom/ai_screening/src/Helper/OpenIdConnectHelper.php: n/a
+#  modules/custom/ai_screening/src/Helper/ThemeHelper.php: n/a
+#  modules/custom/ai_screening/src/Helper/UserHelper.php: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-03-31 16:07+0200\n"
+"PO-Revision-Date: 2025-03-31 16:07+0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: modules/custom/ai_screening/ai_screening.info.yml:0;0
+msgid "ai_screening"
+msgstr ""
+
+#: modules/custom/ai_screening/ai_screening.info.yml:0 modules/custom/ai_screening/src/Plugin/Block/FrontpageHelpTextBlock.php:21
+msgid "Custom"
+msgstr "Tilpasset"
+
+#: modules/custom/ai_screening/ai_screening.links.menu.yml:0 modules/custom/ai_screening/ai_screening.links.task.yml:0 modules/custom/ai_screening/ai_screening.routing.yml:0
+msgid "Site setup"
+msgstr ""
+
+#: modules/custom/ai_screening/ai_screening.links.menu.yml:0
+msgid "Show site setup"
+msgstr ""
+
+#: modules/custom/ai_screening/ai_screening.permissions.yml:0
+msgid "Access site setup pages."
+msgstr ""
+
+#: modules/custom/ai_screening/ai_screening.routing.yml:0
+msgid "Frontpage settings"
+msgstr ""
+
+#: modules/custom/ai_screening/custom_event_dispatcher/custom_event_dispatcher.info.yml:0;0
+msgid "custom_event_dispatcher"
+msgstr ""
+
+#: modules/custom/ai_screening/custom_event_dispatcher/custom_event_dispatcher.info.yml:0
+msgid "Hook events"
+msgstr ""
+
+#: modules/custom/ai_screening/src/Form/FrontpageForm.php:42
+msgid "Help text message"
+msgstr ""
+
+#: modules/custom/ai_screening/src/Form/FrontpageForm.php:56
+msgid "Go back"
+msgstr ""
+
+#: modules/custom/ai_screening/src/Form/FrontpageForm.php:78
+msgid "Save"
+msgstr "Gem"
+
+#: modules/custom/ai_screening/src/Helper/AbstractHelper.php:62
+msgid "Exception (@type) in @location: @message"
+msgstr ""
+
+#: modules/custom/ai_screening/src/Helper/OpenIdConnectHelper.php:42
+msgid "Unblocking OIDC user @user (@id)"
+msgstr ""
+
+#: modules/custom/ai_screening/src/Helper/ThemeHelper.php:37
+msgid "Create new project"
+msgstr ""
+
+#: modules/custom/ai_screening/src/Helper/ThemeHelper.php:40
+msgid "Create new static page"
+msgstr ""
+
+#: modules/custom/ai_screening/src/Helper/UserHelper.php:63
+msgid "Setting default language on user @user to @langcode"
+msgstr ""
+
+#: modules/custom/ai_screening/src/Plugin/Block/FrontpageHelpTextBlock.php:20
+msgid "Frontpage help text"
+msgstr ""
+

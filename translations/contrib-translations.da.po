@@ -1,0 +1,110 @@
+# Danish translation of Drush Site-Install
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-04-10 13:07+0200\n"
+"PO-Revision-Date: 2025-04-10 13:07+0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Reset"
+msgstr "Nulstil"
+
+msgid "Published"
+msgstr "Publiseret"
+
+msgid "Sort by"
+msgstr "Sorter efter"
+
+msgid "Unpublished"
+msgstr "Ikke publiseret"
+
+msgid "Apply"
+msgstr "Anvend"
+
+msgid "No content available."
+msgstr "Intet indhold."
+
+msgid "Primary tabs"
+msgstr "Primære tabs"
+
+msgid "Secondary tabs"
+msgstr "Sekundære tabs"
+
+msgid "Published status"
+msgstr "Publiseringsstatus status"
+
+msgid "Site branding"
+msgstr "Branding"
+
+msgid "Name or email contains"
+msgstr "Navn eller email indeholder"
+
+msgctxt "PHP date format"
+msgid "l, j F Y - H:i"
+msgstr "l, F j, Y - H:i"
+
+msgctxt "PHP date format"
+msgid "D, j M Y - H:i"
+msgstr "D, m/d/Y - H:i"
+
+msgctxt "PHP date format"
+msgid "j M Y - H:i"
+msgstr "m/d/Y - H:i"
+
+msgid "Archive webform"
+msgstr "Arkivér webform"
+
+msgid "Close webform"
+msgstr "Luk webform"
+
+msgid "Delete webform"
+msgstr "Slet webform"
+
+msgid "Open webform"
+msgstr "Åben webform"
+
+msgid "Delete submission"
+msgstr "Slet submission"
+
+msgid "Lock submission"
+msgstr "Lås submission"
+
+msgid "Unlock submission"
+msgstr "Lås submission op"
+
+msgid "Restore webform"
+msgstr "Gendan webform"
+
+msgid "< Previous"
+msgstr "‹ Forrige"
+
+msgid "Next >"
+msgstr "Næste >"
+
+msgid "Complete"
+msgstr "Afslut"
+
+msgid "{Empty}"
+msgstr "{Ingen}"
+
+msgid "@count place"
+msgid_plural "@count places"
+msgstr[0] "1 place"
+msgstr[1] "@count places"
+
+msgid "Members"
+msgstr "Medlemmer"
+
+msgid "Completed"
+msgstr "Afsluttet"
+
+msgid "Danish"
+msgstr "Dansk"
+
+
