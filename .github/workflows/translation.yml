@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         task:
+          - translation:contrib-translations:export
           - translation:config-translations:export
           - translation:module-translations:export
-          - translation:site-translations:export
           - translation:theme-translations:export
     steps:
       - uses: actions/checkout@v4

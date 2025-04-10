@@ -24,38 +24,45 @@
 version: '3'
 
 tasks:
-  site-translations:export:
-    desc: 'Export site translations for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+  contrib-translations:export:
+    desc: 'Export contrib translations for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
       - for:
           matrix:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
         cmd: |
-          task drush -- locale:export {{.ITEM.LANGUAGE}} --types=customized > translations/site-translations.{{.ITEM.LANGUAGE}}.po
+          task drush -- locale:export {{.ITEM.LANGUAGE}} --types=customized > translations/contrib-translations.{{.ITEM.LANGUAGE}}.po
       - task: clean-up-translations
     requires:
       vars:
         - TRANSLATION_LANGUAGES
     silent: true
 
-  site-translations:import:
-    prompt: "Really import site translations?"
-    desc: 'Import site translations for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+  contrib-translations:import:
+    prompt: "Really import contrib translations?"
+    desc: 'Import contrib translations for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
     cmds:
       - for:
           matrix:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
-        cmd: task drush -- locale:import --type=not-customized --override=not-customized {{.ITEM.LANGUAGE}} ../translations/site-translations.{{.ITEM.LANGUAGE}}.po
+        cmd: task drush -- locale:import --type=not-customized --override=not-customized {{.ITEM.LANGUAGE}} ../translations/contrib-translations.{{.ITEM.LANGUAGE}}.po
       - task: test-pluralization
     requires:
       vars:
         - TRANSLATION_LANGUAGES
     silent: true
 
+  translations:list:
+    desc: List all translation files
+    cmds:
+      - |
+          find translations config/translations web/*/custom/*/translations -name '*.*.po' -ls
+    silent: true
+
   translations:diff:
-    desc: 'git diff all translation files ignoring some date metadata changes'
+    desc: '`git diff` all translation files ignoring some date metadata changes'
     cmds:
       # Ignore some PO metadata when git diff'ing, e.g.
       #
@@ -64,7 +71,7 @@ tasks:
       - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' '*.po'
 
   translations:checkout:
-    desc: 'git checkout all translation file changes if only date metadata is changed'
+    desc: '`git checkout` all translation file changes if only date metadata is changed (cf. `task {{.TASK | replace ":checkout" ":diff" }}`)'
     cmds:
       - git checkout '*.po'
     # https://taskfile.dev/reference/schema#precondition
@@ -146,7 +153,7 @@ tasks:
           matrix:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
-        cmd: task drush -- config_translation_po:export {{.ITEM.LANGUAGE}} --clear-same-as-source > config/translations.{{.ITEM.LANGUAGE}}.po
+        cmd: task drush -- config_translation_po:export {{.ITEM.LANGUAGE}} --clear-same-as-source > config/translations/config.{{.ITEM.LANGUAGE}}.po
       - task: clean-up-translations
     requires:
       vars:
@@ -161,7 +168,7 @@ tasks:
           matrix:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
-        cmd: task drush -- config_translation_po:import --type=not-customized --override=not-customized da ../config/translations.{{.ITEM.LANGUAGE}}.po
+        cmd: task drush -- config_translation_po:import --type=not-customized --override=not-customized da ../config/translations/config.{{.ITEM.LANGUAGE}}.po
       - task: test-pluralization
     requires:
       vars:
@@ -209,28 +216,31 @@ tasks:
   export:
     desc: Run all translation export tasks
     cmds:
+      - task: contrib-translations:export
       - task: config-translations:export
       - task: module-translations:export
-      - task: site-translations:export
       - task: theme-translations:export
     silent: true
 
   import:
+    prompt: "Really import all translations?"
     desc: Run all translation import tasks
     cmds:
+      # Important: contrib translations must be imported first to let the other translation type control the actual translation.
+      - task: contrib-translations:import
       - task: config-translations:import
       - task: module-translations:import
-      - task: site-translations:import
       - task: theme-translations:import
     silent: true
 
   clean-up-translations:
+    internal: true
     cmds:
       # Fix plurals spec in Danish PO file
       # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
       # https://www.drupal.org/project/drupal/issues/3496223
       - |
-          docker run --user=${COMPOSE_USER:-deploy} --rm --volume "$PWD:/app" itkdev/php8.3-fpm sed --in-place 's/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/' $(git ls-files --others --exclude-standard '*.da.po') $(git ls-files '*.da.po')
+          docker run --user=${COMPOSE_USER:-deploy} --rm --volume "$PWD:/app" itkdev/php8.3-fpm sed --in-place 's/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/' $(find translations config/translations web/*/custom/*/translations -name '*.da.po')
 
   # ------------------------------------------------------------------------------
   # Internal helper tasks.
@@ -275,7 +285,8 @@ tasks:
         cmd: |
           export SOURCE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.{{.TYPE}}")->getPath("{{.ITEM.NAME}}")')
           if [ -n "$SOURCE_PATH" ]; then
-            task drush -- locale:import-all --override=none ${SOURCE_PATH}/translations/
+            # Import translations as not-customized and override only not-customized existing translations.
+            task drush -- locale:import-all --type=not-customized --override=not-customized ${SOURCE_PATH}/translations/
           fi
       - task: test-pluralization
     requires:
