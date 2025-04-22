@@ -1,0 +1,180 @@
+title: Etik
+elements: |-
+  borger_page:
+    '#type': webform_wizard_page
+    '#title': '1. Borger'
+    1_1_gennemsigtighed_i_anvendelsen_af_kunstig_intelligens:
+      '#type': text_format
+      '#title': '1.1 Gennemsigtighed i anvendelsen af kunstig intelligens'
+      '#help': '<p>Aarhus Kommune ønsker at gøre det tydeligt, hvordan en kunstig intelligens har medvirket i bearbejdningen af borgernes data eller i udformningen af et svar til borgeren.</p><p>I svaret skal der redegøres for, om og hvordan dette hensyn imødekommes.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_1_1:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': '<p>En grøn markering betyder, at dette hensyn er fuldstændigt imødekommet, eller at spørgsmålet ikke er relevant. En gul markering, at hensynet forventes at kunne imødekommes, en rød markering, at hensynet ikke på nuværende tidspunkt forventes at kunne imødekommes.</p>'
+      '#help_display': element_after
+    1_2_imoedegaaelse_af_risiko_for_diskrimination:
+      '#type': text_format
+      '#title': '1.2 Imødegåelse af risiko for diskrimination'
+      '#help': '<p>Kunstig intelligens bruger eksisterende data i udarbejdelse af svar og datagrundlag til medarbejderne. Hvis datagrundlaget ikke er velbeskrevet, stiger risikoen for bias i løsningen, hvilket blandt andet kan føre til diskrimination af borgere.</p><p><ul><li>Er data, som Ai-løsningen trænes på, repræsentative og fri for bias?</li><li>Er det i udarbejdelsen af AI-løsningen sikret, at data beskrives og fortolkes, så diskrimination i videst muligt omfang kan udelukkes?</li><li>Er der overblik over andre mulige risici for diskrimination og bias?</li><li>Er der sikret et fagligt eftercheck af løsningens output, så bias og diskrimination modvirkes menneskelig kontrol?</li></ul></p><p>I svaret skal der redegøres for, om og hvordan løsningen forebygger muligheden for diskrimination.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_1_2:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': '<p>En grøn markering betyder, at diskrimination kan i meget høj grad kan udelukkes, eller forebygges gennem menneskelig kontrol. En gul markering, at diskrimination forventes at kunne udelukkes eller forebygges, eller at spørgsmålet ikke er relevant, en rød markering, at det ikke på nuværende tidspunkt forventes at kunne udelukkes og/eller at der mangler det fornødne overblik over data.</p>'
+      '#help_display': element_after
+    1_3_mulighed_for_menneskelig_kontrol:
+      '#type': text_format
+      '#title': '1.3 Mulighed for menneskelig kontrol'
+      '#help': '<p>En væsentlig kilde til transparens og tillid i forhold til AI-løsninger er borgernes mulighed for at kontrollere løsningens bidrag til et samlet output og korrigere for mulige fejlantagelser eller fejl-output. Borgere skal i den forbindelse have mulighed for at gennemskue, hvordan medarbejdere i Aarhus Kommune har anvendt en given AI-løsning, og den måde nået frem til et resultat.</p><p>I svaret skal der redegøres for, om og hvordan løsningen har indbygget muligheden for menneskelig verififikation af output.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_1_3:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': '<p>En grøn markering betyder, at borgeren har mulighed for at kontrollere såvel behandling som output. En gul markering betyder, at det forventes, at borgeren kan kontrollere såvel behandling som output, eller at spørgsmålet ikke er relevant, en rød markering betyder, at borgeren ikke på nuværende tidspunkt har mulighed for at kontrollere behandling eller output.</p>'
+      '#help_display': element_after
+    1_4_ansvarlighed:
+      '#type': text_format
+      '#title': '1.4 Ansvarlighed'
+      '#help': '<p>Borgerne skal have mulighed for at drage kommunen til ansvar for de beslutninger, der træffes og de svar, borgeren modtager. Der skal derfor altid være en tydelig afsender på AI-løsninger og mulighed for at gøre et ansvar gældende i forhold til konkrete personer og/eller afdelinger i kommunen. Dette indebærer også, at ansvarsforholdet er tydeliggjort internt i kommunen.</p><p>I svaret skal der redegøres for, om løsningen synliggør afsender- og ansvarsforhold i forhold til databehandlinger og svar, også internt.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_1_4:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': '<p>En grøn markering betyder, at borgeren har mulighed for at gøre et ansvarsforhold gældende i forhold til databehandling og/eller svar En gul markering betyder, at det forventes, at borgeren vil kunne gøre et ansvarsforhold gældende, eller at spørgsmålet ikke er relevant. En rød markering betyder, at borgeren ikke på nuværende tidspunkt har mulighed for at gøre ansvarsforhold gældende.</p>'
+      '#help_display': element_after
+    1_5_digital_eksklusion_inklusion:
+      '#type': text_format
+      '#title': '1.5 Digital eksklusion / inklusion'
+      '#help': '<p>Når AI bruges i kommunale opgaver, kan det føre til digital eksklusion, hvis borgerne ikke har de nødvendige færdigheder til at forstå eller bruge AI. Dette kan blive værre, hvis det ikke er klart, hvor de kan få hjælp eller finde alternativer.</p><p>I svaret skal der redegøres for, om der er risiko for, at løsningen øger den digitale eksklusion, og hvordan dette imødegås.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_1_5:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': 'En grøn markering betyder, at det ikke forventes, at løsningen vil kunne øge den digitale eksklusion, eller at løsningen måske endda kan mindske eksklusion. Alternativt, at der er lagt planer for at forebygge digital eksklusion.  En gul markering betyder, at det forventes, at løsningen kan øge den digitale eksklusion, og at der ikke for nuværende er lagt planer for at modvirke dette. Gult kan også betyde, at spørgsmålet ikke er relevant. En rød markering betyder, at løsningen forventes at øge den digitale eksklusion, og at dette ikke kan eller vil blive modvirket.'
+      '#help_display': element_after
+  medarbejder_page:
+    '#type': webform_wizard_page
+    '#title': '2. Medarbejder'
+    2_1_traening:
+      '#type': text_format
+      '#title': '2.1 Træning'
+      '#help': '<p>Medarbejdere skal forstå de AI-løsninger, de arbejder sammen med. Dette betyder, at medarbejderne dels skal forstå, hvordan AI-løsninger i det hele taget fungerer, dels skal forstå de specifikke, AI-relaterede arbejdsgange og outputs, som den konkrete løsning rummer.</p><p>I svaret skal der redegøres for, om og hvordan træningsbehovet imødekommes.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_2_1:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': 'En grøn markering betyder, at træningsbehovet er fuldstændigt imødekommet, eller at spørgsmålet ikke er relevant. En gul markering, at træningsbehovet forventes at kunne imødekommes, f.eks. i forbindelse med implementering, en rød markering, at træningsbehovet ikke på nuværende tidspunkt forventes at kunne imødekommes.'
+      '#help_display': element_after
+    2_2_bortfald_af_opgaver:
+      '#type': text_format
+      '#title': '2.2 Bortfald af opgaver'
+      '#help': '<p>De fleste AI-løsninger medfører et bortfald af del-opgaver, der medvirker til en samlet opgaveløsning. For at sikre medarbejderes ejerskab og tryghed ved en AI-løsning er det derfor vigtigt at der er overblik over hvilke opgaver, der ændrer sig som følge af indførelse af løsningen – og hvordan de i givet fald ændrer sig.</p><p>I svaret skal der redegøres for, om og i hvor høj grad, der er overblik over ændrede opgaver.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_2_2:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': 'En grøn markering betyder, at der er et fuldstændigt overblik, eller at spørgsmålet ikke er relevant. En gul markering, at overblikket forventes at kunne udarbejdes, en rød markering, at overblikket ikke på nuværende tidspunkt forventes at kunne etableres.'
+      '#help_display': element_after
+    2_3_medarbejderes_tilsyn_med_opgaveloesningen:
+      '#type': text_format
+      '#title': '2.3 Medarbejderes tilsyn med opgaveløsningen'
+      '#help': '<p>Da kommunen og / eller dens medarbejdere skal kunne drages til ansvar for databehandling og svar til borgere, skal det sikres at medarbejderne har mulighed for at føre tilsyn med AI-løsninger, så såvel databehandlinger som output løbende monitoreres, og medarbejderne har mulighed for at korrigere.</p><p>I svaret skal der redegøres for, hvordan, medarbejderne har mulighed for tilsyn med AI’ens opgaveløsning.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_2_3:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': 'En grøn markering betyder, at der er tryghed ved medarbejdernes  mulighed  tilsyn og indgriben ved fejl En gul markering, at mulighed for fuldt tilsyn og indgriben forventes at kunne udarbejdes, eller at spørgsmålet ikke er relevant. en rød markering, at muligheden ikke på nuværende tidspunkt forventes at kunne etableres.'
+      '#help_display': element_after
+    2_4_dekvalificering:
+      '#type': text_format
+      '#title': '2.4 Dekvalificering'
+      '#help': '<p>Jo større dele af en samlet opgaveløsning, der overdrages til AI, jo større er risikoen for at medarbejdergrupper på et tidspunkt ikke længere kan gennemskue, hvordan AI’en når frem til sine resultater, eller at de ikke længere kan udføre arbejdet selv (dekvalificering).</p><p>I svaret skal der redegøres for, om risiko for dekvalificering er kortlagt, og hvordan dette imødegås på såvel kort som længere sigt.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_2_4:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': 'En grøn markering betyder, at risikoen for dekvalificering er kortlagt, og at der er lagt planer for forebyggelse på såvel kort som mellemlangt sigt. En gul markering betyder, at risikoen for dekvalificering ikke er kortlagt og/eller at der ikke er lagt planer for forebyggelse på nuværende tidspunkt, eller at spørgsmålet ikke er relevant. En rød markering betyder, at det ikke forventes, at en sådan kortlægning kan foretages, eller at det ikke er muligt at forebygge dekvalificering på kort eller langt sigt.'
+      '#help_display': element_after
+  kommune_og_samfund_page:
+    '#type': webform_wizard_page
+    '#title': '3. Kommune og samfund'
+    3_1_ressourceforbrug:
+      '#type': text_format
+      '#title': '3.1 Ressourceforbrug'
+      '#help': '<p>AI-løsninger bruger strøm, ikke mindst under træning, og vand til køling. Det er derfor vigtigt, at løsningernes ressourceforbrug står mål med de forventede udbytter, og at løsningerne i øvrigt er tilrettelagt ud fra en ressourceoptimerende tilgang (eks. krav til grøn strøm og genanvendelse af varmeudledning).</p><p>I svaret skal der redegøres for, om det er overvejet at anvende mindre ressourcekrævende løsinger end AI til indfrielse af projektets formål.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_3_1:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': 'En grøn markering betyder, at der er afsøgt muligheder for anvendelse af mindre ressourcekrævende teknologier, men at dette ikke har været muligt af finde. En gul markering betyder, at kortlægningen af muligt anvendelse af mindre ressourcekrævende teknologier er påtænkt, men ikke udført. Gul kan også betyde, at spørgsmålet ikke er relevant. En rød markering betyder, at det ikke påtænkes at gennemføre en analyse af alternative muligheder.'
+      '#help_display': element_after
+    3_2_betydning_for_omverdenens_opfattelse_af_aarhus_kommune:
+      '#type': text_format
+      '#title': '3.2 Betydning for omverdenens opfattelse af Aarhus Kommune'
+      '#help': '<p>I nogle tilfælde kan introduktionen af en AI-løsning betyde, at borgere og virksomheder oplever, at de føler sig distancerede fra kommunen, der kan opfattes som for teknokratisk orienteret.</p><p>Det er derfor vigtigt at vurdere, hvorvidt indførelsen af en given AI-løsning kan medføre, at Aarhus Kommunes omdømme påvirkes negativt, og om denne effekt kan modvirkes.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_3_2:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': 'En grøn markering betyder, at effekten af løsningens indførelse på kommunens relation til borgerne vurderes at være neutralt eller positivt.  En gul markering betyder, at omdømmepåvirkningen endnu ikke er kortlagt, og/eller at der endnu ikke er lagt planer for at modvirke omdømmepåvirkningen. Gul kan også betyde, at spørgsmålet ikke er relevant. En rød markering betyder, at omdømmepåvirkningen vurderes at være stærkt negativ.'
+      '#help_display': element_after
+    3_3_modstridende_maalsaetninger:
+      '#type': text_format
+      '#title': '3.3 Modstridende målsætninger'
+      '#help': '<p>Formålet med at introducere AI i den kommunale opgaveløsning kan være bedring af arbejdsmiljø, bedre borgerservice, frigørelse af tid, stærkere lovmedholdelighed og øget kvalitet.</p><p>Ofte vil løsningerne medvirke til indfrielse af kombinationer af disse mål. I nogle tilfælde kan der dog være en risiko for, at målene modarbejder hinanden. Det er derfor vigtigt at vurdere den samlede effekt af en AI-løsning på tværs af målsætningerne for dens indførelse.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_3_3:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': 'En grøn markering betyder, at der ikke er et konfliktende målhierarki forbundet med løsningen. En gul markering betyder, at der kan være konfliktende mål, men at dette vurrderes at have et begrænset omfang. Gul kan også betyde, at spørgsmålet ikke er relevant. En rød markering betyder, at der er stærk konflikt mellem målsætninger, og at ledelse og / eller det politiske niveau skal konsulteres for at sætte retning.'
+      '#help_display': element_after
+    3_4_overordnet_etisk_vurdering:
+      '#type': text_format
+      '#title': '3.4 Overordnet etisk vurdering'
+      '#help': '<p>AI-løsninger kan bidrage til at påvirke fundamentale samfundsudfordringer, eks. (digital) eksklusion, klimaforandringer, dyrevelfærd, demokratisk deltagelse, mistrivsel mv. I nogle tilfælde er denne påvirkning positiv, i andre negativ.</p>'
+      '#help_display': element_before
+      '#allowed_formats':
+        simple_editor: simple_editor
+      '#hide_help': true
+    evaluation_3_4:
+      '#type': ai_screening_static_select
+      '#title': Vurdering
+      '#help': 'En grøn markering betyder, at løsningen vurderes at bidrage positivt i forhold til en eller flere fundamentale samfundsudfordringer. En gul markering betyder, at løsningen hverken påvirker positivt eller negativt, eller at spørgsmålet ikke er relevant. En rød markering betyder, at løsningen vurderes at bidrage negativt til en eller flere fundamentale samfundsudfordringer.'
+      '#help_display': element_after
