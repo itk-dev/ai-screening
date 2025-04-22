@@ -6,7 +6,8 @@ The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
-
+- [PR-97](https://github.com/itk-dev/ai-screening/pull/97)
+  - Fix bugs in law track webform
 - [PR-93](https://github.com/itk-dev/ai-screening/pull/93)
   Translation
 

@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-31 16:08+0200\n"
-"PO-Revision-Date: 2025-03-31 16:08+0200\n"
+"POT-Creation-Date: 2025-04-22 13:04+0200\n"
+"PO-Revision-Date: 2025-04-22 13:04+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "ID"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:20 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:23
 msgid "Created"
-msgstr "Oprettet"
+msgstr "Created"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:21 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:24
 msgid "Updated"
@@ -107,7 +107,7 @@ msgstr "Status"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:22
 msgid "Author"
-msgstr "Forfatter"
+msgstr "Author"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:35
 msgid "Enabled"
@@ -207,7 +207,7 @@ msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:141
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:146
 msgid "Delta"
@@ -275,7 +275,7 @@ msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "Tools"
-msgstr "Værktøjer"
+msgstr "Tools"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "tool"
