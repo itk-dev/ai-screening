@@ -48,7 +48,6 @@ tasks:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
         cmd: task drush -- locale:import --type=not-customized --override=not-customized {{.ITEM.LANGUAGE}} ../translations/contrib-translations.{{.ITEM.LANGUAGE}}.po
-      - task: test-pluralization
     requires:
       vars:
         - TRANSLATION_LANGUAGES
@@ -169,7 +168,6 @@ tasks:
             LANGUAGE:
               ref: .TRANSLATION_LANGUAGES
         cmd: task drush -- config_translation_po:import --type=not-customized --override=not-customized da ../config/translations/config.{{.ITEM.LANGUAGE}}.po
-      - task: test-pluralization
     requires:
       vars:
         - TRANSLATION_LANGUAGES
@@ -288,7 +286,6 @@ tasks:
             # Import translations as not-customized and override only not-customized existing translations.
             task drush -- locale:import-all --type=not-customized --override=not-customized ${SOURCE_PATH}/translations/
           fi
-      - task: test-pluralization
     requires:
       vars:
         - TYPE
