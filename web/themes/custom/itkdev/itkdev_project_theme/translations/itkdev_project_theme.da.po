@@ -71,7 +71,7 @@ msgstr "Indhold"
 
 #: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
 msgid "Footer"
-msgstr "Footer"
+msgstr "Sidefod"
 
 #: themes/custom/itkdev/itkdev_project_theme/js/choices.js:0
 msgid "Select"
@@ -301,7 +301,7 @@ msgstr "Editor"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:5
 msgid "User"
-msgstr "User"
+msgstr "Bruger"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:30
 msgid "My profile"

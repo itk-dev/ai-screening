@@ -91,7 +91,7 @@ msgstr "ID"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:20 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:23
 msgid "Created"
-msgstr "Created"
+msgstr "Oprettet"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:21 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:24
 msgid "Updated"
@@ -107,7 +107,7 @@ msgstr "Status"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:22
 msgid "Author"
-msgstr "Author"
+msgstr "Forfatter"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:35
 msgid "Enabled"
@@ -275,27 +275,27 @@ msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "Tools"
-msgstr "Tools"
+msgstr "Værktøjer"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "tool"
-msgstr ""
+msgstr "værktøj"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "tools"
-msgstr ""
+msgstr "værktøjer"
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:55
 msgid "@title"
-msgstr ""
+msgstr "@title"
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:72
 msgid "Evaluate manually"
-msgstr ""
+msgstr "Evaluér manuelt"
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:99
 msgid "Notes"
-msgstr ""
+msgstr "Noter"
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:115
 msgid "Cancel"
