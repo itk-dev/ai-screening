@@ -1,0 +1,293 @@
+# This is not a standalone Taskfile; it must be included in a main Taskfile which must also define three vars, e.g
+#
+#   includes:
+#     translation:
+#       taskfile: ./task/Taskfile.translation.yml
+#       vars:
+#         TRANSLATION_MODULES:
+#           - my_custom_module
+#           - another_module
+#
+#         TRANSLATION_THEMES:
+#           - my_custo_them
+#           - itkdev_project_theme
+#
+#         TRANSLATION_LANGUAGES:
+#           - da
+#
+# See https://taskfile.dev/usage/#including-other-taskfiles and https://taskfile.dev/usage/#vars-of-included-taskfiles for details on Taskfile includes.
+#
+# Furthermore, this Taskfile assumes that the parent Taskfile (i.e. the only including this)
+#
+# 1. defines a `drush` task for running Drush
+
+version: '3'
+
+tasks:
+  contrib-translations:export:
+    desc: 'Export contrib translations for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+    cmds:
+      - for:
+          matrix:
+            LANGUAGE:
+              ref: .TRANSLATION_LANGUAGES
+        cmd: |
+          task drush -- locale:export {{.ITEM.LANGUAGE}} --types=customized > translations/contrib-translations.{{.ITEM.LANGUAGE}}.po
+      - task: clean-up-translations
+    requires:
+      vars:
+        - TRANSLATION_LANGUAGES
+    silent: true
+
+  contrib-translations:import:
+    prompt: "Really import contrib translations?"
+    desc: 'Import contrib translations for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+    cmds:
+      - for:
+          matrix:
+            LANGUAGE:
+              ref: .TRANSLATION_LANGUAGES
+        cmd: task drush -- locale:import --type=not-customized --override=not-customized {{.ITEM.LANGUAGE}} ../translations/contrib-translations.{{.ITEM.LANGUAGE}}.po
+    requires:
+      vars:
+        - TRANSLATION_LANGUAGES
+    silent: true
+
+  translations:list:
+    desc: List all translation files
+    cmds:
+      - |
+          find translations config/translations web/*/custom/*/translations -name '*.*.po' -ls
+    silent: true
+
+  translations:diff:
+    desc: '`git diff` all translation files ignoring some date metadata changes'
+    cmds:
+      # Ignore some PO metadata when git diff'ing, e.g.
+      #
+      # "POT-Creation-Date: 2025-03-12 18:18+0100\n"
+      # "PO-Revision-Date: 2025-03-12 18:18+0100\n"
+      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' '*.po'
+
+  translations:checkout:
+    desc: '`git checkout` all translation file changes if only date metadata is changed (cf. `task {{.TASK | replace ":checkout" ":diff" }}`)'
+    cmds:
+      - git checkout '*.po'
+    # https://taskfile.dev/reference/schema#precondition
+    preconditions:
+      - sh: task {{.TASK | replace ":checkout" ":diff" }}
+        msg: |
+          Translations seem to have changed.
+
+          Run
+
+              task {{.TASK | replace ":checkout" ":diff" }}
+
+          to check.
+
+  module-translations:export:
+    desc: 'Export translations for all modules ({{.TRANSLATION_MODULES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+    cmds:
+      - task: do-export
+        vars:
+          TYPE: module
+          NAMES:
+            ref: .TRANSLATION_MODULES
+          LANGUAGES:
+            ref: .TRANSLATION_LANGUAGES
+    requires:
+      vars:
+        - TRANSLATION_MODULES
+        - TRANSLATION_LANGUAGES
+    silent: true
+
+  module-translations:import:
+    prompt: "Really import module translations?"
+    desc: 'Import translations for all modules ({{.TRANSLATION_MODULES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+    cmds:
+      - task: do-import
+        vars:
+          TYPE: module
+          NAMES:
+            ref: .TRANSLATION_MODULES
+    requires:
+      vars:
+        - TRANSLATION_MODULES
+    silent: true
+
+  theme-translations:export:
+    desc: 'Export translations for all themes ({{.TRANSLATION_THEMES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+    cmds:
+      - task: do-export
+        vars:
+          TYPE: theme
+          NAMES:
+            ref: .TRANSLATION_THEMES
+          LANGUAGES:
+            ref: .TRANSLATION_LANGUAGES
+    requires:
+      vars:
+        - TRANSLATION_THEMES
+        - TRANSLATION_LANGUAGES
+    silent: true
+
+  theme-translations:import:
+    prompt: "Really import theme translations?"
+    desc: 'Import translations for all themes ({{.TRANSLATION_THEMES | join ", "}}) in all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+    cmds:
+      - task: do-import
+        vars:
+          TYPE: theme
+          NAMES:
+            ref: .TRANSLATION_THEMES
+    requires:
+      vars:
+        - TRANSLATION_THEMES
+    silent: true
+
+  config-translations:export:
+    desc: 'Export config translation for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+    cmds:
+      - for:
+          matrix:
+            LANGUAGE:
+              ref: .TRANSLATION_LANGUAGES
+        cmd: task drush -- config_translation_po:export {{.ITEM.LANGUAGE}} --clear-same-as-source > config/translations/config.{{.ITEM.LANGUAGE}}.po
+      - task: clean-up-translations
+    requires:
+      vars:
+        - TRANSLATION_LANGUAGES
+    silent: true
+
+  config-translations:import:
+    prompt: "Really import config translations?"
+    desc: 'Import config translation for all languages ({{.TRANSLATION_LANGUAGES | join ", "}})'
+    cmds:
+      - for:
+          matrix:
+            LANGUAGE:
+              ref: .TRANSLATION_LANGUAGES
+        cmd: task drush -- config_translation_po:import --type=not-customized --override=not-customized da ../config/translations/config.{{.ITEM.LANGUAGE}}.po
+    requires:
+      vars:
+        - TRANSLATION_LANGUAGES
+    silent: true
+
+  test-pluralization:
+    desc: "Report and test some pluralizations to make sure that they are correct"
+    cmds:
+      - defer: rm {{.SCRIPT_NAME}}
+      - echo "{{.PHP_SCRIPT}}" > {{.SCRIPT_NAME}}
+      - task drush -- php:script {{.SCRIPT_NAME}} -- en {{.TRANSLATION_LANGUAGES | join " "}}
+    vars:
+      SCRIPT_NAME: tmp.php
+      PHP_SCRIPT: |
+        <?php
+
+        \$languages = \Drupal::service('language_manager')->getLanguages();
+
+        \$stuff = [
+          'languages' => \$languages,
+          'defaultLanguage' => \Drupal::service('language.default')->get(),
+          'locale.translation.formulae' => \Drupal::state()->get('locale.translation.formulae', []),
+        ];
+
+        foreach (array_keys(\$languages) as \$langcode) {
+          \$stuff['pluralizations'][\$langcode] = array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, '1 item', '@count items', options: ['langcode' => '{{.ITEM}}']))->render(), range(0, 9));
+        }
+
+        var_export(\$stuff);
+
+        // Check Danish translation
+        foreach ([
+          [0, '0 items'],
+          [1, '1 item'],
+          [2, '2 items'],
+        ] as [\$count, \$expected]) {
+          \$actual = (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, '1 item', '@count items', options: ['langcode' => 'da']))->render();
+          if (\$actual !== \$expected) {
+            throw new \RuntimeException(sprintf('count: %d; expected: %s; actual: %s', \$count, var_export(\$expected, true), var_export(\$actual, true)));
+          }
+        }
+    silent: true
+
+  export:
+    desc: Run all translation export tasks
+    cmds:
+      - task: contrib-translations:export
+      - task: config-translations:export
+      - task: module-translations:export
+      - task: theme-translations:export
+    silent: true
+
+  import:
+    prompt: "Really import all translations?"
+    desc: Run all translation import tasks
+    cmds:
+      # Important: contrib translations must be imported first to let the other translation type control the actual translation.
+      - task: contrib-translations:import
+      - task: config-translations:import
+      - task: module-translations:import
+      - task: theme-translations:import
+    silent: true
+
+  clean-up-translations:
+    internal: true
+    cmds:
+      # Fix plurals spec in Danish PO file
+      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+      # https://www.drupal.org/project/drupal/issues/3496223
+      - |
+          docker run --user=${COMPOSE_USER:-deploy} --rm --volume "$PWD:/app" itkdev/php8.3-fpm sed --in-place 's/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/' $(find translations config/translations web/*/custom/*/translations -name '*.da.po')
+
+  # ------------------------------------------------------------------------------
+  # Internal helper tasks.
+  # ------------------------------------------------------------------------------
+
+  do-export:
+    internal: true
+    cmds:
+      - task drush -- --yes pm:install potx
+      # https://github.com/go-task/task/discussions/1543
+      - for:
+          matrix:
+            NAME:
+              ref: .NAMES
+            LANGUAGE:
+              ref: .LANGUAGES
+        cmd: |
+          export SOURCE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.{{.TYPE}}")->getPath("{{.ITEM.NAME}}")')
+          if [ -n "$SOURCE_PATH" ]; then
+            task drush -- potx single --folder=${SOURCE_PATH}/ --language {{.ITEM.LANGUAGE}} --translations
+            mkdir -p web/${SOURCE_PATH}/translations
+            mv web/general.pot web/${SOURCE_PATH}/translations/{{.ITEM.NAME}}.{{.ITEM.LANGUAGE}}.po
+          fi
+      - task: clean-up-translations
+    requires:
+      vars:
+        - TYPE
+        - NAMES
+        - LANGUAGES
+    silent: true
+
+  # @todo Can we use `drush locale:check` and/or `drush locale:update` to update
+  # module translations without overriding existing translations?
+  # @todo Do we want to override (existing) translations?
+  do-import:
+    internal: true
+    cmds:
+      - for:
+          matrix:
+            NAME:
+              ref: .NAMES
+        cmd: |
+          export SOURCE_PATH=$(task drush -- php:eval 'echo Drupal::service("extension.list.{{.TYPE}}")->getPath("{{.ITEM.NAME}}")')
+          if [ -n "$SOURCE_PATH" ]; then
+            # Import translations as not-customized and override only not-customized existing translations.
+            task drush -- locale:import-all --type=not-customized --override=not-customized ${SOURCE_PATH}/translations/
+          fi
+    requires:
+      vars:
+        - TYPE
+        - NAMES
+    silent: true

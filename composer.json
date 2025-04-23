@@ -15,7 +15,7 @@
         "cweagans/composer-patches": "^1.7",
         "drupal/better_exposed_filters": "^7.0",
         "drupal/config_ignore": "^3.3",
-        "drupal/config_translation_po": "^1.0",
+        "drupal/config_translation_po": "dev-3439416-added-drush-command",
         "drupal/core-composer-scaffold": "^11.1",
         "drupal/core-project-message": "^11.1",
         "drupal/core-recommended": "^11.1",
@@ -31,6 +31,7 @@
     "require-dev": {
         "drupal/core-dev": "^11.0",
         "drupal/masquerade": "^2.0",
+        "drupal/potx": "^1.1",
         "drupal/webprofiler": "11.1.0",
         "ergebnis/composer-normalize": "^2.43",
         "mglaman/phpstan-drupal": "^1.1",
@@ -46,12 +47,17 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8",
             "exclude": [
+                "drupal/config_translation_po",
                 "drupal/openid_connect"
             ]
         },
         {
             "type": "git",
             "url": "https://git.drupalcode.org/issue/openid_connect-3452009.git"
+        },
+        {
+            "type": "git",
+            "url": "https://git.drupalcode.org/issue/config_translation_po-3439416.git"
         }
     ],
     "minimum-stability": "dev",
@@ -129,9 +135,6 @@
             ]
         },
         "patches": {
-            "drupal/config_translation_po": {
-                "Add drush command for config po import (https://www.drupal.org/project/config_translation_po/issues/3439416)": "https://www.drupal.org/files/issues/2024-04-08/drush.patch"
-            },
             "drupal/core": {
                 "Add an Autowire trait for plugins (https://www.drupal.org/project/drupal/issues/3294266)": "https://www.drupal.org/files/issues/2023-08-18/3294266-24.patch",
                 "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540)": "https://www.drupal.org/files/issues/2024-08-06/3150540-43-MR9103-11.x.diff",

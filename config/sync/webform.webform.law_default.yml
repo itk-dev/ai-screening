@@ -30,7 +30,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
-            value: '1'
+            value: '0'
     anvedes_systemet_til_borgerrettet_ai:
       '#type': ai_screening_yes_no_stop
       '#title': 'Anvedes systemet til borgerrettet AI?'
@@ -38,15 +38,15 @@ elements: |-
       '#states':
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
-            value: '1'
+            value: '0'
     anvendes_det_af_borgerne_til_ansoegninger_og_lign_handlinger:
       '#type': ai_screening_yes_no_stop
       '#title': 'Anvendes det af borgerne til ansøgninger og lign. handlinger?'
-      '#text_yes': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Det følger af det forvaltningsretlige undersøgelsesprincip , at myndigheden er forpligtet til at sikre tilstrækkelig og relevant sagsoplysning. En automatiseret sagsgang forudsætter derfor, at myndigheden på forhånd kan afgrænse, hvilke oplysninger og fakta, der er relevant til brug for sagsbehandlingen. Uanset om det er muligt på forhånd at afgrænse, hvilke oplysninger der er nødvendige i forbindelse med den konkrete sagsbehandling, kan der ved en fuldautomatiseret afgørelse være risiko for, at tilfælde med atypiske fakta eller andre forhold, som normalt ikke er relevante, overses.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal du afdække om der er særlovgivning, der regulerer området eller har anden indvirkning.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal der gennemføres en forvaltningsretlig konsekvensanalyse (EVT LINK TODO HUSK)</p></div>'
+      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><p>Det skal sikres at det er muligt at lade sig repræsentere af en anden (Partsrepræsentation) i AI-systemet (EVT LINK)</p></div>'
       '#states':
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
-            value: '1'
+            value: '0'
     falder_behandlingen_inden_for_listen_over_forbudt_ai_biometriske:
       '#type': ai_screening_yes_no_stop
       '#title': 'Falder behandlingen inden for listen over forbudt AI?'
@@ -64,7 +64,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
-            value: '1'
+            value: '0'
     kan_der_beskrives_et_baade_udtrykkeligt_og_legitimt_formaal_vaer:
       '#type': ai_screening_yes_no_stop
       '#title': 'Kan der beskrives et både udtrykkeligt og legitimt formål (vær opmærksom på at der typisk vil være krævet forskellige hjemler til  henholdsvis udvikling og drift)?'
@@ -151,7 +151,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
-            value: '1'
+            value: '0'
 css: ''
 javascript: ''
 settings:

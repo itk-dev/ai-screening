@@ -2,10 +2,29 @@ version: '3'
 
 dotenv: [".task.env", ".env"]
 
+includes:
+  translation:
+    taskfile: ./task/Taskfile.translation.yml
+    vars:
+      TRANSLATION_MODULES:
+        - ai_screening
+        # - ai_screening_fixtures_base
+        - ai_screening_project
+        - ai_screening_project_track
+        - ai_screening_reports
+
+      TRANSLATION_THEMES:
+        - itkdev_base_theme
+        - itkdev_project_theme
+
+      TRANSLATION_LANGUAGES:
+        - da
+
 vars:
   DOCKER_COMPOSE: '{{ .TASK_DOCKER_COMPOSE | default "docker compose" }}'
   # https://taskfile.dev/reference/templating/
   BASE_URL: '{{.TASK_BASE_URL | default .COMPOSE_SERVER_DOMAIN | default .COMPOSE_DOMAIN | default ""}}'
+
 
 tasks:
   compose:
@@ -70,35 +89,6 @@ tasks:
         sh: if [ ! -z "{{.BASE_URL}}" ]; then echo "https://{{.BASE_URL}}"; else echo "http://$(task compose -- port nginx 8080)"; fi
     silent: true
 
-  site-update:
-    desc: "Update site"
-    prompt: "This will reset your configuration. Continue?"
-    cmds:
-      - task start
-      - task drush -- deploy
-      - task theme-build
-      - task drush -- cache:rebuild
-      - task drush -- browse --no-browser
-      - task drush -- user:login
-      - task set-user-roles
-    silent: true
-
-  import-translations:
-    desc: "Import string and config translations from .po files"
-    prompt: "This will reset all translations to match .po files. Continue?"
-    cmds:
-      - task drush -- locale:import da ../translations/strings/ai-screening.da.po --override=all
-      - task drush -- config_translation_po:import da ../translations/config/ai-screening-config.da.po
-      - task drush -- cache:rebuild
-    silent: true
-
-  export-translation-strings:
-    desc: "Export string translations from .po files"
-    prompt: "This will update the .po file in /translations/strings folder"
-    cmds:
-      - task drush -- locale:export da > translations/strings/ai-screening.da.po
-    silent: true
-
   site-install-new:
     desc: "Install minimal Drupal site from scratch"
     prompt: "This will reset your setup. Continue?"
@@ -111,7 +101,24 @@ tasks:
     prompt: "This will reset your setup. Continue?"
     cmds:
       - task start
+      - task theme-build
       - task drush -- site-install --existing-config --yes
+      - task set-user-roles
+      - task translation:import --yes
+      - task drush -- cache:rebuild
+
+  site-update:
+    desc: "Update site"
+    prompt: "This will reset your configuration. Continue?"
+    cmds:
+      - task start
+      - task theme-build
+      - task drush -- deploy
+      - task set-user-roles
+      - task drush -- cache:rebuild
+      - task drush -- browse --no-browser
+      - task drush -- user:login
+    silent: true
 
   theme-build:
     desc: "Build theme"
@@ -193,7 +200,6 @@ tasks:
       # https://taskfile.dev/reference/schema#command and
       # https://taskfile.dev/reference/cli#flags
       - task: site-install
-      - task: site-update
       # Delete all translations.
       - task drush -- sql:query "DELETE FROM locales_target";
       - task drush -- cache:rebuild

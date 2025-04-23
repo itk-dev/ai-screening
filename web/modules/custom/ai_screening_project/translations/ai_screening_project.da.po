@@ -1,0 +1,91 @@
+# $Id$
+#
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/ai_screening_project/ai_screening_project.info.yml: n/a
+#  modules/custom/ai_screening_project/src/Plugin/Block/FrontpageStatsTopBlock.php: n/a
+#  modules/custom/ai_screening_project/src/BreadcrumbBuilder.php: n/a
+#  modules/custom/ai_screening_project/src/Helper/ProjectHelper.php: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-04-23 07:32+0200\n"
+"PO-Revision-Date: 2025-04-23 07:32+0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: modules/custom/ai_screening_project/ai_screening_project.info.yml:0
+msgid "AI Screening project"
+msgstr ""
+
+#: modules/custom/ai_screening_project/ai_screening_project.info.yml:0
+msgid "Functionality related to creating and maintaining the project content type and related entities."
+msgstr ""
+
+#: modules/custom/ai_screening_project/ai_screening_project.info.yml:0 modules/custom/ai_screening_project/src/Plugin/Block/FrontpageStatsTopBlock.php:21
+msgid "Custom"
+msgstr "Tilpasset"
+
+#: modules/custom/ai_screening_project/src/BreadcrumbBuilder.php:68
+msgid "Projects"
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/BreadcrumbBuilder.php:71
+msgid "Create new project"
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:237
+msgid "Corrupted"
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:238
+msgid "If the project or related entities are corrupted."
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:354
+msgid "Project group"
+msgstr "Projectgruppe"
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:359
+msgid "Project owner"
+msgstr "Projektejer"
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:368
+msgid "Contributors"
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:369
+msgid "Which users are allowed to contribute to this project"
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:388
+msgid "Project owner must be a contributor."
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:156
+msgid "Error deleting project: @message"
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:179
+msgid "Error deleting corrupted nodes: @message"
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:463
+msgid "Error creating groups: @message"
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:545
+msgid "Error creating project tracks: @message"
+msgstr ""
+
+#: modules/custom/ai_screening_project/src/Plugin/Block/FrontpageStatsTopBlock.php:20
+msgid "Frontpage stats top"
+msgstr ""
+
