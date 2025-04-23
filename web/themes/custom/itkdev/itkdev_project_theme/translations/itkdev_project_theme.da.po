@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-22 13:04+0200\n"
-"PO-Revision-Date: 2025-04-22 13:04+0200\n"
+"POT-Creation-Date: 2025-04-23 07:32+0200\n"
+"PO-Revision-Date: 2025-04-23 07:32+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -301,7 +301,7 @@ msgstr "Editor"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:5
 msgid "User"
-msgstr "Bruger"
+msgstr "User"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:30
 msgid "My profile"
