@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-31 16:08+0200\n"
-"PO-Revision-Date: 2025-03-31 16:08+0200\n"
+"POT-Creation-Date: 2025-04-23 07:32+0200\n"
+"PO-Revision-Date: 2025-04-23 07:32+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -107,7 +107,7 @@ msgstr "Status"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:22
 msgid "Author"
-msgstr "Forfatter"
+msgstr "Author"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:35
 msgid "Enabled"
@@ -207,7 +207,7 @@ msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:141
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:146
 msgid "Delta"
@@ -275,27 +275,27 @@ msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "Tools"
-msgstr "Værktøjer"
+msgstr "Tools"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "tool"
-msgstr ""
+msgstr "værktøj"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "tools"
-msgstr ""
+msgstr "værktøjer"
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:55
 msgid "@title"
-msgstr ""
+msgstr "@title"
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:72
 msgid "Evaluate manually"
-msgstr ""
+msgstr "Evaluér manuelt"
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:99
 msgid "Notes"
-msgstr ""
+msgstr "Noter"
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:115
 msgid "Cancel"

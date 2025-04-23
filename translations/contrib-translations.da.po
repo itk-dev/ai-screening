@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-10 13:07+0200\n"
-"PO-Revision-Date: 2025-04-10 13:07+0200\n"
+"POT-Creation-Date: 2025-04-23 07:31+0200\n"
+"PO-Revision-Date: 2025-04-23 07:31+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -12,23 +12,50 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Title"
+msgstr "Title"
+
+msgid "Content"
+msgstr "Indhold"
+
+msgid "Author"
+msgstr "Author"
+
 msgid "Reset"
 msgstr "Nulstil"
 
+msgid "User"
+msgstr "User"
+
+msgid "Content type"
+msgstr "Content type"
+
+msgid "Active"
+msgstr "Active"
+
+msgid "Page"
+msgstr "Page"
+
 msgid "Published"
-msgstr "Publiseret"
+msgstr "Published"
+
+msgid "Desc"
+msgstr "Desc"
+
+msgid "Tools"
+msgstr "Tools"
 
 msgid "Sort by"
-msgstr "Sorter efter"
+msgstr "Sort by"
 
 msgid "Unpublished"
-msgstr "Ikke publiseret"
+msgstr "Unpublished"
 
 msgid "Apply"
 msgstr "Anvend"
 
 msgid "No content available."
-msgstr "Intet indhold."
+msgstr "No content available."
 
 msgid "Primary tabs"
 msgstr "Primære tabs"
@@ -36,14 +63,34 @@ msgstr "Primære tabs"
 msgid "Secondary tabs"
 msgstr "Sekundære tabs"
 
+msgid "Status messages"
+msgstr "Status beskeder"
+
 msgid "Published status"
-msgstr "Publiseringsstatus status"
+msgstr "Published status"
+
+msgid "Asc"
+msgstr "Asc"
 
 msgid "Site branding"
 msgstr "Branding"
 
+msgid "Primary admin actions"
+msgstr "Primære admin actions"
+
 msgid "Name or email contains"
 msgstr "Navn eller email indeholder"
+
+msgid ""
+"No front page content has been created yet.<br/>Follow the <a "
+"target=\"_blank\" "
+"href=\"https://www.drupal.org/docs/user_guide/en/index.html\">User "
+"Guide</a> to start building your site."
+msgstr ""
+"No front page content has been created yet.<br/>Follow the <a "
+"target=\"_blank\" "
+"href=\"https://www.drupal.org/docs/user_guide/en/index.html\">User "
+"Guide</a> to start building your site."
 
 msgctxt "PHP date format"
 msgid "l, j F Y - H:i"
