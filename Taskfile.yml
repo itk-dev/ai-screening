@@ -104,8 +104,8 @@ tasks:
       - task theme-build
       - task drush -- site-install --existing-config --yes
       - task set-user-roles
-      - task drush -- cache:rebuild
       - task translation:import --yes
+      - task drush -- cache:rebuild
 
   site-update:
     desc: "Update site"
