@@ -3,21 +3,16 @@ name: Translation
 on:
   pull_request:
   push:
+    branches:
+      - main
+      - develop
 
 env:
   COMPOSE_USER: runner
 
 jobs:
   check-translations:
-    if: false
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        task:
-          - translation:contrib-translations:export
-          - translation:config-translations:export
-          - translation:module-translations:export
-          - translation:theme-translations:export
     steps:
       - uses: actions/checkout@v4
         # https://github.com/actions/checkout/issues/881
@@ -34,9 +29,9 @@ jobs:
           docker network create frontend
           task site-install --yes
 
-      - name: Export translations (${{ matrix.task }})
+      - name: Export translations
         run: |
-          task ${{ matrix.task }}
+          task translation:export
 
       # https://github.com/mxschmitt/action-tmate?tab=readme-ov-file#manually-triggered-debug
       # Enable tmate debugging if debug logging is enabled (cf.

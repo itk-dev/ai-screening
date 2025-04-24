@@ -32,26 +32,43 @@ msgstr ""
 "PO-Revision-Date: 2025-04-28 09:12+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:15 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:149
-msgid "Project track configuration"
-msgstr "Projektsporskonfiguration"
+#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:171
+msgid "\"Undecided\" threshold can not be greater than \"Approved\" threshold."
+msgstr "\"Uafklaret\"-tærsklen kan ikke være større end \"Godkendt\"-tærsklen."
 
-#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:16 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:150
-msgid "Configuration for the track."
-msgstr "Konfiguration for sporet."
+#: modules/custom/ai_screening_project_track/src/Element/YesNoStop.php:37
+msgid "- Select -"
+msgstr "- Vælg -"
 
-#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:30 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:121
-msgid "Project track evaluation overridden"
-msgstr "Projektsporsevaluering tilsidesat"
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:201;260
+msgid "@response (stop)"
+msgstr "@response (stop)"
 
-#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:31
-msgid "The overridden evaluation of the project track"
-msgstr "Den tilsidesatte evaluering af projektsporet"
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:55
+msgid "@title"
+msgstr "@title"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:114
+msgid "A description of the project track."
+msgstr "En beskrivelse af projektsporet."
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:126
+msgid "A note related to project track evaluation."
+msgstr "En note relateret til evaluering af projektsporet."
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/StaticSelect.php:7
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:12
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextarea.php:7
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextfield.php:7
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
+msgid "AI Screening"
+msgstr "AI Screening"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.info.yml:0
 msgid "AI Screening project track"
@@ -61,205 +78,299 @@ msgstr "AI Screening projektspor"
 msgid "Adds project track entity and functionality"
 msgstr "Tilføjer projektsporsentitet og funktionalitet"
 
-#: modules/custom/ai_screening_project_track/ai_screening_project_track.info.yml:0
-msgid "Custom"
-msgstr "Tilpasset"
-
-#: modules/custom/ai_screening_project_track/ai_screening_project_track.routing.yml:0
-msgid "Thresholds settings"
-msgstr "Tærskelindstillinger"
-
-#: modules/custom/ai_screening_project_track/src/Evaluation.php:21
-msgid "Not started"
-msgstr "Ikke påbegyndt"
-
-#: modules/custom/ai_screening_project_track/src/Evaluation.php:22 modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:93
+#: modules/custom/ai_screening_project_track/src/Evaluation.php:22
+#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:93
 msgid "Approved"
 msgstr "Godkendt"
-
-#: modules/custom/ai_screening_project_track/src/Evaluation.php:23 modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:101
-msgid "Undecided"
-msgstr "Uafklaret"
-
-#: modules/custom/ai_screening_project_track/src/Evaluation.php:24
-msgid "Refused"
-msgstr "Afvist"
-
-#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:19 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:19
-msgid "ID"
-msgstr "ID"
-
-#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:20 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:23
-msgid "Created"
-msgstr "Created"
-
-#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:21 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:24
-msgid "Updated"
-msgstr "Opdateret"
-
-#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:20
-msgid "Label"
-msgstr "Etiket"
-
-#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:21 modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:92
-msgid "Status"
-msgstr "Status"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:22
 msgid "Author"
 msgstr "Author"
 
-#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:35
-msgid "Enabled"
-msgstr "Aktiveret"
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:133
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:112
+msgid "Authored on"
+msgstr "Skrevet den"
 
-#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:35
-msgid "Disabled"
-msgstr "Deaktiveret"
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:115
+msgid "Cancel"
+msgstr "Annullér"
 
-#: modules/custom/ai_screening_project_track/src/Status.php:21
-msgid "None"
-msgstr "Ingen"
-
-#: modules/custom/ai_screening_project_track/src/Status.php:22
-msgid "New"
-msgstr "Ny"
-
-#: modules/custom/ai_screening_project_track/src/Status.php:23
-msgid "In progress"
-msgstr "I gang"
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:137
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:116
+msgid "Changed"
+msgstr "Ændret"
 
 #: modules/custom/ai_screening_project_track/src/Status.php:24
 msgid "Completed"
 msgstr "Afsluttet"
 
-#: modules/custom/ai_screening_project_track/src/Element/YesNoStop.php:37
-msgid "- Select -"
-msgstr "- Vælg -"
+#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:16
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:150
+msgid "Configuration for the track."
+msgstr "Konfiguration for sporet."
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:103
-msgid "Type"
-msgstr "Type"
+#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:20
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:23
+msgid "Created"
+msgstr "Created"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:104
-msgid "The type of the project track, as defined by taxonommy term"
-msgstr "Typen af projektspor, som defineret af taxonomibegreb"
+#: modules/custom/ai_screening_project_track/ai_screening_project_track.info.yml:0
+msgid "Custom"
+msgstr "Tilpasset"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:109
-msgid "Project track title"
-msgstr "Projektsporets titel"
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:110
-msgid "The title of the project track."
-msgstr "Titlen på projektsporet."
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:113
-msgid "Project track description"
-msgstr "Projektsporets beskrivelse"
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:114
-msgid "A description of the project track."
-msgstr "En beskrivelse af projektsporet."
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:117
-msgid "Project track evaluation"
-msgstr "Projektsporets evaluering"
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:118
-msgid "The evaluation of the project track."
-msgstr "Evalueringen af projektsporet."
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:122
-msgid "The overridden evaluation of the project track."
-msgstr "Den tilsidesatte evaluering af projektsporet."
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:125
-msgid "Project track note"
-msgstr "Projektsporets note"
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:126
-msgid "A note related to project track evaluation."
-msgstr "En note relateret til evaluering af projektsporet."
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:129
-msgid "Project track status"
-msgstr "Projektsporets status"
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:130
-msgid "The status of the project track."
-msgstr "Statusen på projektsporet."
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:133 modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:112
-msgid "Authored on"
-msgstr "Skrevet den"
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:134
-msgid "The time that the project track was created."
-msgstr "Tidspunktet hvor projektsporet blev oprettet."
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:137 modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:116
-msgid "Changed"
-msgstr "Ændret"
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:138
-msgid "The time that the project track was last edited."
-msgstr "Tidspunktet hvor projektsporet sidst blev redigeret."
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:141
-msgid "Project"
-msgstr "Projekt"
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:120
+msgid "Dalte"
+msgstr "Dalte"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:146
 msgid "Delta"
 msgstr "Delta"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18 modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:91
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:35
+msgid "Disabled"
+msgstr "Deaktiveret"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:63
+msgid "Each option must be an integer (%dimensions)"
+msgid_plural "Each option must be %cardinality integers (%dimensions) separated by comma"
+msgstr[0] "Hver mulighed skal være et heltal (%dimensions)"
+msgstr[1] "Hver mulighed skal være %cardinality heltal (%dimensions) adskilt af komma"
+
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:35
+msgid "Enabled"
+msgstr "Aktiveret"
+
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:72
+msgid "Evaluate manually"
+msgstr "Evaluér manuelt"
+
+#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:122
+msgid "Go back"
+msgstr "Gå tilbage"
+
+#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:19
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:19
+msgid "ID"
+msgstr "ID"
+
+#: modules/custom/ai_screening_project_track/src/Status.php:23
+msgid "In progress"
+msgstr "I gang"
+
+#: modules/custom/ai_screening_project_track/src/Helper/ProjectTrackTypeHelper.php:136
+msgid "Invalid configuration: @message"
+msgstr "Ugyldig konfiguration: @message"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:112
+msgid "Invalid option value @values"
+msgid_plural "Invalid option values @values"
+msgstr[0] "Ugyldig valgmulighed @values"
+msgstr[1] "Ugyldige valgmuligheder @values"
+
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:20
+msgid "Label"
+msgstr "Etiket"
+
+#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:83
+msgid "Max possible value obtainable: @max"
+msgstr "Maksimal opnåelig værdi: @max"
+
+#: modules/custom/ai_screening_project_track/src/Status.php:22
+msgid "New"
+msgstr "Ny"
+
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:149;150
+msgid "New project track %label has been created."
+msgstr "Nyt projektspor %label er blevet oprettet."
+
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackToolForm.php:29;30
+msgid "New tool %label has been created."
+msgstr "Nyt værktøj %label er blevet oprettet."
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:89
+msgid "No"
+msgstr "Nej"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:147
+msgid "No text"
+msgstr "Nej-tekst"
+
+#: modules/custom/ai_screening_project_track/src/Status.php:21
+msgid "None"
+msgstr "Ingen"
+
+#: modules/custom/ai_screening_project_track/src/Evaluation.php:21
+msgid "Not started"
+msgstr "Ikke påbegyndt"
+
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:99
+msgid "Notes"
+msgstr "Noter"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedElementTrait.php:43
+msgid "Please enter the weight."
+msgstr "Angiv venligst vægten."
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:141
+msgid "Project"
+msgstr "Projekt"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:91
 msgid "Project track"
 msgstr "Projektspor"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
-msgid "Project tracks"
-msgstr "Projektspor"
+#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:15
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:149
+msgid "Project track configuration"
+msgstr "Projektsporskonfiguration"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
-msgid "project track"
-msgstr "projektspor"
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:113
+msgid "Project track description"
+msgstr "Projektsporets beskrivelse"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
-msgid "project tracks"
-msgstr "projektspor"
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:117
+msgid "Project track evaluation"
+msgstr "Projektsporets evaluering"
+
+#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:30
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:121
+msgid "Project track evaluation overridden"
+msgstr "Projektsporsevaluering tilsidesat"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:125
+msgid "Project track note"
+msgstr "Projektsporets note"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:129
+msgid "Project track status"
+msgstr "Projektsporets status"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:109
+msgid "Project track title"
+msgstr "Projektsporets titel"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:95
 msgid "Project track tool status"
 msgstr "Status for projektsporsværktøj"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:96
-msgid "The status of the project track tool."
-msgstr "Statusen for projektsporsværktøjet."
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
+msgid "Project tracks"
+msgstr "Projektspor"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:99
-msgid "Tool entity type"
-msgstr "Værktøjsentitetstype"
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:138
+msgid "Question"
+msgstr "Spørgsmål"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:100
-msgid "The entity type of the tool referenced."
-msgstr "Entitetstypen for det refererede værktøj."
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedElementTrait.php:37
+msgid "Question weight"
+msgstr "Spørgsmålsvægt"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:103;18
-msgid "Tool"
-msgstr "Værktøj"
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:12
+msgid "Radios with an (x, y) weight."
+msgstr "Radioknapper med en (x, y) vægt."
+
+#: modules/custom/ai_screening_project_track/src/Evaluation.php:24
+msgid "Refused"
+msgstr "Afvist"
+
+#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:103
+msgid "Refused -> Undecided"
+msgstr "Afvist -> Uafklaret"
+
+#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:144
+msgid "Save"
+msgstr "Gem"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/StaticSelect.php:7
+msgid "Select field with four static options"
+msgstr "Valgfelt med fire statiske muligheder"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/StaticSelect.php:7
+msgid "Static select field"
+msgstr "Statisk valgfelt"
+
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:21
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:92
+msgid "Status"
+msgstr "Status"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:161
+msgid "Stop text"
+msgstr "Stop-tekst"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:155
+msgid "Stop value"
+msgstr "Stop-værdi"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextarea.php:7
+msgid "Tecfield with an (x, y) weight."
+msgstr "Tekstfelt med en (x, y) vægt."
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextfield.php:7
+msgid "Texfield with an (x, y) weight."
+msgstr "Tekstfelt med en (x, y) vægt."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:104
 msgid "The ID of the tool referenced."
 msgstr "ID'et for det refererede værktøj."
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:107
-msgid "Tool data"
-msgstr "Værktøjsdata"
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:156
+msgid "The answer to trigger a \"stop\"."
+msgstr "Svaret der udløser et \"stop\"."
+
+#: modules/custom/ai_screening_project_track/src/Helper/ProjectTrackTypeHelper.php:129
+msgid "The configuration option cannot be empty."
+msgstr "Konfigurationsindstillingen kan ikke være tom."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:109
 msgid "The data matching the tool configuration"
 msgstr "Data der matcher værktøjets konfiguration"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:100
+msgid "The entity type of the tool referenced."
+msgstr "Entitetstypen for det refererede værktøj."
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:118
+msgid "The evaluation of the project track."
+msgstr "Evalueringen af projektsporet."
+
+#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:31
+msgid "The overridden evaluation of the project track"
+msgstr "Den tilsidesatte evaluering af projektsporet"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:122
+msgid "The overridden evaluation of the project track."
+msgstr "Den tilsidesatte evaluering af projektsporet."
+
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:154;155
+msgid "The project track %label has been updated."
+msgstr "Projektsporet %label er blevet opdateret."
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedElementTrait.php:41
+msgid "The question weight"
+msgstr "Spørgsmålets vægt"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:96
+msgid "The status of the project track tool."
+msgstr "Statusen for projektsporsværktøjet."
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:130
+msgid "The status of the project track."
+msgstr "Statusen på projektsporet."
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:148
+msgid "The text to display when answering \"no\"."
+msgstr "Teksten der vises, når der svares \"nej\"."
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:143
+msgid "The text to display when answering \"yes\"."
+msgstr "Teksten der vises, når der svares \"ja\"."
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:162
+msgid "The text to display when answering with the \"stop\" value."
+msgstr "Teksten der vises, når der svares med \"stop\"-værdien."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:113
 msgid "The time that the project track tool was created."
@@ -269,13 +380,108 @@ msgstr "Tidspunktet hvor projektsporsværktøjet blev oprettet."
 msgid "The time that the project track tool was last edited."
 msgstr "Tidspunktet hvor projektsporsværktøjet sidst blev redigeret."
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:120
-msgid "Dalte"
-msgstr "Dalte"
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:134
+msgid "The time that the project track was created."
+msgstr "Tidspunktet hvor projektsporet blev oprettet."
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:138
+msgid "The time that the project track was last edited."
+msgstr "Tidspunktet hvor projektsporet sidst blev redigeret."
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:110
+msgid "The title of the project track."
+msgstr "Titlen på projektsporet."
+
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackToolForm.php:34;35
+msgid "The tool %label has been updated."
+msgstr "Værktøjet %label er blevet opdateret."
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:104
+msgid "The type of the project track, as defined by taxonommy term"
+msgstr "Typen af projektspor, som defineret af taxonomibegreb"
+
+#: modules/custom/ai_screening_project_track/ai_screening_project_track.routing.yml:0
+msgid "Thresholds settings"
+msgstr "Tærskelindstillinger"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:103;18
+msgid "Tool"
+msgstr "Værktøj"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:107
+msgid "Tool data"
+msgstr "Værktøjsdata"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:99
+msgid "Tool entity type"
+msgstr "Værktøjsentitetstype"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "Tools"
 msgstr "Tools"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:103
+msgid "Type"
+msgstr "Type"
+
+#: modules/custom/ai_screening_project_track/src/Evaluation.php:23
+#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:101
+msgid "Undecided"
+msgstr "Uafklaret"
+
+#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:96
+msgid "Undecided -> Approved"
+msgstr "Uafklaret -> Godkendt"
+
+#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:21
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:24
+msgid "Updated"
+msgstr "Opdateret"
+
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:144
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackToolForm.php:24
+msgid "View"
+msgstr "Vis"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedElementTrait.php:42
+msgid "Weight"
+msgstr "Vægt"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:12
+msgid "Weighted radios"
+msgstr "Vægtede radioknapper"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextarea.php:7
+msgid "Weighted textarea"
+msgstr "Vægtet tekstområde"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextfield.php:7
+msgid "Weighted textfield"
+msgstr "Vægtet tekstfelt"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:88
+msgid "Yes"
+msgstr "Ja"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:142
+msgid "Yes text"
+msgstr "Ja-tekst"
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
+msgid "Yes/no question."
+msgstr "Ja/nej-spørgsmål."
+
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
+msgid "Yes/no stop"
+msgstr "Ja/nej stop"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
+msgid "project track"
+msgstr "projektspor"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
+msgid "project tracks"
+msgstr "projektspor"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "tool"
@@ -284,193 +490,3 @@ msgstr "værktøj"
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:18
 msgid "tools"
 msgstr "værktøjer"
-
-#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:55
-msgid "@title"
-msgstr "@title"
-
-#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:72
-msgid "Evaluate manually"
-msgstr "Evaluér manuelt"
-
-#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:99
-msgid "Notes"
-msgstr "Noter"
-
-#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:115
-msgid "Cancel"
-msgstr "Annullér"
-
-#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:144 modules/custom/ai_screening_project_track/src/Form/ProjectTrackToolForm.php:24
-msgid "View"
-msgstr "Vis"
-
-#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:149;150
-msgid "New project track %label has been created."
-msgstr "Nyt projektspor %label er blevet oprettet."
-
-#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:154;155
-msgid "The project track %label has been updated."
-msgstr "Projektsporet %label er blevet opdateret."
-
-#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackToolForm.php:29;30
-msgid "New tool %label has been created."
-msgstr "Nyt værktøj %label er blevet oprettet."
-
-#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackToolForm.php:34;35
-msgid "The tool %label has been updated."
-msgstr "Værktøjet %label er blevet opdateret."
-
-#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:83
-msgid "Max possible value obtainable: @max"
-msgstr "Maksimal opnåelig værdi: @max"
-
-#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:96
-msgid "Undecided -> Approved"
-msgstr "Uafklaret -> Godkendt"
-
-#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:103
-msgid "Refused -> Undecided"
-msgstr "Afvist -> Uafklaret"
-
-#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:122
-msgid "Go back"
-msgstr "Gå tilbage"
-
-#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:144
-msgid "Save"
-msgstr "Gem"
-
-#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:171
-msgid "\"Undecided\" threshold can not be greater than \"Approved\" threshold."
-msgstr "\"Uafklaret\"-tærsklen kan ikke være større end \"Godkendt\"-tærsklen."
-
-#: modules/custom/ai_screening_project_track/src/Helper/ProjectTrackTypeHelper.php:129
-msgid "The configuration option cannot be empty."
-msgstr "Konfigurationsindstillingen kan ikke være tom."
-
-#: modules/custom/ai_screening_project_track/src/Helper/ProjectTrackTypeHelper.php:136
-msgid "Invalid configuration: @message"
-msgstr "Ugyldig konfiguration: @message"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/StaticSelect.php:7
-msgid "Static select field"
-msgstr "Statisk valgfelt"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/StaticSelect.php:7
-msgid "Select field with four static options"
-msgstr "Valgfelt med fire statiske muligheder"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/StaticSelect.php:7 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:12 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextarea.php:7 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextfield.php:7 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
-msgid "AI Screening"
-msgstr "AI Screening"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedElementTrait.php:37
-msgid "Question weight"
-msgstr "Spørgsmålsvægt"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedElementTrait.php:41
-msgid "The question weight"
-msgstr "Spørgsmålets vægt"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedElementTrait.php:42
-msgid "Weight"
-msgstr "Vægt"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedElementTrait.php:43
-msgid "Please enter the weight."
-msgstr "Angiv venligst vægten."
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:63
-msgid "Each option must be an integer (%dimensions)"
-msgid_plural "Each option must be %cardinality integers (%dimensions) separated by comma"
-msgstr[0] "Hver mulighed skal være et heltal (%dimensions)"
-msgstr[1] "Hver mulighed skal være %cardinality heltal (%dimensions) adskilt af komma"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:112
-msgid "Invalid option value @values"
-msgid_plural "Invalid option values @values"
-msgstr[0] "Ugyldig valgmulighed @values"
-msgstr[1] "Ugyldige valgmuligheder @values"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:12
-msgid "Weighted radios"
-msgstr "Vægtede radioknapper"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:12
-msgid "Radios with an (x, y) weight."
-msgstr "Radioknapper med en (x, y) vægt."
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextarea.php:7
-msgid "Weighted textarea"
-msgstr "Vægtet tekstområde"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextarea.php:7
-msgid "Tecfield with an (x, y) weight."
-msgstr "Tekstfelt med en (x, y) vægt."
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextfield.php:7
-msgid "Weighted textfield"
-msgstr "Vægtet tekstfelt"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextfield.php:7
-msgid "Texfield with an (x, y) weight."
-msgstr "Tekstfelt med en (x, y) vægt."
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:138
-msgid "Question"
-msgstr "Spørgsmål"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:142
-msgid "Yes text"
-msgstr "Ja-tekst"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:143
-msgid "The text to display when answering \"yes\"."
-msgstr "Teksten der vises, når der svares \"ja\"."
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:147
-msgid "No text"
-msgstr "Nej-tekst"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:148
-msgid "The text to display when answering \"no\"."
-msgstr "Teksten der vises, når der svares \"nej\"."
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:155
-msgid "Stop value"
-msgstr "Stop-værdi"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:156
-msgid "The answer to trigger a \"stop\"."
-msgstr "Svaret der udløser et \"stop\"."
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:161
-msgid "Stop text"
-msgstr "Stop-tekst"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:162
-msgid "The text to display when answering with the \"stop\" value."
-msgstr "Teksten der vises, når der svares med \"stop\"-værdien."
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:201;260
-msgid "@response (stop)"
-msgstr "@response (stop)"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:88
-msgid "Yes"
-msgstr "Ja"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:89
-msgid "No"
-msgstr "Nej"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
-msgid "Yes/no stop"
-msgstr "Ja/nej stop"
-
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
-msgid "Yes/no question."
-msgstr "Ja/nej-spørgsmål."
-
-

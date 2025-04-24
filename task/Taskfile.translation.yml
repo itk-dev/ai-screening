@@ -231,15 +231,6 @@ tasks:
       - task: theme-translations:import
     silent: true
 
-  clean-up-translations:
-    internal: true
-    cmds:
-      # Fix plurals spec in Danish PO file
-      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
-      # https://www.drupal.org/project/drupal/issues/3496223
-      - |
-          docker run --user=${COMPOSE_USER:-deploy} --rm --volume "$PWD:/app" itkdev/php8.3-fpm sed --in-place 's/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/' $(find translations config/translations web/*/custom/*/translations -name '*.da.po')
-
   # ------------------------------------------------------------------------------
   # Internal helper tasks.
   # ------------------------------------------------------------------------------
@@ -291,3 +282,28 @@ tasks:
         - TYPE
         - NAMES
     silent: true
+
+  clean-up-translations:
+    cmds:
+      # Replace \r\n with \n PO files (cf. "warning: internationalized messages should not contain the '\r' escape sequence")
+      - |
+          {{.SHELL}} sed --in-place 's/\\r\\n/\\n/g' $(find translations config/translations web/*/custom/* -name '*.po')
+      # Fix plurals spec in Danish PO files
+      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+      # https://www.drupal.org/project/drupal/issues/3496223
+      - |
+          {{.SHELL}} sed --in-place 's/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/' $(find translations config/translations web/*/custom/* -name '*.da.po')
+      # Set 'Language' field in the header entry in Danish PO files
+      - |
+        for f in $(find translations config/translations web/*/custom/* -name '*.da.po'); do
+          {{.SHELL}} msgcat --lang=da "$f" > {{.TMP_FILE_PATH}} && mv {{.TMP_FILE_PATH}} "$f"
+        done
+      # Make translations unique and sort them
+      # (cf. https://www.man7.org/linux/man-pages/man1/msguniq.1.html)
+      - |
+          for f in $(find translations config/translations web/*/custom/* -name '*.po'); do
+            {{.SHELL}} msguniq --unique --sort-output --no-wrap "$f" > {{.TMP_FILE_PATH}} && mv {{.TMP_FILE_PATH}} "$f"
+          done
+    vars:
+      SHELL: docker run --user=${COMPOSE_USER:-deploy} --rm --volume "$PWD:/app" itkdev/php8.4-fpm
+      TMP_FILE_PATH: /tmp/translations.tmp
