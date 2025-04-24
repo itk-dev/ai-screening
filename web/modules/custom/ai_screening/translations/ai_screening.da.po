@@ -67,7 +67,7 @@ msgstr ""
 
 #: modules/custom/ai_screening/src/Form/FrontpageForm.php:56
 msgid "Go back"
-msgstr ""
+msgstr "Tilbage"
 
 #: modules/custom/ai_screening/src/Form/FrontpageForm.php:78
 msgid "Save"

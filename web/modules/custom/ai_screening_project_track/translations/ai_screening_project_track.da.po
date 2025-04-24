@@ -335,7 +335,7 @@ msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:122
 msgid "Go back"
-msgstr ""
+msgstr "Tilbage"
 
 #: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:144
 msgid "Save"
