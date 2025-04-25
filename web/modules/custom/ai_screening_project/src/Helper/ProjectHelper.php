@@ -42,6 +42,7 @@ use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 
 /**
  * A helper class for the Project node entity.
@@ -375,19 +376,16 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         '#weight' => 2,
       ];
 
-      $form['confirmation_dialog'] = [
-        '#type' => 'hidden',
-        '#id' => 'project-confirmation-dialog',
-        '#attributes' => [
-          'class' => ['project-confirmation-dialog'],
-        ],
-      ];
-
-      array_unshift($form['actions']['submit']['#submit'], $this->addConfirmationStep(...));
-      $form['#attached']['library'][] = 'ai_screening_project/project-confirmation';
-
       $form['#validate'][] = $this->validateGroupsForm(...);
-      $form['actions']['submit']['#submit'][] = $this->submitGroupsForm(...);
+      $userInput = $formState->getUserInput();
+      if (isset($userInput['field_project_state']) && 'finished' === $userInput['field_project_state']) {
+        unset($form['actions']['submit']['#submit']);
+        $form['actions']['submit']['#submit'][] = $this->addConfirmationStep(...);
+      }
+      else {
+        $form['actions']['submit']['#submit'][] = $this->submitGroupsForm(...);
+      }
+
     }
   }
 
@@ -400,17 +398,23 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     }
   }
 
+  /**
+   * Change form redirect and store form state temporarily.
+   *
+   * @param array $form
+   *   The form.
+   * @param \Drupal\Core\Form\FormStateInterface $formState
+   *   State of the form.
+   */
   public function addConfirmationStep(array $form, FormStateInterface $formState): void {
-    // If the confirmation has already been acknowledged, proceed with saving
-    if ($formState->getValue('confirmation_dialog') === 'confirmed') {
-      return;
-    }
+    // Get the node being edited.
+    $node = $formState->getFormObject()->getEntity();
 
-    // Otherwise, prevent form submission and trigger the confirmation dialog via JS
-    $formState->setRebuild(TRUE);
+    // Save the form values to tempstore.
+    $this->tempStoreFactory->get('ai_screening_project_deactivate_confirm')->set('project_form_values_' . $node->id(), $formState->getValues());
 
-    // Add a hidden input value that JS will check to trigger the dialog
-    $formState->setValue('trigger_confirmation', TRUE);
+    // Redirect to the confirmation form.
+    $formState->setRedirect('ai_screening_project.project_deactivate_confirm', ['node' => $node->id()]);
   }
 
   /**
