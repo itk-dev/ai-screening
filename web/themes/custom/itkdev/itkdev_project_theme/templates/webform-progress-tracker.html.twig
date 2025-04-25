@@ -42,12 +42,12 @@
     {% endif %}
     <li{{ attributes.addClass('inline-block', 'basis-full', 'mb-2') }}>
       {% if index < current_index %}
-        <span class="mr-3 text-xl" data-webform-progress-step data-webform-progress-link data-text="{{ index + 1 }}">
-          <i class="fa-regular fa-circle-check"></i>
+        <span class="mr-3 text-base" data-webform-progress-step data-webform-progress-link data-text="{{ index + 1 }}">
+          <i class="fa-solid fa-circle-check"></i>
         </span>
       {% else %}
-        <span class="mr-3 text-xl" data-webform-progress-step data-webform-progress-link data-text="{{ index + 1 }}">
-          <i class="fa-regular fa-circle"></i>
+        <span class="mr-3 text-base" data-webform-progress-step data-webform-progress-link data-text="{{ index + 1 }}">
+          <i class="fa-solid fa-circle"></i>
         </span>
       {% endif %}
       {% if progress|length < max_pages %}
