@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-98](https://github.com/itk-dev/ai-screening/pull/98)
+  - Change bullets in webform progress
+  - Translate strings
+  - Remove (TODOS) in webform descriptions
+  - Set department field on project to be required
+  - Change help text from color code reference to high/average/low
+  - Remove capitalization in webform element
 - [PR-97](https://github.com/itk-dev/ai-screening/pull/97)
   - Fix bugs in law track webform
 - [PR-93](https://github.com/itk-dev/ai-screening/pull/93)
