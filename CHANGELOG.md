@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [0.2.0]
+
 - [PR-98](https://github.com/itk-dev/ai-screening/pull/98)
   - Change bullets in webform progress
   - Translate strings
