@@ -13,7 +13,7 @@ elements: |-
     anvendes_systemet_til_sagsbehandling_uanset_om_det_er_borgerrett:
       '#type': ai_screening_yes_no_stop
       '#title': 'Anvendes systemet til sagsbehandling (uanset om det er borgerrettet eller virksomhedsrettet)?'
-      '#text_yes': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Det følger af det forvaltningsretlige undersøgelsesprincip , at myndigheden er forpligtet til at sikre tilstrækkelig og relevant sagsoplysning. En automatiseret sagsgang forudsætter derfor, at myndigheden på forhånd kan afgrænse, hvilke oplysninger og fakta, der er relevant til brug for sagsbehandlingen. Uanset om det er muligt på forhånd at afgrænse, hvilke oplysninger der er nødvendige i forbindelse med den konkrete sagsbehandling, kan der ved en fuldautomatiseret afgørelse være risiko for, at tilfælde med atypiske fakta eller andre forhold, som normalt ikke er relevante, overses.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal du afdække om der er særlovgivning, der regulerer området eller har anden indvirkning.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal der gennemføres en forvaltningsretlig konsekvensanalyse (EVT LINK TODO HUSK)</p></div>'
+      '#text_yes': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Det følger af det forvaltningsretlige undersøgelsesprincip , at myndigheden er forpligtet til at sikre tilstrækkelig og relevant sagsoplysning. En automatiseret sagsgang forudsætter derfor, at myndigheden på forhånd kan afgrænse, hvilke oplysninger og fakta, der er relevant til brug for sagsbehandlingen. Uanset om det er muligt på forhånd at afgrænse, hvilke oplysninger der er nødvendige i forbindelse med den konkrete sagsbehandling, kan der ved en fuldautomatiseret afgørelse være risiko for, at tilfælde med atypiske fakta eller andre forhold, som normalt ikke er relevante, overses.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal du afdække om der er særlovgivning, der regulerer området eller har anden indvirkning.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal der gennemføres en forvaltningsretlig konsekvensanalyse</p></div>'
       '#states':
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
@@ -21,7 +21,7 @@ elements: |-
     anvedes_systemet_til_borgerrettet_ai:
       '#type': ai_screening_yes_no_stop
       '#title': 'Anvedes systemet til borgerrettet AI?'
-      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal der gennemføres en forvaltningsretlig konsekvensanalyse (EVT LINK TODO HUSK)</p></div><div class="task"><p><h5>Opgave</h5></p><p>Det skal sikres at AI’en opfylder forvaltningslovens vejledningsforpligtelse (EVT LINK TODO HUSK) samt der skal vejledes borgere ifm. Chatbots og lign. om, at der findes andre kanaler at kontakte kommunen på.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Systemet skal tydeligt oplyse borgeren at der er tale om et AI system.</p></div>'
+      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><p>Da systemet anvendes til sagsbehandling skal der gennemføres en forvaltningsretlig konsekvensanalyse</p></div><div class="task"><p><h5>Opgave</h5></p><p>Det skal sikres at AI’en opfylder forvaltningslovens vejledningsforpligtelse samt der skal vejledes borgere ifm. Chatbots og lign. om, at der findes andre kanaler at kontakte kommunen på.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Systemet skal tydeligt oplyse borgeren at der er tale om et AI system.</p></div>'
       '#states':
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
@@ -29,7 +29,7 @@ elements: |-
     anvendes_det_af_borgerne_til_ansoegninger_og_lign_handlinger:
       '#type': ai_screening_yes_no_stop
       '#title': 'Anvendes det af borgerne til ansøgninger og lign. handlinger?'
-      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><p>Det skal sikres at det er muligt at lade sig repræsentere af en anden (Partsrepræsentation) i AI-systemet (EVT LINK)</p></div>'
+      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><p>Det skal sikres at det er muligt at lade sig repræsentere af en anden (Partsrepræsentation) i AI-systemet</p></div>'
       '#states':
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
@@ -47,7 +47,7 @@ elements: |-
     er_der_tale_om_et_ai_system_hvor_der_sker_en_hel_eller_delvis_au:
       '#type': ai_screening_yes_no_stop
       '#title': 'Er der tale om et AI-system, hvor der sker en hel eller delvis automatiseret sagsbehandling i sager, hvor der træffes borger- eller virksomhedsrettede afgørelser?'
-      '#text_yes': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Der skal være opmærksomhed på automation bias i afgørelser, da det kan medføre at afgørelsen defacto bliver en automatisk afgørelse.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Der skal sikres mulighed for partshøring af parterne i, hvis der anvendes oplysninger, som en part ikke kan antages at være bekendt med, og disse er til ugunst for parten.</p></div><div class="rule"><p><h5>Regel</h5></p><p>Er sagsbehandlingsområdet pålagt at kommunen skal foretage et skøn (og sagen altså ikke må afgøres alene pba. regler) - det som hedder Skøn under Regel (EVT LINK) - så må behandlingen ikke være fuldautomatisk.</p></div><div class="rule"><p><h5>Regel</h5></p><p>Fuldautomatiserede afgørelser er forbudt jf. artikel 22 GDPR, medmindre det er eksplicit hjemlet i anden EU- eller dansk lovgivning – det skal fremgå direkte at automatiske afgørelse kan anvendes!</p></div>'
+      '#text_yes': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Der skal være opmærksomhed på automation bias i afgørelser, da det kan medføre at afgørelsen defacto bliver en automatisk afgørelse.</p></div><div class="task"><p><h5>Opgave</h5></p><p>Der skal sikres mulighed for partshøring af parterne i, hvis der anvendes oplysninger, som en part ikke kan antages at være bekendt med, og disse er til ugunst for parten.</p></div><div class="rule"><p><h5>Regel</h5></p><p>Er sagsbehandlingsområdet pålagt at kommunen skal foretage et skøn (og sagen altså ikke må afgøres alene pba. regler) - det som hedder Skøn under Regel - så må behandlingen ikke være fuldautomatisk.</p></div><div class="rule"><p><h5>Regel</h5></p><p>Fuldautomatiserede afgørelser er forbudt jf. artikel 22 GDPR, medmindre det er eksplicit hjemlet i anden EU- eller dansk lovgivning – det skal fremgå direkte at automatiske afgørelse kan anvendes!</p></div>'
       '#states':
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
