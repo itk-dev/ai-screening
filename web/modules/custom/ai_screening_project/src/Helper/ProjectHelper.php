@@ -375,6 +375,17 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         '#weight' => 2,
       ];
 
+      $form['confirmation_dialog'] = [
+        '#type' => 'hidden',
+        '#id' => 'project-confirmation-dialog',
+        '#attributes' => [
+          'class' => ['project-confirmation-dialog'],
+        ],
+      ];
+
+      array_unshift($form['actions']['submit']['#submit'], $this->addConfirmationStep(...));
+      $form['#attached']['library'][] = 'ai_screening_project/project-confirmation';
+
       $form['#validate'][] = $this->validateGroupsForm(...);
       $form['actions']['submit']['#submit'][] = $this->submitGroupsForm(...);
     }
@@ -387,6 +398,19 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     if (!in_array($form_state->getValue('project_owner'), $form_state->getValue('project_contributors'))) {
       $form_state->setErrorByName('project_owner', $this->t('Project owner must be a contributor.'));
     }
+  }
+
+  public function addConfirmationStep(array $form, FormStateInterface $formState): void {
+    // If the confirmation has already been acknowledged, proceed with saving
+    if ($formState->getValue('confirmation_dialog') === 'confirmed') {
+      return;
+    }
+
+    // Otherwise, prevent form submission and trigger the confirmation dialog via JS
+    $formState->setRebuild(TRUE);
+
+    // Add a hidden input value that JS will check to trigger the dialog
+    $formState->setValue('trigger_confirmation', TRUE);
   }
 
   /**

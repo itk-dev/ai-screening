@@ -1,0 +1,8 @@
+project-confirmation:
+  version: 1.x
+  js:
+    assets/js/project-confirmation.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
