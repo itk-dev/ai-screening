@@ -14,7 +14,7 @@ elements: |-
     evaluation_1_1:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': '<p>En grøn markering betyder, at dette hensyn er fuldstændigt imødekommet, eller at spørgsmålet ikke er relevant. En gul markering, at hensynet forventes at kunne imødekommes, en rød markering, at hensynet ikke på nuværende tidspunkt forventes at kunne imødekommes.</p>'
+      '#help': '<p>"Høj" betyder, at dette hensyn er fuldstændigt imødekommet, eller at spørgsmålet ikke er relevant. "Middel", at hensynet forventes at kunne imødekommes, "Lav", at hensynet ikke på nuværende tidspunkt forventes at kunne imødekommes.</p>'
       '#help_display': element_after
     1_2_imoedegaaelse_af_risiko_for_diskrimination:
       '#type': text_format
@@ -27,7 +27,7 @@ elements: |-
     evaluation_1_2:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': '<p>En grøn markering betyder, at diskrimination kan i meget høj grad kan udelukkes, eller forebygges gennem menneskelig kontrol. En gul markering, at diskrimination forventes at kunne udelukkes eller forebygges, eller at spørgsmålet ikke er relevant, en rød markering, at det ikke på nuværende tidspunkt forventes at kunne udelukkes og/eller at der mangler det fornødne overblik over data.</p>'
+      '#help': '<p>"Høj" betyder, at diskrimination kan i meget høj grad kan udelukkes, eller forebygges gennem menneskelig kontrol. "Middel", at diskrimination forventes at kunne udelukkes eller forebygges, eller at spørgsmålet ikke er relevant, "Lav", at det ikke på nuværende tidspunkt forventes at kunne udelukkes og/eller at der mangler det fornødne overblik over data.</p>'
       '#help_display': element_after
     1_3_mulighed_for_menneskelig_kontrol:
       '#type': text_format
@@ -40,7 +40,7 @@ elements: |-
     evaluation_1_3:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': '<p>En grøn markering betyder, at borgeren har mulighed for at kontrollere såvel behandling som output. En gul markering betyder, at det forventes, at borgeren kan kontrollere såvel behandling som output, eller at spørgsmålet ikke er relevant, en rød markering betyder, at borgeren ikke på nuværende tidspunkt har mulighed for at kontrollere behandling eller output.</p>'
+      '#help': '<p>"Høj" betyder, at borgeren har mulighed for at kontrollere såvel behandling som output. "Middel" betyder, at det forventes, at borgeren kan kontrollere såvel behandling som output, eller at spørgsmålet ikke er relevant, "Lav" betyder, at borgeren ikke på nuværende tidspunkt har mulighed for at kontrollere behandling eller output.</p>'
       '#help_display': element_after
     1_4_ansvarlighed:
       '#type': text_format
@@ -53,7 +53,7 @@ elements: |-
     evaluation_1_4:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': '<p>En grøn markering betyder, at borgeren har mulighed for at gøre et ansvarsforhold gældende i forhold til databehandling og/eller svar En gul markering betyder, at det forventes, at borgeren vil kunne gøre et ansvarsforhold gældende, eller at spørgsmålet ikke er relevant. En rød markering betyder, at borgeren ikke på nuværende tidspunkt har mulighed for at gøre ansvarsforhold gældende.</p>'
+      '#help': '<p>"Høj" betyder, at borgeren har mulighed for at gøre et ansvarsforhold gældende i forhold til databehandling og/eller svar "Middel" betyder, at det forventes, at borgeren vil kunne gøre et ansvarsforhold gældende, eller at spørgsmålet ikke er relevant. "Lav" betyder, at borgeren ikke på nuværende tidspunkt har mulighed for at gøre ansvarsforhold gældende.</p>'
       '#help_display': element_after
     1_5_digital_eksklusion_inklusion:
       '#type': text_format
@@ -66,7 +66,7 @@ elements: |-
     evaluation_1_5:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': 'En grøn markering betyder, at det ikke forventes, at løsningen vil kunne øge den digitale eksklusion, eller at løsningen måske endda kan mindske eksklusion. Alternativt, at der er lagt planer for at forebygge digital eksklusion.  En gul markering betyder, at det forventes, at løsningen kan øge den digitale eksklusion, og at der ikke for nuværende er lagt planer for at modvirke dette. Gult kan også betyde, at spørgsmålet ikke er relevant. En rød markering betyder, at løsningen forventes at øge den digitale eksklusion, og at dette ikke kan eller vil blive modvirket.'
+      '#help': '"Høj" betyder, at det ikke forventes, at løsningen vil kunne øge den digitale eksklusion, eller at løsningen måske endda kan mindske eksklusion. Alternativt, at der er lagt planer for at forebygge digital eksklusion.  "Middel" betyder, at det forventes, at løsningen kan øge den digitale eksklusion, og at der ikke for nuværende er lagt planer for at modvirke dette. "Middel kan også betyde, at spørgsmålet ikke er relevant. "Lav" betyder, at løsningen forventes at øge den digitale eksklusion, og at dette ikke kan eller vil blive modvirket.'
       '#help_display': element_after
   medarbejder_page:
     '#type': webform_wizard_page
@@ -82,7 +82,7 @@ elements: |-
     evaluation_2_1:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': 'En grøn markering betyder, at træningsbehovet er fuldstændigt imødekommet, eller at spørgsmålet ikke er relevant. En gul markering, at træningsbehovet forventes at kunne imødekommes, f.eks. i forbindelse med implementering, en rød markering, at træningsbehovet ikke på nuværende tidspunkt forventes at kunne imødekommes.'
+      '#help': '"Høj" betyder, at træningsbehovet er fuldstændigt imødekommet, eller at spørgsmålet ikke er relevant. "Middel", at træningsbehovet forventes at kunne imødekommes, f.eks. i forbindelse med implementering, "Lav", at træningsbehovet ikke på nuværende tidspunkt forventes at kunne imødekommes.'
       '#help_display': element_after
     2_2_bortfald_af_opgaver:
       '#type': text_format
@@ -95,7 +95,7 @@ elements: |-
     evaluation_2_2:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': 'En grøn markering betyder, at der er et fuldstændigt overblik, eller at spørgsmålet ikke er relevant. En gul markering, at overblikket forventes at kunne udarbejdes, en rød markering, at overblikket ikke på nuværende tidspunkt forventes at kunne etableres.'
+      '#help': '"Høj" betyder, at der er et fuldstændigt overblik, eller at spørgsmålet ikke er relevant. "Middel", at overblikket forventes at kunne udarbejdes, "Lav", at overblikket ikke på nuværende tidspunkt forventes at kunne etableres.'
       '#help_display': element_after
     2_3_medarbejderes_tilsyn_med_opgaveloesningen:
       '#type': text_format
@@ -108,7 +108,7 @@ elements: |-
     evaluation_2_3:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': 'En grøn markering betyder, at der er tryghed ved medarbejdernes  mulighed  tilsyn og indgriben ved fejl En gul markering, at mulighed for fuldt tilsyn og indgriben forventes at kunne udarbejdes, eller at spørgsmålet ikke er relevant. en rød markering, at muligheden ikke på nuværende tidspunkt forventes at kunne etableres.'
+      '#help': '"Høj" betyder, at der er tryghed ved medarbejdernes  mulighed  tilsyn og indgriben ved fejl "Middel", at mulighed for fuldt tilsyn og indgriben forventes at kunne udarbejdes, eller at spørgsmålet ikke er relevant. "Lav", at muligheden ikke på nuværende tidspunkt forventes at kunne etableres.'
       '#help_display': element_after
     2_4_dekvalificering:
       '#type': text_format
@@ -121,7 +121,7 @@ elements: |-
     evaluation_2_4:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': 'En grøn markering betyder, at risikoen for dekvalificering er kortlagt, og at der er lagt planer for forebyggelse på såvel kort som mellemlangt sigt. En gul markering betyder, at risikoen for dekvalificering ikke er kortlagt og/eller at der ikke er lagt planer for forebyggelse på nuværende tidspunkt, eller at spørgsmålet ikke er relevant. En rød markering betyder, at det ikke forventes, at en sådan kortlægning kan foretages, eller at det ikke er muligt at forebygge dekvalificering på kort eller langt sigt.'
+      '#help': '"Høj" betyder, at risikoen for dekvalificering er kortlagt, og at der er lagt planer for forebyggelse på såvel kort som mellemlangt sigt. "Middel" betyder, at risikoen for dekvalificering ikke er kortlagt og/eller at der ikke er lagt planer for forebyggelse på nuværende tidspunkt, eller at spørgsmålet ikke er relevant. "Lav" betyder, at det ikke forventes, at en sådan kortlægning kan foretages, eller at det ikke er muligt at forebygge dekvalificering på kort eller langt sigt.'
       '#help_display': element_after
   kommune_og_samfund_page:
     '#type': webform_wizard_page
@@ -137,7 +137,7 @@ elements: |-
     evaluation_3_1:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': 'En grøn markering betyder, at der er afsøgt muligheder for anvendelse af mindre ressourcekrævende teknologier, men at dette ikke har været muligt af finde. En gul markering betyder, at kortlægningen af muligt anvendelse af mindre ressourcekrævende teknologier er påtænkt, men ikke udført. Gul kan også betyde, at spørgsmålet ikke er relevant. En rød markering betyder, at det ikke påtænkes at gennemføre en analyse af alternative muligheder.'
+      '#help': '"Høj" betyder, at der er afsøgt muligheder for anvendelse af mindre ressourcekrævende teknologier, men at dette ikke har været muligt af finde. "Middel" betyder, at kortlægningen af muligt anvendelse af mindre ressourcekrævende teknologier er påtænkt, men ikke udført. "Middel" kan også betyde, at spørgsmålet ikke er relevant. "Lav" betyder, at det ikke påtænkes at gennemføre en analyse af alternative muligheder.'
       '#help_display': element_after
     3_2_betydning_for_omverdenens_opfattelse_af_aarhus_kommune:
       '#type': text_format
@@ -150,7 +150,7 @@ elements: |-
     evaluation_3_2:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': 'En grøn markering betyder, at effekten af løsningens indførelse på kommunens relation til borgerne vurderes at være neutralt eller positivt.  En gul markering betyder, at omdømmepåvirkningen endnu ikke er kortlagt, og/eller at der endnu ikke er lagt planer for at modvirke omdømmepåvirkningen. Gul kan også betyde, at spørgsmålet ikke er relevant. En rød markering betyder, at omdømmepåvirkningen vurderes at være stærkt negativ.'
+      '#help': '"Høj" betyder, at effekten af løsningens indførelse på kommunens relation til borgerne vurderes at være neutralt eller positivt.  "Middel" betyder, at omdømmepåvirkningen endnu ikke er kortlagt, og/eller at der endnu ikke er lagt planer for at modvirke omdømmepåvirkningen. "Middel kan også betyde, at spørgsmålet ikke er relevant. "Lav" betyder, at omdømmepåvirkningen vurderes at være stærkt negativ.'
       '#help_display': element_after
     3_3_modstridende_maalsaetninger:
       '#type': text_format
@@ -163,7 +163,7 @@ elements: |-
     evaluation_3_3:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': 'En grøn markering betyder, at der ikke er et konfliktende målhierarki forbundet med løsningen. En gul markering betyder, at der kan være konfliktende mål, men at dette vurrderes at have et begrænset omfang. Gul kan også betyde, at spørgsmålet ikke er relevant. En rød markering betyder, at der er stærk konflikt mellem målsætninger, og at ledelse og / eller det politiske niveau skal konsulteres for at sætte retning.'
+      '#help': '"Høj" betyder, at der ikke er et konfliktende målhierarki forbundet med løsningen. "Middel" betyder, at der kan være konfliktende mål, men at dette vurrderes at have et begrænset omfang. "Middel" kan også betyde, at spørgsmålet ikke er relevant. "Lav" betyder, at der er stærk konflikt mellem målsætninger, og at ledelse og / eller det politiske niveau skal konsulteres for at sætte retning.'
       '#help_display': element_after
     3_4_overordnet_etisk_vurdering:
       '#type': text_format
@@ -176,5 +176,5 @@ elements: |-
     evaluation_3_4:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': 'En grøn markering betyder, at løsningen vurderes at bidrage positivt i forhold til en eller flere fundamentale samfundsudfordringer. En gul markering betyder, at løsningen hverken påvirker positivt eller negativt, eller at spørgsmålet ikke er relevant. En rød markering betyder, at løsningen vurderes at bidrage negativt til en eller flere fundamentale samfundsudfordringer.'
+      '#help': '"Høj" betyder, at løsningen vurderes at bidrage positivt i forhold til en eller flere fundamentale samfundsudfordringer. "Middel" betyder, at løsningen hverken påvirker positivt eller negativt, eller at spørgsmålet ikke er relevant. "Lav" betyder, at løsningen vurderes at bidrage negativt til en eller flere fundamentale samfundsudfordringer.'
       '#help_display': element_after

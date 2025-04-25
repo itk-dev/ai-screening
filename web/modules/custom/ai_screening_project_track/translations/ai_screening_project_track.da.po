@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-23 07:32+0200\n"
-"PO-Revision-Date: 2025-04-23 07:32+0200\n"
+"POT-Creation-Date: 2025-04-24 10:40+0200\n"
+"PO-Revision-Date: 2025-04-24 10:40+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -91,7 +91,7 @@ msgstr "ID"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:20 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:23
 msgid "Created"
-msgstr "Oprettet"
+msgstr "Created"
 
 #: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:21 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:24
 msgid "Updated"
@@ -335,7 +335,7 @@ msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:122
 msgid "Go back"
-msgstr ""
+msgstr "Tilbage"
 
 #: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:144
 msgid "Save"

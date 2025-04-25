@@ -103,8 +103,8 @@ tasks:
       - task start
       - task theme-build
       - task drush -- site-install --existing-config --yes
-      - task set-user-roles
       - task translation:import --yes
+      - task set-user-roles
       - task drush -- cache:rebuild
 
   site-update:
@@ -114,6 +114,7 @@ tasks:
       - task start
       - task theme-build
       - task drush -- deploy
+      - task translation:import --yes
       - task set-user-roles
       - task drush -- cache:rebuild
       - task drush -- browse --no-browser
