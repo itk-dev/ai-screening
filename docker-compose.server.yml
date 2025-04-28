@@ -8,7 +8,7 @@ networks:
 
 services:
   phpfpm:
-    image: itkdev/php8.3-fpm:alpine
+    image: itkdev/php8.4-fpm:alpine
     restart: unless-stopped
     networks:
       - app
@@ -17,6 +17,7 @@ services:
     environment:
       - PHP_MAX_EXECUTION_TIME=30
       - PHP_MEMORY_LIMIT=128M
+      # Let drush know the site uri (makes using --uri redundant)
       - DRUSH_OPTIONS_URI=https://${COMPOSE_SERVER_DOMAIN}
     depends_on:
       - memcached
