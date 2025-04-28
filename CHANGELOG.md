@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
-## [0.2.0]
+- [PR-100](https://github.com/itk-dev/ai-screening/pull/100)
+  - Add missing translations to contributed modules and themes
+  - Add confirmation step when project state changes in project edit form.
+
+## [0.2.0] - [0.2.1]
 
 - [PR-98](https://github.com/itk-dev/ai-screening/pull/98)
   - Change bullets in webform progress

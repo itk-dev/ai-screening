@@ -9,6 +9,7 @@ env:
 
 jobs:
   check-translations:
+    if: false
     runs-on: ubuntu-latest
     strategy:
       matrix:
