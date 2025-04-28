@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-99](https://github.com/itk-dev/ai-screening/pull/99)
+  Normalized translation files
 - [PR-100](https://github.com/itk-dev/ai-screening/pull/100)
   - Add missing translations to contributed modules and themes
   - Add confirmation step when project state changes in project edit form.

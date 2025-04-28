@@ -22,66 +22,79 @@ msgstr ""
 "PO-Revision-Date: 2025-04-24 10:40+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
-msgid "ITK-dev base theme"
-msgstr "ITK-dev basistema"
+#: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:3
+msgid "Administrator"
+msgstr "Administrator"
 
-#: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
-msgid "Default base theme"
-msgstr "Standard basistema"
+#: themes/custom/itkdev/itkdev_base_theme/templates/components/breadcrumb.html.twig:4
+msgid "Breadcrumb"
+msgstr "Brødkrumme"
 
-#: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
-msgid "itkdev"
-msgstr "itkdev"
-
-#: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
-msgid "Header"
-msgstr "Overskrift"
-
-#: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
-msgid "Navigation"
-msgstr "Navigation"
+#: themes/custom/itkdev/itkdev_base_theme/templates/components/site-navigation.html.twig:8
+msgid "Close navigation menu"
+msgstr "Luk navigationsmenu"
 
 #: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
 msgid "Content"
 msgstr "Indhold"
 
 #: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
+msgid "Default base theme"
+msgstr "Standard basistema"
+
+#: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:4
+msgid "Editor"
+msgstr "Editor"
+
+#: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
 msgid "Footer"
 msgstr "Footer"
 
-#: themes/custom/itkdev/itkdev_base_theme/build/app.js:0
-msgid "Select"
-msgstr "Vælg"
+#: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
+msgid "Header"
+msgstr "Overskrift"
 
-#: themes/custom/itkdev/itkdev_base_theme/build/app.js:0
-msgid "No results found"
-msgstr "Ingen resultater fundet"
+#: themes/custom/itkdev/itkdev_base_theme/templates/components/block--system-branding-block.html.twig:22
+msgid "Home"
+msgstr "Hjem"
+
+#: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
+msgid "ITK-dev base theme"
+msgstr "ITK-dev basistema"
+
+#: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:34
+msgid "Log out"
+msgstr "Log ud"
+
+#: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:29
+msgid "My profile"
+msgstr "Min profil"
+
+#: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
+msgid "Navigation"
+msgstr "Navigation"
 
 #: themes/custom/itkdev/itkdev_base_theme/build/app.js:0
 msgid "No choices to choose from"
 msgstr "Ingen valgmuligheder"
 
 #: themes/custom/itkdev/itkdev_base_theme/build/app.js:0
+msgid "No results found"
+msgstr "Ingen resultater fundet"
+
+#: themes/custom/itkdev/itkdev_base_theme/templates/components/nav-button.html.twig:2
+msgid "Open navigation menu"
+msgstr "Åbn navigationsmenu"
+
+#: themes/custom/itkdev/itkdev_base_theme/build/app.js:0
 msgid "Press to select"
 msgstr "Tryk for at vælge"
-
-#: themes/custom/itkdev/itkdev_base_theme/templates/html.html.twig:45
-msgid "Skip to main content"
-msgstr "Gå til hovedindhold"
-
-#: themes/custom/itkdev/itkdev_base_theme/templates/components/block--system-branding-block.html.twig:22
-msgid "Home"
-msgstr "Hjem"
-
-#: themes/custom/itkdev/itkdev_base_theme/templates/components/breadcrumb.html.twig:4
-msgid "Breadcrumb"
-msgstr "Brødkrumme"
 
 #: themes/custom/itkdev/itkdev_base_theme/templates/components/menu-local-tasks.html.twig:19
 msgid "Primary tabs"
@@ -91,35 +104,22 @@ msgstr "Primære tabs"
 msgid "Secondary tabs"
 msgstr "Sekundære tabs"
 
-#: themes/custom/itkdev/itkdev_base_theme/templates/components/nav-button.html.twig:2
-msgid "Open navigation menu"
-msgstr "Åbn navigationsmenu"
+#: themes/custom/itkdev/itkdev_base_theme/build/app.js:0
+msgid "Select"
+msgstr "Vælg"
 
-#: themes/custom/itkdev/itkdev_base_theme/templates/components/site-navigation.html.twig:8
-msgid "Close navigation menu"
-msgstr "Luk navigationsmenu"
+#: themes/custom/itkdev/itkdev_base_theme/templates/html.html.twig:45
+msgid "Skip to main content"
+msgstr "Gå til hovedindhold"
 
 #: themes/custom/itkdev/itkdev_base_theme/templates/components/site-search.html.twig:7
 msgid "Type to search..."
 msgstr "Skriv for at søge..."
 
-#: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:3
-msgid "Administrator"
-msgstr "Administrator"
-
-#: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:4
-msgid "Editor"
-msgstr "Editor"
-
 #: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:5
 msgid "User"
 msgstr "User"
 
-#: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:29
-msgid "My profile"
-msgstr "Min profil"
-
-#: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:34
-msgid "Log out"
-msgstr "Log ud"
-
+#: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
+msgid "itkdev"
+msgstr "itkdev"

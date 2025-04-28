@@ -7,375 +7,161 @@ msgstr ""
 "PO-Revision-Date: 2025-04-24 11:07+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Title"
-msgstr "Title"
-
-msgid "Register"
-msgstr "Register"
-
-msgid "Submit"
-msgstr "Submit"
-
-msgid "Operations"
-msgstr "Operations"
-
-msgid "Content"
-msgstr "Indhold"
-
-msgid "Author"
-msgstr "Author"
-
-msgid "List"
-msgstr "List"
-
-msgid "more"
-msgstr "more"
-
-msgid "More"
-msgstr "More"
-
-msgid "Action"
-msgstr "Action"
-
-msgid "view"
-msgstr "view"
-
-msgid "Date"
-msgstr "Date"
-
-msgid "Size"
-msgstr "Size"
-
-msgid "Reset"
-msgstr "Nulstil"
-
-msgid "Use count"
-msgstr "Use count"
-
-msgid "Message"
-msgstr "Message"
-
-msgid "No log messages available."
-msgstr "No log messages available."
-
-msgid "Name"
-msgstr "Name"
-
-msgid "edit"
-msgstr "edit"
-
-msgid "Taxonomy term"
-msgstr "Taxonomy term"
-
-msgid "Preview"
-msgstr "Preview"
-
-msgid "Default"
-msgstr "Default"
-
-msgid "Archive"
-msgstr "Archive"
-
-msgid "Icon"
-msgstr "Icon"
-
-msgid "Filename"
-msgstr "Filename"
-
-msgid "Teaser"
-msgstr "Teaser"
-
-msgid "Attachment"
-msgstr "Attachment"
-
-msgid "User"
-msgstr "User"
-
-msgid "Content type"
-msgstr "Content type"
-
-msgid "Files"
-msgstr "Files"
-
-msgid "Created"
-msgstr "Created"
-
-msgid "All"
-msgstr "All"
-
-msgid "Active"
-msgstr "Active"
-
-msgid "Block"
-msgstr "Block"
-
-msgid "Page"
-msgstr "Page"
-
-msgid "Footer"
-msgstr "Footer"
-
-msgid "Published"
-msgstr "Published"
-
-msgid "Last access"
-msgstr "Last access"
-
-msgid "Severity"
-msgstr "Severity"
-
-msgid "Watchdog"
-msgstr "Watchdog"
-
-msgid "Last update"
-msgstr "Last update"
-
-msgid "Nodes"
-msgstr "Nodes"
-
-msgid "Plain text"
-msgstr "Plain text"
-
-msgid "Desc"
-msgstr "Desc"
-
-msgid "Role"
-msgstr "Role"
-
-msgid "External"
-msgstr "External"
-
-msgid ""
-"@site is currently under maintenance. We should be back shortly. Thank "
-"you for your patience."
-msgstr ""
-"@site is currently under maintenance. We should be back shortly. Thank "
-"you for your patience."
-
-msgid "Anonymous"
-msgstr "Anonymous"
-
-msgid "Tools"
-msgstr "Tools"
-
-msgid "Sort by"
-msgstr "Sort by"
-
-msgid "English"
-msgstr "English"
-
-msgid "People"
-msgstr "People"
-
-msgid "Blocked"
-msgstr "Blocked"
-
-msgid "Glossary"
-msgstr "Glossary"
-
-msgid "Unpublished"
-msgstr "Unpublished"
-
-msgid "Tabs"
-msgstr "Tabs"
-
-msgid "Shortcuts"
-msgstr "Shortcuts"
-
-msgid "Apply"
-msgstr "Anvend"
-
-msgid "Used in"
-msgstr "Used in"
-
-msgid "Permission"
-msgstr "Permission"
-
-msgid ""
-"A user is considered online for this long after they have last viewed "
-"a page."
-msgstr ""
-"A user is considered online for this long after they have last viewed "
-"a page."
-
-msgid "Offset"
-msgstr "Offset"
-
-msgid "Publish content"
-msgstr "Publish content"
-
-msgid "Entity type"
-msgstr "Entity type"
-
-msgid "User account"
-msgstr "User account"
-
-msgid "Main navigation"
-msgstr "Main navigation"
-
-msgid "Not applicable"
-msgstr "Not applicable"
-
-msgid "No content available."
-msgstr "No content available."
-
-msgid "IP address"
-msgstr "IP address"
-
-msgid "Primary tabs"
-msgstr "Primære tabs"
-
-msgid "Secondary tabs"
-msgstr "Sekundære tabs"
-
-msgid "Temporary"
-msgstr "Temporary"
-
-msgid "No files available."
-msgstr "No files available."
-
-msgid "Frontpage"
-msgstr "Frontpage"
-
-msgid "Upload date"
-msgstr "Upload date"
-
-msgid "Search index"
-msgstr "Search index"
+msgid "- All -"
+msgstr "- All -"
+
+msgid "< Previous"
+msgstr "‹ Forrige"
+
+msgid "@count place"
+msgid_plural "@count places"
+msgstr[0] "1 place"
+msgstr[1] "@count places"
 
 msgid "@interval ago"
 msgstr "@interval ago"
 
-msgid "Items per page"
-msgstr "Items per page"
+msgid "@interval hence"
+msgstr "@interval hence"
 
-msgid "- All -"
-msgstr "- All -"
+msgid "@site is currently under maintenance. We should be back shortly. Thank you for your patience."
+msgstr "@site is currently under maintenance. We should be back shortly. Thank you for your patience."
 
-msgid "Compact"
-msgstr "Compact"
+msgid "A list of new users"
+msgstr "A list of new users"
 
-msgid "Who's new"
-msgstr "Who's new"
+msgid "A list of users that are currently logged in."
+msgstr "A list of users that are currently logged in."
 
-msgid "Who's online"
-msgstr "Who's online"
+msgid "A user is considered online for this long after they have last viewed a page."
+msgstr "A user is considered online for this long after they have last viewed a page."
 
-msgid "« First"
-msgstr "« First"
+msgid "Account cancellation request for [user:display-name] at [site:name]"
+msgstr "Account cancellation request for [user:display-name] at [site:name]"
 
-msgid "Last »"
-msgstr "Last »"
+msgid "Account details for [user:display-name] at [site:name]"
+msgstr "Account details for [user:display-name] at [site:name]"
 
-msgid "Status messages"
-msgstr "Status beskeder"
+msgid "Account details for [user:display-name] at [site:name] (approved)"
+msgstr "Account details for [user:display-name] at [site:name] (approved)"
 
-msgid "Published status"
-msgstr "Published status"
+msgid "Account details for [user:display-name] at [site:name] (blocked)"
+msgstr "Account details for [user:display-name] at [site:name] (blocked)"
 
-msgid "Monthly archive"
-msgstr "Monthly archive"
+msgid "Account details for [user:display-name] at [site:name] (canceled)"
+msgstr "Account details for [user:display-name] at [site:name] (canceled)"
 
-msgid "Full content"
-msgstr "Full content"
+msgid "Account details for [user:display-name] at [site:name] (pending admin approval)"
+msgstr "Account details for [user:display-name] at [site:name] (pending admin approval)"
 
-msgid "Recent content"
-msgstr "Recent content"
+msgid "Action"
+msgstr "Action"
 
-msgid "Unpublish content"
-msgstr "Unpublish content"
+msgid "Active"
+msgstr "Active"
 
-msgid "Make content sticky"
-msgstr "Make content sticky"
+msgid "Administrative task links"
+msgstr "Administrative task links"
 
-msgid "Make content unsticky"
-msgstr "Make content unsticky"
+msgid "All"
+msgstr "All"
 
-msgid "Promote content to front page"
-msgstr "Promote content to front page"
+msgid "All content promoted to the front page."
+msgstr "All content promoted to the front page."
 
-msgid "Remove content from front page"
-msgstr "Remove content from front page"
+msgid "All content, by letter."
+msgstr "All content, by letter."
 
-msgid "Save content"
-msgstr "Save content"
-
-msgid "Find and manage content."
-msgstr "Find and manage content."
-
-msgid "Taxonomy term page"
-msgstr "Taxonomy term page"
-
-msgid "No people available."
-msgstr "No people available."
+msgid "All content, by month."
+msgstr "All content, by month."
 
 msgid "An administrator created an account for you at [site:name]"
 msgstr "An administrator created an account for you at [site:name]"
 
-msgid "Find and manage people interacting with your site."
-msgstr "Find and manage people interacting with your site."
+msgid "Anonymous"
+msgstr "Anonymous"
 
-msgid "visible"
-msgstr "visible"
+msgid "Apply"
+msgstr "Anvend"
 
-msgid "Bulk update"
-msgstr "Bulk update"
+msgid "Archive"
+msgstr "Archive"
 
-msgid "Recent log messages"
-msgstr "Recent log messages"
-
-msgid "Manage user accounts, roles, and permissions."
-msgstr "Manage user accounts, roles, and permissions."
-
-msgid "Changed date"
-msgstr "Changed date"
+msgid "Archive webform"
+msgstr "Arkivér webform"
 
 msgid "Asc"
 msgstr "Asc"
 
-msgid "Not specified"
-msgstr "Not specified"
+msgid "Attachment"
+msgstr "Attachment"
 
-msgid "Wide"
-msgstr "Wide"
+msgid "Authentication name"
+msgstr "Authentication name"
 
-msgid "Displaying @start - @end of @total"
-msgstr "Displaying @start - @end of @total"
+msgid "Author"
+msgstr "Author"
 
-msgid "Publish taxonomy term"
-msgstr "Publish taxonomy term"
+msgid "Block"
+msgstr "Block"
 
-msgid "Unpublish taxonomy term"
-msgstr "Unpublish taxonomy term"
+msgid "Block the selected user(s)"
+msgstr "Block the selected user(s)"
 
-msgid "Welcome!"
-msgstr "Welcome!"
+msgid "Blocked"
+msgstr "Blocked"
 
-msgid "Registering module"
-msgstr "Registering module"
+msgid "Bulk update"
+msgstr "Bulk update"
 
-msgid "Fallback date format"
-msgstr "Fallback date format"
+msgid "Cancel the selected user account(s)"
+msgstr "Cancel the selected user account(s)"
 
-msgid "Site branding"
-msgstr "Branding"
+msgid "Changed date"
+msgstr "Changed date"
 
-msgid "Search result highlighting input"
-msgstr "Search result highlighting input"
+msgid "Close webform"
+msgstr "Luk webform"
 
-msgid "Primary admin actions"
-msgstr "Primære admin actions"
+msgid "Compact"
+msgstr "Compact"
 
-msgid "Large (480×480)"
-msgstr "Large (480×480)"
+msgid "Complete"
+msgstr "Afslut"
 
-msgid "Medium (220×220)"
-msgstr "Medium (220×220)"
+msgid "Completed"
+msgstr "Afsluttet"
+
+msgid "Content"
+msgstr "Indhold"
+
+msgid "Content belonging to a certain taxonomy term."
+msgstr "Content belonging to a certain taxonomy term."
+
+msgid "Content type"
+msgstr "Content type"
+
+msgid "Created"
+msgstr "Created"
+
+msgctxt "PHP date format"
+msgid "D, j M Y - H:i"
+msgstr "D, m/d/Y - H:i"
+
+msgid "Danish"
+msgstr "Dansk"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Default"
+msgstr "Default"
 
 msgid "Default long date"
 msgstr "Default long date"
@@ -386,123 +172,266 @@ msgstr "Default medium date"
 msgid "Default short date"
 msgstr "Default short date"
 
-msgid "User account menu"
-msgstr "User account menu"
+msgid "Delete submission"
+msgstr "Slet submission"
 
-msgid "Block the selected user(s)"
-msgstr "Block the selected user(s)"
+msgid "Delete webform"
+msgstr "Slet webform"
 
-msgid "Cancel the selected user account(s)"
-msgstr "Cancel the selected user account(s)"
+msgid "Desc"
+msgstr "Desc"
 
-msgid "Unblock the selected user(s)"
-msgstr "Unblock the selected user(s)"
+msgid "Displaying @start - @end of @total"
+msgstr "Displaying @start - @end of @total"
 
-msgid "Account cancellation request for [user:display-name] at [site:name]"
-msgstr "Account cancellation request for [user:display-name] at [site:name]"
+msgid "Drupal user"
+msgstr "Drupal user"
 
-msgid "Replacement login information for [user:display-name] at [site:name]"
-msgstr "Replacement login information for [user:display-name] at [site:name]"
+msgid "English"
+msgstr "English"
 
-msgid "Account details for [user:display-name] at [site:name]"
-msgstr "Account details for [user:display-name] at [site:name]"
+msgid "Entity type"
+msgstr "Entity type"
 
-msgid ""
-"Account details for [user:display-name] at [site:name] (pending admin "
-"approval)"
-msgstr ""
-"Account details for [user:display-name] at [site:name] (pending admin "
-"approval)"
+msgid "External"
+msgstr "External"
 
-msgid ""
-"[user:display-name] has applied for an account.\n"
-"\n"
-"[user:edit-url]"
-msgstr ""
-"[user:display-name] has applied for an account.\n"
-"\n"
-"[user:edit-url]"
+msgid "Fallback date format"
+msgstr "Fallback date format"
 
-msgid ""
-"[user:display-name],\n"
-"\n"
-"Your account at [site:name] has been "
-"activated.\n"
-"\n"
-"You may now log in by clicking this link or copying "
-"and pasting it into your "
-"browser:\n"
-"\n"
-"[user:one-time-login-url]\n"
-"\n"
-"This link can only be "
-"used once to log in and will lead you to a page where you can set your "
-"password.\n"
-"\n"
-"After setting your password, you will be able to log in "
-"at [site:login-url] in the future using:\n"
-"\n"
-"username: "
-"[user:account-name]\n"
-"password: Your password\n"
-"\n"
-"--  [site:name] "
-"team"
-msgstr ""
-"[user:display-name],\n"
-"\n"
-"Your account at [site:name] has been "
-"activated.\n"
-"\n"
-"You may now log in by clicking this link or copying "
-"and pasting it into your "
-"browser:\n"
-"\n"
-"[user:one-time-login-url]\n"
-"\n"
-"This link can only be "
-"used once to log in and will lead you to a page where you can set your "
-"password.\n"
-"\n"
-"After setting your password, you will be able to log in "
-"at [site:login-url] in the future using:\n"
-"\n"
-"username: "
-"[user:account-name]\n"
-"password: Your password\n"
-"\n"
-"--  [site:name] "
-"team"
+msgid "File usage information for {{ arguments.fid }}"
+msgstr "File usage information for {{ arguments.fid }}"
 
-msgid "Account details for [user:display-name] at [site:name] (approved)"
-msgstr "Account details for [user:display-name] at [site:name] (approved)"
+msgid "Filename"
+msgstr "Filename"
 
-msgid "Account details for [user:display-name] at [site:name] (blocked)"
-msgstr "Account details for [user:display-name] at [site:name] (blocked)"
+msgid "Files"
+msgstr "Files"
 
-msgid ""
-"[user:display-name],\n"
-"\n"
-"Your account on [site:name] has been "
-"canceled.\n"
-"\n"
-"--  [site:name] team"
-msgstr ""
-"[user:display-name],\n"
-"\n"
-"Your account on [site:name] has been "
-"canceled.\n"
-"\n"
-"--  [site:name] team"
+msgid "Files overview"
+msgstr "Files overview"
 
-msgid "Account details for [user:display-name] at [site:name] (canceled)"
-msgstr "Account details for [user:display-name] at [site:name] (canceled)"
+msgid "Find and manage content"
+msgstr "Find and manage content"
+
+msgid "Find and manage content."
+msgstr "Find and manage content."
+
+msgid "Find and manage files."
+msgstr "Find and manage files."
+
+msgid "Find and manage people interacting with your site."
+msgstr "Find and manage people interacting with your site."
+
+msgid "Footer"
+msgstr "Footer"
+
+msgid "Frontpage"
+msgstr "Frontpage"
+
+msgid "Full content"
+msgstr "Full content"
+
+msgid "Glossary"
+msgstr "Glossary"
+
+msgid "IP address"
+msgstr "IP address"
+
+msgid "Icon"
+msgstr "Icon"
+
+msgid "Items per page"
+msgstr "Items per page"
+
+msgid "Large (480×480)"
+msgstr "Large (480×480)"
+
+msgid "Last access"
+msgstr "Last access"
+
+msgid "Last update"
+msgstr "Last update"
+
+msgid "Last »"
+msgstr "Last »"
 
 msgid "Links related to the active user account"
 msgstr "Links related to the active user account"
 
-msgid "Administrative task links"
-msgstr "Administrative task links"
+msgid "List"
+msgstr "List"
+
+msgid "Lock submission"
+msgstr "Lås submission"
+
+msgid "Main navigation"
+msgstr "Main navigation"
+
+msgid "Make content sticky"
+msgstr "Make content sticky"
+
+msgid "Make content unsticky"
+msgstr "Make content unsticky"
+
+msgid "Manage user accounts, roles, and permissions."
+msgstr "Manage user accounts, roles, and permissions."
+
+msgid "Medium (220×220)"
+msgstr "Medium (220×220)"
+
+msgid "Members"
+msgstr "Medlemmer"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Monthly archive"
+msgstr "Monthly archive"
+
+msgid "More"
+msgstr "More"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Name or email contains"
+msgstr "Navn eller email indeholder"
+
+msgid "Narrow"
+msgstr "Narrow"
+
+msgid "Next >"
+msgstr "Næste >"
+
+msgid "No content available."
+msgstr "No content available."
+
+msgid "No files available."
+msgstr "No files available."
+
+msgid "No front page content has been created yet.<br/>Follow the <a target=\"_blank\" href=\"https://www.drupal.org/docs/user_guide/en/index.html\">User Guide</a> to start building your site."
+msgstr "No front page content has been created yet.<br/>Follow the <a target=\"_blank\" href=\"https://www.drupal.org/docs/user_guide/en/index.html\">User Guide</a> to start building your site."
+
+msgid "No log messages available."
+msgstr "No log messages available."
+
+msgid "No people available."
+msgstr "No people available."
+
+msgid "Nodes"
+msgstr "Nodes"
+
+msgid "Not applicable"
+msgstr "Not applicable"
+
+msgid "Not specified"
+msgstr "Not specified"
+
+msgid "Offset"
+msgstr "Offset"
+
+msgid "Open webform"
+msgstr "Åben webform"
+
+msgid "Operations"
+msgstr "Operations"
+
+msgid "Page"
+msgstr "Page"
+
+msgid "People"
+msgstr "People"
+
+msgid "Permission"
+msgstr "Permission"
+
+msgid "Plain text"
+msgstr "Plain text"
+
+msgid "Please log in to access the uploaded file."
+msgstr "<p>Please log in to access the uploaded file.</p>"
+
+msgid "Preview"
+msgstr "Preview"
+
+msgid "Primary admin actions"
+msgstr "Primære admin actions"
+
+msgid "Primary tabs"
+msgstr "Primære tabs"
+
+msgid "Promote content to front page"
+msgstr "Promote content to front page"
+
+msgid "Publish content"
+msgstr "Publish content"
+
+msgid "Publish taxonomy term"
+msgstr "Publish taxonomy term"
+
+msgid "Published"
+msgstr "Published"
+
+msgid "Published status"
+msgstr "Published status"
+
+msgid "Recent content"
+msgstr "Recent content"
+
+msgid "Recent content."
+msgstr "Recent content."
+
+msgid "Recent log messages"
+msgstr "Recent log messages"
+
+msgid "Register"
+msgstr "Register"
+
+msgid "Registering module"
+msgstr "Registering module"
+
+msgid "Remove content from front page"
+msgstr "Remove content from front page"
+
+msgid "Replacement login information for [user:display-name] at [site:name]"
+msgstr "Replacement login information for [user:display-name] at [site:name]"
+
+msgid "Reset"
+msgstr "Nulstil"
+
+msgid "Restore webform"
+msgstr "Gendan webform"
+
+msgid "Role"
+msgstr "Role"
+
+msgid "Save content"
+msgstr "Save content"
+
+msgid "Search index"
+msgstr "Search index"
+
+msgid "Search result highlighting input"
+msgstr "Search result highlighting input"
+
+msgid "Secondary tabs"
+msgstr "Sekundære tabs"
+
+msgid "Severity"
+msgstr "Severity"
+
+msgid "Shortcuts"
+msgstr "Shortcuts"
+
+msgid "Shows a list of the newest user accounts on the site."
+msgstr "Shows a list of the newest user accounts on the site."
+
+msgid "Shows the user names of the most recently active users, and the total number of active users."
+msgstr "Shows the user names of the most recently active users, and the total number of active users."
+
+msgid "Site branding"
+msgstr "Branding"
 
 msgid "Site information links"
 msgstr "Site information links"
@@ -510,314 +439,294 @@ msgstr "Site information links"
 msgid "Site section links"
 msgstr "Site section links"
 
-msgid "User tool links, often added by modules"
-msgstr "User tool links, often added by modules"
+msgid "Size"
+msgstr "Size"
 
-msgid ""
-"[user:display-name],\n"
-"\n"
-"A request to reset the password for your "
-"account has been made at [site:name].\n"
-"\n"
-"You may now log in by "
-"clicking this link or copying and pasting it into your "
-"browser:\n"
-"\n"
-"[user:one-time-login-url]\n"
-"\n"
-"This link can only be "
-"used once to log in and will lead you to a page where you can set your "
-"password. It expires after one day and nothing will happen if it's not "
-"used.\n"
-"\n"
-"--  [site:name] team"
-msgstr ""
-"[user:display-name],\n"
-"\n"
-"A request to reset the password for your "
-"account has been made at [site:name].\n"
-"\n"
-"You may now log in by "
-"clicking this link or copying and pasting it into your "
-"browser:\n"
-"\n"
-"[user:one-time-login-url]\n"
-"\n"
-"This link can only be "
-"used once to log in and will lead you to a page where you can set your "
-"password. It expires after one day and nothing will happen if it's not "
-"used.\n"
-"\n"
-"--  [site:name] team"
+msgid "Sort by"
+msgstr "Sort by"
 
-msgid ""
-"[user:display-name],\n"
-"\n"
-"A site administrator at [site:name] has "
-"created an account for you. You may now log in by clicking this link "
-"or copying and pasting it into your "
-"browser:\n"
-"\n"
-"[user:one-time-login-url]\n"
-"\n"
-"This link can only be "
-"used once to log in and will lead you to a page where you can set your "
-"password.\n"
-"\n"
-"After setting your password, you will be able to log in "
-"at [site:login-url] in the future using:\n"
-"\n"
-"username: "
-"[user:name]\n"
-"password: Your password\n"
-"\n"
-"--  [site:name] team"
-msgstr ""
-"[user:display-name],\n"
-"\n"
-"A site administrator at [site:name] has "
-"created an account for you. You may now log in by clicking this link "
-"or copying and pasting it into your "
-"browser:\n"
-"\n"
-"[user:one-time-login-url]\n"
-"\n"
-"This link can only be "
-"used once to log in and will lead you to a page where you can set your "
-"password.\n"
-"\n"
-"After setting your password, you will be able to log in "
-"at [site:login-url] in the future using:\n"
-"\n"
-"username: "
-"[user:name]\n"
-"password: Your password\n"
-"\n"
-"--  [site:name] team"
+msgid "Status messages"
+msgstr "Status beskeder"
 
-msgid ""
-"[user:display-name],\n"
-"\n"
-"Thank you for registering at [site:name]. "
-"You may now log in by clicking this link or copying and pasting it "
-"into your browser:\n"
-"\n"
-"[user:one-time-login-url]\n"
-"\n"
-"This link can "
-"only be used once to log in and will lead you to a page where you can "
-"set your password.\n"
-"\n"
-"After setting your password, you will be able "
-"to log in at [site:login-url] in the future using:\n"
-"\n"
-"username: "
-"[user:name]\n"
-"password: Your password\n"
-"\n"
-"--  [site:name] team"
-msgstr ""
-"[user:display-name],\n"
-"\n"
-"Thank you for registering at [site:name]. "
-"You may now log in by clicking this link or copying and pasting it "
-"into your browser:\n"
-"\n"
-"[user:one-time-login-url]\n"
-"\n"
-"This link can "
-"only be used once to log in and will lead you to a page where you can "
-"set your password.\n"
-"\n"
-"After setting your password, you will be able "
-"to log in at [site:login-url] in the future using:\n"
-"\n"
-"username: "
-"[user:name]\n"
-"password: Your password\n"
-"\n"
-"--  [site:name] team"
+msgid "Submit"
+msgstr "Submit"
 
-msgid "Find and manage files."
-msgstr "Find and manage files."
+msgid "Tabs"
+msgstr "Tabs"
 
-msgid "All content, by month."
-msgstr "All content, by month."
+msgid "Taxonomy term"
+msgstr "Taxonomy term"
 
-msgid "Recent content."
-msgstr "Recent content."
+msgid "Taxonomy term page"
+msgstr "Taxonomy term page"
 
-msgid "All content promoted to the front page."
-msgstr "All content promoted to the front page."
+msgid "Teaser"
+msgstr "Teaser"
 
-msgid "All content, by letter."
-msgstr "All content, by letter."
-
-msgid "Content belonging to a certain taxonomy term."
-msgstr "Content belonging to a certain taxonomy term."
-
-msgid "Shows a list of the newest user accounts on the site."
-msgstr "Shows a list of the newest user accounts on the site."
-
-msgid "Who's online block"
-msgstr "Who's online block"
-
-msgid ""
-"Shows the user names of the most recently active users, and the total "
-"number of active users."
-msgstr ""
-"Shows the user names of the most recently active users, and the total "
-"number of active users."
-
-msgid "Narrow"
-msgstr "Narrow"
-
-msgid "Files overview"
-msgstr "Files overview"
-
-msgid "File usage information for {{ arguments.fid }}"
-msgstr "File usage information for {{ arguments.fid }}"
-
-msgid "Find and manage content"
-msgstr "Find and manage content"
-
-msgid "Name or email contains"
-msgstr "Navn eller email indeholder"
-
-msgid "A list of new users"
-msgstr "A list of new users"
-
-msgid "There are currently @total users online."
-msgstr "There are currently @total users online."
+msgid "Temporary"
+msgstr "Temporary"
 
 msgid "There are currently 0 users online."
 msgstr "There are currently 0 users online."
 
-msgid "A list of users that are currently logged in."
-msgstr "A list of users that are currently logged in."
+msgid "There are currently @total users online."
+msgstr "There are currently @total users online."
 
-msgid ""
-"[user:display-name],\n"
-"\n"
-"Your account on [site:name] has been "
-"blocked.\n"
-"\n"
-"--  [site:name] team"
-msgstr ""
-"[user:display-name],\n"
-"\n"
-"Your account on [site:name] has been "
-"blocked.\n"
-"\n"
-"--  [site:name] team"
+msgid "Title"
+msgstr "Title"
 
-msgid ""
-"No front page content has been created yet.<br/>Follow the <a "
-"target=\"_blank\" "
-"href=\"https://www.drupal.org/docs/user_guide/en/index.html\">User "
-"Guide</a> to start building your site."
-msgstr ""
-"No front page content has been created yet.<br/>Follow the <a "
-"target=\"_blank\" "
-"href=\"https://www.drupal.org/docs/user_guide/en/index.html\">User "
-"Guide</a> to start building your site."
+msgid "Tools"
+msgstr "Tools"
 
-msgid ""
-"[user:display-name],\n"
-"\n"
-"Thank you for registering at [site:name]. "
-"Your application for an account is currently pending approval. Once it "
-"has been approved, you will receive another email containing "
-"information about how to log in, set your password, and other "
-"details.\n"
-"\n"
-"--  [site:name] team"
-msgstr ""
-"[user:display-name],\n"
-"\n"
-"Thank you for registering at [site:name]. "
-"Your application for an account is currently pending approval. Once it "
-"has been approved, you will receive another email containing "
-"information about how to log in, set your password, and other "
-"details.\n"
-"\n"
-"--  [site:name] team"
+msgid "Unblock the selected user(s)"
+msgstr "Unblock the selected user(s)"
 
-msgid "@interval hence"
-msgstr "@interval hence"
+msgid "Unlock submission"
+msgstr "Lås submission op"
+
+msgid "Unpublish content"
+msgstr "Unpublish content"
+
+msgid "Unpublish taxonomy term"
+msgstr "Unpublish taxonomy term"
+
+msgid "Unpublished"
+msgstr "Unpublished"
+
+msgid "Upload date"
+msgstr "Upload date"
+
+msgid "Use count"
+msgstr "Use count"
+
+msgid "Used in"
+msgstr "Used in"
+
+msgid "User"
+msgstr "User"
+
+msgid "User account"
+msgstr "User account"
+
+msgid "User account menu"
+msgstr "User account menu"
+
+msgid "User tool links, often added by modules"
+msgstr "User tool links, often added by modules"
+
+msgid "Watchdog"
+msgstr "Watchdog"
+
+msgid "Welcome!"
+msgstr "Welcome!"
+
+msgid "Who's new"
+msgstr "Who's new"
+
+msgid "Who's online"
+msgstr "Who's online"
+
+msgid "Who's online block"
+msgstr "Who's online block"
+
+msgid "Wide"
+msgstr "Wide"
 
 msgid "Wide (1090)"
 msgstr "Wide (1090)"
 
-msgid "Drupal user"
-msgstr "Drupal user"
+msgid ""
+"[user:display-name] has applied for an account.\n"
+"\n"
+"[user:edit-url]"
+msgstr ""
+"[user:display-name] has applied for an account.\n"
+"\n"
+"[user:edit-url]"
 
-msgid "Authentication name"
-msgstr "Authentication name"
+msgid ""
+"[user:display-name],\n"
+"\n"
+"A request to reset the password for your account has been made at [site:name].\n"
+"\n"
+"You may now log in by clicking this link or copying and pasting it into your browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be used once to log in and will lead you to a page where you can set your password. It expires after one day and nothing will happen if it's not used.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\n"
+"\n"
+"A request to reset the password for your account has been made at [site:name].\n"
+"\n"
+"You may now log in by clicking this link or copying and pasting it into your browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be used once to log in and will lead you to a page where you can set your password. It expires after one day and nothing will happen if it's not used.\n"
+"\n"
+"--  [site:name] team"
 
-msgctxt "PHP date format"
-msgid "l, j F Y - H:i"
-msgstr "l, F j, Y - H:i"
+msgid ""
+"[user:display-name],\n"
+"\n"
+"A site administrator at [site:name] has created an account for you. You may now log in by clicking this link or copying and pasting it into your browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be used once to log in and will lead you to a page where you can set your password.\n"
+"\n"
+"After setting your password, you will be able to log in at [site:login-url] in the future using:\n"
+"\n"
+"username: [user:name]\n"
+"password: Your password\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\n"
+"\n"
+"A site administrator at [site:name] has created an account for you. You may now log in by clicking this link or copying and pasting it into your browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be used once to log in and will lead you to a page where you can set your password.\n"
+"\n"
+"After setting your password, you will be able to log in at [site:login-url] in the future using:\n"
+"\n"
+"username: [user:name]\n"
+"password: Your password\n"
+"\n"
+"--  [site:name] team"
 
-msgctxt "PHP date format"
-msgid "D, j M Y - H:i"
-msgstr "D, m/d/Y - H:i"
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Thank you for registering at [site:name]. You may now log in by clicking this link or copying and pasting it into your browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be used once to log in and will lead you to a page where you can set your password.\n"
+"\n"
+"After setting your password, you will be able to log in at [site:login-url] in the future using:\n"
+"\n"
+"username: [user:name]\n"
+"password: Your password\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\n"
+"\n"
+"Thank you for registering at [site:name]. You may now log in by clicking this link or copying and pasting it into your browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be used once to log in and will lead you to a page where you can set your password.\n"
+"\n"
+"After setting your password, you will be able to log in at [site:login-url] in the future using:\n"
+"\n"
+"username: [user:name]\n"
+"password: Your password\n"
+"\n"
+"--  [site:name] team"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Thank you for registering at [site:name]. Your application for an account is currently pending approval. Once it has been approved, you will receive another email containing information about how to log in, set your password, and other details.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\n"
+"\n"
+"Thank you for registering at [site:name]. Your application for an account is currently pending approval. Once it has been approved, you will receive another email containing information about how to log in, set your password, and other details.\n"
+"\n"
+"--  [site:name] team"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Your account at [site:name] has been activated.\n"
+"\n"
+"You may now log in by clicking this link or copying and pasting it into your browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be used once to log in and will lead you to a page where you can set your password.\n"
+"\n"
+"After setting your password, you will be able to log in at [site:login-url] in the future using:\n"
+"\n"
+"username: [user:account-name]\n"
+"password: Your password\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\n"
+"\n"
+"Your account at [site:name] has been activated.\n"
+"\n"
+"You may now log in by clicking this link or copying and pasting it into your browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be used once to log in and will lead you to a page where you can set your password.\n"
+"\n"
+"After setting your password, you will be able to log in at [site:login-url] in the future using:\n"
+"\n"
+"username: [user:account-name]\n"
+"password: Your password\n"
+"\n"
+"--  [site:name] team"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Your account on [site:name] has been blocked.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\n"
+"\n"
+"Your account on [site:name] has been blocked.\n"
+"\n"
+"--  [site:name] team"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Your account on [site:name] has been canceled.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\n"
+"\n"
+"Your account on [site:name] has been canceled.\n"
+"\n"
+"--  [site:name] team"
+
+msgid "edit"
+msgstr "edit"
 
 msgctxt "PHP date format"
 msgid "j M Y - H:i"
 msgstr "m/d/Y - H:i"
 
-msgid "Archive webform"
-msgstr "Arkivér webform"
+msgctxt "PHP date format"
+msgid "l, j F Y - H:i"
+msgstr "l, F j, Y - H:i"
 
-msgid "Close webform"
-msgstr "Luk webform"
+msgid "more"
+msgstr "more"
 
-msgid "Delete webform"
-msgstr "Slet webform"
+msgid "view"
+msgstr "view"
 
-msgid "Open webform"
-msgstr "Åben webform"
-
-msgid "Delete submission"
-msgstr "Slet submission"
-
-msgid "Lock submission"
-msgstr "Lås submission"
-
-msgid "Unlock submission"
-msgstr "Lås submission op"
-
-msgid "Restore webform"
-msgstr "Gendan webform"
-
-msgid "< Previous"
-msgstr "‹ Forrige"
-
-msgid "Next >"
-msgstr "Næste >"
-
-msgid "Complete"
-msgstr "Afslut"
+msgid "visible"
+msgstr "visible"
 
 msgid "{Empty}"
 msgstr "{Ingen}"
 
-msgid "@count place"
-msgid_plural "@count places"
-msgstr[0] "1 place"
-msgstr[1] "@count places"
-
-msgid "Members"
-msgstr "Medlemmer"
-
-msgid "Completed"
-msgstr "Afsluttet"
-
-msgid "Danish"
-msgstr "Dansk"
-
-msgid "Please log in to access the uploaded file."
-msgstr "<p>Please log in to access the uploaded file.</p>"
-
-
+msgid "« First"
+msgstr "« First"
