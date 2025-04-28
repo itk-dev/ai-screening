@@ -8,7 +8,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a confirmation form before saving a project node.
@@ -30,7 +29,7 @@ class ProjectNodeConfirmForm extends ConfirmFormBase {
    *   The temp store factory service.
    */
   public function __construct(
-    private readonly PrivateTempStoreFactory $tempStoreFactory
+    private readonly PrivateTempStoreFactory $tempStoreFactory,
   ) {
   }
 
@@ -44,17 +43,17 @@ class ProjectNodeConfirmForm extends ConfirmFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, Node $node = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, ?Node $node = NULL) {
     $this->node = $node;
 
-    // Get the stored form values from tempstore
+    // Get the stored form values from tempstore.
     $tempstore = $this->tempStoreFactory->get('ai_screening_project_deactivate_confirm');
     $form_values = $tempstore->get('project_form_values_' . $node->id());
 
-    // Store form values in the form for later use in submitForm
+    // Store form values in the form for later use in submitForm.
     $form_state->set('stored_form_values', $form_values);
 
-    // Add other important fields to the summary as needed
+    // Add other important fields to the summary as needed.
     return parent::buildForm($form, $form_state);
   }
 
@@ -90,30 +89,31 @@ class ProjectNodeConfirmForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Get the stored form values
+    // Get the stored form values.
     $form_values = $form_state->get('stored_form_values');
-    
-    // Load the node entity
+
+    // Load the node entity.
     $node = Node::load($this->node->id());
 
-    // Apply the stored form values to the node
+    // Apply the stored form values to the node.
     foreach ($form_values as $field_name => $value) {
       if ($node->hasField($field_name)) {
         $node->set($field_name, $value);
       }
     }
 
-    // Save the node
+    // Save the node.
     $node->save();
-    
-    // Clear the tempstore data
+
+    // Clear the tempstore data.
     $tempstore = $this->tempStoreFactory->get('ai_screening_project_deactivate_confirm');
     $tempstore->delete('project_form_values_' . $node->id());
-    
-    // Set a success message
+
+    // Set a success message.
     $this->messenger()->addStatus($this->t('Project "@title" has been updated.', ['@title' => $node->label()]));
-    
-    // Redirect to the node view page
+
+    // Redirect to the node view page.
     $form_state->setRedirectUrl(Url::fromRoute('entity.node.canonical', ['node' => $node->id()]));
   }
+
 }
