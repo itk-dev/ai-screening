@@ -22,7 +22,7 @@
         "drupal/field_group": "^3.6",
         "drupal/group": "^3.3",
         "drupal/hook_event_dispatcher": "^4.2",
-        "drupal/openid_connect": "dev-3452009-drupal-11-compatibility",
+        "drupal/openid_connect": "^3.0@alpha",
         "drupal/twig_tweak": "^3.4",
         "drupal/webform": "^6.0@dev",
         "drush/drush": "^13.2",
@@ -47,13 +47,8 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8",
             "exclude": [
-                "drupal/config_translation_po",
-                "drupal/openid_connect"
+                "drupal/config_translation_po"
             ]
-        },
-        {
-            "type": "git",
-            "url": "https://git.drupalcode.org/issue/openid_connect-3452009.git"
         },
         {
             "type": "git",
