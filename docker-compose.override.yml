@@ -13,6 +13,7 @@ services:
       - .:/app
 
   phpfpm:
+    image: itkdev/php8.4-fpm:latest
     environment:
       - PHP_MAX_EXECUTION_TIME=60
       - PHP_MEMORY_LIMIT=512M
