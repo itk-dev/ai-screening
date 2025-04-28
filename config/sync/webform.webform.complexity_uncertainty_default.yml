@@ -84,20 +84,20 @@ elements: |-
       '#title': 'Hvordan er løsningen/leverandøren etableret i markedet?'
       '#options':
         '0,10': 'Kendt løsning/leverandør samt juridiske krav/governance.'
-        '0,7': 'Ny løsning, der indføres sammen med andre. Jura/governance antages uproblematiske​.'
-        '0,5': 'Ny løsning med kendt  og velestimeret leverandør. Der er behov for afklaring af visse spørgsmål til jura/governance​'
-        '0,3': 'Ny løsning med kendt  og velestimeret leverandør. Der er behov for afklaring af visse spørgsmål til jura/governance​'
-        '0,1': 'Ny løsning/leverandør, ingen erfaring med de juridiske krav/governance​'
+        '0,7': 'Løsning indført, men ikke evalueret andre steder. Antagelse om, at der ikke er problematiske krav til jura/governance'
+        '0,5': 'Ny løsning, der indføres sammen med andre. Jura/governance antages uproblematiske'
+        '0,3': 'Ny løsning med kendt  og velestimeret leverandør. Der er behov for afklaring af visse spørgsmål til jura/governance'
+        '0,1': 'Ny løsning/leverandør, ingen erfaring med de juridiske krav/governance'
       '#options__properties': ''
     hvor_kompliceret_er_den_tekniske_integration_af_loesningen:
       '#type': ai_screening_weighted_radios
       '#title': 'Hvor kompliceret er den tekniske integration af løsningen?'
       '#options':
-        '0,10': 'PnP. Kendte og indfriede krav​.'
-        '0,7': "Løsningen leveres med velbeskrevne API'er, der dog skal undersøges nærmere​"
-        '0,5': 'Integrationer fordrer en mindre og ikke-kompleks udviklingsindsats​.'
-        '0,3': 'Leverandøren har omfattende, men kendte, krav til teknisk integration – nogle af disse fordrer udviklingsindsats​.'
-        '0,1': 'Ukendte krav, skal kortlægges gennem udviklingsindsats​.'
+        '0,10': 'Kendte og indfriede krav – løsningen fordrer ikke yderligere tilretning'
+        '0,7': "Løsningen leveres med velbeskrevne API'er, der dog skal undersøges nærmere"
+        '0,5': 'Integrationer fordrer en mindre og ikke-kompleks udviklingsindsats'
+        '0,3': 'Leverandøren har omfattende, men kendte, krav til teknisk integration – nogle af disse fordrer udviklingsindsats'
+        '0,1': 'Ukendte krav, skal kortlægges gennem udviklingsindsats'
       '#options__properties': ''
     hvor_lang_tid_vil_projektet_formodentligt_straekke_sig_over:
       '#type': ai_screening_weighted_radios
@@ -113,11 +113,11 @@ elements: |-
       '#type': ai_screening_weighted_radios
       '#title': 'Hvordan er projektet scopet?'
       '#options':
-        '0,10': 'Klar og velstruktureret tidsplan,​ veldefineret omfang.'
-        '0,7': 'Tidsplan kræver afklaring, omfang løst defineret​'
-        '0,5': 'Løst defineret tidsplan, omfang løst defineret​'
-        '0,3': 'Løst defineret tidsplan, omfang kræver afklaring​'
-        '0,1': 'Tidsplan og omfang ikke defineret​'
+        '0,10': 'Klar og velstruktureret tidsplan, veldefineret omfang.'
+        '0,7': 'Tidsplan kræver afklaring, omfang løst defineret'
+        '0,5': 'Løst defineret tidsplan, omfang løst defineret'
+        '0,3': 'Løst defineret tidsplan, omfang kræver afklaring'
+        '0,1': 'Tidsplan og omfang ikke defineret'
       '#options__properties': ''
 css: ''
 javascript: ''
