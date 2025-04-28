@@ -51,12 +51,6 @@ class ProjectNodeConfirmForm extends ConfirmFormBase {
     $tempstore = $this->tempStoreFactory->get('ai_screening_project_deactivate_confirm');
     $form_values = $tempstore->get('project_form_values_' . $node->id());
 
-    if (empty($form_values)) {
-      // If no form values in tempstore, redirect back to the edit form
-      $this->messenger()->addError($this->t('No pending changes found. Please try again.'));
-      return $this->redirect('entity.node.edit_form', ['node' => $node->id()]);
-    }
-
     // Store form values in the form for later use in submitForm
     $form_state->set('stored_form_values', $form_values);
 

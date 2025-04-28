@@ -114,6 +114,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
+    private readonly PrivateTempStoreFactory $tempStoreFactory
   ) {
     parent::__construct($logger);
     $this->groupStorage = $entityTypeManager->getStorage('group');

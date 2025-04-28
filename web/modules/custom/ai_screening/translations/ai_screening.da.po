@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-24 10:39+0200\n"
-"PO-Revision-Date: 2025-04-24 10:39+0200\n"
+"POT-Creation-Date: 2025-04-28 09:12+0200\n"
+"PO-Revision-Date: 2025-04-28 09:12+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr ""
 
 #: modules/custom/ai_screening/ai_screening.info.yml:0;0
 msgid "ai_screening"
-msgstr ""
+msgstr "ai_screening"
 
 #: modules/custom/ai_screening/ai_screening.info.yml:0 modules/custom/ai_screening/src/Plugin/Block/FrontpageHelpTextBlock.php:21
 msgid "Custom"
@@ -39,35 +39,35 @@ msgstr "Tilpasset"
 
 #: modules/custom/ai_screening/ai_screening.links.menu.yml:0 modules/custom/ai_screening/ai_screening.links.task.yml:0 modules/custom/ai_screening/ai_screening.routing.yml:0
 msgid "Site setup"
-msgstr ""
+msgstr "Webstedsopsætning"
 
 #: modules/custom/ai_screening/ai_screening.links.menu.yml:0
 msgid "Show site setup"
-msgstr ""
+msgstr "Vis webstedsopsætning"
 
 #: modules/custom/ai_screening/ai_screening.permissions.yml:0
 msgid "Access site setup pages."
-msgstr ""
+msgstr "Adgang til webstedsopsætningssider."
 
 #: modules/custom/ai_screening/ai_screening.routing.yml:0
 msgid "Frontpage settings"
-msgstr ""
+msgstr "Forsideindstillinger"
 
 #: modules/custom/ai_screening/custom_event_dispatcher/custom_event_dispatcher.info.yml:0;0
 msgid "custom_event_dispatcher"
-msgstr ""
+msgstr "custom_event_dispatcher"
 
 #: modules/custom/ai_screening/custom_event_dispatcher/custom_event_dispatcher.info.yml:0
 msgid "Hook events"
-msgstr ""
+msgstr "Hook-hændelser"
 
 #: modules/custom/ai_screening/src/Form/FrontpageForm.php:42
 msgid "Help text message"
-msgstr ""
+msgstr "Hjælpetekstbesked"
 
 #: modules/custom/ai_screening/src/Form/FrontpageForm.php:56
 msgid "Go back"
-msgstr "Tilbage"
+msgstr "Gå tilbage"
 
 #: modules/custom/ai_screening/src/Form/FrontpageForm.php:78
 msgid "Save"
@@ -75,25 +75,24 @@ msgstr "Gem"
 
 #: modules/custom/ai_screening/src/Helper/AbstractHelper.php:62
 msgid "Exception (@type) in @location: @message"
-msgstr ""
+msgstr "Undtagelse (@type) i @location: @message"
 
 #: modules/custom/ai_screening/src/Helper/OpenIdConnectHelper.php:42
 msgid "Unblocking OIDC user @user (@id)"
-msgstr ""
+msgstr "Ophæver blokering af OIDC-bruger @user (@id)"
 
 #: modules/custom/ai_screening/src/Helper/ThemeHelper.php:37
 msgid "Create new project"
-msgstr ""
+msgstr "Opret nyt projekt"
 
 #: modules/custom/ai_screening/src/Helper/ThemeHelper.php:40
 msgid "Create new static page"
-msgstr ""
+msgstr "Opret ny statisk side"
 
 #: modules/custom/ai_screening/src/Helper/UserHelper.php:63
 msgid "Setting default language on user @user to @langcode"
-msgstr ""
+msgstr "Indstiller standardsprog for bruger @user til @langcode"
 
 #: modules/custom/ai_screening/src/Plugin/Block/FrontpageHelpTextBlock.php:20
 msgid "Frontpage help text"
-msgstr ""
-
+msgstr "Forsidehjælpetekst"
