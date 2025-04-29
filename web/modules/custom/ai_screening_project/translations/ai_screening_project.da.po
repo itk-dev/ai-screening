@@ -5,15 +5,17 @@
 # Generated from files:
 #  modules/custom/ai_screening_project/ai_screening_project.info.yml: n/a
 #  modules/custom/ai_screening_project/src/Plugin/Block/FrontpageStatsTopBlock.php: n/a
+#  modules/custom/ai_screening_project/ai_screening_project.routing.yml: n/a
 #  modules/custom/ai_screening_project/src/BreadcrumbBuilder.php: n/a
+#  modules/custom/ai_screening_project/src/Form/ProjectNodeConfirmForm.php: n/a
 #  modules/custom/ai_screening_project/src/Helper/ProjectHelper.php: n/a
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-24 10:39+0200\n"
-"PO-Revision-Date: 2025-04-24 10:39+0200\n"
+"POT-Creation-Date: 2025-04-28 09:12+0200\n"
+"PO-Revision-Date: 2025-04-28 09:12+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -23,69 +25,89 @@ msgstr ""
 
 #: modules/custom/ai_screening_project/ai_screening_project.info.yml:0
 msgid "AI Screening project"
-msgstr ""
+msgstr "AI Screening projekt"
 
 #: modules/custom/ai_screening_project/ai_screening_project.info.yml:0
 msgid "Functionality related to creating and maintaining the project content type and related entities."
-msgstr ""
+msgstr "Funktionalitet relateret til oprettelse og vedligehold af af projektindholdstype og relaterede entiteter."
 
 #: modules/custom/ai_screening_project/ai_screening_project.info.yml:0 modules/custom/ai_screening_project/src/Plugin/Block/FrontpageStatsTopBlock.php:21
 msgid "Custom"
 msgstr "Tilpasset"
 
+#: modules/custom/ai_screening_project/ai_screening_project.routing.yml:0
+msgid "Confirm Project Changes"
+msgstr "Bekræft projekt ændringer"
+
 #: modules/custom/ai_screening_project/src/BreadcrumbBuilder.php:68
 msgid "Projects"
-msgstr ""
+msgstr "Projekter"
 
 #: modules/custom/ai_screening_project/src/BreadcrumbBuilder.php:71
 msgid "Create new project"
-msgstr ""
+msgstr "Oprt nyt projekt"
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:237
+#: modules/custom/ai_screening_project/src/Form/ProjectNodeConfirmForm.php:65
+msgid "Are you sure you want to save the project \"@title\"?"
+msgstr "Er du sikker på at du vil gemme projektet \"@title\"?"
+
+#: modules/custom/ai_screening_project/src/Form/ProjectNodeConfirmForm.php:79
+msgid "Deactivating a project will disable further work on the project and archive it. Reactivation of the project requires site administrative privileges."
+msgstr "Deaktivering af projektet vil forhindre yderligere arbejde på projektet og arkivere det. Reaktivering af projektet kræver administrator adgang på sitet."
+
+#: modules/custom/ai_screening_project/src/Form/ProjectNodeConfirmForm.php:86
+msgid "Save project"
+msgstr "Gem projekt"
+
+#: modules/custom/ai_screening_project/src/Form/ProjectNodeConfirmForm.php:114
+msgid "Project \"@title\" has been updated."
+msgstr "Projekt \"@title\" er blevet opdateret."
+
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:239
 msgid "Corrupted"
-msgstr ""
+msgstr "Beskadiget"
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:238
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:240
 msgid "If the project or related entities are corrupted."
-msgstr ""
+msgstr "Hvis projektet eller relaterede entiteter er beskadiget."
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:354
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:356
 msgid "Project group"
 msgstr "Projectgruppe"
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:359
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:361
 msgid "Project owner"
 msgstr "Projektejer"
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:368
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:370
 msgid "Contributors"
-msgstr ""
+msgstr "Bidragydere"
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:369
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:371
 msgid "Which users are allowed to contribute to this project"
-msgstr ""
+msgstr "Hvilke brugere har tilladelse til at bidrage til dette projekt"
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:388
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:398
 msgid "Project owner must be a contributor."
-msgstr ""
+msgstr "Projektejeren skal være bidragyder."
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:156
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:158
 msgid "Error deleting project: @message"
-msgstr ""
+msgstr "Fejl ved sletning af projekt: @message"
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:179
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:181
 msgid "Error deleting corrupted nodes: @message"
-msgstr ""
+msgstr "Fejl ved sletning af beskadigede noder: @message"
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:463
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:492
 msgid "Error creating groups: @message"
-msgstr ""
+msgstr "Fejl ved oprettelse af grupper: @message"
 
-#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:545
+#: modules/custom/ai_screening_project/src/Helper/ProjectHelper.php:574
 msgid "Error creating project tracks: @message"
-msgstr ""
+msgstr "Fejl ved oprettelse af projektspor: @message"
 
 #: modules/custom/ai_screening_project/src/Plugin/Block/FrontpageStatsTopBlock.php:20
 msgid "Frontpage stats top"
-msgstr ""
+msgstr "Forside statistik top"
 
