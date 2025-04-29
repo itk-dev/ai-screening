@@ -40,6 +40,8 @@ steps:
         - rm -rf web/themes/custom/itkdev/*/node_modules
         # Deploy site.
         - itkdev-docker-compose-server exec phpfpm composer install --no-dev -o --classmap-authoritative
+        # Fixes issue with 'Drupal\mysql\Driver\Database\mysql\Connection' not found
+        - itkdev-docker-compose-server run --rm phpfpm composer2 dump-autoload
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes deploy
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:update
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:import da ../translations/strings/ai-screening.da.po --override=all
