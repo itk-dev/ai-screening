@@ -22,7 +22,7 @@
   {% set evaluationText = 'Refused'|t %}
 {% elseif 'undecided' in evaluation %}
   {% set icon = 'fa-triangle-exclamation' %}
-  {% set color = 'bg-yellow-600' %}
+  {% set color = 'bg-yellow-500' %}
   {% set evaluationText = 'Undecided'|t %}
 {% elseif 'approved' in evaluation %}
   {% set icon = 'fa-check' %}
@@ -45,7 +45,7 @@
             {% set color = 'bg-red-600' %}
           {% elseif 'undecided' in status %}
             {% set icon = 'fa-triangle-exclamation' %}
-            {% set color = 'bg-yellow-600' %}
+            {% set color = 'bg-yellow-500' %}
           {% elseif 'approved' in status %}
             {% set icon = 'fa-check' %}
             {% set color = 'bg-green-600' %}
