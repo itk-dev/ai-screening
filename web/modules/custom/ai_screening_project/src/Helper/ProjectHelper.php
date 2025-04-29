@@ -593,13 +593,20 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    *   The tracks.
    */
   public function loadProjectTracks(NodeInterface $project): array {
+    $orderedTracks = [];
+
     $ids = $this->projectTrackStorage->getQuery()
       ->accessCheck(FALSE)
       ->condition('project_id', $project->id(), '=')
-      ->sort('delta')
       ->execute();
 
-    return $this->projectTrackStorage->loadMultiple($ids);
+    foreach ($ids as $id) {
+      $projectTrack = $this->projectTrackStorage->load($id);
+      $orderedTracks[$projectTrack->getType()->getWeight()] = $projectTrack;
+    }
+    ksort($orderedTracks);
+
+    return $orderedTracks;
   }
 
   /**
