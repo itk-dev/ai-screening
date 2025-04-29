@@ -820,4 +820,14 @@ msgstr "Dansk"
 msgid "Please log in to access the uploaded file."
 msgstr "<p>Please log in to access the uploaded file.</p>"
 
+msgid "high"
+msgstr "høj"
 
+msgid "average"
+msgstr "middel"
+
+msgid "low"
+msgstr "lav"
+
+msgid "irrelevant"
+msgstr "irrelevant"

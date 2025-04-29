@@ -29,7 +29,7 @@
   {% set displayedValue = (value['#markup'] is same as ('{Empty}')) or (value['#plain_text'] is empty) ? '{Empty}'|t : value['#plain_text']|t %}
   <div>
     <div class="relative bg-white flex items-center mb-3 md:mb-5 min-w-28 justify-end">
-      <div class="{{ classNames is not empty ? 'mr-3' }} line-clamp-6">
+      <div class="{{ classNames is not empty ? 'mr-3' }} line-clamp-6 capitalize">
         {{ displayedValue }}
       </div>
       {% if classNames is not empty %}
