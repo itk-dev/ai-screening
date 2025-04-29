@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_screening_project\Helper;
 
+use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
@@ -625,10 +626,14 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     $ids = $this->projectTrackStorage->getQuery()
       ->accessCheck(FALSE)
       ->condition('project_id', $project->id(), '=')
-      ->sort('delta')
       ->execute();
 
-    return $this->projectTrackStorage->loadMultiple($ids);
+    $tracks = $this->projectTrackStorage->loadMultiple($ids);
+
+    uasort($tracks, static fn(ProjectTrackInterface $a, ProjectTrackInterface $b) => $a->getType()
+        ?->getWeight() <=> $b->getType()?->getWeight());
+
+    return $tracks;
   }
 
   /**
