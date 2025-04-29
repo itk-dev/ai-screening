@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-102](https://github.com/itk-dev/ai-screening/pull/102)
+  - Add missing translations to contrib translations
 - [PR-101](https://github.com/itk-dev/ai-screening/pull/101)
   - Fix bugs in complexity track
   - Add ordering to project tracks
