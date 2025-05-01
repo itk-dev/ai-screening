@@ -1,13 +1,13 @@
 let colorSchemeStatus = {
   'none':'bg-slate-300',
   'approved':'bg-green-600',
-  'undecided':'bg-yellow-700',
+  'undecided':'bg-yellow-500',
   'refused':'bg-red-700'
 }
 
 let colorSchemeStaticSelect = {
   'high':'bg-green-600',
-  'average':'bg-yellow-700',
+  'average':'bg-yellow-500',
   'low':'bg-red-700',
   'irrelevant':'bg-slate-300',
 }

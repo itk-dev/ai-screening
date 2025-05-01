@@ -29,15 +29,15 @@ msgstr ""
 
 #: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
 msgid "ITK-dev base theme"
-msgstr ""
+msgstr "ITK-dev basistema"
 
 #: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
 msgid "Default base theme"
-msgstr ""
+msgstr "Standard basistema"
 
 #: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
 msgid "itkdev"
-msgstr ""
+msgstr "itkdev"
 
 #: themes/custom/itkdev/itkdev_base_theme/itkdev_base_theme.info.yml:0
 msgid "Header"
@@ -61,15 +61,15 @@ msgstr "Vælg"
 
 #: themes/custom/itkdev/itkdev_base_theme/build/app.js:0
 msgid "No results found"
-msgstr ""
+msgstr "Ingen resultater fundet"
 
 #: themes/custom/itkdev/itkdev_base_theme/build/app.js:0
 msgid "No choices to choose from"
-msgstr ""
+msgstr "Ingen valgmuligheder"
 
 #: themes/custom/itkdev/itkdev_base_theme/build/app.js:0
 msgid "Press to select"
-msgstr ""
+msgstr "Tryk for at vælge"
 
 #: themes/custom/itkdev/itkdev_base_theme/templates/html.html.twig:45
 msgid "Skip to main content"
@@ -93,15 +93,15 @@ msgstr "Sekundære tabs"
 
 #: themes/custom/itkdev/itkdev_base_theme/templates/components/nav-button.html.twig:2
 msgid "Open navigation menu"
-msgstr ""
+msgstr "Åbn navigationsmenu"
 
 #: themes/custom/itkdev/itkdev_base_theme/templates/components/site-navigation.html.twig:8
 msgid "Close navigation menu"
-msgstr ""
+msgstr "Luk navigationsmenu"
 
 #: themes/custom/itkdev/itkdev_base_theme/templates/components/site-search.html.twig:7
 msgid "Type to search..."
-msgstr ""
+msgstr "Skriv for at søge..."
 
 #: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:3
 msgid "Administrator"
@@ -117,7 +117,7 @@ msgstr "User"
 
 #: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:29
 msgid "My profile"
-msgstr ""
+msgstr "Min profil"
 
 #: themes/custom/itkdev/itkdev_base_theme/templates/components/user-menu.html.twig:34
 msgid "Log out"

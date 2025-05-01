@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_screening_project\Helper;
 
+use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
@@ -42,6 +43,7 @@ use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerTrait;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 
 /**
  * A helper class for the Project node entity.
@@ -113,6 +115,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
+    private readonly PrivateTempStoreFactory $tempStoreFactory,
   ) {
     parent::__construct($logger);
     $this->groupStorage = $entityTypeManager->getStorage('group');
@@ -376,7 +379,15 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       ];
 
       $form['#validate'][] = $this->validateGroupsForm(...);
-      $form['actions']['submit']['#submit'][] = $this->submitGroupsForm(...);
+      $userInput = $formState->getUserInput();
+      if (isset($userInput['field_project_state']) && 'finished' === $userInput['field_project_state']) {
+        unset($form['actions']['submit']['#submit']);
+        $form['actions']['submit']['#submit'][] = $this->addConfirmationStep(...);
+      }
+      else {
+        $form['actions']['submit']['#submit'][] = $this->submitGroupsForm(...);
+      }
+
     }
   }
 
@@ -387,6 +398,25 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     if (!in_array($form_state->getValue('project_owner'), $form_state->getValue('project_contributors'))) {
       $form_state->setErrorByName('project_owner', $this->t('Project owner must be a contributor.'));
     }
+  }
+
+  /**
+   * Change form redirect and store form state temporarily.
+   *
+   * @param array $form
+   *   The form.
+   * @param \Drupal\Core\Form\FormStateInterface $formState
+   *   State of the form.
+   */
+  public function addConfirmationStep(array $form, FormStateInterface $formState): void {
+    // Get the node being edited.
+    $node = $formState->getFormObject()->getEntity();
+
+    // Save the form values to tempstore.
+    $this->tempStoreFactory->get('ai_screening_project_deactivate_confirm')->set('project_form_values_' . $node->id(), $formState->getValues());
+
+    // Redirect to the confirmation form.
+    $formState->setRedirect('ai_screening_project.project_deactivate_confirm', ['node' => $node->id()]);
   }
 
   /**
@@ -596,10 +626,14 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     $ids = $this->projectTrackStorage->getQuery()
       ->accessCheck(FALSE)
       ->condition('project_id', $project->id(), '=')
-      ->sort('delta')
       ->execute();
 
-    return $this->projectTrackStorage->loadMultiple($ids);
+    $tracks = $this->projectTrackStorage->loadMultiple($ids);
+
+    uasort($tracks, static fn(ProjectTrackInterface $a, ProjectTrackInterface $b) => $a->getType()
+        ?->getWeight() <=> $b->getType()?->getWeight());
+
+    return $tracks;
   }
 
   /**

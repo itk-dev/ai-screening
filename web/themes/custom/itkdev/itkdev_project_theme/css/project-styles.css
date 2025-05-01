@@ -186,6 +186,7 @@ details[open] {
   margin: 0 1rem;
 }
 
+.dialog-cancel,
 #edit-delete {
   padding-left: 1.25rem;
   display: inline-block;
