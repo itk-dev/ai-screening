@@ -276,7 +276,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     elseif (array_key_exists('refuse', $result) && !array_key_exists('approved', $result)) {
       $evaluation = Evaluation::REFUSED;
     }
-    elseif (array_key_exists('approved', $result) && !array_key_exists('refuse', $result)){
+    elseif (array_key_exists('approved', $result) && !array_key_exists('refuse', $result)) {
       $evaluation = Evaluation::APPROVED;
     }
 

@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning].
 ## [0.3.1]
 
 - [PR-104](https://github.com/itk-dev/ai-screening/pull/104)
-    - Change bubblechart evaluation.
+  - Change bubblechart evaluation.
 
 ## [0.3.0]
 
