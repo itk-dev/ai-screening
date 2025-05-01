@@ -266,15 +266,17 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
       }
     }
 
-    // After loop we set the evaluation only ending on approved if other keys
-    // were not found.
-    if (array_key_exists('refuse', $result)) {
-      $evaluation = Evaluation::REFUSED;
-    }
-    elseif (array_key_exists('undecided', $result)) {
+    // After the loop we set the evaluation to match a matrix.
+    // If both axis results were refused we only have a "refuse" key in array
+    // and we evaluate to refused. If both were approved we approve. If we got
+    // both a refused and an approved key we are undecided.
+    if (array_key_exists('refuse', $result) && array_key_exists('approved', $result)) {
       $evaluation = Evaluation::UNDECIDED;
     }
-    elseif (array_key_exists('approved', $result)) {
+    elseif (array_key_exists('refuse', $result) && !array_key_exists('approved', $result)) {
+      $evaluation = Evaluation::REFUSED;
+    }
+    elseif (array_key_exists('approved', $result) && !array_key_exists('refuse', $result)){
       $evaluation = Evaluation::APPROVED;
     }
 
