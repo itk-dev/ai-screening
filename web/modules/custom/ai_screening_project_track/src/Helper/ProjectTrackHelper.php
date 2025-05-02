@@ -251,16 +251,19 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     // There is probably some smarter way I just couldn't find one.
     $result = [];
 
-    // Loop over all dimensions and determine which threshold the sum value
-    // matches.
+    // Loop over all dimensions of a single track and determine which threshold
+    // the sum value matches.
     foreach ($summedDimensions as $summedDimension) {
+      // The dimension did not reach undecided threshold.
       if ($summedDimension['sum'] < $summedDimension['undecidedThreshold']) {
         $result['refuse'] = TRUE;
       }
+      // The dimension reached undecided threshold but not approved threshold.
       if (($summedDimension['undecidedThreshold'] < $summedDimension['sum']) &&
         ($summedDimension['sum'] < $summedDimension['approvedThreshold'])) {
         $result['undecided'] = TRUE;
       }
+      // The dimension reached approved threshold.
       if ($summedDimension['sum'] > $summedDimension['approvedThreshold']) {
         $result['approved'] = TRUE;
       }
@@ -270,15 +273,14 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     // If both axis results were refused we only have a "refuse" key in array
     // and we evaluate to refused. If both were approved we approve. If we got
     // both a refused and an approved key we are undecided.
-    if (array_key_exists('refuse', $result) && array_key_exists('approved', $result)) {
-      $evaluation = Evaluation::UNDECIDED;
-    }
-    elseif (array_key_exists('refuse', $result) && !array_key_exists('approved', $result)) {
-      $evaluation = Evaluation::REFUSED;
-    }
-    elseif (array_key_exists('approved', $result) && !array_key_exists('refuse', $result)) {
-      $evaluation = Evaluation::APPROVED;
-    }
+    $evaluation = match (TRUE) {
+      // If some refuse and none approve, we refuse.
+      array_key_exists('refuse', $result) && !array_key_exists('approved', $result) => Evaluation::REFUSED,
+      // If some approve and none refuse, we approve.
+      array_key_exists('approved', $result) && !array_key_exists('refuse', $result) => Evaluation::APPROVED,
+      // Otherwise, we're undecided.
+      default => Evaluation::UNDECIDED
+    };
 
     $trackConfig['dimensions'] = $this->projectTrackTypeHelper->getDimensions($track->getType());
     $trackConfig['sums'] = $summedDimensions;
