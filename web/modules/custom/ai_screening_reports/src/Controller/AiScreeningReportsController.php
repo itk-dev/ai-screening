@@ -140,6 +140,7 @@ final class AiScreeningReportsController extends ControllerBase {
           'projectTracks' => $groupedTracks,
           'trackHelper' => $this->projectTrackHelper,
           'toolHelper' => $this->projectTrackToolHelper,
+          'trackTypeHelper' => $this->projectTrackTypeHelper,
           'colorList' => self::COLOR_CODES,
         ],
       ];

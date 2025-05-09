@@ -41,7 +41,7 @@
         {% set dimensions = track.entity.getDimensions %}
         {% set evaluationOptions = data.trackHelper.getEvaluationOptions %}
         {% set evaluationColor = evaluationOptions[evaluation] ?? 'bg-slate-300' %}
-
+        {% set trackTypeConfig = data.trackTypeHelper.getConfiguration(track.entity.getType) %}
         <div class="mb-16">
           <div>
             <div class="my-3 flex flex-wrap px-4">
@@ -54,7 +54,6 @@
                     {{ 'This project has been manually evaluated.'|t }}
                   </div>
                 {% endif %}
-                {% if track.entity.getProjectTrackEvaluationOverridden is not empty and projectCount is same as (1) %}
                 <div class="flex gap-16 mt-3">
                   <div>
                     <div class="description text-xs">{{ 'System evaluation'|t }}</div>
@@ -63,13 +62,14 @@
                       <div>{{ evaluationOptions[track.entity.getProjectTrackEvaluation(TRUE)] }}</div>
                     </div>
                   </div>
-                  <div>
-                    <div class="description text-xs">{{ 'Manual evaluation'|t }}</div>
-                    <div class="relative bg-white flex items-center mb-3 md:mb-5">
-                      <div class="h-5 w-5 z-0 mr-3 {{ evaluationClasses[track.entity.getProjectTrackEvaluationOverridden] }}"></div>
-                      <div>{{ evaluationOptions[track.entity.getProjectTrackEvaluationOverridden] }}</div>
+                  {% if track.entity.getProjectTrackEvaluationOverridden is not empty and projectCount is same as (1) %}
+                    <div>
+                      <div class="description text-xs">{{ 'Manual evaluation'|t }}</div>
+                      <div class="relative bg-white flex items-center mb-3 md:mb-5">
+                        <div class="h-5 w-5 z-0 mr-3 {{ evaluationClasses[track.entity.getProjectTrackEvaluationOverridden] }}"></div>
+                        <div>{{ evaluationOptions[track.entity.getProjectTrackEvaluationOverridden] }}</div>
+                      </div>
                     </div>
-                  </div>
                   {% endif %}
                 </div>
               </div>
@@ -82,9 +82,28 @@
           </div>
           <div class="my-3 flex flex-wrap px-4">
             <div class="basis-full mb-5">
-                <div> {{ dimensions[2] is not empty ? '@dimension is illustrated by bubble size'|t({'@dimension': dimensions[2]}) }}</div>
+              <div>{{ dimensions[2] is not empty ? '@dimension is illustrated by bubble size'|t({'@dimension': dimensions[2]}) }}</div>
             </div>
           </div>
+          {% if trackTypeConfig.quadrant_texts is not empty and projectCount is same as 1 %}
+            {% set activeQuadrant = track.entity.getConfiguration.bubbleChartReportResult.activeQuadrant %}
+            <div>
+              {% if activeQuadrant is same as '2' or activeQuadrant is same as '4' %}
+                <h5>
+                  <i class="text-blue-600 mr-3 fa-regular fa-circle-info"></i>{{ 'Consideration'|t }}
+                </h5>
+              {% elseif activeQuadrant is same as '1' %}
+                <h5>
+                  <i class="text-green-600 mr-3 fa-regular fa-circle-check"></i>{{ 'Task'|t }}
+                </h5>
+              {% elseif activeQuadrant is same as '3' %}
+                <h5>
+                  <i class="text-red-600 mr-3 fa-regular fa-circle-exclamation"></i>{{ 'Rule'|t }}
+                </h5>
+              {% endif %}
+              <p>{{ trackTypeConfig.quadrant_texts[activeQuadrant]|raw }}</p>
+            </div>
+          {% endif %}
           {% if projectCount > 1 %}
             {{ include('@itkdev_project_theme/components/reportsMultiProjectTable.html.twig') }}
           {% endif %}
