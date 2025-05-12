@@ -321,15 +321,20 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     return $trackConfig;
   }
 
+  /**
+   * Get the quadrant that contains the evaluation.
+   */
   private function getActiveQuadrant(array $sums, Evaluation $evaluation): string {
     $activeQuadrant = 0;
     switch ($evaluation) {
       case Evaluation::APPROVED:
         $activeQuadrant = 1;
         break;
+
       case Evaluation::REFUSED:
         $activeQuadrant = 3;
         break;
+
       case Evaluation::UNDECIDED:
         if ($sums['0']['sum'] > $sums[0]['approvedThreshold']) {
           $activeQuadrant = 4;
@@ -342,4 +347,5 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
 
     return $activeQuadrant;
   }
+
 }
