@@ -182,8 +182,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build theme
-        run: |
-          echo "token: $FONTAWESOME_PACKAGE_TOKEN"  
+        run: |  
           docker network create frontend
           docker compose run --rm node yarn config set '//npm.fontawesome.com/:_authToken' "$FONTAWESOME_PACKAGE_TOKEN"
           docker compose run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_project_theme install
