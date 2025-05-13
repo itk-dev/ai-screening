@@ -68,7 +68,7 @@ import annotationPlugin from 'chartjs-plugin-annotation';
                     display: false
                   },
                   tooltip: {
-                    intersect: false,
+                    enabled: true,
                     callbacks: {
                       title: function (tooltipItem) {return tooltipItem[0].dataset.title},
                       label: function (tooltipItem) {return tooltipItem.dataset.trackState},
@@ -124,8 +124,26 @@ import annotationPlugin from 'chartjs-plugin-annotation';
               },
             }
           );
+
+          let mychart = Chart.instances[0];
+          let activeElements = [];
+          const points = mychart.getSortedVisibleDatasetMetas();
+
+          console.log(points);
+          points.forEach((point, index) => {
+            activeElements.push({
+              datasetIndex: index,
+              element: point,
+              index: index,
+            })
+            mychart.tooltip.setActiveElements(activeElements, { x: 0, y: 0 });
+          })
+          mychart.update();
         }
       });
+
+
+
     }
   };
 
