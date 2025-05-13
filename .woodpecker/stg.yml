@@ -22,6 +22,8 @@ steps:
         from_secret: stg_path
       user:
         from_secret: user
+      fontawesome_package_token:
+        from_secret: FONTAWESOME_PACKAGE_TOKEN
       actions:
         - chmod +w web/sites/default
         - chmod +w web/sites/default/settings.php
@@ -31,9 +33,9 @@ steps:
         - git pull
         - itkdev-docker-compose-server up -d --force-recreate --remove-orphans
         # Build theme
-        - itkdev-docker-compose-server run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_project_theme install
-        - itkdev-docker-compose-server run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme install
-        - itkdev-docker-compose-server run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme build
+        - itkdev-docker-compose-server run --rm -e PLUGIN_FONTAWESOME_PACKAGE_TOKEN node yarn --cwd /app/web/themes/custom/itkdev/itkdev_project_theme install
+        - itkdev-docker-compose-server run --rm -e PLUGIN_FONTAWESOME_PACKAGE_TOKEN node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme install
+        - itkdev-docker-compose-server run --rm -e PLUGIN_FONTAWESOME_PACKAGE_TOKEN node yarn --cwd /app/web/themes/custom/itkdev/itkdev_base_theme build
         # Ensure everything is owned by deploy
         - sudo chown -R deploy:deploy web
         # Cleanup theme building
