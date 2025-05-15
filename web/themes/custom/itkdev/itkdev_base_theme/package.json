@@ -40,5 +40,7 @@
     "watch:tailwind": "yarn tailwindcss -i css/styles.css -o css/styles.dist.css --watch",
     "watch": "concurrently \"yarn watch:tailwind\" \"yarn watch:encore\" "
   },
-  "dependencies": {}
+  "dependencies": {
+    "@fortawesome/pro-regular-svg-icons": "^6.7.2"
+  }
 }

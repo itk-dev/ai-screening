@@ -20,8 +20,10 @@ import annotationPlugin from 'chartjs-plugin-annotation';
             datasets.push({
               label: data.dataset.chart.label,
               title: data.dataset.chart.label,
+              trackState: data.dataset.chart.track_state,
               data: data.dataset.plots,
               backgroundColor: data.dataset.chart.color,
+              evaluationColor: data.dataset.chart.evaluation_color,
             });
           });
 
@@ -66,7 +68,19 @@ import annotationPlugin from 'chartjs-plugin-annotation';
                     display: false
                   },
                   tooltip: {
-                    enabled: false
+                    intersect: false,
+                    callbacks: {
+                      title: function (tooltipItem) {return tooltipItem[0].dataset.title},
+                      label: function (tooltipItem) {return tooltipItem.dataset.trackState},
+                      labelColor: function(tooltipItem) {
+                        return {
+                          borderColor: tooltipItem.dataset.evaluationColor,
+                          backgroundColor: tooltipItem.dataset.evaluationColor,
+                          borderWidth: 0,
+                          borderRadius: 0,
+                        };
+                      },
+                    }
                   },
                   annotation: {
                     annotations: {

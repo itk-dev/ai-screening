@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [0.3.2]
+
+- [PR-105](https://github.com/itk-dev/ai-screening/pull/105)
+  - Add bubble chart colors
+
 ## [0.3.1]
 
 - [PR-104](https://github.com/itk-dev/ai-screening/pull/104)

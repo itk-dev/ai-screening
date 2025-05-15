@@ -3,6 +3,7 @@ import {
   projectFaBrandIcons,
   projectFaSolidIcons,
   projectFaRegularIcons,
+  projectFaProRegularIcons,
 } from "../../itkdev_project_theme/js/project-icons.js";
 
 // Create arrays with the icon names and add additional icons
@@ -23,6 +24,11 @@ const projectFaRegularCustomIconsList = [
   "faWindowClose",
 ];
 
+const projectFaProRegularCustomIconsList = [
+  ...projectFaProRegularIcons,
+  "faCircleInfo"
+];
+
 // Import the svg core
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 
@@ -30,6 +36,7 @@ import { library, dom } from "@fortawesome/fontawesome-svg-core";
 import * as brandIcons from "@fortawesome/free-brands-svg-icons";
 import * as solidIcons from "@fortawesome/free-solid-svg-icons";
 import * as regularIcons from "@fortawesome/free-regular-svg-icons";
+import * as proRegularIcons from "@fortawesome/pro-regular-svg-icons";
 
 // Get specific icons based on the lists
 const selectedBrandIcons = projectFaBrandCustomIconsList
@@ -44,11 +51,16 @@ const selectedRegularIcons = projectFaRegularCustomIconsList
   .map((iconName) => regularIcons[iconName])
   .filter((icon) => icon !== undefined);
 
+const selectedProRegularIcons = projectFaProRegularCustomIconsList
+  .map((iconName) => proRegularIcons[iconName])
+  .filter((icon) => icon !== undefined);
+
 // Add the icons to the library
 library.add(
   ...selectedBrandIcons,
   ...selectedSolidIcons,
   ...selectedRegularIcons,
+  ...selectedProRegularIcons,
 );
 
 // Run <i> to <svg> replace

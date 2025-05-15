@@ -11,6 +11,7 @@
 #  themes/custom/itkdev/itkdev_project_theme/templates/pager.html.twig: n/a
 #  themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig: n/a
 #  themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig: n/a
+#  themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig: n/a
 #  themes/custom/itkdev/itkdev_project_theme/templates/reports-project.html.twig: n/a
 #  themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig: n/a
 #  themes/custom/itkdev/itkdev_project_theme/templates/form/form--ai-screening-project-track-thresholds.html.twig: n/a
@@ -25,7 +26,6 @@
 #  themes/custom/itkdev/itkdev_project_theme/templates/components/project-status.html.twig: n/a
 #  themes/custom/itkdev/itkdev_project_theme/templates/components/tablesort-indicator.html.twig: n/a
 #  themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig: n/a
-#  themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig: n/a
 #  themes/custom/itkdev/itkdev_project_theme/templates/form/form--user-form.html.twig: n/a
 #  themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--ai-screening-static-select.html.twig: n/a
 #  themes/custom/itkdev/itkdev_project_theme/templates/form/webform-element-base-html--text-format.html.twig: n/a
@@ -36,8 +36,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-24 10:40+0200\n"
-"PO-Revision-Date: 2025-04-24 10:40+0200\n"
+"POT-Creation-Date: 2025-05-09 11:16+0200\n"
+"PO-Revision-Date: 2025-05-09 11:16+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgstr "Indhold"
 
 #: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
 msgid "Footer"
-msgstr "Footer"
+msgstr "Sidefod"
 
 #: themes/custom/itkdev/itkdev_project_theme/js/choices.js:0
 msgid "Select"
@@ -165,7 +165,7 @@ msgstr "Grafen viser den automatisk beregnede evaluering."
 msgid "This project has been manually evaluated."
 msgstr "Dette projekt er blevet manuelt evalueret."
 
-#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:60 themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig:8 themes/custom/itkdev/itkdev_project_theme/templates/form/project-track-edit-form.html.twig:55
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:59 themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig:8 themes/custom/itkdev/itkdev_project_theme/templates/form/project-track-edit-form.html.twig:55
 msgid "System evaluation"
 msgstr "Systemevaluering"
 
@@ -177,7 +177,19 @@ msgstr "Manuel evaluering"
 msgid "@dimension is illustrated by bubble size"
 msgstr "@dimension er illustreret med boblestørrelse"
 
-#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:106 themes/custom/itkdev/itkdev_project_theme/templates/reports-project.html.twig:42
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:93
+msgid "Consideration"
+msgstr "Overvejelse"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:97 themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:38;42
+msgid "Task"
+msgstr "Opgave"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:101
+msgid "Rule"
+msgstr "Regel"
+
+#: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:125 themes/custom/itkdev/itkdev_project_theme/templates/reports-project.html.twig:42
 msgid "Go Back"
 msgstr "Gå tilbage"
 
@@ -207,7 +219,10 @@ msgstr "Opsæt tærskelværdier for projektspor"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig:36
 msgid "Set up thresholds for each project. The thresholds are used to determine when a suggested project track evaluation changes from \"Refused\" to \"Undecided\" to \"Approved\""
-msgstr "Opsæt tærskelværdier for hvert projekt. Tærskelværdierne bruges til at bestemme, hvornår en foreslået projektsporsevaluering ændres fra \"Afvist\" til \"Uafklaret\" til \"Godkendt\""
+msgstr ""
+"Opsæt tærskelværdier for hvert projekt. Tærskelværdierne bruges "
+"til at bestemme, hvornår en foreslået projektsporsevaluering ændres "
+"fra \"Afvist\" til \"Uafklaret\" til \"Godkendt\""
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig:41
 msgid "Setup thresholds"
@@ -301,7 +316,7 @@ msgstr "Editor"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:5
 msgid "User"
-msgstr "User"
+msgstr "Bruger"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/user-menu.html.twig:30
 msgid "My profile"
@@ -339,21 +354,24 @@ msgstr "Resumé"
 msgid "Report"
 msgstr "Rapport"
 
-#: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:38;42
-msgid "Task"
-msgstr "Opgave"
-
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:39
 msgid "You must ensure that users/citizens that use an AI-system are informed that it is an AI-system."
-msgstr "Du skal sikre, at brugere/borgere, der anvender et AI-system, informeres om, at det er et AI-system."
+msgstr ""
+"Du skal sikre, at brugere/borgere, der anvender et AI-system, "
+"informeres om, at det er et AI-system."
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/webformSubmissionReportHeader.html.twig:43
 msgid "A Fundamental rights impact assessment (FRIA) must always be implemented."
-msgstr "En vurdering af indvirkning på grundlæggende rettigheder (FRIA) skal altid implementeres."
+msgstr ""
+"En vurdering af indvirkning på grundlæggende rettigheder (FRIA) skal "
+"altid implementeres."
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/form/form--ai-screening-project-track-thresholds.html.twig:24
 msgid "Define thresholds for all projects. This is used by the system to make a suggested evaluation by measuring all the combined answers of each project track against the corresponding thresholds."
-msgstr "Definer tærskelværdier for alle projekter. Dette bruges af systemet til at lave en foreslået evaluering ved at måle alle de kombinerede svar for hvert projektspor mod de tilsvarende tærskelværdier."
+msgstr ""
+"Definer tærskelværdier for alle projekter. Dette bruges af systemet "
+"til at lave en foreslået evaluering ved at måle alle de kombinerede "
+"svar for hvert projektspor mod de tilsvarende tærskelværdier."
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/form/form--user-form.html.twig:18
 msgid "Update user profile"
@@ -386,3 +404,4 @@ msgstr "Seneste"
 #: themes/custom/itkdev/itkdev_project_theme/templates/views/views-view-table--front.html.twig:137
 msgid "Show all projects"
 msgstr "Vis alle projekter"
+

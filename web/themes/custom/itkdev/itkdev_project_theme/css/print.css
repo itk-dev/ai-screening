@@ -40,4 +40,8 @@
     break-inside: avoid-page;
   }
 
+  canvas {
+    height: auto !important;
+    width: 100% !important;
+  }
 }
