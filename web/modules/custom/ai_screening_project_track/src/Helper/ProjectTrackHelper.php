@@ -285,6 +285,7 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     $trackConfig['dimensions'] = $this->projectTrackTypeHelper->getDimensions($track->getType());
     $trackConfig['sums'] = $summedDimensions;
     $trackConfig['evaluation'] = $evaluation ?? Evaluation::NONE;
+    $trackConfig['activeQuadrant'] = $this->getActiveQuadrant($trackConfig['sums'], $trackConfig['evaluation']);
 
     return $trackConfig;
   }
@@ -318,6 +319,34 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
     $trackConfig['evaluation'] = $evaluation ?? Evaluation::NONE;
 
     return $trackConfig;
+  }
+
+  /**
+   * Get the quadrant that contains the evaluation.
+   * See https://da.wikipedia.org/wiki/Kvadrant
+   */
+  private function getActiveQuadrant(array $sums, Evaluation $evaluation): string {
+    $activeQuadrant = 0;
+    switch ($evaluation) {
+      case Evaluation::APPROVED:
+        $activeQuadrant = 1;
+        break;
+
+      case Evaluation::REFUSED:
+        $activeQuadrant = 3;
+        break;
+
+      case Evaluation::UNDECIDED:
+        if ($sums['0']['sum'] > $sums[0]['approvedThreshold']) {
+          $activeQuadrant = 4;
+        }
+        if ($sums['1']['sum'] > $sums[1]['approvedThreshold']) {
+          $activeQuadrant = 2;
+        }
+        break;
+    }
+
+    return $activeQuadrant;
   }
 
 }

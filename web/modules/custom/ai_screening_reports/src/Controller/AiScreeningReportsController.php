@@ -42,6 +42,12 @@ final class AiScreeningReportsController extends ControllerBase {
     '#ec44d4',
   ];
 
+  private const array EVALUATION_COLORS = [
+    'none' => 'rgba(212, 212, 216, 1)',
+    'refused' => 'rgba(190, 18, 60, 1)',
+    'undecided' => 'rgba(245, 158, 11, 1)',
+    'approved' => 'rgba(4, 120, 87, 1)',
+  ];
   private const int MAX_NUMBER_OF_PROJECTS = 15;
 
   public function __construct(
@@ -76,13 +82,16 @@ final class AiScreeningReportsController extends ControllerBase {
     $colorCounter = 0;
     $groupedTracks = [];
     $projectColors = [];
+    $projectIds = [];
     $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get(self::PROJECT_TRACK_ID_NAME));
+    $evaluationOptions = $this->projectTrackHelper->getEvaluationOptions();
 
     // Ensure proper url parameters: ?project_track_id[]=1&project_track_id[]=3.
     if (!empty($projectTracks)) {
       foreach ($projectTracks as $key => $projectTrack) {
         if (empty($projectColors[$projectTrack->getProject()->id()])) {
           $projectColors[$projectTrack->getProject()->id()] = self::COLOR_CODES[$colorCounter];
+          $projectIds[$projectTrack->getProject()->id()] = $projectTrack->getProject()->id();
           $colorCounter++;
         }
 
@@ -119,7 +128,9 @@ final class AiScreeningReportsController extends ControllerBase {
         ];
 
         $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['dataset']['chart']['label'] = $projectTrack->getProject()->label();
+        $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['dataset']['chart']['track_state'] = $evaluationOptions[$projectTrack->getProjectTrackEvaluation(TRUE)];
         $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['dataset']['chart']['color'] = $projectColors[$projectTrack->getProject()->id()];
+        $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['dataset']['chart']['evaluation_color'] = self::EVALUATION_COLORS[$projectTrack->getProjectTrackEvaluation(TRUE)];
         $groupedTracks[$projectTrack->getType()->id()]['tracks'][$projectTrack->id()]['entity'] = $projectTrack;
         if ($colorCounter >= self::MAX_NUMBER_OF_PROJECTS) {
           $this->messenger()
@@ -136,10 +147,12 @@ final class AiScreeningReportsController extends ControllerBase {
           ],
         ],
         '#data' => [
+          'projectCount' => count($projectIds),
           'request' => $request,
           'projectTracks' => $groupedTracks,
           'trackHelper' => $this->projectTrackHelper,
           'toolHelper' => $this->projectTrackToolHelper,
+          'trackTypeHelper' => $this->projectTrackTypeHelper,
           'colorList' => self::COLOR_CODES,
         ],
       ];
