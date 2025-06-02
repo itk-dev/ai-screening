@@ -14,7 +14,7 @@ elements: |-
     evaluation_1_1:
       '#type': ai_screening_static_select
       '#title': Vurdering
-      '#help': '<p>"Høj" betyder, at dette hensyn er fuldstændigt imødekommet, eller at spørgsmålet ikke er relevant. "Middel", at hensynet forventes at kunne imødekommes, "Lav", at hensynet ikke på nuværende tidspunkt forventes at kunne imødekommes.</p>'
+      '#help': '<p>"Høj" betyder, at dette hensyn er fuldstændigt imødekommet. "Middel", at hensynet forventes at kunne imødekommes, "Lav", at hensynet ikke på nuværende tidspunkt forventes at kunne imødekommes.</p>'
       '#help_display': element_after
     1_2_imoedegaaelse_af_risiko_for_diskrimination:
       '#type': text_format

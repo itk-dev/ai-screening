@@ -2,7 +2,7 @@ title: Kompleksitet
 elements: |-
   kompleksitet:
     '#type': webform_wizard_page
-    '#title': Kompleksitet
+    '#title': 'Kompleksitet og Usikkerhed'
     hvor_stor_er_projektorganisationen:
       '#type': ai_screening_weighted_radios
       '#title': 'Hvor stor er projektorganisationen?'
