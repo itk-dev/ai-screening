@@ -323,7 +323,8 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
 
   /**
    * Get the quadrant that contains the evaluation.
-   * See https://da.wikipedia.org/wiki/Kvadrant
+   *
+   * See https://da.wikipedia.org/wiki/Kvadrant.
    */
   private function getActiveQuadrant(array $sums, Evaluation $evaluation): string {
     $activeQuadrant = 0;
