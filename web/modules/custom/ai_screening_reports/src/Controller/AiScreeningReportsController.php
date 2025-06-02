@@ -82,6 +82,7 @@ final class AiScreeningReportsController extends ControllerBase {
     $colorCounter = 0;
     $groupedTracks = [];
     $projectColors = [];
+    $projectIds = [];
     $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get(self::PROJECT_TRACK_ID_NAME));
     $evaluationOptions = $this->projectTrackHelper->getEvaluationOptions();
 
@@ -90,6 +91,7 @@ final class AiScreeningReportsController extends ControllerBase {
       foreach ($projectTracks as $key => $projectTrack) {
         if (empty($projectColors[$projectTrack->getProject()->id()])) {
           $projectColors[$projectTrack->getProject()->id()] = self::COLOR_CODES[$colorCounter];
+          $projectIds[$projectTrack->getProject()->id()] = $projectTrack->getProject()->id();
           $colorCounter++;
         }
 
@@ -145,6 +147,7 @@ final class AiScreeningReportsController extends ControllerBase {
           ],
         ],
         '#data' => [
+          'projectCount' => count($projectIds),
           'request' => $request,
           'projectTracks' => $groupedTracks,
           'trackHelper' => $this->projectTrackHelper,
