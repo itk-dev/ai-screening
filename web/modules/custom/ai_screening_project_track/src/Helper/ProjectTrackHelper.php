@@ -303,19 +303,39 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    */
   private function computeWebformSubmissionReportValues(ProjectTrackInterface $track, array $trackConfig): array {
     $tools = $this->projectTrackToolHelper->loadTools($track);
+    $evaluations = [];
 
-    // Check for blockers in all tools. and add them to config.
+    // Setup evaluation for a tool.
     foreach ($tools as $tool) {
+      // Determine evaluations of all tools by comparing all relevant form
+      // fields on each tool.
+      $evaluations[$tool->id()] = $this->projectTrackToolHelper->getEvaluationFromFields($tool);
+      // Find relevant blockers across all tools.
       $trackConfig['blockers'][$tool->id()] = $this->projectTrackToolHelper->getToolBlockers($tool);
     }
+    // Set a default evaluation.
+    $evaluation = Evaluation::NONE;
 
-    // Set evaluation to refused if a blocker was found.
-    foreach ($trackConfig['blockers'] as $blocker) {
-      if (!empty($blocker)) {
-        $evaluation = Evaluation::REFUSED;
+    // Determine track evaluation by comparing all tools across the track.
+    foreach ($evaluations as $toolEvaluation) {
+      $evaluation = match (TRUE) {
+        $toolEvaluation === Evaluation::REFUSED => Evaluation::REFUSED,
+        $toolEvaluation === Evaluation::UNDECIDED && $evaluation !== Evaluation::REFUSED => Evaluation::UNDECIDED,
+        $toolEvaluation === Evaluation::APPROVED && $evaluation !== Evaluation::UNDECIDED && $evaluation !== Evaluation::REFUSED => Evaluation::APPROVED,
+        // Don't change the evaluation.
+        default => $evaluation
+      };
+
+      // Set evaluation to refused if a blocker was found.
+      foreach ($trackConfig['blockers'] as $blocker) {
+        if (!empty($blocker)) {
+          $evaluation = Evaluation::REFUSED;
+        }
       }
+
     }
 
+    // If no evaluation was found we set it here.
     $trackConfig['evaluation'] = $evaluation ?? Evaluation::NONE;
 
     return $trackConfig;
@@ -323,7 +343,16 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
 
   /**
    * Get the quadrant that contains the evaluation.
-   * See https://da.wikipedia.org/wiki/Kvadrant
+   *
+   * See https://da.wikipedia.org/wiki/Kvadrant.
+   *
+   * @param array $sums
+   *   A list of sums for each axis.
+   * @param \Drupal\ai_screening_project_track\Evaluation $evaluation
+   *   The current evaluation for the track.
+   *
+   * @return string
+   *   The active quadrant.
    */
   private function getActiveQuadrant(array $sums, Evaluation $evaluation): string {
     $activeQuadrant = 0;
