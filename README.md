@@ -8,13 +8,20 @@
 [![GitHub License](https://img.shields.io/github/license/itk-dev/ai-screening?style=flat-square)](https://github.com/itk-dev/ai-screening/blob/develop/LICENSE)
 
 ## Description
-AI-screening is a Drupal project made to screen AI solutions. It screens in 3 categories "can we" (complexity and uncertanty), "will we" (ethics) and "may we" (GDPR and AI act). The projects is inatially based on the need to quickly, easy and using the same questions throughout the muncipality to screen new AI projects. This is needed due to the speed AI projects develop and enter our work, to make sure that the projects meets compliance and rules. Projects that clears the screening can then move on to the next level of risk-handling, and more work being done to make sure that the project can be used in the desired usecases.
+
+AI-screening is a Drupal project made to screen AI solutions. It screens in 3 categories "can we"
+(complexity and uncertanty), "will we" (ethics) and "may we" (GDPR and AI act). The projects is
+inatially based on the need to quickly, easy and using the same questions throughout the muncipality
+to screen new AI projects. This is needed due to the speed AI projects develop and enter our work,
+to make sure that the projects meets compliance and rules. Projects that clears the screening can
+then move on to the next level of risk-handling, and more work being done to make sure that the
+project can be used in the desired usecases.
 
 Motivation for creating this project:
+
 - need for screening of AI projects before they are used
 - need for same screening done in the whole muncipality
 - need for a way to communicate about the risks of taken in an AI project
-
 
 A _Project_ has one or more _Tracks_ each of which in turn has one or more _Tools_:
 
