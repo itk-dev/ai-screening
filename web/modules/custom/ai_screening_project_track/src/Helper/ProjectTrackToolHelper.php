@@ -439,7 +439,10 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     $blockers = [];
 
     // Match submission against webform stop fields.
-    $submission = $toolData['webform_submission:' . $toolId]['submission'];
+    $submission = $toolData['webform_submission:' . $toolId]['submission'] ?? NULL;
+    if (NULL === $submission) {
+      return NULL;
+    }
     foreach ($submission as $field => $value) {
       if (isset($elements[$field]['#stop_value']) && $elements[$field]['#stop_value'] === $value) {
         $blockers[] = $elements[$field];
