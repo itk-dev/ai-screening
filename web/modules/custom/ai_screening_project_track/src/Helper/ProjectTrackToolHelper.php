@@ -487,7 +487,10 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
       return [];
     }
 
-    $webform = $toolData['webform_submission:' . $toolId]['webform'];
+    $webform = $toolData['webform_submission:' . $toolId]['webform'] ?? NULL;
+    if (NULL === $webform) {
+      return [];
+    }
 
     $webformFromConfig = Webform::create([
       'elements' => Yaml::encode($webform),
