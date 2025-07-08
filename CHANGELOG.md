@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-108](https://github.com/itk-dev/ai-screening/pull/108)
+  - Use free font-awesome icon.
+
 ## [0.3.3]
 
 - [PR-107](https://github.com/itk-dev/ai-screening/pull/107)
