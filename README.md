@@ -67,7 +67,7 @@ The project can for the most parts be maintained by use of console tools like
 - See [woodpecker prod file](.woodpecker/prod.yml) for advise on actions to perform after updating.
 Drupal manages site configuration in [web/sites/default/settings.php](web/sites/default/settings.php)
 - The settings.php file looks for config and setting overrides in web/sites/default/settings.local.php
-  - This file will likely contain sensitive information like db access and should not be pulicly accessible
+  - The settings.local.php file will likely contain sensitive information like db access and should not be publicly accessible
   - See [docs/Production.md](docs/Production.md) for examples of what this file could contain.
 
 ## Site installation
