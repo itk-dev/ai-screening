@@ -31,12 +31,16 @@ Motivation for creating this project:
 ### Default setup
 
 - Containerized environment through docker
-  - See [docker.compose.yml](docker.compose.yml) and [docker.compose.server.yml](docker.compose.server.yml) 
+  - See [docker-compose.yml](docker-compose.yml) and [docker-compose.server.yml](docker-compose.server.yml) 
   - Ubuntu VMs with docker and docker compose installed.
 - Running traefik globally installed on the server to
   - Manages incomming trafic: traefik -> nginx -> php
   - Handles SSL and certificates
-- Domains is defined through use of environment variable: COMPOSE_SERVER_DOMAIN and used in traefik labels
+- Domain is defined through use of environment variable: COMPOSE_SERVER_DOMAIN and used in traefik labels
+- COMPOSE_PROJECT_NAME is also used and referenced in the docker-compose files
+- A database container is defined in [docker-compose.yml](docker-compose.yml)
+- Uses generic nginx and php images mapped from the local filessysteme
+  - See [nginx.conf](.docker/nginx.conf) and [default.conf.template](.docker/templates/default.conf.template) for details
 
 A _Project_ has one or more _Tracks_ each of which in turn has one or more _Tools_:
 
