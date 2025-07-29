@@ -62,7 +62,7 @@ classDiagram
 ### Project setup
 
 The project can for the most parts be maintained by use of console tools like 
-[drush]([.docker/nginx.conf](https://www.drush.org/13.x/) and [go tasks](https://taskfile.dev/)
+[drush](https://www.drush.org/13.x/) and [go tasks](https://taskfile.dev/)
 - See [Taskfile.yml](Taskfile.yml) for questions about the install/build process
 - See [woodpecker prod file](.woodpecker/prod.yml) for advise on actions to perform after updating.
 Drupal manages site configuration in [web/sites/default/settings.php](web/sites/default/settings.php)
