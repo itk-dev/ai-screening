@@ -28,7 +28,7 @@ Motivation for creating this project:
 - Knowledge of Drupal is required for setting up this project.
 - Knowledge of containerized applications is highly recommended.
 
-### Default setup
+### Default server setup
 
 - Containerized environment through docker
   - See [docker-compose.yml](docker-compose.yml) and [docker-compose.server.yml](docker-compose.server.yml) 
@@ -41,6 +41,15 @@ Motivation for creating this project:
 - A database container is defined in [docker-compose.yml](docker-compose.yml)
 - Uses generic nginx and php images mapped from the local filessysteme
   - See [nginx.conf](.docker/nginx.conf) and [default.conf.template](.docker/templates/default.conf.template) for details
+
+### Project setup
+
+The project can for the most parts be maintained by use of console tools like 
+[drush]([.docker/nginx.conf](https://www.drush.org/13.x/) and [go tasks](https://taskfile.dev/)
+- See [Taskfile.yml](Taskfile.yml) for questions about the install/build process
+- See [woodpecker prod file](.woodpecker/prod.yml) for advise on actions to perform after updating.
+Drupal manages site configuration in [web/sites/default/settings.php](web/sites/default/settings.php)
+- This file looks for config and setting overrides in a settings.local.php in the same directory.
 
 A _Project_ has one or more _Tracks_ each of which in turn has one or more _Tools_:
 
