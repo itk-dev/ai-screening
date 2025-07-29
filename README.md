@@ -23,6 +23,23 @@ Motivation for creating this project:
 - need for same screening done in the whole muncipality
 - need for a way to communicate about the risks of taken in an AI project
 
+### Concept
+
+A _Project_ has one or more _Tracks_ each of which in turn has one or more _Tools_:
+
+``` mermaid
+---
+title: AI Screening classes
+---
+classDiagram
+    Tool --> Track
+    Track --> Project
+    class Project {
+        %% string title
+    }
+    Tool --> WebformSubmission
+```
+
 ## Setup
 
 - Knowledge of Drupal is required for setting up this project.
@@ -49,22 +66,9 @@ The project can for the most parts be maintained by use of console tools like
 - See [Taskfile.yml](Taskfile.yml) for questions about the install/build process
 - See [woodpecker prod file](.woodpecker/prod.yml) for advise on actions to perform after updating.
 Drupal manages site configuration in [web/sites/default/settings.php](web/sites/default/settings.php)
-- This file looks for config and setting overrides in a settings.local.php in the same directory.
-
-A _Project_ has one or more _Tracks_ each of which in turn has one or more _Tools_:
-
-``` mermaid
----
-title: AI Screening classes
----
-classDiagram
-    Tool --> Track
-    Track --> Project
-    class Project {
-        %% string title
-    }
-    Tool --> WebformSubmission
-```
+- The settings.php file looks for config and setting overrides in web/sites/default/settings.local.php
+  - This file will likely contain sensitive information like db access and should not be pulicly accessible
+  - See [docs/Production.md](docs/Production.md) for examples of what this file could contain.
 
 ## Site installation
 
