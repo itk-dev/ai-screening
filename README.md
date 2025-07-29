@@ -23,6 +23,21 @@ Motivation for creating this project:
 - need for same screening done in the whole muncipality
 - need for a way to communicate about the risks of taken in an AI project
 
+## Setup
+
+- Knowledge of Drupal is required for setting up this project.
+- Knowledge of containerized applications is highly recommended.
+
+### Default setup
+
+- Containerized environment through docker
+-- See [docker.compose.yml](docker.compose.yml) and [docker.compose.server.yml](docker.compose.server.yml) 
+-- Ubuntu VMs with docker and docker compose installed.
+- Running traefik globally installed on the server to
+-- Manages incomming trafic: traefik -> nginx -> php
+-- Handles SSL and certificates
+- Domains is defined through use of environment variable: COMPOSE_SERVER_DOMAIN and used in traefik labels
+
 A _Project_ has one or more _Tracks_ each of which in turn has one or more _Tools_:
 
 ``` mermaid
