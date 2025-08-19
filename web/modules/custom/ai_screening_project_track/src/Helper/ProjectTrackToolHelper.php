@@ -2,6 +2,7 @@
 
 namespace Drupal\ai_screening_project_track\Helper;
 
+use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Access\AccessResult;
@@ -365,6 +366,57 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   }
 
   /**
+   * Get the minimum evaluation from looping over tool fields.
+   *
+   * @param \Drupal\ai_screening_project_track\ProjectTrackToolInterface $tool
+   *   The tool.
+   *
+   * @return \Drupal\ai_screening_project_track\Evaluation
+   *   The evaluation.
+   */
+  public function getEvaluationFromFields(ProjectTrackToolInterface $tool): Evaluation {
+    if ($tool->getToolEntityType() !== 'webform_submission') {
+      return Evaluation::UNDECIDED;
+    }
+
+    $toolId = $tool->getToolId();
+    $toolData = $tool->getToolData();
+
+    if (empty($toolData) || empty($toolId)) {
+      return Evaluation::UNDECIDED;
+    }
+
+    $elements = $this->getWebformFlattenedElementsFromTool($tool);
+
+    // We are only looking fields that we can use to assess a minimum
+    // evaluation.
+    $elements = array_filter($elements, static fn (array $element) => 'ai_screening_static_select' === ($element['#type'] ?? NULL));
+
+    // Match submission against webform fields we can use to determine
+    // evaluation.
+    $submission = $toolData['webform_submission:' . $toolId]['submission'];
+
+    // Default Evaluation.
+    $evaluation = Evaluation::NONE;
+
+    // Determine tool evaluation by comparing all relevant fields across the
+    // tool.
+    foreach ($submission as $field => $value) {
+      if (array_key_exists($field, $elements)) {
+        $evaluation = match (TRUE) {
+          $value === 'low' => Evaluation::REFUSED,
+          $value === 'average' && $evaluation !== Evaluation::REFUSED => Evaluation::UNDECIDED,
+          $value === 'high' && $evaluation !== Evaluation::REFUSED && $evaluation !== Evaluation::UNDECIDED => Evaluation::APPROVED,
+          // Don't change the evaluation.
+          default => $evaluation
+        };
+      }
+    }
+
+    return $evaluation;
+  }
+
+  /**
    * Get blockers for a tool.
    */
   public function getToolBlockers(ProjectTrackToolInterface $tool): array {
@@ -379,20 +431,15 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
       return [];
     }
 
-    $webform = $toolData['webform_submission:' . $toolId]['webform'];
-    $submission = $toolData['webform_submission:' . $toolId]['submission'];
-
-    $webformFromConfig = Webform::create([
-      'elements' => Yaml::encode($webform),
-    ]);
-
-    $elements = $webformFromConfig->getElementsDecodedAndFlattened();
+    $elements = $this->getWebformFlattenedElementsFromTool($tool);
 
     // We are only looking for ai_screening_yes_no_stop elements.
     $elements = array_filter($elements, static fn (array $element) => 'ai_screening_yes_no_stop' === ($element['#type'] ?? NULL));
 
     $blockers = [];
-    // Match submission against webforms stop fields.
+
+    // Match submission against webform stop fields.
+    $submission = $toolData['webform_submission:' . $toolId]['submission'];
     foreach ($submission as $field => $value) {
       if (isset($elements[$field]['#stop_value']) && $elements[$field]['#stop_value'] === $value) {
         $blockers[] = $elements[$field];
@@ -421,6 +468,32 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     $id = reset($ids) ?: NULL;
 
     return $id !== NULL ? $this->projectTrackToolStorage->load($id) : NULL;
+  }
+
+  /**
+   * Get webform elements from tool.
+   *
+   * @param \Drupal\ai_screening_project_track\ProjectTrackToolInterface $tool
+   *   The tool.
+   *
+   * @return array
+   *   A list of webform elements.
+   */
+  private function getWebformFlattenedElementsFromTool(ProjectTrackToolInterface $tool): array {
+    $toolId = $tool->getToolId();
+    $toolData = $tool->getToolData();
+
+    if (empty($toolData) || empty($toolId)) {
+      return [];
+    }
+
+    $webform = $toolData['webform_submission:' . $toolId]['webform'];
+
+    $webformFromConfig = Webform::create([
+      'elements' => Yaml::encode($webform),
+    ]);
+
+    return $webformFromConfig->getElementsDecodedAndFlattened();
   }
 
 }

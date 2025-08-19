@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [0.3.3]
+
+- [PR-107](https://github.com/itk-dev/ai-screening/pull/107)
+  - Calculate ethics evaluation automatically.
+- [PR-106](https://github.com/itk-dev/ai-screening/pull/106)
+  - Change ethics and complexity tracks.
+
 ## [0.3.2]
 
 - [PR-105](https://github.com/itk-dev/ai-screening/pull/105)
