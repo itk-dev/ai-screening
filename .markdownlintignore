@@ -5,6 +5,7 @@ web/core/
 web/*/contrib/
 web/themes/custom/itkdev/*/node_modules/
 web/modules/temp_custom/
+node_modules/
 
 
 # Local Variables:
