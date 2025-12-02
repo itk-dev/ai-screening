@@ -111,7 +111,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    */
   public function __construct(
     private readonly AccountProxyInterface $accountProxy,
-    private readonly ProjectTrackHelper $projectTrackHelper,
+    //private readonly ProjectTrackHelper $projectTrackHelper,
     private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
@@ -153,7 +153,8 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       }
 
       $projectTracks = $this->loadProjectTracks($project);
-      $this->projectTrackHelper->deleteProjectTracks($projectTracks);
+      \Drupal::service(ProjectTrackHelper::class)->deleteProjectTracks($projectTracks);
+
     }
     catch (\Exception $exception) {
       $this->error('Error deleting project: @message', [
