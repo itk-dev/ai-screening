@@ -48,7 +48,7 @@ classDiagram
 ### Default server setup
 
 - Containerized environment through docker
-  - See [docker-compose.yml](docker-compose.yml) and [docker-compose.server.yml](docker-compose.server.yml) 
+  - See [docker-compose.yml](docker-compose.yml) and [docker-compose.server.yml](docker-compose.server.yml)
   - Ubuntu VMs with docker and docker compose installed.
 - Running traefik globally installed on the server to
   - Manages incomming trafic: traefik -> nginx -> php
@@ -61,8 +61,9 @@ classDiagram
 
 ### Project setup
 
-The project can for the most parts be maintained by use of console tools like 
+The project can for the most parts be maintained by use of console tools like
 [drush](https://www.drush.org/13.x/) and [go tasks](https://taskfile.dev/)
+
 - See [Taskfile.yml](Taskfile.yml) for questions about the install/build process
 - See [woodpecker prod file](.woodpecker/prod.yml) for advise on actions to perform after updating.
 Drupal manages site configuration in [web/sites/default/settings.php](web/sites/default/settings.php)
