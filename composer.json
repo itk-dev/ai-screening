@@ -16,9 +16,9 @@
         "drupal/better_exposed_filters": "^7.0",
         "drupal/config_ignore": "^3.3",
         "drupal/config_translation_po": "dev-3439416-added-drush-command",
-        "drupal/core-composer-scaffold": "^11.1",
-        "drupal/core-project-message": "^11.1",
-        "drupal/core-recommended": "^11.1",
+        "drupal/core-composer-scaffold": "^11.2.8",
+        "drupal/core-project-message": "^11.2.8",
+        "drupal/core-recommended": "^11.2.8",
         "drupal/field_group": "^3.6",
         "drupal/group": "^3.3",
         "drupal/hook_event_dispatcher": "^4.2",
@@ -26,6 +26,8 @@
         "drupal/twig_tweak": "^3.4",
         "drupal/webform": "^6.0@dev",
         "drush/drush": "^13.2",
+        "league/commonmark": "^2.7",
+        "symfony/http-foundation": "^7.3.7",
         "thecodingmachine/safe": "^2.5"
     },
     "require-dev": {
