@@ -77,12 +77,12 @@
             "phpstan/extension-installer": true,
             "tbachert/spi": true
         },
-        "sort-packages": true,
         "audit": {
             "ignore-abandoned": [
                 "doctrine/annotations"
             ]
-        }
+        },
+        "sort-packages": true
     },
     "extra": {
         "drupal-core-project-message": {
