@@ -6,7 +6,7 @@ services:
   Drupal\ai_screening_project\Helper\ProjectHelper:
     autowire: true
     arguments:
-      $logger:  '@logger.channel.ai_screening_project'
+      - '@logger.channel.ai_screening_project'
     tags:
       - { name: event_subscriber }
 
