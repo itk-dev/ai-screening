@@ -6,13 +6,13 @@ services:
   Drupal\ai_screening_project_track\Helper\ProjectTrackHelper:
     autowire: true
     arguments:
-      - '@logger.channel.ai_screening_project_track'
+      $logger: '@logger.channel.ai_screening_project_track'
     tags:
       - { name: event_subscriber }
 
   Drupal\ai_screening_project_track\Helper\ProjectTrackToolHelper:
     arguments:
-      - '@logger.channel.ai_screening_project_track'
+      $logger: '@logger.channel.ai_screening_project_track'
     tags:
       - { name: event_subscriber }
 
