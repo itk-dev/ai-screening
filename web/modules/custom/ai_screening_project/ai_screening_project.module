@@ -24,7 +24,7 @@ function ai_screening_project_entity_base_field_info(EntityTypeInterface $entity
   // the service is available. During site installation, the container may
   // not be fully built yet.
   try {
-    /** @var ProjectHelper $helper */
+    /** @var \Drupal\ai_screening_project\Helper\ProjectHelper $helper */
     $helper = \Drupal::service(ProjectHelper::class);
     $event = new EntityBaseFieldInfoEvent($entityType);
     $helper->entityBaseFieldInfo($event);
