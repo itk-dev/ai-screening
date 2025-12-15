@@ -12,10 +12,10 @@ use Drupal\core_event_dispatcher\Event\Entity\EntityBaseFieldInfoEvent;
 /**
  * Implements hook_entity_base_field_info().
  */
-function ai_screening_project_entity_base_field_info(EntityTypeInterface $entityType): array {
+function ai_screening_project_entity_base_field_info(EntityTypeInterface $entityType): array
+{
   // @fixme I, Mikkel, cannot make this work using an event handler, but we can
   // get the fields data from the event handler.
-
   // Only add fields for node entities to avoid unnecessary processing.
   if ($entityType->id() !== 'node') {
     return [];
@@ -30,8 +30,7 @@ function ai_screening_project_entity_base_field_info(EntityTypeInterface $entity
     $event = new EntityBaseFieldInfoEvent($entityType);
     $helper->entityBaseFieldInfo($event);
     return $event->getFields();
-  }
-  catch (\Exception $e) {
+  } catch (\Exception $e) {
     // Service not available yet (e.g., during installation), return empty array.
     return [];
   }
