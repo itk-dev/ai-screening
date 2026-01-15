@@ -10,13 +10,13 @@ field_name: group_roles
 entity_type: group_relationship
 bundle: project_group-group_membership
 label: Roles
-description: ''
+description: ""
 required: false
 translatable: true
-default_value: {  }
-default_value_callback: ''
+default_value: {}
+default_value_callback: ""
 settings:
-  handler: 'group_type:group_role'
+  handler: "group_type:group_role"
   handler_settings:
     group_type_id: project_group
 field_type: entity_reference

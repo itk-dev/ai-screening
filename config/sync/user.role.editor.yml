@@ -10,6 +10,6 @@ label: Editor
 weight: 2
 is_admin: null
 permissions:
-  - 'access webform help'
-  - 'edit any webform'
-  - 'view vocabulary labels'
+  - "access webform help"
+  - "edit any webform"
+  - "view vocabulary labels"

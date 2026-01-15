@@ -11,13 +11,12 @@ id: node.project.field_project_state
 field_name: field_project_state
 entity_type: node
 bundle: project
-label: 'Project state'
-description: ''
+label: "Project state"
+description: ""
 required: false
 translatable: false
 default_value:
-  -
-    value: active
-default_value_callback: ''
-settings: {  }
+  - value: active
+default_value_callback: ""
+settings: {}
 field_type: list_string

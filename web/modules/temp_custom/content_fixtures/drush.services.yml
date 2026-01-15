@@ -1,6 +1,0 @@
-services:
-  content_fixtures.commands:
-    class: \Drupal\content_fixtures\Commands\ContentFixturesCommands
-    arguments: ['@content_fixtures_loader', '@content_fixtures_default_purger']
-    tags:
-      - { name: drush.command }

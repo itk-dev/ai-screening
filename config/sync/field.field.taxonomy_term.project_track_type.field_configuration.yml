@@ -14,8 +14,7 @@ description: "Configuration for tracks created from the term. Must be a valid <a
 required: true
 translatable: false
 default_value:
-  -
-    value: "dimensions:\r\n"
-default_value_callback: ''
-settings: {  }
+  - value: "dimensions:\r\n"
+default_value_callback: ""
+settings: {}
 field_type: string_long

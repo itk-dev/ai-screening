@@ -879,6 +879,8 @@ $settings['config_exclude_modules'] = [
   'views_ui',
   'masquerade',
   'potx',
+  'content_fixtures',
+  'ai_screening_fixtures_base',
 ];
 
 // See https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Template%21TwigSandboxPolicy.php/11.x

@@ -3,5 +3,5 @@ _core:
 mode: intermediate
 ignored_config_entities:
   import:
-    - 'webform.webform.*'
-  export: {  }
+    - "webform.webform.*"
+  export: {}

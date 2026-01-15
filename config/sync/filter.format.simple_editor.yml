@@ -1,8 +1,8 @@
 uuid: 3af466e3-1c5a-4fc2-8dcc-b495b6d2c85e
 langcode: en
 status: true
-dependencies: {  }
-name: 'Simple editor'
+dependencies: {}
+name: "Simple editor"
 format: simple_editor
 weight: 0
 filters:
@@ -11,7 +11,7 @@ filters:
     provider: filter
     status: true
     weight: 0
-    settings: {  }
+    settings: {}
   filter_html:
     id: filter_html
     provider: filter
@@ -26,4 +26,4 @@ filters:
     provider: filter
     status: true
     weight: 10
-    settings: {  }
+    settings: {}

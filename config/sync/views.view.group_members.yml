@@ -10,10 +10,10 @@ dependencies:
 _core:
   default_config_hash: SqWsbxGWdQjy3VyI-AaO_5MYZ68_hXq87-XMmsJ38UA
 id: group_members
-label: 'Group members'
+label: "Group members"
 module: group
-description: ''
-tag: ''
+description: ""
+tag: ""
 base_table: group_relationship_field_data
 base_field: id
 display:
@@ -31,7 +31,7 @@ display:
           field: name
           relationship: gc__user
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: user
           entity_field: name
           plugin_id: field
@@ -39,40 +39,40 @@ display:
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -81,14 +81,14 @@ display:
           settings:
             link_to_entity: true
           group_column: value
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ", "
           field_api_classes: false
         group_roles:
           id: group_roles
@@ -96,44 +96,44 @@ display:
           field: group_roles
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           plugin_id: field
           label: Roles
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
           empty: None
           hide_empty: false
@@ -144,14 +144,14 @@ display:
           settings:
             link: false
           group_column: target_id
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
           multi_type: ul
-          separator: ', '
+          separator: ", "
           field_api_classes: false
         changed:
           id: changed
@@ -159,7 +159,7 @@ display:
           field: changed
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: group_relationship
           entity_field: changed
           plugin_id: field
@@ -167,40 +167,40 @@ display:
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -208,17 +208,17 @@ display:
           type: timestamp
           settings:
             date_format: short
-            custom_date_format: ''
-            timezone: ''
+            custom_date_format: ""
+            timezone: ""
           group_column: value
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ", "
           field_api_classes: false
         created:
           id: created
@@ -226,7 +226,7 @@ display:
           field: created
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: group_relationship
           entity_field: created
           plugin_id: field
@@ -234,40 +234,40 @@ display:
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -275,17 +275,17 @@ display:
           type: timestamp
           settings:
             date_format: short
-            custom_date_format: ''
-            timezone: ''
+            custom_date_format: ""
+            timezone: ""
           group_column: value
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ", "
           field_api_classes: false
         view_group_relationship:
           id: view_group_relationship
@@ -293,51 +293,51 @@ display:
           field: view_group_relationship
           relationship: none
           group_type: group
-          admin_label: 'View member link'
+          admin_label: "View member link"
           entity_type: group_relationship
           plugin_id: entity_link
-          label: ''
+          label: ""
           exclude: true
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: 'View member'
+          text: "View member"
           output_url_as_text: false
           absolute: false
         edit_group_relationship:
@@ -346,148 +346,148 @@ display:
           field: edit_group_relationship
           relationship: none
           group_type: group
-          admin_label: 'Edit member link'
+          admin_label: "Edit member link"
           entity_type: group_relationship
           plugin_id: entity_link_edit
-          label: ''
+          label: ""
           exclude: true
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: 'Edit member'
+          text: "Edit member"
         delete_group_relationship:
           id: delete_group_relationship
           table: group_relationship
           field: delete_group_relationship
           relationship: none
           group_type: group
-          admin_label: 'Remove member link'
+          admin_label: "Remove member link"
           entity_type: group_relationship
           plugin_id: entity_link_delete
-          label: ''
+          label: ""
           exclude: true
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          text: 'Remove member'
+          text: "Remove member"
         dropbutton:
           id: dropbutton
           table: views
           field: dropbutton
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           plugin_id: dropbutton
           label: Operations
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -496,10 +496,10 @@ display:
             view_group_relationship: view_group_relationship
             edit_group_relationship: edit_group_relationship
             delete_group_relationship: delete_group_relationship
-            name: '0'
-            group_roles: '0'
-            changed: '0'
-            created: '0'
+            name: "0"
+            group_roles: "0"
+            changed: "0"
+            created: "0"
       pager:
         type: full
         options:
@@ -510,14 +510,14 @@ display:
           tags:
             next: ››
             previous: ‹‹
-            first: '« First'
-            last: 'Last »'
+            first: "« First"
+            last: "Last »"
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_label: "Items per page"
+            items_per_page_options: "5, 10, 25, 50"
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: "- All -"
             offset: false
             offset_label: Offset
           quantity: 9
@@ -527,17 +527,17 @@ display:
           submit_button: Apply
           reset_button: false
           reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          exposed_sorts_label: "Sort by"
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
         type: group_permission
         options:
-          group_permission: 'administer members'
+          group_permission: "administer members"
       cache:
         type: tag
-        options: {  }
+        options: {}
       empty:
         area_text_custom:
           id: area_text_custom
@@ -545,12 +545,12 @@ display:
           field: area_text_custom
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           plugin_id: text_custom
           empty: true
-          content: 'No members available.'
+          content: "No members available."
           tokenize: false
-      sorts: {  }
+      sorts: {}
       arguments:
         gid:
           id: gid
@@ -558,22 +558,22 @@ display:
           field: gid
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: group_relationship
           entity_field: gid
           plugin_id: numeric
-          default_action: 'access denied'
+          default_action: "access denied"
           exception:
             value: all
             title_enable: false
             title: All
           title_enable: true
-          title: '{{ arguments.gid|placeholder }} members'
+          title: "{{ arguments.gid|placeholder }} members"
           default_argument_type: fixed
           default_argument_options:
-            argument: ''
+            argument: ""
           summary_options:
-            base_path: ''
+            base_path: ""
             count: true
             override: false
             items_per_page: 25
@@ -584,16 +584,16 @@ display:
           specify_validation: false
           validate:
             type: none
-            fail: 'not found'
-          validate_options: {  }
+            fail: "not found"
+          validate_options: {}
           break_phrase: false
           not: false
-      filters: {  }
+      filters: {}
       style:
         type: table
         options:
-          grouping: {  }
-          row_class: ''
+          grouping: {}
+          row_class: ""
           default_row_class: true
           columns:
             name: name
@@ -604,83 +604,83 @@ display:
             edit_group_relationship: edit_group_relationship
             delete_group_relationship: delete_group_relationship
             dropbutton: dropbutton
-          default: '-1'
+          default: "-1"
           info:
             name:
               sortable: true
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             group_roles:
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             changed:
               sortable: true
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             created:
               sortable: true
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             view_group_relationship:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             edit_group_relationship:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             delete_group_relationship:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             dropbutton:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
           override: true
           sticky: true
-          summary: ''
+          summary: ""
           empty_table: true
-          caption: ''
-          description: ''
+          caption: ""
+          description: ""
       row:
         type: fields
         options:
           default_field_elements: true
-          inline: {  }
-          separator: ''
+          inline: {}
+          separator: ""
           hide_empty: false
       query:
         type: views_query
         options:
-          query_comment: ''
+          query_comment: ""
           disable_sql_rewrite: false
           distinct: false
           replica: false
-          query_tags: {  }
+          query_tags: {}
       relationships:
         gc__user:
           id: gc__user
@@ -688,52 +688,52 @@ display:
           field: gc__user
           relationship: none
           group_type: group
-          admin_label: 'Member account'
+          admin_label: "Member account"
           entity_type: group_relationship
           plugin_id: group_relationship_to_entity
           required: true
           group_relation_plugins:
             group_membership: group_membership
-      header: {  }
-      footer: {  }
-      display_extenders: {  }
+      header: {}
+      footer: {}
+      display_extenders: {}
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
+        - "languages:language_content"
+        - "languages:language_interface"
         - route.group
         - url
         - url.query_args
         - user.group_permissions
       tags:
-        - 'config:field.storage.group_relationship.group_roles'
+        - "config:field.storage.group_relationship.group_roles"
   page_1:
     id: page_1
     display_title: Page
     display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders: {}
       path: group/%group/members
       menu:
         type: tab
         title: Members
-        description: ''
+        description: ""
         weight: 20
         enabled: true
         expanded: false
         menu_name: main
-        parent: ''
-        context: '0'
+        parent: ""
+        context: "0"
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
+        - "languages:language_content"
+        - "languages:language_interface"
         - route.group
         - url
         - url.query_args
         - user.group_permissions
       tags:
-        - 'config:field.storage.group_relationship.group_roles'
+        - "config:field.storage.group_relationship.group_roles"

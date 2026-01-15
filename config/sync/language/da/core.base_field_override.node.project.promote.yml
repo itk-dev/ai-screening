@@ -1,4 +1,4 @@
-label: 'Forfremmet til forside'
+label: "Forfremmet til forside"
 settings:
-  on_label: 'On'
-  off_label: 'Off'
+  on_label: "On"
+  off_label: "Off"

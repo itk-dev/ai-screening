@@ -10,13 +10,13 @@ field_name: field_webform
 entity_type: taxonomy_term
 bundle: project_track_type
 label: Webform
-description: ''
+description: ""
 required: true
 translatable: false
-default_value: {  }
-default_value_callback: ''
+default_value: {}
+default_value_callback: ""
 settings:
-  handler: 'default:webform'
+  handler: "default:webform"
   handler_settings:
     target_bundles: null
     auto_create: false

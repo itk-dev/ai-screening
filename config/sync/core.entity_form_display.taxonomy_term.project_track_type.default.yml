@@ -20,24 +20,24 @@ content:
     region: content
     settings:
       rows: 5
-      placeholder: ''
+      placeholder: ""
       hide_help: false
       hide_guidelines: false
-    third_party_settings: {  }
+    third_party_settings: {}
   field_configuration:
     type: string_textarea
     weight: 2
     region: content
     settings:
       rows: 5
-      placeholder: ''
-    third_party_settings: {  }
+      placeholder: ""
+    third_party_settings: {}
   field_report_type:
     type: options_buttons
     weight: 3
     region: content
-    settings: {  }
-    third_party_settings: {  }
+    settings: {}
+    third_party_settings: {}
   field_webform:
     type: entity_reference_autocomplete
     weight: 4
@@ -46,16 +46,16 @@ content:
       match_operator: CONTAINS
       match_limit: 10
       size: 60
-      placeholder: ''
-    third_party_settings: {  }
+      placeholder: ""
+    third_party_settings: {}
   name:
     type: string_textfield
     weight: 0
     region: content
     settings:
       size: 60
-      placeholder: ''
-    third_party_settings: {  }
+      placeholder: ""
+    third_party_settings: {}
 hidden:
   langcode: true
   status: true

@@ -8,6 +8,6 @@ url:
     en: en
     da: da
   domains:
-    en: ''
-    da: ''
+    en: ""
+    da: ""
 selected_langcode: site_default

@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 dotenv: [".task.env", ".env"]
 
@@ -25,12 +25,11 @@ vars:
   # https://taskfile.dev/reference/templating/
   BASE_URL: '{{.TASK_BASE_URL | default .COMPOSE_SERVER_DOMAIN | default .COMPOSE_DOMAIN | default ""}}'
 
-
 tasks:
   compose:
     desc: "Run `docker compose` command. Example: task compose -- up --detach"
     cmds:
-      - '{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}'
+      - "{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}"
 
   compose-exec:
     desc: "Run `docker compose exec` command handling content on stdin. Example: task compose-exec -- phpfpm php -v"

@@ -1,23 +1,23 @@
-label: 'Seneste indhold'
-description: 'Seneste indhold.'
+label: "Seneste indhold"
+description: "Seneste indhold."
 display:
   default:
     display_title: Standard
     display_options:
-      title: 'Seneste indhold'
+      title: "Seneste indhold"
       fields:
         changed:
-          separator: ', '
+          separator: ", "
       exposed_form:
         options:
           submit_button: Anvend
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sorter efter'
+          exposed_sorts_label: "Sorter efter"
           sort_asc_label: Stigende
           sort_desc_label: Faldende
       empty:
         area_text_custom:
-          content: 'Intet indhold.'
+          content: "Intet indhold."
       use_more_text: Mere
   block_1:
     display_title: Blok

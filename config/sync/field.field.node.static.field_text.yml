@@ -13,11 +13,11 @@ field_name: field_text
 entity_type: node
 bundle: static
 label: Text
-description: ''
+description: ""
 required: false
 translatable: false
-default_value: {  }
-default_value_callback: ''
+default_value: {}
+default_value_callback: ""
 settings:
   allowed_formats:
     - simple_editor

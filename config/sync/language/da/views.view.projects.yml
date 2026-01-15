@@ -7,18 +7,18 @@ display:
       fields:
         nid:
           label: ID
-          separator: ', '
+          separator: ", "
         field_description:
           label: Note
-          separator: ', '
+          separator: ", "
         title:
           label: Navn
           alter:
             text: "<h4>{{ title }}</h4>\r\n{{ field_description }}"
-          separator: ', '
+          separator: ", "
         field_project_state:
           label: Tilstand
-          separator: ', '
+          separator: ", "
         nothing:
           admin_label: Status
           label: Status
@@ -26,46 +26,46 @@ display:
             text: "{% set project_status = project_track_evaluation(nid.__toString()) %}\r\n{{ include('@itkdev_project_theme/components/project-status.html.twig') }}"
         field_department:
           label: Magistrat
-          separator: ', '
+          separator: ", "
         name:
           label: Projektejer
-          separator: ', '
+          separator: ", "
       pager:
         options:
           tags:
             next: ››
             previous: ‹‹
-            first: '« Første'
-            last: 'Sidste »'
+            first: "« Første"
+            last: "Sidste »"
           expose:
-            items_per_page_label: 'Items per page'
-            items_per_page_options_all_label: '- All -'
+            items_per_page_label: "Items per page"
+            items_per_page_options_all_label: "- All -"
             offset_label: Offset
       exposed_form:
         options:
           submit_button: Anvend
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sort by'
+          exposed_sorts_label: "Sort by"
           sort_asc_label: Asc
           sort_desc_label: Desc
-          text_input_required: 'Vælg et filter og klik på Anvend for at se resultater'
+          text_input_required: "Vælg et filter og klik på Anvend for at se resultater"
           text_input_required_format: simple_editor
           bef:
             general:
-              secondary_label: 'Avancerede indstillinger'
+              secondary_label: "Avancerede indstillinger"
       filters:
         combine:
           expose:
             label: Søg
-            description: 'Filtrér på projekttitel, beskrivelse eller projektejer'
+            description: "Filtrér på projekttitel, beskrivelse eller projektejer"
         field_department_target_id:
           expose:
             label: Magistrat
         uid_current:
           expose:
-            label: 'Er brugeren som er logget ind'
+            label: "Er brugeren som er logget ind"
           group_info:
-            label: 'Begræns listen til:'
+            label: "Begræns listen til:"
             group_items:
               1:
                 title: Mine

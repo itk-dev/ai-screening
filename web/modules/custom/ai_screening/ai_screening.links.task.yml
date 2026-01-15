@@ -1,4 +1,4 @@
 ai_screening.site_setup:
-  title: 'Site setup'
+  title: "Site setup"
   route_name: ai_screening.site_setup
   base_route: ai_screening.site_setup
