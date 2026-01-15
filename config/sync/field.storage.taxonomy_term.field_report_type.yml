@@ -11,17 +11,15 @@ entity_type: taxonomy_term
 type: list_string
 settings:
   allowed_values:
-    -
-      value: bubble_chart
-      label: 'Bubble chart'
-    -
-      value: webform_submission
-      label: 'Webform submission'
-  allowed_values_function: ''
+    - value: bubble_chart
+      label: "Bubble chart"
+    - value: webform_submission
+      label: "Webform submission"
+  allowed_values_function: ""
 module: options
 locked: false
 cardinality: -1
 translatable: true
-indexes: {  }
+indexes: {}
 persist_with_no_fields: false
 custom_storage: false

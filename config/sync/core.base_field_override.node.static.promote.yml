@@ -8,14 +8,13 @@ id: node.static.promote
 field_name: promote
 entity_type: node
 bundle: static
-label: 'Forfremmet til forside'
-description: ''
+label: "Forfremmet til forside"
+description: ""
 required: false
 translatable: true
 default_value:
-  -
-    value: 0
-default_value_callback: ''
+  - value: 0
+default_value_callback: ""
 settings:
   on_label: Tilsluttet
   off_label: Afbrudt

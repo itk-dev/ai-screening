@@ -8,7 +8,7 @@ services:
       - app
       - frontend
     ports:
-      - '80'
+      - "80"
     volumes:
       - .:/tmp/config:ro
     labels:
@@ -66,7 +66,7 @@ services:
       # https://github.com/Soluto/oidc-server-mock/issues/123#issuecomment-1427129278
       # https://github.com/Soluto/oidc-server-mock/blob/master/README.md#simple-configuration
       # https://docs.docker.com/compose/compose-file/compose-file-v3/#environment
-      OVERRIDE_STANDARD_IDENTITY_RESOURCES: 'true'
+      OVERRIDE_STANDARD_IDENTITY_RESOURCES: "true"
       IDENTITY_RESOURCES_INLINE: |
         # https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes#standard-claims
         - Name: openid

@@ -1,10 +1,10 @@
 uuid: b228531e-f1fd-4662-a918-96a2c48b8183
 langcode: en
 status: true
-dependencies: {  }
+dependencies: {}
 id: project_group
-label: 'Project group'
-description: 'A group that works on a project.'
+label: "Project group"
+description: "A group that works on a project."
 new_revision: false
 creator_membership: true
 creator_wizard: false

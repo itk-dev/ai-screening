@@ -52,9 +52,9 @@ steps:
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes browse --no-browser
       cron:
         cron:
-          minute: '*/5'
-          hour: '*'
-          day: '*'
-          month: '*'
-          weekday: '*'
-          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush core:cron'
+          minute: "*/5"
+          hour: "*"
+          day: "*"
+          month: "*"
+          weekday: "*"
+          job: "itkdev-docker-compose-server exec phpfpm vendor/bin/drush core:cron"

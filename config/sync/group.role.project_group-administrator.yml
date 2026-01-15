@@ -12,4 +12,4 @@ admin: true
 scope: outsider
 global_role: administrator
 group_type: project_group
-permissions: {  }
+permissions: {}

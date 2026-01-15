@@ -2,15 +2,9 @@ settings:
   plugins:
     ckeditor5_style:
       styles:
-        -
-          label: Task
-        -
-          label: Consideration
-        -
-          label: Rule
-        -
-          label: 'Always show'
-        -
-          label: 'Always hide'
-        -
-          label: Stop
+        - label: Task
+        - label: Consideration
+        - label: Rule
+        - label: "Always show"
+        - label: "Always hide"
+        - label: Stop

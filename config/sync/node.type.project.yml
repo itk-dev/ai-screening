@@ -1,7 +1,7 @@
 uuid: d299813b-c037-45a7-9a4b-c0738e8e08de
 langcode: en
 status: true
-dependencies: {  }
+dependencies: {}
 name: Project
 type: project
 description: null

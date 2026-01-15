@@ -1,12 +1,16 @@
+# This file is copied from config/markdown/.markdownlintignore in https://github.com/itk-dev/devops_itkdev-docker.
+# Feel free to edit the file, but consider making a pull request if you find a general issue with the file.
+
 # https://github.com/igorshubovych/markdownlint-cli?tab=readme-ov-file#ignoring-files
 vendor/
+node_modules/
+LICENSE.md
+# Drupal
 web/*.md
 web/core/
+web/libraries/
 web/*/contrib/
+
+# Project
 web/themes/custom/itkdev/*/node_modules/
 web/modules/temp_custom/
-node_modules/
-
-# Local Variables:
-# mode: gitignore
-# End:

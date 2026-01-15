@@ -4,17 +4,17 @@
 
 /* Project specific styles */
 :root {
-    --theme-primary: #fff;
-    --theme-secondary: #F4F4F5;
-    --theme-brand: #047857;
-    --theme-brand-hover: #064E3B;
-    --theme-border: #E4E4E7;
-    --theme-success: #F0FDF4;
-    --theme-success-border: #22C55E;
-    --theme-warning: #FEFCE8;
-    --theme-warning-border: #FCD34D;
-    --theme-error: #FEF2F2;
-    --theme-error-border: #DC2626;
+  --theme-primary: #fff;
+  --theme-secondary: #f4f4f5;
+  --theme-brand: #047857;
+  --theme-brand-hover: #064e3b;
+  --theme-border: #e4e4e7;
+  --theme-success: #f0fdf4;
+  --theme-success-border: #22c55e;
+  --theme-warning: #fefce8;
+  --theme-warning-border: #fcd34d;
+  --theme-error: #fef2f2;
+  --theme-error-border: #dc2626;
 }
 
 .alert-success {
@@ -114,9 +114,8 @@
       margin-right: 1em;
 
       @media (min-width: 1536px) {
-        margin-right: .5em;
+        margin-right: 0.5em;
       }
-
     }
   }
 
@@ -126,18 +125,18 @@
 }
 
 .project-members:last-child .spacing {
-    display: none;
+  display: none;
 }
 
 .webform-progress .progress-step {
-  color: rgba(0,0,0,.3);
+  color: rgba(0, 0, 0, 0.3);
 
   &.is-complete {
     color: #047857;
   }
 
   &.is-active {
-    color: rgb(0,0,0)
+    color: rgb(0, 0, 0);
   }
 }
 
@@ -158,10 +157,9 @@ details[open] {
 
 /* Make fields around radio buttons look like the other labels */
 #edit-field-department--wrapper {
-
-.children-of-fieldset {
-  padding: 1rem 0 0 0;
-}
+  .children-of-fieldset {
+    padding: 1rem 0 0 0;
+  }
   .padding-around-h2 {
     padding: 0;
 
@@ -207,22 +205,24 @@ input.error {
   border-color: var(--theme-error-border);
 }
 
-.projects-table th, td {
+.projects-table th,
+td {
   text-align: center;
   width: 10%;
 }
 
-.projects-table th:first-child, .projects-table td:first-child {
+.projects-table th:first-child,
+.projects-table td:first-child {
   text-align: left;
   width: 50%;
 }
 
 .line-height-xs {
-  line-height: .5rem;
-  font-size: .5rem;
+  line-height: 0.5rem;
+  font-size: 0.5rem;
 }
 
-.show-color + select{
+.show-color + select {
   padding-left: 3rem;
 }
 
@@ -233,7 +233,7 @@ input.error {
   .rule,
   .stop {
     background: var(--theme-secondary);
-    padding: .5rem;
+    padding: 0.5rem;
   }
 }
 
@@ -248,18 +248,17 @@ input.error {
 #elementGroups,
 .yes-no-stop {
   select {
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
   }
 
   .consideration,
   .rule,
   .task,
   .stop {
-
     img {
       display: inline-block;
       height: 1em;
-      margin-right: .5em;
+      margin-right: 0.5em;
     }
 
     h5 {
@@ -267,5 +266,4 @@ input.error {
       vertical-align: middle;
     }
   }
-
 }

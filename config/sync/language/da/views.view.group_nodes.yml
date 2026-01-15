@@ -6,19 +6,19 @@ display:
       fields:
         title:
           label: Titel
-          separator: ', '
+          separator: ", "
         type:
           label: Indholdstype
-          separator: ', '
+          separator: ", "
         status:
           label: Status
           settings:
-            format_custom_false: 'Ikke publiseret'
+            format_custom_false: "Ikke publiseret"
             format_custom_true: Publiseret
-          separator: ', '
+          separator: ", "
         changed:
           label: Opdateret
-          separator: ', '
+          separator: ", "
         dropbutton:
           label: Handlinger
       pager:
@@ -26,22 +26,22 @@ display:
           tags:
             next: ››
             previous: ‹‹
-            first: '« Første'
-            last: 'Sidste »'
+            first: "« Første"
+            last: "Sidste »"
           expose:
-            items_per_page_label: 'Antal elementer'
-            items_per_page_options_all_label: '- Alle -'
+            items_per_page_label: "Antal elementer"
+            items_per_page_options_all_label: "- Alle -"
             offset_label: Forskydning
       exposed_form:
         options:
           submit_button: Anvend
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sorter efter'
+          exposed_sorts_label: "Sorter efter"
           sort_asc_label: Stigende
           sort_desc_label: Faldende
       empty:
         area_text_custom:
-          content: 'Intet indhold.'
+          content: "Intet indhold."
       arguments:
         gid:
           exception:
@@ -49,14 +49,14 @@ display:
       filters:
         status:
           expose:
-            label: 'Publiseringsstatus status'
+            label: "Publiseringsstatus status"
           group_info:
-            label: 'Publiseringsstatus status'
+            label: "Publiseringsstatus status"
             group_items:
               1:
                 title: Publiseret
               2:
-                title: 'Ikke publiseret'
+                title: "Ikke publiseret"
         type:
           expose:
             label: Type

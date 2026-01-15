@@ -39,26 +39,20 @@ settings:
       multiBlock: true
     ckeditor5_sourceEditing:
       allowed_tags:
-        - '<div>'
+        - "<div>"
     ckeditor5_style:
       styles:
-        -
-          label: Task
+        - label: Task
           element: '<div class="task">'
-        -
-          label: Consideration
+        - label: Consideration
           element: '<div class="consideration">'
-        -
-          label: Rule
+        - label: Rule
           element: '<div class="rule">'
-        -
-          label: 'Always show'
+        - label: "Always show"
           element: '<div class="always_show">'
-        -
-          label: 'Always hide'
+        - label: "Always hide"
           element: '<div class="always_hide">'
-        -
-          label: Stop
+        - label: Stop
           element: '<div class="stop">'
 image_upload:
   status: false

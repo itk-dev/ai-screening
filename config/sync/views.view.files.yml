@@ -10,7 +10,7 @@ _core:
 id: files
 label: Files
 module: file
-description: 'Find and manage files.'
+description: "Find and manage files."
 tag: default
 base_table: file_managed
 base_field: fid
@@ -29,7 +29,7 @@ display:
           field: fid
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: fid
           plugin_id: field
@@ -44,15 +44,15 @@ display:
             strip_tags: false
             trim: false
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -62,7 +62,7 @@ display:
           field: filename
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: filename
           plugin_id: field
@@ -70,54 +70,54 @@ display:
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: false
             ellipsis: false
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
           type: file_link
           group_column: value
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ", "
           field_api_classes: false
         filemime:
           id: filemime
@@ -125,48 +125,48 @@ display:
           field: filemime
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: filemime
           plugin_id: field
-          label: 'MIME type'
+          label: "MIME type"
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -177,7 +177,7 @@ display:
           field: filesize
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: filesize
           plugin_id: field
@@ -185,40 +185,40 @@ display:
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -229,7 +229,7 @@ display:
           field: status
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: status
           plugin_id: field
@@ -237,40 +237,40 @@ display:
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -285,63 +285,63 @@ display:
           field: created
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: created
           plugin_id: field
-          label: 'Upload date'
+          label: "Upload date"
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           type: timestamp
           settings:
             date_format: medium
-            custom_date_format: ''
-            timezone: ''
+            custom_date_format: ""
+            timezone: ""
             tooltip:
               date_format: long
-              custom_date_format: ''
+              custom_date_format: ""
             time_diff:
               enabled: false
-              future_format: '@interval hence'
-              past_format: '@interval ago'
+              future_format: "@interval hence"
+              past_format: "@interval ago"
               granularity: 2
               refresh: 60
         changed:
@@ -350,63 +350,63 @@ display:
           field: changed
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: changed
           plugin_id: field
-          label: 'Changed date'
+          label: "Changed date"
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           type: timestamp
           settings:
             date_format: medium
-            custom_date_format: ''
-            timezone: ''
+            custom_date_format: ""
+            timezone: ""
             tooltip:
               date_format: long
-              custom_date_format: ''
+              custom_date_format: ""
             time_diff:
               enabled: false
-              future_format: '@interval hence'
-              past_format: '@interval ago'
+              future_format: "@interval hence"
+              past_format: "@interval ago"
               granularity: 2
               refresh: 60
         count:
@@ -415,104 +415,104 @@ display:
           field: count
           relationship: fid
           group_type: sum
-          admin_label: ''
+          admin_label: ""
           plugin_id: numeric
-          label: 'Used in'
+          label: "Used in"
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: true
-            path: 'admin/content/files/usage/{{ fid }}'
+            path: "admin/content/files/usage/{{ fid }}"
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           set_precision: false
           precision: 0
           decimal: .
-          separator: ','
+          separator: ","
           format_plural: true
           format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
-          prefix: ''
-          suffix: ''
+          prefix: ""
+          suffix: ""
         operations:
           id: operations
           table: file_managed
           field: operations
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           plugin_id: entity_operations
           label: Operations
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -526,14 +526,14 @@ display:
           total_pages: 0
           id: 0
           tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
+            next: "Next ›"
+            previous: "‹ Previous"
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_label: "Items per page"
+            items_per_page_options: "5, 10, 25, 50"
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: "- All -"
             offset: false
             offset_label: Offset
       exposed_form:
@@ -542,17 +542,17 @@ display:
           submit_button: Filter
           reset_button: false
           reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
+          exposed_sorts_label: "Sort by"
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
         type: perm
         options:
-          perm: 'access files overview'
+          perm: "access files overview"
       cache:
         type: tag
-        options: {  }
+        options: {}
       empty:
         area_text_custom:
           id: area_text_custom
@@ -560,9 +560,9 @@ display:
           field: area_text_custom
           plugin_id: text_custom
           empty: true
-          content: 'No files available.'
-      sorts: {  }
-      arguments: {  }
+          content: "No files available."
+      sorts: {}
+      arguments: {}
       filters:
         filename:
           id: filename
@@ -570,132 +570,126 @@ display:
           field: filename
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: filename
           plugin_id: string
           operator: word
-          value: ''
+          value: ""
           group: 1
           exposed: true
           expose:
             operator_id: filemime_op
             label: Filename
-            description: ''
+            description: ""
             use_operator: false
             operator: filename_op
             operator_limit_selection: false
-            operator_list: {  }
+            operator_list: {}
             identifier: filename
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: ""
+            description: ""
+            identifier: ""
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
+            default_group_multiple: {}
+            group_items: {}
         filemime:
           id: filemime
           table: file_managed
           field: filemime
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: filemime
           plugin_id: string
           operator: word
-          value: ''
+          value: ""
           group: 1
           exposed: true
           expose:
             operator_id: filemime_op
-            label: 'MIME type'
-            description: ''
+            label: "MIME type"
+            description: ""
             use_operator: false
             operator: filemime_op
             operator_limit_selection: false
-            operator_list: {  }
+            operator_list: {}
             identifier: filemime
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: ""
+            description: ""
+            identifier: ""
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
+            default_group_multiple: {}
+            group_items: {}
         status:
           id: status
           table: file_managed
           field: status
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: status
           plugin_id: file_status
           operator: in
-          value: {  }
+          value: {}
           group: 1
           exposed: true
           expose:
             operator_id: status_op
             label: Status
-            description: ''
+            description: ""
             use_operator: false
             operator: status_op
             operator_limit_selection: false
-            operator_list: {  }
+            operator_list: {}
             identifier: status
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: ""
+            description: ""
+            identifier: ""
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
+            default_group_multiple: {}
+            group_items: {}
       style:
         type: table
         options:
-          grouping: {  }
-          row_class: ''
+          grouping: {}
+          row_class: ""
           default_row_class: true
           columns:
             fid: fid
@@ -711,75 +705,75 @@ display:
             fid:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             filename:
               sortable: true
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             filemime:
               sortable: true
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
               responsive: priority-medium
             filesize:
               sortable: true
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
               responsive: priority-low
             status:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
               responsive: priority-low
             created:
               sortable: true
               default_sort_order: desc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             changed:
               sortable: true
               default_sort_order: desc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             count:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
               responsive: priority-medium
           override: true
           sticky: false
-          summary: ''
+          summary: ""
           empty_table: true
-          caption: ''
-          description: ''
+          caption: ""
+          description: ""
       row:
         type: fields
       query:
         type: views_query
         options:
-          query_comment: ''
+          query_comment: ""
           disable_sql_rewrite: false
           distinct: false
           replica: false
-          query_tags: {  }
+          query_tags: {}
       relationships:
         fid:
           id: fid
@@ -787,25 +781,25 @@ display:
           field: fid
           relationship: none
           group_type: group
-          admin_label: 'File usage'
+          admin_label: "File usage"
           required: true
       group_by: true
       show_admin_links: true
-      header: {  }
-      footer: {  }
-      display_extenders: {  }
+      header: {}
+      footer: {}
+      display_extenders: {}
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
+        - "languages:language_content"
+        - "languages:language_interface"
         - url
         - url.query_args
         - user.permissions
-      tags: {  }
+      tags: {}
   page_1:
     id: page_1
-    display_title: 'Files overview'
+    display_title: "Files overview"
     display_plugin: page
     position: 1
     display_options:
@@ -819,34 +813,34 @@ display:
           field: fid
           relationship: none
           group_type: group
-          admin_label: 'File usage'
+          admin_label: "File usage"
           required: false
-      display_description: ''
-      display_extenders: {  }
+      display_description: ""
+      display_extenders: {}
       path: admin/content/files
       menu:
         type: tab
         title: Files
-        description: ''
+        description: ""
         weight: 0
         menu_name: admin
-        context: ''
+        context: ""
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
+        - "languages:language_content"
+        - "languages:language_interface"
         - url
         - url.query_args
         - user.permissions
-      tags: {  }
+      tags: {}
   page_2:
     id: page_2
-    display_title: 'File usage'
+    display_title: "File usage"
     display_plugin: page
     position: 2
     display_options:
-      title: 'File usage'
+      title: "File usage"
       fields:
         entity_label:
           id: entity_label
@@ -854,46 +848,46 @@ display:
           field: entity_label
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           plugin_id: entity_label
           label: Entity
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -904,46 +898,46 @@ display:
           field: type
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           plugin_id: standard
-          label: 'Entity type'
+          label: "Entity type"
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -953,46 +947,46 @@ display:
           field: module
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           plugin_id: standard
-          label: 'Registering module'
+          label: "Registering module"
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -1002,57 +996,57 @@ display:
           field: count
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           plugin_id: numeric
-          label: 'Use count'
+          label: "Use count"
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: ""
             make_link: false
-            path: ''
+            path: ""
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
+            alt: ""
+            rel: ""
+            link_class: ""
+            prefix: ""
+            suffix: ""
+            target: ""
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ''
-            more_link_path: ''
+            more_link_text: ""
+            more_link_path: ""
             strip_tags: false
             trim: false
-            preserve_tags: ''
+            preserve_tags: ""
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
+          element_type: ""
+          element_class: ""
+          element_label_type: ""
+          element_label_class: ""
           element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
+          element_wrapper_type: ""
+          element_wrapper_class: ""
           element_default_classes: true
-          empty: ''
+          empty: ""
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           set_precision: false
           precision: 0
           decimal: .
-          separator: ','
+          separator: ","
           format_plural: false
           format_plural_string: !!binary MQNAY291bnQ=
-          prefix: ''
-          suffix: ''
+          prefix: ""
+          suffix: ""
       pager:
         type: mini
         options:
@@ -1062,17 +1056,17 @@ display:
           total_pages: 0
           id: 0
           tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
+            next: "Next ›"
+            previous: "‹ Previous"
           expose:
             items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_label: "Items per page"
+            items_per_page_options: "5, 10, 25, 50"
             items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
+            items_per_page_options_all_label: "- All -"
             offset: false
             offset_label: Offset
-      empty: {  }
+      empty: {}
       arguments:
         fid:
           id: fid
@@ -1080,22 +1074,22 @@ display:
           field: fid
           relationship: none
           group_type: group
-          admin_label: ''
+          admin_label: ""
           entity_type: file
           entity_field: fid
           plugin_id: file_fid
-          default_action: 'not found'
+          default_action: "not found"
           exception:
             value: all
             title_enable: false
             title: All
           title_enable: true
-          title: 'File usage information for {{ arguments.fid }}'
+          title: "File usage information for {{ arguments.fid }}"
           default_argument_type: fixed
           default_argument_options:
-            argument: ''
+            argument: ""
           summary_options:
-            base_path: ''
+            base_path: ""
             count: true
             override: false
             items_per_page: 25
@@ -1106,19 +1100,19 @@ display:
           specify_validation: false
           validate:
             type: none
-            fail: 'not found'
-          validate_options: {  }
+            fail: "not found"
+          validate_options: {}
           break_phrase: false
           not: false
-      filters: {  }
+      filters: {}
       filter_groups:
         operator: AND
-        groups: {  }
+        groups: {}
       style:
         type: table
         options:
-          grouping: {  }
-          row_class: ''
+          grouping: {}
+          row_class: ""
           default_row_class: true
           columns:
             entity_label: entity_label
@@ -1130,40 +1124,40 @@ display:
             entity_label:
               sortable: true
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
             type:
               sortable: true
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
               responsive: priority-medium
             module:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
               responsive: priority-low
             count:
               sortable: false
               default_sort_order: asc
-              align: ''
-              separator: ''
+              align: ""
+              separator: ""
               empty_column: false
-              responsive: ''
+              responsive: ""
           override: true
           sticky: false
-          summary: ''
+          summary: ""
           empty_table: true
-          caption: ''
-          description: ''
+          caption: ""
+          description: ""
       row:
         type: fields
-        options: {  }
+        options: {}
       defaults:
         empty: false
         title: false
@@ -1183,17 +1177,17 @@ display:
           field: fid
           relationship: none
           group_type: group
-          admin_label: 'File usage'
+          admin_label: "File usage"
           required: true
       group_by: false
-      display_description: ''
-      display_extenders: {  }
+      display_description: ""
+      display_extenders: {}
       path: admin/content/files/usage/%
     cache_metadata:
       max-age: -1
       contexts:
-        - 'languages:language_interface'
+        - "languages:language_interface"
         - url
         - url.query_args
         - user.permissions
-      tags: {  }
+      tags: {}

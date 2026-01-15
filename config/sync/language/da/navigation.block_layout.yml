@@ -1,6 +1,5 @@
 sections:
-  -
-    components:
+  - components:
       2622e40b-8786-4b8c-8883-19e49da53023:
         configuration:
           label: Genveje

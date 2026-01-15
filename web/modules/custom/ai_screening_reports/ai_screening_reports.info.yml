@@ -1,6 +1,6 @@
-name: 'AI screening reports'
+name: "AI screening reports"
 type: module
-description: 'Reports for AI Screening'
+description: "Reports for AI Screening"
 package: Custom
 core_version_requirement: ^11
 dependencies:

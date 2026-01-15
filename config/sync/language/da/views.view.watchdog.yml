@@ -1,10 +1,10 @@
 label: Hændelseslog
-description: 'Seneste logmeddelelser'
+description: "Seneste logmeddelelser"
 display:
   default:
     display_title: Standard
     display_options:
-      title: 'Seneste logmeddelelser'
+      title: "Seneste logmeddelelser"
       fields:
         nothing:
           admin_label: Ikon
@@ -19,11 +19,11 @@ display:
         message:
           label: Meddelelse
           alter:
-            path: 'admin/reports/dblog/event/{{ wid }}'
-            alt: '{{ message }}'
+            path: "admin/reports/dblog/event/{{ wid }}"
+            alt: "{{ message }}"
         name:
           label: Bruger
-          separator: ', '
+          separator: ", "
         link:
           label: Handlinger
       pager:
@@ -32,20 +32,20 @@ display:
             next: ››
             previous: ‹‹
           expose:
-            items_per_page_label: 'Antal elementer'
-            items_per_page_options_all_label: '- Alle -'
+            items_per_page_label: "Antal elementer"
+            items_per_page_options_all_label: "- Alle -"
             offset_label: Forskydning
       exposed_form:
         options:
           submit_button: Filter
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sorter efter'
+          exposed_sorts_label: "Sorter efter"
           sort_asc_label: Stigende
           sort_desc_label: Faldende
       empty:
         area:
-          admin_label: 'Ingen logbeskeder til rådighed.'
-          content: 'Ingen logbeskeder til rådighed.'
+          admin_label: "Ingen logbeskeder til rådighed."
+          content: "Ingen logbeskeder til rådighed."
       filters:
         type:
           expose:

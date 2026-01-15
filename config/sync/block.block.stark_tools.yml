@@ -15,13 +15,13 @@ theme: stark
 region: sidebar_first
 weight: 0
 provider: null
-plugin: 'system_menu_block:tools'
+plugin: "system_menu_block:tools"
 settings:
-  id: 'system_menu_block:tools'
+  id: "system_menu_block:tools"
   label: Tools
   label_display: visible
   provider: system
   level: 1
   depth: 0
   expand_all_items: false
-visibility: {  }
+visibility: {}

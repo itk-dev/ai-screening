@@ -18,22 +18,22 @@ content:
   description:
     type: text_default
     label: hidden
-    settings: {  }
-    third_party_settings: {  }
+    settings: {}
+    third_party_settings: {}
     weight: 0
     region: content
   field_configuration:
     type: basic_string
     label: above
-    settings: {  }
-    third_party_settings: {  }
+    settings: {}
+    third_party_settings: {}
     weight: 2
     region: content
   field_report_type:
     type: list_default
     label: above
-    settings: {  }
-    third_party_settings: {  }
+    settings: {}
+    third_party_settings: {}
     weight: 3
     region: content
   field_webform:
@@ -41,7 +41,7 @@ content:
     label: above
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings: {}
     weight: 1
     region: content
 hidden:

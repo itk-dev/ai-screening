@@ -15,7 +15,7 @@ content:
     label: above
     settings:
       link: false
-    third_party_settings: {  }
+    third_party_settings: {}
     weight: -4
     region: content
 hidden:

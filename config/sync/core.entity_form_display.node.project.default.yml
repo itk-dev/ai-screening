@@ -19,30 +19,30 @@ third_party_settings:
         - field_department
       label: Projektinformation
       region: content
-      parent_name: ''
+      parent_name: ""
       weight: 0
       format_type: fieldset
       format_settings:
-        classes: ''
+        classes: ""
         show_empty_fields: false
-        id: ''
+        id: ""
         label_as_html: false
-        description: ''
+        description: ""
         required_fields: true
     group_state:
       children:
         - field_project_state
       label: State
       region: content
-      parent_name: ''
+      parent_name: ""
       weight: 1
       format_type: fieldset
       format_settings:
-        classes: ''
+        classes: ""
         show_empty_fields: false
-        id: ''
+        id: ""
         label_as_html: false
-        description: ''
+        description: ""
         required_fields: false
 id: node.project.default
 targetEntityType: node
@@ -53,32 +53,32 @@ content:
     type: options_buttons
     weight: 3
     region: content
-    settings: {  }
-    third_party_settings: {  }
+    settings: {}
+    third_party_settings: {}
   field_description:
     type: text_textarea
     weight: 2
     region: content
     settings:
       rows: 5
-      placeholder: ''
+      placeholder: ""
       hide_help: true
       hide_guidelines: true
-    third_party_settings: {  }
+    third_party_settings: {}
   field_project_state:
     type: options_select
     weight: 8
     region: content
-    settings: {  }
-    third_party_settings: {  }
+    settings: {}
+    third_party_settings: {}
   title:
     type: string_textfield
     weight: 1
     region: content
     settings:
       size: 60
-      placeholder: ''
-    third_party_settings: {  }
+      placeholder: ""
+    third_party_settings: {}
 hidden:
   created: true
   langcode: true

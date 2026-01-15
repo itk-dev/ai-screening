@@ -1,5 +1,5 @@
 label: Filer
-description: 'Find og håndtér filer.'
+description: "Find og håndtér filer."
 display:
   default:
     display_title: Standard
@@ -10,9 +10,9 @@ display:
           label: Fid
         filename:
           label: Navn
-          separator: ', '
+          separator: ", "
         filemime:
-          label: 'MIME type'
+          label: "MIME type"
         filesize:
           label: Størrelse
         status:
@@ -25,38 +25,38 @@ display:
         changed:
           label: Ændringsdato
         count:
-          label: 'Brugt i'
+          label: "Brugt i"
           alter:
-            path: 'admin/content/files/usage/{{ fid }}'
+            path: "admin/content/files/usage/{{ fid }}"
           format_plural_string: !!binary MSBwbGFjZQNAY291bnQgcGxhY2Vz
         operations:
           label: Handlinger
       pager:
         options:
           tags:
-            next: 'Næste ›'
-            previous: '‹ Forrige'
+            next: "Næste ›"
+            previous: "‹ Forrige"
           expose:
-            items_per_page_label: 'Antal elementer'
-            items_per_page_options_all_label: '- Alle -'
+            items_per_page_label: "Antal elementer"
+            items_per_page_options_all_label: "- Alle -"
             offset_label: Forskydning
       exposed_form:
         options:
           submit_button: Filter
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sorter efter'
+          exposed_sorts_label: "Sorter efter"
           sort_asc_label: Stigende
           sort_desc_label: Faldende
       empty:
         area_text_custom:
-          content: 'Ingen tilgængelige filer.'
+          content: "Ingen tilgængelige filer."
       filters:
         filename:
           expose:
             label: Filnavn
         filemime:
           expose:
-            label: 'MIME type'
+            label: "MIME type"
         status:
           expose:
             label: Status
@@ -66,30 +66,30 @@ display:
       menu:
         title: Filer
   page_2:
-    display_title: 'File usage'
+    display_title: "File usage"
     display_options:
-      title: 'File usage'
+      title: "File usage"
       fields:
         entity_label:
           label: Entity
         type:
           label: Entity-type
         module:
-          label: 'Registrerer modul'
+          label: "Registrerer modul"
         count:
-          label: 'Brug antal'
+          label: "Brug antal"
           format_plural_string: !!binary MQNAY291bnQ=
       pager:
         options:
           tags:
-            next: 'Næste ›'
-            previous: '‹ Forrige'
+            next: "Næste ›"
+            previous: "‹ Forrige"
           expose:
-            items_per_page_label: 'Antal elementer'
-            items_per_page_options_all_label: '- Alle -'
+            items_per_page_label: "Antal elementer"
+            items_per_page_options_all_label: "- Alle -"
             offset_label: Forskydning
       arguments:
         fid:
           exception:
             title: Alle
-          title: 'Information om brug af filen {{ arguments.fid }}'
+          title: "Information om brug af filen {{ arguments.fid }}"

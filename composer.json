@@ -29,6 +29,7 @@
         "thecodingmachine/safe": "^2.5"
     },
     "require-dev": {
+        "drupal/content_fixtures": "^3.2",
         "drupal/core-dev": "^11.0",
         "drupal/masquerade": "^2.0",
         "drupal/potx": "^1.1",
@@ -137,8 +138,8 @@
         "patches": {
             "drupal/core": {
                 "Add an Autowire trait for plugins (https://www.drupal.org/project/drupal/issues/3294266)": "https://www.drupal.org/files/issues/2023-08-18/3294266-24.patch",
-                "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540)": "https://www.drupal.org/files/issues/2024-08-06/3150540-43-MR9103-11.x.diff",
-                "Missing menu active trail on views (https://www.drupal.org/project/drupal/issues/3359511)": "https://www.drupal.org/files/issues/2024-09-23/3359511-100.patch",
+                "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540#comment-16204218)": "https://www.drupal.org/files/issues/2025-07-24/drupal-3150540-D1122_0.patch",
+                "Missing menu active trail on views (https://www.drupal.org/project/drupal/issues/3359511#comment-16330338)": "https://www.drupal.org/files/issues/2025-11-03/3359511-142-d11.2-no-tests.patch",
                 "Add an option to 'hide filter tips' on text fields (https://www.drupal.org/project/drupal/issues/3323007)": "https://git.drupalcode.org/project/drupal/-/merge_requests/5453.diff"
             },
             "drupal/masquerade": {
