@@ -114,11 +114,11 @@ msgid "Will we?"
 msgstr "Vil vi?"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:67
-msgid "Project eveluation of whether it should be used"
+msgid "Screening eveluation of whether it should be used"
 msgstr "Screeningsevaluering af om det skal bruges"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:68
-msgid "See project report"
+msgid "See screening report"
 msgstr "Se screeningsrapport"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/node--project.html.twig:93
@@ -154,7 +154,7 @@ msgid "Report: @node_label"
 msgstr "Rapport: @node_label"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:15;18
-msgid "Report: Project tracks"
+msgid "Report: Screening tracks"
 msgstr "Rapport: Screeningsspor"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:50
@@ -162,7 +162,7 @@ msgid "The graph shows the automatically calculated evaluation."
 msgstr "Grafen viser den automatisk beregnede evaluering."
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:54
-msgid "This project has been manually evaluated."
+msgid "This screening has been manually evaluated."
 msgstr "Denne screening er blevet manuelt evalueret."
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/reports-project-track.html.twig:59 themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig:8 themes/custom/itkdev/itkdev_project_theme/templates/form/project-track-edit-form.html.twig:55
@@ -198,7 +198,7 @@ msgid "Report: @label"
 msgstr "Rapport: @label"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/reports-project.html.twig:19
-msgid "Project tracks"
+msgid "Screening tracks"
 msgstr "Screeningsspor"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/reports-project.html.twig:34
@@ -214,11 +214,11 @@ msgid "Setup frontpage"
 msgstr "Opsæt forside"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig:32 themes/custom/itkdev/itkdev_project_theme/templates/form/form--ai-screening-project-track-thresholds.html.twig:18
-msgid "Setup project track thresholds"
+msgid "Setup screening track thresholds"
 msgstr "Opsæt tærskelværdier for screeningsspor"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/site-setup.html.twig:36
-msgid "Set up thresholds for each project. The thresholds are used to determine when a suggested project track evaluation changes from \"Refused\" to \"Undecided\" to \"Approved\""
+msgid "Set up thresholds for each screening. The thresholds are used to determine when a suggested screening track evaluation changes from \"Refused\" to \"Undecided\" to \"Approved\""
 msgstr ""
 "Opsæt tærskelværdier for hver screening. Tærskelværdierne bruges "
 "til at bestemme, hvornår en foreslået screeningssporsevaluering ændres "
@@ -229,20 +229,20 @@ msgid "Setup thresholds"
 msgstr "Opsæt tærskelværdier"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/stats-top-block.html.twig:18
-msgid "Project that complies to all demands for use"
-msgid_plural "Projects that comply to all demands for use"
+msgid "Screening that complies to all demands for use"
+msgid_plural "Screenings that comply to all demands for use"
 msgstr[0] "Screening der opfylder alle krav til brug"
 msgstr[1] "Screeninger der opfylder alle krav til brug"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/stats-top-block.html.twig:28
-msgid "Project that complies to some demands for use"
-msgid_plural "Projects that comply to some demands for use"
+msgid "Screening that complies to some demands for use"
+msgid_plural "Screenings that comply to some demands for use"
 msgstr[0] "Screening der opfylder nogle krav til brug"
 msgstr[1] "Screeninger der opfylder nogle krav til brug"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/stats-top-block.html.twig:38
-msgid "Project that does not comply to the demands for use"
-msgid_plural "Projects that do not comply to the demands for use"
+msgid "Screening that does not comply to the demands for use"
+msgid_plural "Screenings that do not comply to the demands for use"
 msgstr[0] "Screening der ikke opfylder kravene til brug"
 msgstr[1] "Screeninger der ikke opfylder kravene til brug"
 
@@ -275,7 +275,7 @@ msgid "Close navigation menu"
 msgstr "Luk navigationsmenu"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/new-project-button.html.twig:6 themes/custom/itkdev/itkdev_project_theme/templates/views/views-view-table--front.html.twig:51
-msgid "Create new project"
+msgid "Create new screening"
 msgstr "Opret ny screening"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/project-status.html.twig:22
@@ -291,11 +291,11 @@ msgid "Approved"
 msgstr "Godkendt"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig:3
-msgid "Project evaluations"
+msgid "Screening evaluations"
 msgstr "Screeningsevalueringer"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/reportsMultiProjectTable.html.twig:7
-msgid "Project name"
+msgid "Screening name"
 msgstr "Screeningsnavn"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/components/tablesort-indicator.html.twig:22
@@ -367,7 +367,7 @@ msgstr ""
 "altid implementeres."
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/form/form--ai-screening-project-track-thresholds.html.twig:24
-msgid "Define thresholds for all projects. This is used by the system to make a suggested evaluation by measuring all the combined answers of each project track against the corresponding thresholds."
+msgid "Define thresholds for all screenings. This is used by the system to make a suggested evaluation by measuring all the combined answers of each screening track against the corresponding thresholds."
 msgstr ""
 "Definer tærskelværdier for alle screeninger. Dette bruges af systemet "
 "til at lave en foreslået evaluering ved at måle alle de kombinerede "
@@ -402,6 +402,5 @@ msgid "Latest"
 msgstr "Seneste"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/views/views-view-table--front.html.twig:137
-msgid "Show all projects"
+msgid "Show all screenings"
 msgstr "Vis alle screeninger"
-

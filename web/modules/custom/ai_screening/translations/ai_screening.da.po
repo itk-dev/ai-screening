@@ -82,7 +82,7 @@ msgid "Unblocking OIDC user @user (@id)"
 msgstr "Ophæver blokering af OIDC-bruger @user (@id)"
 
 #: modules/custom/ai_screening/src/Helper/ThemeHelper.php:37
-msgid "Create new project"
+msgid "Create new screening"
 msgstr "Opret ny screening"
 
 #: modules/custom/ai_screening/src/Helper/ThemeHelper.php:40

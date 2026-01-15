@@ -65,10 +65,10 @@ final class BreadcrumbBuilder implements BreadcrumbBuilderInterface {
     }
 
     if (NULL !== $project) {
-      $breadcrumb->addLink(Link::fromTextAndUrl($this->t('Projects'), Url::fromUri('internal:/projects')));
+      $breadcrumb->addLink(Link::fromTextAndUrl($this->t('Screenings'), Url::fromUri('internal:/projects')));
       if ($project->isNew()) {
         $breadcrumb->addLink(Link::fromTextAndUrl(
-          $this->t('Create new project'),
+          $this->t('Create new screening'),
           Url::fromRoute('node.add', ['node_type' => $project->bundle()])
         ));
       }

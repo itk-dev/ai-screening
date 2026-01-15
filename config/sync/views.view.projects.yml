@@ -410,7 +410,7 @@ display:
           entity_type: user
           entity_field: name
           plugin_id: field
-          label: "Project owner"
+          label: "Screening owner"
           exclude: false
           alter:
             alter_text: false
@@ -605,7 +605,7 @@ display:
           expose:
             operator_id: combine_op
             label: Search
-            description: "Filter on project title, description or project owner"
+            description: "Filter on screening title, description or screening owner"
             use_operator: false
             operator: combine_op
             operator_limit_selection: false

@@ -2,7 +2,7 @@ ai_screening_project.project_deactivate_confirm:
   path: "/node/{node}/edit/confirm"
   defaults:
     _form: '\Drupal\ai_screening_project\Form\ProjectNodeConfirmForm'
-    _title: "Confirm Project Changes"
+    _title: "Confirm Screening Changes"
   requirements:
     _entity_access: "node.update"
     _node_type: "project"
