@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning].
 - [PR-113](https://github.com/itk-dev/ai-screening/pull/113)
   - Updated project template
   - Cleaned up code
+  - Applied patch updates
 - [PR-110](https://github.com/itk-dev/ai-screening/pull/110)
   - Security updates.
 - [PR-108](https://github.com/itk-dev/ai-screening/pull/108)
