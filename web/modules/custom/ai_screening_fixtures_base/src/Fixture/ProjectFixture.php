@@ -49,7 +49,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       'status' => NodeInterface::PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department A')->id()],
       'field_description' => [
-        'value' => 'Et nyt projekt',
+        'value' => 'En ny screening',
         'format' => 'plain_text',
       ],
       ProjectHelper::FIELD_CORRUPTED => 0,
@@ -65,7 +65,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       'status' => NodeInterface::PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department C')->id()],
       'field_description' => [
-        'value' => 'Et afsluttet projekt',
+        'value' => 'En afsluttet screening',
         'format' => 'plain_text',
       ],
       'field_project_state' => 'finished',
@@ -82,7 +82,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       'status' => NodeInterface::NOT_PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department C')->id()],
       'field_description' => [
-        'value' => 'Et ødelagt projekt bør slettes med cron.',
+        'value' => 'En ødelagt screening bør slettes med cron.',
         'format' => 'plain_text',
       ],
       'corrupted' => 1,
@@ -100,7 +100,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
         'status' => NodeInterface::PUBLISHED,
         'field_department' => ['target_id' => $this->getReference('department:Department B')->id()],
         'field_description' => [
-          'value' => 'Projektnummer ' . $projectCount,
+          'value' => 'Screeningsnummer ' . $projectCount,
           'format' => 'plain_text',
         ],
         'corrupted' => 0,

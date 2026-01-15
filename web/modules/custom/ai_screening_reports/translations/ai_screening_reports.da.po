@@ -48,7 +48,7 @@ msgstr "Opret rapport"
 
 #: modules/custom/ai_screening_reports/ai_screening_reports.routing.yml:0;0
 msgid "Project"
-msgstr "Projekt"
+msgstr "Screening"
 
 #: modules/custom/ai_screening_reports/src/Controller/AiScreeningReportsController.php:126
 msgid "A maximum of @max tracks can be displayed."
@@ -60,7 +60,7 @@ msgstr "Forkerte URL-parametre."
 
 #: modules/custom/ai_screening_reports/src/Form/CreateReport.php:54
 msgid "Select project"
-msgstr "Vælg projekt"
+msgstr "Vælg screening"
 
 #: modules/custom/ai_screening_reports/src/Form/CreateReport.php:63
 msgid "Fetch report"

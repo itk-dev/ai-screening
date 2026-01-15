@@ -1,9 +1,9 @@
-label: Projekter
+label: Screeninger
 display:
   default:
     display_title: Default
     display_options:
-      title: Projekter
+      title: Screeninger
       fields:
         nid:
           label: ID
@@ -28,7 +28,7 @@ display:
           label: Magistrat
           separator: ", "
         name:
-          label: Projektejer
+          label: Screeningsejer
           separator: ", "
       pager:
         options:
@@ -57,7 +57,7 @@ display:
         combine:
           expose:
             label: Søg
-            description: "Filtrér på projekttitel, beskrivelse eller projektejer"
+            description: "Filtrér på screeningstitel, beskrivelse eller screeningsejer"
         field_department_target_id:
           expose:
             label: Magistrat
@@ -76,4 +76,4 @@ display:
     display_title: Side
     display_options:
       menu:
-        title: Projekter
+        title: Screeninger

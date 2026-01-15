@@ -83,7 +83,7 @@ msgstr "Ophæver blokering af OIDC-bruger @user (@id)"
 
 #: modules/custom/ai_screening/src/Helper/ThemeHelper.php:37
 msgid "Create new project"
-msgstr "Opret nyt projekt"
+msgstr "Opret ny screening"
 
 #: modules/custom/ai_screening/src/Helper/ThemeHelper.php:40
 msgid "Create new static page"

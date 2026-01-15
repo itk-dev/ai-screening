@@ -18,7 +18,7 @@ dependencies:
     - text
     - user
 id: projects
-label: Projekter
+label: Screeninger
 module: views
 description: ""
 tag: ""
@@ -31,7 +31,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Projekter
+      title: Screeninger
       fields:
         nid:
           id: nid
@@ -926,7 +926,7 @@ display:
       path: projects
       menu:
         type: normal
-        title: Projekter
+        title: Screeninger
         description: ""
         weight: 0
         expanded: false

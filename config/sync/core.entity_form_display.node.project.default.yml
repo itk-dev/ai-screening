@@ -17,7 +17,7 @@ third_party_settings:
         - title
         - field_description
         - field_department
-      label: Projektinformation
+      label: Screeningsinformation
       region: content
       parent_name: ""
       weight: 0
