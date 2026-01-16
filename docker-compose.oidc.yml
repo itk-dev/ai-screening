@@ -1,7 +1,7 @@
 services:
-  # https://github.com/Soluto/oidc-server-mock
+  # https://github.com/geigerzaehler/oidc-provider-mock
   idp:
-    image: ghcr.io/soluto/oidc-server-mock:0.8.6
+    image: ghcr.io/geigerzaehler/oidc-provider-mock:latest
     # Let this container be accessible both internally and externally on the same domain.
     container_name: idp.${COMPOSE_DOMAIN}
     networks:
@@ -9,177 +9,30 @@ services:
       - frontend
     ports:
       - "80"
-    volumes:
-      - .:/tmp/config:ro
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=frontend"
-      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_idp.rule=Host(`idp.${COMPOSE_DOMAIN}`)"
-      - "traefik.http.services.${COMPOSE_PROJECT_NAME}_idp.loadbalancer.server.port=80"
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      SERVER_OPTIONS_INLINE: |
-        AccessTokenJwtType: JWT
-        Discovery:
-          ShowKeySet: true
-        Authentication:
-          CookieSameSiteMode: Lax
-          CheckSessionCookieSameSiteMode: Lax
-
-      LOGIN_OPTIONS_INLINE: |
-        {
-          "AllowRememberLogin": false
-        }
-
-      LOGOUT_OPTIONS_INLINE: |
-        {
-          "AutomaticRedirectAfterSignOut": true
-        }
-
-      CLIENTS_CONFIGURATION_INLINE: |
-        - ClientId: client-id
-          ClientSecrets: [client-secret]
-          Description: Mock IdP
-          AllowedGrantTypes:
-            # - client_credentials
-            # - implicit
-            - authorization_code
-          # https://github.com/Soluto/oidc-server-mock/issues/46#issuecomment-704963181
-          RequireClientSecret: false
-          AllowAccessTokensViaBrowser: true
-          # https://github.com/Soluto/oidc-server-mock/issues/26#issuecomment-705022941
-          AlwaysIncludeUserClaimsInIdToken: true
-          AllowedScopes:
-            - openid
-            - profile
-            - email
-          ClientClaimsPrefix: ''
-          RedirectUris:
-            - '*'
-          # https://github.com/Soluto/oidc-server-mock/issues/60
-          PostLogoutRedirectUris:
-            - '*'
-          # https://github.com/Soluto/oidc-server-mock/issues/46#issuecomment-704845375
-          RequirePkce: false
-
-      # Needed to set custom claim types in "profile"
-      # https://github.com/Soluto/oidc-server-mock/issues/123#issuecomment-1427129278
-      # https://github.com/Soluto/oidc-server-mock/blob/master/README.md#simple-configuration
-      # https://docs.docker.com/compose/compose-file/compose-file-v3/#environment
-      OVERRIDE_STANDARD_IDENTITY_RESOURCES: "true"
-      IDENTITY_RESOURCES_INLINE: |
-        # https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes#standard-claims
-        - Name: openid
-          ClaimTypes:
-            - sub
-        - Name: email
-          ClaimTypes:
-            - email
-        - Name: profile
-          ClaimTypes:
-            # Add your custom claims here
-            - name
-            - role
-
-      USERS_CONFIGURATION_INLINE: |
-        - SubjectId: administrator
-          Username: administrator
-          Password: administrator
-          Claims:
-            # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
-          - Type: name
-            Value: Administrator
-            ValueType: string
-          - Type: email
-            Value: administrator@example.com
-            ValueType: string
-          - Type: role
-            Value: '["Administrator"]'
-            ValueType: json
-
-        - SubjectId: editor
-          Username: editor
-          Password: editor
-          Claims:
-            # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
-          - Type: name
-            Value: Editor
-            ValueType: string
-          - Type: email
-            Value: editor@example.com
-            ValueType: string
-          - Type: role
-            Value: '["Redaktoer"]'
-            ValueType: json
-
-        - SubjectId: user
-          Username: user
-          Password: user
-          Claims:
-            # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
-          - Type: name
-            Value: User
-            ValueType: string
-          - Type: email
-            Value: user@example.com
-            ValueType: string
-          - Type: role
-            Value: '["Bruger"]'
-            ValueType: json
-
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-idp.rule=Host(`idp.${COMPOSE_DOMAIN}`)"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-idp.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+    command: [
+        "--port",
+        "80",
+        "--user-claims",
+        '{"sub": "administrator", "name": "Administrator", "email": "administrator@example.com", "role": ["Administrator"]}',
+        "--user-claims",
+        '{"sub": "editor", "name": "Editor", "email": "editor@example.com", "role": ["Redaktoer"]}',
+        "--user-claims",
+        '{"sub": "another editor", "name": "Another editor", "email": "another-editor@example.com", "role": ["Redaktoer"]}',
+        "--user-claims",
+        '{"sub": "user", "name": "User", "email": "user@example.com", "role": ["Bruger"]}',
         # A selection of fixture users (cf. web/modules/custom/ai_screening_fixtures_base/src/Fixture/UserFixture.php)
-        - SubjectId: user1
-          Username: user1
-          Password: user1
-          Claims:
-          - Type: name
-            Value: User
-            ValueType: string
-          - Type: email
-            Value: user1@example.com
-            ValueType: string
-          - Type: role
-            Value: '["Bruger"]'
-            ValueType: json
-
-        - SubjectId: user2
-          Username: user2
-          Password: user2
-          Claims:
-          - Type: name
-            Value: User
-            ValueType: string
-          - Type: email
-            Value: user2@example.com
-            ValueType: string
-          - Type: role
-            Value: '["Bruger"]'
-            ValueType: json
-
-        - SubjectId: user3
-          Username: user3
-          Password: user3
-          Claims:
-          - Type: name
-            Value: User
-            ValueType: string
-          - Type: email
-            Value: user3@example.com
-            ValueType: string
-          - Type: role
-            Value: '["Bruger"]'
-            ValueType: json
-
-        - SubjectId: user4
-          Username: user4
-          Password: user4
-          Claims:
-          - Type: name
-            Value: User
-            ValueType: string
-          - Type: email
-            Value: user4@example.com
-            ValueType: string
-          - Type: role
-            Value: '["Bruger"]'
-            ValueType: json
+        "--user-claims",
+        '{"sub": "user1", "name": "User", "email": "user1@example.com", "role": ["Bruger"]}',
+        "--user-claims",
+        '{"sub": "user2", "name": "User", "email": "user2@example.com", "role": ["Bruger"]}',
+        "--user-claims",
+        '{"sub": "user3", "name": "User", "email": "user3@example.com", "role": ["Bruger"]}',
+        "--user-claims",
+        '{"sub": "user4", "name": "User", "email": "user4@example.com", "role": ["Bruger"]}',
+      ]

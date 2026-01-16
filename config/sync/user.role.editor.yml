@@ -2,7 +2,10 @@ uuid: 2297cf1c-ce4a-4d92-9397-9ff95de7c98a
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.project
   module:
+    - node
     - taxonomy
     - webform
 id: editor
@@ -11,5 +14,6 @@ weight: 2
 is_admin: null
 permissions:
   - "access webform help"
+  - "edit any project content"
   - "edit any webform"
   - "view vocabulary labels"

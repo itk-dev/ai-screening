@@ -3,11 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - node.type.project
     - taxonomy.vocabulary.department
     - taxonomy.vocabulary.project_track_type
   module:
     - ai_screening
     - navigation
+    - node
     - system
     - taxonomy
     - webform
@@ -28,6 +30,7 @@ permissions:
   - "create webform"
   - "delete terms in department"
   - "delete terms in project_track_type"
+  - "edit any project content"
   - "edit any webform"
   - "edit terms in department"
   - "edit terms in project_track_type"
