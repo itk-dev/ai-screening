@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-116](https://github.com/itk-dev/ai-screening/pull/116)
+  - Translated some field labels to Danish
+
 ## [0.3.3]
 
 - [PR-107](https://github.com/itk-dev/ai-screening/pull/107)
