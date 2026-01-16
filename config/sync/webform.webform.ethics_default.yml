@@ -19,7 +19,7 @@ elements: |-
     1_1_gennemsigtighed_i_anvendelsen_af_kunstig_intelligens:
       '#type': text_format
       '#title': '1.1 Gennemsigtighed i anvendelsen af kunstig intelligens'
-      '#help': '<p>Aarhus Kommune ønsker at gøre det tydeligt, hvordan en kunstig intelligens har medvirket i bearbejdningen af borgernes data eller i udformningen af et svar til borgeren.</p><p>I svaret skal der redegøres for, om og hvordan dette hensyn imødekommes.</p>'
+      '#help': '<p>Kommunen ønsker at gøre det tydeligt, hvordan en kunstig intelligens har medvirket i bearbejdningen af borgernes data eller i udformningen af et svar til borgeren.</p><p>I svaret skal der redegøres for, om og hvordan dette hensyn imødekommes.</p>'
       '#help_display': element_before
       '#allowed_formats':
         simple_editor: simple_editor
@@ -45,7 +45,7 @@ elements: |-
     1_3_mulighed_for_menneskelig_kontrol:
       '#type': text_format
       '#title': '1.3 Mulighed for menneskelig kontrol'
-      '#help': '<p>En væsentlig kilde til transparens og tillid i forhold til AI-løsninger er borgernes mulighed for at kontrollere løsningens bidrag til et samlet output og korrigere for mulige fejlantagelser eller fejl-output. Borgere skal i den forbindelse have mulighed for at gennemskue, hvordan medarbejdere i Aarhus Kommune har anvendt en given AI-løsning, og den måde nået frem til et resultat.</p><p>I svaret skal der redegøres for, om og hvordan løsningen har indbygget muligheden for menneskelig verififikation af output.</p>'
+      '#help': '<p>En væsentlig kilde til transparens og tillid i forhold til AI-løsninger er borgernes mulighed for at kontrollere løsningens bidrag til et samlet output og korrigere for mulige fejlantagelser eller fejl-output. Borgere skal i den forbindelse have mulighed for at gennemskue, hvordan medarbejdere i kommunen har anvendt en given AI-løsning, og den måde nået frem til et resultat.</p><p>I svaret skal der redegøres for, om og hvordan løsningen har indbygget muligheden for menneskelig verififikation af output.</p>'
       '#help_display': element_before
       '#allowed_formats':
         simple_editor: simple_editor
@@ -154,8 +154,8 @@ elements: |-
       '#help_display': element_after
     3_2_betydning_for_omverdenens_opfattelse_af_aarhus_kommune:
       '#type': text_format
-      '#title': '3.2 Betydning for omverdenens opfattelse af Aarhus Kommune'
-      '#help': '<p>I nogle tilfælde kan introduktionen af en AI-løsning betyde, at borgere og virksomheder oplever, at de føler sig distancerede fra kommunen, der kan opfattes som for teknokratisk orienteret.</p><p>Det er derfor vigtigt at vurdere, hvorvidt indførelsen af en given AI-løsning kan medføre, at Aarhus Kommunes omdømme påvirkes negativt, og om denne effekt kan modvirkes.</p>'
+      '#title': '3.2 Betydning for omverdenens opfattelse af kommunen'
+      '#help': '<p>I nogle tilfælde kan introduktionen af en AI-løsning betyde, at borgere og virksomheder oplever, at de føler sig distancerede fra kommunen, der kan opfattes som for teknokratisk orienteret.</p><p>Det er derfor vigtigt at vurdere, hvorvidt indførelsen af en given AI-løsning kan medføre, at kommunens omdømme påvirkes negativt, og om denne effekt kan modvirkes.</p>'
       '#help_display': element_before
       '#allowed_formats':
         simple_editor: simple_editor
