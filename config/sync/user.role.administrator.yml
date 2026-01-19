@@ -10,6 +10,7 @@ dependencies:
     - ai_screening
     - navigation
     - node
+    - publishcontent
     - system
     - taxonomy
     - webform
@@ -34,5 +35,11 @@ permissions:
   - "edit any webform"
   - "edit terms in department"
   - "edit terms in project_track_type"
+  - "publish any node type project"
+  - "publish editable node type project"
+  - "publish own node type project"
+  - "unpublish any node type project"
+  - "unpublish editable node type project"
+  - "unpublish own node type project"
   - "view the administration theme"
   - "view vocabulary labels"

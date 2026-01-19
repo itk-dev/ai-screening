@@ -6,6 +6,7 @@ dependencies:
     - node.type.project
   module:
     - node
+    - publishcontent
     - taxonomy
     - webform
 id: editor
@@ -16,4 +17,8 @@ permissions:
   - "access webform help"
   - "edit any project content"
   - "edit any webform"
+  - "publish editable node type project"
+  - "publish own node type project"
+  - "unpublish editable node type project"
+  - "unpublish own node type project"
   - "view vocabulary labels"
