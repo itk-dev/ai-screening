@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-119](https://github.com/itk-dev/ai-screening/pull/119)
+  Used drafts to save submission on navigation
 - [PR-120](https://github.com/itk-dev/ai-screening/pull/120)
   Hide login form
 - [PR-113](https://github.com/itk-dev/ai-screening/pull/113)

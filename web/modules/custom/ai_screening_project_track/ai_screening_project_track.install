@@ -36,3 +36,19 @@ function ai_screening_project_track_update_11002() {
       ->installFieldStorageDefinition($fieldName, 'project_track', 'ai_screening_project_track', $fieldDefinition);
   }
 }
+
+/**
+ * Convert select webform submissions to drafts.
+ */
+function ai_screening_project_track_update_11003() {
+  // Note: We update directly in the database rather than via
+  // WebformSubmission::save() to not mess with timestamps and such stuff.
+  \Drupal::database()
+    ->update('webform_submission')
+    ->fields([
+      'in_draft' => TRUE,
+      'completed' => NULL,
+    ])
+    ->condition('webform_id', 'ethics_default')
+    ->execute();
+}
