@@ -124,10 +124,6 @@
   }
 }
 
-.project-members:last-child .spacing {
-  display: none;
-}
-
 .webform-progress .progress-step {
   color: rgba(0, 0, 0, 0.3);
 
