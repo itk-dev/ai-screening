@@ -23,3 +23,7 @@ services:
       $logger: "@logger.channel.ai_screening"
     tags:
       - { name: event_subscriber }
+
+  Drupal\ai_screening\EventSubscriber\PasswordSubscriber:
+    tags:
+      - { name: event_subscriber }
