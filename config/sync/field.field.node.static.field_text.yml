@@ -12,7 +12,7 @@ id: node.static.field_text
 field_name: field_text
 entity_type: node
 bundle: static
-label: Text
+label: Tekst
 description: ""
 required: false
 translatable: false

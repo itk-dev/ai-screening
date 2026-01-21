@@ -1,0 +1,18 @@
+uuid: a541ab20-e5af-4668-accb-fb9f59028521
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.static
+id: node.static.title
+field_name: title
+entity_type: node
+bundle: static
+label: Titel
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

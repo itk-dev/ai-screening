@@ -1,0 +1,18 @@
+uuid: 32b2fcaa-2003-426c-8cf1-d8275e4239c6
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.project
+id: node.project.title
+field_name: title
+entity_type: node
+bundle: project
+label: Titel
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
