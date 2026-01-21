@@ -17,7 +17,6 @@ jobs:
     env:
       COMPOSER_ALLOW_SUPERUSER: 1
       APP_ENV: prod
-      FONTAWESOME_PACKAGE_TOKEN: ${{ secrets.FONTAWESOME_PACKAGE_TOKEN }}
     steps:
       - name: Install Task
         uses: arduino/setup-task@v2
