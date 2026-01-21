@@ -8,6 +8,7 @@ dependencies:
     - taxonomy.vocabulary.project_track_type
   module:
     - ai_screening
+    - content_moderation
     - navigation
     - node
     - publishcontent
@@ -26,6 +27,7 @@ permissions:
   - "access site setup"
   - "access taxonomy overview"
   - "access webform overview"
+  - "create project content"
   - "create terms in department"
   - "create terms in project_track_type"
   - "create webform"
@@ -35,11 +37,11 @@ permissions:
   - "edit any webform"
   - "edit terms in department"
   - "edit terms in project_track_type"
-  - "publish any node type project"
   - "publish editable node type project"
   - "publish own node type project"
-  - "unpublish any node type project"
   - "unpublish editable node type project"
   - "unpublish own node type project"
+  - "view any unpublished content"
+  - "view own unpublished content"
   - "view the administration theme"
   - "view vocabulary labels"

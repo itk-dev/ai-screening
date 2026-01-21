@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.project
   module:
+    - content_moderation
     - node
     - publishcontent
     - taxonomy
@@ -15,10 +16,13 @@ weight: 2
 is_admin: null
 permissions:
   - "access webform help"
+  - "create project content"
   - "edit any project content"
   - "edit any webform"
   - "publish editable node type project"
   - "publish own node type project"
   - "unpublish editable node type project"
   - "unpublish own node type project"
+  - "view any unpublished content"
+  - "view own unpublished content"
   - "view vocabulary labels"
