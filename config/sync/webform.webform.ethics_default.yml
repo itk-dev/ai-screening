@@ -217,7 +217,7 @@ settings:
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
   form_prepopulate_source_entity_type: ""
-  form_unsaved: false
+  form_unsaved: true
   form_disable_back: false
   form_submit_back: false
   form_disable_autocomplete: false
@@ -257,7 +257,7 @@ settings:
   submission_access_denied_attributes: {}
   previous_submission_message: ""
   previous_submissions_message: ""
-  autofill: false
+  autofill: true
   autofill_message: ""
   autofill_excluded_elements: {}
   wizard_progress_bar: true
@@ -288,9 +288,9 @@ settings:
   preview_excluded_elements: {}
   preview_exclude_empty: true
   preview_exclude_empty_checkbox: false
-  draft: none
+  draft: authenticated
   draft_multiple: false
-  draft_auto_save: false
+  draft_auto_save: true
   draft_saved_message: ""
   draft_loaded_message: ""
   draft_pending_single_message: ""

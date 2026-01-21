@@ -40,6 +40,8 @@ classDiagram
     Tool --> WebformSubmission
 ```
 
+See [docs/Project.md](docs/Project.md) for some details on decisions made in the project.
+
 ## Setup
 
 - Knowledge of Drupal is required for setting up this project.
