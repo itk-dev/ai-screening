@@ -38,28 +38,28 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.install:15 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:149
-msgid "Project track configuration"
-msgstr "Projektsporskonfiguration"
+msgid "Screening track configuration"
+msgstr "Screeningssporskonfiguration"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.install:16 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:150
 msgid "Configuration for the track."
 msgstr "Konfiguration for sporet."
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.install:30 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:121
-msgid "Project track evaluation overridden"
-msgstr "Projektsporsevaluering tilsidesat"
+msgid "Screening track evaluation overridden"
+msgstr "Screeningssporsevaluering tilsidesat"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.install:31
-msgid "The overridden evaluation of the project track"
-msgstr "Den tilsidesatte evaluering af projektsporet"
+msgid "The overridden evaluation of the screening track"
+msgstr "Den tilsidesatte evaluering af screeningssporet"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.info.yml:0
-msgid "AI Screening project track"
-msgstr "AI Screening projektspor"
+msgid "AI Screening screening track"
+msgstr "AI Screening screeningsspor"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.info.yml:0
-msgid "Adds project track entity and functionality"
-msgstr "Tilføjer projektsporsentitet og funktionalitet"
+msgid "Adds screening track entity and functionality"
+msgstr "Tilføjer screeningssporsentitet og funktionalitet"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.info.yml:0
 msgid "Custom"
@@ -142,100 +142,100 @@ msgid "Type"
 msgstr "Type"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:104
-msgid "The type of the project track, as defined by taxonommy term"
-msgstr "Typen af projektspor, som defineret af taxonomibegreb"
+msgid "The type of the screening track, as defined by taxonommy term"
+msgstr "Typen af screeningsspor, som defineret af taxonomibegreb"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:109
-msgid "Project track title"
-msgstr "Projektsporets titel"
+msgid "Screening track title"
+msgstr "Screeningssporets titel"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:110
-msgid "The title of the project track."
-msgstr "Titlen på projektsporet."
+msgid "The title of the screening track."
+msgstr "Titlen på screeningssporet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:113
-msgid "Project track description"
-msgstr "Projektsporets beskrivelse"
+msgid "Screening track description"
+msgstr "Screeningssporets beskrivelse"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:114
-msgid "A description of the project track."
-msgstr "En beskrivelse af projektsporet."
+msgid "A description of the screening track."
+msgstr "En beskrivelse af screeningssporet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:117
-msgid "Project track evaluation"
-msgstr "Projektsporets evaluering"
+msgid "Screening track evaluation"
+msgstr "Screeningssporets evaluering"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:118
-msgid "The evaluation of the project track."
-msgstr "Evalueringen af projektsporet."
+msgid "The evaluation of the screening track."
+msgstr "Evalueringen af screeningssporet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:122
-msgid "The overridden evaluation of the project track."
-msgstr "Den tilsidesatte evaluering af projektsporet."
+msgid "The overridden evaluation of the screening track."
+msgstr "Den tilsidesatte evaluering af screeningssporet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:125
-msgid "Project track note"
-msgstr "Projektsporets note"
+msgid "Screening track note"
+msgstr "Screeningssporets note"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:126
-msgid "A note related to project track evaluation."
-msgstr "En note relateret til evaluering af projektsporet."
+msgid "A note related to screening track evaluation."
+msgstr "En note relateret til evaluering af screeningssporet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:129
-msgid "Project track status"
-msgstr "Projektsporets status"
+msgid "Screening track status"
+msgstr "Screeningssporets status"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:130
-msgid "The status of the project track."
-msgstr "Statusen på projektsporet."
+msgid "The status of the screening track."
+msgstr "Statusen på screeningssporet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:133 modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:112
 msgid "Authored on"
 msgstr "Skrevet den"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:134
-msgid "The time that the project track was created."
-msgstr "Tidspunktet hvor projektsporet blev oprettet."
+msgid "The time that the screening track was created."
+msgstr "Tidspunktet hvor screeningssporet blev oprettet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:137 modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:116
 msgid "Changed"
 msgstr "Ændret"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:138
-msgid "The time that the project track was last edited."
-msgstr "Tidspunktet hvor projektsporet sidst blev redigeret."
+msgid "The time that the screening track was last edited."
+msgstr "Tidspunktet hvor screeningssporet sidst blev redigeret."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:141
-msgid "Project"
-msgstr "Projekt"
+msgid "Screening"
+msgstr "Screening"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:146
 msgid "Delta"
 msgstr "Delta"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18 modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:91
-msgid "Project track"
-msgstr "Projektspor"
+msgid "Screening track"
+msgstr "Screeningsspor"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
-msgid "Project tracks"
-msgstr "Projektspor"
+msgid "Screening tracks"
+msgstr "Screeningsspor"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
-msgid "project track"
-msgstr "projektspor"
+msgid "screening track"
+msgstr "screeningsspor"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
-msgid "project tracks"
-msgstr "projektspor"
+msgid "screening tracks"
+msgstr "screeningsspor"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:95
-msgid "Project track tool status"
-msgstr "Status for projektsporsværktøj"
+msgid "Screening track tool status"
+msgstr "Status for screeningssporsværktøj"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:96
-msgid "The status of the project track tool."
-msgstr "Statusen for projektsporsværktøjet."
+msgid "The status of the screening track tool."
+msgstr "Statusen for screeningssporsværktøjet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:99
 msgid "Tool entity type"
@@ -262,12 +262,12 @@ msgid "The data matching the tool configuration"
 msgstr "Data der matcher værktøjets konfiguration"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:113
-msgid "The time that the project track tool was created."
-msgstr "Tidspunktet hvor projektsporsværktøjet blev oprettet."
+msgid "The time that the screening track tool was created."
+msgstr "Tidspunktet hvor screeningssporsværktøjet blev oprettet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:117
-msgid "The time that the project track tool was last edited."
-msgstr "Tidspunktet hvor projektsporsværktøjet sidst blev redigeret."
+msgid "The time that the screening track tool was last edited."
+msgstr "Tidspunktet hvor screeningssporsværktøjet sidst blev redigeret."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:120
 msgid "Dalte"
@@ -306,12 +306,12 @@ msgid "View"
 msgstr "Vis"
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:149;150
-msgid "New project track %label has been created."
-msgstr "Nyt projektspor %label er blevet oprettet."
+msgid "New screening track %label has been created."
+msgstr "Nyt screeningsspor %label er blevet oprettet."
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:154;155
-msgid "The project track %label has been updated."
-msgstr "Projektsporet %label er blevet opdateret."
+msgid "The screening track %label has been updated."
+msgstr "Screeningssporet %label er blevet opdateret."
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackToolForm.php:29;30
 msgid "New tool %label has been created."
@@ -472,5 +472,3 @@ msgstr "Ja/nej stop"
 #: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
 msgid "Yes/no question."
 msgstr "Ja/nej-spørgsmål."
-
-

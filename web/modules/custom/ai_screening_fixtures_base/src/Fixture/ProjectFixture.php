@@ -45,27 +45,27 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
 
     $node = Node::create([
       'type' => 'project',
-      'title' => 'Ordinary project',
+      'title' => 'Ordinary screening',
       'status' => NodeInterface::PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department A')->id()],
       'field_description' => [
-        'value' => 'Et nyt projekt',
+        'value' => 'En ny screening',
         'format' => 'plain_text',
       ],
       ProjectHelper::FIELD_CORRUPTED => 0,
     ]);
     $node->setOwner($owner);
 
-    $this->addReference('project:Ordinary project', $node);
+    $this->addReference('project:Ordinary screening', $node);
     $node->save();
 
     $node = Node::create([
       'type' => 'project',
-      'title' => 'Finished project',
+      'title' => 'Finished screening',
       'status' => NodeInterface::PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department C')->id()],
       'field_description' => [
-        'value' => 'Et afsluttet projekt',
+        'value' => 'En afsluttet screening',
         'format' => 'plain_text',
       ],
       'field_project_state' => 'finished',
@@ -73,34 +73,34 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
     ]);
     $node->setOwner($owner);
 
-    $this->addReference('project:Finished project', $node);
+    $this->addReference('project:Finished screening', $node);
     $node->save();
 
     $node = Node::create([
       'type' => 'project',
-      'title' => 'Corrupted project',
+      'title' => 'Corrupted screening',
       'status' => NodeInterface::NOT_PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department C')->id()],
       'field_description' => [
-        'value' => 'Et ødelagt projekt bør slettes med cron.',
+        'value' => 'En ødelagt screening bør slettes med cron.',
         'format' => 'plain_text',
       ],
       'corrupted' => 1,
     ]);
     $node->setOwner($owner);
 
-    $this->addReference('project:Corrupted project', $node);
+    $this->addReference('project:Corrupted screening', $node);
     $node->save();
 
     for ($projectCount = 1; $projectCount <= self::EXTRA_PROJECTS; $projectCount++) {
-      $label = 'Project - ' . $projectCount;
+      $label = 'Screening - ' . $projectCount;
       $node = Node::create([
         'type' => 'project',
         'title' => $label,
         'status' => NodeInterface::PUBLISHED,
         'field_department' => ['target_id' => $this->getReference('department:Department B')->id()],
         'field_description' => [
-          'value' => 'Projektnummer ' . $projectCount,
+          'value' => 'Screeningsnummer ' . $projectCount,
           'format' => 'plain_text',
         ],
         'corrupted' => 0,

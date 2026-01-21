@@ -25,8 +25,8 @@ use Drupal\taxonomy\TermInterface;
  *   label_singular = @Translation("project track"),
  *   label_plural = @Translation("project tracks"),
  *   label_count = @PluralTranslation(
- *     singular = "@count project tracks",
- *     plural = "@count project tracks",
+ *     singular = "@count screening tracks",
+ *     plural = "@count screening tracks",
  *   ),
  *   handlers = {
  *     "storage" = "Drupal\ai_screening_project_track\ProjectTrackStorage",
@@ -101,44 +101,44 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
 
     $fields['type'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Type'))
-      ->setDescription(t('The type of the project track, as defined by taxonommy term'))
+      ->setDescription(t('The type of the screening track, as defined by taxonommy term'))
       ->setSetting('target_type', 'taxonomy_term')
       ->setSetting('handler_settings', ['target_bundles' => ['project_track_type' => 'project_track_type']]);
 
     $fields['title'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Project track title'))
+      ->setLabel(t('Screening track title'))
       ->setDescription(t('The title of the project track.'));
 
     $fields['description'] = BaseFieldDefinition::create('string_long')
-      ->setLabel(t('Project track description'))
+      ->setLabel(t('Screening track description'))
       ->setDescription(t('A description of the project track.'));
 
     $fields['project_track_evaluation'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Project track evaluation'))
+      ->setLabel(t('Screening track evaluation'))
       ->setDescription(t('The evaluation of the project track.'));
 
     $fields['project_track_evaluation_overridden'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Project track evaluation overridden'))
+      ->setLabel(t('Screening track evaluation overridden'))
       ->setDescription(t('The overridden evaluation of the project track.'));
 
     $fields['project_track_note'] = BaseFieldDefinition::create('string_long')
-      ->setLabel(t('Project track note'))
+      ->setLabel(t('Screening track note'))
       ->setDescription(t('A note related to project track evaluation.'));
 
     $fields['project_track_status'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Project track status'))
-      ->setDescription(t('The status of the project track.'));
+      ->setLabel(t('Screening track status'))
+      ->setDescription(t('The status of the screening track.'));
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
-      ->setDescription(t('The time that the project track was created.'));
+      ->setDescription(t('The time that the screening track was created.'));
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the project track was last edited.'));
+      ->setDescription(t('The time that the screening track was last edited.'));
 
     $fields['project_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Project'))
+      ->setLabel(t('Screening'))
       ->setSetting('target_type', 'node')
       ->setSetting('handler_settings', ['target_bundles' => ['project' => 'project']]);
 
@@ -146,7 +146,7 @@ final class ProjectTrack extends RevisionableContentEntityBase implements Projec
       ->setLabel(t('Delta'));
 
     $fields['configuration'] = BaseFieldDefinition::create('string_long')
-      ->setLabel(t('Project track configuration'))
+      ->setLabel(t('Screening track configuration'))
       ->setDescription(t('Configuration for the track.'))
       ->setReadOnly(TRUE);
 

@@ -88,11 +88,11 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['project_track_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Project track'))
+      ->setLabel(t('Screening track'))
       ->setSetting('target_type', 'project_track');
 
     $fields['project_track_tool_status'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Project track tool status'))
+      ->setLabel(t('Screening track tool status'))
       ->setDescription(t('The status of the project track tool.'));
 
     $fields['tool_entity_type'] = BaseFieldDefinition::create('string')
@@ -110,11 +110,11 @@ final class ProjectTrackTool extends RevisionableContentEntityBase implements Pr
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
-      ->setDescription(t('The time that the project track tool was created.'));
+      ->setDescription(t('The time that the screening track tool was created.'));
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the project track tool was last edited.'));
+      ->setDescription(t('The time that the screening track tool was last edited.'));
 
     $fields['delta'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Dalte'));

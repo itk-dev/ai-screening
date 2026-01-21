@@ -9,7 +9,7 @@ ai_screening_reports.create_report:
 ai_screening_reports.project:
   path: "/reports/project/{node}"
   defaults:
-    _title: "Project"
+    _title: "Screening"
     _controller: '\Drupal\ai_screening_reports\Controller\AiScreeningReportsController'
   requirements:
     _permission: "access content"
@@ -23,7 +23,7 @@ ai_screening_reports.project:
 ai_screening_reports.project_track:
   path: "/reports/project_tracks"
   defaults:
-    _title: "Project"
+    _title: "Screening"
     _controller: '\Drupal\ai_screening_reports\Controller\AiScreeningReportsController::projectTrack'
   requirements:
     _permission: "access content"

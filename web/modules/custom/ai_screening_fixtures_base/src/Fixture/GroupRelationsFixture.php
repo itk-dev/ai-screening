@@ -30,7 +30,7 @@ class GroupRelationsFixture extends AbstractFixture implements DependentFixtureI
   public function load(): void {
     for ($i = 0; $i < ProjectFixture::EXTRA_PROJECTS; $i++) {
       /** @var \Drupal\node\NodeInterface $project */
-      $project = $this->getReference(sprintf('project:Project - %d', $i + 1));
+      $project = $this->getReference(sprintf('project:Screening - %d', $i + 1));
       // Add 3 users as member to the group.
       $roles = ['project_group-member'];
       for ($j = 0; $j < 3; $j++) {
@@ -43,7 +43,7 @@ class GroupRelationsFixture extends AbstractFixture implements DependentFixtureI
 
         $group->save();
 
-        echo sprintf('User %s (%s) added as %s to group %s (project id: %s)',
+        echo sprintf('User %s (%s) added as %s to group %s (screening id: %s)',
           $user->label(), $user->id(),
           implode(', ', $roles),
           $group->label(),

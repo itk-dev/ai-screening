@@ -1,6 +1,6 @@
 third_party_settings:
   field_group:
     group_project_information:
-      label: Projektinformation
+      label: Screeningsinformation
     group_state:
       label: Tilstand

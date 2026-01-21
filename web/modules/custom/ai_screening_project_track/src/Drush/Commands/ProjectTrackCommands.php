@@ -51,8 +51,8 @@ final class ProjectTrackCommands extends DrushCommands {
   #[CLI\FieldLabels(labels: [
     'id' => 'ID',
     'url' => 'URL',
-    'project' => 'Project ID',
-    'project_url' => 'Project URL',
+    'project' => 'Screening ID',
+    'project_url' => 'Screening URL',
     'created' => 'Created',
     'changed' => 'Changed',
     'tools' => 'Tools',

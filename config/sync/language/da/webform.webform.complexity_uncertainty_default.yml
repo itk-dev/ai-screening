@@ -5,7 +5,7 @@ elements: |-
     '#title': Kompleksitet
     hvor_stor_er_projektorganisationen:
       '#type': ai_screening_weighted_radios
-      '#title': 'Hvor stor er projektorganisationen?'
+      '#title': 'Hvor stor er screeningsorganisationen?'
       '#options':
         '10,0': '1-5 personer'
         '7,0': '6-10 personer'
@@ -15,7 +15,7 @@ elements: |-
       '#options__properties': ''
     hvor_stor_er_projektets_indflydelse_paa_forretningsstrategiske_m:
       '#type': ai_screening_weighted_radios
-      '#title': 'Hvor stor er projektets indflydelse på forretningsstrategiske mål?'
+      '#title': 'Hvor stor er screeningens indflydelse på forretningsstrategiske mål?'
       '#options':
         '10,0': Uvæsentlig
         '7,0': 'Rar at have'
@@ -25,7 +25,7 @@ elements: |-
       '#options__properties': ''
     hvad_er_den_geografiske_distribution_af_projektorganisationen:
       '#type': ai_screening_weighted_radios
-      '#title': 'Hvad er den geografiske distribution af projektorganisationen?'
+      '#title': 'Hvad er den geografiske distribution af screeningsorganisationen?'
       '#options':
         '10,0': 'Samme bygning'
         '7,0': 'Samme magistratsafdeling'
@@ -35,17 +35,17 @@ elements: |-
       '#options__properties': ''
     har_projektorganisationen_erfaring_med_de_involverede_teknologie:
       '#type': ai_screening_weighted_radios
-      '#title': 'Har projektorganisationen erfaring med de involverede teknologier?'
+      '#title': 'Har screeningsorganisationen erfaring med de involverede teknologier?'
       '#options':
         '10,0': 'Etablerede eksperter'
-        '7,0': 'Har gennemført projekter med samme teknologi med ekstern bistand'
+        '7,0': 'Har gennemført screeninger med samme teknologi med ekstern bistand'
         '5,0': 'Har gennemført pilotforløb med teknologien'
         '3,0': 'Har arbejdet med lignende teknologier'
         '1,0': 'Ingen erfaring med teknologien'
       '#options__properties': ''
     hvilke_organisatoriske_afhaengigheder_er_der_i_projektafviklinge:
       '#type': ai_screening_weighted_radios
-      '#title': 'Hvilke organisatoriske afhængigheder er der i projektafviklingen?'
+      '#title': 'Hvilke organisatoriske afhængigheder er der i screeningsafviklingen?'
       '#options':
         '10,0': Ingen
         '7,0': 'Fordrer koordination med andre indsatser'
@@ -55,13 +55,13 @@ elements: |-
       '#options__properties': ''
     hvilke_tekniske_afhaengigheder_er_der_i_projektafviklingen:
       '#type': ai_screening_weighted_radios
-      '#title': 'Hvilke tekniske afhængigheder er der i projektafviklingen?'
+      '#title': 'Hvilke tekniske afhængigheder er der i screeningsafviklingen?'
       '#options':
         '10,0': Ingen
         '7,0': 'Mindre tilretninger af etablerede platforme'
         '5,0': 'Større ændringer i etablerede platforme'
-        '3,0': 'Flere essentielle leverancer fra andet projekt'
-        '1,0': 'Flere essentielle leverancer til/fra andre projekter'
+        '3,0': 'Flere essentielle leverancer fra anden screening'
+        '1,0': 'Flere essentielle leverancer til/fra andre screeninger'
       '#options__properties': ''
   usikkerhed:
     '#type': webform_wizard_page
@@ -88,7 +88,7 @@ elements: |-
       '#options__properties': ''
     hvor_lang_tid_vil_projektet_formodentligt_straekke_sig_over:
       '#type': ai_screening_weighted_radios
-      '#title': 'Hvor lang tid vil projektet formodentligt strække sig over?'
+      '#title': 'Hvor lang tid vil screeningen formodentligt strække sig over?'
       '#options':
         '0,10': '0-6 uger'
         '0,7': '7-12 uger'
@@ -98,7 +98,7 @@ elements: |-
       '#options__properties': ''
     hvordan_er_projektet_scopet:
       '#type': ai_screening_weighted_radios
-      '#title': 'Hvordan er projektet scopet?'
+      '#title': 'Hvordan er screeningen scopet?'
       '#options':
         '0,10': 'Klar og velstruktureret tidsplan, veldefineret omfang.'
         '0,7': 'Tidsplan kræver afklaring, omfang løst defineret'
