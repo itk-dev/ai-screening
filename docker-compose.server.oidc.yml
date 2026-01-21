@@ -1,0 +1,43 @@
+# Use this file to enable test OIDC login on a test server, e.g.
+#
+# ``` sh
+# # .env.docker.local
+# COMPOSE_FILES=…,docker-compose.server.oidc.yml
+# ```
+
+services:
+  idp:
+    image: ghcr.io/geigerzaehler/oidc-provider-mock:latest
+    restart: unless-stopped
+    networks:
+      - app
+      - frontend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=frontend"
+      - "traefik.http.routers.idp_${COMPOSE_PROJECT_NAME}-http.rule=Host(`idp.${COMPOSE_SERVER_DOMAIN}`)"
+      - "traefik.http.routers.idp_${COMPOSE_PROJECT_NAME}-http.entrypoints=web"
+      - "traefik.http.routers.idp_${COMPOSE_PROJECT_NAME}-http.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.idp_${COMPOSE_PROJECT_NAME}.rule=Host(`idp.${COMPOSE_SERVER_DOMAIN}`)"
+      - "traefik.http.routers.idp_${COMPOSE_PROJECT_NAME}.entrypoints=websecure"
+      - "traefik.http.services.idp_${COMPOSE_PROJECT_NAME}.loadbalancer.server.port=9400"
+    command: [
+        "--user-claims",
+        '{"sub": "administrator", "name": "Administrator", "email": "administrator@example.com", "role": ["Administrator"]}',
+        "--user-claims",
+        '{"sub": "editor", "name": "Editor", "email": "editor@example.com", "role": ["Redaktoer"]}',
+        "--user-claims",
+        '{"sub": "another editor", "name": "Another editor", "email": "another-editor@example.com", "role": ["Redaktoer"]}',
+        "--user-claims",
+        '{"sub": "user", "name": "User", "email": "user@example.com", "role": ["Bruger"]}',
+        # A selection of fixture users (cf. web/modules/custom/ai_screening_fixtures_base/src/Fixture/UserFixture.php)
+        "--user-claims",
+        '{"sub": "user1", "name": "User", "email": "user1@example.com", "role": ["Bruger"]}',
+        "--user-claims",
+        '{"sub": "user2", "name": "User", "email": "user2@example.com", "role": ["Bruger"]}',
+        "--user-claims",
+        '{"sub": "user3", "name": "User", "email": "user3@example.com", "role": ["Bruger"]}',
+        "--user-claims",
+        '{"sub": "user4", "name": "User", "email": "user4@example.com", "role": ["Bruger"]}',
+      ]
