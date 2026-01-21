@@ -61,6 +61,23 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
 
     $node = Node::create([
       'type' => 'project',
+      'title' => 'Screening with multiple departments',
+      'status' => NodeInterface::PUBLISHED,
+      'field_department' => [
+        ['target_id' => $this->getReference('department:Department B')->id()],
+        ['target_id' => $this->getReference('department:Department C')->id()],
+      ],
+      'field_description' => [
+        'value' => 'Tværgående screening',
+        'format' => 'plain_text',
+      ],
+      ProjectHelper::FIELD_CORRUPTED => 0,
+    ]);
+    $node->setOwner($owner);
+    $node->save();
+
+    $node = Node::create([
+      'type' => 'project',
       'title' => 'Finished screening',
       'status' => NodeInterface::PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department C')->id()],

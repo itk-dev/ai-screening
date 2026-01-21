@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-115](https://github.com/itk-dev/ai-screening/pull/115)
+  - Allowed multiple departments on screening
 - [PR-114](https://github.com/itk-dev/ai-screening/pull/114)
   - Replaced "projekt" (and "project") with "screening" in user-facing texts
 - [PR-116](https://github.com/itk-dev/ai-screening/pull/116)

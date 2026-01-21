@@ -37,7 +37,16 @@
       {% if node.field_department.value %}
         <div>
           <h3>{{ 'Department'|t }}</h3>
-          <div>{{ content.field_department }}</div>
+          {% apply spaceless %}
+          {% for department in node.field_department %}
+            <span class="department">
+              {% if not loop.first %}
+                <span class="spacing">{{ ', ' }}</span>
+              {% endif %}
+              <span>{{ department.entity.label }}</span>
+            </span>
+          {% endfor %}
+        {% endapply %}
         </div>
       {% endif %}
       <div>
@@ -46,14 +55,18 @@
       </div>
       <div>
         <h3>{{ 'Contributers'|t }}</h3>
-        {% for member in projectMembers %}
-          <span class="project-members">
-            <span>
-              <a href="{{ path('entity.user.canonical', {user: member.id}) }}">{{ member.getDisplayName }}</a>
+        {% apply spaceless %}
+          {% for member in projectMembers %}
+            <span class="project-member">
+              {% if not loop.first %}
+                <span class="spacing">{{ ', ' }}</span>
+              {% endif %}
+              <span>
+                <a href="{{ path('entity.user.canonical', {user: member.id}) }}">{{ member.getDisplayName }}</a>
+              </span>
             </span>
-            <span class="spacing">{{ ', ' }}</span>
-          </span>
-        {% endfor %}
+          {% endfor %}
+        {% endapply %}
       </div>
     </div>
   </div>
