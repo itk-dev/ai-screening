@@ -127,6 +127,12 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
 
       $this->addReference('project:' . $label, $node);
       $node->save();
+
+      // Update timestamps on project.
+      $node
+        ->setCreatedTime((new \DateTimeImmutable(sprintf('now -%d days', $projectCount + 9)))->getTimestamp())
+        ->setChangedTime((new \DateTimeImmutable(sprintf('now -%d days', $projectCount + 8)))->getTimestamp());
+      $node->save();
     }
 
   }
