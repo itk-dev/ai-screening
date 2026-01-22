@@ -461,7 +461,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
    * @return \Drupal\ai_screening_project_track\ProjectTrackToolInterface|null
    *   The tool if any.
    */
-  private function loadToolByWebformSubmission(WebformSubmissionInterface $submission): ?ProjectTrackToolInterface {
+  public function loadToolByWebformSubmission(WebformSubmissionInterface $submission): ?ProjectTrackToolInterface {
     $ids = $this->projectTrackToolStorage->getQuery()
       ->accessCheck(FALSE)
       ->condition('tool_entity_type', $submission->getEntityTypeId(), '=')
