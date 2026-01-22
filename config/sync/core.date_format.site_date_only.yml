@@ -1,0 +1,8 @@
+uuid: 46dccd6d-9bfb-4d5d-8621-4df74090fbb9
+langcode: und
+status: true
+dependencies: {}
+id: site_date_only
+label: "Date only"
+locked: false
+pattern: d/m/Y
