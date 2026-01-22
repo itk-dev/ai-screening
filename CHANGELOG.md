@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-122](https://github.com/itk-dev/ai-screening/pull/122)
+  - Added dates to screenings view.
+  - Updated project dates when relates entities are updates.
 - [PR-115](https://github.com/itk-dev/ai-screening/pull/115)
   - Allowed multiple departments on screening
 - [PR-114](https://github.com/itk-dev/ai-screening/pull/114)
