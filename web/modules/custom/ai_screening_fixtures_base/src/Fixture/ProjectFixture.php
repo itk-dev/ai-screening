@@ -36,12 +36,12 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function load(): void {
-    $owner = $this->getReference('user:administrator');
-    if (!($owner instanceof UserInterface)) {
+    $editor = $this->getReference('user:editor');
+    if (!($editor instanceof UserInterface)) {
       return;
     }
 
-    $this->helper->userLogin($owner);
+    $this->helper->userLogin($editor);
 
     $node = Node::create([
       'type' => 'project',
@@ -54,9 +54,24 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       ],
       ProjectHelper::FIELD_CORRUPTED => 0,
     ]);
-    $node->setOwner($owner);
+    $node->setOwner($editor);
 
     $this->addReference('project:Ordinary screening', $node);
+    $node->save();
+
+    $node = Node::create([
+      'type' => 'project',
+      'title' => '(kladde) Another screening',
+      'status' => NodeInterface::NOT_PUBLISHED,
+      'field_department' => ['target_id' => $this->getReference('department:Department A')->id()],
+      'field_description' => [
+        'value' => 'Denne screening er endnu ikke offentlig',
+        'format' => 'plain_text',
+      ],
+      ProjectHelper::FIELD_CORRUPTED => 0,
+    ]);
+    $node->setOwner($editor);
+
     $node->save();
 
     $node = Node::create([
@@ -73,7 +88,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       ],
       ProjectHelper::FIELD_CORRUPTED => 0,
     ]);
-    $node->setOwner($owner);
+    $node->setOwner($editor);
     $node->save();
 
     $node = Node::create([
@@ -88,7 +103,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       'field_project_state' => 'finished',
       ProjectHelper::FIELD_CORRUPTED => 0,
     ]);
-    $node->setOwner($owner);
+    $node->setOwner($editor);
 
     $this->addReference('project:Finished screening', $node);
     $node->save();
@@ -104,7 +119,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       ],
       'corrupted' => 1,
     ]);
-    $node->setOwner($owner);
+    $node->setOwner($editor);
 
     $this->addReference('project:Corrupted screening', $node);
     $node->save();
@@ -123,7 +138,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
         'corrupted' => 0,
       ]);
 
-      $node->setOwner($owner);
+      $node->setOwner($editor);
 
       $this->addReference('project:' . $label, $node);
       $node->save();

@@ -3,11 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - node.type.project
     - taxonomy.vocabulary.department
     - taxonomy.vocabulary.project_track_type
   module:
     - ai_screening
+    - content_moderation
     - navigation
+    - node
+    - publishcontent
     - system
     - taxonomy
     - webform
@@ -23,13 +27,21 @@ permissions:
   - "access site setup"
   - "access taxonomy overview"
   - "access webform overview"
+  - "create project content"
   - "create terms in department"
   - "create terms in project_track_type"
   - "create webform"
   - "delete terms in department"
   - "delete terms in project_track_type"
+  - "edit any project content"
   - "edit any webform"
   - "edit terms in department"
   - "edit terms in project_track_type"
+  - "publish editable node type project"
+  - "publish own node type project"
+  - "unpublish editable node type project"
+  - "unpublish own node type project"
+  - "view any unpublished content"
+  - "view own unpublished content"
   - "view the administration theme"
   - "view vocabulary labels"

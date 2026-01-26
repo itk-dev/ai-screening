@@ -12,6 +12,7 @@ module:
   config_ignore: 0
   config_translation: 0
   config_translation_po: 0
+  content_moderation: 0
   contextual: 0
   core_event_dispatcher: 0
   custom_event_dispatcher: 0
@@ -42,6 +43,7 @@ module:
   page_cache: 0
   path_alias: 0
   preprocess_event_dispatcher: 0
+  publishcontent: 0
   system: 0
   taxonomy: 0
   text: 0
@@ -53,6 +55,7 @@ module:
   webform: 0
   webform_submission_log: 0
   webform_ui: 0
+  workflows: 0
   content_translation: 10
   externalauth: 10
   views: 10

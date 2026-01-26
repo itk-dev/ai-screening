@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-118](https://github.com/itk-dev/ai-screening/pull/118)
+  Added view-only access
 - [PR-122](https://github.com/itk-dev/ai-screening/pull/122)
   - Added dates to screenings view.
   - Updated project dates when relates entities are updates.

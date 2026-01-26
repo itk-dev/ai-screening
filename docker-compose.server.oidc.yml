@@ -1,23 +1,28 @@
+# Use this file to enable test OIDC login on a test server, e.g.
+#
+# ``` sh
+# # .env.docker.local
+# COMPOSE_FILES=…,docker-compose.server.oidc.yml
+# ```
+
 services:
-  # https://github.com/geigerzaehler/oidc-provider-mock
   idp:
     image: ghcr.io/geigerzaehler/oidc-provider-mock:latest
-    # Let this container be accessible both internally and externally on the same domain.
-    container_name: idp.${COMPOSE_DOMAIN}
+    restart: unless-stopped
     networks:
       - app
       - frontend
-    ports:
-      - "80"
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=frontend"
-      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-idp.rule=Host(`idp.${COMPOSE_DOMAIN}`)"
-      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}-idp.middlewares=redirect-to-https"
+      - "traefik.http.routers.idp_${COMPOSE_PROJECT_NAME}-http.rule=Host(`idp.${COMPOSE_SERVER_DOMAIN}`)"
+      - "traefik.http.routers.idp_${COMPOSE_PROJECT_NAME}-http.entrypoints=web"
+      - "traefik.http.routers.idp_${COMPOSE_PROJECT_NAME}-http.middlewares=redirect-to-https"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.idp_${COMPOSE_PROJECT_NAME}.rule=Host(`idp.${COMPOSE_SERVER_DOMAIN}`)"
+      - "traefik.http.routers.idp_${COMPOSE_PROJECT_NAME}.entrypoints=websecure"
+      - "traefik.http.services.idp_${COMPOSE_PROJECT_NAME}.loadbalancer.server.port=9400"
     command: [
-        "--port",
-        "80",
         "--user-claims",
         '{"sub": "administrator", "name": "Administrator", "email": "administrator@example.com", "role": ["Administrator"]}',
         "--user-claims",
