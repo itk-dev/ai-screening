@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-123](https://github.com/itk-dev/ai-screening/pull/123)
+  Replaced "bortfald" with "ændring" in select places
 - [PR-118](https://github.com/itk-dev/ai-screening/pull/118)
   Added view-only access
 - [PR-122](https://github.com/itk-dev/ai-screening/pull/122)
