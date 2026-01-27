@@ -86,8 +86,8 @@ elements: |-
       '#help_display': element_after
     2_2_bortfald_af_opgaver:
       '#type': text_format
-      '#title': '2.2 Bortfald af opgaver'
-      '#help': '<p>De fleste AI-løsninger medfører et bortfald af del-opgaver, der medvirker til en samlet opgaveløsning. For at sikre medarbejderes ejerskab og tryghed ved en AI-løsning er det derfor vigtigt at der er overblik over hvilke opgaver, der ændrer sig som følge af indførelse af løsningen – og hvordan de i givet fald ændrer sig.</p><p>I svaret skal der redegøres for, om og i hvor høj grad, der er overblik over ændrede opgaver.</p>'
+      '#title': '2.2 Ændring af opgaver'
+      '#help': '<p>De fleste AI-løsninger medfører ændringer af del-opgaver, der medvirker til en samlet opgaveløsning. For at sikre medarbejderes ejerskab og tryghed ved en AI-løsning er det derfor vigtigt at der er overblik over hvilke opgaver, der ændrer sig som følge af indførelse af løsningen – og hvordan de i givet fald ændrer sig.</p><p>I svaret skal der redegøres for, om og i hvor høj grad, der er overblik over ændrede opgaver.</p>'
       '#help_display': element_before
       '#allowed_formats':
         simple_editor: simple_editor
