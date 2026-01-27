@@ -12,7 +12,7 @@
     } %}
   {# Add some sensible names for the classes #}
   {% set class_names = class_names|merge({
-    info: class_names['red'],
+    info: class_names['gray'],
     }) %}
   {# make sure that type is valid, i.e. defined in class_names #}
   {% set type = (type and class_names[type] is defined) ? type : 'info' %}
