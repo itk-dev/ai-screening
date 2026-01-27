@@ -1,0 +1,22 @@
+{% if label is not empty %}
+  {# https://tailwindcss.com/plus/ui-blocks/application-ui/elements/badges #}
+  {% set class_names = {
+     gray: 'inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 ring-1 ring-inset ring-gray-400/20',
+     red: 'inline-flex items-center rounded-md bg-red-400/10 px-2 py-1 text-xs font-medium text-red-400 ring-1 ring-inset ring-red-400/20',
+     yellow: 'inline-flex items-center rounded-md bg-yellow-400/10 px-2 py-1 text-xs font-medium text-yellow-500 ring-1 ring-inset ring-yellow-400/20',
+     green: 'inline-flex items-center rounded-md bg-green-400/10 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/20',
+     blue: 'inline-flex items-center rounded-md bg-blue-400/10 px-2 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-400/30',
+     indigo: 'inline-flex items-center rounded-md bg-indigo-400/10 px-2 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-400/30',
+     purple: 'inline-flex items-center rounded-md bg-purple-400/10 px-2 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-400/30',
+     pink: 'inline-flex items-center rounded-md bg-pink-400/10 px-2 py-1 text-xs font-medium text-pink-400 ring-1 ring-inset ring-pink-400/20',
+    } %}
+  {# Add some sensible names for the classes #}
+  {% set class_names = class_names|merge({
+    info: class_names['red'],
+    }) %}
+  {# make sure that type is valid, i.e. defined in class_names #}
+  {% set type = (type and class_names[type] is defined) ? type : 'info' %}
+  <div class="badge badge-{{ type }} {{ class_names[type] }} {{ additional_class_names }}">
+    {{ label }}
+  </div>
+{% endif %}
