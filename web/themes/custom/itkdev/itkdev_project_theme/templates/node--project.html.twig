@@ -17,7 +17,7 @@
 
 {% block title %}
   <div class="inline-flex items-center">
-    {{ include('@itkdev_project_theme/components/badge.html.twig', {label: node.status.value != '1' ? 'Not published'|trans, additional_class_names: 'mr-3'}) }}
+    {{ include('@itkdev_project_theme/components/badge.html.twig', {label: node.status.value != '1' ? 'Not published'|trans(options: {context: 'project'}), additional_class_names: 'mr-3'}) }}
     <h1 class="dark:text-white inline-block">{{ label }}</h1>
     {% if node.access('update') %}
       <a href="{{ path('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
