@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-126](https://github.com/itk-dev/ai-screening/pull/126)
+  Updated translation files
 - [PR-127](https://github.com/itk-dev/ai-screening/pull/127)
   Updated field titles and descriptions
 - [PR-124](https://github.com/itk-dev/ai-screening/pull/124)
