@@ -1,0 +1,87 @@
+# This is not a standalone Taskfile; it must be included in a main Taskfile which must also define three vars, e.g
+#
+#   includes:
+#     translation:
+#       taskfile: ./task/Taskfile.translation.yml
+#       vars:
+#         TRANSLATION_MODULES:
+#           - my_custom_module
+#           - another_module
+#
+#         TRANSLATION_THEMES:
+#           - my_custo_them
+#           - itkdev_project_theme
+#
+#         TRANSLATION_LANGUAGES:
+#           - da
+#
+# See https://taskfile.dev/usage/#including-other-taskfiles and https://taskfile.dev/usage/#vars-of-included-taskfiles for details on Taskfile includes.
+#
+# Furthermore, this Taskfile assumes that the parent Taskfile (i.e. the only including this)
+#
+# 1. defines a `drush` task for running Drush
+
+version: "3"
+
+tasks:
+  list:
+    desc: List all translation files
+    cmds:
+      - |
+        find translations web/*/custom/* -name '*.*.po' -ls
+    silent: true
+
+  extract:
+    cmds:
+      - task drush -- pm:install drupal_translation_extractor
+      - cmd: |
+          {{.EXTRACT_COMMAND}} {{.ITEM.LOCALE}} module:{{.ITEM.MODULE}}
+        for:
+          matrix:
+            LOCALE:
+              ref: .TRANSLATION_LANGUAGES
+            MODULE:
+              ref: .TRANSLATION_MODULES
+
+      - cmd: |
+          {{.EXTRACT_COMMAND}} {{.ITEM.LOCALE}} theme:{{.ITEM.THEME}}
+        for:
+          matrix:
+            LOCALE:
+              ref: .TRANSLATION_LANGUAGES
+            THEME:
+              ref: .TRANSLATION_THEMES
+
+      # Git restore po files that contain only timestamp changes.
+      - cmd: |
+          git restore $(comm -23 <(git diff --name-only --ignore-blank-lines '*.po' | sort) <(git diff --name-only --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' '*.po' | sort))
+
+    vars:
+      EXTRACT_COMMAND: task drush -- drupal_translation_extractor:translation:extract --dump-messages --force --sort=asc --output '%source_dir/translations/%project.%language.po' --no-fill {{.CLI_ARGS}}
+      # EXTRACT_COMMAND: task drush -- drupal_translation_extractor:translation:extract --dump-messages --force --sort=asc --output '%source_dir/translations/%project.%language.po' {{.CLI_ARGS}}
+      # EXTRACT_COMMAND: task drush -- drupal_translation_extractor:translation:extract --dump-messages --force --sort=asc --output '%source_dir/translations/%project.%language.po' --fill-from-string-storage {{.CLI_ARGS}}
+
+  git:diff:
+    desc: "`git diff` all translation files ignoring timestamp changes"
+    cmds:
+      # Ignore some PO metadata when git diff'ing, e.g.
+      #
+      # "POT-Creation-Date: 2025-03-12 18:18+0100\n"
+      # "PO-Revision-Date: 2025-03-12 18:18+0100\n"
+      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' '*.po'
+
+  git:restore:
+    desc: '`git restore` all translation file changes if only timestamps are changed (cf. `task {{.TASK | replace ":restore" ":diff" }}`)'
+    cmds:
+      - git restore '*.po'
+    # https://taskfile.dev/reference/schema#precondition
+    preconditions:
+      - sh: task {{.TASK | replace ":restore" ":diff" }}
+        msg: |
+          Translations seem to have changed.
+
+          Run
+
+              task {{.TASK | replace ":restore" ":diff" }}
+
+          to check.

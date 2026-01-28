@@ -1,10 +1,11 @@
 version: "3"
 
-dotenv: [".task.env", ".env"]
+# https://taskfile.dev/usage/#env-files
+dotenv: [".env.local", ".env"]
 
 includes:
-  translation:
-    taskfile: ./task/Taskfile.translation.yml
+  translations:
+    taskfile: ./task/Taskfile.translations.yml
     vars:
       TRANSLATION_MODULES:
         - ai_screening
@@ -217,3 +218,12 @@ tasks:
     cmds:
       - docker run --rm -v $(pwd):/work tmknom/prettier --write tests
       - docker run --rm -v $(pwd):/work tmknom/prettier --check tests
+
+  translations:import:
+    desc: Import and update translations
+    cmds:
+      - task compose -- exec phpfpm bash -c '(cd web && ../vendor/bin/drush locale:import --type=customized --override=all da ../translations/custom-translations.da.po)'
+      - task drush -- locale:check
+      - task drush -- locale:update
+      - task drush -- cache:rebuild
+
