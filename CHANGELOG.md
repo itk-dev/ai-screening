@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-127](https://github.com/itk-dev/ai-screening/pull/127)
+  Updated field titles and descriptions
 - [PR-124](https://github.com/itk-dev/ai-screening/pull/124)
   Added info badge on unpublished content
 - [PR-123](https://github.com/itk-dev/ai-screening/pull/123)
