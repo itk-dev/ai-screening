@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-01-28 13:36+0100\n"
-"PO-Revision-Date: 2026-01-28 13:36+0100\n"
+"POT-Creation-Date: 2026-01-28 14:12+0100\n"
+"PO-Revision-Date: 2026-01-28 14:12+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -113,15 +113,13 @@ msgstr "Fejl ved oprettelse af grupper: @message"
 msgid "Error creating screening tracks: @message"
 msgstr "Fejl ved oprettelse af screeningsspor: @message"
 
-#: modules/custom/ai_screening_project/src/Hook/FormHooks.php:25
+#: modules/custom/ai_screening_project/src/Hook/FormHooks.php:24
 msgid "Public"
-msgstr "Offentlig"
+msgstr "Tillad kiggeadgang"
 
-#: modules/custom/ai_screening_project/src/Hook/FormHooks.php:26
+#: modules/custom/ai_screening_project/src/Hook/FormHooks.php:25
 msgid "Public screenings can be <em>viewed by all users</em>. Non-public screenings can be viewed by editors only."
-msgstr ""
-"Offentlige screeninger kan <em>ses af alle brugere</em>. "
-"Ikke-offentlige screeninger kan kun ses af redaktører."
+msgstr "👀"
 
 #: modules/custom/ai_screening_project/src/Plugin/Block/FrontpageStatsTopBlock.php:20
 msgid "Frontpage stats top"
