@@ -14,7 +14,7 @@ display:
         title:
           label: Navn
           alter:
-            text: "<div class=\"inline-flex items-center\">\r\n{% include '@itkdev_project_theme/components/badge.html.twig' with { label: status != '1' ? 'Not published'|trans, additional_class_names: 'mr-3' } %}\r\n<h4>{{ title }}</h4>\r\n</div>\r\n{{ field_description }}"
+            text: "<div class=\"inline-flex items-center\">\r\n{% include '@itkdev_project_theme/components/badge.html.twig' with { label: status != '1' ? 'Not published'|trans(options: {context: 'project'}), additional_class_names: 'mr-3' } %}\r\n<h4>{{ title }}</h4>\r\n</div>\r\n{{ field_description }}"
           separator: ", "
         field_project_state:
           label: Tilstand
