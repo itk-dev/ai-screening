@@ -15,7 +15,6 @@ label: Editor
 weight: 2
 is_admin: null
 permissions:
-  - "access webform help"
   - "create project content"
   - "edit any project content"
   - "edit any webform"
