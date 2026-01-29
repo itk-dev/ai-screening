@@ -24,11 +24,22 @@ steps:
       playbook: "release"
       pre_up:
         # Fixes issue with 'Drupal\mysql\Driver\Database\mysql\Connection' not found
-        - itkdev-docker-compose-server run --rm phpfpm composer2 dump-autoload
+        - itkdev-docker-compose-server run --rm phpfpm composer dump-autoload
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes deploy
+
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:check
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:update
-        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:import da ../translations/strings/ai-screening.da.po --override=all
-        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes config_translation_po:import da ../translations/config/ai-screening-config.da.po
+
+        # Cf. task translation:import
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:import                --type=not-customized --override=not-customized da ../translations/contrib-translations.da.po
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes config_translation_po:import --type=not-customized --override=not-customized da ../config/translations/config.da.po
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:import-all            --type=not-customized --override=not-customized ../web/modules/custom/ai_screening/translations/
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:import-all            --type=not-customized --override=not-customized ../web/modules/custom/ai_screening_project/translations/
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:import-all            --type=not-customized --override=not-customized ../web/modules/custom/ai_screening_project_track/translations/
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:import-all            --type=not-customized --override=not-customized ../web/modules/custom/ai_screening_reports/translations/
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:import-all            --type=not-customized --override=not-customized ../web/themes/custom/itkdev/itkdev_base_theme/translations/
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes locale:import-all            --type=not-customized --override=not-customized ../web/themes/custom/itkdev/itkdev_project_theme/translations/
+
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes cache:rebuild
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes browse --no-browser
       cron:
