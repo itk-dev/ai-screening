@@ -44,7 +44,7 @@ class FormHelper {
    * @throws \Drupal\ai_screening_project_track\Exception\InvalidValueException
    */
   public static function getIntegers(string $value, string $separator = ','): array {
-    $values = array_map('trim', str_getcsv($value, $separator));
+    $values = array_map('trim', str_getcsv($value, $separator, escape: ''));
     $nonIntegers = array_filter($values, static fn(string $v) => (string) intval($v) !== $v);
 
     if (!empty($nonIntegers)) {
