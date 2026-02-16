@@ -2081,7 +2081,7 @@ msgstr "Magistratsafdeling"
 
 msgctxt "views.view.projects:display:default:display_options:fields:name:label"
 msgid "Screening owner"
-msgstr ""
+msgstr "Screeningsejer"
 
 msgctxt "views.view.projects:display:default:display_options:fields:created:label"
 msgid "Oprettet"
