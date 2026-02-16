@@ -2149,7 +2149,7 @@ msgstr "Søg"
 
 msgctxt "views.view.projects:display:default:display_options:filters:combine:expose:description"
 msgid "Filter on screening title, description or screening owner"
-msgstr ""
+msgstr "Søg på navn, beskrivelse, ejer og bidragsyder"
 
 msgctxt "views.view.projects:display:default:display_options:filters:field_department_target_id:expose:label"
 msgid "Department"
