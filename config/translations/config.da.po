@@ -266,7 +266,7 @@ msgstr "Roller"
 
 msgctxt "field.field.node.project.field_department:label"
 msgid "Department"
-msgstr "Magistrat"
+msgstr "Magistratsafdeling"
 
 msgctxt "field.field.node.project.field_department:description"
 msgid "Hvilke magistratsafdelinger screeningen hører under"
@@ -319,7 +319,7 @@ msgstr ""
 
 msgctxt "field.field.user.user.field_department:label"
 msgid "Department"
-msgstr "Magistrat"
+msgstr "Magistratsafdeling"
 
 msgctxt "field.field.user.user.field_image:label"
 msgid "Image"
@@ -613,11 +613,11 @@ msgstr ""
 
 msgctxt "taxonomy.vocabulary.department:name"
 msgid "Department"
-msgstr "Magistrat"
+msgstr "Magistratsafdeling"
 
 msgctxt "taxonomy.vocabulary.department:description"
 msgid "Department"
-msgstr "Magistrat"
+msgstr "Magistratsafdeling"
 
 msgctxt "taxonomy.vocabulary.project_track_type:name"
 msgid "Screening track type"
@@ -2077,7 +2077,7 @@ msgstr ""
 
 msgctxt "views.view.projects:display:default:display_options:fields:field_department:label"
 msgid "Department"
-msgstr "Magistrat"
+msgstr "Magistratsafdeling"
 
 msgctxt "views.view.projects:display:default:display_options:fields:name:label"
 msgid "Screening owner"
@@ -2153,7 +2153,7 @@ msgstr ""
 
 msgctxt "views.view.projects:display:default:display_options:filters:field_department_target_id:expose:label"
 msgid "Department"
-msgstr "Magistrat"
+msgstr "Magistratsafdeling"
 
 msgctxt "views.view.projects:display:default:display_options:filters:uid_current:expose:label"
 msgid "Er brugeren som er logget ind"
@@ -2161,7 +2161,7 @@ msgstr ""
 
 msgctxt "views.view.projects:display:default:display_options:filters:uid_current:group_info:label"
 msgid "Limit list to"
-msgstr "Begræns listen til:"
+msgstr "Begræns listen til"
 
 msgctxt "views.view.projects:display:default:display_options:filters:uid_current:group_info:group_items:1:title"
 msgid "Mine"
@@ -2269,7 +2269,7 @@ msgstr "Navn"
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:field_department:label"
 msgid "Department"
-msgstr "Magistrat"
+msgstr "Magistratsafdeling"
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:status:label"
 msgid "Status"
@@ -4355,4 +4355,3 @@ msgid ""
 " "
 "         value: '0'"
 msgstr ""
-
