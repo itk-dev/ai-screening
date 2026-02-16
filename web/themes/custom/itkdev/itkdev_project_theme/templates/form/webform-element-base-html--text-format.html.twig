@@ -27,7 +27,7 @@
 <div class="mb-4 border-b mt-3">
   <h4>{{ title }}</h4>
   {% if element['#help'] %}
-    <div class="font-thin mb-2">{{ element['#help']|striptags }}</div>
+    <div class="font-thin mb-2">{{ element['#help']|html2text }}</div>
   {% endif %}
   {% set displayedValue = (value['#markup'] is same as ('{Empty}') or value['#string'] is same as ('{Empty}')) ? '{Empty}'|t : value %}
   <div>
