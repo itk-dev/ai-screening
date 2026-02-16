@@ -845,7 +845,7 @@ msgid "Draft"
 msgstr "Draft"
 
 msgid "Save Draft"
-msgstr "Save Draft"
+msgstr "Gem kladde"
 
 msgid ""
 "Submission saved. You may return to this form later and it will "
@@ -948,5 +948,3 @@ msgid ""
 "Public screenings can be <em>viewed by all users</em>. Non-public "
 "screenings can be viewed by editors only."
 msgstr "👀"
-
-
