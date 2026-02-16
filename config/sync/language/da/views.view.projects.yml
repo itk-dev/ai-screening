@@ -25,7 +25,7 @@ display:
           alter:
             text: "{% set project_status = project_track_evaluation(nid.__toString()) %}\r\n{{ include('@itkdev_project_theme/components/project-status.html.twig') }}"
         field_department:
-          label: Magistrat
+          label: Magistratsafdeling
           separator: ", "
         name:
           label: Screeningsejer
@@ -60,12 +60,12 @@ display:
             description: "Filtrér på screeningstitel, beskrivelse eller screeningsejer"
         field_department_target_id:
           expose:
-            label: Magistrat
+            label: Magistratsafdeling
         uid_current:
           expose:
             label: "Er brugeren som er logget ind"
           group_info:
-            label: "Begræns listen til:"
+            label: "Begræns listen til"
             group_items:
               1:
                 title: Mine
