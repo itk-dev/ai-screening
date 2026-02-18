@@ -951,3 +951,14 @@ msgstr "👀"
 
 msgid "Show all screenings"
 msgstr "Vis alle screeninger"
+
+msgid ""
+"Submission saved. You may return to this form later and it will "
+"restore the current values."
+msgstr "Kladde gemt."
+
+msgctxt "webform.settings:settings:default_draft_saved_message"
+msgid ""
+"Submission saved. You may return to this form later and it will "
+"restore the current values."
+msgstr "Kladde gemt."
