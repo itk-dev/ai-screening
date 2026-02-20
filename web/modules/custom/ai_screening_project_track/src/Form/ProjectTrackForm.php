@@ -146,13 +146,13 @@ final class ProjectTrackForm extends ContentEntityForm implements ContainerInjec
 
     switch ($result) {
       case SAVED_NEW:
-        $this->messenger()->addStatus($this->t('New screening track %label has been created.', $message_args));
-        $this->logger('ai_screening_project_track')->notice('New screening track %label has been created.', $logger_args);
+        $this->messenger()->addStatus($this->t('New project track %label has been created.', $message_args));
+        $this->logger('ai_screening_project_track')->notice('New project track %label has been created.', $logger_args);
         break;
 
       case SAVED_UPDATED:
-        $this->messenger()->addStatus($this->t('The screening track %label has been updated.', $message_args));
-        $this->logger('ai_screening_project_track')->notice('The screening track %label has been updated.', $logger_args);
+        $this->messenger()->addStatus($this->t('The project track %label has been updated.', $message_args));
+        $this->logger('ai_screening_project_track')->notice('The project track %label has been updated.', $logger_args);
         break;
 
       default:

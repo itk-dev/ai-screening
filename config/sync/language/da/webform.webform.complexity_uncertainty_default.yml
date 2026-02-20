@@ -38,7 +38,7 @@ elements: |-
       '#title': 'Har projektorganisationen erfaring med de involverede teknologier?'
       '#options':
         '10,0': 'Etablerede eksperter'
-        '7,0': 'Har gennemført screeninger med samme teknologi med ekstern bistand'
+        '7,0': 'Har gennemført projekter med samme teknologi med ekstern bistand'
         '5,0': 'Har gennemført pilotforløb med teknologien'
         '3,0': 'Har arbejdet med lignende teknologier'
         '1,0': 'Ingen erfaring med teknologien'
@@ -60,8 +60,8 @@ elements: |-
         '10,0': Ingen
         '7,0': 'Mindre tilretninger af etablerede platforme'
         '5,0': 'Større ændringer i etablerede platforme'
-        '3,0': 'Flere essentielle leverancer fra anden screening'
-        '1,0': 'Flere essentielle leverancer til/fra andre screeninger'
+        '3,0': 'Flere essentielle leverancer fra andet projekt'
+        '1,0': 'Flere essentielle leverancer til/fra andre projekter'
       '#options__properties': ''
   usikkerhed:
     '#type': webform_wizard_page

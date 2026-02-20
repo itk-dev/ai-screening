@@ -11,9 +11,9 @@ test("Create screening", async ({ page }) => {
   await page.getByLabel("Password").fill("user");
   await page.getByRole("button", { name: "Login", exact: true }).click();
 
-  await page.getByRole("link", { name: "Screeninger" }).click();
+  await page.getByRole("link", { name: "Projekter" }).click();
 
-  await page.getByRole("link", { name: "Create new screening" }).click();
+  await page.getByRole("link", { name: "Create new project" }).click();
 
   await page.getByLabel("Title", { exact: true }).fill("My first screening");
   await page

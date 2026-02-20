@@ -11,7 +11,7 @@ use Drupal\webform\Plugin\WebformElementBase;
  *   id = "ai_screening_static_select",
  *   label = @Translation("Static select field"),
  *   description = @Translation("Select field with four static options"),
- *   category = @Translation("AI Screening"),
+ *   category = @Translation("AI Project"),
  * )
  */
 class StaticSelect extends WebformElementBase {

@@ -26,7 +26,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "ai_screening_yes_no_stop",
  *   label = @Translation("Yes/no stop"),
  *   description = @Translation("Yes/no question."),
- *   category = @Translation("AI Screening"),
+ *   category = @Translation("AI Project"),
  * )
  */
 final class YesNoStop extends OptionsBase {

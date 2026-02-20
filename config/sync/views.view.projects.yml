@@ -18,7 +18,7 @@ dependencies:
     - text
     - user
 id: projects
-label: Screeninger
+label: Projekter
 module: views
 description: ""
 tag: ""
@@ -31,7 +31,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: Screeninger
+      title: Projekter
       fields:
         nid:
           id: nid
@@ -477,7 +477,7 @@ display:
           entity_type: user
           entity_field: name
           plugin_id: field
-          label: "Screening owner"
+          label: "Project owner"
           exclude: false
           alter:
             alter_text: false
@@ -838,7 +838,7 @@ display:
           expose:
             operator_id: combine_op
             label: Search
-            description: "Filter on screening title, description or screening owner"
+            description: "Filter on project title, description or project owner"
             use_operator: false
             operator: combine_op
             operator_limit_selection: false
@@ -1182,7 +1182,7 @@ display:
       path: projects
       menu:
         type: normal
-        title: Screeninger
+        title: Projekter
         description: ""
         weight: 0
         expanded: false

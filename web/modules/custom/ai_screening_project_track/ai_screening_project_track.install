@@ -12,7 +12,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  */
 function ai_screening_project_track_update_11001() {
   $fields['configuration'] = BaseFieldDefinition::create('string_long')
-    ->setLabel(t('Screening track configuration'))
+    ->setLabel(t('Project track configuration'))
     ->setDescription(t('Configuration for the track.'))
     ->setReadOnly(TRUE);
 
@@ -27,8 +27,8 @@ function ai_screening_project_track_update_11001() {
  */
 function ai_screening_project_track_update_11002() {
   $fields['project_track_evaluation_overridden'] = BaseFieldDefinition::create('string')
-    ->setLabel(t('Screening track evaluation overridden'))
-    ->setDescription(t('The overridden evaluation of the screening track'))
+    ->setLabel(t('Project track evaluation overridden'))
+    ->setDescription(t('The overridden evaluation of the project track'))
     ->setReadOnly(TRUE);
 
   foreach ($fields as $fieldName => $fieldDefinition) {

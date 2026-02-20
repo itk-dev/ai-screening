@@ -45,27 +45,27 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
 
     $node = Node::create([
       'type' => 'project',
-      'title' => 'Ordinary screening',
+      'title' => 'Ordinary project',
       'status' => NodeInterface::PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department A')->id()],
       'field_description' => [
-        'value' => 'En ny screening',
+        'value' => 'Et nyt projekt',
         'format' => 'plain_text',
       ],
       ProjectHelper::FIELD_CORRUPTED => 0,
     ]);
     $node->setOwner($editor);
 
-    $this->addReference('project:Ordinary screening', $node);
+    $this->addReference('project:Ordinary project', $node);
     $node->save();
 
     $node = Node::create([
       'type' => 'project',
-      'title' => '(kladde) Another screening',
+      'title' => '(kladde) Another project',
       'status' => NodeInterface::NOT_PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department A')->id()],
       'field_description' => [
-        'value' => 'Denne screening er endnu ikke offentlig',
+        'value' => 'Dette projekt er endnu ikke offentligt',
         'format' => 'plain_text',
       ],
       ProjectHelper::FIELD_CORRUPTED => 0,
@@ -76,14 +76,14 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
 
     $node = Node::create([
       'type' => 'project',
-      'title' => 'Screening with multiple departments',
+      'title' => 'Project with multiple departments',
       'status' => NodeInterface::PUBLISHED,
       'field_department' => [
         ['target_id' => $this->getReference('department:Department B')->id()],
         ['target_id' => $this->getReference('department:Department C')->id()],
       ],
       'field_description' => [
-        'value' => 'Tværgående screening',
+        'value' => 'Tværgående projekt',
         'format' => 'plain_text',
       ],
       ProjectHelper::FIELD_CORRUPTED => 0,
@@ -93,11 +93,11 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
 
     $node = Node::create([
       'type' => 'project',
-      'title' => 'Finished screening',
+      'title' => 'Finished project',
       'status' => NodeInterface::PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department C')->id()],
       'field_description' => [
-        'value' => 'En afsluttet screening',
+        'value' => 'Et afsluttet projekt',
         'format' => 'plain_text',
       ],
       'field_project_state' => 'finished',
@@ -105,34 +105,34 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
     ]);
     $node->setOwner($editor);
 
-    $this->addReference('project:Finished screening', $node);
+    $this->addReference('project:Finished project', $node);
     $node->save();
 
     $node = Node::create([
       'type' => 'project',
-      'title' => 'Corrupted screening',
+      'title' => 'Corrupted project',
       'status' => NodeInterface::NOT_PUBLISHED,
       'field_department' => ['target_id' => $this->getReference('department:Department C')->id()],
       'field_description' => [
-        'value' => 'En ødelagt screening bør slettes med cron.',
+        'value' => 'Et ødelagt projekt bør slettes med cron.',
         'format' => 'plain_text',
       ],
       'corrupted' => 1,
     ]);
     $node->setOwner($editor);
 
-    $this->addReference('project:Corrupted screening', $node);
+    $this->addReference('project:Corrupted project', $node);
     $node->save();
 
     for ($projectCount = 1; $projectCount <= self::EXTRA_PROJECTS; $projectCount++) {
-      $label = 'Screening - ' . $projectCount;
+      $label = 'Project - ' . $projectCount;
       $node = Node::create([
         'type' => 'project',
         'title' => $label,
         'status' => NodeInterface::PUBLISHED,
         'field_department' => ['target_id' => $this->getReference('department:Department B')->id()],
         'field_description' => [
-          'value' => 'Screeningsnummer ' . $projectCount,
+          'value' => 'Projektnummer ' . $projectCount,
           'format' => 'plain_text',
         ],
         'corrupted' => 0,

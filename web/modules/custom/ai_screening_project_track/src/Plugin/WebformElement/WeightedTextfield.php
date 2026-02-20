@@ -11,7 +11,7 @@ use Drupal\webform\Plugin\WebformElement\TextField;
  *   id = "ai_screening_weighted_textfield",
  *   label = @Translation("Weighted textfield"),
  *   description = @Translation("Texfield with an (x, y) weight."),
- *   category = @Translation("AI Screening"),
+ *   category = @Translation("AI Project"),
  * )
  */
 class WeightedTextfield extends TextField {

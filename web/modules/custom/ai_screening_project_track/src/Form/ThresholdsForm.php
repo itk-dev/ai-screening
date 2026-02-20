@@ -14,7 +14,7 @@ use Drupal\ai_screening_project_track\Evaluation;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 
 /**
- * Configure AI Screening project track settings for this site.
+ * Configure AI Project project track settings for this site.
  */
 final class ThresholdsForm extends FormBase {
   use AutowireTrait;
