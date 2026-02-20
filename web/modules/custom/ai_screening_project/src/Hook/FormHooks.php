@@ -22,7 +22,7 @@ class FormHooks {
   public function formAlter(array &$form, FormStateInterface $form_state, string $form_id): void {
     if ('node_project_edit_form' === $form_id) {
       $form['status']['widget']['value']['#title'] = $this->t('Public', options: ['context' => 'project']);
-      $form['status']['widget']['value']['#description'] = $this->t('Public screenings can be <em>viewed by all users</em>. Non-public screenings can be viewed by editors only.',
+      $form['status']['widget']['value']['#description'] = $this->t('Public projects can be <em>viewed by all users</em>. Non-public projects can be viewed by editors only.',
         options: ['context' => 'project']);
     }
   }

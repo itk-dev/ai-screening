@@ -23,11 +23,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: modules/custom/ai_screening_reports/ai_screening_reports.info.yml:0
-msgid "AI screening reports"
-msgstr "AI-screeningsrapporter"
+msgid "AI project reports"
+msgstr "AI-projektrapporter"
 
 #: modules/custom/ai_screening_reports/ai_screening_reports.info.yml:0
-msgid "Reports for AI Screening"
+msgid "Reports for AI Project"
 msgstr "Rapporter til AI-screening"
 
 #: modules/custom/ai_screening_reports/ai_screening_reports.info.yml:0
@@ -47,8 +47,8 @@ msgid "Create report"
 msgstr "Opret rapport"
 
 #: modules/custom/ai_screening_reports/ai_screening_reports.routing.yml:0;0
-msgid "Screening"
-msgstr "Screening"
+msgid "Project"
+msgstr "Projekt"
 
 #: modules/custom/ai_screening_reports/src/Controller/AiScreeningReportsController.php:137
 msgid "A maximum of @max tracks can be displayed."
@@ -59,10 +59,9 @@ msgid "Incorrect url parameters."
 msgstr "Forkerte URL-parametre."
 
 #: modules/custom/ai_screening_reports/src/Form/CreateReport.php:54
-msgid "Select screening"
-msgstr "Vælg screening"
+msgid "Select project"
+msgstr "Vælg projekt"
 
 #: modules/custom/ai_screening_reports/src/Form/CreateReport.php:63
 msgid "Fetch report"
 msgstr "Hent rapport"
-

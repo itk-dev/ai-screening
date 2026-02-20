@@ -38,23 +38,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.install:15 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:149
-msgid "Screening track configuration"
-msgstr "Screeningssporskonfiguration"
+msgid "Project track configuration"
+msgstr "Projectssporskonfiguration"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.install:16 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:150
 msgid "Configuration for the track."
 msgstr "Konfiguration for sporet."
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.install:30 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:121
-msgid "Screening track evaluation overridden"
-msgstr "Screeningssporsevaluering tilsidesat"
+msgid "Project track evaluation overridden"
+msgstr "Projectssporsevaluering tilsidesat"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.install:31
-msgid "The overridden evaluation of the screening track"
-msgstr "Den tilsidesatte evaluering af screeningssporet"
+msgid "The overridden evaluation of the project track"
+msgstr "Den tilsidesatte evaluering af projektsporet"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.info.yml:0
-msgid "AI Screening project track"
+msgid "AI Project project track"
 msgstr ""
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.info.yml:0
@@ -142,28 +142,28 @@ msgid "Type"
 msgstr "Type"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:104
-msgid "The type of the screening track, as defined by taxonommy term"
-msgstr "Typen af screeningsspor, som defineret af taxonomibegreb"
+msgid "The type of the project track, as defined by taxonommy term"
+msgstr "Typen af projektspor, som defineret af taxonomibegreb"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:109
-msgid "Screening track title"
-msgstr "Screeningssporets titel"
+msgid "Project track title"
+msgstr "Projektsporets titel"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:110
 msgid "The title of the project track."
 msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:113
-msgid "Screening track description"
-msgstr "Screeningssporets beskrivelse"
+msgid "Project track description"
+msgstr "Projectssporets beskrivelse"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:114
 msgid "A description of the project track."
 msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:117
-msgid "Screening track evaluation"
-msgstr "Screeningssporets evaluering"
+msgid "Project track evaluation"
+msgstr "Projectssporets evaluering"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:118
 msgid "The evaluation of the project track."
@@ -174,40 +174,40 @@ msgid "The overridden evaluation of the project track."
 msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:125
-msgid "Screening track note"
-msgstr "Screeningssporets note"
+msgid "Project track note"
+msgstr "Projectssporets note"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:126
 msgid "A note related to project track evaluation."
 msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:129
-msgid "Screening track status"
-msgstr "Screeningssporets status"
+msgid "Project track status"
+msgstr "Projektsporets status"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:130
-msgid "The status of the screening track."
-msgstr "Statusen på screeningssporet."
+msgid "The status of the project track."
+msgstr "Statusen på projektsporet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:133 modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:112
 msgid "Authored on"
 msgstr "Skrevet den"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:134
-msgid "The time that the screening track was created."
-msgstr "Tidspunktet hvor screeningssporet blev oprettet."
+msgid "The time that the project track was created."
+msgstr "Tidspunktet hvor projektsporet blev oprettet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:137 modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:116
 msgid "Changed"
 msgstr "Ændret"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:138
-msgid "The time that the screening track was last edited."
-msgstr "Tidspunktet hvor screeningssporet sidst blev redigeret."
+msgid "The time that the project track was last edited."
+msgstr "Tidspunktet hvor projektsporet sidst blev redigeret."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:141
-msgid "Screening"
-msgstr "Screening"
+msgid "Project"
+msgstr "Projekt"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:146
 msgid "Delta"
@@ -230,12 +230,12 @@ msgid "project tracks"
 msgstr ""
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:91
-msgid "Screening track"
-msgstr "Screeningsspor"
+msgid "Project track"
+msgstr "Projektspor"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:95
-msgid "Screening track tool status"
-msgstr "Status for screeningssporsværktøj"
+msgid "Project track tool status"
+msgstr "Status for projektsporsværktøj"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:96
 msgid "The status of the project track tool."
@@ -266,12 +266,12 @@ msgid "The data matching the tool configuration"
 msgstr "Data der matcher værktøjets konfiguration"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:113
-msgid "The time that the screening track tool was created."
-msgstr "Tidspunktet hvor screeningssporsværktøjet blev oprettet."
+msgid "The time that the project track tool was created."
+msgstr "Tidspunktet hvor projektsporsværktøjet blev oprettet."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:117
-msgid "The time that the screening track tool was last edited."
-msgstr "Tidspunktet hvor screeningssporsværktøjet sidst blev redigeret."
+msgid "The time that the project track tool was last edited."
+msgstr "Tidspunktet hvor projektsporsværktøjet sidst blev redigeret."
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:120
 msgid "Dalte"
@@ -310,12 +310,12 @@ msgid "View"
 msgstr "Vis"
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:149;150
-msgid "New screening track %label has been created."
-msgstr "Nyt screeningsspor %label er blevet oprettet."
+msgid "New project track %label has been created."
+msgstr "Nyt projektspor %label er blevet oprettet."
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:154;155
-msgid "The screening track %label has been updated."
-msgstr "Screeningssporet %label er blevet opdateret."
+msgid "The project track %label has been updated."
+msgstr "Projectssporet %label er blevet opdateret."
 
 #: modules/custom/ai_screening_project_track/src/Form/ProjectTrackToolForm.php:29;30
 msgid "New tool %label has been created."
@@ -368,8 +368,8 @@ msgid "Select field with four static options"
 msgstr "Valgfelt med fire statiske muligheder"
 
 #: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/StaticSelect.php:7 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:12 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextarea.php:7 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextfield.php:7 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
-msgid "AI Screening"
-msgstr "AI Screening"
+msgid "AI Project"
+msgstr "AI Project"
 
 #: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedElementTrait.php:37
 msgid "Question weight"

@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "ai_screening_weighted_radios",
  *   label = @Translation("Weighted radios"),
  *   description = @Translation("Radios with an (x, y) weight."),
- *   category = @Translation("AI Screening"),
+ *   category = @Translation("AI Project"),
  * )
  */
 final class WeightedRadios extends Radios {

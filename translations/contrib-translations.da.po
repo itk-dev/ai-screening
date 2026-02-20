@@ -949,8 +949,8 @@ msgid ""
 "screenings can be viewed by editors only."
 msgstr "👀"
 
-msgid "Show all screenings"
-msgstr "Vis alle screeninger"
+msgid "Show all projects"
+msgstr "Vis alle projekter"
 
 msgid ""
 "Submission saved. You may return to this form later and it will "

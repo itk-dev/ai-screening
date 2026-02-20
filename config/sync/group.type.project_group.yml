@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies: {}
 id: project_group
-label: "Screening group"
-description: "A group that works on a screening."
+label: "Project group"
+description: "A group that works on a project."
 new_revision: false
 creator_membership: true
 creator_wizard: false

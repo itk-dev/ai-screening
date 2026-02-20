@@ -51,7 +51,7 @@ final class CreateReport extends FormBase {
     $form['project'] = [
       '#type' => 'select',
       '#multiple' => TRUE,
-      '#title' => $this->t('Select screening'),
+      '#title' => $this->t('Select project'),
       '#options' => $options,
       '#attributes' => ['class' => ['use-choicesjs-plugin bg-primary text-primary border border-primary rounded-md py-2 px-3 my-1 w-full']],
     ];

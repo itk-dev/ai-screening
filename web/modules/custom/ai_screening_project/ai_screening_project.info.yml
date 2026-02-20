@@ -1,4 +1,4 @@
-name: AI Screening project
+name: AI Project project
 description: Functionality related to creating and maintaining the project content type and related entities.
 package: "Custom"
 type: module

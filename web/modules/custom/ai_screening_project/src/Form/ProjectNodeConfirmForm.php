@@ -61,7 +61,7 @@ class ProjectNodeConfirmForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to save the screening "@title"?', ['@title' => $this->node->label()]);
+    return $this->t('Are you sure you want to save the project "@title"?', ['@title' => $this->node->label()]);
   }
 
   /**
@@ -75,14 +75,14 @@ class ProjectNodeConfirmForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getDescription() {
-    return $this->t('Deactivating a screening will disable further work on the screening and archive it. Reactivation of the screening requires site administrative privileges.');
+    return $this->t('Deactivating a project will disable further work on the project and archive it. Reactivation of the project requires site administrative privileges.');
   }
 
   /**
    * {@inheritdoc}
    */
   public function getConfirmText() {
-    return $this->t('Save screening');
+    return $this->t('Save project');
   }
 
   /**
@@ -110,7 +110,7 @@ class ProjectNodeConfirmForm extends ConfirmFormBase {
     $tempstore->delete('project_form_values_' . $node->id());
 
     // Set a success message.
-    $this->messenger()->addStatus($this->t('Screening "@title" has been updated.', ['@title' => $node->label()]));
+    $this->messenger()->addStatus($this->t('Project "@title" has been updated.', ['@title' => $node->label()]));
 
     // Redirect to the node view page.
     $form_state->setRedirectUrl(Url::fromRoute('entity.node.canonical', ['node' => $node->id()]));
