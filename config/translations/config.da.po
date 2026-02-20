@@ -428,7 +428,7 @@ msgstr ""
 
 msgctxt "node.type.project:name"
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 msgctxt "node.type.static:name"
 msgid "Static"
