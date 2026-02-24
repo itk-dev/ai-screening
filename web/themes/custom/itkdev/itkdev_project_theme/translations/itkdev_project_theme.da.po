@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2026-01-28 10:06+0100\n"
-"PO-Revision-Date: 2026-01-28 10:06+0100\n"
+"POT-Creation-Date: 2026-02-17 11:03+0100\n"
+"PO-Revision-Date: 2026-02-17 11:03+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -22,11 +22,11 @@ msgstr ""
 
 #: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
 msgid "ITK-dev Project Theme"
-msgstr "ITK-dev Screeningstema"
+msgstr "ITK-dev Projectstema"
 
 #: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
 msgid "Project theme"
-msgstr "Screeningstema"
+msgstr "Projekttema"
 
 #: themes/custom/itkdev/itkdev_project_theme/itkdev_project_theme.info.yml:0
 msgid "itkdev"
@@ -66,19 +66,21 @@ msgstr "Tryk for at vælge"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/stats-top-block.html.twig:18
 msgid "Project that complies to all demands for use"
-msgid_plural "Screenings that comply to all demands for use"
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Projects that comply to all demands for use"
+msgstr[0] "Project der opfylder alle krav til brug"
+msgstr[1] "Projekter der opfylder alle krav til brug"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/stats-top-block.html.twig:28
 msgid "Project that complies to some demands for use"
-msgid_plural "Screenings that comply to some demands for use"
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Projects that comply to some demands for use"
+msgstr[0] "Project der opfylder nogle krav til brug"
+msgstr[1] "Projekter der opfylder nogle krav til brug"
 
 #: themes/custom/itkdev/itkdev_project_theme/templates/stats-top-block.html.twig:38
 msgid "Project that does not comply to the demands for use"
-msgid_plural "Screenings that do not comply to the demands for use"
-msgstr[0] ""
-msgstr[1] ""
+msgid_plural "Projects that do not comply to the demands for use"
+msgstr[0] "Project der ikke opfylder kravene til brug"
+msgstr[1] "Projekter der ikke opfylder kravene til brug"
 
+msgid "Department"
+msgstr "Magistratsafdeling"

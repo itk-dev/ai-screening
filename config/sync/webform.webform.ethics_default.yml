@@ -45,7 +45,7 @@ elements: |-
     1_3_mulighed_for_menneskelig_kontrol:
       '#type': text_format
       '#title': '1.3 Mulighed for menneskelig kontrol'
-      '#help': '<p>En væsentlig kilde til transparens og tillid i forhold til AI-løsninger er borgernes mulighed for at kontrollere løsningens bidrag til et samlet output og korrigere for mulige fejlantagelser eller fejl-output. Borgere skal i den forbindelse have mulighed for at gennemskue, hvordan medarbejdere i Aarhus Kommune har anvendt en given AI-løsning, og den måde nået frem til et resultat.</p><p>I svaret skal der redegøres for, om og hvordan løsningen har indbygget muligheden for menneskelig verififikation af output.</p>'
+      '#help': '<p>En væsentlig kilde til transparens og tillid i forhold til AI-løsninger er borgernes mulighed for at kontrollere løsningens bidrag til et samlet output og korrigere for mulige fejlantagelser eller fejl-output. Borgere skal i den forbindelse have mulighed for at gennemskue, hvordan medarbejdere i Aarhus Kommune har anvendt en given AI-løsning, og den måde nået frem til et resultat.</p><p>I svaret skal der redegøres for, om og hvordan løsningen har indbygget muligheden for menneskelig verifikation af output.</p>'
       '#help_display': element_before
       '#allowed_formats':
         simple_editor: simple_editor
@@ -142,7 +142,7 @@ elements: |-
     3_1_ressourceforbrug:
       '#type': text_format
       '#title': '3.1 Ressourceforbrug'
-      '#help': '<p>AI-løsninger bruger strøm, ikke mindst under træning, og vand til køling. Det er derfor vigtigt, at løsningernes ressourceforbrug står mål med de forventede udbytter, og at løsningerne i øvrigt er tilrettelagt ud fra en ressourceoptimerende tilgang (eks. krav til grøn strøm og genanvendelse af varmeudledning).</p><p>I svaret skal der redegøres for, om det er overvejet at anvende mindre ressourcekrævende løsinger end AI til indfrielse af screeningens formål.</p>'
+      '#help': '<p>AI-løsninger bruger strøm, ikke mindst under træning, og vand til køling. Det er derfor vigtigt, at løsningernes ressourceforbrug står mål med de forventede udbytter, og at løsningerne i øvrigt er tilrettelagt ud fra en ressourceoptimerende tilgang (f.eks. krav til grøn strøm og genanvendelse af varmeudledning).</p><p>I svaret skal der redegøres for, om det er overvejet at anvende mindre ressourcekrævende løsinger end AI til indfrielse af projektets formål.</p>'
       '#help_display': element_before
       '#allowed_formats':
         simple_editor: simple_editor

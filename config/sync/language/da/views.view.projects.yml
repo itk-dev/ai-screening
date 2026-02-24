@@ -1,9 +1,9 @@
-label: Screeninger
+label: Projekter
 display:
   default:
     display_title: Default
     display_options:
-      title: Screeninger
+      title: Projekter
       fields:
         nid:
           label: ID
@@ -25,10 +25,10 @@ display:
           alter:
             text: "{% set project_status = project_track_evaluation(nid.__toString()) %}\r\n{{ include('@itkdev_project_theme/components/project-status.html.twig') }}"
         field_department:
-          label: Magistrat
+          label: Magistratsafdeling
           separator: ", "
         name:
-          label: Screeningsejer
+          label: Projektejer
           separator: ", "
       pager:
         options:
@@ -57,15 +57,15 @@ display:
         combine:
           expose:
             label: Søg
-            description: "Filtrér på screeningstitel, beskrivelse eller screeningsejer"
+            description: "Filtrér på projekttitel, beskrivelse eller projektejer"
         field_department_target_id:
           expose:
-            label: Magistrat
+            label: Magistratsafdeling
         uid_current:
           expose:
             label: "Er brugeren som er logget ind"
           group_info:
-            label: "Begræns listen til:"
+            label: "Begræns listen til"
             group_items:
               1:
                 title: Mine
@@ -76,4 +76,4 @@ display:
     display_title: Side
     display_options:
       menu:
-        title: Screeninger
+        title: Projekter

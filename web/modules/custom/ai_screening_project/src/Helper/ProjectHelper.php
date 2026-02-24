@@ -156,7 +156,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       $this->projectTrackHelper->deleteProjectTracks($projectTracks);
     }
     catch (\Exception $exception) {
-      $this->error('Error deleting screening: @message', [
+      $this->error('Error deleting project: @message', [
         '@message' => $exception->getMessage(),
       ]);
     }
@@ -199,7 +199,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       }
       if ($this->isFinished($entity)) {
         if ('view' !== $event->getOperation()) {
-          $event->setAccessResult(AccessResult::forbidden(sprintf('Screening %s (%s) is marked as finished', $entity->label(),
+          $event->setAccessResult(AccessResult::forbidden(sprintf('Project %s (%s) is marked as finished', $entity->label(),
             $entity->id())));
         }
       }
@@ -238,7 +238,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       $event->setFields([
         self::FIELD_CORRUPTED => BaseFieldDefinition::create('boolean')
           ->setLabel($this->t('Corrupted'))
-          ->setDescription($this->t('If the screening or related entities are corrupted.'))
+          ->setDescription($this->t('If the project or related entities are corrupted.'))
           ->setTargetEntityTypeId($entityType->id())
           ->setReadOnly(TRUE),
       ]);
@@ -355,12 +355,12 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
 
       $form['group_fieldset'] = [
         '#type' => 'fieldset',
-        '#title' => $this->t('Screening group'),
+        '#title' => $this->t('Project group'),
       ];
 
       $form['group_fieldset']['project_owner'] = [
         '#type' => 'select',
-        '#title' => $this->t('Screening owner'),
+        '#title' => $this->t('Project owner'),
         '#default_value' => $groupOwnerId,
         '#options' => $optionsGroupOwner,
         '#attributes' => ['class' => ['text-full form-text required bg-primary text-primary border border-primary rounded-md py-2 px-3 my-1 w-full']],
@@ -370,7 +370,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       $form['group_fieldset']['project_contributors'] = [
         '#type' => 'select',
         '#title' => $this->t('Contributors'),
-        '#description' => $this->t('Which users are allowed to contribute to this screening'),
+        '#description' => $this->t('Which users are allowed to contribute to this project'),
         '#description_display' => 'before',
         '#options' => $optionsGroupContributors,
         '#multiple' => TRUE,
@@ -397,7 +397,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    */
   public function validateGroupsForm(array &$form, FormStateInterface $form_state): void {
     if (!in_array($form_state->getValue('project_owner'), $form_state->getValue('project_contributors'))) {
-      $form_state->setErrorByName('project_owner', $this->t('Screening owner must be a contributor.'));
+      $form_state->setErrorByName('project_owner', $this->t('Project owner must be a contributor.'));
     }
   }
 
@@ -478,7 +478,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   private function addProjectGroup(NodeInterface $entity): void {
     try {
       if ($this->accountProxy->isAnonymous()) {
-        throw new AccessDeniedHttpException('Cannot create screening as anonymous user.');
+        throw new AccessDeniedHttpException('Cannot create project as anonymous user.');
       }
 
       // Create group when a project is created.
@@ -573,7 +573,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       }
     }
     catch (\Exception $exception) {
-      $this->error('Error creating screening tracks: @message', [
+      $this->error('Error creating project tracks: @message', [
         '@message' => $exception->getMessage(),
         'entity' => $entity,
       ]);

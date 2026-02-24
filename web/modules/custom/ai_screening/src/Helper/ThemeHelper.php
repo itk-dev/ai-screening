@@ -34,7 +34,7 @@ final class ThemeHelper extends AbstractHelper implements EventSubscriberInterfa
     $form = &$event->getForm();
     $formId = $event->getFormId();
     if ('node_project_form' === $formId) {
-      $form['#title'] = t('Create new screening');
+      $form['#title'] = t('Create new project');
     }
     if ('node_static_form' === $formId) {
       $form['#title'] = t('Create new static page');

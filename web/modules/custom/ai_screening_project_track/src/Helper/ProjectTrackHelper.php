@@ -366,10 +366,10 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
         break;
 
       case Evaluation::UNDECIDED:
-        if ($sums['0']['sum'] > $sums[0]['approvedThreshold']) {
+        if (($sums['0']['sum'] ?? 0) > ($sums[0]['approvedThreshold'] ?? 0)) {
           $activeQuadrant = 4;
         }
-        if ($sums['1']['sum'] > $sums[1]['approvedThreshold']) {
+        if (($sums['1']['sum'] ?? 0) > ($sums[1]['approvedThreshold'] ?? 0)) {
           $activeQuadrant = 2;
         }
         break;
