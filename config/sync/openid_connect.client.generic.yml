@@ -1,19 +1,19 @@
 uuid: 4bd3f443-3007-4cef-ac0e-9fb2f0cc3d84
 langcode: en
 status: true
-dependencies: {  }
+dependencies: {}
 id: generic
-label: 'Employee login'
+label: "Employee login"
 plugin: generic
 settings:
   client_id: client-id
   client_secret: client-secret
-  iss_allowed_domains: ''
-  issuer_url: ''
-  authorization_endpoint: 'http://idp.ai-screening.local.itkdev.dk/connect/authorize'
-  token_endpoint: 'http://idp.ai-screening.local.itkdev.dk/connect/token'
-  userinfo_endpoint: ''
-  end_session_endpoint: 'http://idp.ai-screening.local.itkdev.dk/connect/endsession'
+  iss_allowed_domains: ""
+  issuer_url: ""
+  authorization_endpoint: "http://idp.ai-screening.local.itkdev.dk/oauth2/authorize"
+  token_endpoint: "http://idp.ai-screening.local.itkdev.dk/oauth2/token"
+  userinfo_endpoint: ""
+  end_session_endpoint: "http://idp.ai-screening.local.itkdev.dk/oauth2/end_session"
   scopes:
     - openid
     - email

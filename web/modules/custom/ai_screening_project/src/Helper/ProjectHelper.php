@@ -341,7 +341,8 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       $query = $this->userStorage->getQuery();
       $uids = $query
         ->accessCheck(FALSE)
-        ->condition('status', '1')
+        ->condition('status', 1)
+        ->condition('roles', ['editor'], 'IN')
         ->execute();
 
       // Selected and options for group selects.

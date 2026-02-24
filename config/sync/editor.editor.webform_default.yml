@@ -12,24 +12,24 @@ settings:
   toolbar:
     items:
       - heading
-      - '|'
+      - "|"
       - bold
       - italic
       - subscript
       - superscript
-      - '|'
+      - "|"
       - specialCharacters
-      - '|'
+      - "|"
       - numberedList
       - bulletedList
-      - '|'
+      - "|"
       - link
-      - '|'
+      - "|"
       - indent
       - outdent
-      - '|'
+      - "|"
       - blockQuote
-      - '|'
+      - "|"
       - sourceEditing
   plugins:
     ckeditor5_heading:
@@ -43,5 +43,5 @@ settings:
       reversed: true
       startIndex: true
     ckeditor5_sourceEditing:
-      allowed_tags: {  }
-image_upload: {  }
+      allowed_tags: {}
+image_upload: {}

@@ -8,18 +8,20 @@
 (function () {
   Drupal.behaviors.lawTrackToolbar = {
     attach: function (context, settings) {
-      let toolbarCheckboxes = document.querySelectorAll("#reportLawTrackToolbar input")
+      let toolbarCheckboxes = document.querySelectorAll(
+        "#reportLawTrackToolbar input",
+      );
 
-      toolbarCheckboxes.forEach(function(checkbox) {
-        checkbox.addEventListener("change", function(event) {
-          toggleElements(event.target)
-        })
-      })
+      toolbarCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", function (event) {
+          toggleElements(event.target);
+        });
+      });
 
-      initialize()
-    }
-  }
-}())
+      initialize();
+    },
+  };
+})();
 
 /**
  * ToggleElements.
@@ -28,21 +30,21 @@
  */
 function toggleElements(elementTrigger) {
   switch (elementTrigger.id) {
-    case 'hideQuestionsAnswers':
-      setDisplay(getFormState())
-      break
-    case 'showStops':
-      toggleAllOfType(elementTrigger, 'stop', 'groupDemands')
-      break
-    case 'showRules':
-      toggleAllOfType(elementTrigger, 'rule', 'groupRules')
-      break
-    case 'showTasks':
-      toggleAllOfType(elementTrigger, 'task', 'groupTasks')
-      break
-    case 'showConsiderations':
-      toggleAllOfType(elementTrigger, 'consideration', 'groupConsiderations')
-      break
+    case "hideQuestionsAnswers":
+      setDisplay(getFormState());
+      break;
+    case "showStops":
+      toggleAllOfType(elementTrigger, "stop", "groupDemands");
+      break;
+    case "showRules":
+      toggleAllOfType(elementTrigger, "rule", "groupRules");
+      break;
+    case "showTasks":
+      toggleAllOfType(elementTrigger, "task", "groupTasks");
+      break;
+    case "showConsiderations":
+      toggleAllOfType(elementTrigger, "consideration", "groupConsiderations");
+      break;
   }
 }
 
@@ -57,11 +59,13 @@ function toggleElements(elementTrigger) {
  *   Sorting group related to the element type.
  */
 function toggleAllOfType(elementTrigger, cssClass, groupId) {
-  const submissionElements = document.querySelectorAll(`.ai-screening-yes-no-stop .${cssClass}`)
+  const submissionElements = document.querySelectorAll(
+    `.ai-screening-yes-no-stop .${cssClass}`,
+  );
 
-  Array.from(submissionElements).forEach(function(element) {
-    toggleElement(elementTrigger, element, groupId)
-  })
+  Array.from(submissionElements).forEach(function (element) {
+    toggleElement(elementTrigger, element, groupId);
+  });
 }
 
 /**
@@ -75,8 +79,8 @@ function toggleAllOfType(elementTrigger, cssClass, groupId) {
  *   Sorting group related to the element type.
  */
 function toggleElement(checkbox, element, groupId) {
-  element.style.display = checkbox.checked ? 'block' : 'none'
-  cloneRemove(checkbox, element, groupId)
+  element.style.display = checkbox.checked ? "block" : "none";
+  cloneRemove(checkbox, element, groupId);
 }
 
 /**
@@ -91,13 +95,12 @@ function toggleElement(checkbox, element, groupId) {
  */
 function cloneRemove(checkbox, element, groupId) {
   if (checkbox.checked) {
-    document.getElementById(groupId).appendChild(element.cloneNode(true))
-  }
-  else {
-    const groupedElements = document.getElementById(groupId).children
-    Array.from(groupedElements).forEach(function(element) {
-      element.remove()
-    })
+    document.getElementById(groupId).appendChild(element.cloneNode(true));
+  } else {
+    const groupedElements = document.getElementById(groupId).children;
+    Array.from(groupedElements).forEach(function (element) {
+      element.remove();
+    });
   }
 }
 
@@ -105,11 +108,15 @@ function cloneRemove(checkbox, element, groupId) {
  * Initialize the page based on form state.
  */
 function initialize() {
-  setDisplay(getFormState())
-  toggleAllOfType(document.getElementById('showStops'), 'stop', 'groupDemands')
-  toggleAllOfType(document.getElementById('showRules'), 'rule', 'groupRules')
-  toggleAllOfType(document.getElementById('showTasks'), 'task', 'groupTasks')
-  toggleAllOfType(document.getElementById('showConsiderations'), 'consideration', 'groupConsiderations')
+  setDisplay(getFormState());
+  toggleAllOfType(document.getElementById("showStops"), "stop", "groupDemands");
+  toggleAllOfType(document.getElementById("showRules"), "rule", "groupRules");
+  toggleAllOfType(document.getElementById("showTasks"), "task", "groupTasks");
+  toggleAllOfType(
+    document.getElementById("showConsiderations"),
+    "consideration",
+    "groupConsiderations",
+  );
 }
 
 /**
@@ -118,7 +125,7 @@ function initialize() {
  * @returns {NodeListOf<Element>}
  */
 function getFormState() {
-  return document.querySelectorAll("#reportLawTrackToolbar input")
+  return document.querySelectorAll("#reportLawTrackToolbar input");
 }
 
 /**
@@ -128,11 +135,15 @@ function getFormState() {
  *   The state of the form.
  */
 function setDisplay(formState) {
-  formState.forEach(function(checkbox) {
-    if ('hideQuestionsAnswers' === checkbox.id) {
-      document.getElementById('elementGroups').style.display = checkbox.checked ? 'block' : 'none'
-      document.querySelector('.webform-submission-data').style.display = checkbox.checked ? 'none' : 'block'
-      document.querySelector('.ai-screening-yes-no-stop').style.display = checkbox.checked ? 'none' : 'block'
+  formState.forEach(function (checkbox) {
+    if ("hideQuestionsAnswers" === checkbox.id) {
+      document.getElementById("elementGroups").style.display = checkbox.checked
+        ? "block"
+        : "none";
+      document.querySelector(".webform-submission-data").style.display =
+        checkbox.checked ? "none" : "block";
+      document.querySelector(".ai-screening-yes-no-stop").style.display =
+        checkbox.checked ? "none" : "block";
     }
-  })
+  });
 }

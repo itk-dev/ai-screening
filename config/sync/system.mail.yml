@@ -9,4 +9,4 @@ mailer_dsn:
   user: null
   password: null
   port: null
-  options: {  }
+  options: {}

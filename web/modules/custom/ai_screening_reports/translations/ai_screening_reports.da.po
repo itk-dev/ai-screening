@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-28 09:12+0200\n"
-"PO-Revision-Date: 2025-04-28 09:12+0200\n"
+"POT-Creation-Date: 2026-01-28 10:06+0100\n"
+"PO-Revision-Date: 2026-01-28 10:06+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -23,11 +23,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: modules/custom/ai_screening_reports/ai_screening_reports.info.yml:0
-msgid "AI screening reports"
-msgstr "AI-screeningsrapporter"
+msgid "AI project reports"
+msgstr "AI-projektrapporter"
 
 #: modules/custom/ai_screening_reports/ai_screening_reports.info.yml:0
-msgid "Reports for AI Screening"
+msgid "Reports for AI Project"
 msgstr "Rapporter til AI-screening"
 
 #: modules/custom/ai_screening_reports/ai_screening_reports.info.yml:0
@@ -50,11 +50,11 @@ msgstr "Opret rapport"
 msgid "Project"
 msgstr "Projekt"
 
-#: modules/custom/ai_screening_reports/src/Controller/AiScreeningReportsController.php:126
+#: modules/custom/ai_screening_reports/src/Controller/AiScreeningReportsController.php:137
 msgid "A maximum of @max tracks can be displayed."
 msgstr "Maksimalt @max spor kan vises."
 
-#: modules/custom/ai_screening_reports/src/Controller/AiScreeningReportsController.php:149
+#: modules/custom/ai_screening_reports/src/Controller/AiScreeningReportsController.php:162
 msgid "Incorrect url parameters."
 msgstr "Forkerte URL-parametre."
 
@@ -65,4 +65,3 @@ msgstr "Vælg projekt"
 #: modules/custom/ai_screening_reports/src/Form/CreateReport.php:63
 msgid "Fetch report"
 msgstr "Hent rapport"
-

@@ -6,15 +6,15 @@ display:
       fields:
         name:
           label: Bruger
-          separator: ', '
+          separator: ", "
         group_roles:
           label: Roller
-          separator: ', '
+          separator: ", "
         changed:
           label: Opdateret
-          separator: ', '
+          separator: ", "
         created:
-          separator: ', '
+          separator: ", "
         dropbutton:
           label: Handlinger
       pager:
@@ -22,17 +22,17 @@ display:
           tags:
             next: ››
             previous: ‹‹
-            first: '« Første'
-            last: 'Sidste »'
+            first: "« Første"
+            last: "Sidste »"
           expose:
-            items_per_page_label: 'Antal elementer'
-            items_per_page_options_all_label: '- Alle -'
+            items_per_page_label: "Antal elementer"
+            items_per_page_options_all_label: "- Alle -"
             offset_label: Forskydning
       exposed_form:
         options:
           submit_button: Anvend
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sorter efter'
+          exposed_sorts_label: "Sorter efter"
           sort_asc_label: Stigende
           sort_desc_label: Faldende
       arguments:

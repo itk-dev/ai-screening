@@ -7,8 +7,39 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-01-29
+
+- [PR-126](https://github.com/itk-dev/ai-screening/pull/126)
+  Updated translation files
+- [PR-127](https://github.com/itk-dev/ai-screening/pull/127)
+  Updated field titles and descriptions
+- [PR-124](https://github.com/itk-dev/ai-screening/pull/124)
+  Added info badge on unpublished content
+- [PR-123](https://github.com/itk-dev/ai-screening/pull/123)
+  Replaced "bortfald" with "ændring" in select places
+- [PR-118](https://github.com/itk-dev/ai-screening/pull/118)
+  Added view-only access
+- [PR-122](https://github.com/itk-dev/ai-screening/pull/122)
+  - Added dates to screenings view.
+  - Updated project dates when relates entities are updates.
+- [PR-115](https://github.com/itk-dev/ai-screening/pull/115)
+  - Allowed multiple departments on screening
+- [PR-114](https://github.com/itk-dev/ai-screening/pull/114)
+  - Replaced "projekt" (and "project") with "screening" in user-facing texts
 - [PR-116](https://github.com/itk-dev/ai-screening/pull/116)
   - Translated some field labels to Danish
+- [PR-119](https://github.com/itk-dev/ai-screening/pull/119)
+  Used drafts to save submission on navigation
+- [PR-120](https://github.com/itk-dev/ai-screening/pull/120)
+  Hide login form
+- [PR-113](https://github.com/itk-dev/ai-screening/pull/113)
+  - Updated project template
+  - Cleaned up code
+  - Applied patch updates
+- [PR-110](https://github.com/itk-dev/ai-screening/pull/110)
+  - Security updates.
+- [PR-108](https://github.com/itk-dev/ai-screening/pull/108)
+  - Use free font-awesome icon.
 
 ## [0.3.3]
 
@@ -257,5 +288,6 @@ and this project adheres to [Semantic Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/itk-dev/ai-screening/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/itk-dev/ai-screening/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/itk-dev/ai-screening/compare/0.3.4...0.4.0
 [0.1.0]: https://github.com/itk-dev/ai-screening/releases/tag/0.1.0

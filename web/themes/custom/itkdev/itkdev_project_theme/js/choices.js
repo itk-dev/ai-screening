@@ -2,14 +2,14 @@
  * @file
  * Attaches behaviors for the Choices module.
  */
-import Choices from '../node_modules/choices.js';
+import Choices from "../node_modules/choices.js";
 
 (function () {
   // eslint-disable-next-line no-undef
   Drupal.behaviors.choices = {
     attach: function (context, settings) {
       // eslint-disable-next-line no-unused-vars,no-undef
-      const elements = document.querySelectorAll('.use-choicesjs-plugin');
+      const elements = document.querySelectorAll(".use-choicesjs-plugin");
       elements.forEach((element) => {
         // eslint-disable-next-line no-undef
         if (element) {
@@ -20,17 +20,17 @@ import Choices from '../node_modules/choices.js';
             const choices = new Choices(element, {
               placeholder: true,
               removeItemButton: true,
-              placeholderValue: Drupal.t('Select'),
+              placeholderValue: Drupal.t("Select"),
               // eslint-disable-next-line no-undef
-              noResultsText: Drupal.t('No results found'),
+              noResultsText: Drupal.t("No results found"),
               // eslint-disable-next-line no-undef
-              noChoicesText: Drupal.t('No choices to choose from'),
+              noChoicesText: Drupal.t("No choices to choose from"),
               // eslint-disable-next-line no-undef
-              itemSelectText: Drupal.t('Press to select')
+              itemSelectText: Drupal.t("Press to select"),
             });
           }
         }
-      })
-    }
-  }
-}())
+      });
+    },
+  };
+})();

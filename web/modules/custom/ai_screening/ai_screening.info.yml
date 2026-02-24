@@ -1,6 +1,6 @@
-name: 'ai_screening'
+name: "ai_screening"
 type: module
-description: 'ai_screening'
+description: "ai_screening"
 package: Custom
 core_version_requirement: ^11
 dependencies:

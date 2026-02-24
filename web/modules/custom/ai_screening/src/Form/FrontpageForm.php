@@ -12,7 +12,7 @@ use Drupal\Core\State\StateInterface;
 use Drupal\Core\Url;
 
 /**
- * Configure AI Screening project track settings for this site.
+ * Configure AI Project project track settings for this site.
  */
 final class FrontpageForm extends FormBase {
   use AutowireTrait;

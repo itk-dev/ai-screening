@@ -7,7 +7,7 @@ dependencies:
 _core:
   default_config_hash: OmnschvBLb9ZJn0iVyBd2odf8U8Nt0INjRbRMixZw9U
 id: webform_archive_action
-label: 'Archive webform'
+label: "Archive webform"
 type: webform
 plugin: webform_archive_action
-configuration: {  }
+configuration: {}

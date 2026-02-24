@@ -1,0 +1,17 @@
+uuid: c600a63b-399d-47e9-af29-d958b828b8a7
+langcode: da
+status: true
+dependencies:
+  config:
+    - group.type.project_group
+    - user.role.editor
+id: project_group-editor
+label: Editor
+weight: -6
+admin: false
+scope: outsider
+global_role: editor
+group_type: project_group
+permissions:
+  - "view group_node:project entity"
+  - "view unpublished group_node:project entity"

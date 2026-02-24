@@ -2,11 +2,11 @@ settings:
   default_submit_button_label: Indsend
   default_reset_button_label: Nulstil
   default_delete_button_label: Slet
-  default_wizard_prev_button_label: '‹ Forrige'
-  default_wizard_next_button_label: 'Næste >'
+  default_wizard_prev_button_label: "‹ Forrige"
+  default_wizard_next_button_label: "Næste >"
   default_wizard_confirmation_label: Afslut
   default_preview_next_button_label: Gennemse
-  default_preview_prev_button_label: '‹ Forrige'
+  default_preview_prev_button_label: "‹ Forrige"
   default_preview_label: Gennemse
   dialog_options:
     narrow:
@@ -14,5 +14,5 @@ settings:
     wide:
       title: Bred
 element:
-  empty_message: '{Ingen}'
+  empty_message: "{Ingen}"
   default_more_title: Mere

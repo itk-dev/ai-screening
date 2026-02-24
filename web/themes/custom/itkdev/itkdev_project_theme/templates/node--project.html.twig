@@ -17,6 +17,7 @@
 
 {% block title %}
   <div class="inline-flex items-center">
+    {{ include('@itkdev_project_theme/components/badge.html.twig', {label: node.status.value != '1' ? 'Not published'|trans(options: {context: 'project'}), additional_class_names: 'mr-3'}) }}
     <h1 class="dark:text-white inline-block">{{ label }}</h1>
     {% if node.access('update') %}
       <a href="{{ path('entity.node.edit_form', {node: node.id}) }}" class="inline-block mx-3 btn-icon bg-black text-white hover:bg-stone-700"><i class="fa-solid fa-pencil"></i></a>
@@ -37,7 +38,16 @@
       {% if node.field_department.value %}
         <div>
           <h3>{{ 'Department'|t }}</h3>
-          <div>{{ content.field_department }}</div>
+          {% apply spaceless %}
+          {% for department in node.field_department %}
+            <span class="department">
+              {% if not loop.first %}
+                <span class="spacing">{{ ', ' }}</span>
+              {% endif %}
+              <span>{{ department.entity.label }}</span>
+            </span>
+          {% endfor %}
+        {% endapply %}
         </div>
       {% endif %}
       <div>
@@ -46,14 +56,18 @@
       </div>
       <div>
         <h3>{{ 'Contributers'|t }}</h3>
-        {% for member in projectMembers %}
-          <span class="project-members">
-            <span>
-              <a href="{{ path('entity.user.canonical', {user: member.id}) }}">{{ member.getDisplayName }}</a>
+        {% apply spaceless %}
+          {% for member in projectMembers %}
+            <span class="project-member">
+              {% if not loop.first %}
+                <span class="spacing">{{ ', ' }}</span>
+              {% endif %}
+              <span>
+                <a href="{{ path('entity.user.canonical', {user: member.id}) }}">{{ member.getDisplayName }}</a>
+              </span>
             </span>
-            <span class="spacing">{{ ', ' }}</span>
-          </span>
-        {% endfor %}
+          {% endfor %}
+        {% endapply %}
       </div>
     </div>
   </div>

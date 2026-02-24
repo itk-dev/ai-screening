@@ -1,7 +1,7 @@
 uuid: 8f206e27-afea-4342-865a-cd2c4ecf156e
 langcode: en
 status: open
-dependencies: {  }
+dependencies: {}
 weight: 0
 open: null
 close: null
@@ -10,8 +10,8 @@ template: false
 archive: false
 id: law_default
 title: Jura
-description: ''
-categories: {  }
+description: ""
+categories: {}
 elements: |-
   maa_vi:
     '#type': webform_wizard_page
@@ -121,7 +121,7 @@ elements: |-
     benytter_ai_systemet_kun_almindelige_personoplysninger:
       '#type': ai_screening_yes_no_stop
       '#title': 'Benytter AI-systemet kun almindelige personoplysninger?'
-      '#text_no': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Selv hvis der ikke indgår artikel 9/10 oplysninger i en AI-behandling, skal vi være særligt opmærksomme på at output ikke medfører, at man (med en høj grad af sikkerhed) kan udlede artikel 9/10 oplysninger om de registrerede . Hvis man kan udlede særlige personoplysninger, så skal løsningen (trods den kun behandler almindelige personoplysninger) betragtes som behandlende særlige kategorier. Det øger kravene til hjemmel, jf. grundlæggende behandlingsforbud for artikel 9 oplysninger, hvorfor en undtagelseshjemmel skal findes</p></div>'
+      '#text_no': '<div class="consideration"><p><h5>Overvejelse</h5></p><p>Selv hvis der ikke indgår artikel 9/10 oplysninger i en AI-behandling, skal vi være særligt opmærksomme på at output ikke medfører, at man (med en høj grad af sikkerhed) kan udlede artikel 9/10 oplysninger om de registrerede. Hvis man kan udlede særlige personoplysninger, så skal løsningen (trods den kun behandler almindelige personoplysninger) betragtes som behandlende særlige kategorier. Det øger kravene til hjemmel, jf. grundlæggende behandlingsforbud for artikel 9 oplysninger, hvorfor en undtagelseshjemmel skal findes.</p></div>'
       '#states':
         visible:
           ':input[name="indgaar_der_personoplysninger_i_loesning"]':
@@ -134,11 +134,11 @@ elements: |-
     indgaar_der_sundhedsjournaloplysninger:
       '#type': ai_screening_yes_no_stop
       '#title': 'Indgår der sundhedsjournaloplysninger?'
-      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><p>Såfremt oplysninger fra patientjournaler skal anvendes til AI, skal dette ske på baggrund af enten et sundhedsfagligt samtykke, sundhedslovens §42d, stk. 2, nr. 2 eller §46 (kun til forskning ). Anvendelse af journaloplysninger skal juridisk- og ledelsesmæssig godkendes (regionsrådsgodkendelse jf sundhedsloven). Journaloplysninger må ikke anvendes til AI i forbindelse med aktuel behandling af patienten, og formål der ikke er rummet af kvalitetssikring eller -udvikling af behandlingsforløb og arbejdsgange for det faglige område.</p></div>'
+      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><p>Såfremt oplysninger fra patientjournaler skal anvendes til AI, skal dette ske på baggrund af enten et sundhedsfagligt samtykke, sundhedslovens §42d, stk. 2, nr. 2 eller §46 (kun til forskning). Anvendelse af journaloplysninger skal juridisk- og ledelsesmæssig godkendes (regionsrådsgodkendelse jf sundhedsloven). Journaloplysninger må ikke anvendes til AI i forbindelse med aktuel behandling af patienten, og formål der ikke er rummet af kvalitetssikring eller -udvikling af behandlingsforløb og arbejdsgange for det faglige område.</p></div>'
     udgoer_ai_systemet_en_hoej_risiko_for_fysiske_personers_sundhed:
       '#type': ai_screening_yes_no_stop
       '#title': 'Udgør AI-systemet en høj risiko for fysiske personers sundhed og sikkerhed eller grundlæggende rettigheder (højrisiko AI-systemer)?'
-      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><ol><li>Der skal sikres, at der<br>oprettes og løbende evalueres via et risikostyringssystem</li><li>foretages datastyring i forbindelse trænings-, validerings- og prøvningsdatatsæt</li><li>udarbejdes teknisk dokumentation forinden ibrugtagning</li><li>foretages logning </li><li>sikres en passende gennemsigtighed med henblik på opfyldelse af de relevante bruger- og udbyderforpligtelser</li><li>udføres menneskeligt tilsyn i hele AI-systemets levetid</li><li>oplyses om nøjagtigheden af systemet</li><li>sikres robusthed vha. tekniske redundansløsninger (backupplaner)</li><li>sikres modstandsdygtige over for uautoriserede tredjeparters forsøg på at ændre systemet.</li><li>sikres vedligehold og dokumenter, kontinuerlig, iterativ proces igennem hele systemets levetid</li><li>sikres oplysningspligt til nationale kompetente myndigheder og samarbejde med nationalt kompetente myndigheder </li></ol></div>'
+      '#text_yes': '<div class="task"><p><h5>Opgave</h5></p><ol><li>Der skal sikres, at der oprettes og løbende evalueres via et risikostyringssystem</li><li>foretages datastyring i forbindelse trænings-, validerings- og prøvningsdatatsæt</li><li>udarbejdes teknisk dokumentation forinden ibrugtagning</li><li>foretages logning </li><li>sikres en passende gennemsigtighed med henblik på opfyldelse af de relevante bruger- og udbyderforpligtelser</li><li>udføres menneskeligt tilsyn i hele AI-systemets levetid</li><li>oplyses om nøjagtigheden af systemet</li><li>sikres robusthed vha. tekniske redundansløsninger (backupplaner)</li><li>sikres modstandsdygtige over for uautoriserede tredjeparters forsøg på at ændre systemet.</li><li>sikres vedligehold og dokumenter, kontinuerlig, iterativ proces igennem hele systemets levetid</li><li>sikres oplysningspligt til nationale kompetente myndigheder og samarbejde med nationalt kompetente myndigheder </li></ol></div>'
     skaber_ai_systemet_video_lyd_eller_billeder_som_efterligner_virk:
       '#type': ai_screening_yes_no_stop
       '#title': 'Skaber AI-systemet  video, lyd eller billeder, som efterligner virkelige objekter?'
@@ -152,32 +152,32 @@ elements: |-
         visible:
           ':input[name="er_der_tale_om_en_ren_intern_loesning_der_ikke_anvendes_borgeret"]':
             value: '0'
-css: ''
-javascript: ''
+css: ""
+javascript: ""
 settings:
   ajax: false
   ajax_scroll_top: form
-  ajax_progress_type: ''
-  ajax_effect: ''
+  ajax_progress_type: ""
+  ajax_effect: ""
   ajax_speed: null
   page: true
-  page_submit_path: ''
-  page_confirm_path: ''
-  page_theme_name: ''
+  page_submit_path: ""
+  page_confirm_path: ""
+  page_theme_name: ""
   form_title: both
   form_submit_once: false
-  form_open_message: ''
-  form_close_message: ''
-  form_exception_message: ''
+  form_open_message: ""
+  form_close_message: ""
+  form_exception_message: ""
   form_previous_submissions: true
   form_confidential: false
-  form_confidential_message: ''
+  form_confidential_message: ""
   form_disable_remote_addr: false
   form_convert_anonymous: false
   form_prepopulate: false
   form_prepopulate_source_entity: false
   form_prepopulate_source_entity_required: false
-  form_prepopulate_source_entity_type: ''
+  form_prepopulate_source_entity_type: ""
   form_unsaved: false
   form_disable_back: false
   form_submit_back: false
@@ -189,91 +189,91 @@ settings:
   form_details_toggle: false
   form_reset: false
   form_access_denied: default
-  form_access_denied_title: ''
-  form_access_denied_message: ''
-  form_access_denied_attributes: {  }
-  form_file_limit: ''
-  form_attributes: {  }
-  form_method: ''
-  form_action: ''
+  form_access_denied_title: ""
+  form_access_denied_message: ""
+  form_access_denied_attributes: {}
+  form_file_limit: ""
+  form_attributes: {}
+  form_method: ""
+  form_action: ""
   share: false
   share_node: false
-  share_theme_name: ''
+  share_theme_name: ""
   share_title: true
-  share_page_body_attributes: {  }
-  submission_label: ''
-  submission_exception_message: ''
-  submission_locked_message: ''
+  share_page_body_attributes: {}
+  submission_label: ""
+  submission_exception_message: ""
+  submission_locked_message: ""
   submission_log: false
-  submission_excluded_elements: {  }
+  submission_excluded_elements: {}
   submission_exclude_empty: false
   submission_exclude_empty_checkbox: false
-  submission_views: {  }
-  submission_views_replace: {  }
-  submission_user_columns: {  }
+  submission_views: {}
+  submission_views_replace: {}
+  submission_user_columns: {}
   submission_user_duplicate: false
   submission_access_denied: default
-  submission_access_denied_title: ''
-  submission_access_denied_message: ''
-  submission_access_denied_attributes: {  }
-  previous_submission_message: ''
-  previous_submissions_message: ''
+  submission_access_denied_title: ""
+  submission_access_denied_message: ""
+  submission_access_denied_attributes: {}
+  previous_submission_message: ""
+  previous_submissions_message: ""
   autofill: false
-  autofill_message: ''
-  autofill_excluded_elements: {  }
+  autofill_message: ""
+  autofill_excluded_elements: {}
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
-  wizard_start_label: ''
+  wizard_start_label: ""
   wizard_preview_link: false
   wizard_confirmation: false
-  wizard_confirmation_label: ''
+  wizard_confirmation_label: ""
   wizard_auto_forward: true
   wizard_auto_forward_hide_next_button: false
   wizard_keyboard: true
-  wizard_track: ''
-  wizard_prev_button_label: ''
-  wizard_next_button_label: ''
+  wizard_track: ""
+  wizard_prev_button_label: ""
+  wizard_next_button_label: ""
   wizard_toggle: false
-  wizard_toggle_show_label: ''
-  wizard_toggle_hide_label: ''
+  wizard_toggle_show_label: ""
+  wizard_toggle_hide_label: ""
   wizard_page_type: container
   wizard_page_title_tag: h2
   preview: 0
-  preview_label: ''
-  preview_title: ''
-  preview_message: ''
-  preview_attributes: {  }
-  preview_excluded_elements: {  }
+  preview_label: ""
+  preview_title: ""
+  preview_message: ""
+  preview_attributes: {}
+  preview_excluded_elements: {}
   preview_exclude_empty: true
   preview_exclude_empty_checkbox: false
   draft: none
   draft_multiple: false
   draft_auto_save: false
-  draft_saved_message: ''
-  draft_loaded_message: ''
-  draft_pending_single_message: ''
-  draft_pending_multiple_message: ''
+  draft_saved_message: ""
+  draft_loaded_message: ""
+  draft_pending_single_message: ""
+  draft_pending_multiple_message: ""
   confirmation_type: page
-  confirmation_url: ''
-  confirmation_title: ''
-  confirmation_message: ''
-  confirmation_attributes: {  }
+  confirmation_url: ""
+  confirmation_title: ""
+  confirmation_message: ""
+  confirmation_attributes: {}
   confirmation_back: true
-  confirmation_back_label: ''
-  confirmation_back_attributes: {  }
+  confirmation_back_label: ""
+  confirmation_back_attributes: {}
   confirmation_exclude_query: false
   confirmation_exclude_token: false
   confirmation_update: false
   limit_total: null
   limit_total_interval: null
-  limit_total_message: ''
+  limit_total_message: ""
   limit_total_unique: false
   limit_user: null
   limit_user_interval: null
-  limit_user_message: ''
+  limit_user_message: ""
   limit_user_unique: false
   entity_limit_total: null
   entity_limit_total_interval: null
@@ -293,47 +293,47 @@ access:
     roles:
       - anonymous
       - authenticated
-    users: {  }
-    permissions: {  }
+    users: {}
+    permissions: {}
   view_any:
-    roles: {  }
-    users: {  }
-    permissions: {  }
+    roles: {}
+    users: {}
+    permissions: {}
   update_any:
-    roles: {  }
-    users: {  }
-    permissions: {  }
+    roles: {}
+    users: {}
+    permissions: {}
   delete_any:
-    roles: {  }
-    users: {  }
-    permissions: {  }
+    roles: {}
+    users: {}
+    permissions: {}
   purge_any:
-    roles: {  }
-    users: {  }
-    permissions: {  }
+    roles: {}
+    users: {}
+    permissions: {}
   view_own:
-    roles: {  }
-    users: {  }
-    permissions: {  }
+    roles: {}
+    users: {}
+    permissions: {}
   update_own:
-    roles: {  }
-    users: {  }
-    permissions: {  }
+    roles: {}
+    users: {}
+    permissions: {}
   delete_own:
-    roles: {  }
-    users: {  }
-    permissions: {  }
+    roles: {}
+    users: {}
+    permissions: {}
   administer:
-    roles: {  }
-    users: {  }
-    permissions: {  }
+    roles: {}
+    users: {}
+    permissions: {}
   test:
-    roles: {  }
-    users: {  }
-    permissions: {  }
+    roles: {}
+    users: {}
+    permissions: {}
   configuration:
-    roles: {  }
-    users: {  }
-    permissions: {  }
-handlers: {  }
-variants: {  }
+    roles: {}
+    users: {}
+    permissions: {}
+handlers: {}
+variants: {}

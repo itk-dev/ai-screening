@@ -36,12 +36,12 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function load(): void {
-    $owner = $this->getReference('user:administrator');
-    if (!($owner instanceof UserInterface)) {
+    $editor = $this->getReference('user:editor');
+    if (!($editor instanceof UserInterface)) {
       return;
     }
 
-    $this->helper->userLogin($owner);
+    $this->helper->userLogin($editor);
 
     $node = Node::create([
       'type' => 'project',
@@ -54,9 +54,41 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       ],
       ProjectHelper::FIELD_CORRUPTED => 0,
     ]);
-    $node->setOwner($owner);
+    $node->setOwner($editor);
 
     $this->addReference('project:Ordinary project', $node);
+    $node->save();
+
+    $node = Node::create([
+      'type' => 'project',
+      'title' => '(kladde) Another project',
+      'status' => NodeInterface::NOT_PUBLISHED,
+      'field_department' => ['target_id' => $this->getReference('department:Department A')->id()],
+      'field_description' => [
+        'value' => 'Dette projekt er endnu ikke offentligt',
+        'format' => 'plain_text',
+      ],
+      ProjectHelper::FIELD_CORRUPTED => 0,
+    ]);
+    $node->setOwner($editor);
+
+    $node->save();
+
+    $node = Node::create([
+      'type' => 'project',
+      'title' => 'Project with multiple departments',
+      'status' => NodeInterface::PUBLISHED,
+      'field_department' => [
+        ['target_id' => $this->getReference('department:Department B')->id()],
+        ['target_id' => $this->getReference('department:Department C')->id()],
+      ],
+      'field_description' => [
+        'value' => 'Tværgående projekt',
+        'format' => 'plain_text',
+      ],
+      ProjectHelper::FIELD_CORRUPTED => 0,
+    ]);
+    $node->setOwner($editor);
     $node->save();
 
     $node = Node::create([
@@ -71,7 +103,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       'field_project_state' => 'finished',
       ProjectHelper::FIELD_CORRUPTED => 0,
     ]);
-    $node->setOwner($owner);
+    $node->setOwner($editor);
 
     $this->addReference('project:Finished project', $node);
     $node->save();
@@ -87,7 +119,7 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
       ],
       'corrupted' => 1,
     ]);
-    $node->setOwner($owner);
+    $node->setOwner($editor);
 
     $this->addReference('project:Corrupted project', $node);
     $node->save();
@@ -106,9 +138,15 @@ class ProjectFixture extends AbstractFixture implements DependentFixtureInterfac
         'corrupted' => 0,
       ]);
 
-      $node->setOwner($owner);
+      $node->setOwner($editor);
 
       $this->addReference('project:' . $label, $node);
+      $node->save();
+
+      // Update timestamps on project.
+      $node
+        ->setCreatedTime((new \DateTimeImmutable(sprintf('now -%d days', $projectCount + 9)))->getTimestamp())
+        ->setChangedTime((new \DateTimeImmutable(sprintf('now -%d days', $projectCount + 8)))->getTimestamp());
       $node->save();
     }
 

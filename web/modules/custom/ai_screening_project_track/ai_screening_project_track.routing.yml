@@ -1,7 +1,7 @@
 ai_screening_project_track.thresholds_settings:
-  path: '/site-setup/thresholds'
+  path: "/site-setup/thresholds"
   defaults:
-    _title: 'Thresholds settings'
+    _title: "Thresholds settings"
     _form: 'Drupal\ai_screening_project_track\Form\ThresholdsForm'
   requirements:
-    _permission: 'access site setup'
+    _permission: "access site setup"

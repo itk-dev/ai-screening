@@ -1,6 +1,4 @@
 settings:
   allowed_values:
-    -
-      label: Aktiv
-    -
-      label: Afsluttet
+    - label: Aktiv
+    - label: Afsluttet

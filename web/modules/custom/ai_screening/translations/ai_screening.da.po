@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-28 09:12+0200\n"
-"PO-Revision-Date: 2025-04-28 09:12+0200\n"
+"POT-Creation-Date: 2026-01-28 10:06+0100\n"
+"PO-Revision-Date: 2026-01-28 10:06+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Tilpasset"
 
 #: modules/custom/ai_screening/ai_screening.links.menu.yml:0 modules/custom/ai_screening/ai_screening.links.task.yml:0 modules/custom/ai_screening/ai_screening.routing.yml:0
 msgid "Site setup"
-msgstr "Webstedsopsætning"
+msgstr "Site opsætning"
 
 #: modules/custom/ai_screening/ai_screening.links.menu.yml:0
 msgid "Show site setup"
@@ -96,3 +96,4 @@ msgstr "Indstiller standardsprog for bruger @user til @langcode"
 #: modules/custom/ai_screening/src/Plugin/Block/FrontpageHelpTextBlock.php:20
 msgid "Frontpage help text"
 msgstr "Forsidehjælpetekst"
+

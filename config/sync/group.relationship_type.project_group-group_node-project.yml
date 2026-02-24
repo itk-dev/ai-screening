@@ -10,7 +10,7 @@ dependencies:
     - node
 id: project_group-group_node-project
 group_type: project_group
-content_plugin: 'group_node:project'
+content_plugin: "group_node:project"
 plugin_config:
   group_cardinality: 1
   entity_cardinality: 1

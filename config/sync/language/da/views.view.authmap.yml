@@ -6,14 +6,14 @@ display:
         options:
           submit_button: Anvend
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sorter efter'
+          exposed_sorts_label: "Sorter efter"
           sort_asc_label: Stigende
           sort_desc_label: Faldende
       pager:
         options:
           expose:
-            items_per_page_label: 'Antal elementer'
-            items_per_page_options_all_label: '- Alle -'
+            items_per_page_label: "Antal elementer"
+            items_per_page_options_all_label: "- Alle -"
             offset_label: Forskydning
           tags:
             previous: ‹‹
@@ -22,7 +22,7 @@ display:
         uid:
           format_plural_string: !!binary MQNAY291bnQ=
         name:
-          separator: ', '
+          separator: ", "
         delete_link:
           label: slet
           text: slet
@@ -32,7 +32,7 @@ display:
             label: Autentificeringsnavn
         uid:
           expose:
-            label: 'Drupal bruger'
+            label: "Drupal bruger"
       arguments:
         provider_field:
           exception:

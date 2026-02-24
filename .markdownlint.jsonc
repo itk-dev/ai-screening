@@ -1,3 +1,7 @@
+// This file is copied from config/markdown/.markdownlint.jsonc in https://github.com/itk-dev/devops_itkdev-docker.
+// Feel free to edit the file, but consider making a pull request if you find a general issue with the file.
+
+// markdownlint-cli configuration file (cf. https://github.com/igorshubovych/markdownlint-cli?tab=readme-ov-file#configuration)
 {
   "default": true,
   // https://github.com/DavidAnson/markdownlint/blob/main/doc/md013.md

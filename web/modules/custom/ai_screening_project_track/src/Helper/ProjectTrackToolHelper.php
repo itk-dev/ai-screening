@@ -439,7 +439,10 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     $blockers = [];
 
     // Match submission against webform stop fields.
-    $submission = $toolData['webform_submission:' . $toolId]['submission'];
+    $submission = $toolData['webform_submission:' . $toolId]['submission'] ?? NULL;
+    if (NULL === $submission) {
+      return NULL;
+    }
     foreach ($submission as $field => $value) {
       if (isset($elements[$field]['#stop_value']) && $elements[$field]['#stop_value'] === $value) {
         $blockers[] = $elements[$field];
@@ -458,7 +461,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
    * @return \Drupal\ai_screening_project_track\ProjectTrackToolInterface|null
    *   The tool if any.
    */
-  private function loadToolByWebformSubmission(WebformSubmissionInterface $submission): ?ProjectTrackToolInterface {
+  public function loadToolByWebformSubmission(WebformSubmissionInterface $submission): ?ProjectTrackToolInterface {
     $ids = $this->projectTrackToolStorage->getQuery()
       ->accessCheck(FALSE)
       ->condition('tool_entity_type', $submission->getEntityTypeId(), '=')
@@ -487,7 +490,10 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
       return [];
     }
 
-    $webform = $toolData['webform_submission:' . $toolId]['webform'];
+    $webform = $toolData['webform_submission:' . $toolId]['webform'] ?? NULL;
+    if (NULL === $webform) {
+      return [];
+    }
 
     $webformFromConfig = Webform::create([
       'elements' => Yaml::encode($webform),

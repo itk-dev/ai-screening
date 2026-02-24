@@ -13,5 +13,5 @@ scope: outsider
 global_role: authenticated
 group_type: project_group
 permissions:
-  - 'view group'
-  - 'view group_node:project entity'
+  - "view group"
+  - "view group_node:project entity"

@@ -6,7 +6,7 @@ display:
         options:
           submit_button: Anvend
           reset_button_label: Nulstil
-          exposed_sorts_label: 'Sorter efter'
+          exposed_sorts_label: "Sorter efter"
           sort_asc_label: Stigende
           sort_desc_label: Faldende
       pager:
@@ -14,29 +14,29 @@ display:
           tags:
             previous: ‹‹
             next: ››
-            first: '« Første'
-            last: 'Sidste »'
+            first: "« Første"
+            last: "Sidste »"
           expose:
-            items_per_page_label: 'Antal elementer'
-            items_per_page_options_all_label: '- Alle -'
+            items_per_page_label: "Antal elementer"
+            items_per_page_options_all_label: "- Alle -"
             offset_label: Forskydning
       fields:
         sid:
-          separator: ', '
+          separator: ", "
         in_draft:
-          separator: ', '
+          separator: ", "
         created:
           label: Oprettet
-          separator: ', '
+          separator: ", "
         remote_addr:
           label: IP-adresse
-          separator: ', '
+          separator: ", "
         view_webform_submission:
           label: Handlinger
           text: vis
       header:
         result:
-          content: 'Viser @start - @end af @total'
+          content: "Viser @start - @end af @total"
       arguments:
         in_draft:
           exception:
@@ -47,22 +47,22 @@ display:
         webform_submission_bulk_form:
           action_title: Handling
         sid:
-          separator: ', '
+          separator: ", "
         in_draft:
-          separator: ', '
+          separator: ", "
         sticky:
-          separator: ', '
+          separator: ", "
         locked:
-          separator: ', '
+          separator: ", "
         created:
           label: Oprettet
-          separator: ', '
+          separator: ", "
         completed:
           label: Afsluttet
-          separator: ', '
+          separator: ", "
         remote_addr:
           label: IP-adresse
-          separator: ', '
+          separator: ", "
         operations:
           label: Handlinger
   embed_manage:
@@ -71,22 +71,22 @@ display:
         webform_submission_bulk_form:
           action_title: Handling
         sid:
-          separator: ', '
+          separator: ", "
         in_draft:
-          separator: ', '
+          separator: ", "
         sticky:
-          separator: ', '
+          separator: ", "
         locked:
-          separator: ', '
+          separator: ", "
         created:
           label: Oprettet
-          separator: ', '
+          separator: ", "
         completed:
           label: Afsluttet
-          separator: ', '
+          separator: ", "
         remote_addr:
           label: IP-adresse
-          separator: ', '
+          separator: ", "
         view_webform_submission:
           label: Handlinger
           text: vis
@@ -97,22 +97,22 @@ display:
     display_options:
       fields:
         sid:
-          separator: ', '
+          separator: ", "
         in_draft:
-          separator: ', '
+          separator: ", "
         sticky:
-          separator: ', '
+          separator: ", "
         locked:
-          separator: ', '
+          separator: ", "
         created:
           label: Oprettet
-          separator: ', '
+          separator: ", "
         completed:
           label: Afsluttet
-          separator: ', '
+          separator: ", "
         remote_addr:
           label: IP-adresse
-          separator: ', '
+          separator: ", "
         view_webform_submission:
           label: Handlinger
           text: vis

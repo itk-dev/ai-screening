@@ -9,12 +9,12 @@
 
 ## Description
 
-AI-screening is a Drupal project made to screen AI solutions. It screens in 3 categories "can we" 
-(complexity and uncertanty), "will we" (ethics) and "may we" (GDPR and AI act). The projects is 
-inatially based on the need to quickly, easy and using the same questions throughout the muncipality 
-to screen new AI projects. This is needed due to the speed AI projects develop and enter our work, 
-to make sure that the projects meets compliance and rules. Projects that clears the screening can 
-then move on to the next level of risk-handling, and more work being done to make sure that the 
+AI-screening is a Drupal project made to screen AI solutions. It screens in 3 categories "can we"
+(complexity and uncertanty), "will we" (ethics) and "may we" (GDPR and AI act). The projects is
+inatially based on the need to quickly, easy and using the same questions throughout the muncipality
+to screen new AI projects. This is needed due to the speed AI projects develop and enter our work,
+to make sure that the projects meets compliance and rules. Projects that clears the screening can
+then move on to the next level of risk-handling, and more work being done to make sure that the
 project can be used in the desired usecases.
 
 Motivation for creating this project:
@@ -22,6 +22,8 @@ Motivation for creating this project:
 - need for screening of AI projects before they are used
 - need for same screening done in the whole muncipality
 - need for a way to communicate about the risks of taken in an AI project
+
+### Concept
 
 A _Project_ has one or more _Tracks_ each of which in turn has one or more _Tools_:
 
@@ -37,6 +39,39 @@ classDiagram
     }
     Tool --> WebformSubmission
 ```
+
+See [docs/Project.md](docs/Project.md) for some details on decisions made in the project.
+
+## Setup
+
+- Knowledge of Drupal is required for setting up this project.
+- Knowledge of containerized applications is highly recommended.
+
+### Default server setup
+
+- Containerized environment through docker
+  - See [docker-compose.yml](docker-compose.yml) and [docker-compose.server.yml](docker-compose.server.yml)
+  - Ubuntu VMs with docker and docker compose installed.
+- Running traefik globally installed on the server to
+  - Manages incomming trafic: traefik -> nginx -> php
+  - Handles SSL and certificates
+- Domain is defined through use of environment variable: COMPOSE_SERVER_DOMAIN and used in traefik labels
+- COMPOSE_PROJECT_NAME is also used and referenced in the docker-compose files
+- A database container is defined in [docker-compose.yml](docker-compose.yml)
+- Uses generic nginx and php images mapped from the local filessysteme
+  - See [nginx.conf](.docker/nginx.conf) and [default.conf.template](.docker/templates/default.conf.template) for details
+
+### Project setup
+
+The project can for the most parts be maintained by use of console tools like
+[drush](https://www.drush.org/13.x/) and [go tasks](https://taskfile.dev/)
+
+- See [Taskfile.yml](Taskfile.yml) for questions about the install/build process
+- See [woodpecker prod file](.woodpecker/prod.yml) for advise on actions to perform after updating.
+Drupal manages site configuration in [web/sites/default/settings.php](web/sites/default/settings.php)
+- The settings.php file looks for config and setting overrides in web/sites/default/settings.local.php
+  - The settings.local.php file will likely contain sensitive information like db access and should not be publicly accessible
+  - See [docs/Production.md](docs/Production.md) for examples of what this file could contain.
 
 ## Site installation
 

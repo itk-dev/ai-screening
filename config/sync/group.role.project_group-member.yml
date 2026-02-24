@@ -12,11 +12,12 @@ scope: individual
 global_role: null
 group_type: project_group
 permissions:
-  - 'administer members'
-  - 'edit group'
-  - 'leave group'
-  - 'update any group_node:project entity'
-  - 'update own group_membership relationship'
-  - 'view group'
-  - 'view group_membership relationship'
-  - 'view group_node:project entity'
+  - "administer members"
+  - "edit group"
+  - "leave group"
+  - "update any group_node:project entity"
+  - "update own group_membership relationship"
+  - "view group"
+  - "view group_membership relationship"
+  - "view group_node:project entity"
+  - "view unpublished group_node:project entity"

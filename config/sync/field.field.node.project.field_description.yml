@@ -13,11 +13,11 @@ field_name: field_description
 entity_type: node
 bundle: project
 label: Description
-description: ''
+description: ""
 required: false
 translatable: false
-default_value: {  }
-default_value_callback: ''
+default_value: {}
+default_value_callback: ""
 settings:
   allowed_formats:
     - plain_text

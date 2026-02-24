@@ -1,4 +1,4 @@
-# AI Screening
+# AI Project
 
 ## Settings
 

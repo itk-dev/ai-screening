@@ -3,12 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - taxonomy.vocabulary.department
-    - taxonomy.vocabulary.project_track_type
+    - node.type.project
   module:
-    - ai_screening
-    - navigation
-    - system
+    - content_moderation
+    - node
+    - publishcontent
     - taxonomy
     - webform
 id: administrator
@@ -16,20 +15,13 @@ label: Administrator
 weight: 3
 is_admin: null
 permissions:
-  - 'access administration pages'
-  - 'access navigation'
-  - 'access site in maintenance mode'
-  - 'access site reports'
-  - 'access site setup'
-  - 'access taxonomy overview'
-  - 'access webform overview'
-  - 'create terms in department'
-  - 'create terms in project_track_type'
-  - 'create webform'
-  - 'delete terms in department'
-  - 'delete terms in project_track_type'
-  - 'edit any webform'
-  - 'edit terms in department'
-  - 'edit terms in project_track_type'
-  - 'view the administration theme'
-  - 'view vocabulary labels'
+  - "create project content"
+  - "edit any project content"
+  - "edit any webform"
+  - "publish editable node type project"
+  - "publish own node type project"
+  - "unpublish editable node type project"
+  - "unpublish own node type project"
+  - "view any unpublished content"
+  - "view own unpublished content"
+  - "view vocabulary labels"
