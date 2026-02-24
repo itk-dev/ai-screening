@@ -29,23 +29,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "POT-Creation-Date: 2026-01-28 10:06+0100\n"
-"PO-Revision-Date: 2026-01-28 10:06+0100\n"
+"PO-Revision-Date: 2026-02-24 10:32+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
 
-#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:15 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:149
+#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:15
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:149
 msgid "Project track configuration"
 msgstr "Projectssporskonfiguration"
 
-#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:16 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:150
+#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:16
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:150
 msgid "Configuration for the track."
 msgstr "Konfiguration for sporet."
 
-#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:30 modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:121
+#: modules/custom/ai_screening_project_track/ai_screening_project_track.install:30
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:121
 msgid "Project track evaluation overridden"
 msgstr "Projectssporsevaluering tilsidesat"
 
@@ -55,7 +60,7 @@ msgstr "Den tilsidesatte evaluering af projektsporet"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.info.yml:0
 msgid "AI Project project track"
-msgstr ""
+msgstr "AI-screening-projektspor"
 
 #: modules/custom/ai_screening_project_track/ai_screening_project_track.info.yml:0
 msgid "Adds project track entity and functionality"
@@ -73,11 +78,13 @@ msgstr "Tærskelindstillinger"
 msgid "Not started"
 msgstr "Ikke påbegyndt"
 
-#: modules/custom/ai_screening_project_track/src/Evaluation.php:22 modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:93
+#: modules/custom/ai_screening_project_track/src/Evaluation.php:22
+#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:93
 msgid "Approved"
 msgstr "Godkendt"
 
-#: modules/custom/ai_screening_project_track/src/Evaluation.php:23 modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:101
+#: modules/custom/ai_screening_project_track/src/Evaluation.php:23
+#: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:101
 msgid "Undecided"
 msgstr "Uafklaret"
 
@@ -85,15 +92,18 @@ msgstr "Uafklaret"
 msgid "Refused"
 msgstr "Afvist"
 
-#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:19 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:19
+#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:19
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:19
 msgid "ID"
 msgstr "ID"
 
-#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:20 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:23
+#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:20
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:23
 msgid "Created"
 msgstr "Oprettet"
 
-#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:21 modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:24
+#: modules/custom/ai_screening_project_track/src/ProjectTrackListBuilder.php:21
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:24
 msgid "Updated"
 msgstr "Opdateret"
 
@@ -101,7 +111,8 @@ msgstr "Opdateret"
 msgid "Label"
 msgstr "Etiket"
 
-#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:21 modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:92
+#: modules/custom/ai_screening_project_track/src/ProjectTrackToolListBuilder.php:21
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:92
 msgid "Status"
 msgstr "Status"
 
@@ -189,7 +200,8 @@ msgstr "Projektsporets status"
 msgid "The status of the project track."
 msgstr "Statusen på projektsporet."
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:133 modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:112
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:133
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:112
 msgid "Authored on"
 msgstr "Skrevet den"
 
@@ -197,7 +209,8 @@ msgstr "Skrevet den"
 msgid "The time that the project track was created."
 msgstr "Tidspunktet hvor projektsporet blev oprettet."
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:137 modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:116
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:137
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:116
 msgid "Changed"
 msgstr "Ændret"
 
@@ -213,25 +226,21 @@ msgstr "Projekt"
 msgid "Delta"
 msgstr "Delta"
 
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
-msgid "Project track"
-msgstr ""
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
-msgid "Project tracks"
-msgstr ""
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
-msgid "project track"
-msgstr ""
-
-#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
-msgid "project tracks"
-msgstr ""
-
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:91
 msgid "Project track"
 msgstr "Projektspor"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
+msgid "Project tracks"
+msgstr "Projektspor"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
+msgid "project track"
+msgstr "projektspor"
+
+#: modules/custom/ai_screening_project_track/src/Entity/ProjectTrack.php:18
+msgid "project tracks"
+msgstr "projektspor"
 
 #: modules/custom/ai_screening_project_track/src/Entity/ProjectTrackTool.php:95
 msgid "Project track tool status"
@@ -305,7 +314,8 @@ msgstr "Noter"
 msgid "Cancel"
 msgstr "Annullér"
 
-#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:144 modules/custom/ai_screening_project_track/src/Form/ProjectTrackToolForm.php:24
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackForm.php:144
+#: modules/custom/ai_screening_project_track/src/Form/ProjectTrackToolForm.php:24
 msgid "View"
 msgstr "Vis"
 
@@ -347,9 +357,7 @@ msgstr "Gem"
 
 #: modules/custom/ai_screening_project_track/src/Form/ThresholdsForm.php:171
 msgid "\"Undecided\" threshold can not be greater than \"Approved\" threshold."
-msgstr ""
-"\"Uafklaret\"-tærsklen kan ikke være større end "
-"\"Godkendt\"-tærsklen."
+msgstr "\"Uafklaret\"-tærsklen kan ikke være større end \"Godkendt\"-tærsklen."
 
 #: modules/custom/ai_screening_project_track/src/Helper/ProjectTrackTypeHelper.php:129
 msgid "The configuration option cannot be empty."
@@ -367,7 +375,11 @@ msgstr "Statisk valgfelt"
 msgid "Select field with four static options"
 msgstr "Valgfelt med fire statiske muligheder"
 
-#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/StaticSelect.php:7 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:12 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextarea.php:7 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextfield.php:7 modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/StaticSelect.php:7
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:12
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextarea.php:7
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedTextfield.php:7
+#: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
 msgid "AI Project"
 msgstr "AI Project"
 
@@ -389,7 +401,8 @@ msgstr "Angiv venligst vægten."
 
 #: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/WeightedRadios.php:63
 msgid "Each option must be an integer (%dimensions)"
-msgid_plural "Each option must be %cardinality integers (%dimensions) separated by comma"
+msgid_plural ""
+"Each option must be %cardinality integers (%dimensions) separated by comma"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -478,4 +491,3 @@ msgstr "Ja/nej stop"
 #: modules/custom/ai_screening_project_track/src/Plugin/WebformElement/YesNoStop.php:19
 msgid "Yes/no question."
 msgstr "Ja/nej-spørgsmål."
-
