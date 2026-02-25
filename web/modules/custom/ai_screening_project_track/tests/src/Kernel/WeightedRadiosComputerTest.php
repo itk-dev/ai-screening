@@ -18,7 +18,7 @@ use Drupal\webform\WebformSubmissionInterface;
 /**
  * Tests for WebformSubmissionProjectToolTrackComputer.
  */
-final class WebformSubmissionProjectToolTrackComputerTest extends KernelTestBase {
+final class WeightedRadiosComputerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
@@ -38,7 +38,7 @@ final class WebformSubmissionProjectToolTrackComputerTest extends KernelTestBase
    * Test that track tool computer computes correctly given a tool and a
    * webform submission.
    */
-  public function testWebformSubmissionProjectTrackToolComputer(): void {
+  public function testWeightedRadiosComputer(): void {
     $computer = new WeightedRadiosComputer();
 
     $tool = $this->createTool([])
@@ -79,6 +79,18 @@ final class WebformSubmissionProjectToolTrackComputerTest extends KernelTestBase
   private function createWebformSubmission(array $data): WebformSubmissionInterface {
     $webform = Webform::create([
       'id' => __METHOD__,
+      'elements' => <<<'YAML'
+question:
+  '#type': ai_screening_weighted_radios
+  '#title': 'Question??'
+  '#options':
+    '10,0': '1-5 items'
+    '7,0': '6-10 items'
+    '5,0': '11-15 items'
+    '3,0': '16-20 items'
+    '1,0': '21+ items'
+  '#options__properties': ''
+YAML,
     ]);
 
     return WebformSubmission::create([
