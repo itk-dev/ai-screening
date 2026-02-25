@@ -33,8 +33,8 @@ services:
 
   Drupal\ai_screening_project_track\Computer\WebformSubmissionProjectTrackToolComputer:
 
-  Drupal\ai_screening_project_track\Computer\WeightedRadiosComputer:
+  Drupal\ai_screening_project_track\Computer\ProjectTrackToolComputer\WeightedRadiosProjectTrackToolComputer:
     tags: ["ai_screening.project_track_tool_computer"]
 
-  Drupal\ai_screening_project_track\Computer\YesNoStopComputer:
+  Drupal\ai_screening_project_track\Computer\ProjectTrackToolComputer\YesNoStopProjectTrackToolComputer:
     tags: ["ai_screening.project_track_tool_computer"]

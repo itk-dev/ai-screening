@@ -2,14 +2,14 @@
 
 namespace Drupal\Tests\ai_screening_project_track\Kernel;
 
-use Drupal\ai_screening_project_track\Computer\WeightedRadiosComputer;
-use Drupal\KernelTests\KernelTestBase;
 use Drupal\ai_screening_project\Helper\ProjectHelper;
+use Drupal\ai_screening_project_track\Computer\ProjectTrackToolComputer\WeightedRadiosProjectTrackToolComputer;
 use Drupal\ai_screening_project_track\Entity\ProjectTrack;
 use Drupal\ai_screening_project_track\Entity\ProjectTrackTool;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
 use Drupal\ai_screening_project_track\Status;
+use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\Node;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Entity\WebformSubmission;
@@ -18,7 +18,7 @@ use Drupal\webform\WebformSubmissionInterface;
 /**
  * Tests for WebformSubmissionProjectToolTrackComputer.
  */
-final class WeightedRadiosComputerTest extends KernelTestBase {
+final class WeightedRadiosProjectTrackToolComputerTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
@@ -39,7 +39,7 @@ final class WeightedRadiosComputerTest extends KernelTestBase {
    * webform submission.
    */
   public function testWeightedRadiosComputer(): void {
-    $computer = new WeightedRadiosComputer();
+    $computer = new WeightedRadiosProjectTrackToolComputer();
 
     $tool = $this->createTool([])
       ->setProjectTrackToolStatus(Status::NEW);

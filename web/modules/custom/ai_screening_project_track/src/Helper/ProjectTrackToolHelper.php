@@ -214,7 +214,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
 
       // Tell others that the tool has been computed.
       $this->eventDispatcher->dispatch(
-        new ProjectTrackToolComputedEvent($tool)
+        new ProjectTrackToolComputedEvent($tool, $submission),
       );
 
       $this->cacheTagsInvalidator->invalidateTags($tool->getCacheTagsToInvalidate());
