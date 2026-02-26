@@ -12,7 +12,6 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\ai_screening\Helper\AbstractHelper;
-use Drupal\ai_screening_project_track\Computer\WebformSubmissionProjectTrackToolComputer;
 use Drupal\ai_screening_project_track\Event\ProjectTrackToolComputedEvent;
 use Drupal\ai_screening_project_track\ProjectTrackInterface;
 use Drupal\ai_screening_project_track\ProjectTrackToolComputerInterface;
@@ -60,6 +59,12 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     private readonly TimeInterface $time,
     private readonly EventDispatcherInterface $eventDispatcher,
     private readonly CacheTagsInvalidatorInterface $cacheTagsInvalidator,
+    /**
+     * The computers.
+     *
+     * @var \Drupal\ai_screening_project_track\ProjectTrackToolComputerInterface[] $computers
+     */
+    private readonly iterable $computers,
     EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
@@ -200,12 +205,16 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
 
       $this->setTrackToolData($tool, $key, $value);
 
-      $computer = $this->getTrackToolComputer($tool);
+      $computer = $this->getTrackToolComputer($tool, $submission);
+      if (NULL === $computer) {
+        return;
+      }
+
       $computer->compute($tool, $submission);
 
       // Tell others that the tool has been computed.
       $this->eventDispatcher->dispatch(
-        new ProjectTrackToolComputedEvent($tool)
+        new ProjectTrackToolComputedEvent($tool, $submission),
       );
 
       $this->cacheTagsInvalidator->invalidateTags($tool->getCacheTagsToInvalidate());
@@ -267,9 +276,14 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   /**
    * Get track computer for a track and a tool.
    */
-  private function getTrackToolComputer(ProjectTrackToolInterface $tool): ProjectTrackToolComputerInterface {
-    // @todo Get the right computer based on tool.
-    return new WebformSubmissionProjectTrackToolComputer();
+  private function getTrackToolComputer(ProjectTrackToolInterface $tool, WebformSubmissionInterface $submission): ?ProjectTrackToolComputerInterface {
+    foreach ($this->computers as $computer) {
+      if ($computer->supports($tool, $submission)) {
+        return $computer;
+      }
+    }
+
+    return NULL;
   }
 
   /**
@@ -441,7 +455,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     // Match submission against webform stop fields.
     $submission = $toolData['webform_submission:' . $toolId]['submission'] ?? NULL;
     if (NULL === $submission) {
-      return NULL;
+      return $blockers;
     }
     foreach ($submission as $field => $value) {
       if (isset($elements[$field]['#stop_value']) && $elements[$field]['#stop_value'] === $value) {

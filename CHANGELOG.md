@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-130](https://github.com/itk-dev/ai-screening/pull/130)
+  Added automatic evaluation of "Law" ("Må vi?") tracks
+
 ## [0.4.0] - 2026-01-29
 
 - [PR-126](https://github.com/itk-dev/ai-screening/pull/126)
