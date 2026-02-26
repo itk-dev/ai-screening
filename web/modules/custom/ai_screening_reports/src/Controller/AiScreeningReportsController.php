@@ -83,7 +83,7 @@ final class AiScreeningReportsController extends ControllerBase {
     $groupedTracks = [];
     $projectColors = [];
     $projectIds = [];
-    $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->get(self::PROJECT_TRACK_ID_NAME));
+    $projectTracks = $this->projectTrackHelper->loadTracks((array) $request->query->all(self::PROJECT_TRACK_ID_NAME));
     $evaluationOptions = $this->projectTrackHelper->getEvaluationOptions();
 
     // Ensure proper url parameters: ?project_track_id[]=1&project_track_id[]=3.

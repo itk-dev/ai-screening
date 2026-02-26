@@ -5,5 +5,4 @@ parameters:
   customRulesetUsed: true
   reportUnmatchedIgnoredErrors: false
   ignoreErrors:
-        -
-            message: '#\Drupal calls should be avoided in classes, use dependency injection instead#'
+    - message: '#\Drupal calls should be avoided in classes, use dependency injection instead#'
