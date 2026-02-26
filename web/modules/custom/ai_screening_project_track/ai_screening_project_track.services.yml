@@ -1,17 +1,20 @@
 services:
+  _defaults:
+    autowire: true
+
   logger.channel.ai_screening_project_track:
     parent: logger.channel_base
     arguments: ["ai_screening_project_track"]
 
   Drupal\ai_screening_project_track\Helper\ProjectTrackHelper:
-    autowire: true
     arguments:
+      $evaluators:
+        !tagged_iterator { tag: "ai_screening.project_track_evaluator" }
       $logger: "@logger.channel.ai_screening_project_track"
     tags:
       - { name: event_subscriber }
 
   Drupal\ai_screening_project_track\Helper\ProjectTrackToolHelper:
-    autowire: true
     arguments:
       $computers:
         !tagged_iterator { tag: "ai_screening.project_track_tool_computer" }
@@ -20,10 +23,8 @@ services:
       - { name: event_subscriber }
 
   Drupal\ai_screening_project_track\Helper\FormHelper:
-    autowire: true
 
   Drupal\ai_screening_project_track\Helper\ProjectTrackTypeHelper:
-    autowire: true
     tags:
       - { name: event_subscriber }
 
@@ -38,3 +39,9 @@ services:
 
   Drupal\ai_screening_project_track\Computer\ProjectTrackToolComputer\YesNoStopProjectTrackToolComputer:
     tags: ["ai_screening.project_track_tool_computer"]
+
+  Drupal\ai_screening_project_track\Evaluator\ProjectTrackEvaluator\WeightedRadiosProjectTrackEvaluator:
+    tags: ["ai_screening.project_track_evaluator"]
+
+  Drupal\ai_screening_project_track\Evaluator\ProjectTrackEvaluator\YesNoStopProjectTrackEvaluator:
+    tags: ["ai_screening.project_track_evaluator"]

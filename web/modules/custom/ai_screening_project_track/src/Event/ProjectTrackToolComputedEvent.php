@@ -25,7 +25,7 @@ final class ProjectTrackToolComputedEvent extends Event {
   }
 
   /**
-   * @return \Drupal\webform\WebformSubmissionInterface
+   * Get the submission.
    */
   public function getSubmission(): WebformSubmissionInterface {
     return $this->submission;
