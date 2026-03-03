@@ -12,6 +12,7 @@ use Drupal\webform\Utility\WebformElementHelper;
 use Drupal\webform\WebformSubmissionConditionsValidatorInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use function Safe\preg_replace;
 use const Dom\HTML_NO_DEFAULT_NS;
 
 /**
@@ -56,12 +57,11 @@ final class YesNoStopProjectTrackToolComputer extends AbstractProjectTrackToolCo
   /**
    * Compute evaluation.
    *
-   * 1: Hvis der forefindes Krav i rapporten, så skal scoringen være RØD
-   * 2: Hvis der forefindes ubesvarede spørgsmål, så skal scoringen være GUL
-   * 3: Hvis der forefindes Opgaver i rapporten, så skal scoringen være GUL.
+   * 1: Hvis der forefindes Krav i rapporten, så skal scoringen være RØD.
+   * 2: Hvis der forefindes ubesvarede spørgsmål, så skal scoringen være GUL.
    *
-   * Scoringen kan således kun være GRØN, såfremt alle spørgsmål er besvarede,
-   * og rapporten ikke indeholder hverken Krav eller Opgaver
+   * Scoringen kan således kun være GRØN, såfremt alle spørgsmål er besvarede og
+   * rapporten ikke indeholder Krav.
    */
   private function computeEvaluation(
     ProjectTrackToolInterface $tool,
@@ -93,8 +93,7 @@ final class YesNoStopProjectTrackToolComputer extends AbstractProjectTrackToolCo
       // All questions have been answered.
       $requirements = $this->getRequirements($elements, $responses);
 
-      if (!isset($requirements[self::CLASS_NAME_TASK])
-        && !isset($requirements[self::CLASS_NAME_STOP])) {
+      if (!isset($requirements[self::CLASS_NAME_STOP])) {
         return Evaluation::APPROVED;
       }
     }
@@ -106,6 +105,13 @@ final class YesNoStopProjectTrackToolComputer extends AbstractProjectTrackToolCo
   private const string CLASS_NAME_STOP = 'stop';
   private const string CLASS_NAME_RULE = 'rule';
   private const string CLASS_NAME_CONSIDERATION = 'consideration';
+
+  private const array CLASS_NAMES = [
+    self::CLASS_NAME_TASK,
+    self::CLASS_NAME_STOP,
+    self::CLASS_NAME_RULE,
+    self::CLASS_NAME_CONSIDERATION,
+  ];
 
   /**
    * Get requirements from texts on elements.
@@ -127,16 +133,17 @@ final class YesNoStopProjectTrackToolComputer extends AbstractProjectTrackToolCo
       if ($text = ($element['#' . $textKey] ?? NULL)) {
         $dom = HTMLDocument::createFromString($text, options: HTML_NO_DEFAULT_NS | \LIBXML_NOERROR | \LIBXML_HTML_NOIMPLIED);
         $xpath = new XPath($dom);
-        foreach ([
-          self::CLASS_NAME_CONSIDERATION,
-          self::CLASS_NAME_RULE,
-          self::CLASS_NAME_STOP,
-          self::CLASS_NAME_TASK,
-        ] as $className) {
+        foreach (self::CLASS_NAMES as $className) {
+          // Find elements with the class name.
           $nodes = $xpath->query(sprintf('//div[contains(concat(" ", normalize-space(@class), " "), " %s ")]',
             $className));
           foreach ($nodes as $node) {
-            $requirements[$className][$key][] = $dom->saveHtml($node);
+            // Normalize whitespace in class attribute.
+            $elementClassNames = preg_replace('/[[:space:]]+/', ' ', trim($node->getAttribute('class')));
+            $html = $dom->saveHtml($node);
+            foreach (explode(' ', $elementClassNames) as $elementClassName) {
+              $requirements[$elementClassName][$key][] = $html;
+            }
           }
         }
       }
