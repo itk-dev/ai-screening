@@ -9,7 +9,9 @@
         "docs": "https://www.drupal.org/docs/user_guide/en/index.html"
     },
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
+        "ext-dom": "*",
+        "ext-libxml": "*",
         "chx/drupal-issue-fork": "dev-main",
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
@@ -31,14 +33,15 @@
     },
     "require-dev": {
         "drupal/content_fixtures": "^3.2",
-        "drupal/core-dev": "^11.0",
+        "drupal/core-dev": "^11.2",
         "drupal/masquerade": "^2.0",
         "drupal/potx": "^1.1",
         "drupal/webprofiler": "^11.1",
         "ergebnis/composer-normalize": "^2.43",
-        "mglaman/phpstan-drupal": "^1.1",
-        "phpstan/extension-installer": "^1.2",
-        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "mglaman/phpstan-drupal": "^2.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
         "vincentlanglet/twig-cs-fixer": "^3.0"
     },
     "conflict": {

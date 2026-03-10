@@ -1,37 +1,34 @@
 <?php
 
-namespace Drupal\ai_screening_project_track\Computer;
+namespace Drupal\ai_screening_project_track\Computer\ProjectTrackToolComputer;
 
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\ai_screening_project_track\Exception\InvalidValueException;
 use Drupal\ai_screening_project_track\Helper\FormHelper;
-use Drupal\ai_screening_project_track\ProjectTrackToolComputerInterface;
+use Drupal\ai_screening_project_track\Plugin\WebformElement\WeightedRadios;
 use Drupal\ai_screening_project_track\ProjectTrackToolInterface;
 use Drupal\ai_screening_project_track\Status;
 use Drupal\webform\WebformSubmissionInterface;
 
 /**
- * Webform project track tool computer.
+ * Weighted radios computer.
  */
-final class WebformSubmissionProjectTrackToolComputer implements ProjectTrackToolComputerInterface {
+final class WeightedRadiosProjectTrackToolComputer extends AbstractProjectTrackToolComputer {
 
   /**
    * {@inheritdoc}
    */
-  public function supports(ProjectTrackToolInterface $tool, EntityInterface $entity): bool {
-    return $entity instanceof WebformSubmissionInterface;
+  public function supports(ProjectTrackToolInterface $tool, WebformSubmissionInterface $submission): bool {
+    return WeightedRadios::ID === $this->getComputableElementType($tool, $submission);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function compute(ProjectTrackToolInterface $tool, EntityInterface $entity): void {
-    assert($entity instanceof WebformSubmissionInterface);
-
+  public function compute(ProjectTrackToolInterface $tool, WebformSubmissionInterface $submission): void {
     $calculated = [];
 
     // Loop over form fields values and calculate sums.
-    foreach ($entity->getData() as $value) {
+    foreach ($submission->getData() as $value) {
       try {
         if (!empty($value)) {
           if (!is_string($value)) {

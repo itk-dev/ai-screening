@@ -22,6 +22,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class WeightedRadios extends Radios {
   use WeightedElementTrait;
 
+  const string ID = 'ai_screening_weighted_radios';
+
   /**
    * The form helper.
    *
