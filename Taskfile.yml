@@ -3,6 +3,8 @@ version: "3"
 dotenv: [".task.env", ".env"]
 
 includes:
+  coding-standards:
+    taskfile: ./task/Taskfile.coding-standards.yml
   translation:
     taskfile: ./task/Taskfile.translation.yml
     vars:
@@ -29,7 +31,7 @@ tasks:
   compose:
     desc: "Run `docker compose` command. Example: task compose -- up --detach"
     cmds:
-      - "{{ .DOCKER_COMPOSE }} {{ .CLI_ARGS }}"
+      - "{{.DOCKER_COMPOSE}} {{.TASK_ARGS}} {{.CLI_ARGS}}"
 
   compose-exec:
     desc: "Run `docker compose exec` command handling content on stdin. Example: task compose-exec -- phpfpm php -v"
@@ -148,15 +150,7 @@ tasks:
   check-code:
     desc: "Check coding standards"
     cmds:
-      - docker run --rm --volume "$PWD:/md" itkdev/markdownlint '**/*.md'
       - task composer -- code-analysis
-      - task composer -- coding-standards-check
-
-  coding-standards-apply:
-    desc: "Apply coding standards"
-    cmds:
-      - docker run --rm --volume "$PWD:/md" itkdev/markdownlint '**/*.md' --fix
-      - task composer -- coding-standards-apply
 
   apply-fixtures:
     desc: "Apply fixtures. Any cli arguments will be passed to `drush content-fixtures:load`"
@@ -217,3 +211,10 @@ tasks:
     cmds:
       - docker run --rm -v $(pwd):/work tmknom/prettier --write tests
       - docker run --rm -v $(pwd):/work tmknom/prettier --check tests
+
+  code-analysis:
+    desc: "Run static code analysis"
+    cmds:
+      - task: compose
+        vars:
+          TASK_ARGS: exec phpfpm vendor/bin/phpstan

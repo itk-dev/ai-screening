@@ -1,0 +1,141 @@
+version: "3"
+
+tasks:
+  apply:
+    desc: "Apply coding standards"
+    cmds:
+      - task: composer:apply
+      - task: javascript:apply
+      - task: markdown:apply
+      - task: php:apply
+      - task: styles:apply
+      - task: twig:apply
+      - task: yaml:apply
+    silent: true
+
+  check:
+    desc: "Apply coding standards"
+    cmds:
+      - task: composer:check
+      - task: javascript:check
+      - task: markdown:check
+      - task: php:check
+      - task: styles:check
+      - task: twig:check
+      - task: yaml:check
+    silent: true
+
+  styles:apply:
+    desc: "Apply coding standards for styles"
+    cmds:
+      # Cf. .github/workflows/styles.yaml
+      - docker compose run --rm prettier 'web/themes/custom/**/css/**/*.{css,scss}' --write
+
+  styles:check:
+    desc: "Apply coding standards for styles"
+    cmds:
+      - task: styles:apply
+      # Cf. .github/workflows/styles.yaml
+      - docker compose run --rm prettier 'web/themes/custom/**/css/**/*.{css,scss}' --check
+
+  composer:apply:
+    desc: "Apply coding standards for composer"
+    cmds:
+      - task: compose
+        vars:
+          TASK_ARGS: exec phpfpm composer normalize
+
+  composer:check:
+    desc: "Apply and check coding standards for composer"
+    cmds:
+      - task: composer:apply
+      - task: compose
+        vars:
+          TASK_ARGS: exec phpfpm composer normalize --dry-run
+
+  javascript:apply:
+    desc: "Apply coding standards for javascript"
+    cmds:
+      # Cf. .github/workflows/javascript.yaml
+      - docker compose run --rm prettier 'web/themes/custom/**/js/**/*.js' --write
+
+  javascript:check:
+    desc: "Apply coding standards for javascript"
+    cmds:
+      - task: javascript:apply
+      # Cf. .github/workflows/javascript.yaml
+      - docker compose run --rm prettier 'web/themes/custom/**/js/**/*.js' --check
+
+  markdown:apply:
+    desc: "Apply coding standards for Markdown"
+    cmds:
+      - task: compose
+        vars:
+          TASK_ARGS: run --rm markdownlint markdownlint '**/*.md' --fix
+
+  markdown:check:
+    desc: "Apply and check coding standards for Markdown"
+    cmds:
+      - task: markdown:apply
+      - task: compose
+        vars:
+          TASK_ARGS: run --rm markdownlint markdownlint '**/*.md'
+
+  php:apply:
+    desc: "Apply coding standards for PHP"
+    cmds:
+      - task: compose
+        vars:
+          TASK_ARGS: exec --env PHP_CS_FIXER_IGNORE_ENV=1 phpfpm vendor/bin/phpcbf
+    silent: true
+
+  php:check:
+    desc: "Apply and check coding standards for PHP"
+    cmds:
+      - task: php:apply
+      - task: compose
+        vars:
+          TASK_ARGS: exec --env PHP_CS_FIXER_IGNORE_ENV=1 phpfpm vendor/bin/phpcs
+    silent: true
+
+  twig:apply:
+    desc: "Apply coding standards for Twig"
+    cmds:
+      - task: compose
+        vars:
+          TASK_ARGS: exec phpfpm vendor/bin/twig-cs-fixer fix
+    silent: true
+
+  twig:check:
+    desc: "Apply and check coding standards for Twig"
+    cmds:
+      - task: twig:apply
+      - task: compose
+        vars:
+          TASK_ARGS: exec phpfpm vendor/bin/twig-cs-fixer lint
+    silent: true
+
+  yaml:apply:
+    desc: "Apply coding standards for YAML"
+    cmds:
+      - task: compose
+        vars:
+          TASK_ARGS: run --rm prettier '**/*.{yml,yaml}' --write
+
+  yaml:check:
+    desc: "Apply and check coding standards for YAML"
+    cmds:
+      - task: yaml:apply
+      - task: compose
+        vars:
+          TASK_ARGS: run --rm prettier '**/*.{yml,yaml}' --check
+
+  # Wrapper to call parent compose task
+  compose:
+    cmds:
+      # @fixme Where is the `:parent-task-name` documented?
+      # (Apart from https://github.com/go-task/task/issues/161#issuecomment-460008510)
+      - task: :compose
+        vars:
+          TASK_ARGS: "{{.TASK_ARGS}}"
+    internal: true

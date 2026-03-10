@@ -12,11 +12,11 @@ interface ProjectTrackToolComputerInterface {
   /**
    * Check if computer supports tool.
    */
-  public function supports(ProjectTrackToolInterface $tool, WebformSubmissionInterface $entity): bool;
+  public function supports(ProjectTrackToolInterface $tool, WebformSubmissionInterface $submission): bool;
 
   /**
    * Compute and set tool status and stuff.
    */
-  public function compute(ProjectTrackToolInterface $tool, WebformSubmissionInterface $entity): void;
+  public function compute(ProjectTrackToolInterface $tool, WebformSubmissionInterface $submission): void;
 
 }
