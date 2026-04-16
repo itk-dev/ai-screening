@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-04-16
+
+- [PR-132](https://github.com/itk-dev/ai-screening/pull/132)
+  Security updates
+
 ## [0.5.0] - 2026-03-10
 
 - [PR-130](https://github.com/itk-dev/ai-screening/pull/130)
@@ -293,7 +298,8 @@ and this project adheres to [Semantic Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/itk-dev/ai-screening/compare/0.5.0...HEAD
+[Unreleased]: https://github.com/itk-dev/ai-screening/compare/0.5.1...HEAD
+[0.5.1]: https://github.com/itk-dev/ai-screening/compare/0.5.0...0.5.1
 [0.5.0]: https://github.com/itk-dev/ai-screening/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/itk-dev/ai-screening/compare/0.3.4...0.4.0
 [0.1.0]: https://github.com/itk-dev/ai-screening/releases/tag/0.1.0
