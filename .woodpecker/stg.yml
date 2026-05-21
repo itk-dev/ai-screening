@@ -23,12 +23,11 @@ steps:
       user:
         from_secret: user
       actions:
-        - chmod +w web/sites/default
-        - chmod +w web/sites/default/settings.php
-        - git reset --hard
+        # Make sure that we can update the general settings.
+        - chmod +w web/sites/default web/sites/default/settings.php
         - git fetch origin ${CI_COMMIT_BRANCH}
-        - git checkout ${CI_COMMIT_BRANCH}
-        - git pull
+        - git checkout --force ${CI_COMMIT_BRANCH}
+        - git reset --hard origin/${CI_COMMIT_BRANCH}
         - itkdev-docker-compose-server up -d --force-recreate --remove-orphans
         # Build theme
         - itkdev-docker-compose-server run --rm node yarn --cwd /app/web/themes/custom/itkdev/itkdev_project_theme install
