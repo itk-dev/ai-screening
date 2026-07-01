@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-134](https://github.com/itk-dev/ai-screening/pull/134)
+  Security update
+
 ## [0.5.2] - 2026-05-20
 
 - [PR-](https://github.com/itk-dev/ai-screening/pull/)
