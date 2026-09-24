@@ -3,87 +3,82 @@ display:
     display_options:
       fields:
         name:
-          separator: ", "
+          separator: ', '
           label: Brugernavn
         field_name:
           label: Navn
-          separator: ", "
+          separator: ', '
         field_department:
-          label: Magistrat
-          separator: ", "
+          label: Magistratsafdeling
+          separator: ', '
         user_bulk_form:
-          label: Masseopdatering
+          label: 'Bulk update'
         status:
           label: Status
           settings:
-            format_custom_false: Blokeret
-            format_custom_true: Aktiv
+            format_custom_false: Blocked
+            format_custom_true: Active
         roles_target_id:
           label: Roller
         created:
-          label: "Medlem i"
-          settings:
-            future_format: "@interval"
-            past_format: "@interval"
+          label: 'Medlem i'
         access:
-          label: "Seneste tilgang"
+          label: 'Last access'
           settings:
-            future_format: "om @interval"
-            past_format: "@interval siden"
+            future_format: '@interval hence'
+            past_format: '@interval ago'
         operations:
-          label: Handlinger
-        mail:
-          separator: ", "
-      title: Personer
+          label: Operations
+      title: People
       pager:
         options:
           tags:
-            next: "Næste ›"
-            previous: "‹ Forrige"
-            first: "« Første"
-            last: "Sidste »"
+            next: 'Næste ›'
+            previous: '‹ Forrige'
+            first: '« First'
+            last: 'Last »'
           expose:
-            items_per_page_label: "Antal elementer"
-            items_per_page_options_all_label: "- Alle -"
-            offset_label: Forskydning
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       exposed_form:
         options:
           submit_button: Filter
           reset_button_label: Nulstil
-          exposed_sorts_label: "Sorter efter"
-          sort_asc_label: Stigende
-          sort_desc_label: Faldende
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       empty:
         area_text_custom:
-          content: "Ingen personer til rådighed."
+          content: 'No people available.'
       filters:
         combine:
           expose:
-            label: "Navn eller email indeholder"
+            label: 'Navn eller email indeholder'
         status:
           group_info:
             label: Status
             group_items:
               1:
-                title: Aktiv
+                title: Active
               2:
-                title: Blokeret
+                title: Blocked
         roles_target_id:
           expose:
-            label: Rolle
+            label: Role
         permission:
           expose:
-            label: Tilladelse
-      use_more_text: mere
-    display_title: Standard
+            label: Permission
+      use_more_text: more
+    display_title: Default
   page_1:
-    display_title: Side
+    display_title: Page
     display_options:
       menu:
-        title: Vis
-        description: "Find og håndtér personer som bruger dit site."
+        title: List
+        description: 'Find and manage people interacting with your site.'
       tab_options:
-        title: Personer
-        description: "Håndtér brugerkonti, roller og tilladelser."
-label: Personer
-description: "Find og håndtér personer som bruger dit site."
+        title: People
+        description: 'Manage user accounts, roles, and permissions.'
+label: People
+description: 'Find and manage people interacting with your site.'

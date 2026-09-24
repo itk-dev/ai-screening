@@ -13,5 +13,5 @@ scope: outsider
 global_role: editor
 group_type: project_group
 permissions:
-  - "view group_node:project entity"
-  - "view unpublished group_node:project entity"
+  - 'view group_node:project entity'
+  - 'view unpublished group_node:project entity'

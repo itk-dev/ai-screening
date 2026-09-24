@@ -12,13 +12,13 @@ dependencies:
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated
-label: "Godkendt bruger"
+label: 'Godkendt bruger'
 weight: 1
 is_admin: false
 permissions:
-  - "access content"
-  - "access user profiles"
-  - "use text format simple_editor"
-  - "use text format webform_default"
-  - "view any webform submission"
-  - "view user email addresses"
+  - 'access content'
+  - 'access user profiles'
+  - 'use text format simple_editor'
+  - 'use text format webform_default'
+  - 'view any webform submission'
+  - 'view user email addresses'

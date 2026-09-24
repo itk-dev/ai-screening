@@ -1,118 +1,119 @@
+label: 'Webform submissions'
 display:
   default:
-    display_title: Master
     display_options:
       exposed_form:
         options:
           submit_button: Anvend
           reset_button_label: Nulstil
-          exposed_sorts_label: "Sorter efter"
-          sort_asc_label: Stigende
-          sort_desc_label: Faldende
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
       pager:
         options:
           tags:
-            previous: ‹‹
-            next: ››
-            first: "« Første"
-            last: "Sidste »"
+            first: '« First'
+            last: 'Last »'
           expose:
-            items_per_page_label: "Antal elementer"
-            items_per_page_options_all_label: "- Alle -"
-            offset_label: Forskydning
+            items_per_page_label: 'Items per page'
+            items_per_page_options_all_label: '- All -'
+            offset_label: Offset
       fields:
-        sid:
-          separator: ", "
         in_draft:
-          separator: ", "
+          label: Draft
         created:
-          label: Oprettet
-          separator: ", "
+          label: Created
         remote_addr:
-          label: IP-adresse
-          separator: ", "
+          label: 'IP address'
         view_webform_submission:
-          label: Handlinger
-          text: vis
+          label: Operations
+          text: view
       header:
         result:
-          content: "Viser @start - @end af @total"
+          content: 'Displaying @start - @end of @total'
       arguments:
         in_draft:
           exception:
-            title: Alle
+            title: All
+      title: 'Webform submissions'
   embed_administer:
     display_options:
       fields:
         webform_submission_bulk_form:
-          action_title: Handling
-        sid:
-          separator: ", "
+          action_title: Action
         in_draft:
-          separator: ", "
+          label: Draft
         sticky:
-          separator: ", "
+          label: Sticky
         locked:
-          separator: ", "
+          label: Locked
         created:
-          label: Oprettet
-          separator: ", "
+          label: Created
         completed:
           label: Afsluttet
-          separator: ", "
         remote_addr:
-          label: IP-adresse
-          separator: ", "
+          label: 'IP address'
         operations:
-          label: Handlinger
+          label: Operations
+      filters:
+        sticky:
+          expose:
+            label: Sticky
+        locked:
+          expose:
+            label: Locked
   embed_manage:
     display_options:
       fields:
         webform_submission_bulk_form:
-          action_title: Handling
-        sid:
-          separator: ", "
+          action_title: Action
         in_draft:
-          separator: ", "
+          label: Draft
         sticky:
-          separator: ", "
+          label: Sticky
         locked:
-          separator: ", "
+          label: Locked
         created:
-          label: Oprettet
-          separator: ", "
+          label: Created
         completed:
           label: Afsluttet
-          separator: ", "
         remote_addr:
-          label: IP-adresse
-          separator: ", "
+          label: 'IP address'
         view_webform_submission:
-          label: Handlinger
-          text: vis
+          label: Operations
+          text: view
         edit_webform_submission:
-          label: Handlinger
-          text: redigér
+          label: Operations
+          text: edit
+      filters:
+        sticky:
+          expose:
+            label: Sticky
+        locked:
+          expose:
+            label: Locked
   embed_review:
     display_options:
       fields:
-        sid:
-          separator: ", "
         in_draft:
-          separator: ", "
+          label: Draft
         sticky:
-          separator: ", "
+          label: Sticky
         locked:
-          separator: ", "
+          label: Locked
         created:
-          label: Oprettet
-          separator: ", "
+          label: Created
         completed:
           label: Afsluttet
-          separator: ", "
         remote_addr:
-          label: IP-adresse
-          separator: ", "
+          label: 'IP address'
         view_webform_submission:
-          label: Handlinger
-          text: vis
+          label: Operations
+          text: view
+      filters:
+        sticky:
+          expose:
+            label: Sticky
+        locked:
+          expose:
+            label: Locked

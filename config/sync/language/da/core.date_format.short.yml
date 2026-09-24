@@ -1,2 +1,2 @@
-label: "Standard kort dato"
-pattern: "m/d/Y - H:i"
+label: 'Default short date'
+pattern: 'm/d/Y - H:i'

@@ -1,4 +1,5 @@
 title: Etik
+description: '<p>Bør vi?</p>'
 elements: |-
   borger_page:
     '#type': webform_wizard_page
