@@ -7,7 +7,6 @@ namespace Drupal\ai_screening\Plugin\Block;
 use Drupal\Core\Block\Attribute\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Cache\UncacheableDependencyTrait;
-use Drupal\Core\Plugin\ContainerFactoryAutowireTrait;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
@@ -22,7 +21,6 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 )]
 final class FrontpageHelpTextBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
-  use ContainerFactoryAutowireTrait;
   use UncacheableDependencyTrait;
 
   /**

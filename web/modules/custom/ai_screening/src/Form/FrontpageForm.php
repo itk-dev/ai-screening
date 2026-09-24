@@ -18,7 +18,7 @@ final class FrontpageForm extends FormBase {
   use AutowireTrait;
 
   public function __construct(
-    private readonly StateInterface $state,
+    protected readonly StateInterface $state,
   ) {
   }
 

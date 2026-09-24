@@ -12,7 +12,6 @@
         "php": "^8.4",
         "ext-dom": "*",
         "ext-libxml": "*",
-        "chx/drupal-issue-fork": "dev-main",
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/better_exposed_filters": "^7.0",
@@ -69,7 +68,6 @@
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
-            "chx/drupal-issue-fork": true,
             "composer/installers": true,
             "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
@@ -78,6 +76,7 @@
             "ergebnis/composer-normalize": true,
             "php-http/discovery": true,
             "phpstan/extension-installer": true,
+            "symfony/runtime": true,
             "tbachert/spi": true
         },
         "sort-packages": true
@@ -141,9 +140,8 @@
         },
         "patches": {
             "drupal/core": {
-                "Add an Autowire trait for plugins (https://www.drupal.org/project/drupal/issues/3294266)": "https://www.drupal.org/files/issues/2023-08-18/3294266-24.patch",
-                "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540#comment-16204218)": "https://www.drupal.org/files/issues/2025-07-24/drupal-3150540-D1122_0.patch",
-                "Missing menu active trail on views (https://www.drupal.org/project/drupal/issues/3359511#comment-16330338)": "https://www.drupal.org/files/issues/2025-11-03/3359511-142-d11.2-no-tests.patch",
+                "Disable forced configuration langcode (https://www.drupal.org/project/drupal/issues/3150540#comment-16204218)": "https://www.drupal.org/files/issues/2026-07-08/drupal-3150540-60.patch",
+                "Missing menu active trail on views (https://www.drupal.org/project/drupal/issues/3359511#comment-16330338)": "https://www.drupal.org/files/issues/2026-09-16/drupal-3359511-regression-missing-menu-11.4.x.patch",
                 "Add an option to 'hide filter tips' on text fields (https://www.drupal.org/project/drupal/issues/3323007)": "https://git.drupalcode.org/project/drupal/-/merge_requests/5453.diff"
             },
             "drupal/masquerade": {

@@ -31,18 +31,17 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
   public const string BUNDLE_TERM_PROJECT_TRACK = 'project_track_type';
   private const string THRESHOLD_KEY_SEPARATOR = '-';
 
-  /**
-   * The term storage.
-   *
-   * @var \Drupal\taxonomy\TermStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private TermStorageInterface|EntityStorageInterface $termStorage;
-
   public function __construct(
-    EntityTypeManagerInterface $entityTypeManager,
+    private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly StateInterface $state,
   ) {
-    $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
+  }
+
+  /**
+   * Get the term storage.
+   */
+  private function getTermStorage(): TermStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('taxonomy_term');
   }
 
   /**
@@ -62,7 +61,7 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
    *   The terms.
    */
   public function loadTerms(?WebformInterface $webform = NULL, bool $accessCheck = FALSE): array {
-    $query = $this->termStorage->getQuery()
+    $query = $this->getTermStorage()->getQuery()
       ->accessCheck($accessCheck)
       ->condition('vid', self::BUNDLE_TERM_PROJECT_TRACK)
       ->exists('field_webform');
@@ -72,14 +71,14 @@ final class ProjectTrackTypeHelper implements EventSubscriberInterface {
 
     $ids = $query->execute();
 
-    return $this->termStorage->loadMultiple($ids);
+    return $this->getTermStorage()->loadMultiple($ids);
   }
 
   /**
    * Load a project track type from it's id.
    */
   public function loadProjectTrackType(int $id): EntityInterface {
-    return $this->termStorage->load($id);
+    return $this->getTermStorage()->load($id);
   }
 
   /**

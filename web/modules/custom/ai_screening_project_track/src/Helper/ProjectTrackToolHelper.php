@@ -35,20 +35,6 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   private const string HISTORY_KEY = 'history';
 
   /**
-   * The project track tool storage.
-   *
-   * @var \Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly ProjectTrackToolStorageInterface|EntityStorageInterface $projectTrackToolStorage;
-
-  /**
-   * The webform submission storage.
-   *
-   * @var \Drupal\webform\WebformSubmissionStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private WebformSubmissionStorageInterface|EntityStorageInterface $webformSubmissionStorage;
-
-  /**
    * The project track tool access control handler.
    *
    * @var \Drupal\Core\Entity\EntityAccessControlHandlerInterface
@@ -65,26 +51,38 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
      * @var \Drupal\ai_screening_project_track\ProjectTrackToolComputerInterface[] $computers
      */
     private readonly iterable $computers,
-    EntityTypeManagerInterface $entityTypeManager,
+    private readonly EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
     parent::__construct($logger);
-    $this->projectTrackToolStorage = $entityTypeManager->getStorage('project_track_tool');
-    $this->webformSubmissionStorage = $entityTypeManager->getStorage('webform_submission');
     $this->projectTrackToolAccessControlHandler = $entityTypeManager->getAccessControlHandler('project_track_tool');
+  }
+
+  /**
+   * Get the project track tool storage.
+   */
+  private function getProjectTrackToolStorage(): ProjectTrackToolStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('project_track_tool');
+  }
+
+  /**
+   * Get the webform submission storage.
+   */
+  private function getWebformSubmissionStorage(): WebformSubmissionStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('webform_submission');
   }
 
   /**
    * Load tools for a track.
    */
   public function loadTools(ProjectTrackInterface $track): array {
-    $ids = $this->projectTrackToolStorage->getQuery()
+    $ids = $this->getProjectTrackToolStorage()->getQuery()
       ->accessCheck(FALSE)
       ->condition('project_track_id', $track->id())
       ->sort('delta')
       ->execute();
 
-    return $this->projectTrackToolStorage->loadMultiple($ids);
+    return $this->getProjectTrackToolStorage()->loadMultiple($ids);
   }
 
   /**
@@ -297,13 +295,13 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
   public function deleteTools(ProjectTrackInterface $projectTrack): void {
     $tools = $this->loadTools($projectTrack);
     foreach ($tools as $tool) {
-      $submissionIds = $this->webformSubmissionStorage->getQuery()
+      $submissionIds = $this->getWebformSubmissionStorage()->getQuery()
         ->accessCheck(FALSE)
         ->condition('entity_type', $tool->getEntityTypeId(), '=')
         ->condition('entity_id', $tool->id(), '=')
         ->execute();
 
-      $webformSubmissions = $this->webformSubmissionStorage->loadMultiple($submissionIds);
+      $webformSubmissions = $this->getWebformSubmissionStorage()->loadMultiple($submissionIds);
       foreach ($webformSubmissions as $webformSubmission) {
         $webformSubmission->delete();
       }
@@ -326,7 +324,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
       return '';
     }
 
-    $submission = $this->webformSubmissionStorage->load($tool->getToolId());
+    $submission = $this->getWebformSubmissionStorage()->load($tool->getToolId());
 
     return $this->getUrl($submission, rel: 'edit-form');
   }
@@ -340,7 +338,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
     }
 
     /** @var  \Drupal\webform\WebformSubmissionInterface $submission */
-    $submission = $this->webformSubmissionStorage->load($tool->getToolId());
+    $submission = $this->getWebformSubmissionStorage()->load($tool->getToolId());
 
     $webform = $submission->getWebform();
 
@@ -360,7 +358,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
       'populated' => 0,
     ];
     /** @var  \Drupal\webform\WebformSubmissionInterface $submission */
-    $submission = $this->webformSubmissionStorage->load($tool->getToolId());
+    $submission = $this->getWebformSubmissionStorage()->load($tool->getToolId());
     $submissionData = $submission->getData();
     if (empty($submissionData)) {
       return $status;
@@ -476,7 +474,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
    *   The tool if any.
    */
   public function loadToolByWebformSubmission(WebformSubmissionInterface $submission): ?ProjectTrackToolInterface {
-    $ids = $this->projectTrackToolStorage->getQuery()
+    $ids = $this->getProjectTrackToolStorage()->getQuery()
       ->accessCheck(FALSE)
       ->condition('tool_entity_type', $submission->getEntityTypeId(), '=')
       ->condition('tool_id', $submission->id(), '=')
@@ -484,7 +482,7 @@ final class ProjectTrackToolHelper extends AbstractHelper implements EventSubscr
 
     $id = reset($ids) ?: NULL;
 
-    return $id !== NULL ? $this->projectTrackToolStorage->load($id) : NULL;
+    return $id !== NULL ? $this->getProjectTrackToolStorage()->load($id) : NULL;
   }
 
   /**

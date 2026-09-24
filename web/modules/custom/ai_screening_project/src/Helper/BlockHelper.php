@@ -18,20 +18,19 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 final readonly class BlockHelper implements EventSubscriberInterface {
 
   /**
-   * The node storage.
-   *
-   * @var \Drupal\node\NodeStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private NodeStorageInterface|EntityStorageInterface $nodeStorage;
-
-  /**
    * Constructor.
    */
   public function __construct(
-    EntityTypeManagerInterface $entityTypeManager,
+    private EntityTypeManagerInterface $entityTypeManager,
     private ProjectHelper $projectHelper,
   ) {
-    $this->nodeStorage = $entityTypeManager->getStorage('node');
+  }
+
+  /**
+   * Get the node storage.
+   */
+  private function getNodeStorage(): NodeStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('node');
   }
 
   /**
@@ -70,11 +69,11 @@ final readonly class BlockHelper implements EventSubscriberInterface {
       'refusedCount' => 0,
     ];
 
-    $activeProjectsIds = $this->nodeStorage->getQuery()
+    $activeProjectsIds = $this->getNodeStorage()->getQuery()
       ->accessCheck(TRUE)
       ->execute();
 
-    $activeProjects = $this->nodeStorage->loadMultiple($activeProjectsIds);
+    $activeProjects = $this->getNodeStorage()->loadMultiple($activeProjectsIds);
 
     foreach ($activeProjects as $project) {
       $evaluation = $this->projectHelper->getProjectTrackEvaluation($project->id());
