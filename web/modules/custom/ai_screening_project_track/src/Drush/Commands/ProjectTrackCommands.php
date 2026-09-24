@@ -25,21 +25,20 @@ final class ProjectTrackCommands extends DrushCommands {
   private const string SHOW = 'ai-screening:project-track:show';
 
   /**
-   * The project track storage.
-   *
-   * @var \Drupal\ai_screening_project_track\ProjectTrackStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly ProjectTrackStorageInterface $projectTrackStorage;
-
-  /**
    * Constructor.
    */
   public function __construct(
-    EntityTypeManagerInterface $entityTypeManager,
+    private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly ProjectTrackHelper $projectTrackHelper,
     private readonly ProjectTrackToolHelper $projectTrackToolHelper,
   ) {
-    $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
+  }
+
+  /**
+   * Get the project track storage.
+   */
+  private function getProjectTrackStorage(): ProjectTrackStorageInterface {
+    return $this->entityTypeManager->getStorage('project_track');
   }
 
   /**
@@ -62,7 +61,7 @@ final class ProjectTrackCommands extends DrushCommands {
       $ids = StringUtils::csvToArray($ids);
     }
     /** @var \Drupal\ai_screening_project_track\ProjectTrackInterface[] $tracks */
-    $tracks = $this->projectTrackStorage->loadMultiple($ids);
+    $tracks = $this->getProjectTrackStorage()->loadMultiple($ids);
 
     $rows = [];
     foreach ($tracks as $track) {

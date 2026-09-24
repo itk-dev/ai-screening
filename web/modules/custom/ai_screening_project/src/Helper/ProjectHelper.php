@@ -58,73 +58,66 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
   public final const string FIELD_STATE = 'field_project_state';
 
   /**
-   * The group storage.
-   *
-   * @var \Drupal\group\Entity\Storage\GroupStorage|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly GroupStorage|EntityStorageInterface $groupStorage;
-
-  /**
-   * The group relationship storage.
-   *
-   * @var \Drupal\group\Entity\Storage\GroupRelationshipStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly GroupRelationshipStorageInterface|EntityStorageInterface $groupRelationshipStorage;
-
-  /**
-   * The user storage.
-   *
-   * @var \Drupal\user\UserStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly UserStorageInterface|EntityStorageInterface $userStorage;
-
-  /**
-   * The node storage.
-   *
-   * @var \Drupal\node\NodeStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly NodeStorageInterface|EntityStorageInterface $nodeStorage;
-
-  /**
-   * The webform submission storage.
-   *
-   * @var \Drupal\webform\WebformSubmissionStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly WebformSubmissionStorageInterface|EntityStorageInterface $webformSubmissionStorage;
-
-  /**
-   * The project track storage.
-   *
-   * @var \Drupal\ai_screening_project_track\ProjectTrackStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly ProjectTrackStorageInterface|EntityStorageInterface $projectTrackStorage;
-
-  /**
-   * The project track tool storage.
-   *
-   * @var \Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly ProjectTrackToolStorageInterface|EntityStorageInterface $projectTrackToolStorage;
-
-  /**
    * Constructor.
    */
   public function __construct(
     private readonly AccountProxyInterface $accountProxy,
     private readonly ProjectTrackHelper $projectTrackHelper,
     private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
-    EntityTypeManagerInterface $entityTypeManager,
+    private readonly EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
     private readonly PrivateTempStoreFactory $tempStoreFactory,
   ) {
     parent::__construct($logger);
-    $this->groupStorage = $entityTypeManager->getStorage('group');
-    $this->groupRelationshipStorage = $entityTypeManager->getStorage('group_relationship');
-    $this->userStorage = $entityTypeManager->getStorage('user');
-    $this->nodeStorage = $entityTypeManager->getStorage('node');
-    $this->webformSubmissionStorage = $entityTypeManager->getStorage('webform_submission');
-    $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
-    $this->projectTrackToolStorage = $entityTypeManager->getStorage('project_track_tool');
+  }
+
+  /**
+   * Get the group storage.
+   */
+  private function getGroupStorage(): GroupStorage|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('group');
+  }
+
+  /**
+   * Get the group relationship storage.
+   */
+  private function getGroupRelationshipStorage(): GroupRelationshipStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('group_relationship');
+  }
+
+  /**
+   * Get the user storage.
+   */
+  private function getUserStorage(): UserStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('user');
+  }
+
+  /**
+   * Get the node storage.
+   */
+  private function getNodeStorage(): NodeStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('node');
+  }
+
+  /**
+   * Get the webform submission storage.
+   */
+  private function getWebformSubmissionStorage(): WebformSubmissionStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('webform_submission');
+  }
+
+  /**
+   * Get the project track storage.
+   */
+  private function getProjectTrackStorage(): ProjectTrackStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('project_track');
+  }
+
+  /**
+   * Get the project track tool storage.
+   */
+  private function getProjectTrackToolStorage(): ProjectTrackToolStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('project_track_tool');
   }
 
   /**
@@ -137,14 +130,14 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
 
     // Delete group.
     try {
-      $relationshipIds = $this->groupRelationshipStorage->getQuery()
+      $relationshipIds = $this->getGroupRelationshipStorage()->getQuery()
         ->accessCheck(FALSE)
         ->condition('entity_id', $project->id(), '=')
         ->condition('type', 'project_group-group_node-project', '=')
         ->execute();
-      $relationships = $this->groupRelationshipStorage->loadMultiple($relationshipIds);
+      $relationships = $this->getGroupRelationshipStorage()->loadMultiple($relationshipIds);
 
-      $groups = $this->groupStorage->loadMultiple(array_map(
+      $groups = $this->getGroupStorage()->loadMultiple(array_map(
         static fn (GroupRelationshipInterface $relationship) => $relationship->getGroupId(),
         $relationships
       ));
@@ -167,13 +160,13 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    */
   public function cron(CronEvent $event): void {
     try {
-      $corruptedNids = $this->nodeStorage->getQuery()
+      $corruptedNids = $this->getNodeStorage()->getQuery()
         ->accessCheck(FALSE)
         ->condition(self::FIELD_CORRUPTED, TRUE)
         ->execute();
 
       // Delete corrupted nodes.
-      $corruptedNodes = $this->nodeStorage->loadMultiple($corruptedNids);
+      $corruptedNodes = $this->getNodeStorage()->loadMultiple($corruptedNids);
       foreach ($corruptedNodes as $node) {
         $node->delete();
       }
@@ -256,7 +249,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    * Load all accessible projects that are not corrupted.
    */
   public function loadProjects(): array {
-    $query = $this->nodeStorage->getQuery();
+    $query = $this->getNodeStorage()->getQuery();
     $corruptedCondition = $query->orConditionGroup()
       ->condition(self::FIELD_CORRUPTED, FALSE)
       ->condition(self::FIELD_CORRUPTED, NULL, 'IS NULL');
@@ -265,7 +258,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
       ->condition($corruptedCondition);
     $projectIds = $query->accessCheck()->execute();
 
-    return $this->nodeStorage->loadMultiple($projectIds);
+    return $this->getNodeStorage()->loadMultiple($projectIds);
   }
 
   /**
@@ -338,7 +331,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     $formState = $event->getFormState();
 
     if ($formId === 'node_project_edit_form') {
-      $query = $this->userStorage->getQuery();
+      $query = $this->getUserStorage()->getQuery();
       $uids = $query
         ->accessCheck(FALSE)
         ->condition('status', 1)
@@ -346,7 +339,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         ->execute();
 
       // Selected and options for group selects.
-      $users = $this->userStorage->loadMultiple($uids);
+      $users = $this->getUserStorage()->loadMultiple($uids);
       $group = $this->loadProjectGroup($formState->getFormObject()->getEntity());
       $groupOwnerId = $group->getOwner()->id();
       $groupUsers = $group->getRelatedEntities('group_membership');
@@ -431,10 +424,10 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     // Add/remove members of group.
     $groupUserIds = array_keys($this->mapUsersToSelectOptions($group->getRelatedEntities('group_membership')));
     $selectedGroupContributorIds = $formState->getValue('project_contributors');
-    $membersToAdd = $this->userStorage->loadMultiple(
+    $membersToAdd = $this->getUserStorage()->loadMultiple(
       array_diff($selectedGroupContributorIds, $groupUserIds)
     );
-    $membersToRemove = $this->userStorage->loadMultiple(
+    $membersToRemove = $this->getUserStorage()->loadMultiple(
       array_diff($groupUserIds, $selectedGroupContributorIds)
     );
 
@@ -451,7 +444,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
     $groupOwner = $formState->getValue('project_owner');
 
     if ($groupOwner !== $group->getOwner()->id()) {
-      $group->setOwner($this->userStorage->load($groupOwner));
+      $group->setOwner($this->getUserStorage()->load($groupOwner));
 
       // And also change project creator, to reflect the group owner.
       $project = $formState->getFormObject()->getEntity();
@@ -483,9 +476,9 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
 
       // Create group when a project is created.
       /** @var \Drupal\group\Entity\Group $group */
-      $group = $this->groupStorage->create(['type' => 'project_group']);
+      $group = $this->getGroupStorage()->create(['type' => 'project_group']);
       $group->set('label', 'Group: ' . $entity->label());
-      $group->setOwner($this->userStorage->load($this->accountProxy->id()));
+      $group->setOwner($this->getUserStorage()->load($this->accountProxy->id()));
       $group->save();
       $group->addRelationship($entity, 'group_node:project');
       $group->save();
@@ -530,7 +523,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
         if (!is_array($configuration)) {
           $configuration = [];
         }
-        $projectTrack = $this->projectTrackStorage
+        $projectTrack = $this->getProjectTrackStorage()
           ->create([
             'type' => $projectTrackTerm->id(),
             'title' => $projectTrackTerm->getName(),
@@ -549,21 +542,21 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
 
         $toolCounter = 0;
         foreach ($webforms as $webform) {
-          $tool = $this->projectTrackToolStorage->create([
+          $tool = $this->getProjectTrackToolStorage()->create([
             'project_track_id' => $projectTrack->id(),
             'tool_entity_type' => 'webform_submission',
           ]);
           $tool->setDelta($toolCounter++);
           $tool->save();
 
-          $webformSubmission = $this->webformSubmissionStorage->create([
+          $webformSubmission = $this->getWebformSubmissionStorage()->create([
             'webform' => $webform,
             'entity_type' => 'project_track_tool',
           ]);
           $webformSubmission->save();
 
           // Reload the webform submission.
-          $webformSubmission = $this->webformSubmissionStorage->load($webformSubmission->id());
+          $webformSubmission = $this->getWebformSubmissionStorage()->load($webformSubmission->id());
           $webformSubmission->set('entity_id', $tool->id());
           $webformSubmission->save();
 
@@ -593,7 +586,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    * Load project.
    */
   public function loadProject(string $id): ?NodeInterface {
-    $node = $this->nodeStorage->load($id);
+    $node = $this->getNodeStorage()->load($id);
 
     return $this->isProject($node) ? $node : NULL;
   }
@@ -624,12 +617,12 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    *   The tracks.
    */
   public function loadProjectTracks(NodeInterface $project): array {
-    $ids = $this->projectTrackStorage->getQuery()
+    $ids = $this->getProjectTrackStorage()->getQuery()
       ->accessCheck(FALSE)
       ->condition('project_id', $project->id(), '=')
       ->execute();
 
-    $tracks = $this->projectTrackStorage->loadMultiple($ids);
+    $tracks = $this->getProjectTrackStorage()->loadMultiple($ids);
 
     uasort($tracks, static fn(ProjectTrackInterface $a, ProjectTrackInterface $b) => $a->getType()
         ?->getWeight() <=> $b->getType()?->getWeight());
@@ -647,15 +640,15 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    *   The group
    */
   public function loadProjectGroup(NodeInterface $project) : GroupInterface {
-    $relationshipIds = $this->groupRelationshipStorage->getQuery()
+    $relationshipIds = $this->getGroupRelationshipStorage()->getQuery()
       ->accessCheck(FALSE)
       ->condition('entity_id', $project->id(), '=')
       ->condition('type', 'project_group-group_node-project', '=')
       ->execute();
 
-    $relationships = $this->groupRelationshipStorage->loadMultiple($relationshipIds);
+    $relationships = $this->getGroupRelationshipStorage()->loadMultiple($relationshipIds);
 
-    return $this->groupStorage->load(reset($relationships)->getGroupId());
+    return $this->getGroupStorage()->load(reset($relationships)->getGroupId());
   }
 
   /**
@@ -669,7 +662,7 @@ class ProjectHelper extends AbstractHelper implements EventSubscriberInterface {
    */
   public function getProjectTrackEvaluation(string $projectId) : array {
     $statuses = [];
-    $project = $this->nodeStorage->load($projectId);
+    $project = $this->getNodeStorage()->load($projectId);
 
     if ($project instanceof NodeInterface) {
       $projectTracks = $this->loadProjectTracks($project);

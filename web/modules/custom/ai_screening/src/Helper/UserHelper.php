@@ -21,23 +21,21 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 final class UserHelper extends AbstractHelper implements EventSubscriberInterface {
 
-
-  /**
-   * The user storage.
-   *
-   * @var \Drupal\user\UserStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly UserStorageInterface|EntityStorageInterface $userStorage;
-
   /**
    * Constructor.
    */
   public function __construct(
-    EntityTypeManagerInterface $entityTypeManager,
+    private readonly EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
     parent::__construct($logger);
-    $this->userStorage = $entityTypeManager->getStorage('user');
+  }
+
+  /**
+   * Get the user storage.
+   */
+  private function getUserStorage(): UserStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('user');
   }
 
   /**
@@ -78,7 +76,7 @@ final class UserHelper extends AbstractHelper implements EventSubscriberInterfac
    */
   public function alterUserName(UserFormatNameAlterEvent $event): void {
     $name = &$event->getName();
-    $user = $this->userStorage->load($event->getAccount()->id());
+    $user = $this->getUserStorage()->load($event->getAccount()->id());
     $fieldName = $user?->get('field_name')->getString();
     // Prevent "TypeError: Cannot assign null to reference held by property
     // Drupal\user_event_dispatcher\Event\User\UserFormatNameAlterEvent::$name".

@@ -12,7 +12,6 @@ use Drupal\Core\Session\UserSession;
 use Drupal\ai_screening\Exception\InvalidArgumentException;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackHelper;
 use Drupal\ai_screening_project_track\Helper\ProjectTrackToolHelper;
-use Drupal\ai_screening_project_track\ProjectTrackStorageInterface;
 use Drupal\user\UserInterface;
 use Drush\Attributes as CLI;
 use Drush\Commands\AutowireTrait;
@@ -29,13 +28,6 @@ final class Commands extends DrushCommands {
   private const string ACCESS_CHECK = 'ai-screening:access-check';
 
   /**
-   * The project track storage.
-   *
-   * @var \Drupal\ai_screening_project_track\ProjectTrackStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly ProjectTrackStorageInterface $projectTrackStorage;
-
-  /**
    * Constructor.
    */
   public function __construct(
@@ -44,7 +36,6 @@ final class Commands extends DrushCommands {
     private readonly ProjectTrackToolHelper $projectTrackToolHelper,
     private readonly AccountSwitcherInterface $accountSwitcher,
   ) {
-    $this->projectTrackStorage = $this->entityTypeManager->getStorage('project_track');
   }
 
   /**
