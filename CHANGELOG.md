@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning].
 ## [0.5.4] - 2026-09-24
 
 - [PR-136](https://github.com/itk-dev/ai-screening/pull/136)
-  Security update
+  - Security update
+  - Core update
 
 ## [0.5.3] - 2026-07-01
 
