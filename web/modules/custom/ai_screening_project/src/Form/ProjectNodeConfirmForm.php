@@ -29,7 +29,7 @@ class ProjectNodeConfirmForm extends ConfirmFormBase {
    *   The temp store factory service.
    */
   public function __construct(
-    private readonly PrivateTempStoreFactory $tempStoreFactory,
+    protected readonly PrivateTempStoreFactory $tempStoreFactory,
   ) {
   }
 

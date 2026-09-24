@@ -17,9 +17,7 @@ use Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface;
 use Drupal\ai_screening_project_track\Status;
 use Drupal\core_event_dispatcher\Event\Theme\ThemeEvent;
 use Drupal\core_event_dispatcher\ThemeHookEvents;
-use Drupal\taxonomy\TermStorageInterface;
 use Drupal\webform\WebformSubmissionInterface;
-use Drupal\webform\WebformSubmissionStorageInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -29,35 +27,6 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
 
   use StringTranslationTrait;
 
-  /**
-   * The project track storage.
-   *
-   * @var \Drupal\ai_screening_project_track\ProjectTrackStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly ProjectTrackStorageInterface|EntityStorageInterface $projectTrackStorage;
-
-  /**
-   * The project track storage.
-   *
-   * @var \Drupal\ai_screening_project_track\ProjectTrackToolStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly ProjectTrackToolStorageInterface|EntityStorageInterface $projectTrackToolStorage;
-
-
-  /**
-   * The term storage.
-   *
-   * @var \Drupal\taxonomy\TermStorageInterface|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly TermStorageInterface|EntityStorageInterface $termStorage;
-
-  /**
-   * The webform submission storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface|\Drupal\webform\WebformSubmissionStorageInterface
-   */
-  private readonly WebformSubmissionStorageInterface|EntityStorageInterface $submissionStorage;
-
   public function __construct(
     private readonly ProjectTrackToolHelper $projectTrackToolHelper,
     /**
@@ -66,14 +35,24 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
      * @var \Drupal\ai_screening_project_track\ProjectTrackEvaluatorIInterface[] $evaluators
      */
     private readonly iterable $evaluators,
-    EntityTypeManagerInterface $entityTypeManager,
+    private readonly EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger,
   ) {
     parent::__construct($logger);
-    $this->projectTrackStorage = $entityTypeManager->getStorage('project_track');
-    $this->projectTrackToolStorage = $entityTypeManager->getStorage('project_track_tool');
-    $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
-    $this->submissionStorage = $entityTypeManager->getStorage('webform_submission');
+  }
+
+  /**
+   * Get the project track storage.
+   */
+  private function getProjectTrackStorage(): ProjectTrackStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('project_track');
+  }
+
+  /**
+   * Get the project track tool storage.
+   */
+  private function getProjectTrackToolStorage(): ProjectTrackToolStorageInterface|EntityStorageInterface {
+    return $this->entityTypeManager->getStorage('project_track_tool');
   }
 
   /**
@@ -94,13 +73,13 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    */
   public function getToolsData(ProjectTrackInterface $track, ?string $key = NULL): mixed {
     $data = [];
-    $projectTrackToolIds = $this->projectTrackToolStorage->getQuery()
+    $projectTrackToolIds = $this->getProjectTrackToolStorage()->getQuery()
       ->accessCheck(FALSE)
       ->condition('project_track_id', $track->id())
       ->sort('delta')
       ->execute();
 
-    $projectTrackTools = $this->projectTrackToolStorage->loadMultiple($projectTrackToolIds);
+    $projectTrackTools = $this->getProjectTrackToolStorage()->loadMultiple($projectTrackToolIds);
 
     /** @var \Drupal\ai_screening_project_track\Entity\ProjectTrackTool $projectTrackTool */
     foreach ($projectTrackTools as $projectTrackTool) {
@@ -128,14 +107,14 @@ final class ProjectTrackHelper extends AbstractHelper implements EventSubscriber
    * Load track.
    */
   public function loadTrack(string $id): ?ProjectTrackInterface {
-    return $this->projectTrackStorage->load($id);
+    return $this->getProjectTrackStorage()->load($id);
   }
 
   /**
    * Load multiple tracks.
    */
   public function loadTracks(array $trackIds): array {
-    return $this->projectTrackStorage->loadMultiple($trackIds);
+    return $this->getProjectTrackStorage()->loadMultiple($trackIds);
   }
 
   /**

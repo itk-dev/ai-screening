@@ -20,8 +20,8 @@ final class ThresholdsForm extends FormBase {
   use AutowireTrait;
 
   public function __construct(
-    private readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
-    private readonly StateInterface $state,
+    protected readonly ProjectTrackTypeHelper $projectTrackTypeHelper,
+    protected readonly StateInterface $state,
   ) {
   }
 

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\ai_screening_reports\Form;
 
 use Drupal\Core\DependencyInjection\AutowireTrait;
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -17,18 +16,10 @@ use Drupal\ai_screening_project\Helper\ProjectHelper;
 final class CreateReport extends FormBase {
   use AutowireTrait;
 
-  /**
-   * The project track storage.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  private readonly EntityStorageInterface $nodeStorage;
-
   public function __construct(
-    private readonly ProjectHelper $projectHelper,
-    EntityTypeManagerInterface $entityTypeManager,
+    protected readonly ProjectHelper $projectHelper,
+    protected readonly EntityTypeManagerInterface $entityTypeManager,
   ) {
-    $this->nodeStorage = $entityTypeManager->getStorage('node');
   }
 
   /**
@@ -77,7 +68,7 @@ final class CreateReport extends FormBase {
       $form_state->setRedirect('ai_screening_reports.project', ['node' => reset($projectIds)]);
     }
     else {
-      $projects = $this->nodeStorage->loadMultiple($projectIds);
+      $projects = $this->entityTypeManager->getStorage('node')->loadMultiple($projectIds);
       foreach ($projects as $project) {
         $projectTracks = $this->projectHelper->loadProjectTracks($project);
         $projectTrackIds = array_merge($projectTrackIds, array_keys($projectTracks));
