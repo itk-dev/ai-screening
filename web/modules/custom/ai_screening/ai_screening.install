@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Hooks related to installing/updating/uninstalling this module.
+ */
+
+/**
+ * Add missing CKEditor 5 list properties before ckeditor5 post updates run.
+ */
+function ai_screening_update_11001(): string {
+  $fixed = [];
+  foreach (['webform_default', 'simple_editor'] as $id) {
+    // Raw config is used because saving the editor entity triggers
+    // ckeditor5's editor presave hook, which crashes on this data.
+    // @see \Drupal\ckeditor5\Hook\Ckeditor5Hooks::editorPresave()
+    $config = \Drupal::configFactory()->getEditable('editor.editor.' . $id);
+    $list = $config->get('settings.plugins.ckeditor5_list');
+    if ($list !== NULL && !is_array($list['properties'] ?? NULL)) {
+      // "styles" is left out so ckeditor5_post_update_list_type_again()
+      // computes it from the format's allowed tags.
+      $config->set('settings.plugins.ckeditor5_list.properties', [
+        'reversed' => TRUE,
+        'startIndex' => TRUE,
+      ])->save();
+      $fixed[] = $id;
+    }
+  }
+
+  return $fixed
+    ? 'Added missing list properties to: ' . implode(', ', $fixed)
+    : 'No editors needed fixing.';
+}
