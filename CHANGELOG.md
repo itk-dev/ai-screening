@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
-## [0.5.6] - 2026-09-24
+## [0.5.7] - 2026-09-24
 
 - [PR-137](https://github.com/itk-dev/ai-screening/pull/137)
   - Security drupal core update 11.4.7 => 11.4.10
@@ -319,10 +319,9 @@ and this project adheres to [Semantic Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/itk-dev/ai-screening/compare/0.5.6...HEAD
+[Unreleased]: https://github.com/itk-dev/ai-screening/compare/0.5.7...HEAD
+[0.5.7]: https://github.com/itk-dev/ai-screening/compare/0.5.6...0.5.7
 [0.5.6]: https://github.com/itk-dev/ai-screening/compare/0.5.5...0.5.6
-[0.5.5]: https://github.com/itk-dev/ai-screening/compare/0.5.4...0.5.5
-[0.5.4]: https://github.com/itk-dev/ai-screening/compare/0.5.3...0.5.4
 [0.5.3]: https://github.com/itk-dev/ai-screening/compare/0.5.2...0.5.3
 [0.5.2]: https://github.com/itk-dev/ai-screening/compare/0.5.1...0.5.2
 [0.5.1]: https://github.com/itk-dev/ai-screening/compare/0.5.0...0.5.1
