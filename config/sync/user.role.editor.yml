@@ -15,13 +15,13 @@ label: Editor
 weight: 2
 is_admin: null
 permissions:
-  - "create project content"
-  - "edit any project content"
-  - "edit any webform"
-  - "publish editable node type project"
-  - "publish own node type project"
-  - "unpublish editable node type project"
-  - "unpublish own node type project"
-  - "view any unpublished content"
-  - "view own unpublished content"
-  - "view vocabulary labels"
+  - 'create project content'
+  - 'edit any project content'
+  - 'edit any webform'
+  - 'publish editable node type project'
+  - 'publish own node type project'
+  - 'unpublish editable node type project'
+  - 'unpublish own node type project'
+  - 'view any unpublished content'
+  - 'view own unpublished content'
+  - 'view vocabulary labels'

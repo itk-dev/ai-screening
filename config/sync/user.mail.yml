@@ -2,7 +2,7 @@ _core:
   default_config_hash: 6CZIzFifRq3qbdq3n3nDpEOO4hWIQtKOAQNPvGNGKeM
 langcode: en
 cancel_confirm:
-  subject: "Account cancellation request for [user:display-name] at [site:name]"
+  subject: 'Account cancellation request for [user:display-name] at [site:name]'
   body: |-
     [user:display-name]
 
@@ -18,7 +18,7 @@ cancel_confirm:
 
     --  [site:name] team
 password_reset:
-  subject: "Replacement login information for [user:display-name] at [site:name]"
+  subject: 'Replacement login information for [user:display-name] at [site:name]'
   body: |-
     [user:display-name],
 
@@ -32,7 +32,7 @@ password_reset:
 
     --  [site:name] team
 register_admin_created:
-  subject: "An administrator created an account for you at [site:name]"
+  subject: 'An administrator created an account for you at [site:name]'
   body: |-
     [user:display-name],
 
@@ -49,7 +49,7 @@ register_admin_created:
 
     --  [site:name] team
 register_no_approval_required:
-  subject: "Account details for [user:display-name] at [site:name]"
+  subject: 'Account details for [user:display-name] at [site:name]'
   body: |-
     [user:display-name],
 
@@ -66,7 +66,7 @@ register_no_approval_required:
 
     --  [site:name] team
 register_pending_approval:
-  subject: "Account details for [user:display-name] at [site:name] (pending admin approval)"
+  subject: 'Account details for [user:display-name] at [site:name] (pending admin approval)'
   body: |-
     [user:display-name],
 
@@ -74,13 +74,13 @@ register_pending_approval:
 
     --  [site:name] team
 register_pending_approval_admin:
-  subject: "Account details for [user:display-name] at [site:name] (pending admin approval)"
+  subject: 'Account details for [user:display-name] at [site:name] (pending admin approval)'
   body: |-
     [user:display-name] has applied for an account.
 
     [user:edit-url]
 status_activated:
-  subject: "Account details for [user:display-name] at [site:name] (approved)"
+  subject: 'Account details for [user:display-name] at [site:name] (approved)'
   body: |-
     [user:display-name],
 
@@ -99,7 +99,7 @@ status_activated:
 
     --  [site:name] team
 status_blocked:
-  subject: "Account details for [user:display-name] at [site:name] (blocked)"
+  subject: 'Account details for [user:display-name] at [site:name] (blocked)'
   body: |-
     [user:display-name],
 
@@ -107,7 +107,7 @@ status_blocked:
 
     --  [site:name] team
 status_canceled:
-  subject: "Account details for [user:display-name] at [site:name] (canceled)"
+  subject: 'Account details for [user:display-name] at [site:name] (canceled)'
   body: |-
     [user:display-name],
 
