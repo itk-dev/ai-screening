@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [0.5.8] - 2026-10-26
+
+- [PR-139](https://github.com/itk-dev/ai-screening/pull/139)
+  - Use maintained `nginx/nginx-unprivileged` docker image
+
 ## [0.5.7] - 2026-09-24
 
 - [PR-137](https://github.com/itk-dev/ai-screening/pull/137)
@@ -319,7 +324,8 @@ and this project adheres to [Semantic Versioning].
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 [Semantic Versioning]: https://semver.org/spec/v2.0.0.html
-[Unreleased]: https://github.com/itk-dev/ai-screening/compare/0.5.7...HEAD
+[Unreleased]: https://github.com/itk-dev/ai-screening/compare/0.5.8...HEAD
+[0.5.8]: https://github.com/itk-dev/ai-screening/compare/0.5.7...0.5.8
 [0.5.7]: https://github.com/itk-dev/ai-screening/compare/0.5.6...0.5.7
 [0.5.6]: https://github.com/itk-dev/ai-screening/compare/0.5.5...0.5.6
 [0.5.3]: https://github.com/itk-dev/ai-screening/compare/0.5.2...0.5.3

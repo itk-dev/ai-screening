@@ -52,7 +52,7 @@ services:
       - .:/app
 
   nginx:
-    image: nginxinc/nginx-unprivileged:alpine
+    image: nginx/nginx-unprivileged:alpine
     networks:
       - app
       - frontend
