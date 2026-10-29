@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-10-29
+
 - [PR-138](https://github.com/itk-dev/ai-screening/pull/138)
   - Update drupal core ^11.4
   - Update contrib modules minor versions
