@@ -1,0 +1,2 @@
+# We check for changed config .github/workflows/pr.yaml, so we don't want Prettier to format our config.
+config/sync/
