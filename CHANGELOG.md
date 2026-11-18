@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+- [PR-141](https://github.com/itk-dev/ai-screening/pull/141)
+  - Stop composer install when a patch does not apply
+    (`composer-exit-on-patch-failure`)
+
 ## [0.6.1] - 2026-11-18
 
 - [PR-140](https://github.com/itk-dev/ai-screening/pull/140)

@@ -82,6 +82,7 @@
         "sort-packages": true
     },
     "extra": {
+        "composer-exit-on-patch-failure": true,
         "drupal-core-project-message": {
             "include-keys": [
                 "homepage",
