@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-11-18
+
+- [PR-140](https://github.com/itk-dev/ai-screening/pull/140)
+  - Security update drupal/core 11.4.10 => 11.4.13 ([PSA-2026-11-16](https://www.drupal.org/psa-2026-11-16),
+    SA-CORE-2026-017, SA-CORE-2026-018)
+  - Updated masterminds/html5 and symfony/* packages that drupal/core-recommended 11.4.13 requires
+
 ## [0.6.0] - 2026-10-29
 
 - [PR-138](https://github.com/itk-dev/ai-screening/pull/138)
