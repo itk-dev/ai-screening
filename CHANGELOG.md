@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning].
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-11-18
+
+- [PR-140](https://github.com/itk-dev/ai-screening/pull/140)
+  - Prepared the Drupal core security update ([PSA-2026-11-16](https://www.drupal.org/psa-2026-11-16))
+
 ## [0.6.0] - 2026-10-29
 
 - [PR-138](https://github.com/itk-dev/ai-screening/pull/138)
